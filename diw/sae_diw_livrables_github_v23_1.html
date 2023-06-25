@@ -279,7 +279,7 @@ chromium  https://github.com/USERNAME/REPO</code></pre>
 <h2 id="pour-cloner-votre-projet">Pour “cloner” votre projet</h2>
 <ul>
 <li><p>Utilisez la commande : <code>git clone https://github.com/USERNAME/REPO.git</code></p></li>
-<li><p>Veuillez noter qu’il n’est plus possible de cloner le projet avec l’utilisation du login/motdepasse, ça ne fonctionne plus. Il faut générer une clé.</p></li>
+<li><p>Veuillez noter qu’il n’est plus possible de modifier le projet sur GitHub avec l’utilisation de commandes dans un terminal du login/motdepasse, ça ne fonctionne plus. Il faut générer une clé.</p></li>
 <li><p>Consultez les deux documentations suivantes :</p>
 <ul>
 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blanck">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></li>
@@ -309,23 +309,28 @@ git init
 
 # le token git 
 # dans l&#39;interface web de github (menu)  
-# l&#39;icone tout à droite de l&#39;utilisateur (à droite du menu)
-# widget menu de gauche ; tout en bas ; &lt;&gt; Developer settings
-# widget menu de gauche ; Personnal access tokens ; tokens(classic)
+# sur l’icône tout à droite de l&#39;utilisateur (à droite du menu) : sélectionner l’icône ; sélectionner &quot;⚙️ Settings&quot;
+# widget menu de gauche ; tout en bas ; sélectionner &quot;&lt;&gt; Developer settings&quot;
+# widget menu de gauche ; sélectionner &quot;Personnal access tokens&quot; ; &quot;tokens(classic)&quot;
 # créer le token ; il faut un mot de passe : c&#39;est le mot de passe du compte !
-ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX
+# recopier le token dans un fichier ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX
+
+# dans le dossier de votre projet : mettre à jour les informations du dépôt git
 
 git config -l
 git config --global user.name &quot;login_github&quot;  # definir le username du compte github
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
 git config -l</code></pre>
-<p>créer un fichier <code>.git-credentials</code></p>
+<p>créez un fichier <code>.git-credentials</code></p>
 <pre><code>code  ~/.git-credentials</code></pre>
-<p>exemple de contenu du fichier <code>.git-credentials</code></p>
+<p>exemple de contenu pour le fichier <code>.git-credentials</code></p>
 <pre><code>https://mon_repository:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
-<p>tester</p>
-<pre><code>chromium  https://github.com/USERNAME/REPO</code></pre>
+<p>modifiez le contenu du projet HTML</p>
+<p>testez le transfert sur le “repository gitHub”</p>
+<pre><code>git add --all
+git commit -m &quot;modif projet ...&quot;
+git push -u origin main</code></pre>
 </div>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
 <pre><code>git add --all
@@ -353,6 +358,48 @@ git push </code></pre>
 <h1 id="annexes">Annexes</h1>
 <p><a href="https://librecours.net/module/sr/git02/index.xhtml" target="_blanck">https://librecours.net/module/sr/git02/index.xhtml</a> <br> <a href="https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository" target="_blanck">https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository</a> <br></p>
 <p><a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> <br></p>
+<!-- solution chatGPT
+    GitHub a désactivé l'utilisation de l'authentification par nom d'utilisateur et mot de passe via les commandes Git dans le terminal. À la place, ils recommandent l'utilisation d'une clé SSH pour l'authentification.
+
+Pour générer une clé SSH et l'ajouter à votre compte GitHub, vous pouvez suivre les étapes suivantes :
+
+Vérifiez si vous avez déjà une clé SSH en exécutant la commande suivante dans votre terminal :
+
+bash
+Copy code
+ls -al ~/.ssh
+Si vous voyez des fichiers avec des noms tels que id_rsa et id_rsa.pub, cela signifie que vous avez déjà une clé SSH. Vous pouvez passer à l'étape suivante. Sinon, générez une nouvelle clé SSH en utilisant la commande suivante :
+
+css
+Copy code
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+Assurez-vous de remplacer "your_email@example.com" par votre adresse e-mail associée à votre compte GitHub.
+
+Lorsque vous êtes invité à spécifier un emplacement pour enregistrer la clé, appuyez sur Entrée pour utiliser l'emplacement par défaut (~/.ssh/id_rsa).
+
+Vous pouvez également choisir de définir un mot de passe pour votre clé SSH ou laisser le champ vide pour une clé sans mot de passe. Cela dépend de vos préférences de sécurité.
+
+Une fois que la clé SSH est générée, vous pouvez afficher la clé publique en exécutant la commande suivante :
+
+bash
+Copy code
+cat ~/.ssh/id_rsa.pub
+Copiez la clé publique affichée dans votre terminal.
+
+Accédez à votre compte GitHub, cliquez sur votre avatar en haut à droite, puis sélectionnez "Settings" (Paramètres).
+
+Dans le menu latéral gauche, cliquez sur "SSH and GPG keys" (Clés SSH et GPG).
+
+Cliquez sur le bouton "New SSH key" (Nouvelle clé SSH).
+
+Donnez un titre à votre clé SSH (par exemple, "My SSH Key") et collez la clé publique que vous avez copiée précédemment.
+
+Enregistrez la clé en cliquant sur le bouton "Add SSH key" (Ajouter une clé SSH).
+
+Une fois cela fait, vous devriez pouvoir utiliser les opérations Git normalement avec votre compte GitHub sans avoir besoin d'entrer votre nom d'utilisateur et votre mot de passe à chaque fois.
+
+Notez que cela suppose que vous avez les autorisations nécessaires pour accéder et modifier le projet sur GitHub. Si vous rencontrez des problèmes d'accès, assurez-vous que votre compte dispose des autorisations appropriées.
+-->
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
