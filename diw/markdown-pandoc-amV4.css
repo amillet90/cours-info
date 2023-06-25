@@ -316,3 +316,10 @@ background-color:moccasin;
 color:purple;
 background-color:moccasin;
 }
+
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  background-color: lightblue;
+  margin-top: 20px;
+}

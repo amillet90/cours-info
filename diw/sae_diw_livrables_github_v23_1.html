@@ -13,7 +13,7 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
-  <link rel="stylesheet" href="markdown-pandoc-amV3.css" />
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
   <link rel="icon" href="favicon.ico" />
 </head>
 <body>
@@ -295,11 +295,12 @@ chromium  https://github.com/USERNAME/REPO</code></pre>
 git config --global user.name &quot;USERNAME&quot;
 git config --global user.email &quot;email@email.com&quot;
 git config -l</code></pre>
+<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_hide_show-->
+<p><br></p>
 <button onclick="myFunction()">
-exemple
+Exemple sur GitHUB.
 </button>
-<div id="myDIV">
-<p>Exemple sur GitHUB.</p>
+<div id="myDIV" style="display:none;">
 <pre><code>git clone https://github.com/login/mon_repository.git
 
 cd mon_repository
@@ -319,9 +320,9 @@ git config --global user.name &quot;login_github&quot;  # definir le username du
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
 git config -l</code></pre>
-<p>créer un recopier le fichier</p>
+<p>créer un fichier <code>.git-credentials</code></p>
 <pre><code>code  ~/.git-credentials</code></pre>
-<p>exemple de contenu</p>
+<p>exemple de contenu du fichier <code>.git-credentials</code></p>
 <pre><code>https://mon_repository:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
 <p>tester</p>
 <pre><code>chromium  https://github.com/USERNAME/REPO</code></pre>
