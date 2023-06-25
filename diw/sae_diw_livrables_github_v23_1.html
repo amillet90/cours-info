@@ -295,6 +295,37 @@ chromium  https://github.com/USERNAME/REPO</code></pre>
 git config --global user.name &quot;USERNAME&quot;
 git config --global user.email &quot;email@email.com&quot;
 git config -l</code></pre>
+<button onclick="myFunction()">
+exemple
+</button>
+<div id="myDIV">
+<p>Exemple sur GitHUB.</p>
+<pre><code>git clone https://github.com/login/mon_repository.git
+
+cd mon_repository
+git init
+
+
+# le token git 
+# dans l&#39;interface web de github (menu)  
+# l&#39;icone tout à droite de l&#39;utilisateur (à droite du menu)
+# widget menu de gauche ; tout en bas ; &lt;&gt; Developer settings
+# widget menu de gauche ; Personnal access tokens ; tokens(classic)
+# créer le token ; il faut un mot de passe : c&#39;est le mot de passe du compte !
+ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX
+
+git config -l
+git config --global user.name &quot;login_github&quot;  # definir le username du compte github
+
+git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
+git config -l</code></pre>
+<p>créer un recopier le fichier</p>
+<pre><code>code  ~/.git-credentials</code></pre>
+<p>exemple de contenu</p>
+<pre><code>https://mon_repository:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
+<p>tester</p>
+<pre><code>chromium  https://github.com/USERNAME/REPO</code></pre>
+</div>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
 <pre><code>git add --all
 git commit -m &quot;Initial commit&quot;
