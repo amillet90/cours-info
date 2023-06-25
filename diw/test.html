@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <!-- Titre de la page -->
+        <title>Test</title>
+
+    <!-- Codage de la page en utf-8 -->
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <!-- Langue de la page -->
+        <meta http-equiv="Content-Language" content="fr-FR"/>
+    <!-- Inclure le CSS dans la page html -->   
+        <link rel="stylesheet" media="screen" type="text/css" href="css/style.css"/>
+    <!-- Inclure le Code Java jquery dans la page html -->  
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+    <!-- Inclure le script qui permet de dérouler une DIV dans la page html -->     
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.projet1:eq(0)> div').hide();
+  $('div.projet1:eq(0)> h3').click(function() {
+ $(this).next().slideToggle('fast');
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.projet2:eq(0)> div').hide();
+  $('div.projet2:eq(0)> h3').click(function() {
+ $(this).next().slideToggle('fast');
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.categorie:eq(0)> div').hide();
+  $('div.categorie:eq(0)> h2').click(function() {
+ $(this).next().slideToggle('fast');
+  });
+});
+</script>   
+
+</head>
+<body>
+
+    <div class="categorie">
+
+    <h2>Catégorie 1</h3>    
+        <div class="projet1">
+          <h3>Title 1</h3>
+          <div>Lorem...</div>
+          <h3>Title 2</h3>
+          <div>Ipsum...</div>
+          <h3>Title 3</h3>       
+          <div>Dolor...</div>        
+        </div>
+
+    <h2>Catégorie 2</h3>    
+        <div class="projet2">
+          <h3>Title 1</h3>
+          <div>Lorem...</div>
+          <h3>Title 2</h3>
+          <div>Ipsum...</div>
+          <h3>Title 3</h3>       
+          <div>Dolor...</div>        
+        </div>  
+    </div>
+</body>
+</html>
