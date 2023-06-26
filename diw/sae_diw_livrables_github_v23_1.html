@@ -152,10 +152,10 @@ Etudiant 5 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)
 </ul>
 <h3 id="validation-sur-w3c">validation sur W3C</h3>
 <ul>
-<li>Effectuez une vérification sur <a href="https://validator.w3.org/nu/" target="_blanck">Nu Html Checker</a> (identique au <a href="http://validator.w3.org/" target="_blanck">validator de W3C</a> ) pour vous assurer que les normes HTML et CSS sont respectées. Joignez dans votre fichier <strong>README.md</strong> les éléments (captures d’écran, liens, etc.) attestant que vous avez effectué les tests de validité de votre site sur le site W3C. Créez un dossier “doc” et ajoutez-y les captures d’écran du résultat sur W3C. Indiquez aussi l’auteur de la page et la personne qui a fait le test de cette page.
+<li>Effectuez une vérification sur <a href="https://validator.w3.org/nu/" target="_blanck">Nu Html Checker</a> (identique au <a href="http://validator.w3.org/" target="_blanck">validator de W3C</a> ) pour vous assurer que les normes HTML et CSS sont respectées. Joignez dans votre fichier <strong>README.md</strong> les éléments (captures d’écran, liens, etc.) attestant que vous avez effectué les tests de validité de votre site sur le site W3C. Créez un dossier “doc” et ajoutez-y les captures d’écran du résultat sur W3C. Indiquez aussi l’auteur de la page et la personne qui a fait le test de cette page (si ce n’est pas la même personne).
 <ul>
 <li>Ces informations doivent être facilement lisibles sur <em>GitHub</em> (redimensionner les tailles des captures d’écran si nécessaire).</li>
-<li>Ajoutez des liens sur W3C qui testent les pages.</li>
+<li>Ajoutez des liens sur <a href="https://validator.w3.org/nu/" target="_blanck">Nu Html Checker</a> qui testent les pages.</li>
 </ul></li>
 </ul>
 <figure>
@@ -271,13 +271,12 @@ Verification W3C : [Détail ICI](https://validator.w3.org/nu/?showsource=yes&amp
 <pre><code>chromium  https://USERNAME.github.io/REPO
 chromium  https://github.com/USERNAME/REPO</code></pre>
 <h1 id="utilisation-avancée-de-gitgithub">Utilisation avancée de Git/GitHub</h1>
+<h2 id="pour-cloner-votre-projet">Pour “cloner” votre projet</h2>
+<p>Voici la documentation de “github” : <a href="https://pages.github.com/" target="_blanck">mise à jour avec git</a></p>
+<p><br></p>
 <p>Sur votre terminal :</p>
 <ul>
-<li>la commande <code>git --version</code> doit fonctionner</li>
-</ul>
-<p>Voici la documentation de “github” : <a href="https://pages.github.com/" target="_blanck">mise à jour avec git</a></p>
-<h2 id="pour-cloner-votre-projet">Pour “cloner” votre projet</h2>
-<ul>
+<li><p>la commande <code>git --version</code> doit fonctionner</p></li>
 <li><p>Utilisez la commande : <code>git clone https://github.com/USERNAME/REPO.git</code></p></li>
 <li><p>Veuillez noter qu’il n’est plus possible de modifier le projet sur GitHub avec l’utilisation de commandes dans un terminal du login/motdepasse, ça ne fonctionne plus. Il faut générer une clé.</p></li>
 <li><p>Consultez les deux documentations suivantes :</p>
@@ -307,30 +306,47 @@ cd mon_repository
 git init
 
 
-# le token git 
-# dans l&#39;interface web de github (menu)  
-# sur l’icône tout à droite de l&#39;utilisateur (à droite du menu) : sélectionner l’icône ; sélectionner &quot;⚙️ Settings&quot;
-# widget menu de gauche ; tout en bas ; sélectionner &quot;&lt;&gt; Developer settings&quot;
-# widget menu de gauche ; sélectionner &quot;Personnal access tokens&quot; ; &quot;tokens(classic)&quot;
-# créer le token ; il faut un mot de passe : c&#39;est le mot de passe du compte !
-# recopier le token dans un fichier ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX
-
+# Pour générer un access token depuis l&#39;interface web de GitHub, suivez ces étapes :
+# 1. Cliquez sur le menu de votre profil sur GitHub. 
+# 2. Cliquez sur l&#39;icône en forme d&#39;avatar d&#39;utilisateur située tout à droite du menu (sur votre photo de profil) . Ensuite, sélectionnez  sélectionner &quot;⚙️ Settings&quot; dans le menu
+# 3. Dans le menu de gauche, faites défiler jusqu&#39;en bas et cliquez sur &quot;&lt;&gt; Developer settings&quot;.
+# 4. Dans le menu de gauche, cliquez sur &quot;Personal access tokens&quot;, puis sur &quot;Generate new token&quot;
+# 5. Vous serez invité à fournir votre mot de passe GitHub pour confirmer votre identité (c&#39;est le mot de passe du compte ). 
+# 6. Saisissez un nom descriptif pour votre token et sélectionnez les autorisations appropriées en fonction des actions que vous souhaitez effectuer : sélectionnez toutes les autorisations nécessaires sur les dépôts (&quot;repo&quot;).
+# 7. GitHub générera un access token. Copiez ce token et gardez-le en lieu sûr : Recopier le token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX dans un fichier
+ 
 # dans le dossier de votre projet : mettre à jour les informations du dépôt git
+
+git status
 
 git config -l
 git config --global user.name &quot;login_github&quot;  # definir le username du compte github
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
 git config -l</code></pre>
-<p>créez un fichier <code>.git-credentials</code></p>
-<pre><code>code  ~/.git-credentials</code></pre>
-<p>exemple de contenu pour le fichier <code>.git-credentials</code></p>
-<pre><code>https://mon_repository:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
-<p>modifiez le contenu du projet HTML</p>
-<p>testez le transfert sur le “repository gitHub”</p>
+<p>Dans le terminal :</p>
+<pre><code>export GIT_TOKEN=ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</code></pre>
+<p>Il est possible de définir la variable GIT_TOKEN dans le fichier <code>.bashrc</code> (recopiez la ligne ci-dessus dans le fichier <code>~/.bashrc</code>)</p>
+<p>Modifiez le contenu du projet HTML.</p>
+<p>Testez le transfert sur le “repository gitHub”.</p>
 <pre><code>git add --all
 git commit -m &quot;modif projet ...&quot;
 git push -u origin main</code></pre>
+<p>Si vous avez plusieurs projets</p>
+<pre><code>#Pour Linux/macOS :
+export PROJET1_GIT_TOKEN=votre_access_token_projet1
+export PROJET2_GIT_TOKEN=votre_access_token_projet2
+#Pour Windows :
+set PROJET1_GIT_TOKEN=votre_access_token_projet1
+set PROJET2_GIT_TOKEN=votre_access_token_projet2</code></pre>
+<p><strong>question sur ChatGPT :</strong></p>
+<ul>
+<li>comment utiliser un “access token” généré sur GitHub dans un terminal ?</li>
+<li>comment exporter des GIT_TOKEN différents dans des projets différents ?</li>
+<li>quel serait le nom du GIT_TOKEN pour un projet de nom “cours-info” ?</li>
+<li>où placer cette variable dans un environnement utilisateur sur linux ?</li>
+<li>où placer cette variable dans un environnement utilisateur sur windows ?</li>
+</ul>
 </div>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
 <pre><code>git add --all
@@ -399,6 +415,95 @@ Enregistrez la clé en cliquant sur le bouton "Add SSH key" (Ajouter une clé SS
 Une fois cela fait, vous devriez pouvoir utiliser les opérations Git normalement avec votre compte GitHub sans avoir besoin d'entrer votre nom d'utilisateur et votre mot de passe à chaque fois.
 
 Notez que cela suppose que vous avez les autorisations nécessaires pour accéder et modifier le projet sur GitHub. Si vous rencontrez des problèmes d'accès, assurez-vous que votre compte dispose des autorisations appropriées.
+
+donnez un exemple de contenu pour le fichier `.git-credentials` avec un access token
+comment utiliser un access token généré github dans un terminal ?
+comment exporter des  GIT_TOKEN différents dans des projets différents ?
+quel serait le nom du GIT_TOKEN pour un projet de nom "cours-info" ?
+où placer cette variable dans un environnement utilisateur sur linux ?
+où placer cette variable dans un environnement utilisateur sur windows ?
+
+
+
+
+-----
+
+Pour exporter différents access tokens Git dans différents projets, vous pouvez utiliser différentes variables d'environnement pour chaque projet. Voici comment procéder :
+
+Générez un access token pour chaque projet sur la plateforme Git correspondante (par exemple, GitHub).
+
+Ouvrez votre terminal et exécutez la commande suivante pour définir une variable d'environnement spécifique pour chaque projet :
+
+Pour Linux/macOS :
+
+arduino
+￼Copy code
+export PROJET1_GIT_TOKEN=votre_access_token_projet1
+export PROJET2_GIT_TOKEN=votre_access_token_projet2
+Pour Windows :
+
+arduino
+￼Copy code
+set PROJET1_GIT_TOKEN=votre_access_token_projet1
+set PROJET2_GIT_TOKEN=votre_access_token_projet2
+Remplacez votre_access_token_projet1 et votre_access_token_projet2 par les véritables access tokens correspondant à chaque projet.
+
+Lorsque vous travaillez sur chaque projet, vous pouvez référencer la variable d'environnement appropriée dans vos commandes Git. Par exemple, pour cloner un dépôt dans le projet 1, vous pouvez utiliser :
+
+bash
+￼Copy code
+git clone https://github.com/utilisateur/projet1.git
+Et Git utilisera automatiquement la variable d'environnement PROJET1_GIT_TOKEN pour l'authentification.
+
+De cette manière, vous pouvez gérer différents access tokens pour chaque projet de manière séparée. Assurez-vous de garder chaque access token confidentiel et de ne pas les partager publiquement.
+
+-----
+
+Le nom du GIT_TOKEN pour un projet de nom "cours-info" peut être défini selon vos préférences. Vous pouvez utiliser un nom explicite et unique pour le token, tel que "COURS_INFO_GIT_TOKEN" ou "GIT_TOKEN_COURS_INFO". L'important est de choisir un nom qui soit significatif et facile à identifier pour vous lors de la configuration de la variable d'environnement correspondante. Par exemple, pour Linux/macOS :
+
+arduino
+￼Copy code
+export COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
+Pour Windows :
+
+arduino
+￼Copy code
+set COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
+Remplacez "votre_access_token_cours_info" par le véritable access token associé au projet "cours-info".
+
+---- 
+
+
+Pour placer une variable d'environnement utilisateur sur Linux, vous pouvez les ajouter au fichier ~/.bashrc ou ~/.bash_profile. Voici les étapes pour le faire :
+
+Ouvrez le terminal.
+
+Ouvrez le fichier ~/.bashrc ou ~/.bash_profile à l'aide d'un éditeur de texte, tel que nano ou vi.
+
+Exemple avec nano :
+
+bash
+Copy code
+nano ~/.bashrc
+Ajoutez la ligne suivante en bas du fichier pour définir votre variable d'environnement :
+
+arduino
+Copy code
+export COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
+Remplacez "votre_access_token_cours_info" par votre véritable access token.
+
+Enregistrez le fichier et quittez l'éditeur de texte.
+
+Fermez et rouvrez le terminal, ou exécutez la commande suivante pour recharger les fichiers de configuration :
+
+bash
+Copy code
+source ~/.bashrc
+Après avoir effectué ces étapes, la variable d'environnement COURS_INFO_GIT_TOKEN sera disponible dans votre session utilisateur Linux.
+
+
+
+
 -->
 <script>
 function myFunction() {
