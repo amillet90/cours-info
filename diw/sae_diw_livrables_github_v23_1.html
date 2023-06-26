@@ -300,6 +300,7 @@ git config -l</code></pre>
 Exemple sur GitHUB.
 </button>
 <div id="myDIV" style="display:none;">
+<div class="code">
 <pre><code>git clone https://github.com/login/mon_repository.git
 
 cd mon_repository
@@ -324,14 +325,23 @@ git config --global user.name &quot;login_github&quot;  # definir le username du
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
 git config -l</code></pre>
+</div>
 <p>Dans le terminal :</p>
+<div class="code">
 <pre><code>export GIT_TOKEN=ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</code></pre>
+</div>
 <p>Il est possible de définir la variable GIT_TOKEN dans le fichier <code>.bashrc</code> (recopiez la ligne ci-dessus dans le fichier <code>~/.bashrc</code>)</p>
 <p>Modifiez le contenu du projet HTML.</p>
 <p>Testez le transfert sur le “repository gitHub”.</p>
+<div class="code">
 <pre><code>git add --all
 git commit -m &quot;modif projet ...&quot;
 git push -u origin main</code></pre>
+</div>
+</div>
+<details>
+<summary>Exemple sur GitHUB : Lire Plus</summary>
+<p>
 <p>Si vous avez plusieurs projets</p>
 <pre><code>#Pour Linux/macOS :
 export PROJET1_GIT_TOKEN=votre_access_token_projet1
@@ -347,7 +357,8 @@ set PROJET2_GIT_TOKEN=votre_access_token_projet2</code></pre>
 <li>Où placer cette variable dans un environnement utilisateur sur Linux ?</li>
 <li>Où placer cette variable dans un environnement utilisateur sur Windows ?</li>
 </ul>
-</div>
+</p>
+</details>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
 <pre><code>git add --all
 git commit -m &quot;Initial commit&quot;
