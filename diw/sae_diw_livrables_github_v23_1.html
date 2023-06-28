@@ -609,8 +609,44 @@ Copy code
 source ~/.bashrc
 Après avoir effectué ces étapes, la variable d'environnement COURS_INFO_GIT_TOKEN sera disponible dans votre session utilisateur Linux.
 
+-->
+<!--
+
+git remote set-url origin https://git-repo/new-repository.git
+git remote -v
+git remote set-url origin git@github.com:user/repository.git
 
 
+L'erreur que vous rencontrez indique que l'authentification par mot de passe a été supprimée pour les dépôts GitHub via HTTPS depuis le 13 août 2021. GitHub recommande désormais d'utiliser des modes d'authentification alternatives.
+
+Pour résoudre cette erreur, vous pouvez utiliser l'authentification par clé SSH au lieu de l'authentification par mot de passe. Voici les étapes à suivre :
+
+Générez une paire de clés SSH : Si vous n'avez pas encore de paire de clés SSH, vous devez en générer une. Vous pouvez utiliser la commande suivante dans votre terminal pour générer une nouvelle paire de clés :
+
+```
+$ ssh-keygen -t rsa -b 4096 -C "votre@email.com"
+```
+Suivez les instructions à l'écran pour choisir un emplacement pour vos clés et définir une phrase de passe optionnelle.
+
+Ajoutez votre clé publique à votre compte GitHub : Copiez le contenu de votre clé publique en utilisant la commande suivante :
+
+```
+$ cat ~/.ssh/id_rsa.pub
+```
+
+Accédez à votre compte GitHub, cliquez sur votre profil en haut à droite, puis sélectionnez "Settings" (Paramètres). Dans le menu de gauche, cliquez sur "SSH and GPG keys" (Clés SSH et GPG) et cliquez sur "New SSH key" (Nouvelle clé SSH). Collez votre clé publique dans le champ approprié et enregistrez-la.
+
+Modifiez l'URL du dépôt distant : Maintenant, vous devez modifier l'URL du dépôt distant pour utiliser le protocole SSH. Utilisez la commande suivante pour le faire :
+
+```
+$ git remote set-url origin git@github.com:votre-utilisateur/votre-depot.git
+```
+
+Assurez-vous de remplacer "votre-utilisateur/votre-depot" par le chemin vers votre dépôt GitHub.
+
+Une fois que vous avez suivi ces étapes, Git utilisera l'authentification par clé SSH pour interagir avec le dépôt distant, et cela devrait résoudre l'erreur d'authentification par mot de passe.
+
+Si vous rencontrez toujours des problèmes, assurez-vous d'avoir correctement configuré vos clés SSH et que votre clé publique est associée à votre compte GitHub. Consultez également la documentation de GitHub pour plus d'informations sur l'authentification et l'utilisation des clés SSH.
 
 -->
 <script>
