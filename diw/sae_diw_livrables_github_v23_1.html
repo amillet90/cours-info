@@ -479,9 +479,6 @@ Ajoutez le dépôt distant GitHub à votre configuration Git avec la commande su
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>$ <span class="fu">git</span> config --global branch.main.merge refs/heads/main</span></code></pre></div>
 <p>Ces commandes définiront respectivement les valeurs origin pour le paramètre branch.main.remote et refs/heads/main pour le paramètre branch.main.merge dans la configuration globale de Git.</p>
 <p>Assurez-vous d’exécuter ces commandes dans votre terminal, à partir du répertoire de votre projet Git ou n’importe quel autre répertoire où vous souhaitez appliquer ces paramètres. L’option –global permet de les définir globalement pour tous les projets Git sur votre machine.</p>
-<p><br></p>
-<p><a href="https://librecours.net/module/sr/git02/index.xhtml" target="_blanck">https://librecours.net/module/sr/git02/index.xhtml</a> <br> <a href="https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository" target="_blanck">https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository</a> <br></p>
-<p><a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> <br></p>
 <!-- solution chatGPT
     GitHub a désactivé l'utilisation de l'authentification par nom d'utilisateur et mot de passe via les commandes Git dans le terminal. À la place, ils recommandent l'utilisation d'une clé SSH pour l'authentification.
 
@@ -617,6 +614,10 @@ git remote -v
 git remote set-url origin git@github.com:user/repository.git
 
 -->
+<p>😃 vous</p>
+<p>j’ai une erreur et je ne comprends pas remote: Support for password authentication was removed on August 13, 2021. remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.</p>
+<p><br></p>
+<p>🤖 ChatGPT</p>
 <p>L’erreur que vous rencontrez indique que l’authentification par mot de passe a été supprimée pour les dépôts GitHub via HTTPS depuis le 13 août 2021. GitHub recommande désormais d’utiliser des modes d’authentification alternatives.</p>
 <p>Pour résoudre cette erreur, vous pouvez utiliser l’authentification par clé SSH au lieu de l’authentification par mot de passe. Voici les étapes à suivre :</p>
 <p>Générez une paire de clés SSH : Si vous n’avez pas encore de paire de clés SSH, vous devez en générer une. Vous pouvez utiliser la commande suivante dans votre terminal pour générer une nouvelle paire de clés :</p>
@@ -630,6 +631,9 @@ git remote set-url origin git@github.com:user/repository.git
 <p>Assurez-vous de remplacer “votre-utilisateur/votre-depot” par le chemin vers votre dépôt GitHub.</p>
 <p>Une fois que vous avez suivi ces étapes, Git utilisera l’authentification par clé SSH pour interagir avec le dépôt distant, et cela devrait résoudre l’erreur d’authentification par mot de passe.</p>
 <p>Si vous rencontrez toujours des problèmes, assurez-vous d’avoir correctement configuré vos clés SSH et que votre clé publique est associée à votre compte GitHub. Consultez également la documentation de GitHub pour plus d’informations sur l’authentification et l’utilisation des clés SSH.</p>
+<p><br></p>
+<p><a href="https://librecours.net/module/sr/git02/index.xhtml" target="_blanck">https://librecours.net/module/sr/git02/index.xhtml</a> <br> <a href="https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository" target="_blanck">https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository</a> <br></p>
+<p><a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> <br></p>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
