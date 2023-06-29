@@ -358,11 +358,9 @@ git config --global user.email &quot;email@email.com&quot;
 git config -l</code></pre>
 <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_hide_show-->
 <p><br></p>
-<button onclick="myFunction()">
-Exemple sur GitHUB.
-</button>
-<div id="myDIV" style="display:none;">
-<div class="code">
+<details>
+<summary>Exemple sur GitHUB : création d’un “TOKEN” </summary>
+<p>
 <pre><code>git clone https://github.com/login/mon_repository.git
 
 cd mon_repository
@@ -387,20 +385,17 @@ git config --global user.name &quot;login_github&quot;  # definir le username du
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
 git config -l</code></pre>
-</div>
 <p>Dans le terminal :</p>
-<div class="code">
 <pre><code>export GIT_TOKEN=ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</code></pre>
-</div>
 <p>Il est possible de définir la variable GIT_TOKEN dans le fichier <code>.bashrc</code> (recopiez la ligne ci-dessus dans le fichier <code>~/.bashrc</code>)</p>
 <p>Modifiez le contenu du projet HTML.</p>
 <p>Testez le transfert sur le “repository gitHub”.</p>
-<div class="code">
 <pre><code>git add --all
 git commit -m &quot;modif projet ...&quot;
 git push -u origin main</code></pre>
-</div>
-</div>
+</p>
+</details>
+<p><br></p>
 <details>
 <summary>Exemple sur GitHUB : Lire Plus</summary>
 <p>
