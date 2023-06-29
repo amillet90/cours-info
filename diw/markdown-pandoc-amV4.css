@@ -317,6 +317,7 @@ color:purple;
 background-color:moccasin;
 }
 
+/*
 #myDIV {
   width: 100%;
   padding: 50px 0;
@@ -328,10 +329,11 @@ background-color:moccasin;
   width: 80%;
   padding: 6px 6px;
 }
+*/
 
 details {
-  font: 14px "Open Sans", Calibri, sans-serif;
-  width: 820px;
+  /*font: 14px "Open Sans", Calibri, sans-serif;*/
+ /* width: 820px; */
   cursor: pointer;
 }
 
