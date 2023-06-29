@@ -359,7 +359,8 @@ git config -l</code></pre>
 <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_hide_show-->
 <p><br></p>
 <details>
-<summary>Exemple sur GitHUB : création d’un “TOKEN” </summary>
+<!--    sommaire       -->
+<summary>🤖 ChatGPT : comment créer et utiliser un “TOKEN” dans GitHub ?</summary>
 <p>
 <pre><code>git clone https://github.com/login/mon_repository.git
 
@@ -397,7 +398,7 @@ git push -u origin main</code></pre>
 </details>
 <p><br></p>
 <details>
-<summary>Exemple sur GitHUB : Utilisation de plusieurs “Tokens” ; Questions à ChatGPT </summary>
+<summary>🤖 ChatGPT : comment créer et utiliser plusieurs “Tokens” dans GitHub ?; Questions à ChatGPT </summary>
 <p>
 <p>Si vous avez plusieurs projets</p>
 <pre><code>#Pour Linux/macOS :
@@ -474,7 +475,8 @@ Ajoutez le dépôt distant GitHub à votre configuration Git avec la commande su
 <!--    fin details       -->
 <br>
 <details>
-<summary>🤖 ChatGPT : Configurer git pour travailler sur un dépot GitHUB </summary>
+<!--    sommaire       -->
+<summary>🤖 ChatGPT : Comment configurer une branche ? </summary>
 <p>
 <p>😃 vous</p>
 <p>Comment configurer Git dans un dossier pour travailler avec un dépôt GitHub dont la branche principale s’appelle “main” ?</p>
@@ -489,143 +491,27 @@ Ajoutez le dépôt distant GitHub à votre configuration Git avec la commande su
 </details>
 <!--    fin details       -->
 <!-- solution chatGPT
-    GitHub a désactivé l'utilisation de l'authentification par nom d'utilisateur et mot de passe via les commandes Git dans le terminal. À la place, ils recommandent l'utilisation d'une clé SSH pour l'authentification.
-
-Pour générer une clé SSH et l'ajouter à votre compte GitHub, vous pouvez suivre les étapes suivantes :
-
-Vérifiez si vous avez déjà une clé SSH en exécutant la commande suivante dans votre terminal :
-
-bash
-Copy code
-ls -al ~/.ssh
-Si vous voyez des fichiers avec des noms tels que id_rsa et id_rsa.pub, cela signifie que vous avez déjà une clé SSH. Vous pouvez passer à l'étape suivante. Sinon, générez une nouvelle clé SSH en utilisant la commande suivante :
-
-css
-Copy code
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-Assurez-vous de remplacer "your_email@example.com" par votre adresse e-mail associée à votre compte GitHub.
-
-Lorsque vous êtes invité à spécifier un emplacement pour enregistrer la clé, appuyez sur Entrée pour utiliser l'emplacement par défaut (~/.ssh/id_rsa).
-
-Vous pouvez également choisir de définir un mot de passe pour votre clé SSH ou laisser le champ vide pour une clé sans mot de passe. Cela dépend de vos préférences de sécurité.
-
-Une fois que la clé SSH est générée, vous pouvez afficher la clé publique en exécutant la commande suivante :
-
-bash
-Copy code
-cat ~/.ssh/id_rsa.pub
-Copiez la clé publique affichée dans votre terminal.
-
-Accédez à votre compte GitHub, cliquez sur votre avatar en haut à droite, puis sélectionnez "Settings" (Paramètres).
-
-Dans le menu latéral gauche, cliquez sur "SSH and GPG keys" (Clés SSH et GPG).
-
-Cliquez sur le bouton "New SSH key" (Nouvelle clé SSH).
-
-Donnez un titre à votre clé SSH (par exemple, "My SSH Key") et collez la clé publique que vous avez copiée précédemment.
-
-Enregistrez la clé en cliquant sur le bouton "Add SSH key" (Ajouter une clé SSH).
-
-Une fois cela fait, vous devriez pouvoir utiliser les opérations Git normalement avec votre compte GitHub sans avoir besoin d'entrer votre nom d'utilisateur et votre mot de passe à chaque fois.
-
-Notez que cela suppose que vous avez les autorisations nécessaires pour accéder et modifier le projet sur GitHub. Si vous rencontrez des problèmes d'accès, assurez-vous que votre compte dispose des autorisations appropriées.
 
 donnez un exemple de contenu pour le fichier `.git-credentials` avec un access token
 comment utiliser un access token généré github dans un terminal ?
-comment exporter des  GIT_TOKEN différents dans des projets différents ?
-quel serait le nom du GIT_TOKEN pour un projet de nom "cours-info" ?
-où placer cette variable dans un environnement utilisateur sur linux ?
-où placer cette variable dans un environnement utilisateur sur windows ?
-
-
-
-
 -----
-
-Pour exporter différents access tokens Git dans différents projets, vous pouvez utiliser différentes variables d'environnement pour chaque projet. Voici comment procéder :
-
-Générez un access token pour chaque projet sur la plateforme Git correspondante (par exemple, GitHub).
-
-Ouvrez votre terminal et exécutez la commande suivante pour définir une variable d'environnement spécifique pour chaque projet :
-
-Pour Linux/macOS :
-
-arduino
-￼Copy code
-export PROJET1_GIT_TOKEN=votre_access_token_projet1
-export PROJET2_GIT_TOKEN=votre_access_token_projet2
-Pour Windows :
-
-arduino
-￼Copy code
-set PROJET1_GIT_TOKEN=votre_access_token_projet1
-set PROJET2_GIT_TOKEN=votre_access_token_projet2
-Remplacez votre_access_token_projet1 et votre_access_token_projet2 par les véritables access tokens correspondant à chaque projet.
-
-Lorsque vous travaillez sur chaque projet, vous pouvez référencer la variable d'environnement appropriée dans vos commandes Git. Par exemple, pour cloner un dépôt dans le projet 1, vous pouvez utiliser :
-
-bash
-￼Copy code
-git clone https://github.com/utilisateur/projet1.git
-Et Git utilisera automatiquement la variable d'environnement PROJET1_GIT_TOKEN pour l'authentification.
-
-De cette manière, vous pouvez gérer différents access tokens pour chaque projet de manière séparée. Assurez-vous de garder chaque access token confidentiel et de ne pas les partager publiquement.
-
------
-
-Le nom du GIT_TOKEN pour un projet de nom "cours-info" peut être défini selon vos préférences. Vous pouvez utiliser un nom explicite et unique pour le token, tel que "COURS_INFO_GIT_TOKEN" ou "GIT_TOKEN_COURS_INFO". L'important est de choisir un nom qui soit significatif et facile à identifier pour vous lors de la configuration de la variable d'environnement correspondante. Par exemple, pour Linux/macOS :
-
-arduino
-￼Copy code
+LINUX
 export COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
-Pour Windows :
 
-arduino
-￼Copy code
+Pour Windows :
 set COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
-Remplacez "votre_access_token_cours_info" par le véritable access token associé au projet "cours-info".
-
 ---- 
-
-
 Pour placer une variable d'environnement utilisateur sur Linux, vous pouvez les ajouter au fichier ~/.bashrc ou ~/.bash_profile. Voici les étapes pour le faire :
-
-Ouvrez le terminal.
-
-Ouvrez le fichier ~/.bashrc ou ~/.bash_profile à l'aide d'un éditeur de texte, tel que nano ou vi.
-
-Exemple avec nano :
-
-bash
-Copy code
-nano ~/.bashrc
-Ajoutez la ligne suivante en bas du fichier pour définir votre variable d'environnement :
-
-arduino
-Copy code
-export COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
-Remplacez "votre_access_token_cours_info" par votre véritable access token.
-
-Enregistrez le fichier et quittez l'éditeur de texte.
-
-Fermez et rouvrez le terminal, ou exécutez la commande suivante pour recharger les fichiers de configuration :
-
-bash
-Copy code
-source ~/.bashrc
-Après avoir effectué ces étapes, la variable d'environnement COURS_INFO_GIT_TOKEN sera disponible dans votre session utilisateur Linux.
-
 -->
 <!--
-
 git remote set-url origin https://git-repo/new-repository.git
 git remote -v
 git remote set-url origin git@github.com:user/repository.git
-
 -->
 <br>
 <details>
-<summary>🤖 ChatGPT : Configurer git pour travailler sur un dépot GitHUB </summary>
+<!--    sommaire       -->
+<summary>🤖 ChatGPT : Erreur d’authentification sur GitHUB : comment utiliser un token ? </summary>
 <p>
 <p>😃 vous</p>
 <p>j’ai une erreur et je ne comprends pas remote: Support for password authentication was removed on August 13, 2021. remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.</p>
@@ -644,6 +530,9 @@ git remote set-url origin git@github.com:user/repository.git
 <p>Assurez-vous de remplacer “votre-utilisateur/votre-depot” par le chemin vers votre dépôt GitHub.</p>
 <p>Une fois que vous avez suivi ces étapes, Git utilisera l’authentification par clé SSH pour interagir avec le dépôt distant, et cela devrait résoudre l’erreur d’authentification par mot de passe.</p>
 <p>Si vous rencontrez toujours des problèmes, assurez-vous d’avoir correctement configuré vos clés SSH et que votre clé publique est associée à votre compte GitHub. Consultez également la documentation de GitHub pour plus d’informations sur l’authentification et l’utilisation des clés SSH.</p>
+</p>
+</details>
+<!--    fin details       -->
 <p><br></p>
 <p><a href="https://librecours.net/module/sr/git02/index.xhtml" target="_blanck">https://librecours.net/module/sr/git02/index.xhtml</a> <br> <a href="https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository" target="_blanck">https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository</a> <br></p>
 <p><a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> <br></p>
