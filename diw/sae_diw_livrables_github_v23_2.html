@@ -301,34 +301,20 @@ git config -l
 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blanck">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></li>
 <li><a href="https://github.com/GitCredentialManager/git-credential-manager/blob/main/README.md" target="_blanck">https://github.com/GitCredentialManager/git-credential-manager/blob/main/README.md</a> <br></li>
 </ul></li>
+<li><p>Pour générer un access token depuis l’interface web de GitHub, suivez ces étapes :</p>
+<ol type="1">
+<li>Cliquez sur le menu de votre profil sur GitHub.</li>
+<li>Cliquez sur l’icône en forme d’avatar d’utilisateur située tout à droite du menu (sur votre photo de profil) . Ensuite, sélectionnez sélectionner “⚙️ Settings” dans le menu</li>
+<li>Dans le menu de gauche, faites défiler jusqu’en bas et cliquez sur “&lt;&gt; Developer settings”.</li>
+<li>Dans le menu de gauche, cliquez sur “Personal access tokens”, puis sur “Generate new token”</li>
+<li>Vous serez invité à fournir votre mot de passe GitHub pour confirmer votre identité (c’est le mot de passe du compte ).</li>
+<li>Saisissez un nom descriptif pour votre token et sélectionnez les autorisations appropriées en fonction des actions que vous souhaitez effectuer : sélectionnez toutes les autorisations nécessaires sur les dépôts (“repo”).</li>
+<li>GitHub générera un access token. Copiez ce token et gardez-le en lieu sûr : Recopier le token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX dans un fichier. Ce token servira de mot de passe, il faudra vous l’envoyer entre les membres du groupe si vous choisissez cette méthode.</li>
+</ol></li>
+<li><p><strong>IMPORTANT</strong> : enregistrer le login et mot de passe dans le fichier <code>~/.git-credentials</code></p></li>
 </ul>
-<pre><code>
-
-
-
-# Pour générer un access token depuis l&#39;interface web de GitHub, suivez ces étapes :
-# 1. Cliquez sur le menu de votre profil sur GitHub. 
-# 2. Cliquez sur l&#39;icône en forme d&#39;avatar d&#39;utilisateur située tout à droite du menu (sur votre photo de profil) . Ensuite, sélectionnez  sélectionner &quot;⚙️ Settings&quot; dans le menu
-# 3. Dans le menu de gauche, faites défiler jusqu&#39;en bas et cliquez sur &quot;&lt;&gt; Developer settings&quot;.
-# 4. Dans le menu de gauche, cliquez sur &quot;Personal access tokens&quot;, puis sur &quot;Generate new token&quot;
-# 5. Vous serez invité à fournir votre mot de passe GitHub pour confirmer votre identité (c&#39;est le mot de passe du compte ). 
-# 6. Saisissez un nom descriptif pour votre token et sélectionnez les autorisations appropriées en fonction des actions que vous souhaitez effectuer : sélectionnez toutes les autorisations nécessaires sur les dépôts (&quot;repo&quot;).
-# 7. GitHub générera un access token. Copiez ce token et gardez-le en lieu sûr : Recopier le token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX dans un fichier
- 
-# dans le dossier de votre projet : mettre à jour les informations du dépôt git
-
-
-
-# stocke le login mot de passe dans le fichier ~/.gitcredential
-
-git config credential.helper store    
-
-#Mettre le login : username du compte 
-#mot de passe : token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX 
-
-
-
-</code></pre>
+<pre><code>git config credential.helper store</code></pre>
+<p>La commande ci-dessus copiera le login et le mot de passe * le login est le <em>username</em> du compte * le mot de passe est le token de la forme <em>ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</em></p>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
 <p>Modifiez le contenu du projet HTML.</p>
 <p>Testez le transfert sur le “repository gitHub”.</p>
