@@ -311,25 +311,27 @@ git config -l
 <li>Saisissez un nom descriptif pour votre token et sélectionnez les autorisations appropriées en fonction des actions que vous souhaitez effectuer : sélectionnez toutes les autorisations nécessaires sur les dépôts (“repo”).</li>
 <li>GitHub générera un access token. Copiez ce token et gardez-le en lieu sûr : Recopier le token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX dans un fichier. Ce token servira de mot de passe, il faudra vous l’envoyer entre les membres du groupe si vous choisissez cette méthode.</li>
 </ol></li>
-<li><p><strong>IMPORTANT</strong> : enregistrer le login et mot de passe dans le fichier <code>~/.git-credentials</code></p></li>
+<li><p><strong>IMPORTANT</strong> : enregistrer le login et mot de passe</p></li>
 </ul>
 <pre><code>git config credential.helper store</code></pre>
 <ul>
-<li>La commande ci-dessus copiera le login et le mot de passe
+<li>La commande ci-dessus copiera le login et le mot de passe dans le fichier <code>~/.git-credentials</code>
 <ul>
 <li>le login est le <em>username</em> du compte</li>
 <li>le mot de passe est le token de la forme <em>ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</em></li>
+<li>Il est possible de vérifier ou modifier ces informations qui sont dans le fichier <code>~/.git-credentials</code></li>
 </ul></li>
 </ul>
 <h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
-<p>Modifiez le contenu du projet HTML.</p>
-<p>Testez le transfert sur le “repository gitHub”.</p>
+<p>Modifiez le contenu du projet HTML/CSS.</p>
+<p>Transférez vos modification dans le “repository gitHub”.</p>
 <pre><code>git add --all
 git commit -m &quot;modif projet ...&quot;
 git push</code></pre>
 <h2 id="récupérer-tirer-les-modifications-des-autres-leur-code">“Récupérer” (“tirer”) les modifications des autres (leur code)</h2>
 <pre><code>git pull</code></pre>
 <h2 id="procédure-conseillée">procédure conseillée :</h2>
+<p>se déplacer depuis le terminal dans le dossier du projet (dépôt local)</p>
 <pre><code>git pull
 
 # modifiez le contenu du dossier
@@ -337,6 +339,9 @@ git push</code></pre>
 git add --all
 git commit -m &quot;modif projet ...&quot;
 git push</code></pre>
+<figure>
+<img src="img_github/sae1_github_push_pull.png" alt="" /><figcaption>présentation push/pull (<a href="https://delicious-insights.com/fr/articles-et-tutos/git-depot-distant-et-local/">source</a>)</figcaption>
+</figure>
 <h1 id="groupe-de-4-personnes-et-plus">Groupe de 4 personnes et plus</h1>
 <p>Hébergement sur <strong>GitLab</strong></p>
 <ul>
