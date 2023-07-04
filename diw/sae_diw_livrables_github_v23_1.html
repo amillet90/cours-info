@@ -338,7 +338,7 @@ chromium  https://github.com/USERNAME/REPO</code></pre>
 <p><br> Il est possible de remplacer chromium par mozilla.</p>
 <h1 id="utilisation-avancée-de-git-et-github">Utilisation avancée de Git et GitHub</h1>
 <h2 id="pour-cloner-votre-projet">Pour “cloner” votre projet</h2>
-<p>Voici la documentation de “github” : <a href="https://pages.github.com/" target="_blanck">mise à jour avec git</a></p>
+<p>Voici la documentation de “github” : <a href="https://pages.github.com/" target="_blanck">mise à jour avec git</a> - <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blanck">résumé commandes git (github)</a>- <a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf" target="_blanck">résumé commandes git (gitlab</a></p>
 <p><br></p>
 <p>Sur votre terminal :</p>
 <ul>
@@ -359,8 +359,38 @@ chromium  https://github.com/USERNAME/REPO</code></pre>
 <pre><code>git config -l
 git config --global user.name &quot;USERNAME&quot;
 git config --global user.email &quot;email@email.com&quot;
-git config -l</code></pre>
-<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_hide_show-->
+git config -l
+
+
+# la branche par défaut est maintenant &quot;main&quot; (et non &quot;master&quot;, petit changement depuis quelques années sur github)
+
+git branch
+git branch -M main
+
+
+git remote add origin https://github.com/amillet-iut90/cours-info.git
+git push -u origin main
+</code></pre>
+<!--
+
+git remote add origin https://github.com/amillet-iut90/cours-info.git
+git config --global user.name "amillet-iut90"  # definir le username du compte github
+git config --global user.email "alain.millet@univ-fcomte.fr" # definir l email du compte github
+
+git remote set-url origin https://github.com/amillet-iut90/cours-info.git
+
+git remote set-url origin git@github.com:amillet-iut90/cours-info.git
+
+git config --global user.password "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"
+
+export GIT_TOKEN=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
+
+
+git clone https://github.com/amillet-iut90/cours-info.git
+-->
+<p><br></p>
+<p>vidéos : <a href="https://www.youtube.com/watch?v=hNRxn5sKOdE" target="_blanck">git enzo 12 mn</a> - <a href="https://www.youtube.com/watch?v=eXF0epLeCgo" target="_blanck">git (moins rapide)</a> - <a href="https://grafikart.fr/formations/git" target="_blanck">grafikart cours</a> <br></p>
+<p><br> authentification un peu compliqué sur github :</p>
 <p><br></p>
 <details>
 <!--    sommaire       -->
@@ -389,7 +419,11 @@ git config -l
 git config --global user.name &quot;login_github&quot;  # definir le username du compte github
 
 git config --global user.email &quot;email_github@email.com&quot; # definir l email du compte github
-git config -l</code></pre>
+git config -l
+
+
+
+</code></pre>
 <p>Dans le terminal :</p>
 <pre><code>export GIT_TOKEN=ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</code></pre>
 <p>Il est possible de définir la variable GIT_TOKEN dans le fichier <code>.bashrc</code> (recopiez la ligne ci-dessus dans le fichier <code>~/.bashrc</code>)</p>
