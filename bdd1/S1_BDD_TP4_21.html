@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV3.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<div class="titre">
+TP4 : ajouter, modifier, supprimer un enregistrement dans une table
+</div>
+<!--https://word2md.com/-->
+<h1 id="création-de-la-table-structure-et-insertion-des-enregistrements">Création de la table (structure) et insertion des enregistrements</h1>
+<h2 id="création-de-la-table-produit">création de la table <strong>produit</strong></h2>
+<div style="width: 80px">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">produit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><u>id_produit</u> <br> nom <br> categorie <br>code <br> prix <br> date_achat</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="créer-une-table-produit-avec-comme-attributs-colonne-champ">Créer une table <strong>produit</strong> avec comme attributs (colonne champ) :</h4>
+<ol type="1">
+<li>un attribut <strong>id_produit</strong> de type <strong>entier,</strong> cet attribut est une clé primaire et utilise l"attribut « AUTO_INCREMENT ».</li>
+<li>un attribut <strong>nom</strong> de type <strong>chaîne de caractères variables</strong> de taille 20 caractères maximum.</li>
+<li>un attribut <strong>categorie</strong> de type <strong>chaîne de caractères variables</strong> de taille 20</li>
+<li>un attribut <strong>code</strong> dont le contenu est toujours un <strong>entier</strong> qui doit être affiché toujours avec une valeur sur 5 digits (quelque soit la valeur ), le type entier est remplacé par <strong>une chaîne de caractères</strong> pour conserver les 5 caractères.</li>
+<li>un attribut <strong>prix</strong> de type <strong>Numérique</strong> avec une précision de 5 digits avant la virgule et 2 après.</li>
+<li>un attribut <strong>date_achat</strong> de type <strong>DATE</strong>.</li>
+</ol>
+<h2 id="insertion-des-enregistrements-occurrences-tuples">Insertion des enregistrements (occurrences tuples)</h2>
+<p>Insérer les enregistrements (occurrences tuples) ci dessous (on ne distingue pas le conditionnement Kg ou à la pièce pour le Prix ), la valeur de l’attribut (colonne) <strong>id_produit</strong> peut être différent car on ne gère pas les valeurs (AUTO_INCREMENT).</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>id_produit</strong></th>
+<th><strong>nom</strong></th>
+<th><strong>categorie</strong></th>
+<th><strong>code</strong></th>
+<th><strong>prix</strong></th>
+<th style="text-align: right;"><strong>date_achat</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td>Pommes</td>
+<td>fruits</td>
+<td>01002</td>
+<td>4,5</td>
+<td style="text-align: right;">2021-10-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td>Poires</td>
+<td>fruits</td>
+<td>01008</td>
+<td>4</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td>potiron</td>
+<td>légumes</td>
+<td>02018</td>
+<td>3</td>
+<td style="text-align: right;">2021-09-21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td>haricots</td>
+<td>légumes</td>
+<td>02089</td>
+<td>18</td>
+<td style="text-align: right;">2021-10-2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td>Cerises</td>
+<td>fruits</td>
+<td>01068</td>
+<td>15</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td>Patates</td>
+<td>légumes</td>
+<td>02068</td>
+<td>3</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+</tbody>
+</table>
+<p><br> <strong>Pour un attribut (une colonne, un champ) de type AUTO_INCREMENT, mettre la valeur <code>null</code> dans l’instruction <code>insert</code> pour créer un enregistrement (une occurrence, un tuple) . Ne jamais mettre de valeur entière, MySQL l’autorise, mais ce n’est pas le cas des autres SGBDR.</strong></p>
+<h1 id="opérations-sur-les-enregistrements">Opérations sur les enregistrements</h1>
+<h2 id="afficher-des-enregistrements-de-la-table">Afficher des enregistrements de la table</h2>
+<ol type="1">
+<li>Afficher tous les produits</li>
+</ol>
+<pre><code>SELECT * FROM  produit ;</code></pre>
+<ol start="2" type="1">
+<li>Afficher le nom des produits dont le prix est inférieur à 10 €</li>
+</ol>
+<p>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_and_or.asp" target="_blanck">https://www.w3schools.com/SQL/sql_and_or.asp</a></p>
+<pre><code>+---------+
+| nom     |
++---------+
+| Pommes  |
+| Poires  |
+| Potiron |
+| Patates |
++---------+</code></pre>
+<p><br></p>
+<ol start="3" type="1">
+<li>Afficher le nom et le prix des produits dont le prix est compris entre 10 et 15 € (inférieur ou égal à 15 et supérieur ou égal à 10) , proposer 2 solutions (avec AND ou avec BETWEEN)</li>
+</ol>
+<pre><code>+---------+-------+
+| nom     | prix  |
++---------+-------+
+| Cerises | 15.00 |
++---------+-------+</code></pre>
+<p>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_between.asp" target="_blanck">https://www.w3schools.com/SQL/sql_between.asp</a></p>
+<ol start="4" type="1">
+<li>Afficher uniquement les légumes</li>
+</ol>
+<pre><code>+----------+
+| nom      |
++----------+
+| Potiron  |
+| haricots |
+| Patates  |
++----------+
+</code></pre>
+<h2 id="supprimer-un-enregistrement">Supprimer un enregistrement</h2>
+<ul>
+<li>Supprimer le produit d’identifiant 2</li>
+</ul>
+<p>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_delete.asp" target="_blanck">https://www.w3schools.com/SQL/sql_delete.asp</a></p>
+<ul>
+<li>Ajouter de nouveau ce produit dans la table</li>
+<li>Combien vaut la clé primaire ?</li>
+<li>conclusion =&gt; comment sont gérés les numéros automatiques (clé primaire qui utilise l’attribut auto_increment ) ?</li>
+</ul>
+<h2 id="modifier-un-enregistrement">Modifier un enregistrement</h2>
+<ol type="1">
+<li>Modifier le nom du produit d’identifiant 6 par « Pommes de Terre » ainsi que le prix par 3.5€</li>
+</ol>
+<ul>
+<li>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_update.asp" target="_blanck">https://www.w3schools.com/SQL/sql_update.asp</a></li>
+</ul>
+<ol start="2" type="1">
+<li><p>Sur le même principe, modifier le produit d’identifiant 5, rajouter 1€ au prix</p></li>
+<li><p>Pour les plus rapides : Rajouter une semaine à la date d’achat, mais c’est bien plus compliqué ! <a href="https://www.w3schools.com/sql/func_mysql_date_add.asp" target="_blanck">https://www.w3schools.com/sql/func_mysql_date_add.asp</a></p></li>
+</ol>
+<h1 id="modifier-la-table-la-structure">Modifier la table (la structure)</h1>
+<ol type="1">
+<li>Ajouter un champ <strong>quantite</strong> qui est un “numérique” (5 chiffres avant la virgule et 2 après) avant le champ <strong>prix</strong> (rechercher dans <a href="https://mariadb.com/kb/en/alter-table/" target="_blanck">la documentation</a>, mais “before” n’existe pas, il faut donc utiliser <a href="https://www.w3schools.com/sql/sql_alter.asp" target="_blanck">“after”</a>)</li>
+<li>Supprimer l’attribut (la colonne, le champ) <strong>code</strong></li>
+<li>Modifier le prix par un “numérique” (15 chiffres avant la virgule et 4 après)</li>
+</ol>
+<h1 id="réflexion-sur-les-types-des-attributs-colonnes-et-leurs-valeurs">Réflexion sur les types des attributs (colonnes) et leurs valeurs</h1>
+<p>Dans l’attribut <em>categorie</em>, l’utilisateur écrit toujours un mot avec comme valeur : « fruits », « légumes »</p>
+<p><br></p>
+<p>Que se passe t’il si le mot “légumes” n’est pas écrit correctement ? :</p>
+<ol type="1">
+<li>ajouter des enregistrements avec “légumes” écrit sans accent, avec une(des) majuscule(s), sans le “s” à la fin, sans accent sur le “é”</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>id_produit</strong></th>
+<th><strong>nom</strong></th>
+<th><strong>categorie</strong></th>
+<th><strong>quantite</strong></th>
+<th><strong>prix</strong></th>
+<th style="text-align: right;"><strong>date_achat</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td>tomate</td>
+<td><strong>Légume</strong></td>
+<td>5</td>
+<td>4</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td>salade verte</td>
+<td><strong>legumes</strong></td>
+<td>5</td>
+<td>1,5</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td>radis noir</td>
+<td><strong>LEGUMES</strong></td>
+<td>5</td>
+<td>3,5</td>
+<td style="text-align: right;">2021-09-30</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>Afficher uniquement les légumes</li>
+</ol>
+<p><br> Résultat possible :</p>
+<pre><code>+-----------------+-----------+
+| nom             | categorie |
++-----------------+-----------+
+| Potiron         | Légumes   |
+| haricots        | Légumes   |
+| Pommes de Terre | Légumes   |
+| Salade verte    | legumes   |
+| radis noir      | LEGUMES   |
++-----------------+-----------+</code></pre>
+<ol start="3" type="1">
+<li>Ajouter un attribut (une colonne) <strong>categorie_id</strong> de type <strong>int</strong>, juste après la colonne <strong>categorie</strong></li>
+</ol>
+<p>contenu de la table <strong>produit</strong></p>
+<pre><code>+------------+-----------------+-----------+--------------+----------+---------+------------+
+| id_produit | nom             | categorie | categorie_id | quantite | prix    | date_achat |
++------------+-----------------+-----------+--------------+----------+---------+------------+
+|          1 | Pommes          | Fruits    |         NULL |     NULL |  4.5000 | 2021-10-01 |
+|          3 | Potiron         | Légumes   |         NULL |     NULL |  3.0000 | 2021-09-21 |
+|          4 | haricots        | Légumes   |         NULL |     NULL | 18.0000 | 2021-10-02 |
+|          5 | Cerises         | Fruits    |         NULL |     NULL | 16.0000 | 2021-09-30 |
+|          6 | Pommes de Terre | Légumes   |         NULL |     NULL |  3.5000 | 2021-09-30 |
+|          7 | Poires          | Fruits    |         NULL |     NULL |  4.0000 | 2021-09-30 |
+|          8 | tomate          | Légume    |         NULL |        5 |  4.0000 | 2021-09-30 |
+|          9 | Salade verte    | legumes   |         NULL |        5 |  1.5000 | 2021-09-30 |
+|         10 | radis noir      | LEGUMES   |         NULL |      3.5 |  5.0000 | 2021-09-30 |
++------------+-----------------+-----------+--------------+----------+---------+------------+``</code></pre>
+<h1 id="notion-de-clé-étrangère">Notion de clé étrangère</h1>
+<p>Pour faire référence à la catégorie de légumes, il est préférable d’utiliser une autre table pour éviter les ambiguïtés et éviter de dupliquer des informations dans une même table</p>
+<ul>
+<li>utiliser looping pour créer les 2 tables ci-dessous</li>
+</ul>
+<p><img src="img/S1_bdd_tp3_image1.png" /></p>
+<p><br></p>
+<p>Sur le même principe, on désire enregistrer le nom du fournisseur, son adresse, son téléphone et minimiser les erreurs si une des informations concernant les fournisseurs change.</p>
+<p><br></p>
+<p>Proposer une solution pour sauvegarder ces informations et modifier votre schéma en conséquence</p>
+<p><br></p>
+<h1 id="les-relations-pour-les-plus-rapides">Les relations (pour les plus rapides)</h1>
+<ul>
+<li>Ajouter une(des) relation(s) entre les tables et tester des cardinalités</li>
+</ul>
+</body>
+</html>
