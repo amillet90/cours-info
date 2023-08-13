@@ -67,7 +67,7 @@ SAE 05-06 : partie “Développement d’Interfaces Web”
 <li><span class="modif">Dans le fichier README.md, ajoutez tous les éléments (images, liens, etc.) qui attestent que les pages ont été validées sur W3C. Indiquez clairement les auteurs de chaque page.</span></li>
 <li><span class="modif">L’hébergement sur <strong>GitHub Pages</strong> est réalisé.</span></li>
 <li><span class="modif">L’hébergement sur <strong>GitLab Pages</strong> est à réaliser par les groupes de 4 personnes et plus.</span></li>
-<li><span class="modif">L’hébergement sur <strong>GitLab Pages</strong> est à réaliser par les groupes de 4 personnes et plus.</span></li>
+<li><span class="modif">L’hébergement sur <strong>Bitbucket Pages</strong> est à réaliser par les groupes de 4 personnes et plus.</span></li>
 </ul>
 <!--
 
@@ -375,6 +375,7 @@ git pull
 git add --all
 git commit -m &quot;modif projet&quot;
 git push</code></pre>
+<p><img src="img_github/sae1_gitlab_menu_token.png" /></p>
 <ul>
 <li>l’utilisation d’un token est obligatoire dans le terminal
 <ul>
@@ -385,6 +386,7 @@ git push</code></pre>
 <li><strong>Bien recopier le token qui apparaît</strong> au dessus dans un fichier texte</li>
 </ul></li>
 </ul>
+<p><img src="img_github/sae1_gitlab_token.png" /></p>
 <h1 id="groupe-de-4-personnes-et-plus-1">Groupe de 4 personnes et plus</h1>
 <p>Hébergement sur <strong>BitBucket</strong> : Une autre forge : <a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> : <br></p>
 <ul>
@@ -400,9 +402,27 @@ git push</code></pre>
 </li>
 <li><a href="https://gitlab.com/s1-demo/projet-sae-demo/" target="_blanck">compte: URL du projet « gitlab »</a></li>
 </ul>
-<pre><code>git add --all
+<p><br> Pour utiliser “Bitbucket Pages” : Il faut suivre la documentation : <a href="https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/" target="_blanck">https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/</a> <br></p>
+<p>😅 : Il faut créer un “repository” avec comme nom <strong>username.bitbucket.io</strong> ou dans leur documentation workspaceid.bitbucket.io</p>
+<pre><code># la première fois
+git clone https://USERNAME@bitbucket.org/USERNAME/USERNAME.bitbucket.io.git
+cd *******************
+
+git status
+git config -l
+git config credential.helper store
+
+
+# récupérer les modification des autres
+git pull
+
+# modifiez le contenu du dossier
+git add --all
 git commit -m &quot;modif projet&quot;
-git push </code></pre>
+git push</code></pre>
+<p>attention dans <stong>https://USERNAME@bitbucket.org/account/settings/app-passwords/</strong><br></p>
+<p>https://support.atlassian.com/bitbucket-cloud/docs/repository-access-tokens/</p>
+<p>“⚙️ Settings”https://bitbucket.org/USERNAME/workspace/overview/</p>
 <ul>
 <li>l’utilisation d’un token est obligatoire dans le terminal
 <ul>
@@ -413,6 +433,14 @@ git push </code></pre>
 <li><strong>Bien recopier le token qui apparaît</strong> au dessus</li>
 </ul></li>
 </ul>
+<h1 id="fichier-de-connexion-git-credentials">fichier de connexion <code>git-credentials</code></h1>
+<pre><code>cat ~/.git-credentials
+
+https://USERNAME:glpat-1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@gitlab.com
+https://USERNAME:1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@bitbucket.org
+https://USERNAME:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
+<p>attention à 🤖 ChatGPT : Comment créer et utiliser le fichier <code>.git-credentials</code> sur windows</p>
+<p>Il est recommandé d’utiliser des méthodes plus sécurisées comme les clés SSH pour l’authentification avec Git.</p>
 <h1 id="annexes">Annexes</h1>
 <p><br></p>
 <p>vidéos : <a href="https://www.youtube.com/watch?v=hNRxn5sKOdE" target="_blanck">git enzo 12 mn</a> - <a href="https://www.youtube.com/watch?v=eXF0epLeCgo" target="_blanck">git (moins rapide)</a> - <a href="https://grafikart.fr/formations/git" target="_blanck">grafikart cours</a> <br> <br></p>
