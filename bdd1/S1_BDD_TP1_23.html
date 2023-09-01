@@ -195,8 +195,8 @@ La partie langage de manipulation de données de SQL permet de rechercher, d’a
 <ul>
 <li>Depuis le terminal, vous pouvez vous connecter au serveur <strong>MySQL</strong> et utiliser votre base de données :</li>
 </ul>
-<pre><code>mysql --user=login --password=JJMM --host=serveurmysql --database=BDD_login
-## mot de passe: JJMM de votre date de naissance et login à l&#39;IUT</code></pre>
+<pre><code>mysql --user=login --password=mdp --host=serveurmysql --database=BDD_login
+## mot de passe: mdp de votre date de naissance et login à l&#39;IUT</code></pre>
 <ul>
 <li>Vous pouvez ajouter un commentaire au début de votre fichier <strong>tp1.sql</strong> pour indiquer comment se connecter au serveur MySQL :</li>
 </ul>
@@ -205,26 +205,29 @@ La partie langage de manipulation de données de SQL permet de rechercher, d’a
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="ex">mysql</span> --help</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=JJMM --host=serveurmysql  BDD_login</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=mdp --host=serveurmysql  BDD_login</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=motdepasse  --host=serveurmysql.iut-bm.univ-fcomte.fr --database=BDD_login </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=mdp  --host=serveurmysql.iut-bm.univ-fcomte.fr --database=BDD_login </span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="ex">--</span> mysql -u login -h serveurmysql -p BDD_login</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="ex">--</span> mot de passe: JJMM</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="ex">--</span> mot de passe: mdp</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="ex">--</span> solution plus rapide</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="ex">mysql</span> -u login -h serveurmysql -pmotdepasse BDD_login</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="ex">mysql</span> --user=<span class="st">&quot;login&quot;</span> --password=<span class="st">&quot;motdepasse&quot;</span>  --host=<span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> --database=<span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="ex">mysql</span> --user=<span class="st">&quot;login&quot;</span> --password=<span class="st">&quot;mdp&quot;</span>  --host=<span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> --database=<span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
+<p>Pour changer de mot de passe</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- pour changer de mot de passe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;  </span></code></pre></div>
 <p>Les commentaires en SQL commence par <code>--</code> <strong>suivi d’un espace</strong> qui est normalisé. L’utilisation du symbole “#” pour les commentaires est également couramment admise dans certains systèmes de gestion de bases de données. <strong>Penser à utiliser CTRL MAJ /</strong> sur les éditeurs.</p>
 <p><br></p>
 <p>Il est possible de mettre des <code>"</code> autour des valeurs des paramètres de la commande <code>mysql</code>.</p>
 <p><br><br></p>
 <p>Prendre des Notes (en commentaires) dans vos fichiers SQL (<strong>tp1.sql)</strong> pour garder une trace des TP, vous pourrez utiliser ces TPs lors du contrôle devant machine.</p>
 <h3 id="commandes-du-s.g.b.d.r.-mysql">Commandes du S.G.B.D.R. MYSQL</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>help</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>help</span></code></pre></div>
 <ul>
 <li>La commande <code>help</code> permet d’obtenir de l’aide sur les commandes spécifiques à MySQL. Elle fournit des informations détaillées sur les commandes, les fonctions et les options de configuration propres à MySQL. (il n’y a pas d’aide pour le SQL).</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
 <ul>
 <li>Si le fichier existe dans le répertoire courant lors de la connexion au serveur MySQL via le terminal, les instructions contenues dans ce fichier seront exécutées dans MySQL.</li>
 </ul>
@@ -232,12 +235,12 @@ La partie langage de manipulation de données de SQL permet de rechercher, d’a
 <ul>
 <li>La commande <code>exit</code> permet de quitter MySQL (la connexion sur MySQL)</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>show <span class="kw">tables</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>show <span class="kw">tables</span>; </span></code></pre></div>
 <ul>
 <li>Afficher les tables de votre base de données. Attention il ne faut pas oublier le caractère <code>;</code> en fin de ligne.<br />
 <strong>La commande « show » est une instruction SQL, elle doit se terminer par un <code>;</code> contrairement aux commandes spécifiques à MySQL(afficher avec la commande help)</strong></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">system</span> ls</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">system</span> ls</span></code></pre></div>
 <ul>
 <li><p>La commande <code>system ls</code> permet d’exécuter une commande système (shell) pour lister le contenu du dossier dans lequel la connexion sur MySQL est ouverte. Veuillez noter que cette commande peut varier en fonction du système d’exploitation utilisé. Par exemple, sur les systèmes Windows, la commande équivalente serait <code>!dir</code>.</p></li>
 <li><p>Mettre en commentaire ces instructions</p></li>
@@ -277,7 +280,7 @@ Tapez la commande : <code>systeme 'ls</code> puis terminez la commande pour que 
 <ol start="2" type="1">
 <li>Afficher la structure d’une table :</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>DESCRIBE etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>DESCRIBE etudiant;</span></code></pre></div>
 <ol start="3" type="1">
 <li>Insérer des enregistrements dans une table :</li>
 </ol>
@@ -288,12 +291,12 @@ Tapez la commande : <code>systeme 'ls</code> puis terminez la commande pour que 
 <ol start="4" type="1">
 <li>Afficher tous les enregistrements d’une table</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
 <p>Remarque : Faire la différence entre « afficher les enregistrements d’une table » et « afficher la structure d’une table » dans un énoncé de contrôle.</p>
 <ol start="5" type="1">
 <li>Supprimer la table <strong>en début de script</strong></li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
 <p>Placer cette instruction en début de script pour que vos modifications sur la table soit prises en compte à chaque rechargement du script SQL.</p>
 <p><strong>Modifier votre script dans votre fichier à chaque étape</strong>, l’objectif est de bien saisir les différences et les points communs entre « NOT NULL » « UNIQUE » et « PRIMARY KEY »</p>
 <p>Pour ne plus autoriser un enregistrement avec un identifiant de l’étudiant NULL :</p>
@@ -343,7 +346,7 @@ Tapez la commande : <code>systeme 'ls</code> puis terminez la commande pour que 
 <ol start="12" type="1">
 <li>Afficher comment créer la table à l’aide de la commande ci-dessous</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
 <p><br></p>
 <ol start="13" type="1">
 <li>Terminer votre script en supprimant la table si elle existe.</li>
