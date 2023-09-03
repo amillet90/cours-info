@@ -217,11 +217,19 @@ La partie langage de manipulation de données de SQL permet de rechercher, d’a
 <p>Pour changer de mot de passe</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- pour changer de mot de passe</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;  </span></code></pre></div>
+<p>Il est <strong>conseillé de changer de mot de passe</strong>, mais <strong>attention, n’utilisez pas le mot de passe pour vous connectez sur les machines de l’IUT</strong>. Utilisez un mot de passe simple comme votre jour et mois de naissance. Ce mot de passe sera écrit dans votre python dans quelques mois et parfois partagé avec d’autres camarades.</p>
+<p><br></p>
 <p>Les commentaires en SQL commence par <code>--</code> <strong>suivi d’un espace</strong> qui est normalisé. L’utilisation du symbole “#” pour les commentaires est également couramment admise dans certains systèmes de gestion de bases de données. <strong>Penser à utiliser CTRL MAJ /</strong> sur les éditeurs.</p>
 <p><br></p>
 <p>Il est possible de mettre des <code>"</code> autour des valeurs des paramètres de la commande <code>mysql</code>.</p>
 <p><br><br></p>
-<p>Prendre des Notes (en commentaires) dans vos fichiers SQL (<strong>tp1.sql)</strong> pour garder une trace des TP, vous pourrez utiliser ces TPs lors du contrôle devant machine.</p>
+<p>Prenez des Notes (en commentaires) dans vos fichiers SQL (<strong>tp1.sql)</strong> pour garder une trace des TP, vous pourrez utiliser ces TPs lors du contrôle devant machine.</p>
+<div class="cours">
+<p><strong>Commande pour utiliser (changer) une (de) base de données</strong> : <code>USE uneBaseDeDonnees;</code></p>
+<p><br></p>
+<p>Testez la commandes <code>SHOW DATABASES;</code> pour afficher les bases de données disponibles, puis utilisez la commande <code>USE</code> pour changer la base de données utilisée par défaut.</p>
+<p><br> * Affichez vos bases de données disponibles * Changez la base de données utilisée par défaut</p>
+</div>
 <h3 id="commandes-du-s.g.b.d.r.-mysql">Commandes du S.G.B.D.R. MYSQL</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>help</span></code></pre></div>
 <ul>
@@ -248,11 +256,6 @@ La partie langage de manipulation de données de SQL permet de rechercher, d’a
 <figure>
 <img src="img/S1_bdd_tp1_image1a_2.png" alt="" /><figcaption>script SQL : exemple de commentaires</figcaption>
 </figure>
-<div class="cours">
-<p><strong>Commande pour utiliser (changer) une (de) base de données</strong> : <code>USE uneBaseDeDonnees;</code></p>
-<p><br></p>
-<p>Tester la commandes <code>SHOW DATABASES;</code> pour afficher les bases de données disponibles, puis utilisez la commande <code>USE</code> pour changer la base de données utilisée par défaut.</p>
-</div>
 <p><br></p>
 <p>Ajouter dans le fichier <strong>tp1.sql</strong> les instructions ci-dessous pour créer la table <strong>etudiant</strong> et exécuter ces instructions (<em>source tp1.sql</em>)</p>
 <p><br></p>
