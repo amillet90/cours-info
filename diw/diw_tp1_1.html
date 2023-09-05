@@ -138,9 +138,14 @@
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
-<li><p>Créer un répertoire dans votre répertoire personnel <strong>S1/DevInterfacesWeb/tp1</strong> (<code>mkdir -p S1/DevInterfacesWeb/tp1</code>), créer vos fichiers HTML sur ce répertoire.</p></li>
-<li><p>Créer un fichier <strong>test1.html</strong> (<code>cd S1/DevInterfacesWeb/tp1 ; touch test.html</code>)</p></li>
+<li><p>Créer un répertoire dans votre répertoire personnel <strong>S1/web/tp1</strong>, créer vos fichiers HTML sur ce répertoire.</p></li>
+<li><p>Créer un fichier <strong>test1.html</strong></p></li>
+<li><p>Éditez ce fichier avec VsCode</p></li>
 </ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>mkdir -p S1/web/tp1</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>cd S1/web</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>touch tp1/test.html</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>code .</span></code></pre></div>
 <p><br></p>
 <p><a href="https://html5-editor.net/" target="_blanck">éditeur html en ligne</a></p>
 <p><br></p>
@@ -154,37 +159,35 @@
 <h4 id="une-balise">Une balise</h4>
 <p><img src="img_diw/tp1_balise_1.png" style="width:10cm" /></p>
 <h4 id="éléments-bloc-vs-en-ligne">Éléments bloc vs en ligne</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;em&gt;</span>premier<span class="kw">&lt;/em&gt;&lt;em&gt;</span>deuxième<span class="kw">&lt;/em&gt;&lt;em&gt;</span>troisième<span class="kw">&lt;/em&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">&lt;p&gt;</span>quatrième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>cinquième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>sixième<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;em&gt;</span>premier<span class="kw">&lt;/em&gt;&lt;em&gt;</span>deuxième<span class="kw">&lt;/em&gt;&lt;em&gt;</span>troisième<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;p&gt;</span>quatrième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>cinquième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>sixième<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
 <h4 id="éléments-vides">Éléments vides</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
 <h4 id="attributs">Attributs</h4>
 <p><img src="img_diw/tp1_balise_2.png" style="width:10cm" /></p>
 <h4 id="exemple-de-balises-que-lon-utilisera-beaucoup">Exemple de balises que l’on utilisera beaucoup :</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">&lt;span&gt;</span>balise &quot;inline&quot; générique<span class="kw">&lt;/span&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">&lt;div&gt;</span>balise &quot;bloc&quot; générique<span class="kw">&lt;/div&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">&lt;hr&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span> lien <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;&quot;</span><span class="ot"> method=</span><span class="st">&quot;get&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    formulaire : ATTENTION aux attributs &quot;action&quot;, &quot;method&quot; dans la balise &quot;form&quot; et</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    &quot;name&quot;, &quot;value&quot; dans les balises &quot;input&quot;</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;valider&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="kw">&lt;/form&gt;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="kw">&lt;table&gt;</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>        <span class="kw">&lt;td&gt;</span>C1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>C2<span class="kw">&lt;/td&gt;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">&lt;span&gt;</span>balise &quot;inline&quot; générique<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">&lt;div&gt;</span>balise &quot;bloc&quot; générique<span class="kw">&lt;/div&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">&lt;hr&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span> lien <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;&quot;</span><span class="ot"> method=</span><span class="st">&quot;get&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    formulaire : ATTENTION aux attributs &quot;action&quot;, &quot;method&quot; dans la balise &quot;form&quot; et</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    &quot;name&quot;, &quot;value&quot; dans les balises &quot;input&quot;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;valider&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">&lt;/form&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="kw">&lt;table&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>        <span class="kw">&lt;td&gt;</span>C1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>C2<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ul>
 <li>attention au attribut obligatoire</li>
 <li>recopier le code dans votre page <strong>test1.html</strong></li>
@@ -241,7 +244,7 @@
 <ul>
 <li>Par la suite toutes les modifications se font dans le corps de la page Web ( <strong>body</strong> ), insérer :
 <ul>
-<li>une image servant de lien vers <strong>page2.html</strong>. (balise img) avec le texte alternatif “mon image devrait apparaître” de largeur 250 pixels et de hauteur 200 pixels et un titre au choix (balise <code>&lt;img src="linux.jpg" alt="mon image devrait apparaitre" title="sympa linux!" /&gt;</code>). Remarque le symbole <code>/</code> fin de balise n’est pas obligatoire. Utiliser les attributs CSS <code>width</code> et <code>height</code> pour définir les dimensions de l’image : ajouter l’attribut <code>style="width: 250px;height: 200px"</code> dans la balise image. Cette balise image est placée à l’intérieur d’une balise lien (<code>&lt;a href="nomFichier.html"&gt; &lt;img src="nomfichierImage.jpg" alt="texte alternatif" /&gt;&lt;/a&gt;</code>)</li>
+<li>une image servant de lien vers <strong>page2.html</strong>. (balise img) avec le texte alternatif “mon image devrait apparaître” de largeur 250 pixels et de hauteur 200 pixels et un titre au choix (balise <code>&lt;img src="linux.jpg" alt="mon image devrait apparaitre" title="sympa linux!" &gt;</code>). Utiliser les attributs CSS <code>width</code> et <code>height</code> pour définir les dimensions de l’image : ajouter l’attribut <code>style="width: 250px;height: 200px"</code> dans la balise image. Cette balise image est placée à l’intérieur d’une balise lien (<code>&lt;a href="nomFichier.html"&gt; &lt;img src="nomfichierImage.jpg" alt="texte alternatif" &gt;&lt;/a&gt;</code>)</li>
 <li>une ligne horizontale. (balise <code>&lt;hr&gt;</code>)</li>
 <li>un lien (interne) intitulé “lien vers page 3” vers <strong>page3.html</strong> (balise <code>&lt;a href="nomFichier.html"&gt; texte du lien &lt;/a&gt;</code>)</li>
 <li>un lien (externe) <code>&lt;a href="http://cours-info.iut-bm.univ-fcomte.fr" title="liens sur les cours TDs Tps du département informatique"&gt; Cours – TD – TP &lt;/a&gt;</code>, l’attribut : <strong>title</strong> ajoute une information lorsque la souris est sur le lien.</li>
@@ -296,14 +299,14 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 <img src="img_diw/tp1_balise_3.png" style="width:8cm" alt="" /><figcaption>Cette structure s’appelle un ensemble de règles (ou seulement « une règle »)</figcaption>
 </figure>
 <p>Exemple de fichier CSS</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">.titre1</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>{</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>}</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>h1 {</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">.titre1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>h1 {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Utilisation du CSS</p>
 <p><a href="https://en.wikipedia.org/w/index.php?title=CSS#Specificity" target="_blank">Le poids d’un sélecteur CSS</a></p>
 <figure>
@@ -313,61 +316,64 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_color" target="_blank">Exemple d’utilisation de classes</a></p>
 <p><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/button" target="_blank">éléments HTML</a> -</p>
 <p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">éléments CSS</a></p>
-<!--    sommaire       -->
+<p><b></p>
+<ul>
+<li>Navigateur : mode développement CTRL MAJ i <!--    sommaire       --></li>
+</ul>
 <br>
 <details>
 <summary>🤖 Exemple sur le poids des sélecteurs </summary>
 <p>
 <p>Créez un fichier <strong>exemple1.css</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>p {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>p {</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">blue</span><span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>}</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>p em {</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">green</span><span class="op">;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>}</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="fu">.maclasse1</span> {</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">red</span><span class="op">;</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>}</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="pp">#monid1</span> {</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a> <span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>}  </span></code></pre></div>
-<p>Créez un fichier <strong>tp1_exemple1.html</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>    <span class="kw">&lt;head&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;exemple1.css&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>    <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>    <span class="kw">&lt;body&gt;</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>p {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>p {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>}</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>        <span class="kw">&lt;p&gt;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>            &quot;texte dans p&quot;</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p em&quot;<span class="kw">&lt;/em&gt;</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>            &quot;texte dans p.maclasse1&quot;</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>            <span class="kw">&lt;em</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span>&quot;texte dans p.maclasse1 em&quot;<span class="kw">&lt;/em&gt;</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot">  class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>            &quot;texte dans p#monid1.maclasse1&quot;</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p#monid1.maclasse1  em&quot;<span class="kw">&lt;/em&gt;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="ot"> style=</span><span class="st">&quot;color: brown;&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a>            &quot;texte dans dans p#monid1.maclasse1&quot;</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a>    <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span>  </span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>p em {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">green</span><span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="fu">.maclasse1</span> {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">red</span><span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="pp">#monid1</span> {</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a> <span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>}  </span></code></pre></div>
+<p>Créez un fichier <strong>tp1_exemple1.html</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>    <span class="kw">&lt;head&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;exemple1.css&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    <span class="kw">&lt;body&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>        <span class="kw">&lt;p&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>            &quot;texte dans p&quot;</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>            &quot;texte dans p.maclasse1&quot;</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>            <span class="kw">&lt;em</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span>&quot;texte dans p.maclasse1 em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot">  class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>            &quot;texte dans p#monid1.maclasse1&quot;</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p#monid1.maclasse1  em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="ot"> style=</span><span class="st">&quot;color: brown;&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a>            &quot;texte dans dans p#monid1.maclasse1&quot;</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a>    <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span>  </span></code></pre></div>
 <p>Testez le code ci-dessus</p>
 <ul>
 <li>enlevez la classe “maclasse1” dans la balise “em”</li>
