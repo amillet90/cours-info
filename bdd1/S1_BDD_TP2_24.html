@@ -463,13 +463,7 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 <li>Test sur des dates, attention aux <strong>formats</strong> pour enregistrer un champ dans un enregistrement sur <strong>DATE</strong>, <strong>TIME</strong> et <strong>DATETIME</strong></li>
 </ul>
 <!--
-* répondre aux questions ci dessous à l'aide de la documentation en ligne.
-*  Dans un enregistrement, si un champ est de type **date (DATE DATETIME TIMESTAMP TIME)** :
-    * Quelle est la valeur maximum et minimum dans un champ de type TIME ?
-    * Donner les **formats** pour enregistrer un champ dans un enregistrement sur **DATE**, **TIME** et **DATETIME**
-    * Quelle est la différence entre les types **DATETIME** et **TIMESTAMP** ? (voir [bug de l'an 2038](https://fr.wikipedia.org/wiki/Bug_de_l%27an_2038))
-    * Quel est l'intérêt de mettre la date courante lors de la création de l'enregistrement ? (voir remarque ci dessous)
-    * Quelle est la date mini et maxi pour **TIMESTAMP**, consulter la documentation :  <http://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html>
+
 
 * **Prendre des notes** pour les contrôles 
 -->
@@ -519,67 +513,11 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 <span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>DESCRIBE test_datetime1;</span>
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_datetime1;</span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a></span></code></pre></div>
-<!--
-
-```
-
-CREATE TABLE test_date2 (
-date2 TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-INSERT INTO test_date2 (date2) VALUES ('2019-03-1');
-INSERT INTO test_date2 (date2) VALUES (NULL);
-INSERT INTO test_date2 (date2) VALUES ('2017-10-10 14:30:55');
-INSERT INTO test_date2 (date2) VALUES ('2019-13-13');
-INSERT INTO test_date2 (date2) VALUES ('01-03-2019');
-INSERT INTO test_date2 (date2) VALUES ('2017/03/19');
-INSERT INTO test_date2 (date2) VALUES ('2019#03#25');
-INSERT INTO test_date2 (date2) VALUES ('3200-03-26');
-INSERT INTO test_date2 (date2) VALUES ('200-03-27');
-INSERT INTO test_date2 (date2) VALUES ('0000-00-00');
-INSERT INTO test_date2 (date2) VALUES ('-200-03-28');
-SELECT * FROM test_date2;
-DESCRIBE test_date2;
-DROP TABLE test_date2;
-
-
-
-CREATE TABLE test_date3 (
-date3 DATETIME
-);
-INSERT INTO test_date3 (date3) VALUES ('2019-03-1');
-INSERT INTO test_date3 (date3) VALUES (NULL);
-INSERT INTO test_date3 (date3) VALUES ('2017-10-10 14:30:55');
-INSERT INTO test_date3 (date3) VALUES ('2019-13-13');
-INSERT INTO test_date3 (date3) VALUES ('01-03-2019');
-INSERT INTO test_date3 (date3) VALUES ('2017/03/19');
-INSERT INTO test_date3 (date3) VALUES ('2019#03#25');
-INSERT INTO test_date3 (date3) VALUES ('3200-03-26');
-INSERT INTO test_date3 (date3) VALUES ('200-03-27');
-INSERT INTO test_date3 (date3) VALUES ('0000-00-00');
-INSERT INTO test_date3 (date3) VALUES ('-200-03-28');
-SELECT * FROM test_date3;
-DESCRIBE test_date3;
-DROP TABLE test_date3;
-
-## conclusion
-
-# format DATE  =>
-# format TIME =>
-# format TIMESTAMP =>
-# format DATETIME =>
-
-
-```
-
--->
-<!--
-
-* Remarque : **les valeurs par défaut sont des constantes**, sauf une exception uniquement sur le SGBDR MySql : pour un champ de type **TIMESTAMP** la valeur peut être par défaut **CURRENT_TIMESTAMP** 
-
--->
 <ul>
 <li>Remarque : attention aux champs de type <em>DATETIME</em> : si vous recherchez des enregistrements compris entre 2 dates (exemple des vols), vous ne prenez pas en compte le dernier jour.</li>
 </ul>
+<p><br><br><br><br><br></p>
+<h2 id="annexes-les-autres-types">Annexes : les autres types</h2>
 <h2 id="les-booleens">les booleens</h2>
 <p>valeur “vrai” ou “faux” codée sur un octet</p>
 <table>
@@ -618,7 +556,7 @@ DROP TABLE test_date3;
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">SELECT</span> x1,x2 <span class="kw">FROM</span> test_bool;</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>DESCRIBE test_bool;</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_bool;</span></code></pre></div>
-<h2 id="les-autres-types">les autres types</h2>
+<h2 id="pour-la-monnaie">pour la monnaie (€)</h2>
 <p>currency : valeur monétaire codée sur 8 octets comprenant 15 chiffres + 4 décimales</p>
 <table>
 <thead>
@@ -640,5 +578,65 @@ DROP TABLE test_date3;
 </tr>
 </tbody>
 </table>
+<h2 id="cas-particulier-le-timestamp">cas particulier le “TIMESTAMP”</h2>
+<pre><code>
+CREATE TABLE test_date2 (
+date2 TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO test_date2 (date2) VALUES (&#39;2019-03-1&#39;);
+INSERT INTO test_date2 (date2) VALUES (NULL);
+INSERT INTO test_date2 (date2) VALUES (&#39;2017-10-10 14:30:55&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;2019-13-13&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;01-03-2019&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;2017/03/19&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;2019#03#25&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;3200-03-26&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;200-03-27&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;0000-00-00&#39;);
+INSERT INTO test_date2 (date2) VALUES (&#39;-200-03-28&#39;);
+SELECT * FROM test_date2;
+DESCRIBE test_date2;
+DROP TABLE test_date2;
+
+
+
+CREATE TABLE test_date3 (
+date3 DATETIME
+);
+INSERT INTO test_date3 (date3) VALUES (&#39;2019-03-1&#39;);
+INSERT INTO test_date3 (date3) VALUES (NULL);
+INSERT INTO test_date3 (date3) VALUES (&#39;2017-10-10 14:30:55&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;2019-13-13&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;01-03-2019&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;2017/03/19&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;2019#03#25&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;3200-03-26&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;200-03-27&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;0000-00-00&#39;);
+INSERT INTO test_date3 (date3) VALUES (&#39;-200-03-28&#39;);
+SELECT * FROM test_date3;
+DESCRIBE test_date3;
+DROP TABLE test_date3;
+
+## conclusion
+
+# format DATE  =&gt;
+# format TIME =&gt;
+# format TIMESTAMP =&gt;
+# format DATETIME =&gt;
+
+</code></pre>
+<ul>
+<li><p>Remarque : <strong>les valeurs par défaut sont des constantes</strong>, sauf une exception uniquement sur le SGBDR MySql : pour un champ de type <strong>TIMESTAMP</strong> la valeur peut être par défaut <strong>CURRENT_TIMESTAMP</strong></p></li>
+<li><p>répondre aux questions ci dessous à l’aide de la documentation en ligne.</p></li>
+<li><p>Dans un enregistrement, si un champ est de type <strong>date (DATE DATETIME TIMESTAMP TIME)</strong> :</p>
+<ul>
+<li>Quelle est la valeur maximum et minimum dans un champ de type TIME ?</li>
+<li>Donner les <strong>formats</strong> pour enregistrer un champ dans un enregistrement sur <strong>DATE</strong>, <strong>TIME</strong> et <strong>DATETIME</strong></li>
+<li>Quelle est la différence entre les types <strong>DATETIME</strong> et <strong>TIMESTAMP</strong> ? (voir <a href="https://fr.wikipedia.org/wiki/Bug_de_l%27an_2038">bug de l’an 2038</a>)</li>
+<li>Quel est l’intérêt de mettre la date courante lors de la création de l’enregistrement ? (voir remarque ci dessous)</li>
+<li>Quelle est la date mini et maxi pour <strong>TIMESTAMP</strong>, consulter la documentation : <a href="http://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html" class="uri">http://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html</a></li>
+</ul></li>
+</ul>
 </body>
 </html>
