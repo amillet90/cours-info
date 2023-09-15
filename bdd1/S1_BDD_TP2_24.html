@@ -387,11 +387,13 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 </tbody>
 </table>
 <ul>
-<li>VARCHAR(n) : Chaine alphanumérique à longueur variable de 1 à 255 caractères (n taille maxi)</li>
-<li>CHAR(n) : Chaine alphanumérique à longueur fixe de 1 à 255 caractères (complèter par des blancs si la taille est inférieur à la taille maximale n)</li>
-<li>TEXT (alias blob) : zone de texte jusqu’à 65536 caractères</li>
-<li>MEDIUMTEXT (alias mediumBlob) : zone de texte jusqu’à 16 777 215 caractères</li>
-<li>LONGTEXT (alias longblob) : zone de texte jusqu’à 4 294 967 295 caractères</li>
+<li>VARCHAR(n) : Chaîne alphanumérique à longueur variable de 1 à 255 caractères (n taille maxi)</li>
+<li>CHAR(n) : Chaîne alphanumérique à longueur fixe de 1 à 255 caractères (complèter par des blancs si la taille est inférieur à la taille maximale n)</li>
+<li>TEXT (blob) : zone de texte jusqu’à 65536 caractères</li>
+<li>MEDIUMTEXT (mediumBlob) : zone de texte jusqu’à 16 777 215 caractères</li>
+<li>LONGTEXT (longblob) : zone de texte jusqu’à 4 294 967 295 caractères</li>
+<li>BLOB sont traitées comme des chaînes binaires (tri comparaison) alors que TEXT sont traitées comme des chaînes de caractères (tri comparaison)</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html">Taille de stockage sur mysql</a></li>
 </ul>
 <p><br><br></p>
 <ul>
