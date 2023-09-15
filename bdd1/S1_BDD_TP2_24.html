@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD1</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<div class="titre">
+TP2 : Construire des tables…. <strong>Les Types de données pour les attibuts ou colonnes</strong>
+</div>
+<p><br><br></p>
+<div class="cours">
+<p>Rappel</p>
+<p><img src="img/S1_bdd_tp1_img3cc.png" style="width:18cm" /></p>
+<p><img src="img/S1_bdd_tp2_img1cc.png" style="width:18cm" /></p>
+<p><a href="https://louisvandevelde.be/index.php?dos=my&amp;fic=meris" target="_blanck">article sur les mots clés</a></p>
+<p><a href="https://www.camerecole.org/component/content/article/69-infor-qtiaue-ter-inqle-c-d-et-ti/1458-conception-d-un-systeme-d-information-fin.html?Itemid=101" target="_blanck">article sur la Conception d’un système d’information</a></p>
+<!--https://fr.wikipedia.org/wiki/Merise_(informatique)-->
+</div>
+<h1 id="objectif">Objectif</h1>
+<ul>
+<li><p>Objectif : Présentation et utilisation des <strong>types de données : entier, réel, chaîne de caractères, date</strong>.<br />
+</p></li>
+<li><p>Vous pouvez vous aider :</p>
+<ul>
+<li>de cette <a href="https://www.w3schools.com/sql/sql_datatypes.asp" target="_blanck">documentation sur w3school</a></li>
+<li>de la <a href="http://dev.mysql.com/doc/refman/8.0/en/data-types.html" target="_blanck">documentation de mysql</a> , et la <a href="https://mariadb.com/kb/en/library/data-types/" target="_blanck">documentation de mariadb</a> , et la <a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver15" target="_blanck">documentation de SQLserver</a> , ou encore la <a href="https://docs.oracle.com/cd/B28359_01/server.111/b28318/datatype.htm#CNCPT012" target="_blanck">documentation de Oracle</a> ….</li>
+<li>de ce petit résumé sur <a href="http://cours-info.iut-bm.univ-fcomte.fr/upload/perso/amillet/S1_BDD/MySql_TP_doc_types.pdf" target="_blanck">cours-info</a></li>
+</ul></li>
+</ul>
+<p>Rappel : Depuis le terminal, se connecter au serveur <strong>mysql</strong><br />
+</p>
+<pre><code>mysql --user=votreLogin --password=JJMM --host=serveurmysql --database=BDD_votreLogin</code></pre>
+<ul>
+<li>Créer un fichier et <strong>prendre des notes</strong> pour les contrôles</li>
+</ul>
+<h1 id="présentation-des-différents-types-de-données-dans-mysql">Présentation des différents types de données dans MySQL</h1>
+<p>Les types standards (fondamentaux) sont :</p>
+<ul>
+<li><p><strong>INT</strong> ou(alias) <strong>INTEGER</strong>, SMALLINT, BIGINT, ….</p></li>
+<li><p><strong>DECIMAL(X,Y)</strong> ou(alias) <strong>NUMERIC(X,Y)</strong></p></li>
+<li><p>FLOAT(X) ou(alias) REAL</p></li>
+<li><p>CHAR(X)</p></li>
+<li><p><strong>VARCHAR(X)</strong></p></li>
+<li><p><strong>DATE</strong> (AAAA-MM-JJ)</p></li>
+<li><p>DATETIME (AAAA-MM-JJ HH:MM:SS)</p></li>
+</ul>
+<h2 id="les-entiers">les entiers</h2>
+<p><strong>type “Numérique”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQLserver</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">NUMBER(10)</td>
+<td style="text-align: center;">INTEGER</td>
+<td>INT</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">byte</td>
+<td style="text-align: center;">tinyint</td>
+<td style="text-align: center;">NUMBER(3)</td>
+<td style="text-align: center;">tinyint</td>
+<td>tinyint</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">smallint</td>
+<td style="text-align: center;">smallint</td>
+<td style="text-align: center;">NUMBER(5)</td>
+<td style="text-align: center;">smallint</td>
+<td>smallint</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">BIGINT (large number)</td>
+<td style="text-align: center;">BIGINT</td>
+<td style="text-align: center;"><a href="https://docs.oracle.com/cd/B19306_01/gateways.102/b14270/apa.htm" target="_blanck">NUMBER(19)</a></td>
+<td style="text-align: center;"><a href="https://www.postgresql.org/docs/current/datatype-numeric.html" target="_blanck">BIGINT</a></td>
+<td>BIGINT</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li>INT (alias INTEGER) : entier codé sur 4 octets (-2 147 438 648 à 2 147 438 647)</li>
+<li>BYTE : entier codé sur 1 octet (0 à 255)</li>
+<li>SMALLINT : entier codé sur 2 octets (-32 768 à 32767)</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Test sur des numériques de type <em>Entier</em> : Recopier le script ci dessous sur un terminal connecté à MySQL</li>
+<li>Dans un enregistrement, si un champ est de type <strong>entier (INT)</strong> :
+<ul>
+<li>Quel est le contenu du champ si on enregistre un entier plus grand que la capacité de stockage de ce champ ? =&gt; ERROR</li>
+<li>À quoi sert le chiffre entre parenthèses derrière le type, a-t-il toujours une utilité ? =&gt; NON</li>
+</ul></li>
+<li>Si vous remplacez le type <strong>INT</strong> par <strong>UNSIGNED INT</strong> :
+<ul>
+<li>Quel est le rôle de l’attribut <strong>UNSIGNED</strong> ? =&gt; il n’autorise pas les valeurs négatives</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_int (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>x1 <span class="dt">INT</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>x2 <span class="dt">INT</span>(<span class="dv">6</span>) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>);</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">12</span>,<span class="dv">12</span>);</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">12345678</span>,<span class="dv">12345678</span>);</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">123456789</span>,<span class="op">-</span><span class="dv">123456789</span>);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">1234567890</span>,<span class="op">-</span><span class="dv">1234567890</span>);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_int (x1,x2) <span class="kw">VALUES</span> (<span class="dv">9999999999</span>,<span class="dv">9999999999</span>);</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">SELECT</span> x1,x2 <span class="kw">FROM</span> test_int;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>DESCRIBE test_int;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_int;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a># remplacer  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a># par </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a># x <span class="dt">INT</span>   </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a># puis par </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a># x TINYINT     <span class="op">=&gt;</span> conclusion :</span></code></pre></div>
+<p><br></p>
+<div class="cours">
+<p><strong>les types “entiers”</strong></p>
+<ul>
+<li>TINYINT : 1 octet – valeurs : de -128 à 127 – valeur (entier non signé) 0 à 255</li>
+<li>SMALLINT : 2 octets – valeurs : de -32 768 à 32 767 – valeur (entier non signé) 0 à 65 535</li>
+<li>INT ou INTEGER : 4 octets – valeurs : de -2 147 483 648 à 2 147 483 647 – valeur (entier non signé) 0 à 4 294 967 295</li>
+<li>BIGINT : 8 octets – valeurs : de 9 223 372 036 854 775 808 à 9 223 372 036 854 775 807</li>
+</ul>
+<!--
+<br>
+
+Pour les champs de type numérique, l'option **UNSIGNED** permet de stocker des nombres 2 fois plus grands mais positifs (on ne stocke plus le bit de signe).\
+**ZEROFILL** : définit le caractère de remplissage par défaut, cette option définit l'entier en non signé.\
+Pour la déclaration avec l'option ZEROFILL : TYPE(M) [unsigned] avec M : nombre de décimales signifiantes qui seront affichées.\
+exemple : **telephone INT(10) ZEROFILL**, cependant **il vaut mieux enregistrer un numéro de téléphone dans une chaîne de caractères**.
+-->
+</div>
+<p><br></p>
+<h2 id="les-chiffres-à-virgules">les chiffres à virgules</h2>
+<p><strong>type “Numérique”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">decimal(n,d)</td>
+<td style="text-align: center;"><a href="https://mariadb.com/kb/en/decimal/" target="_blanck">decimal(n,d)</a> (mariadb)</td>
+<td style="text-align: center;"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqlrf/Data-Types.html#GUID-75209AF6-476D-4C44-A5DC-5FA70D701B78" target="_blanck"><strong>number(n,d)</strong></a></td>
+<td style="text-align: center;"><a href="https://www.postgresql.org/docs/15/datatype-numeric.html" target="_blanck">decimal(n,d)</a></td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver15" target="_blanck">decimal(n,d)</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html" target="_blanck">numeric(n,d)</a> (mysql)</td>
+<td style="text-align: center;"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqlrf/Data-Types.html#GUID-75209AF6-476D-4C44-A5DC-5FA70D701B78" target="_blanck"><strong>number(n,d)</strong></a></td>
+<td style="text-align: center;"><a href="https://www.postgresql.org/docs/9.1/datatype-numeric.html" target="_blanck">numeric(n,d)</a></td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver15" target="_blanck">numeric(n,d)</a></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<div class="cours">
+<ul>
+<li><p>DECIMAL(n,d) : nombre décimal de “n” chiffres dont “d” après la virgule</p></li>
+<li><p>Un <strong>alias</strong> de <strong>DECIMAL</strong> est <strong>NUMERIC</strong></p></li>
+<li><p><strong>DECIMAL</strong>, la valeur stockée est la valeur numérique exacte (ce n’est pas le cas avec un réel). Attention aux limites liées à la déclaration. Pour plus d’<a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html" target="_blanck">informations, documentation MySQL</a></p></li>
+</ul>
+<p><br></p>
+<p>Conseil : <strong>FLOAT versus DECIMAL</strong> Il est conseillé d’utiliser DECIMAL qui est un nombre exact, plutôt que FLOAT qui est un nombre approximatif, si la précision requise est suffisante. FLOAT sera réservé typiquement à des calculs scientifiques nécessitant un degré de précision supérieur.</p>
+</div>
+<ul>
+<li><p>Test sur des réels, répondre aux questions ci dessous à l’aide de la documentation en ligne.</p></li>
+<li><p>Quel est le contenu du champ si on enregistre une valeur plus grand ou plus petit que la capacité de stockage du champ ?</p></li>
+<li><p>À quoi servent les chiffres entre parenthèses derrière le type ? <br></p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_numeric (</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>y <span class="dt">NUMERIC</span>(<span class="dv">4</span>,<span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>);</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">12.2222</span>);</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="op">-</span><span class="fl">12.888</span>);</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">123.2222</span>);</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">999.2222</span>);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">999.9944</span>);</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">999.9955</span>);</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="fl">9999999999.2222</span>);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_numeric (y) <span class="kw">VALUES</span> (<span class="op">-</span><span class="fl">9999999999.2222</span>);</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_numeric;</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>DESCRIBE test_numeric;</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_numeric;</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a># y <span class="dt">NUMERIC</span>(<span class="dv">5</span>,<span class="dv">2</span>)    <span class="op">=&gt;</span> conclusion :</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a> </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a># Important : différence entre <span class="dt">NUMERIC</span> et <span class="dt">FLOAT</span> :</span></code></pre></div>
+<p><br></p>
+<p><strong>type “Numérique” : réel</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">real</td>
+<td style="text-align: center;"><a href="https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html" target="_blanck">FLOAT</a></td>
+<td style="text-align: center;">FLOAT(49) ou FLOAT(23)</td>
+<td style="text-align: center;"><a href="https://www.postgresql.org/docs/15/datatype-numeric.html" target="_blanck">real</a></td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver15#approximate-numerics" target="_blanck">FLOAT</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">double</td>
+<td style="text-align: center;">double</td>
+<td style="text-align: center;">binary_double</td>
+<td style="text-align: center;">double precision</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver15" target="_blanck">real</a></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li>float (alias real) : nombre réel codé sur 4 octets (1 bit de signe, 8 bits pour l’exposant et 23 bits pour la mantisse)</li>
+<li>double : nombre réel codé sur 8 octets (1 bit de signe, 11 bits pour l’exposant et 52 bits pour la mantisse)</li>
+</ul>
+<p>REMARQUE : différence entre FLOAT et REAL sur <a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver15" target="_blanck">‘SQL server’</a></p>
+<p><br></p>
+<pre><code>
+CREATE TABLE test_float (
+y FLOAT(4,2)
+);
+
+INSERT INTO test_float (y) VALUES (12.2222);
+INSERT INTO test_float (y) VALUES (-12.777);
+INSERT INTO test_float (y) VALUES (123.2222);
+INSERT INTO test_float (y) VALUES (999.2222);
+INSERT INTO test_float (y) VALUES (999.9944);
+INSERT INTO test_float (y) VALUES (999.9955);
+INSERT INTO test_float (y) VALUES (9999999999.2222);
+INSERT INTO test_float (y) VALUES (-9999999999.2222);
+
+SELECT * FROM test_float;
+DESCRIBE test_float;
+DROP TABLE test_float;</code></pre>
+<div class="cours">
+<p>NUMERIC (enregistre la valeur exacte d’un réel) DECIMAL[(M[,D])] est équivalent à NUMERIC [(M,D)] Occupe M+2 octets si D &gt; 0, M+1 octets si D = 0<br />
+Contient des nombres flottants stockés comme des chaînes de caractères.</p>
+<p><br> REEL : FLOAT, DOUBLE, REAL: Stocke un nombre de type flottant.(-1.175494351E-38 à 3.402823466E+38), avec Signe Exposant Mantisse (FLOAT : 4 octets DOUBLE : 8 octets) Exemple float(4,2)=&gt; valeur maximum 99,99</p>
+</div>
+<h2 id="les-chaînes-de-caractères">Les chaînes de caractères</h2>
+<p><br></p>
+<p><strong>type “TEXTE”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">varchar(n)</td>
+<td style="text-align: center;">varchar(n)</td>
+<td style="text-align: center;">varchar2(n)</td>
+<td>varchar(n)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">char(n)</td>
+<td style="text-align: center;">char(n)</td>
+<td style="text-align: center;">char(n)</td>
+<td>char(n)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">text</td>
+<td style="text-align: center;">text</td>
+<td style="text-align: center;">text</td>
+<td>clob</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>varchar(n) : Chaine alphanumérique à longueur variable de 1 à 255 caractères (n taille maxi)</li>
+<li>char(n) : Chaine alphanumérique à longueur fixe de 1 à 255 caractères (complèter par des blancs si la taille est inférieur à la taille maximale n)</li>
+<li>text : zone de texte jusqu’à 65536 caractères</li>
+</ul>
+<p><br><br></p>
+<ul>
+<li>Test sur des chaînes de caractères, répondre aux questions ci dessous à l’aide de la documentation en ligne.</li>
+<li>Dans un enregistrement, si un champ est de type <strong>chaîne de caractères ( CHAR VARCHAR TEXT …)</strong> :
+<ul>
+<li>Quelle est la différence entre <strong>CHAR</strong> et <strong>VARCHAR</strong> ?</li>
+<li>Quelle est le nombre de caractères maximum que peut enregistrer un type TEXT ?</li>
+<li><strong>ENUM</strong> n’est pas standard à tous les SGBDR, mais consulter la <a href="http://dev.mysql.com/doc/refman/8.0/en/enum.html" target="_blanck">documentation de MYSQL</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_char (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>c <span class="dt">VARCHAR</span>(<span class="dv">7</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>);</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_char (c) <span class="kw">VALUES</span> (<span class="st">&#39;essai essai&#39;</span>);</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_char (c) <span class="kw">VALUES</span> (<span class="st">&#39;Monsieur Monsieur Monsieur        &#39;</span> );</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_char (c) <span class="kw">VALUES</span> (<span class="st">&#39;M.&#39;</span> );</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_char;</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>DESCRIBE test_char;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_char;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a># remplacer par le <span class="kw">type</span> ci dessous le <span class="kw">type</span> de l<span class="st">&#39;enregistrement</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="st"># c CHAR(13)                =&gt; conclusion :</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="st"># c TEXT</span></span></code></pre></div>
+<h2 id="les-datesheures">les dates/heures</h2>
+<p><strong>type “date/heure”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td>date</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">time</td>
+<td style="text-align: center;">time</td>
+<td style="text-align: center;">date</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">datetime</td>
+<td style="text-align: center;">datetime</td>
+<td style="text-align: center;">date</td>
+<td>timestamp</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>date : Date codée sur 4 octets</li>
+<li>time : Heure codée sur 8 octets</li>
+<li>datetime : Date et heure codée sur 12 octets</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Test sur des dates, attention aux <strong>formats</strong> pour enregistrer un champ dans un enregistrement sur <strong>DATE</strong>, <strong>TIME</strong> et <strong>DATETIME</strong></li>
+</ul>
+<!--
+* répondre aux questions ci dessous à l'aide de la documentation en ligne.
+*  Dans un enregistrement, si un champ est de type **date (DATE DATETIME TIMESTAMP TIME)** :
+    * Quelle est la valeur maximum et minimum dans un champ de type TIME ?
+    * Donner les **formats** pour enregistrer un champ dans un enregistrement sur **DATE**, **TIME** et **DATETIME**
+    * Quelle est la différence entre les types **DATETIME** et **TIMESTAMP** ? (voir [bug de l'an 2038](https://fr.wikipedia.org/wiki/Bug_de_l%27an_2038))
+    * Quel est l'intérêt de mettre la date courante lors de la création de l'enregistrement ? (voir remarque ci dessous)
+    * Quelle est la date mini et maxi pour **TIMESTAMP**, consulter la documentation :  <http://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html>
+
+* **Prendre des notes** pour les contrôles 
+-->
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_date1 (</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>date1 <span class="dt">DATE</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>);</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-1&#39;</span>);</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-13-13&#39;</span>);</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;01-03-2019&#39;</span>);</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2017/03/19&#39;</span>);</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019#03#25&#39;</span>);</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;0000-00-00&#39;</span>);</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;-200-03-28&#39;</span>);</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_date1;</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>DESCRIBE test_date1;</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_date1;</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_heure1 (</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>heure1 <span class="dt">TIME</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>);</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30&#39;</span>);</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30:55&#39;</span>);</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;24:00&#39;</span>);</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;28:00&#39;</span>);</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;700:59:59&#39;</span>);</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;99:60:59&#39;</span>);</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;838:59:59&#39;</span>); <span class="co">-- 839</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_heure1;</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a>DESCRIBE test_heure1;</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_heure1;</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_datetime1 (</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a>date_time1 DATETIME</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a>);</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01&#39;</span>);</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="kw">NULL</span>);</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2017-10-10 14:30:55&#39;</span>);</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01 24:30:55&#39;</span>);</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_datetime1;</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>DESCRIBE test_datetime1;</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_datetime1;</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a></span></code></pre></div>
+<!--
+
+```
+
+CREATE TABLE test_date2 (
+date2 TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO test_date2 (date2) VALUES ('2019-03-1');
+INSERT INTO test_date2 (date2) VALUES (NULL);
+INSERT INTO test_date2 (date2) VALUES ('2017-10-10 14:30:55');
+INSERT INTO test_date2 (date2) VALUES ('2019-13-13');
+INSERT INTO test_date2 (date2) VALUES ('01-03-2019');
+INSERT INTO test_date2 (date2) VALUES ('2017/03/19');
+INSERT INTO test_date2 (date2) VALUES ('2019#03#25');
+INSERT INTO test_date2 (date2) VALUES ('3200-03-26');
+INSERT INTO test_date2 (date2) VALUES ('200-03-27');
+INSERT INTO test_date2 (date2) VALUES ('0000-00-00');
+INSERT INTO test_date2 (date2) VALUES ('-200-03-28');
+SELECT * FROM test_date2;
+DESCRIBE test_date2;
+DROP TABLE test_date2;
+
+
+
+CREATE TABLE test_date3 (
+date3 DATETIME
+);
+INSERT INTO test_date3 (date3) VALUES ('2019-03-1');
+INSERT INTO test_date3 (date3) VALUES (NULL);
+INSERT INTO test_date3 (date3) VALUES ('2017-10-10 14:30:55');
+INSERT INTO test_date3 (date3) VALUES ('2019-13-13');
+INSERT INTO test_date3 (date3) VALUES ('01-03-2019');
+INSERT INTO test_date3 (date3) VALUES ('2017/03/19');
+INSERT INTO test_date3 (date3) VALUES ('2019#03#25');
+INSERT INTO test_date3 (date3) VALUES ('3200-03-26');
+INSERT INTO test_date3 (date3) VALUES ('200-03-27');
+INSERT INTO test_date3 (date3) VALUES ('0000-00-00');
+INSERT INTO test_date3 (date3) VALUES ('-200-03-28');
+SELECT * FROM test_date3;
+DESCRIBE test_date3;
+DROP TABLE test_date3;
+
+## conclusion
+
+# format DATE  =>
+# format TIME =>
+# format TIMESTAMP =>
+# format DATETIME =>
+
+
+```
+
+-->
+<!--
+
+* Remarque : **les valeurs par défaut sont des constantes**, sauf une exception uniquement sur le SGBDR MySql : pour un champ de type **TIMESTAMP** la valeur peut être par défaut **CURRENT_TIMESTAMP** 
+
+-->
+<ul>
+<li>Remarque : attention aux champs de type <em>DATETIME</em> : si vous recherchez des enregistrements compris entre 2 dates (exemple des vols), vous ne prenez pas en compte le dernier jour.</li>
+</ul>
+<h2 id="les-booleens">les booleens</h2>
+<p>valeur “vrai” ou “faux” codée sur un octet</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">logical</td>
+<td style="text-align: center;">tinyint(1)</td>
+<td style="text-align: center;">number(1)</td>
+<td style="text-align: center;">booleen</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/bit-transact-sql?view=sql-server-ver15" target="_blanck">byte</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>sur mysql, c’est un entier dans lequel on place “0” ou “1”</li>
+<li>sur <a href="https://mariadb.com/kb/en/boolean/" target="_blanck">mariadb</a>, il existe des alias, mais ces alias ne fonctionnent pas obligatoirement sur <a href="https://dev.mysql.com/doc/refman/8.0/en/other-vendor-data-types.html" target="_blanck">mysql d’Oracle</a></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_bool (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>x1 bool,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>x2 <span class="dt">boolean</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>);</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="kw">true</span>,<span class="kw">false</span>);</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>);</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">12</span>,<span class="op">-</span><span class="dv">12</span>);</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">123</span>,<span class="op">-</span><span class="dv">123</span>);</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">SELECT</span> x1,x2 <span class="kw">FROM</span> test_bool;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>DESCRIBE test_bool;</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_bool;</span></code></pre></div>
+<h2 id="les-autres-types">les autres types</h2>
+<p>currency : valeur monétaire codée sur 8 octets comprenant 15 chiffres + 4 décimales</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">currency</td>
+<td style="text-align: center;">decimal(19,4)</td>
+<td style="text-align: center;">number(19,4)</td>
+<td style="text-align: center;">money</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/money-and-smallmoney-transact-sql?view=sql-server-ver15" target="_blanck">money</a></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
