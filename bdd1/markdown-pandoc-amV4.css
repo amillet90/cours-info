@@ -346,6 +346,11 @@ details > summary {
   cursor: pointer;
 }
 
+.gros {
+font-size:120%;
+}
+
+
 details  p, details {
   /*border-radius: 0 0 10px 10px;*/
   background-color: #ddd;
