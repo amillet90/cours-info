@@ -367,29 +367,31 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">varchar(n)</td>
-<td style="text-align: center;">varchar(n)</td>
-<td style="text-align: center;">varchar2(n)</td>
-<td>varchar(n)</td>
+<td style="text-align: center;">VARCHAR(n)</td>
+<td style="text-align: center;">VARCHAR(n)</td>
+<td style="text-align: center;">VARCHAR2(n)</td>
+<td>VARCHAR(n)</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">char(n)</td>
-<td style="text-align: center;">char(n)</td>
-<td style="text-align: center;">char(n)</td>
-<td>char(n)</td>
+<td style="text-align: center;">CHAR(n)</td>
+<td style="text-align: center;">CHAR(n)</td>
+<td style="text-align: center;">CHAR(n)</td>
+<td>CHAR(n)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">text</td>
-<td style="text-align: center;">text</td>
-<td style="text-align: center;">text</td>
+<td style="text-align: center;">TEXT</td>
+<td style="text-align: center;"><a href="https://mariadb.com/kb/en/text/" target="_blanck">TEXT</a></td>
+<td style="text-align: center;">TEXT</td>
 <td>clob</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>varchar(n) : Chaine alphanumérique à longueur variable de 1 à 255 caractères (n taille maxi)</li>
-<li>char(n) : Chaine alphanumérique à longueur fixe de 1 à 255 caractères (complèter par des blancs si la taille est inférieur à la taille maximale n)</li>
-<li>text : zone de texte jusqu’à 65536 caractères</li>
+<li>VARCHAR(n) : Chaine alphanumérique à longueur variable de 1 à 255 caractères (n taille maxi)</li>
+<li>CHAR(n) : Chaine alphanumérique à longueur fixe de 1 à 255 caractères (complèter par des blancs si la taille est inférieur à la taille maximale n)</li>
+<li>TEXT (alias blob) : zone de texte jusqu’à 65536 caractères</li>
+<li>MEDIUMTEXT (alias mediumBlob) : zone de texte jusqu’à 16 777 215 caractères</li>
+<li>LONGTEXT (alias longblob) : zone de texte jusqu’à 4 294 967 295 caractères</li>
 </ul>
 <p><br><br></p>
 <ul>
@@ -434,6 +436,58 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 <td style="text-align: center;">date</td>
 <td>date</td>
 </tr>
+</tbody>
+</table>
+<ul>
+<li>date : Date codée sur 4 octets</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Test sur des dates, attention aux <strong>formats</strong> pour enregistrer un champ dans un enregistrement sur <strong>DATE</strong> <!--
+
+
+* **Prendre des notes** pour les contrôles 
+--></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_date1 (</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>date1 <span class="dt">DATE</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>);</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-1&#39;</span>);</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-13-13&#39;</span>);</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;01-03-2019&#39;</span>);</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2017/03/19&#39;</span>);</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019#03#25&#39;</span>);</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;0000-00-00&#39;</span>);</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;-200-03-28&#39;</span>);</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_date1;</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>DESCRIBE test_date1;</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_date1;</span></code></pre></div>
+<ul>
+<li>Remarque : attention aux champs de type <em>DATETIME</em> : si vous recherchez des enregistrements compris entre 2 dates (exemple des vols), vous ne prenez pas en compte le dernier jour.</li>
+</ul>
+<p><br><br><br><br><br></p>
+<h1 id="annexes-les-autres-types">Annexes : les autres types</h1>
+<h2 id="les-datesheures-1">les dates/heures</h2>
+<p><strong>type “date/heure”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td>date</td>
+</tr>
 <tr class="even">
 <td style="text-align: center;">time</td>
 <td style="text-align: center;">time</td>
@@ -457,62 +511,37 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 <ul>
 <li>Test sur des dates, attention aux <strong>formats</strong> pour enregistrer un champ dans un enregistrement sur <strong>DATE</strong>, <strong>TIME</strong> et <strong>DATETIME</strong></li>
 </ul>
-<!--
-
-
-* **Prendre des notes** pour les contrôles 
--->
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_date1 (</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>date1 <span class="dt">DATE</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>);</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-1&#39;</span>);</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-13-13&#39;</span>);</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;01-03-2019&#39;</span>);</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2017/03/19&#39;</span>);</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;2019#03#25&#39;</span>);</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;0000-00-00&#39;</span>);</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_date1 (date1) <span class="kw">VALUES</span> (<span class="st">&#39;-200-03-28&#39;</span>);</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_date1;</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>DESCRIBE test_date1;</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_date1;</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_heure1 (</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>heure1 <span class="dt">TIME</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>);</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30&#39;</span>);</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30:55&#39;</span>);</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;24:00&#39;</span>);</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;28:00&#39;</span>);</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;700:59:59&#39;</span>);</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;99:60:59&#39;</span>);</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;838:59:59&#39;</span>); <span class="co">-- 839</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_heure1;</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a>DESCRIBE test_heure1;</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_heure1;</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_datetime1 (</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a>date_time1 DATETIME</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a>);</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01&#39;</span>);</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="kw">NULL</span>);</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2017-10-10 14:30:55&#39;</span>);</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01 24:30:55&#39;</span>);</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_datetime1;</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>DESCRIBE test_datetime1;</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_datetime1;</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_heure1 (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>heure1 <span class="dt">TIME</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>);</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30&#39;</span>);</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;14:30:55&#39;</span>);</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;24:00&#39;</span>);</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;28:00&#39;</span>);</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;700:59:59&#39;</span>);</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;99:60:59&#39;</span>);</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_heure1 (heure1) <span class="kw">VALUES</span> (<span class="st">&#39;838:59:59&#39;</span>); <span class="co">-- 839</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_heure1;</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>DESCRIBE test_heure1;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_heure1;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_datetime1 (</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>date_time1 DATETIME</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>);</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01&#39;</span>);</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="kw">NULL</span>);</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2017-10-10 14:30:55&#39;</span>);</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;2019-03-01 24:30:55&#39;</span>);</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;3200-03-26&#39;</span>);</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_datetime1 (date_time1) <span class="kw">VALUES</span> (<span class="st">&#39;200-03-27&#39;</span>);</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> test_datetime1;</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a>DESCRIBE test_datetime1;</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_datetime1;</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a></span></code></pre></div>
 <ul>
 <li>Remarque : attention aux champs de type <em>DATETIME</em> : si vous recherchez des enregistrements compris entre 2 dates (exemple des vols), vous ne prenez pas en compte le dernier jour.</li>
 </ul>
-<p><br><br><br><br><br></p>
-<h1 id="annexes-les-autres-types">Annexes : les autres types</h1>
 <h2 id="les-booleens">les booleens</h2>
 <p>valeur “vrai” ou “faux” codée sur un octet</p>
 <table>
@@ -539,18 +568,18 @@ Contient des nombres flottants stockés comme des chaînes de caractères.</p>
 <li>sur mysql, c’est un entier dans lequel on place “0” ou “1”</li>
 <li>sur <a href="https://mariadb.com/kb/en/boolean/" target="_blanck">mariadb</a>, il existe des alias, mais ces alias ne fonctionnent pas obligatoirement sur <a href="https://dev.mysql.com/doc/refman/8.0/en/other-vendor-data-types.html" target="_blanck">mysql d’Oracle</a></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_bool (</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>x1 bool,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>x2 <span class="dt">boolean</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>);</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="kw">true</span>,<span class="kw">false</span>);</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>);</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">12</span>,<span class="op">-</span><span class="dv">12</span>);</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">123</span>,<span class="op">-</span><span class="dv">123</span>);</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">SELECT</span> x1,x2 <span class="kw">FROM</span> test_bool;</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>DESCRIBE test_bool;</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_bool;</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> test_bool (</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>x1 bool,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>x2 <span class="dt">boolean</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>);</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="kw">true</span>,<span class="kw">false</span>);</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>);</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">12</span>,<span class="op">-</span><span class="dv">12</span>);</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> test_bool (x1,x2) <span class="kw">VALUES</span> (<span class="dv">123</span>,<span class="op">-</span><span class="dv">123</span>);</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="kw">SELECT</span> x1,x2 <span class="kw">FROM</span> test_bool;</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>DESCRIBE test_bool;</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> test_bool;</span></code></pre></div>
 <h2 id="pour-la-monnaie">pour la monnaie (€)</h2>
 <p>currency : valeur monétaire codée sur 8 octets comprenant 15 chiffres + 4 décimales</p>
 <table>
