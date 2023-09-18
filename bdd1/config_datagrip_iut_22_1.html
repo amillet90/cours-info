@@ -37,7 +37,7 @@
 <li>à l’IUT, utiliser <strong>la licence serveur (activer)</strong></li>
 <li>Sur votre machine personnelle, créer un compte sur le <a href="https://account.jetbrains.com/login" target="_blanck">site <strong>jetbrains</strong></a>. Il faut <a href="https://www.jetbrains.com/shop/eform/students" target="_blanck">compléter un formulaire</a> avec vos références d’étudiant.</li>
 </ul>
-<p>Bien faire ces opérations dans l’ordre :</p>
+<p>Bien faire ces opérations dans l’ordre sur vos machines :</p>
 <ol type="1">
 <li>Créer un compte sur le <a href="https://account.jetbrains.com/login" target="_blanck">site <strong>jetbrains</strong></a> avec votre email de l’IUT</li>
 <li>Valider votre compte en cliquant sur le lien dans votre boite mail</li>
@@ -47,21 +47,19 @@
 <img src="img_jetbrains_iut/install_datagrip_iut_3.png" style="width:12cm" alt="" /><figcaption>licence jetbrain</figcaption>
 </figure>
 </div>
-<ul>
-<li>Utiliser <code>MySQL</code> : la machine <code>serveurmysql</code> est un serveur MySQL (<strong>Oracle</strong>)</li>
-</ul>
-<figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_4.png" style="width:10cm" alt="" /><figcaption>base de données par défaut</figcaption>
-</figure>
+<!-- ![base de données par défaut](img_jetbrains_iut/install_datagrip_iut_4.png){width=10cm} -->
 <h2 id="connexion-à-la-base-de-données">connexion à la base de données</h2>
 <p>Sur le menu de droite, créer une connexion</p>
 <figure>
 <img src="img_jetbrains_iut/install_datagrip_iut_5.png" style="width:10cm" alt="" /><figcaption>nouvelle connexion</figcaption>
 </figure>
-<p>Utiliser MariaDB</p>
+<p>Utiliser MySQL (<strong>Oracle</strong>)</p>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_6.png" style="width:10cm" alt="" /><figcaption>type de connexion : mariabd</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_6.png" style="width:10cm" alt="" /><figcaption>type de connexion : MySql</figcaption>
 </figure>
+<ul>
+<li>Utiliser <code>MySQL</code> : la machine <code>serveurmysql</code> est un serveur MySQL (<strong>Oracle</strong>)</li>
+</ul>
 <p>Configuration de la connexion :</p>
 <p>Comme pour vous connecter dans un terminal :</p>
 <pre><code>mysql --user=votreLogin --password=votreMotDePasse  --host=serveurmysql --database=BDD_votreLogin</code></pre>
