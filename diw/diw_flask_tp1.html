@@ -243,9 +243,20 @@ import datetime</code></pre>
 <div class="cours">
 <ul>
 <li>il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
-<li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent d’associer</li>
+<li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent de définir des routes</li>
+<li>La fonction qui se trouve dans le code juste en dessous une ou plusieurs routes est associée à cette(ces) route(s) : la fonction est lancée si la route est trouvée<br />
+</li>
 <li>Si plusieurs route porte le même nom, c’est la première trouvée par le programme qui est utilisée (pas d’erreurs)</li>
-<li>Lorsqu’une route est trouvé</li>
+<li>Si aucune route est trouvée, l’application affiche une erreur</li>
+</ul>
+<p><br></p>
+<ul>
+<li>le mot clé <code>return</code> devant <code>render_template</code> est obligatoire</li>
+<li>sur <a href="https://fr.wikipedia.org/wiki/Jinja_(moteur_de_template)" target="_blank">jinja</a> :
+<ul>
+<li>les variables sont interprétées</li>
+<li>si une variable n’existe pas, rien n’est affiché</li>
+</ul></li>
 </ul>
 </div>
 <h2 id="exercice-2-récupérer-les-paramètres-dans-un-lien-et-les-champs-input-dans-un-formulaire">exercice 2 : récupérer les paramètres dans un lien et les champs input dans un formulaire</h2>
