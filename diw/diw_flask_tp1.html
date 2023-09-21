@@ -220,7 +220,7 @@ pip install pymysql --break-system-packages
 <p>modifier la route</p>
 <pre><code>@app.route(&#39;/&#39;)
 def hello_world():  # put application&#39;s code here
-    return &#39;Hello World! &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
+    return &#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
 <p>ajouter une autre route qui appelle un template</p>
 <pre><code>@app.route(&#39;/heure&#39;)
 def heure():
@@ -228,18 +228,18 @@ def heure():
     h = date_heure.hour
     m = date_heure.minute
     s = date_heure.second
-    return render_template(&#39;index.html&#39;, h=h,min=m,sec=s )
+    return render_template(&#39;index_demo.html&#39;, h=h,min=m,sec=s )
 </code></pre>
-<p>ne pas oublier les bibliothèques</p>
-<pre><code>from flask import Flask,render_template
-import datetime</code></pre>
-<p>créer le template <code>index.html</code> dans le dossier <code>templates</code></p>
+<p>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code></p>
+<pre><code>import datetime</code></pre>
+<p>créer le template <code>index_demo.html</code> dans le dossier <code>templates</code></p>
 <p><br></p>
 <p>utiliser le snippets <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></p>
 <pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
 
     &lt;br&gt;
     &lt;a href=&quot;/&quot;&gt;home&lt;/a&gt;</code></pre>
+<p><strong>Il faut corriger le nom de la variable : remplacer m par min</strong></p>
 <div class="cours">
 <ul>
 <li>il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
