@@ -232,7 +232,7 @@ def heure():
 </code></pre>
 <p>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code></p>
 <pre><code>import datetime</code></pre>
-<p>créer le template <code>index_demo.html</code> dans le dossier <code>templates</code></p>
+<p>créer le <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> (fichier) <code>index_demo.html</code> dans le dossier <code>templates</code></p>
 <p><br></p>
 <p>utiliser le snippets <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></p>
 <pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
@@ -242,7 +242,7 @@ def heure():
 <p><strong>Il faut corriger le nom de la variable : remplacer m par min</strong></p>
 <div class="cours">
 <ul>
-<li>il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
+<li>Dans le fichier de l’application que l’on lance (<code>app.py</code>), il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
 <li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent de définir des routes</li>
 <li>La fonction qui se trouve dans le code juste en dessous une ou plusieurs routes est associée à cette(ces) route(s) : la fonction est lancée si la route est trouvée<br />
 </li>
@@ -252,7 +252,7 @@ def heure():
 <p><br></p>
 <ul>
 <li>le mot clé <code>return</code> devant <code>render_template</code> est obligatoire</li>
-<li>sur <a href="https://fr.wikipedia.org/wiki/Jinja_(moteur_de_template)" target="_blank">jinja</a> :
+<li>sur <a href="https://fr.wikipedia.org/wiki/Jinja_(moteur_de_template)" target="_blank">jinja</a>, le moteur de <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> :
 <ul>
 <li>les variables sont interprétées</li>
 <li>si une variable n’existe pas, rien n’est affiché</li>
@@ -260,40 +260,143 @@ def heure():
 </ul>
 </div>
 <h2 id="exercice-2-récupérer-les-paramètres-dans-un-lien-et-les-champs-input-dans-un-formulaire">exercice 2 : récupérer les paramètres dans un lien et les champs input dans un formulaire</h2>
+<div class="cours">
+<p><strong><a href="https://www.youtube.com/watch?v=lvxqvNXniVc" target="_blank">vidéo (niveau NSI) pour bien démarrer flask dont est inspiré cet exercice</a></strong></p>
+</div>
 <p>nous allons utiliser un tableau de dictionnaires de données</p>
 <pre><code>liste_etudiants = [
     {&#39;id&#39;:1,&#39;nom&#39;:&#39;tom&#39;, &#39;groupe&#39;:&#39;A1&#39;},
     {&#39;id&#39;:2,&#39;nom&#39;:&#39;enzo&#39;, &#39;groupe&#39;:&#39;A1&#39;},
     {&#39;id&#39;:3,&#39;nom&#39;:&#39;laurence&#39;, &#39;groupe&#39;:&#39;A2&#39;},
-    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;}
+    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;},
     {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
 ]</code></pre>
 <ul>
 <li><p>ajouter ce tableau au debut du fichier d’application flask après avoir importé les bibliothèques</p></li>
 <li><p>créer une route <code>/etudiant/show</code> qui appelle la fonction <code>show_etudiants</code></p></li>
 <li><p>créer une vue dans le dossier template un dossier <code>etudiant</code> et à l’intérieur un <em>template</em> (une vue) <code>show_etudiant.html</code></p></li>
-<li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code></p></li>
+<li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code> avec comme nom <code>etudiants</code></p></li>
 <li><p>afficher la liste des étudiants</p></li>
-<li><p>afficher la liste des étudiants dans un tableau</p></li>
 </ul>
-<pre><code>liste_etudiants = [
-    {&#39;id&#39;:1,&#39;nom&#39;:&#39;tom&#39;, &#39;groupe&#39;:&#39;A1&#39;},
-    {&#39;id&#39;:2,&#39;nom&#39;:&#39;enzo&#39;, &#39;groupe&#39;:&#39;A1&#39;},
-    {&#39;id&#39;:3,&#39;nom&#39;:&#39;laurence&#39;, &#39;groupe&#39;:&#39;A2&#39;},
-    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;}
-    {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
-]</code></pre>
+<pre><code>&lt;h1&gt;listes des étudiants&lt;/h1&gt;
+
+{{ etudiants }}
+
+</code></pre>
 <ul>
-<li><p>afficher la liste des étudiants si le tableau n’est pas vide</p></li>
-<li><p>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code><br />
-</p></li>
-<li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de l’étudiant</p></li>
-<li><p>créer 2 routes <code>/etudiant/edit</code> et <code>/etudiant/delete</code> dans le fichier de l’application flask associé à 2 fonctions <code>edit_etudiant</code> et <code>delete_etudiant</code></p></li>
-<li><p>afficher dans le terminal dans ces 2 fonctions le paramètre reçu de nom <code>id</code> avec la fonction <code>print(request.args)</code></p></li>
+<li>ajouter un lien dans la page d’accueil</li>
+</ul>
+<pre><code>    &lt;br&gt;
+    &lt;a href=&quot;/etudiant/show&quot;&gt;etudiants&lt;/a&gt;</code></pre>
+<!-- https://docs.github.com/fr/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests
+-->
+<ul>
+<li>afficher la liste des étudiants dans un tableau ; il faut utiliser une boucle</li>
+</ul>
+<pre><code>&lt;table&gt;
+    {% for etudiant in etudiants %}
+         &lt;tr&gt;
+                &lt;td&gt;{{ etudiant }}&lt;/td&gt;
+           &lt;/tr&gt;
+        {% endfor %}
+&lt;/table&gt;
+</code></pre>
+<p><a href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1" target="_blank">code branche 1</a></p>
+<p>remplacer la ligne qui affiche chaque étudiant</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;id&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;groupe&lt;/th&gt;
+    &lt;/tr&gt;
+    {% for etudiant in etudiants %}
+        &lt;tr&gt;
+            {# commentaires : autre notation possible, on affiche un element du dictionnaire               
+                &lt;td&gt;{{ etudiant[&#39;id&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;nom&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;groupe&#39;] }}&lt;/td&gt;
+            #}
+                &lt;td&gt;{{ etudiant.id }}&lt;/td&gt;&lt;td&gt;{{ etudiant.nom }}&lt;/td&gt;&lt;td&gt;{{ etudiant.groupe }}&lt;/td&gt;
+        &lt;/tr&gt;
+    {% endfor %}
+&lt;/table&gt;
+</code></pre>
+<ul>
+<li><p>tester avec un tableau de dictionnaire d’étudiant vide</p></li>
+<li><p>afficher la liste des étudiants si le tableau n’est pas vide en intégrant le code ci-dessous dans le <em>template</em> <code>show_etudiant.html</code></p></li>
+</ul>
+<pre><code>    {% if etudiants | length &gt;= 1 %}
+       ...
+    {% else %}
+           &lt;h2&gt; la liste des étudiants est vide&lt;/h2&gt; 
+    {% endif %}
+</code></pre>
+<p>Remarque : Ctrl+alt+I =&gt; indentation</p>
+<h2 id="utilisation-de-lien">utilisation de lien</h2>
+<ul>
+<li><p>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</p></li>
+<li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de l’étudiant.</p></li>
+<li><p>ajouter un lien pour ajouter un étudiant avant l’affichage du tableau</p></li>
+</ul>
+<pre><code>&lt;a href=&quot;/etudiant/add&quot; &gt;ajouter un étudiant&lt;/a&gt;
+
+
+....
+
+
+&lt;td&gt;
+    &lt;a href=&quot;/etudiant/edit?id={{ etudiant.id }}&quot;&gt;editer&lt;/a&gt;&amp;nbsp;
+    &lt;a href=&quot;/etudiant/delete?id={{ etudiant.id }}&quot; &gt;supprimer&lt;/a&gt;
+&lt;/td&gt;
+
+</code></pre>
+<h2 id="passage-de-paramètres">passage de paramètres</h2>
+<ul>
+<li>créer 3 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associé à 3 fonctions <code>add_etudiant</code> et <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+</ul>
+<pre><code>
+</code></pre>
+<h2 id="utilisation-dun-formulaire">utilisation d’un formulaire</h2>
+<p>voici le code HTML généré par ChatGPT pour le saisir les informations d’un étudiant :</p>
+<p><br></p>
+<p>(code généré en saisissant le prompt <em>donner le code HTML d’un formulaire en utilisant le framework bootstrap 5 pour saisir les informations du tableau python :</em> )</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Formulaire d&#39;Étudiant&lt;/title&gt;
+    &lt;!-- Inclure Bootstrap 5 CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container mt-4&quot;&gt;
+        &lt;h1&gt;Formulaire d&#39;Étudiant&lt;/h1&gt;
+        &lt;form&gt;
+            &lt;!-- Champs pour saisir les informations de l&#39;étudiant --&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label for=&quot;nom&quot; class=&quot;form-label&quot;&gt;Nom de l&#39;étudiant :&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;nom&quot; placeholder=&quot;Entrez le nom de l&#39;étudiant&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label for=&quot;groupe&quot; class=&quot;form-label&quot;&gt;Groupe de l&#39;étudiant :&lt;/label&gt;
+                &lt;select class=&quot;form-select&quot; id=&quot;groupe&quot; required&gt;
+                    &lt;option value=&quot;A1&quot;&gt;A1&lt;/option&gt;
+                    &lt;option value=&quot;A2&quot;&gt;A2&lt;/option&gt;
+                    &lt;option value=&quot;B1&quot;&gt;B1&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Enregistrer&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>afficher dans le terminal dans ces 2 fonctions le paramètre reçu de nom <code>id</code> avec la fonction <code>print(request.args)</code></li>
 </ul>
 <h2 id="redirection">redirection</h2>
 <p>à la fin de la fonction <code>etudiant_delete</code> faire une redirection sur la route <code>show_etudiants</code></p>
-<h2 id="utilisation-dun-formulaire">utilisation d’un formulaire</h2>
+<h2 id="utilisation-dun-formulaire-1">utilisation d’un formulaire</h2>
 <p>voici le code HTML généré par ChatGPT pour le saisir les informations d’un étudiant :</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;fr&quot;&gt;
@@ -348,9 +451,9 @@ def heure():
 <li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
 </ul>
 <p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
 <div class="important">
 <p>Un gabarit (template) est un fichier dont le contenu va être modifié par l’application, <strong>l’application va passer des paramètres (données) à la vue : la vue est renvoyée au client</strong></p>
 </div>
