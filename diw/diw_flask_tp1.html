@@ -339,7 +339,7 @@ def heure():
            &lt;h2&gt; la liste des étudiants est vide&lt;/h2&gt; 
     {% endif %}
 </code></pre>
-<p>Remarque : Ctrl+alt+I =&gt; indentation</p>
+<p><strong>Remarque : Ctrl+alt+I =&gt; indentation</strong></p>
 <h2 id="utilisation-de-lien">utilisation de lien</h2>
 <ul>
 <li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
@@ -419,33 +419,82 @@ def edit_etudiant():
 <ol start="19" type="1">
 <li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et <code>etudiant/edit_etudiant.html</code></p></li>
 <li><p>afficher dans le terminal dans les 2 fonctions <code>delete_etudiant</code> et <code>edit_etudiant</code> le paramètre reçu de nom <code>id</code> avec la fonction <code>print(request.args)</code></p></li>
+<li><p>pour<code>delete_etudiant</code> , une erreur est généré car il n’y a pas de réponse retournée au navigateur</p></li>
 </ol>
-<ul>
-<li>pour<code>delete_etudiant</code> , une erreur est généré car il n’y a pas de réponse retournée au navigateur</li>
-</ul>
 <div class="cours">
 <p><strong>redirection</strong></p>
-<p>à la fin de la fonction <code>etudiant_delete</code> faire une redirection sur la route <code>show_etudiants</code> avec l’instruction :</p>
+<ol start="22" type="1">
+<li>à la fin de la fonction <code>etudiant_delete</code> faire une redirection sur la route <code>show_etudiants</code> avec l’instruction :</li>
+</ol>
 <p><br></p>
 <p><code>return redirect('/etudiant/show')</code></p>
 </div>
-<p>ajouter le code ci-dessous dans la fonction <code>delete_etudiant</code> et <code>edit_etudiant</code></p>
+<ol start="23" type="1">
+<li>ajouter le code ci-dessous dans la fonction <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+</ol>
 <pre><code>    #print(request.args[&#39;id&#39;])
     print(request.args.get(&#39;id&#39;))
     print(request.args.get(&#39;id&#39;,0))</code></pre>
-<ul>
+<ol start="24" type="1">
 <li>pour la fonction <code>edit_etudiant</code>, ajouter le code ci-dessous puis passer</li>
-</ul>
+</ol>
 <pre><code>    id=request.args.get(&#39;id&#39;)
     if id != None and id.isnumeric():
         indice = int(id)
         etudiant=liste_etudiants[indice-1]
     else:
         etudiant=[]</code></pre>
-<ul>
+<ol start="25" type="1">
 <li>passer en paramètre l’étudiant au template et afficher dans les champs input la valeur du champ input</li>
-</ul>
+</ol>
+<p><a href="https://github.com/amillet-iut90/flask_demo1/tree/2-demo-etape2" target="_blank">code branche 2</a></p>
 <h2 id="utilisation-des-paramètres-issues-dun-formulaire">utilisation des paramètres issues d’un formulaire</h2>
+<ol start="26" type="1">
+<li>créer 2 routes <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associé à 3 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code></li>
+</ol>
+<pre><code>@app.route(&#39;/etudiant/add&#39;, methods=[&#39;POST&#39;])
+def vaid_add_etudiant():
+    print(&#39;&#39;&#39;ajout de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
+    return redirect(&#39;/etudiant/show&#39;)
+
+@app.route(&#39;/etudiant/edit&#39;, methods=[&#39;POST&#39;])
+def valid_edit_etudiant():
+    print(&#39;&#39;&#39;modification de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
+    return redirect(&#39;/etudiant/show&#39;)
+</code></pre>
+<ol start="27" type="1">
+<li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs <code>action="/etudiant/add" method="post"</code> et les attributs <code>action="/etudiant/edit" method="post"</code></p></li>
+<li><p>indiquer pour les routes des 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> la méthode pour la route : il faut ajouter dans l’annotation <code>, methods=['GET']</code></p></li>
+<li><p>afficher dans le terminal dans les 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
+<li><p>créer un message avec les informations pour ajouter un étudiant</p></li>
+</ol>
+<pre><code>nom = request.form[&#39;nom&#39;]
+nom = request.form.get(&#39;nom&#39;)
+groupe = request.form.get(&#39;groupe&#39;)
+message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe    
+print(message)</code></pre>
+<ol start="31" type="1">
+<li><p>tester et modifier l’erreur : ChatGPT a oublier l’attribut <code>name=</code> dans les balises <code>&lt;input&gt;</code> et <code>&lt;select&gt;</code></p></li>
+<li><p>créer un message avec les informations pour modifier un étudiant</p></li>
+</ol>
+<pre><code>id = request.form.get(&#39;id&#39;)
+nom = request.form.get(&#39;nom&#39;)
+groupe = request.form.get(&#39;groupe&#39;)
+message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe+&#39; pour l etudiant d identifiant :&#39;+id   
+print(message)</code></pre>
+<ol start="33" type="1">
+<li>dans le formulaire il faut un champ caché avec l’identifiant de l’étudiant</li>
+</ol>
+<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
+<div class="cours">
+<ul>
+<li>Pour récupérer les paramètres
+<ul>
+<li>avec la méthode <code>GET</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code></li>
+<li>avec la méthode <code>POST</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.form.get</code></li>
+</ul></li>
+</ul>
+</div>
 <h2 id="fichiers-static">fichiers “static”</h2>
 <p><br></p>
 <p>ça fonctionne mais les <strong>contenus “static”</strong> n’apparaissent pas</p>
@@ -461,9 +510,9 @@ def edit_etudiant():
 <li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
 </ul>
 <p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
 <div class="important">
 <p>Un gabarit (template) est un fichier dont le contenu va être modifié par l’application, <strong>l’application va passer des paramètres (données) à la vue : la vue est renvoyée au client</strong></p>
 </div>
