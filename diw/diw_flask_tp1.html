@@ -217,11 +217,15 @@ pip install pymysql --break-system-packages
 </div>
 <h2 id="exercice-1-rôle-des-routes">exercice 1 : rôle des routes</h2>
 <p><br></p>
-<p>modifier la route</p>
+<ol type="1">
+<li>modifier la route</li>
+</ol>
 <pre><code>@app.route(&#39;/&#39;)
 def hello_world():  # put application&#39;s code here
     return &#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
-<p>ajouter une autre route qui appelle un template</p>
+<ol start="2" type="1">
+<li>ajouter une autre route qui appelle un template</li>
+</ol>
 <pre><code>@app.route(&#39;/heure&#39;)
 def heure():
     date_heure = datetime.datetime.now()
@@ -230,11 +234,17 @@ def heure():
     s = date_heure.second
     return render_template(&#39;index_demo.html&#39;, h=h,min=m,sec=s )
 </code></pre>
-<p>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code></p>
+<ol start="3" type="1">
+<li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code></li>
+</ol>
 <pre><code>import datetime</code></pre>
-<p>créer le <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> (fichier) <code>index_demo.html</code> dans le dossier <code>templates</code></p>
+<ol start="4" type="1">
+<li>créer le <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> (fichier) <code>index_demo.html</code> dans le dossier <code>templates</code></li>
+</ol>
 <p><br></p>
-<p>utiliser le snippets <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></p>
+<ol start="5" type="1">
+<li>utiliser le snippets <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></li>
+</ol>
 <pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
 
     &lt;br&gt;
@@ -271,28 +281,28 @@ def heure():
     {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;},
     {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
 ]</code></pre>
-<ul>
+<ol start="6" type="1">
 <li><p>ajouter ce tableau au debut du fichier d’application flask après avoir importé les bibliothèques</p></li>
 <li><p>créer une route <code>/etudiant/show</code> qui appelle la fonction <code>show_etudiants</code></p></li>
 <li><p>créer une vue dans le dossier template un dossier <code>etudiant</code> et à l’intérieur un <em>template</em> (une vue) <code>show_etudiant.html</code></p></li>
 <li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code> avec comme nom <code>etudiants</code></p></li>
 <li><p>afficher la liste des étudiants</p></li>
-</ul>
+</ol>
 <pre><code>&lt;h1&gt;listes des étudiants&lt;/h1&gt;
 
 {{ etudiants }}
 
 </code></pre>
-<ul>
+<ol start="11" type="1">
 <li>ajouter un lien dans la page d’accueil</li>
-</ul>
+</ol>
 <pre><code>    &lt;br&gt;
     &lt;a href=&quot;/etudiant/show&quot;&gt;etudiants&lt;/a&gt;</code></pre>
 <!-- https://docs.github.com/fr/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests
 -->
-<ul>
+<ol start="12" type="1">
 <li>afficher la liste des étudiants dans un tableau ; il faut utiliser une boucle</li>
-</ul>
+</ol>
 <pre><code>&lt;table&gt;
     {% for etudiant in etudiants %}
          &lt;tr&gt;
@@ -302,7 +312,9 @@ def heure():
 &lt;/table&gt;
 </code></pre>
 <p><a href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1" target="_blank">code branche 1</a></p>
-<p>remplacer la ligne qui affiche chaque étudiant</p>
+<ol start="13" type="1">
+<li>remplacer la ligne qui affiche chaque étudiant</li>
+</ol>
 <pre><code>&lt;table&gt;
     &lt;tr&gt;
         &lt;th&gt;id&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;groupe&lt;/th&gt;
@@ -317,10 +329,10 @@ def heure():
     {% endfor %}
 &lt;/table&gt;
 </code></pre>
-<ul>
+<ol start="14" type="1">
 <li><p>tester avec un tableau de dictionnaire d’étudiant vide</p></li>
 <li><p>afficher la liste des étudiants si le tableau n’est pas vide en intégrant le code ci-dessous dans le <em>template</em> <code>show_etudiant.html</code></p></li>
-</ul>
+</ol>
 <pre><code>    {% if etudiants | length &gt;= 1 %}
        ...
     {% else %}
@@ -330,10 +342,12 @@ def heure():
 <p>Remarque : Ctrl+alt+I =&gt; indentation</p>
 <h2 id="utilisation-de-lien">utilisation de lien</h2>
 <ul>
-<li><p>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</p></li>
+<li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
+</ul>
+<ol start="16" type="1">
 <li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de l’étudiant.</p></li>
 <li><p>ajouter un lien pour ajouter un étudiant avant l’affichage du tableau</p></li>
-</ul>
+</ol>
 <pre><code>&lt;a href=&quot;/etudiant/add&quot; &gt;ajouter un étudiant&lt;/a&gt;
 
 
@@ -347,9 +361,9 @@ def heure():
 
 </code></pre>
 <h2 id="passage-de-paramètres">passage de paramètres</h2>
-<ul>
+<ol start="18" type="1">
 <li>créer 3 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associé à 3 fonctions <code>add_etudiant</code> et <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
-</ul>
+</ol>
 <pre><code>@app.route(&#39;/etudiant/add&#39;)
 def add_etudiant():
     print(&#39;&#39;&#39;affichage du formulaire pour saisir un étudiant&#39;&#39;&#39;)
@@ -363,7 +377,7 @@ def delete_etudiant():
 def edit_etudiant():
     print(&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;)
     return render_template(&#39;etudiant/edit_etudiant.html&#39;)</code></pre>
-<h2 id="utilisation-dun-formulaire">utilisation d’un formulaire</h2>
+<h2 id="utilisation-des-paramètres-issues-de-liens">utilisation des paramètres issues de liens</h2>
 <p>voici le code HTML généré par ChatGPT pour le saisir les informations d’un étudiant :</p>
 <p><br></p>
 <p>(code généré en saisissant le prompt <em>donner le code HTML d’un formulaire en utilisant le framework bootstrap 5 pour saisir les informations du tableau python :</em> )</p>
@@ -402,9 +416,12 @@ def edit_etudiant():
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<ul>
+<ol start="19" type="1">
+<li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et <code>etudiant/edit_etudiant.html</code></p></li>
 <li><p>afficher dans le terminal dans les 2 fonctions <code>delete_etudiant</code> et <code>edit_etudiant</code> le paramètre reçu de nom <code>id</code> avec la fonction <code>print(request.args)</code></p></li>
-<li><p>pour<code>delete_etudiant</code> , une erreur est généré car il n’y a pas de réponse retournée au navigateur</p></li>
+</ol>
+<ul>
+<li>pour<code>delete_etudiant</code> , une erreur est généré car il n’y a pas de réponse retournée au navigateur</li>
 </ul>
 <div class="cours">
 <p><strong>redirection</strong></p>
@@ -412,6 +429,23 @@ def edit_etudiant():
 <p><br></p>
 <p><code>return redirect('/etudiant/show')</code></p>
 </div>
+<p>ajouter le code ci-dessous dans la fonction <code>delete_etudiant</code> et <code>edit_etudiant</code></p>
+<pre><code>    #print(request.args[&#39;id&#39;])
+    print(request.args.get(&#39;id&#39;))
+    print(request.args.get(&#39;id&#39;,0))</code></pre>
+<ul>
+<li>pour la fonction <code>edit_etudiant</code>, ajouter le code ci-dessous puis passer</li>
+</ul>
+<pre><code>    id=request.args.get(&#39;id&#39;)
+    if id != None and id.isnumeric():
+        indice = int(id)
+        etudiant=liste_etudiants[indice-1]
+    else:
+        etudiant=[]</code></pre>
+<ul>
+<li>passer en paramètre l’étudiant au template et afficher dans les champs input la valeur du champ input</li>
+</ul>
+<h2 id="utilisation-des-paramètres-issues-dun-formulaire">utilisation des paramètres issues d’un formulaire</h2>
 <h2 id="fichiers-static">fichiers “static”</h2>
 <p><br></p>
 <p>ça fonctionne mais les <strong>contenus “static”</strong> n’apparaissent pas</p>
@@ -427,9 +461,9 @@ def edit_etudiant():
 <li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
 </ul>
 <p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
 <div class="important">
 <p>Un gabarit (template) est un fichier dont le contenu va être modifié par l’application, <strong>l’application va passer des paramètres (données) à la vue : la vue est renvoyée au client</strong></p>
 </div>
