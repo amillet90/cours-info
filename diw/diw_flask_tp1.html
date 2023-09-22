@@ -288,7 +288,7 @@ import datetime</code></pre>
 <li><p>créer une route <code>/etudiant/show</code> qui appelle la fonction <code>show_etudiants</code></p></li>
 <li><p>à l’intérieur du dossier <em>templates</em>, créer un dossier <code>etudiant</code> ; dans le dossier <code>templates/etudiant/</code> créer une vue (un fichier) <code>show_etudiant.html</code></p></li>
 <li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code> avec comme nom <code>etudiants</code></p></li>
-<li><p>afficher la liste des étudiants <code>templates/etudiant/show_etudiant.html</code></p></li>
+<li><p>afficher la liste des étudiants dans le fichier <code>templates/etudiant/show_etudiant.html</code></p></li>
 </ol>
 <pre><code>&lt;h1&gt;listes des étudiants&lt;/h1&gt;
 
@@ -296,7 +296,7 @@ import datetime</code></pre>
 
 </code></pre>
 <ol start="11" type="1">
-<li>ajouter un lien dans la page d’accueil</li>
+<li>ajouter un lien sur la page d’accueil dans le fichier <code>templates/index_demo.html</code></li>
 </ol>
 <pre><code>    &lt;br&gt;
     &lt;a href=&quot;/etudiant/show&quot;&gt;etudiants&lt;/a&gt;</code></pre>
@@ -315,7 +315,7 @@ import datetime</code></pre>
 </code></pre>
 <p><a href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1" target="_blank">code branche 1</a></p>
 <ol start="13" type="1">
-<li>remplacer la ligne qui affiche chaque étudiant</li>
+<li>remplacer la ligne qui affiche chaque étudiant avec le code ci-dessous</li>
 </ol>
 <pre><code>&lt;table&gt;
     &lt;tr&gt;
@@ -332,7 +332,7 @@ import datetime</code></pre>
 &lt;/table&gt;
 </code></pre>
 <ol start="14" type="1">
-<li><p>tester avec un tableau de dictionnaire d’étudiant vide</p></li>
+<li><p>tester avec un tableau de dictionnaire d’étudiant vide dans le fichier <code>app.py</code></p></li>
 <li><p>afficher la liste des étudiants si le tableau n’est pas vide en intégrant le code ci-dessous dans le <em>template</em> <code>show_etudiant.html</code></p></li>
 </ol>
 <pre><code>    {% if etudiants | length &gt;= 1 %}
@@ -342,13 +342,14 @@ import datetime</code></pre>
     {% endif %}
 </code></pre>
 <div class="cours">
-<p>Sur les outils JetBrains <strong>Remarque : Ctrl+alt+I =&gt; indentation</strong><br />
+<p>Sur les outils JetBrains<br />
+<strong>Remarque : Ctrl+alt+I =&gt; indentation</strong><br />
 <strong>Ctrl+r =&gt; rechercher/remplacer</strong><br />
-<strong>Dans le controleur Ctrl+clic sur le nom d’un template dans le controleur (app)</strong></p>
+<strong>Dans le contrôleur Ctrl+clic sur le nom d’un template dans le contrôleur (app)</strong></p>
 </div>
 <h2 id="utilisation-de-lien">utilisation de lien</h2>
 <ul>
-<li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
+<li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appelées seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
 </ul>
 <ol start="16" type="1">
 <li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de l’étudiant.</p></li>
@@ -368,7 +369,7 @@ import datetime</code></pre>
 </code></pre>
 <h2 id="passage-de-paramètres">passage de paramètres</h2>
 <ol start="18" type="1">
-<li>créer 3 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associé à 3 fonctions <code>add_etudiant</code> et <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+<li>créer 3 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associées à 3 fonctions <code>add_etudiant</code> , <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
 </ol>
 <pre><code>@app.route(&#39;/etudiant/add&#39;)
 def add_etudiant():
@@ -383,10 +384,10 @@ def delete_etudiant():
 def edit_etudiant():
     print(&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;)
     return render_template(&#39;etudiant/edit_etudiant.html&#39;)</code></pre>
-<h2 id="utilisation-des-paramètres-issues-de-liens">utilisation des paramètres issues de liens</h2>
-<p>voici le code HTML généré par ChatGPT pour le saisir les informations d’un étudiant :</p>
+<h2 id="utilisation-de-paramètres-issus-de-liens">utilisation de paramètres issus de liens</h2>
+<p>voici le code HTML généré par ChatGPT pour saisir les informations d’un étudiant :</p>
 <p><br></p>
-<p>(code généré en saisissant le prompt <em>donner le code HTML d’un formulaire en utilisant le framework bootstrap 5 pour saisir les informations du tableau python :</em> )</p>
+<p>(code généré en saisissant le prompt : <em>donner le code HTML d’un formulaire en utilisant le framework bootstrap 5 pour saisir les informations du tableau python :</em> )</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;fr&quot;&gt;
 &lt;head&gt;
@@ -424,13 +425,13 @@ def edit_etudiant():
 </code></pre>
 <ol start="19" type="1">
 <li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et <code>etudiant/edit_etudiant.html</code></p></li>
-<li><p>afficher dans le terminal dans les 2 fonctions <code>delete_etudiant</code> et <code>edit_etudiant</code> le paramètre reçu de nom <code>id</code> avec la fonction <code>print(request.args)</code></p></li>
-<li><p>pour<code>delete_etudiant</code> , une erreur est généré car il n’y a pas de réponse retournée au navigateur</p></li>
+<li><p>dans les 2 fonctions <code>delete_etudiant</code> et <code>edit_etudiant</code>, afficher à l’aide de l’instruction <code>print</code> dans le terminal le paramètre reçu de nom <code>id</code>. Utiliser la fonction <code>print(request.args)</code>.</p></li>
+<li><p>pour<code>delete_etudiant</code> , une erreur est générée car il n’y a pas de réponse retournée au navigateur (pas de <code>return</code>)</p></li>
 </ol>
 <div class="cours">
 <p><strong>redirection</strong></p>
 <ol start="22" type="1">
-<li>à la fin de la fonction <code>etudiant_delete</code> faire une redirection sur la route <code>show_etudiants</code> avec l’instruction :</li>
+<li>à la fin de la fonction <code>delete_etudiant</code> faire une redirection sur la route <code>show_etudiants</code> avec l’instruction :</li>
 </ol>
 <p><br></p>
 <p><code>return redirect('/etudiant/show')</code></p>
@@ -451,12 +452,12 @@ def edit_etudiant():
     else:
         etudiant=[]</code></pre>
 <ol start="25" type="1">
-<li>passer en paramètre l’étudiant au template et afficher dans les champs input la valeur du champ input</li>
+<li>Passer en paramètre l’étudiant sélectionné au template <code>edit_etudiant.html</code> . Afficher dans chaque champ <code>input</code> de ce template la valeur de l’information concernant l’étudiant (id, nom , groupe) .</li>
 </ol>
 <p><a href="https://github.com/amillet-iut90/flask_demo1/tree/2-demo-etape2" target="_blank">code branche 2</a></p>
-<h2 id="utilisation-des-paramètres-issues-dun-formulaire">utilisation des paramètres issues d’un formulaire</h2>
+<h2 id="utilisation-des-paramètres-issus-dun-formulaire">utilisation des paramètres issus d’un formulaire</h2>
 <ol start="26" type="1">
-<li>créer 2 routes <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associé à 3 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code></li>
+<li>créer 2 routes <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associées à 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code></li>
 </ol>
 <pre><code>@app.route(&#39;/etudiant/add&#39;, methods=[&#39;POST&#39;])
 def vaid_add_etudiant():
@@ -469,7 +470,7 @@ def valid_edit_etudiant():
     return redirect(&#39;/etudiant/show&#39;)
 </code></pre>
 <ol start="27" type="1">
-<li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs <code>action="/etudiant/add" method="post"</code> et les attributs <code>action="/etudiant/edit" method="post"</code></p></li>
+<li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs <code>action="/etudiant/add" method="post"</code> ou les attributs <code>action="/etudiant/edit" method="post"</code></p></li>
 <li><p>indiquer pour les routes des 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> la méthode pour la route : il faut ajouter dans l’annotation <code>, methods=['GET']</code></p></li>
 <li><p>afficher dans le terminal dans les 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
 <li><p>créer un message avec les informations pour ajouter un étudiant</p></li>
