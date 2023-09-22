@@ -313,7 +313,9 @@ import datetime</code></pre>
         {% endfor %}
 &lt;/table&gt;
 </code></pre>
+<div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1" target="_blank">code branche 1</a></p>
+</div>
 <ol start="13" type="1">
 <li>remplacer la ligne qui affiche chaque étudiant avec le code ci-dessous</li>
 </ol>
@@ -454,7 +456,9 @@ def edit_etudiant():
 <ol start="25" type="1">
 <li>Passer en paramètre l’étudiant sélectionné au template <code>edit_etudiant.html</code> . Afficher dans chaque champ <code>input</code> de ce template la valeur de l’information concernant l’étudiant (id, nom , groupe) .</li>
 </ol>
+<div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1/tree/2-demo-etape2" target="_blank">code branche 2</a></p>
+</div>
 <h2 id="utilisation-des-paramètres-issus-dun-formulaire">utilisation des paramètres issus d’un formulaire</h2>
 <ol start="26" type="1">
 <li>créer 2 routes <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associées à 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code></li>
@@ -504,23 +508,44 @@ print(message)</code></pre>
 </div>
 <h2 id="fichiers-static">fichiers “static”</h2>
 <p><br></p>
+<ol start="34" type="1">
+<li>Supprimer la route <code>/hello</code> et la fonction <code>hello_world</code> ; associé la route <code>/</code> à la fonction <code>show_etudiants</code></li>
+<li>Supprimer la route <code>/heure</code> et la fonction <code>heure</code></li>
+</ol>
 <p>Il n’est pas possible dans le dossier <code>templates</code> d’utiliser des fichiers CSS des images ….</p>
 <ol start="33" type="1">
-<li>placer dans le contenu du <a href="">fichier ressources suivant</a> dans le fichier <code>static</code></li>
+<li>placer dans le contenu du <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1_flask.zip">fichier ressources suivant</a> dans le fichier <code>static</code></li>
 </ol>
 <p><br></p>
 <!-- ![exemple avec les gabarits](img_flask/ihm_flask_gabarit_1.png) -->
 <div class="cours">
 <p><strong>Les fichiers <a href="https://docs.djangoproject.com/fr/3.2/howto/static-files/">STATIC</a> sont tous les fichiers dont le contenu ne changent jamais</strong> : les fichiers CSS (vos styles, bootstrap), les images, les fichiers <em>javascript</em></p>
+<p><br></p>
+<p>Ce dossier s’appelle aussi <strong>public</strong> dans d’autres framework (symfony laravel …)</p>
+<p><br></p>
+<p>Dans flask pour utiliser le contenu de ces fichiers dans les templates il faut utiliser la fonction : <code>{{ url_for('static', filename='dossier_dans_static/nom_du_fichier') }}</code></p>
 </div>
 <p><br></p>
 <ol start="34" type="1">
-<li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
+<li>modifier le fichier <strong>templates</strong> <code>show_etudiants.html</code> (gabarits) avec les liens ci-dessous</li>
 </ol>
-<p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>....</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;image iut&quot;</span>  <span class="kw">/&gt;</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true"></a>....</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final</a></p>
+</div>
 <div class="important">
 <p>Un gabarit (template) est un fichier dont le contenu va être modifié par l’application, <strong>l’application va passer des paramètres (données) à la vue : la vue est renvoyée au client</strong></p>
 </div>
