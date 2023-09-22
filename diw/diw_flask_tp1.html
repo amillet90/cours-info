@@ -92,7 +92,7 @@
 <figure>
 <img src="img_flask/ihm_flask_tp1_1_installv2.png" style="width:15cm" alt="" /><figcaption>création d’un projet flask</figcaption>
 </figure>
-<p>utiliser <strong>python3</strong> comme interpréter</p>
+<p>utiliser <strong>python3</strong> comme <a href="https://fr-academic.com/dic.nsf/frwiki/969727" target="_blank">interpréteur</a></p>
 <figure>
 <img src="img_flask/ihm_flask_tp1_2_installv2.png" style="width:13cm" alt="" /><figcaption>projet de base sur pycharm</figcaption>
 </figure>
@@ -103,7 +103,7 @@
 <!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur pycharm). -->
 <ul>
 <li>le dossier <code>static</code> contient tous les éléments (contenus) dit <strong>“static”</strong> du site : <strong>images, fichiers CSS, fichiers javascript</strong> utilisé par les pages HTML ….)</li>
-<li>le dossier template contient les pages HTML, ces pages HTML sont appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)" target="_blank"><strong>gabarit</strong></a> ou <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> )</li>
+<li>le dossier template contient les pages HTML, ces pages HTML sont appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)" target="_blank"><strong>gabarit</strong></a> ou <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a></li>
 <li>attention : pas de dossier <em>venv</em></li>
 </ul>
 <p><br> <br></p>
@@ -138,7 +138,7 @@ Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’en
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
 <ul>
-<li>tester l’application : ouvrir un terminal syr pycharm et lancer la commande ci-dessous</li>
+<li>tester l’application : ouvrir un terminal sur pycharm et lancer la commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
 <ul>
@@ -221,6 +221,7 @@ pip install pymysql --break-system-packages
 <li>modifier la route</li>
 </ol>
 <pre><code>@app.route(&#39;/&#39;)
+@app.route(&#39;/hello&#39;)
 def hello_world():  # put application&#39;s code here
     return &#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
 <ol start="2" type="1">
@@ -235,15 +236,16 @@ def heure():
     return render_template(&#39;index_demo.html&#39;, h=h,min=m,sec=s )
 </code></pre>
 <ol start="3" type="1">
-<li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code></li>
+<li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code>. Importer plusieurs fonctions dans la bibliothèque <code>flask</code>.</li>
 </ol>
-<pre><code>import datetime</code></pre>
+<pre><code>from flask import Flask, request, render_template, redirect, url_for, abort  # application WSGI
+import datetime</code></pre>
 <ol start="4" type="1">
 <li>créer le <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> (fichier) <code>index_demo.html</code> dans le dossier <code>templates</code></li>
 </ol>
 <p><br></p>
 <ol start="5" type="1">
-<li>utiliser le snippets <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></li>
+<li>utiliser le snippet <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></li>
 </ol>
 <pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
 
@@ -253,10 +255,10 @@ def heure():
 <div class="cours">
 <ul>
 <li>Dans le fichier de l’application que l’on lance (<code>app.py</code>), il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
-<li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent de définir des routes</li>
-<li>La fonction qui se trouve dans le code juste en dessous une ou plusieurs routes est associée à cette(ces) route(s) : la fonction est lancée si la route est trouvée<br />
+<li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent de définir des <strong>routes</strong></li>
+<li>La fonction qui se trouve dans le code juste en dessous d’une ou plusieurs routes est associée à cette(ces) route(s) : la fonction est lancée si la route est trouvée<br />
 </li>
-<li>Si plusieurs route porte le même nom, c’est la première trouvée par le programme qui est utilisée (pas d’erreurs)</li>
+<li>Si plusieurs routes portent le même nom (utilisent le même chemin), c’est la première trouvée par le programme qui est utilisée (pas d’erreurs)</li>
 <li>Si aucune route est trouvée, l’application affiche une erreur</li>
 </ul>
 <p><br></p>
@@ -282,9 +284,9 @@ def heure():
     {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
 ]</code></pre>
 <ol start="6" type="1">
-<li><p>ajouter ce tableau au debut du fichier d’application flask après avoir importé les bibliothèques</p></li>
+<li><p>ajouter ce tableau au début du fichier d’application flask après avoir importé les bibliothèques</p></li>
 <li><p>créer une route <code>/etudiant/show</code> qui appelle la fonction <code>show_etudiants</code></p></li>
-<li><p>créer une vue dans le dossier template un dossier <code>etudiant</code> et à l’intérieur un <em>template</em> (une vue) <code>show_etudiant.html</code></p></li>
+<li><p>créer une vue dans le dossier template : créer un dossier <code>etudiant</code> et à l’intérieur du dossier <em>template</em> ; dans ce dossier créer un fichier <code>templates/etudiant/show_etudiant.html</code></p></li>
 <li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code> avec comme nom <code>etudiants</code></p></li>
 <li><p>afficher la liste des étudiants</p></li>
 </ol>
@@ -488,7 +490,7 @@ print(message)</code></pre>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
 <div class="cours">
 <ul>
-<li>Pour récupérer les paramètres
+<li>Pour récupérer les paramètres d’une page HTML (formulaire ou lien)
 <ul>
 <li>avec la méthode <code>GET</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code></li>
 <li>avec la méthode <code>POST</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.form.get</code></li>
@@ -499,18 +501,17 @@ print(message)</code></pre>
 <p><br></p>
 <p>ça fonctionne mais les <strong>contenus “static”</strong> n’apparaissent pas</p>
 <p><br></p>
-<figure>
-<img src="img_flask/ihm_flask_gabarit_1.png" alt="" /><figcaption>exemple avec les gabarits</figcaption>
-</figure>
+<!-- ![exemple avec les gabarits](img_flask/ihm_flask_gabarit_1.png) -->
 <div class="important">
 <p><strong>Les fichiers <a href="https://docs.djangoproject.com/fr/3.2/howto/static-files/">STATIC</a> sont tous les fichiers dont le contenu ne changent jamais</strong> : les fichiers CSS (vos styles, bootstrap), les images, les fichiers <em>javascript</em></p>
 </div>
 <p><br></p>
-<ul>
-<li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
-</ul>
+<ol start="33" type="1">
+<li><p>placer dans le contenu du [fichier ressources suivant] dans le fichier static</p></li>
+<li><p>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></p></li>
+</ol>
 <p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/page2&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;tp1/linux.jpg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;mon image devrait apparaitre&quot;</span><span class="ot"> title=</span><span class="st">&quot;sympa linux!&quot;</span><span class="ot"> width=</span><span class="st">&quot;250&quot;</span><span class="ot"> height=</span><span class="st">&quot;200&quot;</span> <span class="kw">/&gt;&lt;/a&gt;</span></span></code></pre></div>
 <div class="important">
