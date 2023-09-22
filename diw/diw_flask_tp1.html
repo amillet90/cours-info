@@ -341,7 +341,11 @@ import datetime</code></pre>
            &lt;h2&gt; la liste des étudiants est vide&lt;/h2&gt; 
     {% endif %}
 </code></pre>
-<p><strong>Remarque : Ctrl+alt+I =&gt; indentation</strong></p>
+<div class="cours">
+<p>Sur les outils JetBrains <strong>Remarque : Ctrl+alt+I =&gt; indentation</strong><br />
+<strong>Ctrl+r =&gt; rechercher/remplacer</strong><br />
+<strong>Dans le controleur Ctrl+clic sur le nom d’un template dans le controleur (app)</strong></p>
+</div>
 <h2 id="utilisation-de-lien">utilisation de lien</h2>
 <ul>
 <li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appellés seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
@@ -499,16 +503,18 @@ print(message)</code></pre>
 </div>
 <h2 id="fichiers-static">fichiers “static”</h2>
 <p><br></p>
-<p>ça fonctionne mais les <strong>contenus “static”</strong> n’apparaissent pas</p>
+<p>Il n’est pas possible dans le dossier <code>templates</code> d’utiliser des fichiers CSS des images ….</p>
+<ol start="33" type="1">
+<li>placer dans le contenu du <a href="">fichier ressources suivant</a> dans le fichier <code>static</code></li>
+</ol>
 <p><br></p>
 <!-- ![exemple avec les gabarits](img_flask/ihm_flask_gabarit_1.png) -->
-<div class="important">
+<div class="cours">
 <p><strong>Les fichiers <a href="https://docs.djangoproject.com/fr/3.2/howto/static-files/">STATIC</a> sont tous les fichiers dont le contenu ne changent jamais</strong> : les fichiers CSS (vos styles, bootstrap), les images, les fichiers <em>javascript</em></p>
 </div>
 <p><br></p>
-<ol start="33" type="1">
-<li><p>placer dans le contenu du [fichier ressources suivant] dans le fichier static</p></li>
-<li><p>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></p></li>
+<ol start="34" type="1">
+<li>déplacer les fichiers “<strong>static</strong>” : images, fichiers CSS et javascript dans le dossier <strong>tp1/static</strong></li>
 </ol>
 <p>il faut modifier les fichiers <strong>html</strong> qui sont des gabarits (templates)</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
