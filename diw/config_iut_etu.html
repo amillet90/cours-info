@@ -27,54 +27,35 @@ echo &quot;alias datagrip=&#39;/opt/datagrip/bin/datagrip.sh&#39;&quot; &gt;&gt;
 echo &quot;alias pycharm=&#39;/opt/pycharm/bin/pycharm.sh&#39;&quot; &gt;&gt; ~/.bashrc 
 
 
-
-fichier=&quot;datagrip.desktop&quot;
-nom_appli=&quot;datagrip&quot;
-chemin=&quot;/opt/DataGrip/bin&quot;
-nom_exec=&quot;datagrip.sh&quot;
-dest=&quot;/home/$USER/Bureau&quot;
-#dest=&quot;~/.config/mate/panel2.d/default/launchers&quot;
-echo &quot;${dest}/${fichier}&quot;
-touch ${dest}/${fichier}
-chmod 755 &quot;${dest}/${fichier}&quot;
-
-echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;${dest}/${fichier}&quot;
-echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;${dest}/${fichier}&quot;
-echo &quot;Version=1.0&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Type=Application&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Terminal=false&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Icon=${chemin}/${nom_appli}.png&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Icon[fr_FR]=${chemin}/${nom_appli}.png&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Name[fr_FR]=${nom_appli}&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Exec=${chemin}/${nom_exec}&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Name=${nom_appli}&quot; &gt;&gt; ${dest}/${fichier}
-
-fichier=&quot;pycharm.desktop&quot;
-nom_appli=&quot;pycharm&quot;
-chemin=&quot;/opt/pycharm/bin&quot;
-nom_exec=&quot;pycharm.sh&quot;
-dest=&quot;/home/$USER/Bureau&quot;
-echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;${dest}/${fichier}&quot;
-echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;${dest}/${fichier}&quot;
-echo &quot;Version=1.0&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Type=Application&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Terminal=false&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Icon=${chemin}/${nom_appli}.png&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Exec=${chemin}/${nom_exec}&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Name=${nom_appli}&quot; &gt;&gt; ${dest}/${fichier}
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Icon=/opt/DataGrip/bin/datagrip.png&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Exec/opt/DataGrip/bin/datagrip.sh&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Name=datagrip&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
 
 
-fichier=&quot;looping.desktop&quot;
-nom_appli=&quot;looping&quot;
-icone=&quot;/opt/looping-mcd/looping.png&quot;
-dest=&quot;/home/$USER/Bureau&quot;
-echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;${dest}/${fichier}&quot;
-echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;${dest}/${fichier}&quot;
-echo &quot;Version=1.0&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Type=Application&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Terminal=false&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Icon=${icone}&quot; &gt;&gt; ${dest}/${fichier}
-echo &quot;Exec=wine /opt/looping-mcd/Looping.exe&quot; &gt;&gt; ${dest}/${fichier}
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Icon=/opt/pycharm/bin/pycharm.png&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Exec=/opt/pycharm/bin/pycharm.sh&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Name=pycharm&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Icon=/opt/looping-mcd/looping.png&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Exec=wine /opt/looping-mcd/Looping.exe&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Name=Looping&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+
 </code></pre>
 <p><br><br><br><br><br><br></p>
 <h1 id="supprimer-les-fichiers-de-configuration-dune-session-défaillante-sur-les-machines-de-liut">supprimer les fichiers de configuration d’une session défaillante sur les machines de l’iut</h1>
