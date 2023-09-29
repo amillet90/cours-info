@@ -83,7 +83,11 @@
 <div class="titre">
 TP5 : SQL requête SELECT dans une table,
 </div>
-<!-- faire des mise à jour rechercher "-- remplacer" 2004 par 2005 ; 2003 par 2004 ; 2002 par 2003 ; 2001 par 2002-->
+<!-- faire des mise à jour rechercher "-- remplacer" 2004 par 2005 ; 2003 par 2004 ; 2002 par 2003 ; 2001 par 2002
+
+attention version : en début de script sql
+
+-->
 <h1 id="objectif">objectif</h1>
 <div class="cours">
 <p>Objectif :</p>
@@ -165,7 +169,7 @@ ORDER by Client.NomClient;</code></pre>
 <div class="important">
 <p><strong>Utiliser le script ci-dessous pour insérer des enregistrements</strong></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- version 2022</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- version 2023</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Etudiant (idEtudiant, nom, adresse, ville, code_postal, telephone, date_naissance, sexe, boursier, groupe_id, semestre_id, note_ue1, note_ue2) <span class="kw">VALUES</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>(<span class="dv">1</span>, <span class="st">&#39;BERNARD&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545401&#39;</span>, <span class="st">&#39;2005-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>, <span class="st">&#39;10.50&#39;</span>),</span>
