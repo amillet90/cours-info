@@ -232,8 +232,11 @@ chmod u+x launcher.sh</code></pre>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">&lt;/nav&gt;</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
 <ul>
-<li><p>la forme de la troisième URL est celle recommandée dans la <a href="https://flask.palletsprojects.com/en/2.0.x/quickstart/#url-building" target="_blank">documentation</a></p></li>
-<li><p>ajouter dans le fichier de style <strong>static/mes_styles.css</strong></p></li>
+<li>La forme des URL dans les templates n’est pas celle recommandée dans la <a href="https://flask.palletsprojects.com/en/2.0.x/quickstart/#url-building" target="_blank">documentation de flask</a>. Cependant ça fonctionne et ça ressemble plus à ce que l’on trouve sur <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes" target="_blank">nodejs</a> (express est utilisé en S3).</li>
+</ul>
+<p><br></p>
+<ul>
+<li>ajouter dans le fichier de style <strong>static/mes_styles.css</strong></li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>table <span class="op">,</span>tr {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="kw">table-layout</span>: <span class="dv">fixed</span><span class="op">;</span></span>
@@ -268,9 +271,9 @@ chmod u+x launcher.sh</code></pre>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true"></a><span class="fu">.alert-success</span> {</span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true"></a>    <span class="kw">background-color</span>: <span class="cn">#bdfdbd</span><span class="op">;</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true"></a>}</span></code></pre></div>
-<ul>
-<li>utiliser <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip">les fichiers de ressources</a> et dé-archiver ce fichier dans le dossier <strong>static</strong> de l’application</li>
-</ul>
+<!-- 
+* utiliser [les fichiers de ressources](https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip) et dé-archiver ce fichier dans le dossier **static** de l'application
+ -->
 <div class="cours">
 <p>⚠️ =&gt; Si les nouveaux styles ne sont pas prise en compte : ATTENTION au cache du navigateur, il faut parfois effacer ce cache</p>
 <ul>
