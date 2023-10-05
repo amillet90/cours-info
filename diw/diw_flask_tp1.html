@@ -496,10 +496,10 @@ groupe = request.form.get(&#39;groupe&#39;)
 message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe+&#39; pour l etudiant d identifiant :&#39;+id   
 print(message)</code></pre>
 <ol start="33" type="1">
-<li>dans le formulaire <span class="modif">pour modifié les données d’un étudiant</span> il faut un champ caché avec l’identifiant de l’étudiant</li>
+<li>dans le formulaire <span class="modif">pour modifier les données d’un étudiant</span> il faut un champ caché avec l’identifiant de l’étudiant</li>
 </ol>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
-<p><span class="modif">Dans ce formulaire, il manque l’attribut <code>value={{etudiant.nom}}</code> dans la balise <code>&lt;input&gt;</code> pour saisir le nom à modifier.</span><br />
+<p><span class="modif">Dans ce formulaire, il manque l’attribut <code>value={{etudiant.nom}}</code> dans la balise <code>&lt;input&gt;</code> pour que ce champ soit initialisé avec le nom de l’étudiant à éventuellement modifier.</span><br />
 </p>
 <p><span class="modif">Afficher la valeur du groupe <code>{{etudiant.groupe}}</code> ; pour la liste déroulante, c’est plus compliqué, le code est présenté dans le tp suivant.</span></p>
 <p><br></p>
