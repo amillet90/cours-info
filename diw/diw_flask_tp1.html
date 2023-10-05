@@ -478,7 +478,7 @@ def valid_edit_etudiant():
 <ol start="27" type="1">
 <li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs <code>action="/etudiant/add" method="post"</code> ou les attributs <code>action="/etudiant/edit" method="post"</code></p></li>
 <li><p>indiquer pour les routes des 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> la méthode pour la route : il faut ajouter dans l’annotation <code>, methods=['GET']</code></p></li>
-<li><p>afficher dans le terminal dans les 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
+<li><p>afficher dans le terminal dans les 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
 <li><p>créer un message avec les informations pour ajouter un étudiant</p></li>
 </ol>
 <pre><code>nom = request.form[&#39;nom&#39;]
@@ -499,6 +499,9 @@ print(message)</code></pre>
 <li>dans le formulaire il faut un champ caché avec l’identifiant de l’étudiant</li>
 </ol>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
+<p>[Il manque l’attribut <code>value={{etudiant.nom}}</code> dans la balise <code>&lt;input&gt;</code> pour saisir le nom à modifier.]{.modif}</p>
+<p><span class="modif">Afficher la valeur du groupe <code>{{etudiant.groupe}}</code> ; pour la liste déroulante, c’est plus compliqué, le code est présenté dans le tp suivant.</span></p>
+<p><br></p>
 <div class="cours">
 <ul>
 <li>Pour récupérer les paramètres d’une page HTML (formulaire ou lien)
