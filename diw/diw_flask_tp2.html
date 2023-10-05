@@ -346,18 +346,15 @@ chmod u+x launcher.sh</code></pre>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>{% block body %}</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a>  <span class="kw">&lt;h2&gt;</span>ajout d&#39;un type d&#39;article<span class="kw">&lt;/h2&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>  {% if error %}</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>    <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">error</span><span class="kw">&gt;&lt;strong&gt;</span>Error:<span class="kw">&lt;/strong&gt;</span> {{ error }}</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>  {% endif %}</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>  <span class="kw">&lt;form</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="ot"> action=</span><span class="st">&quot;/type-article/add&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a>    <span class="kw">&lt;fieldset&gt;</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a>        <span class="kw">&lt;legend&gt;</span> Créer un type d&#39;article<span class="kw">&lt;/legend&gt;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a>        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;libelle&quot;</span><span class="kw">&gt;</span>libelle<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a>        <span class="kw">&lt;input</span><span class="ot"> id=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> size=</span><span class="st">&quot;18&quot;</span><span class="ot"> value=</span><span class="st">&quot;&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Saisir le libelle du type de l&#39;article&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a>        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;Creer&quot;</span><span class="ot"> name=</span><span class="st">&quot;Valider&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true"></a>    <span class="kw">&lt;/fieldset&gt;</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true"></a>  <span class="kw">&lt;/form&gt;</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true"></a>{% endblock %}</span></code></pre></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>  <span class="kw">&lt;form</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="ot"> action=</span><span class="st">&quot;/type-article/add&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>    <span class="kw">&lt;fieldset&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>        <span class="kw">&lt;legend&gt;</span> Créer un type d&#39;article<span class="kw">&lt;/legend&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;libelle&quot;</span><span class="kw">&gt;</span>libelle<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a>        <span class="kw">&lt;input</span><span class="ot"> id=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> size=</span><span class="st">&quot;18&quot;</span><span class="ot"> value=</span><span class="st">&quot;&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Saisir le libelle du type de l&#39;article&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a>        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;Creer&quot;</span><span class="ot"> name=</span><span class="st">&quot;Valider&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a>    <span class="kw">&lt;/fieldset&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a>  <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a>{% endblock %}</span></code></pre></div>
 <ul>
 <li>ajouter dans le fichier de l’application <strong>app.py</strong> la route et la fonction (méthode) pour charger cette vue</li>
 </ul>
