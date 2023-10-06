@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD1</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<p><strong>Mini-Projet sur flask</strong></p>
+<p>Utiliser votre mini-projet réalisé en tp de “Développement d’interfaces web” (pas avec les tableaux “articles/type_articles”). Vous avez tous un sujet différent.<br />
+Ce code contient toutes les interfaces pour ajouter/afficher/modifier/supprimer (CRUD) des enregistrements dans 2 tables : ces 2 tables sont affichées sous forme de tableau.</p>
+<p><br></p>
+<h1 id="script-sql"><strong>script SQL :</strong></h1>
+<p><br></p>
+<p>Réaliser un script SQL de nom <strong>sql_projet.sql</strong> pour :</p>
+<ul>
+<li>supprimer les 2 tables</li>
+<li>créer les 2 tables (avec une <strong>contrainte d’intégrité référentielle</strong> sur la clé étrangère)</li>
+<li>ajouter les enregistrements (une instruction INSERT par enregistrement)</li>
+<li>supprimer la <strong>contrainte d’intégrité référentielle</strong> sur la clé étrangère</li>
+<li>re-créer la contrainte sur la clé étrangère</li>
+<li>réaliser une requête avec une/des fonction(s) d’agrégation et une jointure entre les 2 tables de type (LEFT ou RIGHT JOIN)</li>
+</ul>
+<p><br></p>
+<p>Vous pouvez modifier la composition des tables <strong>en ajoutant une date ou un attribut de type texte avec une image</strong>. Utiliser du <a href="https://fr.wikipedia.org/wiki/Snake_case" target="_blanck">snake_case</a> pour les noms des tables et des attributs.</p>
+<p><br></p>
+<h1 id="crud-sur-2-tables"><strong>CRUD sur 2 tables</strong></h1>
+<p><br></p>
+<h2 id="afficher-les-tables">afficher les tables</h2>
+<p>Ces 2 tables sont affichées sous forme de tableau.</p>
+<p><br></p>
+<p>Lors de l’affichage de la plus “petite” des 2 tables :</p>
+<ul>
+<li><strong>afficher le nombre d’enregistrements ayant une dépendance fonctionnelle avec cette table (en rouge sur l’exemple)</strong></li>
+<li>afficher en première colonne celle qui définie le mieux l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
+</ul>
+<figure>
+<img src="img/sql_flask_projet_img_1.png" style="width:18cm" alt="" /><figcaption>exemple pour les types d’article, le nombre d’articles ayant une dépendance fonctionnelle avec ce type</figcaption>
+</figure>
+<p>Lors de l’affichage de la plus “grosse” des 2 tables :</p>
+<ul>
+<li><strong>afficher en plus de la clé étrangère, la valeur de la colonne de l’autre table qui définie le mieux cet enregistrement(en rouge sur l’exemple)</strong></li>
+<li>afficher en première colonne celle qui définie le mieux l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
+</ul>
+<figure>
+<img src="img/sql_flask_projet_img_2.png" style="width:18cm" alt="" /><figcaption>exemple pour les articles, le libellé du type d’article</figcaption>
+</figure>
+<h2 id="ajouter-et-modifier-un-enregistrement">ajouter et modifier un enregistrement</h2>
+<p>Lors de l’ajout d’un enregistrement dans la plus grosse des tables</p>
+<ul>
+<li>utiliser une liste déroulante pour renseigner la clé étrangère avec comme contenu les valeurs de la clé primaire pour respecter <strong>la contrainte d’intégrité référentielle</strong></li>
+<li>trier le champ qui vous parait le plus pertinent pour identifier la valeur de la clé étrangère pour l’utilisateur dans le contenu de la liste déroulante</li>
+<li>pas de valeur sélectionnée pour l’utilisateur lorsque l’on ajoute un enregistrement dans la liste déroulante</li>
+</ul>
+<figure>
+<img src="img/sql_flask_projet_img_3.png" style="width:10cm" alt="" /><figcaption>exemple de liste déroulante pour ajouter</figcaption>
+</figure>
+<ul>
+<li>lors de la modification d’un enregistrement, les 2 formulaires contiennent les valeurs de l’enregistrement édité (pour les 2 tables)</li>
+<li>la liste déroulante qui correspond à la clé étrangère dans une des tables doit être fonctionnelle</li>
+<li>la bonne valeur de la clé est sélectionnée dans la liste déroulante</li>
+</ul>
+<p><br></p>
+<figure>
+<img src="img/sql_flask_projet_img_4.png" style="width:10cm" alt="" /><figcaption>exemple de liste déroulante pour modifier</figcaption>
+</figure>
+<h1 id="supprimer-un-enregistrement">supprimer un enregistrement</h1>
+<p>Lors de la suppression d’un enregistrement sur la plus petite des tables. Tester si aucune clé étrangère dans l’autre table utilise la clé primaire de l’enregistrement à supprimer. Si c’est le cas proposer des liens pour supprimer les enregistrements en cascade de l’autre table.</p>
+<figure>
+<img src="img/sql_flask_projet_img_7.png" style="width:10cm" alt="" /><figcaption>exemple de liens pour supprimer en cascade</figcaption>
+</figure>
+<p><strong>Le plus compliqué est de conserver l’interface pour supprimer (voir sur l’exemple)</strong></p>
+<h1 id="état">État</h1>
+<ul>
+<li>un état ; utiliser une/des fonctions d’agrégation, éventuellement des jointures</li>
+</ul>
+<figure>
+<img src="img/sql_flask_projet_img_5.png" style="width:18cm" alt="" /><figcaption>exemple d’état</figcaption>
+</figure>
+<p><strong>Faire au moins 2 requêtes pour l’état :</strong><br />
+</p>
+<ul>
+<li>une requête qui fait des calculs sur tous les enregistrements de la première table</li>
+<li>une requête qui fait des calculs sur chaque groupe d’enregistrements de la seconde table et qui affiche le résultat sous forme de tableau</li>
+</ul>
+<p><br></p>
+<h1 id="interfaces-supplémentaires">Interfaces supplémentaires</h1>
+<ul>
+<li><strong>Interface supplémentaire avec un filtre</strong> : une des tables est affichée sous forme de checkBox, l’autre est affichée sous forme de “cards”, lorsque des éléments sont sélectionnés dans les “checkbox”, ils sont conservés en mémoire et seuls les éléments (cards) de l’autre table qui correspondent sont affichés (si on effectue d’autres opérations et que l’on revient sur cette interface, les éléments restent filtrés)</li>
+</ul>
+<figure>
+<img src="img/sql_flask_projet_img_8.png" style="width:18cm" alt="" /><figcaption>exemple de filtre</figcaption>
+</figure>
+<p><br></p>
+<h1 id="mette-en-ligne-votre-application.">Mette en ligne votre application.</h1>
+<p><br></p>
+<p>Pour mettre en ligne votre application, utiliser</p>
+<ul>
+<li>Utiliser <a href="https://www.pythonanywhere.com/" class="uri">https://www.pythonanywhere.com/</a>,</li>
+</ul>
+<!-- https://www.younup.fr/blog/heroku-pour-deployer-votre-application-python-flask-dans-le-cloud 
+https://stackabuse.com/deploying-a-flask-application-to-heroku/
+https://realpython.com/flask-by-example-part-1-project-setup/
+https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask/4526644-deployez-efficacement-sur-le-cloud-avec-heroku
+-->
+</body>
+</html>

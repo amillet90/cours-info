@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD1</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="créer-un-compte">créer un compte</h1>
+<p>aller sur le lien <a href="https://www.pythonanywhere.com/" target="_blanck">https://www.pythonanywhere.com/</a></p>
+<p>et créer un compte</p>
+<figure>
+<img src="img/pythonAnyWhere2_1.png" style="width:22cm" alt="" /><figcaption>pythonAnyWhere : le tableau de bord : “dashboard”</figcaption>
+</figure>
+<p>il faudra chercher dans vos “emails” et confirmer la création de votre compte</p>
+<h1 id="créer-la-base-de-données">créer la base de données</h1>
+<p>aller sur le lien “database”</p>
+<figure>
+<img src="img/pythonAnyWhere2_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+</figure>
+<p>“initialize mysql” : mettre un autre mot de passe que celui du compte car le mot de passe est en clair dans le code de l’application</p>
+<figure>
+<img src="img/pythonAnyWhere2_3.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+</figure>
+<p>une fois le compte créé, recopier dans un fichier (voir exemple ci-dessus) : le nom du “host”, le nom du “Username”, le nom de la base de données “database” et le mot de passe “password”</p>
+<p><br></p>
+<p>cliquer sur la base de données (<em>amillet2$default</em> dans l’exemple)</p>
+<p><br> Un terminal connecté à mysql s’ouvre</p>
+<figure>
+<img src="img/pythonAnyWhere2_4.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+</figure>
+<p>recopier le SQL pour supprimer/créer les tables puis insérer les enregistrements de votre jeu de test</p>
+<p><br></p>
+<p>revenir sur le tableau de bord (dashboard) , en cliquant dans le terminal sur le lien en haut à gauche</p>
+<h1 id="télécharger-son-application">télécharger son application</h1>
+<p>télécharger l’application ; dans le <strong>DashBoard</strong> sélectionner <strong>Browse Files</strong></p>
+<p><br></p>
+<p>faire une archive “.zip” de votre application</p>
+<p><br></p>
+<p>télécharger ce fichier sur le serveur <strong>pythonAnyWhere</strong></p>
+<figure>
+<img src="img/pythonAnyWhere2_5_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : télécharger un fichier zip avec votre application</figcaption>
+</figure>
+<p><br></p>
+<p>Ouvrir une console (terminal) sur le serveur <strong>pythonAnyWhere</strong></p>
+<p>Dans la console, extraire l’application (votre fichier “.zip”), exemple :</p>
+<pre><code>unzip S1_pymysql_flask_pythonanywhere.zip</code></pre>
+<figure>
+<img src="img/pythonAnyWhere2_6.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : désarchiver votre fichier zip avec votre application</figcaption>
+</figure>
+<p>puis revenir au “dashboard”, toujours avec le lien en haut à gauche</p>
+<h1 id="lancer-lapplication">lancer l’application</h1>
+<p>Remarque : vos 2 terminaux sont accessibles depuis le “dashboard” : un connecté à votre base de données mysql, l’autre terminal “bash” à la racine de l’application</p>
+<figure>
+<img src="img/pythonAnyWhere2_7.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+</figure>
+<p>dans le <strong>DashBoard</strong> sélectionner (cliquer) <strong>open web app</strong></p>
+<p>puis</p>
+<ul>
+<li>ajouter une nouvelle application</li>
+</ul>
+<figure>
+<img src="img/pythonanywhere_install.png" style="width:18cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+</figure>
+<ul>
+<li>dans la version gratuite, le nom de domaine est imposé : <a href="http://login.pythonanywhere.com" class="uri">http://login.pythonanywhere.com</a></li>
+<li>sélectionner le framework <strong>flask</strong></li>
+<li>sélectionner une version de python</li>
+<li>vous pouvez renommer le fichier de l’application (par défaut <strong>flask_app.py</strong>), mettre <strong>app.py</strong>, et mettre le projet à la racine</li>
+</ul>
+<p><br></p>
+<h2 id="vérification-du-fichier-de-configuration">Vérification du fichier de configuration</h2>
+<p>Depuis le “DashBoard”, sélectionner le lien “web” dans le menu</p>
+<p><br></p>
+<p>Dans : le Configuration for &lt;login.pythonanywhere.com&gt;</p>
+<p>Rechercher :</p>
+<p>WSGI configuration <a href="file:/var/www/login_pythonanywhere_com_wsgi.py" class="uri">file:/var/www/login_pythonanywhere_com_wsgi.py</a></p>
+<figure>
+<img src="img/pythonAnyWhere_4.png" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée</figcaption>
+</figure>
+<p>éditer le fichier en cliquant dessus</p>
+<p>un code qui ressemble à celui ci-dessous doit être dans ce fichier (on y trouve : où se trouve le fichier “app.py” , si le fichier pour lancer l’application ne s’appelle pas app.py et que l’instance de l’objet Flask ne s’appelle pas app, il faut modifier la dernière ligne)</p>
+<pre><code>import sys
+path = &#39;/home/amillet&#39;
+if path not in sys.path:
+   sys.path.insert(0, path)
+
+from app import app as application</code></pre>
+<p><br></p>
+<p>Dans la dernière version testée, il faut remplacer le code dans le fichier par celui ci-dessus.</p>
+<figure>
+<img src="img/pythonAnyWhere_6.png" style="width:10cm" alt="" /><figcaption>derniere test fait sur pythonanywhere</figcaption>
+</figure>
+<p><br></p>
+<figure>
+<img src="img/pythonAnyWhere2_13.png" style="width:10cm" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée (ancienne version)</figcaption>
+</figure>
+<ul>
+<li>tester</li>
+</ul>
+<p><strong>ATTENTION le fichier app.py peut être (est) écrasé.<br />
+Éditer le fichier app.py et recopier le contenu (si besoin)</strong></p>
+<p><br></p>
+<ul>
+<li>Il devrait y avoir une erreur si vous rechargez l’application</li>
+</ul>
+<p><br></p>
+<h1 id="utilisation-de-la-base-de-données">utilisation de la base de données</h1>
+<p>Votre application doit absolument <strong>ouvrir et fermer la connexion</strong> à chaque requête HTTP pour éviter les fuites de mémoires.</p>
+<p>L’hébergeur pythonAnyWhere stoppe les connexions après un petit moment.</p>
+<p>Exemple de code dans votre application (voir les TPs)</p>
+<pre><code>@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, &#39;_database&#39;, None)
+    if db is not None:
+        db.close()
+def get_db():
+    db = getattr(g, &#39;_database&#39;, None)
+    if db is None:
+        #db = g._database = sqlite3.connect(DATABASE)
+        db = g._database = pymysql.connect(
+            #host=&quot;localhost&quot;,     # ou serveurmysql à l&#39;iut
+            #user=&quot;votreLogin&quot;,
+            #password=&quot;votreMotDePasse&quot;,
+            #database=&quot;BDD_votreLogin&quot;,
+            user=&quot;amillet2&quot;,
+            host=&quot;amillet2.mysql.pythonanywhere-services.com&quot;,
+            passwd=&quot;####mdp####&quot;,
+            database=&quot;amillet2$default&quot;,
+
+            charset=&#39;utf8mb4&#39;,
+            cursorclass=pymysql.cursors.DictCursor
+        )
+    return db</code></pre>
+<ul>
+<li>recharger votre application</li>
+</ul>
+<p>“open web app”</p>
+<figure>
+<img src="img/pythonAnyWhere_5.png" alt="" /><figcaption>pythonAnyWhere : relancer l’application</figcaption>
+</figure>
+<p>si vous avez une erreur</p>
+<h1 id="gestion-des-erreurs">gestion des erreurs</h1>
+<p>Depuis le “dashboard”, cliquer sur le lien “open web app” ou “web” dans le menu</p>
+<p><br></p>
+<ul>
+<li>si ça ne fonctionne pas, rechercher les fichiers de “logs”</li>
+</ul>
+<figure>
+<img src="img/pythonAnyWhere_5_1.png" alt="" /><figcaption>pythonAnyWhere : fichierd de log</figcaption>
+</figure>
+<ul>
+<li><p>cliquer sur le fichier “pythonanaywhere.com.error.log” pour voir le fichier de log avec les erreurs (équivalent aux erreurs dans une console)</p></li>
+<li><p>exemple de message d’erreurs</p></li>
+</ul>
+<pre><code>2021-12-05 10:14:12,020: Error running WSGI application
+2021-12-05 10:14:12,021: ModuleNotFoundError: No module named &#39;pymysql&#39;
+2021-12-05 10:14:12,021:   File &quot;/var/www/amillet2_pythonanywhere_com_wsgi.py&quot;, line 16, in &lt;module&gt;
+2021-12-05 10:14:12,021:     from app import app as application  # noqa
+2021-12-05 10:14:12,022: 
+2021-12-05 10:14:12,022:   File &quot;/home/amillet2/app.py&quot;, line 5, in &lt;module&gt;
+2021-12-05 10:14:12,022:     import pymysql.cursors
+2021-12-05 10:14:12,022: ***************************************************
+2021-12-05 10:14:12,022: If you&#39;re seeing an import error and don&#39;t know why,
+2021-12-05 10:14:12,022: we have a dedicated help page to help you debug: 
+2021-12-05 10:14:12,022: https://help.pythonanywhere.com/pages/DebuggingImportError/
+2021-12-05 10:14:12,022: ***************************************************</code></pre>
+<p>dans ce cas d’erreur, il faut installer <strong>pymysql</strong></p>
+<pre><code>pip install pymysql</code></pre>
+<p>et recharger l’application</p>
+<!--
+mysqldump -u yourusername -h yourusername.mysql.pythonanywhere-services.com --set-gtid-purged=OFF --no-tablespaces 'yourusername$dbname'  > db-backup.sql
+echo sauvegarde_$(date +%Y-%m-%d-%H.%M.%S).sql
+
+sudo chown $(whoami):$(whoami) /var/www_backups
+crontab https://devanswers.co/backup-mysql-databases-linux-command-line/
+-->
+<h1 id="annexes-les-erreurs-classiques">ANNEXES : les erreurs classiques</h1>
+<ul>
+<li>installer <strong>pymysql</strong></li>
+<li>bien configurer la connexion à la base de données</li>
+</ul>
+<hr />
+<p><br></p>
+<ul>
+<li>vider les fichers de log sur pythonanywhere</li>
+</ul>
+<pre><code>echo &#39;&#39; &gt; /var/log/amillet3.pythonanywhere.com.error.log
+echo &#39;&#39; &gt; /var/log/amillet3.pythonanywhere.com.server.log
+rm -rf ~/.cache</code></pre>
+<ul>
+<li>message d’erreur pour une connexion à la base de données mauvaise</li>
+</ul>
+<pre><code>2022-01-29 15:55:55,477: Error running WSGI application
+2022-01-29 15:55:55,477: ModuleNotFoundError: No module named &#39;pymysql&#39;
+2022-01-29 15:55:55,478:   File &quot;/var/www/amillet3_pythonanywhere_com_wsgi.py&quot;, line 16, in &lt;module&gt;
+2022-01-29 15:55:55,478:     from file_app import app as application  # noqa
+2022-01-29 15:55:55,478: 
+2022-01-29 15:55:55,478:   File &quot;/home/amillet3/projet_biblio/file_app.py&quot;, line 8, in &lt;module&gt;
+2022-01-29 15:55:55,478:     from controllers.auth_security import *
+2022-01-29 15:55:55,479: 
+2022-01-29 15:55:55,479:   File &quot;/home/amillet3/projet_biblio/controllers/auth_security.py&quot;, line 8, in &lt;module&gt;
+2022-01-29 15:55:55,479:     from connexion_db import get_db
+2022-01-29 15:55:55,481: 
+2022-01-29 15:55:55,481:   File &quot;/home/amillet3/projet_biblio/connexion_db.py&quot;, line 3, in &lt;module&gt;
+2022-01-29 15:55:55,481:     import pymysql.cursors
+2022-01-29 15:55:55,481: ***************************************************
+2022-01-29 15:55:55,482: If you&#39;re seeing an import error and don&#39;t know why,
+2022-01-29 15:55:55,482: we have a dedicated help page to help you debug: 
+2022-01-29 15:55:55,482: https://help.pythonanywhere.com/pages/DebuggingImportError/
+2022-01-29 15:55:55,482: ***************************************************</code></pre>
+<hr />
+<p>bien configurer le fichier <code>/var/www/login_pythonanywhere_com_wsgi.py</code></p>
+<p><br> exemple :</p>
+<pre><code>
+~ $ tree -d                                                                                                                                                                             
+.
+└── projet_biblio
+    ├── bdd
+    ├── controllers
+    ├── static
+    │   └── assets
+    │       ├── css
+    │       ├── images
+    │       ├── img
+    │       └── js
+    │           ├── foundation
+    │           └── vendor
+    └── templates
+    │   ├── admin
+    │   │   ├── adherent
+    │   │   ├── auteur
+    │   │   ├── dataviz
+    │   │   ├── emprunt
+    │   │   ├── exemplaire
+    │   │   ├── oeuvre
+    │   │   └── type_article
+    │   ├── auth
+    │   └── client
+    │       ├── boutique
+    │       └── commandes
+    └──file_app.py
+    └──connexion_db.py </code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co"># This file contains the WSGI configuration required to serve up your</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co"># web application at http://&lt;your-username&gt;.pythonanywhere.com/</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co"># It works by setting the variable &#39;application&#39; to a WSGI handler of some</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co"># description.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">#</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co"># The below has been auto-generated for your Flask project</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="im">import</span> sys</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co"># add your project directory to the sys.path</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a>project_home <span class="op">=</span> <span class="st">&#39;/home/amillet3/projet_biblio&#39;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="cf">if</span> project_home <span class="kw">not</span> <span class="kw">in</span> sys.path:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>    sys.path <span class="op">=</span> [project_home] <span class="op">+</span> sys.path</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co"># import flask app but need to call it &quot;application&quot; for WSGI to work</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="im">from</span> file_app <span class="im">import</span> app <span class="im">as</span> application  <span class="co"># noqa</span></span></code></pre></div>
+</body>
+</html>
