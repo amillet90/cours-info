@@ -127,7 +127,7 @@ sudo apt install chromium</code></pre>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  <span class="op">*</span>.<span class="op">*</span> <span class="kw">To</span> <span class="st">&#39;login&#39;</span>;</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
-<p>En 2023, certains étudiants ont du remplacer <code>'login'</code> <code>'login'@'localhost'</code> sur MariaDB dans le script ci-dessus</p>
+<p>En 2023, certains étudiants ont du remplacer <code>'login'</code> par <code>'login'@'localhost'</code> sur MariaDB dans le script ci-dessus</p>
 <ul>
 <li>dans la console mysql(mariadb) ouverte en tant que root, exécuter le script ci-dessus</li>
 </ul>
@@ -139,7 +139,8 @@ sudo apt install chromium</code></pre>
 <pre class="console"><code>sudo mysql -u root -p</code></pre>
 <ul>
 <li><p>Exécuter le script ci dessus dans le terminal</p></li>
-<li><p>Fermer la connexion sur mysql et tester la connexion avec le nouveau compte avec l’instruction suivante modifiée avec vos identifiants <code>mysql --user=login --password=motdepasse --host=localhost  --database=BDD_login</code></p></li>
+<li><p>Fermer la connexion sur mysql et tester la connexion avec le nouveau compte avec l’instruction suivante modifiée avec vos identifiants :<br />
+<code>mysql --user=login --password=motdepasse --host=localhost  --database=BDD_login</code></p></li>
 </ul>
 <h2 id="éditeur-de-mcd">éditeur de MCD</h2>
 <ul>
@@ -155,7 +156,7 @@ sudo apt install chromium</code></pre>
 <li><p>exemple (si le fichier <code>Looping.exe</code> se trouve dans le dossier <code>/opt/looping-mcd</code>)</p></li>
 </ul>
 <pre class="shell"><code>cd
-subl .bashrc
+code .bashrc
 alias looping=&#39;wine /opt/looping-mcd/Looping.exe&#39;</code></pre>
 <h2 id="serveur-web-python">serveur web python</h2>
 <ul>
@@ -194,7 +195,7 @@ ls ~/.local/share/applications/</code></pre>
 <h1 id="connexion-à-une-machine-de-liut-avec-filezilla">Connexion à une machine de l’IUT avec Filezilla</h1>
 <p><strong>Il faut maintenant impérativement utiliser le VPN. Une fois le VPN activé</strong></p>
 <figure>
-<img src="img_config_machine_perso_1.png" style="width:20cm" alt="" /><figcaption>configuration de FileZilla -Fichier-Gestionnaire de Site</figcaption>
+<img src="img_install/img_config_machine_perso_1.png" style="width:20cm" alt="" /><figcaption>configuration de FileZilla -Fichier-Gestionnaire de Site</figcaption>
 </figure>
 <p>Dans un terminal :</p>
 <pre class="console"><code>ssh   votrelogin@gate-info.iut-bm.univ-fcomte.fr
