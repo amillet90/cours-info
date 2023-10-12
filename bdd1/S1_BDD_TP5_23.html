@@ -228,12 +228,16 @@ ORDER by Client.NomClient;</code></pre>
 | MONNIER   |         1 | O        |
 +-----------+-----------+----------+</code></pre>
 <h2 id="requête-2-expression-logique-et-tri-sur-plusieurs-champs">Requête 2 (expression logique et tri sur plusieurs champs ) :</h2>
-<h3 id="requête-2-1"><strong>Requête 2-1</strong> :</h3>
+<div class="requete">
+<strong>Requête 2-1</strong> :
+</div>
 <p>Tester la requête suivante : Afficher tous les étudiants triés par semestre, puis par groupe, puis par nom dans l’ordre décroissant. Utiliser l’instruction <strong>ORDER BY champ1, champ2, champ3</strong> ; remplacer « champ » par le nom du champ suivi de <strong>ASC</strong> ou <strong>DESC</strong> (par défaut le tri est fait de façon ascendante)</p>
 <p><img src="img/img_tp5_3.jpg" /></p>
 <p><br></p>
 <p>Utiliser l’instruction ORDER BY « champ1 » après l’instruction WHERE « conditions ». Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_orderby.asp" target="_blanck">https://www.w3schools.com/SQL/sql_orderby.asp</a> <br></p>
-<h3 id="requête-2-2">Requête 2-2 :</h3>
+<div class="requete">
+<strong>Requête 2-2</strong> :
+</div>
 <p>Tester la requête suivante :</p>
 <p><img src="img/img_tp5_4.jpg" /></p>
 <ul>
@@ -241,7 +245,9 @@ ORDER by Client.NomClient;</code></pre>
 </ul>
 <p><img src="img/img_tp5_5.jpg" /></p>
 <p>Sur le même principe :</p>
-<h3 id="requête-2-3">Requête 2-3 :</h3>
+<div class="requete">
+<strong>Requête 2-3</strong> :
+</div>
 <p>Écrire une requête pour sélectionner uniquement les étudiants (nom, groupe, ville, semestre ) du groupe 1 et du semestre 1 ou du semestre 2 et de la ville de « Belfort ». Ordonner la liste résultat par semestre croissant puis par groupe croissant puis par nom de ville croissante (par ordre alphabétique) puis par nom d’étudiant décroissant.</p>
 <p><br></p>
 <p>Résultat :</p>
@@ -258,7 +264,9 @@ ORDER by Client.NomClient;</code></pre>
 | BONVALOT  |         1 | Belfort     |           2 |
 | PRETTOT   |         2 | Belfort     |           2 |
 +-----------+-----------+-------------+-------------+</code></pre>
-<h3 id="requête-2-4">Requête 2-4 :</h3>
+<div class="requete">
+<strong>Requête 2-4</strong> :
+</div>
 <div class="cours">
 <p><strong>Symboles de comparaison</strong> et <strong>opérateurs logiques</strong></p>
 <table>
@@ -311,7 +319,9 @@ ORDER by Client.NomClient;</code></pre>
 <p>Dans la requête ci-dessous, simplifier l’expression dans le WHERE:</p>
 <p><img src="img/img_tp5_6.jpg" /></p>
 <p><img src="img/img_tp5_7.jpg" /></p>
-<h3 id="requête-2-5">Requête 2-5 :</h3>
+<div class="requete">
+<strong>Requête 2-5</strong> :
+</div>
 <p>Écrire une requête pour sélectionner uniquement les étudiants (nom, groupe, ville, semestre, boursier ) qui sont boursiers ou qui habitent la ville de belfort et qui sont tous du semestre 2 (trier les enregistrements par groupe puis ville puis nom de façon ascendante).</p>
 <ul>
 <li>Résultat :</li>
@@ -328,9 +338,15 @@ ORDER by Client.NomClient;</code></pre>
 | VALZER    |         3 | Valdoie |           2 | O        |
 +-----------+-----------+---------+-------------+----------+</code></pre>
 <h2 id="requête-3-utilisation-de-distinct">Requête 3 (utilisation de DISTINCT)</h2>
-<p><strong>Requête 3-1 :</strong> Tester la requête suivante avec et sans le mot clé <code>distinct</code> :</p>
+<div class="requete">
+<strong>Requête 3-1</strong> :
+</div>
+<p>Tester la requête suivante avec et sans le mot clé <code>distinct</code> :</p>
 <p><img src="img/img_tp5_8.jpg" /></p>
-<p><strong>Requête 3-2 :</strong> Écrire la requête pour afficher les villes distinctes de tous les étudiants dont le code postal commence par 90 et dont le nom de ville n’est pas NULL et n’est pas une chaîne vide. Utiliser le mot clé <code>DISTINCT</code>.</p>
+<div class="requete">
+<strong>Requête 3-2</strong> :
+</div>
+<p>Écrire la requête pour afficher les villes distinctes de tous les étudiants dont le code postal commence par 90 et dont le nom de ville n’est pas NULL et n’est pas une chaîne vide. Utiliser le mot clé <code>DISTINCT</code>.</p>
 <ul>
 <li><p>Aidez vous des informations sur : <a href="https://www.w3schools.com/sql/sql_distinct.asp" target="_blanck">https://www.w3schools.com/sql/sql_distinct.asp</a> <br></p></li>
 <li><p>Résultat :</p></li>
@@ -343,6 +359,9 @@ ORDER by Client.NomClient;</code></pre>
 | Bavilliers |
 +------------+</code></pre>
 <h2 id="requête-4-in-un-champ-appartient-à-une-liste-de-valeurs">Requête 4 ( IN : un champ appartient à une liste de valeurs )</h2>
+<div class="requete">
+<strong>Requête 4</strong> :
+</div>
 <p>Écrire une requête pour sélectionner les étudiants et les villes dont la ville appartient à cette liste (‘strasbourg’,‘mulhouse’,‘cernay’). Utiliser l’instruction <code>IN</code></p>
 <ul>
 <li><p>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_in.asp" target="_blanck">https://www.w3schools.com/SQL/sql_in.asp</a> <br></p></li>
@@ -356,6 +375,9 @@ ORDER by Client.NomClient;</code></pre>
 | CHAVEAUX        | Strasbourg |
 +-----------------+------------+</code></pre>
 <h2 id="requête-5-utilisation-de-null">Requête 5 (utilisation de NULL)</h2>
+<div class="requete">
+<strong>Requête 5.1</strong> :
+</div>
 <p>Écrire la requête pour sélectionner le nom des étudiants dont le champ de la ville est vide (Utiliser l’instruction <code>IS NULL</code>) et dont le sexe est « H ».</p>
 <ul>
 <li>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_null_values.asp" target="_blanck">https://www.w3schools.com/SQL/sql_null_values.asp</a> <br> Remarque : NULL est un cas particulier, on n’écrit jamais <strike>=NULL</strike> ou <strike>!=NULL</strike>
@@ -373,6 +395,9 @@ ORDER by Client.NomClient;</code></pre>
 | VERNET  | NULL  |
 | BAILLIT | NULL  |
 +---------+-------+</code></pre>
+<div class="requete">
+<strong>Requête 5.2</strong> :
+</div>
 <p>Faire la même requête mais en rajoutant les étudiants dont le champ de la ville est une chaîne de caractères vide</p>
 <ul>
 <li>Résultat :</li>
@@ -386,6 +411,9 @@ ORDER by Client.NomClient;</code></pre>
 | DUPONT  |       |
 +---------+-------+</code></pre>
 <h2 id="requête-6-utilisation-de-like">Requête 6 (utilisation de LIKE )</h2>
+<div class="requete">
+<strong>Requête 6.1</strong> :
+</div>
 <p>Requête pour afficher le Nom des étudiants et leur ville. Le nom des étudiants commence par « B » ou « D » et ils habitent une ville qui possède la lettre « o » (triés par nom).</p>
 <p><img src="img/img_tp5_12.jpg" /></p>
 <ul>
@@ -403,6 +431,9 @@ ORDER by Client.NomClient;</code></pre>
 | DELANOE   | Valdoie |
 | DUCHENNE  | Belfort |
 +-----------+---------+</code></pre>
+<div class="requete">
+<strong>Requête 6.2</strong> :
+</div>
 <p>Écrire une requête pour afficher le nom la ville et l’adresse des étudiants dont l’adresse est composée du mot « verger » et dont la ville est composée des lettres « er » ou des lettres « a » suivies de « l ».</p>
 <p><br></p>
 <ul>
@@ -417,6 +448,9 @@ ORDER by Client.NomClient;</code></pre>
 | ZILLIOX | Bavilliers | 7 rue du verger            |
 +---------+------------+----------------------------+</code></pre>
 <h2 id="requête-7-requête-avec-des-dates-fonctions-now-day-month-year">Requête 7 (requête avec des dates, fonctions <code>now()</code>, <code>day()</code>, <code>month()</code>, <code>year()</code>)</h2>
+<div class="requete">
+<strong>Requête 7</strong> :
+</div>
 <!-- remplacer 2002 par 2003 -->
 <p>Écrire une requête pour afficher le nom et la date de naissance des étudiants dont la date de naissance est comprise entre le <code>"2003-1-1"</code> And <code>"2003-12-31"</code>, qui sont des hommes et qui habitent Belfort ou Montbéliard (utiliser le code postal 90000 (Belfort) et 25200(Montbéliard)). Proposer une deuxième solution avec comme condition (dans le « WHERE ») : l’année est égale à <code>"2003"</code>. (trier l’affichage par date de naissance)</p>
 <ul>
@@ -435,12 +469,18 @@ Aidez vous des informations sur <a href="https://www.w3schools.com/sql/sql_ref_m
 </div>
 <div class="rapide">
 <h2 id="requête-8-utilisation-de-limit">Requête 8 (utilisation de LIMIT )</h2>
+<div class="requete">
+<strong>Requête 8.1</strong> :
+</div>
 <p>La requête ci-dessous retourne les 10 enregistrements de la position 6 à 15</p>
 <pre><code>SELECT nom 
 FROM Etudiant 
 ORDER BY nom
 LIMIT 5,10 ;</code></pre>
 <p>(<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html" target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/select.html</a>) Tester et utiliser la lien ci-dessous pour <a href="https://www.w3schools.com/SQL/sql_top.asp" target="_blanck">https://www.w3schools.com/SQL/sql_top.asp</a> <br></p>
+<div class="requete">
+<strong>Requête 8.2</strong> :
+</div>
 <p>Dans une page Web, on désire sélectionner les 6 premiers étudiants triés par Groupe (descendant : plus grand au plus petit) puis par Nom (pour ordre alphabétique). Écrire la requête, utiliser l’instruction <code>LIMIT</code> pour limiter le nombre d’enregistrements sélectionnés.</p>
 <p><br></p>
 <ul>
@@ -456,6 +496,9 @@ LIMIT 5,10 ;</code></pre>
 | FAIVRE   |         3 |
 | FAIVRE   |         3 |
 +----------+-----------+</code></pre>
+<div class="requete">
+<strong>Requête 8.3</strong> :
+</div>
 <p>sélectionner les 4 suivants</p>
 <ul>
 <li>Résultat :</li>
@@ -477,8 +520,16 @@ LIMIT 5,10 ;</code></pre>
 <li>Rechercher une expression régulière qui commence par un caractère, suivi du caractère “a” ou “e” puis de n’importe quel caractère.</li>
 </ul>
 <p><br></p>
+<div class="requete">
+<strong>Requête 9.1</strong> :
+</div>
 <ul>
 <li>Écrire une requête pour sélectionner le nom des étudiants dont le nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme 2eme chiffre “5” en utilisant LIKE (champ LIKE « expression en remplaçant _ pour un caractère et % pour une chaîne de caractères»)</li>
+</ul>
+<div class="requete">
+<strong>Requête 9.2</strong> :
+</div>
+<ul>
 <li>Écrire une requête pour sélectionner le nom des étudiants dont le nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme 2eme chiffre “5” en utilisant REGEXP (champ REGEXP « expression régulière »), (LIKER idem).</li>
 </ul>
 <p>Remarque : LIKE est plus rapide que REGEXP, voir article <a href="http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/" target="_blanck">http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/</a> <br></p>
@@ -493,6 +544,9 @@ LIMIT 5,10 ;</code></pre>
 <p><br></p>
 <p>Pour comprendre les expressions régulières, voici 1 site web intéressant : <a href="https://regex101.com/" target="_blanck">regex101</a></p>
 <h2 id="requête-10">Requête 10</h2>
+<div class="requete">
+<strong>Requête 10</strong> :
+</div>
 <p>Écrire une requête pour sélectionner les étudiants qui ont plus de 20 ans après le 30 septembre de la fin de l’année universitaire (mois de naissance inférieur à 10 si c’est l’année de leur 20 ans). Ces étudiants devaient payer une sécurité sociale si ils n’étaient pas boursiers . Ordonner les étudiants du plus jeune au plus vieux. <br></p>
 <p>commencer par tester :</p>
 <pre><code>SELECT day(now()); 
