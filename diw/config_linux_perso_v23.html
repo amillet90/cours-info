@@ -142,6 +142,15 @@ sudo apt install chromium</code></pre>
 <li><p>Fermer la connexion sur mysql et tester la connexion avec le nouveau compte avec l’instruction suivante modifiée avec vos identifiants :<br />
 <code>mysql --user=login --password=motdepasse --host=localhost  --database=BDD_login</code></p></li>
 </ul>
+<p><br></p>
+<p><strong>Remarque :</strong><br />
+Tester la commande suivante dans un terminal connecté à MySql : <code>SELECT @@sql_mode;</code><br />
+Dans la réponse du type : <code>ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION</code><br />
+Vous devez trouver le mot clé <code>ONLY_FULL_GROUP_BY</code> Sinon il est conseillé de modifié le fichier <code>my.ini</code> (sur Windows) et my.cnf (sur Linux, pour le trouver sur linux : <code>find / -name '*my.cnf' 2&gt;/dev/null</code>)</p>
+<p>Puis modifier le contenu de la variable <code>sql_mode</code></p>
+<p><code>[mysqld]</code><br />
+<code>sql_mode = "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"</code></p>
+<p><a href="https://support.cpanel.net/hc/en-us/articles/360050089274-How-to-change-the-SQL-mode-in-MySQL-or-MariaDB" target="_blanck">documentation</a></p>
 <h2 id="éditeur-de-mcd">éditeur de MCD</h2>
 <ul>
 <li><p>Télécharger looping-mcd avec le lien suivant :<a href="https://www.looping-mcd.fr/" target="_blanck">looping-mcd</a> (logiciel windows des enseignants de toulouse)</p></li>
@@ -291,7 +300,8 @@ choco install openjdk8jre -y
 <ul>
 <li>tester dans un terminal (invité de commande) la commande : <code>mysql -u login -h localhost -pmotdepasse BDD_login</code></li>
 </ul>
-<p><br><br><br><br><br><br><br><br><br></p>
+<p><br><br></p>
+<p><br><br><br><br><br><br><br></p>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
