@@ -235,6 +235,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 </ul>
 </section>
 <h3 id="requête-4.1-4.2-4.3-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête 4.1, 4.2, 4.3 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
+<div class="requete">
+<strong>Requête 4.1</strong> :
+</div>
 <ul>
 <li>Écrire la requête pour compter le nombre d’étudiants qui habitent le territoire de Belfort et qui sont des hommes, ordonné par codes postales puis par sexes. Résultats (faire 3 requêtes) :</li>
 </ul>
@@ -245,6 +248,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 |              4 |       90120 | H    |
 |              7 |       90300 | H    |
 +----------------+-------------+------+</code></pre>
+<div class="requete">
+<strong>Requête 4.2</strong> :
+</div>
 <ul>
 <li>afficher le nombre d’étudiants qui habitent le territoire de Belfort et leurs sexes</li>
 </ul>
@@ -256,6 +262,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 |              4 | F    |
 |             18 | H    |
 +----------------+------+</code></pre>
+<div class="requete">
+<strong>Requête 4.3</strong> :
+</div>
 <ul>
 <li>afficher le nombre d’étudiants qui habitent le territoire de Belfort et qui sont des hommes</li>
 </ul>
@@ -267,6 +276,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 |             18 |
 +----------------+</code></pre>
 <h3 id="requête-5-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête 5 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
+<div class="requete">
+<strong>Requête 5</strong> :
+</div>
 <ul>
 <li>Écrire la requête pour compter le nombre d’étudiants qui habitent en Franche Comté. (département le 90 le 25 le 39 le 70)</li>
 </ul>
@@ -278,6 +290,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 |                              26 | 
 +---------------------------------+ </code></pre>
 <h3 id="requête-6-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête 6 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
+<div class="requete">
+<strong>Requête 6</strong> :
+</div>
 <p>Sur le même principe calculer la moyenne des UE ainsi que la moyenne des 2 UE : pour chaque groupe et chaque semestre différents (trier par semestre puis par groupe).</p>
 <ul>
 <li>Utiliser dans un deuxième temps, la fonction Format pour arrondir à 2 chiffres après la virgule. (unités d’enseignement : informatique et enseignement général, le plus souvent)</li>
@@ -295,6 +310,9 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 | 10.47       | 14.42       | 12.44   |         4 |           3 |
 +-------------+-------------+---------+-----------+-------------+</code></pre>
 <h3 id="requête-7-alter-table-puis-update">requête 7 (ALTER TABLE puis UPDATE)</h3>
+<div class="requete">
+<strong>Requête 7</strong> :
+</div>
 <ul>
 <li><p>Rajouter un champ de nom « resultat_semestre »dans la table pour y insérer le résultat du semestre : ce champ est de type chaîne de caractères pour y placer les chaînes de caractères suivantes : ‘ADM’,‘ADJ’,‘ADC’,‘ATT’,‘NV’,‘EXC’ .</p></li>
 <li><p>Écrire une requête qui modifie le champ à la valeur ‘ADM’ si les 2 UEs ont une note supérieure ou égale à 8 et la moyenne est supérieure ou égale à 10</p></li>
@@ -312,12 +330,18 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 </div>
 <div class="rapide">
 <h3 id="requête-8">requête 8</h3>
+<div class="requete">
+<strong>Requête 8</strong> :
+</div>
 <p>Écrire une requête pour compter les étudiants qui sont majeurs. Commencer par tester la requête ci dessous :</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">SELECT</span> date_naissance</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>,DATE_ADD(date_naissance,<span class="dt">INTERVAL</span> <span class="dv">18</span> <span class="dt">YEAR</span>) <span class="kw">AS</span> plus18</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>,DATEDIFF(curdate(),DATE_ADD(date_naissance,<span class="dt">INTERVAL</span> <span class="dv">18</span> <span class="dt">YEAR</span>)) <span class="kw">AS</span> diff_jours_majorite </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">FROM</span> Etudiant ;</span></code></pre></div>
 <h3 id="requête-9-utiliser-des-conditions-imbriqués">requête 9 (Utiliser des conditions imbriqués)</h3>
+<div class="requete">
+<strong>Requête 9</strong> :
+</div>
 <p>Créer une requête pour afficher le nom des étudiants, leurs notes, la moyenne de leurs notes et un champ calculé avec le résultat du semestre : « DECISION ». Ce champ vaut (‘ADM’,‘UE1 validé – Jury’,‘UE2 validé – Jury’,’Jury’).</p>
 <ul>
 <li>Ce champ a la valeur ‘ADM’ si les 2 UEs ont une note supérieure à 8 et la moyenne vaut plus de 10.</li>
