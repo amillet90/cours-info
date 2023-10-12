@@ -167,15 +167,16 @@ TP6 : SQL requête SELECT dans une table,
 | DELANOE   |         1 |  13.500000 |
 | RIOT      |         2 |  13.000000 |
 +-----------+-----------+------------+</code></pre>
+<h2 id="requête-2-champs-calculés-ou-concaténation-déléments">Requête 2 : champs calculés ou concaténation d’éléments</h2>
+<p>Exemples :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;mois :&#39;</span>,<span class="dt">MONTH</span>(NOW()), <span class="st">&#39; - jour :&#39;</span>, <span class="dt">DAY</span>(NOW()))  <span class="kw">AS</span> TEST2;</span></code></pre></div>
 <div class="requete">
 <ol start="2" type="1">
 <li><strong>Requête 2</strong> :
 </div></li>
 </ol>
-<h2 id="requête-2-champs-calculés-ou-concaténation-déléments">Requête 2 : champs calculés ou concaténation d’éléments</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;mois :&#39;</span>,<span class="dt">MONTH</span>(NOW()), <span class="st">&#39; - jour :&#39;</span>, <span class="dt">DAY</span>(NOW()))  <span class="kw">AS</span> TEST2;</span></code></pre></div>
 <p>Sur le même principe afficher le nom des étudiants et leur date de naissance au format JJ/MM/AAAA. Afficher uniquement les étudiants dont l’année de naissance est supérieure ou égale à <code>2005</code>. Trier le résultat par date de naissance de façon décroissante.</p>
 <p><br></p>
 <ul>
