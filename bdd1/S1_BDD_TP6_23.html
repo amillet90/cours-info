@@ -124,10 +124,8 @@ TP6 : SQL requête SELECT dans une table,
 <h1 id="requêtes">Requêtes</h1>
 <h2 id="requête-1.1-et-1.2-requête-avec-undes-champs-calculés-utilisation-d-un-alias">requête 1.1 et 1.2 : requête avec un/des champ(s) calculé(s), utilisation d’ un « ALIAS »</h2>
 <div class="requete">
-<ol type="1">
-<li><strong>Requête 1-1</strong> :
-</div></li>
-</ol>
+1.1. <strong>Requête 1-1</strong> :
+</div>
 <p>tester la requête suivante (le mot clé <code>AS</code> est optionnel)</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SELECT</span> nom, note_ue1 , note_ue1<span class="op">*</span><span class="dv">2</span> <span class="kw">AS</span> note_ue1_sur_40 </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">FROM</span> Etudiant</span>
@@ -150,6 +148,9 @@ TP6 : SQL requête SELECT dans une table,
 | RIGOULOT  |         1 |    15.00 |  12.750000 |
 +-----------+-----------+----------+------------+
 </code></pre>
+<div class="requete">
+1.2. <strong>Requête 1-2</strong> :
+</div>
 <h3 id="requête-1-2"><strong>Requête 1-2</strong> :</h3>
 <p>Écrire une requête pour calculer la moyenne des étudiants ((note ue1 + note ue2) /2 ) et sélectionner uniquement les moyennes supérieures ou égales à 13 (trier par note puis par groupe)</p>
 <p><br></p>
@@ -166,6 +167,11 @@ TP6 : SQL requête SELECT dans une table,
 | DELANOE   |         1 |  13.500000 |
 | RIOT      |         2 |  13.000000 |
 +-----------+-----------+------------+</code></pre>
+<div class="requete">
+<ol start="2" type="1">
+<li><strong>Requête 2</strong> :
+</div></li>
+</ol>
 <h2 id="requête-2-champs-calculés-ou-concaténation-déléments">Requête 2 : champs calculés ou concaténation d’éléments</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
