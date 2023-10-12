@@ -174,10 +174,8 @@ TP6 : SQL requête SELECT dans une table,
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;mois :&#39;</span>,<span class="dt">MONTH</span>(NOW()), <span class="st">&#39; - jour :&#39;</span>, <span class="dt">DAY</span>(NOW()))  <span class="kw">AS</span> TEST2;</span></code></pre></div>
 <div class="requete">
-<ol start="2" type="1">
-<li><strong>Requête 2</strong> :
-</div></li>
-</ol>
+<strong>Requête 2</strong> :
+</div>
 <p>Sur le même principe afficher le nom des étudiants et leur date de naissance au format JJ/MM/AAAA. Afficher uniquement les étudiants dont l’année de naissance est supérieure ou égale à <code>2005</code>. Trier le résultat par date de naissance de façon décroissante.</p>
 <p><br></p>
 <ul>
@@ -203,19 +201,31 @@ TP6 : SQL requête SELECT dans une table,
 <h2><strong>requête 3 : utilisation de fonctions « d’agrégation » et d’un regroupement</strong> :</h2>
 <p>L’instruction « <code>GROUP BY</code> » est souvent utilisé avec les fonctions d’agrégation (<code>COUNT</code>, <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, <code>AVG</code>) pour regrouper les résultats par une ou plusieurs colonnes. ( <a href="https://www.w3schools.com/SQL/sql_groupby.asp" target="_blanck">https://www.w3schools.com/SQL/sql_groupby.asp</a> ) <br></p>
 <p>Tester la requête pour compter le nombre d’étudiants par groupe :</p>
+<div class="requete">
+<strong>Requête 3.1</strong> :
+</div>
 <pre><code>SELECT COUNT(Etudiant.idEtudiant) AS Nbre_etudiants, Etudiant.groupe_id 
 FROM Etudiant 
 GROUP BY Etudiant.groupe_id;</code></pre>
 <p><img src="img/img_tp6_1.jpg" /></p>
 <p>Modifier la requête et tester avec et sans le code barré :</p>
+<div class="requete">
+<strong>Requête 3.2</strong> :
+</div>
 <p><img src="img/img_tp6_2.jpg" /></p>
 <ul>
 <li>les champs barrés, sont ils nécessaires ? Pourquoi ? Peut on mettre qu’un seul champ derrière le mot clé «GROUP BY » dans ce cas ?</li>
 </ul>
 <p>Modifier la requête et tester avec et sans le code barré :</p>
+<div class="requete">
+<strong>Requête 3.3</strong> :
+</div>
 <p><img src="img/img_tp6_3.jpg" /></p>
 <p>les champs barrés, sont ils nécessaires ? Pourquoi ? Peut on mettre qu’un seul champ derrière la fonction d’agrégation dans ce cas ?</p>
 <p>Autre exemple avec beaucoup de fonction d’agrégation :</p>
+<div class="requete">
+<strong>Requête 3.4</strong> :
+</div>
 <p><img src="img/img_tp6_4.jpg" /></p>
 <p><br></p>
 <p>La documentation sur internet ne manque pas :</p>
