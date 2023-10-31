@@ -386,67 +386,84 @@ INNER JOIN joueurs AS J2 ON J2.id_joueur=matchs.id_joueur2</code></pre>
 <pre><code>INNER JOIN joueurs ON joueurs.id_joueur=matchs.id_joueur1 OR joueurs.id_joueur=matchs.id_joueur2</code></pre>
 </div>
 <h1 id="annexe-1"><span id="annexe1">Annexe 1</span></h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx, xxxx, xxxx, xxxx ;</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> joueurs (</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>id_joueur <span class="dt">INT</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>nom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>prenom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>mdp <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>);</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> joueurs <span class="kw">VALUES</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Alice&#39;</span>,<span class="st">&#39;alice&#39;</span>,<span class="st">&#39;1234&#39;</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;Durand&#39;</span>,<span class="st">&#39;Belina&#39;</span>,<span class="st">&#39;belina&#39;</span>,<span class="st">&#39;5694&#39;</span>),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;Caron&#39;</span>,<span class="st">&#39;Camilia&#39;</span>,<span class="st">&#39;camilia&#39;</span>,<span class="st">&#39;9478&#39;</span>),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Dorine&#39;</span>,<span class="st">&#39;dorine&#39;</span>,<span class="st">&#39;1347&#39;</span>);</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> matchs (</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>id_match <span class="dt">INT</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>date_match <span class="dt">DATE</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>id_creneau <span class="dt">INT</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>id_terrain <span class="dt">INT</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>id_joueur1 <span class="dt">INT</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a>id_joueur2 <span class="dt">INT</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a>);</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a>(<span class="dv">1</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a>(<span class="dv">2</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span> ,<span class="dv">3</span>),</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a>(<span class="dv">3</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">1</span> ,<span class="dv">3</span>),</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true"></a>(<span class="dv">4</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">4</span>),</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true"></a>(<span class="dv">5</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">3</span> ,<span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span>),</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true"></a>(<span class="dv">6</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">5</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">4</span>);</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true"></a></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> terrains (</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true"></a>id_terrain <span class="dt">INT</span>,  </span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true"></a>nom_terrain <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true"></a>surface     <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true"></a>);</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> terrains <span class="kw">VALUES</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;stade&#39;</span>,<span class="st">&#39;terre battue&#39;</span>),</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;gymnase&#39;</span>,<span class="st">&#39;synthétique&#39;</span>),</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;hangar&#39;</span>,<span class="st">&#39;terre battue&#39;</span>);</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true"></a></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> creneaux (</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true"></a>id_creneau <span class="dt">INT</span>,</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true"></a>plage_horaire <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true"></a>);</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true"></a></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> creneaux (id_creneau,plage_horaire) <span class="kw">values</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;8h-9h&#39;</span>),</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;9h-10h&#39;</span>),</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;10h-11h&#39;</span>),</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;11h-12h&#39;</span>),</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="st">&#39;12h-13h&#39;</span>),</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="st">&#39;13h-14h&#39;</span>),</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true"></a>(<span class="dv">7</span>,<span class="st">&#39;14h-15h&#39;</span>),</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true"></a>(<span class="dv">8</span>,<span class="st">&#39;15h-16h&#39;</span>),</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true"></a>(<span class="dv">9</span>,<span class="st">&#39;16h-17h&#39;</span>),</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true"></a>(<span class="dv">10</span>,<span class="st">&#39;17h-18h&#39;</span>),</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true"></a>(<span class="dv">11</span>,<span class="st">&#39;18h-19h&#39;</span>),</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true"></a>(<span class="dv">12</span>,<span class="st">&#39;19h-20h&#39;</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> joueurs (</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>id_joueur <span class="dt">INT</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>nom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>prenom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>mdp <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>);</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> joueurs <span class="kw">VALUES</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Alice&#39;</span>,<span class="st">&#39;alice&#39;</span>,<span class="st">&#39;1234&#39;</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;Durand&#39;</span>,<span class="st">&#39;Belina&#39;</span>,<span class="st">&#39;belina&#39;</span>,<span class="st">&#39;5694&#39;</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;Caron&#39;</span>,<span class="st">&#39;Camilia&#39;</span>,<span class="st">&#39;camilia&#39;</span>,<span class="st">&#39;9478&#39;</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Dorine&#39;</span>,<span class="st">&#39;dorine&#39;</span>,<span class="st">&#39;1347&#39;</span>);</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> matchs (</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>id_match <span class="dt">INT</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>date_match <span class="dt">DATE</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a>id_creneau <span class="dt">INT</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a>id_terrain <span class="dt">INT</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a>id_joueur1 <span class="dt">INT</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a>id_joueur2 <span class="dt">INT</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a>);</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true"></a>(<span class="dv">1</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true"></a>(<span class="dv">2</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span> ,<span class="dv">3</span>),</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true"></a>(<span class="dv">3</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">1</span> ,<span class="dv">3</span>),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true"></a>(<span class="dv">4</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">4</span>),</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true"></a>(<span class="dv">5</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">3</span> ,<span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span>),</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true"></a>(<span class="dv">6</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">5</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">4</span>);</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> terrains (</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true"></a>id_terrain <span class="dt">INT</span>,  </span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true"></a>nom_terrain <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true"></a>surface     <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true"></a>);</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> terrains <span class="kw">VALUES</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;stade&#39;</span>,<span class="st">&#39;terre battue&#39;</span>),</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;gymnase&#39;</span>,<span class="st">&#39;synthétique&#39;</span>),</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;hangar&#39;</span>,<span class="st">&#39;terre battue&#39;</span>);</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> creneaux (</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true"></a>id_creneau <span class="dt">INT</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true"></a>plage_horaire <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true"></a>);</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> creneaux (id_creneau,plage_horaire) <span class="kw">values</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;8h-9h&#39;</span>),</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;9h-10h&#39;</span>),</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;10h-11h&#39;</span>),</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;11h-12h&#39;</span>),</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="st">&#39;12h-13h&#39;</span>),</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="st">&#39;13h-14h&#39;</span>),</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true"></a>(<span class="dv">7</span>,<span class="st">&#39;14h-15h&#39;</span>),</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true"></a>(<span class="dv">8</span>,<span class="st">&#39;15h-16h&#39;</span>),</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true"></a>(<span class="dv">9</span>,<span class="st">&#39;16h-17h&#39;</span>),</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true"></a>(<span class="dv">10</span>,<span class="st">&#39;17h-18h&#39;</span>),</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true"></a>(<span class="dv">11</span>,<span class="st">&#39;18h-19h&#39;</span>),</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true"></a>(<span class="dv">12</span>,<span class="st">&#39;19h-20h&#39;</span>);</span></code></pre></div>
+<h1 id="réflexion-sur-le-schéma">Réflexion sur le schéma</h1>
+<p><img src="img/img_jointure_tp1_10.png" width="583" /><br />
+</p>
+<p>Utiliser le fichier <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_BDD/looping/Looping_tp8_etudiant.loo">looping ci-joint</a> et modifier le pour obtenir le bon MLD</p>
+<p><br></p>
+<ul>
+<li>Comment a été modifié le sujet de bac.</li>
+<li>Que doit on ajouter dans le schéma pour que la solution proposée dans le sujet de bac présente les mémes qualités (normalisation et dépendance fonctionnelle)</li>
+</ul>
+<p><br><br><br></p>
+<p>ANNEXE :</p>
+<p><br></p>
+<p><img src="img/img_jointure_tp1_9.png" width="712" height="590" /></p>
+<p>https://formations.imt-atlantique.fr/bd_ihm/fr/normalisation/normal_forms/</p>
 </body>
 </html>
