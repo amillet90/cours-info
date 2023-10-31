@@ -457,9 +457,15 @@ INNER JOIN joueurs AS J2 ON J2.id_joueur=matchs.id_joueur2</code></pre>
 <p>Utiliser le fichier <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/Looping_tp8_etudiant.loo">looping ci-joint</a> et modifier le pour obtenir le bon MLD</p>
 <p><br></p>
 <ul>
-<li><span class="modif">Comment a été modifié le sujet de bac.</span></li>
-<li><span class="modif">Que doit on ajouter dans le schéma pour que la solution proposée dans le sujet de bac présente les mémes qualités (normalisation et dépendance fonctionnelle).</span></li>
+<li><span class="modif">Comment a été modifié le sujet de bac ?</span></li>
+<li><span class="modif">Que doit on ajouter dans le schéma pour que la solution proposée dans le sujet de bac présente les mémes qualités ? (normalisation et dépendance fonctionnelle).</span></li>
 </ul>
+<p><br></p>
+<ul>
+<li>SQL pour garantir l’intégrité des données, vous pouvez appliquer une contrainte d’unicité sur les colonnes correspondant aux clés étrangères pour éviter la présence de doublons. :</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">CONSTRAINT</span> uk_table  <span class="kw">UNIQUE</span> (col1, col2, col);</span></code></pre></div>
+<p><a href="https://www.sqlservertutorial.net/sql-server-basics/sql-server-unique-constraint/" target="_blanck">doc unique key</a> - <a href="https://www.mysqltutorial.org/mysql-unique/" target="_blanck">doc index key</a></p>
 <p><br><br><br></p>
 <p>ANNEXE :</p>
 <p><br></p>

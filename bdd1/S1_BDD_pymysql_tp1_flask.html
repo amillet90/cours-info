@@ -80,38 +80,250 @@
   <title>BDD</title>
 </head>
 <body>
+<h1 id="choix-du-driver">choix du driver</h1>
+<p>Il existe plusieurs bibliothèques différentes pour exécuter du SQL à l’aide du langage python (au travers d’un connecteur). On procède de la même manière en <em>php</em>, en <em>javascript</em>, ou dans d’autres langages. La tendance est de passer par des <strong>ORMs</strong> mais c’est plus compliqué de première abord.</p>
+<h2 id="recherche-en-fonction-du-sgbdr">recherche en fonction du SGBDR</h2>
+<p><br> Le choix de la bibliothèque (driver) pour exécuter du SQL va dépendre du SGBDR</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>id_produit</strong></th>
+<th><strong>nom</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mysql</td>
+<td>PyMySQL,MySQL/connector, MySQLdb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">postgreSQL</td>
+<td><a href="https://www.postgresqltutorial.com/postgresql-python/connect/" target="_blanck">psycopg2</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oracle</td>
+<td><a href="https://www.oracletutorial.com/python-oracle/connecting-to-oracle-database-in-python/" target="_blanck">cx_Oracle</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SQL server (microsoft)</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/connect/python/python-driver-for-sql-server?view=sql-server-ver15" target="_blanck">pyodbc</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sqlite</td>
+<td><a href="https://docs.python.org/fr/3/library/sqlite3.html" target="_blanck">sqlite3</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mongodb</td>
+<td><a href="https://www.mongodb.com/languages/python" target="_blanck">pymongo</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="choix-du-driver-pilote-bibliothèque">choix du driver (pilote, bibliothèque)</h2>
+<p><br> voici 2 liens : <a href="https://wiki.openstack.org/wiki/PyMySQL_evaluation#Drivers_Under_Consideration" target="_blanck">un comparatif des drivers</a>, <a href="https://stackoverflow.com/questions/43102442/whats-the-difference-between-mysqldb-mysqlclient-and-mysql-connector-python" target="_blanck">un petit article sur stackoverflow</a></p>
+<p><br> Afin de connecter Python avec une base de données via un Driver (le connecteur), il existe des bibliothèques qui servent à interagir avec la base de données. Avec le SGBDR MySQL vous avez principalement le choix entre 3 drivers :</p>
+<ul>
+<li><a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a> <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html" target="_blanck">doc sur mysql</a> <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html" target="_blanck">installation</a> : bibliothèque propriétaire (ORACLE) qui se connecte à MySQL/ODBC</li>
+<li><a href="https://mysqlclient.readthedocs.io/user_guide.html#introduction" target="_blanck">MySQLdb</a> : bibliothèque qui se connecte à MySQL à partir de Python, elle est écrite en langage C, elle est gratuite et le logiciel est “opensource”.</li>
+<li><a href="https://github.com/PyMySQL/PyMySQL" target="_blanck">PyMySQL</a> : bibliothèque qui se connecte à MySQL à partir de Python, c’est une bibliothèque écrite en Python. L’objectif de PyMySQL est de remplacer MySQLdb</li>
+</ul>
+<figure>
+<img src="img/sql_python_img_1.png" style="width:23cm" alt="" /><figcaption>tableau du site <a href="https://wiki.openstack.org/" class="uri">https://wiki.openstack.org/</a></figcaption>
+</figure>
+<p>Ces bibliothèques se ressemblent beaucoup :</p>
+<ul>
+<li>installation</li>
+<li>utilisation : nom des fonctions</li>
+</ul>
+<p><br></p>
+<p><code>PyMySql</code> semble un très bon choix. <code>MySQL/connector</code> est propriétaire. Pour la suite des TPs, on utilisera <code>PyMySql</code> mais on comparera avec <code>MySQL/connector</code> et <code>PyMySql</code>.</p>
+<p><br></p>
+<p>Installation de <a href="https://pymysql.readthedocs.io/en/latest/user/installation.html" target="_blanck">pymysql</a></p>
+<pre><code>pip  install PyMySQL</code></pre>
+<p>PS : <a href="https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb" target="_blanck">mariadb possède aussi une bibliothèque</a> mais elle semble moins utilisée</p>
+<h1 id="exemple-avec-pymysql">Exemple avec PyMySql</h1>
+<ul>
+<li><a href="https://pymysql.readthedocs.io/en/latest/user/examples.html" target="_blanck">exemple de la documentation</a></li>
+</ul>
+<figure>
+<img src="img/sql_python_flask_tp1_img_1.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+</figure>
+<!--
+```{.python}
+import pymysql.cursors
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user='user',
+                             password='passwd',
+                             database='db',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+
+with connection:
+    with connection.cursor() as cursor:
+        # Create a new record
+        sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+
+    # connection is not autocommit by default. So you must commit to save
+    # your changes.
+    connection.commit()
+
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+        cursor.execute(sql, ('webmaster@python.org',))
+        result = cursor.fetchone()
+        print(result)
+```
+-->
+<p>exemple sur le site W3Schools : <a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a></p>
+<p><br> copier/coller du site W3Schools</p>
+<figure>
+<img src="img/sql_python_flask_tp1_img_2.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+</figure>
+<!--
+```
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="serveurmysql",
+  user="votreLogin",
+  password="votreMotDePasse",
+  database="BDD_votreLogin"
+)
+```
+-->
+<p><br><br></p>
+<p><a href="#creation-projet">Créer un projet sur Pycharm</a></p>
+<p><br> Créer un fichier avec l’exemple ci-dessus , exemple de nom de fichier <strong>test1_pymysql.py</strong> <br> Remplacer la connexion avec celle de <em>pymysql</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co"># mysql --user=votreLogin  --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>,   <span class="co">#localhost sur les machines perso.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,                      <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>mycursor <span class="op">=</span> mydb.cursor()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>val <span class="op">=</span> (<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Highway 21&quot;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>mycursor.execute(sql, val)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>mydb.commit()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;record inserted.&quot;</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>val <span class="op">=</span> [</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>  (<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Lowstreet 4&#39;</span>),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>  (<span class="st">&#39;Amy&#39;</span>, <span class="st">&#39;Apple st 652&#39;</span>),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>  (<span class="st">&#39;Hannah&#39;</span>, <span class="st">&#39;Mountain 21&#39;</span>),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>  (<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Valley 345&#39;</span>),</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>  (<span class="st">&#39;Sandy&#39;</span>, <span class="st">&#39;Ocean blvd 2&#39;</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  (<span class="st">&#39;Betty&#39;</span>, <span class="st">&#39;Green Grass 1&#39;</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>  (<span class="st">&#39;Richard&#39;</span>, <span class="st">&#39;Sky st 331&#39;</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>  (<span class="st">&#39;Susan&#39;</span>, <span class="st">&#39;One way 98&#39;</span>),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>  (<span class="st">&#39;Vicky&#39;</span>, <span class="st">&#39;Yellow Garden 2&#39;</span>),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>  (<span class="st">&#39;Ben&#39;</span>, <span class="st">&#39;Park Lane 38&#39;</span>),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>  (<span class="st">&#39;William&#39;</span>, <span class="st">&#39;Central st 954&#39;</span>),</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>  (<span class="st">&#39;Chuck&#39;</span>, <span class="st">&#39;Main Road 989&#39;</span>),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>  (<span class="st">&#39;Viola&#39;</span>, <span class="st">&#39;Sideway 1633&#39;</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>]</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>mycursor.executemany(sql, val)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>mydb.commit()</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;was inserted.&quot;</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;SELECT * FROM customers&quot;</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>myresult <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="cf">for</span> x <span class="kw">in</span> myresult:</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>  <span class="bu">print</span>(x)</span></code></pre></div>
+<ul>
+<li>Tester l’exemple ci-dessus, exemple <code>python exercice1_pymysql.py</code></li>
+</ul>
+<p><br><br><br></p>
+<h1 id="utilisation-dune-connexion">utilisation d’une connexion</h1>
+<h2 id="quatre-étapes-pour-exécuter-une-requête">Quatre étapes pour exécuter une requête</h2>
+<ul>
+<li>Établir la connexion avec la base de données</li>
+<li>Créer et exécuter des requêtes SQL</li>
+<li>Récupérer le résultat</li>
+<li>Fermer la connexion</li>
+</ul>
+<p><br> Fermer la connexion : opération très simple avec un simple script python, c’est un peu plus compliqué sur un <a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/" target="_blanck">serveur web</a>, il faut fermer la connexion à chaque requête HTTP, sinon le serveur risque d’avoir <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">des problèmes de fuite de mémoire</a>. <br></p>
+<h3 id="se-connecter-à-la-base-de-données">Se connecter à la base de données</h3>
+<p>Il faut créer un objet <strong>objet-connexion</strong> à l’aide de la fonction-fabrique <code>connect()</code>.</p>
+<p><br></p>
+<p>Cet objet assure l’interface entre votre programme et la base de données.</p>
+<p><br></p>
+<p>Après avoir importé une instance de l’objet bibliothèque (driver), il faut utiliser la méthode <code>.connect()</code> de la bibliothèque dans laquelle on passe plusieurs paramètres :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>   <span class="co">#localhost sur les machines perso.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  , user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>  , password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  , database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="co">#, port=3306         # sur mamp(mac) le port peut être 8889 ...</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  , charset<span class="op">=</span><span class="st">&quot;utf8mb4&quot;</span>                       <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  , cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>)</span></code></pre></div>
+<p><br></p>
+<ul>
+<li>le nom de l’hôte (machine) sur lequel le serveur MySQL est installé (<strong>serveurmysql</strong> sur la machine de l’IUT, <strong>localhost</strong> ou <strong>127.0.0.1</strong> sur une machine personnelle)</li>
+<li>le port TCP/IP utilisé par MySQL (par défaut <strong>3306</strong>). Attention avec un autre SGBDR, le port est différent.</li>
+<li>le nom de la base de données MySQL (<strong>BDD_votreLogin</strong> sur la machine de l’IUT)</li>
+<li>le nom d’utilisateur (<strong>votreLogin</strong> sur la machine de l’IUT)</li>
+<li>le mot de passe (<strong>JJMM</strong> sur la machine de l’IUT)</li>
+</ul>
+<p><br></p>
 <h1 id="utilisation-de-pymysql-dans-le-framework-flask">Utilisation de “pymysql” dans le “framework” : “flask”</h1>
 <ul>
 <li>fonction pour créer puis supprimer une connexion</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>                                    <span class="co">## à ajouter</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        )</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        db.close()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>                                    <span class="co">## à ajouter</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>        )</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>        db.close()</span></code></pre></div>
 <p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler la fonction <code>close_connection</code> lorsque que le serveur a fini de renvoyer une réponse.</p>
 <p><br> Il faut recréer et fermer la connexion à chaque requête HTTP, sinon il y a un risque de <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">fuite de mémoire</a></p>
 <p><img src="img/memory_leak.jpg" /></p>
@@ -121,105 +333,13 @@
 <li><a href="https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/" target="_blanck">ancienne documentation flask</a> -</li>
 <li><a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/" target="_blanck">doc sqlachemny</a></li>
 </ul>
-<h1 id="exemple-crud-type_article">Exemple : CRUD type_article</h1>
+<h1 id="crud-etudiant">CRUD “etudiant”</h1>
 <p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “type_article” et début du CRUD sur la table “article”</p>
 <ul>
 <li>Pour afficher, ajouter, supprimer, modifier un type d’article</li>
 </ul>
-<figure>
-<img src="img/flask_sql_python_img_1.png" alt="" /><figcaption>CRUD type article</figcaption>
-</figure>
-<figure>
-<img src="img/flask_sql_python_img_2_2.png" alt="" /><figcaption>CRUD type article</figcaption>
-</figure>
-<p><img src="img/flask_sql_python_img_3_2.png" alt="CRUD type article" /> <!--{width=23cm}--></p>
-<h1 id="cru-article">CRU article</h1>
-<p><br></p>
-<p>Complèter sur le même principe, le CRUD pour ajouter/modifier/supprimer et afficher les données de la table article</p>
-<p><br></p>
-<figure>
-<img src="img/flask_sql_python_img_4_2.png" alt="" /><figcaption>CRUD article</figcaption>
-</figure>
-<figure>
-<img src="img/flask_sql_python_img_5_2.png" alt="" /><figcaption>CRUD article</figcaption>
-</figure>
-<figure>
-<img src="img/flask_sql_python_img_6_2.png" alt="" /><figcaption>CRUD article</figcaption>
-</figure>
-<p><br> Pour le “DELETE”, il est possible de faire comme avec le “CRUD” sur les types d’articles</p>
-<h1 id="exemple-de-fonction-pour-faire-un-état">exemple de fonction pour faire un état</h1>
-<figure>
-<img src="img/flask_sql_python_img_7_2.png" alt="" /><figcaption>CRUD article</figcaption>
-</figure>
-<h1 id="pour-les-plus-rapides-et-pour-le-mini-projet-un-filtre">Pour les plus rapides et pour le mini projet : un filtre</h1>
-<p>on désire faire une interface avec des filtres sur les articles</p>
-<figure>
-<img src="img/sql_python_flask_img_3.png" alt="" /><figcaption>filtre : exemple de formulaire</figcaption>
-</figure>
-<ul>
-<li>exemple de code pour mettre en session le contenu du formulaire</li>
-</ul>
-<figure>
-<img src="img/sql_python_flask_img_4v2.png" alt="" /><figcaption>filtre : mettre en session le contenu du formulaire</figcaption>
-</figure>
-<ul>
-<li>exemple de code pour supprimer les variables en session</li>
-</ul>
-<figure>
-<img src="img/sql_python_flask_img_5v2.png" alt="" /><figcaption>filtre : supprimer les variables en session</figcaption>
-</figure>
-<ul>
-<li>exemple de code pour utiliser les variables en session pour former la requête</li>
-</ul>
-<figure>
-<img src="img/sql_python_flask_img_6v2.png" alt="" /><figcaption>filtre : utiliser les variables en session pour former la requête</figcaption>
-</figure>
-<ul>
-<li>exemple de code pour utiliser les variables en session dans le code HTML</li>
-</ul>
-<figure>
-<img src="img/sql_python_flask_img_7v2.png" alt="" /><figcaption>filtre : exemple de formulaire HMTL</figcaption>
-</figure>
-<!--
-
-# CRUD avec hébergement
-
-[tutoriel enib sur flask](https://www.enib.fr/~choqueuse/articles/flask/introduction-au-moteur-sqllite3.html){target=_blanck} - [ancienne documentation flask](https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/){target=_blanck}  - [doc flask](https://flask.palletsprojects.com/en/2.0.x/tutorial/database/){target=_blanck} - [doc sqlachemny](https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/){target=_blanck}
-
-![](img/sql_python_flask_img_10.png)
-
-![](img/sql_python_flask_img_11.png)
-
-![](img/sql_python_flask_img_12.png)
-
-![](img/sql_python_flask_img_13.png)
-
-![](img/sql_python_flask_img_14.png)
-
-# Pour les plus rapides : passage au MVC
-
-essayer de mettre en place une architecture MVC (modèle vue contrôleur)
-
-exemple de MVC
-
-voici un exemple de structure MVC  <https://github.com/amillet90/Flask_crud_v1>
-code fait par muhammad <https://yukiisbo.red/>
-voir sur son gitlab
-
-ce n'est pas très standard mais c'est pédagogique
-
-voici d'autres exemples :
-
-* <https://github.com/hackersandslackers/flask-blueprint-tutorial>
-
-* <https://github.com/salimane>
-
-* <https://github.com/indhifarhandika/flask-mvc/tree/master/project>
-
-* <https://alysivji.github.io/flask-part2-building-a-flask-web-application.html>
-
-* <https://github.com/tgeene/flask-mvc-framework>
-
-* <https://python.plainenglish.io/flask-crud-application-using-mvc-architecture-3b073271274f>-->
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
+</div>
 </body>
 </html>
