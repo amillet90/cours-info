@@ -98,7 +98,7 @@
 <p>Cette table est <strong>définie avec l’enseignant</strong> qui suit votre travail de SAE.</p>
 <p>Sur certains schémas, il faudra peut être modifier votre MCD pour simplifier la réalisation de l’interface</p>
 <figure>
-<img src="img/sae_modif_mcd.png" style="width:5cm" alt="" /><figcaption>voir la partie sur la modification du schéma</figcaption>
+<img src="img_flask/sae_modif_mcd.png" style="width:5cm" alt="" /><figcaption>voir la partie sur la modification du schéma</figcaption>
 </figure>
 <h1 id="application-à-réaliser">Application à réaliser</h1>
 <p>Chaque étudiant doit réaliser :</p>
@@ -107,7 +107,7 @@
 <li><strong>Un ou plusieurs états</strong>, paramétrés ou non, en rapport avec cette table. Cet état consiste à afficher le résultat d’une requête avec une jointure.</li>
 </ul>
 <figure>
-<img src="img/sae_s1_crud1.png" style="width:7cm" alt="" /><figcaption>CRUD : Create Read Update Delete</figcaption>
+<img src="img_flask/sae_s1_crud1.png" style="width:7cm" alt="" /><figcaption>CRUD : Create Read Update Delete</figcaption>
 </figure>
 <p><br> La complexité de réalisation sera prise en compte. Ne pas à choisir les tables les moins complexes pour les interfaces. <span class="importantInline"><strong>Il est obligatoire de choisir une table qui possède au moins une clé étrangère</strong> .</span></p>
 <p><br> La conception visuelle (design) ne sera que très peu évaluée. Seule <strong>l’<a href="https://fr.wikipedia.org/wiki/Utilisabilit%C3%A9" target="_blank">utilisabilité</a></strong> de l’interface sera beaucoup prise en compte lors de l’évaluation.</p>
@@ -118,11 +118,11 @@
 <li><p>La page d’accueil doit indiquer le numéro de groupe SAE, le groupe de TP et les étudiants qui font partie du groupe.</p></li>
 </ul>
 <figure>
-<img src="img/sae_s1_menu_1.png" style="width:15cm" alt="" /><figcaption>exemple de page d’accueil et de menu</figcaption>
+<img src="img_flask/sae_s1_menu_1.png" style="width:15cm" alt="" /><figcaption>exemple de page d’accueil et de menu</figcaption>
 </figure>
 <p>Le menu permet d’accéder rapidement au “CRUD” réalisé par un étudiant. Le menu permet également d’accéder à l’état réalisé par un étudiant <strong>en sachant qui est l’auteur du travail</strong>.</p>
 <figure>
-<img src="img/sae_s1_menu_2.png" style="width:15cm" alt="" /><figcaption>exemple de page d’accueil et de menu</figcaption>
+<img src="img_flask/sae_s1_menu_2.png" style="width:15cm" alt="" /><figcaption>exemple de page d’accueil et de menu</figcaption>
 </figure>
 <h2 id="interface-crud-pour-afficher-ajouter-modifier-et-supprimer-des-données-dans-une-table">Interface CRUD pour afficher, ajouter, modifier et supprimer des données dans une table</h2>
 <p><strong>CRUD : Create, Read, Update, Delete</strong></p>
@@ -132,7 +132,7 @@
 <li><p>Exemple : Lors de l’affichage des données, vous pouvez afficher le type de chambre (avec son identifiant) ainsi que l’état de la chambre (avec son identifiant).</p></li>
 </ul>
 <figure>
-<img src="img/sae_s1_show_1.png" style="width:15cm" alt="" /><figcaption>exemple d’affichage d’une table</figcaption>
+<img src="img_flask/sae_s1_show_1.png" style="width:15cm" alt="" /><figcaption>exemple d’affichage d’une table</figcaption>
 </figure>
 <h2 id="interfaces-formulaires-pour-ajoutermodifier-les-données">Interfaces (<strong>formulaires</strong>) pour ajouter/modifier les données :</h2>
 <ul>
@@ -167,17 +167,17 @@ un seul curseur par route
 <p><br></p>
 <p>La note sera d’autant meilleure que les états seront complexes à réaliser :</p>
 <figure>
-<img src="img/sae_s1_etat_1.png" style="width:15cm" alt="" /><figcaption>exemple d’état “minimum” (capture d’écran d’un ancien projet)</figcaption>
+<img src="img_flask/sae_s1_etat_1.png" style="width:15cm" alt="" /><figcaption>exemple d’état “minimum” (capture d’écran d’un ancien projet)</figcaption>
 </figure>
 <figure>
-<img src="img/sae_s1_etat_2.png" style="width:15cm" alt="" /><figcaption>exemple d’état très complet (capture d’écran d’un ancien projet)</figcaption>
+<img src="img_flask/sae_s1_etat_2.png" style="width:15cm" alt="" /><figcaption>exemple d’état très complet (capture d’écran d’un ancien projet)</figcaption>
 </figure>
 <h2 id="paramétrage-dun-état">paramétrage d’un état</h2>
 <ul>
 <li>Ces états peuvent être paramétrés. (exemples : saisir 2 dates dans un formulaire et afficher les enregistrements d’une table jointe à une autre table (avec des fonctions d’agrégation) lorsque les enregistrements sont compris entre les 2 dates saisies )</li>
 </ul>
 <figure>
-<img src="img/sae_s1_etat_3.png" style="width:15cm" alt="" /><figcaption>paramétrage d’un état (capture d’écran d’un ancien projet)</figcaption>
+<img src="img_flask/sae_s1_etat_3.png" style="width:15cm" alt="" /><figcaption>paramétrage d’un état (capture d’écran d’un ancien projet)</figcaption>
 </figure>
 <p>Remarque : les paramètres peuvent être saisis dans un formulaire indépendant.</p>
 <hr>
@@ -357,7 +357,7 @@ MLD
 <ul>
 <li>attention aux erreurs liées à l’encodage des caractères dans le nom des fichiers et des dossiers:</li>
 </ul>
-<p><img src="img/sae_err_1.png" /></p>
+<p><img src="img_flask/sae_err_1.png" /></p>
 <h2 id="configuration-de-mysql">Configuration de MySql</h2>
 <p>MySql est moins “strict” par défaut sur Windows :</p>
 <p>Alors que MySQL est sensible par défaut à la casse (au niveau des noms de base et de table)dans la plupart des distributions Unix, il ne l’est pas pour Windows! En revanche, concernant les noms de colonnes, index, alias de colonnes, déclencheurs et procédures MySQL n’est pas sensible à la casse tous systèmes confondus. En fait, tous ces noms sont stockés en minuscules dans le dictionnaire de données.<br />
