@@ -81,27 +81,26 @@
 </head>
 <body>
 <h1 id="créer-un-compte">créer un compte</h1>
-<p>aller sur le lien <a href="https://www.pythonanywhere.com/" target="_blanck">https://www.pythonanywhere.com/</a></p>
-<p>et créer un compte</p>
+<p>aller sur le lien <a href="https://www.pythonanywhere.com/" target="_blanck">https://www.pythonanywhere.com/</a> <br> et créer un compte</p>
 <figure>
-<img src="img/pythonAnyWhere2_1.png" style="width:22cm" alt="" /><figcaption>pythonAnyWhere : le tableau de bord : “dashboard”</figcaption>
+<img src="img_flask/pythonAnyWhere2_1.png" style="width:22cm" alt="" /><figcaption>pythonAnyWhere : le tableau de bord : “dashboard”</figcaption>
 </figure>
 <p>il faudra chercher dans vos “emails” et confirmer la création de votre compte</p>
 <h1 id="créer-la-base-de-données">créer la base de données</h1>
 <p>aller sur le lien “database”</p>
 <figure>
-<img src="img/pythonAnyWhere2_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
 </figure>
 <p>“initialize mysql” : mettre un autre mot de passe que celui du compte car le mot de passe est en clair dans le code de l’application</p>
 <figure>
-<img src="img/pythonAnyWhere2_3.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_3.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
 </figure>
 <p>une fois le compte créé, recopier dans un fichier (voir exemple ci-dessus) : le nom du “host”, le nom du “Username”, le nom de la base de données “database” et le mot de passe “password”</p>
 <p><br></p>
 <p>cliquer sur la base de données (<em>amillet2$default</em> dans l’exemple)</p>
 <p><br> Un terminal connecté à mysql s’ouvre</p>
 <figure>
-<img src="img/pythonAnyWhere2_4.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_4.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
 </figure>
 <p>recopier le SQL pour supprimer/créer les tables puis insérer les enregistrements de votre jeu de test</p>
 <p><br></p>
@@ -113,20 +112,20 @@
 <p><br></p>
 <p>télécharger ce fichier sur le serveur <strong>pythonAnyWhere</strong></p>
 <figure>
-<img src="img/pythonAnyWhere2_5_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : télécharger un fichier zip avec votre application</figcaption>
+<img src="img_flask/pythonAnyWhere2_5_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : télécharger un fichier zip avec votre application</figcaption>
 </figure>
 <p><br></p>
 <p>Ouvrir une console (terminal) sur le serveur <strong>pythonAnyWhere</strong></p>
 <p>Dans la console, extraire l’application (votre fichier “.zip”), exemple :</p>
 <pre><code>unzip S1_pymysql_flask_pythonanywhere.zip</code></pre>
 <figure>
-<img src="img/pythonAnyWhere2_6.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : désarchiver votre fichier zip avec votre application</figcaption>
+<img src="img_flask/pythonAnyWhere2_6.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : désarchiver votre fichier zip avec votre application</figcaption>
 </figure>
 <p>puis revenir au “dashboard”, toujours avec le lien en haut à gauche</p>
 <h1 id="lancer-lapplication">lancer l’application</h1>
 <p>Remarque : vos 2 terminaux sont accessibles depuis le “dashboard” : un connecté à votre base de données mysql, l’autre terminal “bash” à la racine de l’application</p>
 <figure>
-<img src="img/pythonAnyWhere2_7.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+<img src="img_flask/pythonAnyWhere2_7.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
 </figure>
 <p>dans le <strong>DashBoard</strong> sélectionner (cliquer) <strong>open web app</strong></p>
 <p>puis</p>
@@ -134,7 +133,7 @@
 <li>ajouter une nouvelle application</li>
 </ul>
 <figure>
-<img src="img/pythonanywhere_install.png" style="width:18cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+<img src="img_flask/pythonanywhere_install.png" style="width:18cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
 </figure>
 <ul>
 <li>dans la version gratuite, le nom de domaine est imposé : <a href="http://login.pythonanywhere.com" class="uri">http://login.pythonanywhere.com</a></li>
@@ -150,7 +149,7 @@
 <p>Rechercher :</p>
 <p>WSGI configuration <a href="file:/var/www/login_pythonanywhere_com_wsgi.py" class="uri">file:/var/www/login_pythonanywhere_com_wsgi.py</a></p>
 <figure>
-<img src="img/pythonAnyWhere_4.png" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée</figcaption>
+<img src="img_flask/pythonAnyWhere_4.png" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée</figcaption>
 </figure>
 <p>éditer le fichier en cliquant dessus</p>
 <p>un code qui ressemble à celui ci-dessous doit être dans ce fichier (on y trouve : où se trouve le fichier “app.py” , si le fichier pour lancer l’application ne s’appelle pas app.py et que l’instance de l’objet Flask ne s’appelle pas app, il faut modifier la dernière ligne)</p>
@@ -163,11 +162,11 @@ from app import app as application</code></pre>
 <p><br></p>
 <p>Dans la dernière version testée, il faut remplacer le code dans le fichier par celui ci-dessus.</p>
 <figure>
-<img src="img/pythonAnyWhere_6.png" style="width:10cm" alt="" /><figcaption>derniere test fait sur pythonanywhere</figcaption>
+<img src="img_flask/pythonAnyWhere_6.png" style="width:10cm" alt="" /><figcaption>derniere test fait sur pythonanywhere</figcaption>
 </figure>
 <p><br></p>
 <figure>
-<img src="img/pythonAnyWhere2_13.png" style="width:10cm" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée (ancienne version)</figcaption>
+<img src="img_flask/pythonAnyWhere2_13.png" style="width:10cm" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée (ancienne version)</figcaption>
 </figure>
 <ul>
 <li>tester</li>
@@ -211,7 +210,7 @@ def get_db():
 </ul>
 <p>“open web app”</p>
 <figure>
-<img src="img/pythonAnyWhere_5.png" alt="" /><figcaption>pythonAnyWhere : relancer l’application</figcaption>
+<img src="img_flask/pythonAnyWhere_5.png" alt="" /><figcaption>pythonAnyWhere : relancer l’application</figcaption>
 </figure>
 <p>si vous avez une erreur</p>
 <h1 id="gestion-des-erreurs">gestion des erreurs</h1>
@@ -221,7 +220,7 @@ def get_db():
 <li>si ça ne fonctionne pas, rechercher les fichiers de “logs”</li>
 </ul>
 <figure>
-<img src="img/pythonAnyWhere_5_1.png" alt="" /><figcaption>pythonAnyWhere : fichierd de log</figcaption>
+<img src="img_flask/pythonAnyWhere_5_1.png" alt="" /><figcaption>pythonAnyWhere : fichierd de log</figcaption>
 </figure>
 <ul>
 <li><p>cliquer sur le fichier “pythonanaywhere.com.error.log” pour voir le fichier de log avec les erreurs (équivalent aux erreurs dans une console)</p></li>
@@ -293,22 +292,22 @@ rm -rf ~/.cache</code></pre>
     ├── bdd
     ├── controllers
     ├── static
-    │   └── assets
-    │       ├── css
-    │       ├── images
-    │       ├── img
-    │       └── js
-    │           ├── foundation
-    │           └── vendor
+    │   └── assets
+    │       ├── css
+    │       ├── images
+    │       ├── img
+    │       └── js
+    │           ├── foundation
+    │           └── vendor
     └── templates
     │   ├── admin
-    │   │   ├── adherent
-    │   │   ├── auteur
-    │   │   ├── dataviz
-    │   │   ├── emprunt
-    │   │   ├── exemplaire
-    │   │   ├── oeuvre
-    │   │   └── type_article
+    │   │   ├── adherent
+    │   │   ├── auteur
+    │   │   ├── dataviz
+    │   │   ├── emprunt
+    │   │   ├── exemplaire
+    │   │   ├── oeuvre
+    │   │   └── type_article
     │   ├── auth
     │   └── client
     │       ├── boutique

@@ -114,7 +114,7 @@
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        db.close()</span></code></pre></div>
 <p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler la fonction <code>close_connection</code> lorsque que le serveur a fini de renvoyer une réponse.</p>
 <p><br> Il faut recréer et fermer la connexion à chaque requête HTTP, sinon il y a un risque de <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">fuite de mémoire</a></p>
-<p><img src="img/memory_leak.jpg" /></p>
+<p><img src="img_flask/memory_leak.jpg" /></p>
 <p><br></p>
 <ul>
 <li><a href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/" target="_blanck">doc flask database</a> - <a href="https://flask.palletsprojects.com/en/2.0.x/appcontext/" target="_blanck"><strong>doc flask appcontext</strong></a></li>
@@ -127,58 +127,58 @@
 <li>Pour afficher, ajouter, supprimer, modifier un type d’article</li>
 </ul>
 <figure>
-<img src="img/flask_sql_python_img_1.png" alt="" /><figcaption>CRUD type article</figcaption>
+<img src="img_flask/flask_sql_python_img_1.png" alt="" /><figcaption>CRUD type article</figcaption>
 </figure>
 <figure>
-<img src="img/flask_sql_python_img_2_2.png" alt="" /><figcaption>CRUD type article</figcaption>
+<img src="img_flask/flask_sql_python_img_2_2.png" alt="" /><figcaption>CRUD type article</figcaption>
 </figure>
-<p><img src="img/flask_sql_python_img_3_2.png" alt="CRUD type article" /> <!--{width=23cm}--></p>
+<p><img src="img_flask/flask_sql_python_img_3_2.png" alt="CRUD type article" /> <!--{width=23cm}--></p>
 <h1 id="cru-article">CRU article</h1>
 <p><br></p>
 <p>Complèter sur le même principe, le CRUD pour ajouter/modifier/supprimer et afficher les données de la table article</p>
 <p><br></p>
 <figure>
-<img src="img/flask_sql_python_img_4_2.png" alt="" /><figcaption>CRUD article</figcaption>
+<img src="img_flask/flask_sql_python_img_4_2.png" alt="" /><figcaption>CRUD article</figcaption>
 </figure>
 <figure>
-<img src="img/flask_sql_python_img_5_2.png" alt="" /><figcaption>CRUD article</figcaption>
+<img src="img_flask/flask_sql_python_img_5_2.png" alt="" /><figcaption>CRUD article</figcaption>
 </figure>
 <figure>
-<img src="img/flask_sql_python_img_6_2.png" alt="" /><figcaption>CRUD article</figcaption>
+<img src="img_flask/flask_sql_python_img_6_2.png" alt="" /><figcaption>CRUD article</figcaption>
 </figure>
 <p><br> Pour le “DELETE”, il est possible de faire comme avec le “CRUD” sur les types d’articles</p>
 <h1 id="exemple-de-fonction-pour-faire-un-état">exemple de fonction pour faire un état</h1>
 <figure>
-<img src="img/flask_sql_python_img_7_2.png" alt="" /><figcaption>CRUD article</figcaption>
+<img src="img_flask/flask_sql_python_img_7_2.png" alt="" /><figcaption>CRUD article</figcaption>
 </figure>
 <h1 id="pour-les-plus-rapides-et-pour-le-mini-projet-un-filtre">Pour les plus rapides et pour le mini projet : un filtre</h1>
 <p>on désire faire une interface avec des filtres sur les articles</p>
 <figure>
-<img src="img/sql_python_flask_img_3.png" alt="" /><figcaption>filtre : exemple de formulaire</figcaption>
+<img src="img_flask/sql_python_flask_img_3.png" alt="" /><figcaption>filtre : exemple de formulaire</figcaption>
 </figure>
 <ul>
 <li>exemple de code pour mettre en session le contenu du formulaire</li>
 </ul>
 <figure>
-<img src="img/sql_python_flask_img_4v2.png" alt="" /><figcaption>filtre : mettre en session le contenu du formulaire</figcaption>
+<img src="img_flask/sql_python_flask_img_4v2.png" alt="" /><figcaption>filtre : mettre en session le contenu du formulaire</figcaption>
 </figure>
 <ul>
 <li>exemple de code pour supprimer les variables en session</li>
 </ul>
 <figure>
-<img src="img/sql_python_flask_img_5v2.png" alt="" /><figcaption>filtre : supprimer les variables en session</figcaption>
+<img src="img_flask/sql_python_flask_img_5v2.png" alt="" /><figcaption>filtre : supprimer les variables en session</figcaption>
 </figure>
 <ul>
 <li>exemple de code pour utiliser les variables en session pour former la requête</li>
 </ul>
 <figure>
-<img src="img/sql_python_flask_img_6v2.png" alt="" /><figcaption>filtre : utiliser les variables en session pour former la requête</figcaption>
+<img src="img_flask/sql_python_flask_img_6v2.png" alt="" /><figcaption>filtre : utiliser les variables en session pour former la requête</figcaption>
 </figure>
 <ul>
 <li>exemple de code pour utiliser les variables en session dans le code HTML</li>
 </ul>
 <figure>
-<img src="img/sql_python_flask_img_7v2.png" alt="" /><figcaption>filtre : exemple de formulaire HMTL</figcaption>
+<img src="img_flask/sql_python_flask_img_7v2.png" alt="" /><figcaption>filtre : exemple de formulaire HMTL</figcaption>
 </figure>
 <!--
 
@@ -186,15 +186,15 @@
 
 [tutoriel enib sur flask](https://www.enib.fr/~choqueuse/articles/flask/introduction-au-moteur-sqllite3.html){target=_blanck} - [ancienne documentation flask](https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/){target=_blanck}  - [doc flask](https://flask.palletsprojects.com/en/2.0.x/tutorial/database/){target=_blanck} - [doc sqlachemny](https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/){target=_blanck}
 
-![](img/sql_python_flask_img_10.png)
+![](img_flask/sql_python_flask_img_10.png)
 
-![](img/sql_python_flask_img_11.png)
+![](img_flask/sql_python_flask_img_11.png)
 
-![](img/sql_python_flask_img_12.png)
+![](img_flask/sql_python_flask_img_12.png)
 
-![](img/sql_python_flask_img_13.png)
+![](img_flask/sql_python_flask_img_13.png)
 
-![](img/sql_python_flask_img_14.png)
+![](img_flask/sql_python_flask_img_14.png)
 
 # Pour les plus rapides : passage au MVC
 

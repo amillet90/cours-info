@@ -127,7 +127,7 @@
 <li><a href="https://github.com/PyMySQL/PyMySQL" target="_blanck">PyMySQL</a> : bibliothèque qui se connecte à MySQL à partir de Python, c’est une bibliothèque écrite en Python. L’objectif de PyMySQL est de remplacer MySQLdb</li>
 </ul>
 <figure>
-<img src="img/sql_python_img_1.png" style="width:23cm" alt="" /><figcaption>tableau du site <a href="https://wiki.openstack.org/" class="uri">https://wiki.openstack.org/</a></figcaption>
+<img src="img_flask/sql_python_img_1.png" style="width:23cm" alt="" /><figcaption>tableau du site <a href="https://wiki.openstack.org/" class="uri">https://wiki.openstack.org/</a></figcaption>
 </figure>
 <p>Ces bibliothèques se ressemblent beaucoup :</p>
 <ul>
@@ -145,7 +145,7 @@
 <li><a href="https://pymysql.readthedocs.io/en/latest/user/examples.html" target="_blanck">exemple de la documentation</a></li>
 </ul>
 <figure>
-<img src="img/sql_python_flask_tp1_img_1.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+<img src="img_flask/sql_python_flask_tp1_img_1.png" alt="" /><figcaption>documentation de pymysql</figcaption>
 </figure>
 <!--
 ```{.python}
@@ -180,7 +180,7 @@ with connection:
 <p>exemple sur le site W3Schools : <a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a></p>
 <p><br> copier/coller du site W3Schools</p>
 <figure>
-<img src="img/sql_python_flask_tp1_img_2.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+<img src="img_flask/sql_python_flask_tp1_img_2.png" alt="" /><figcaption>documentation de pymysql</figcaption>
 </figure>
 <!--
 ```
@@ -326,7 +326,7 @@ mydb = mysql.connector.connect(
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>        db.close()</span></code></pre></div>
 <p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler la fonction <code>close_connection</code> lorsque que le serveur a fini de renvoyer une réponse.</p>
 <p><br> Il faut recréer et fermer la connexion à chaque requête HTTP, sinon il y a un risque de <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">fuite de mémoire</a></p>
-<p><img src="img/memory_leak.jpg" /></p>
+<p><img src="img_flask/memory_leak.jpg" /></p>
 <p><br></p>
 <ul>
 <li><a href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/" target="_blanck">doc flask database</a> - <a href="https://flask.palletsprojects.com/en/2.0.x/appcontext/" target="_blanck"><strong>doc flask appcontext</strong></a></li>
