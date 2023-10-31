@@ -178,6 +178,7 @@ with connection:
 ```
 -->
 <p>exemple sur le site W3Schools : <a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a></p>
+<p>remarque : il faut ajouter <code>python -m pip install mysql-connector-python</code></p>
 <p><br> copier/coller du site W3Schools</p>
 <figure>
 <img src="img_flask/sql_python_flask_tp1_img_2.png" alt="" /><figcaption>documentation de pymysql</figcaption>
@@ -215,41 +216,43 @@ mydb = mysql.connector.connect(
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>mycursor <span class="op">=</span> mydb.cursor()</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co"># mycursor.execute(&quot;DROP TABLE IF EXISTS customers;&quot;)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;</span>)</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>val <span class="op">=</span> (<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Highway 21&quot;</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>mycursor.execute(sql, val)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>mydb.commit()</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;record inserted.&quot;</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>val <span class="op">=</span> [</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>  (<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Lowstreet 4&#39;</span>),</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>  (<span class="st">&#39;Amy&#39;</span>, <span class="st">&#39;Apple st 652&#39;</span>),</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>  (<span class="st">&#39;Hannah&#39;</span>, <span class="st">&#39;Mountain 21&#39;</span>),</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>  (<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Valley 345&#39;</span>),</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>  (<span class="st">&#39;Sandy&#39;</span>, <span class="st">&#39;Ocean blvd 2&#39;</span>),</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  (<span class="st">&#39;Betty&#39;</span>, <span class="st">&#39;Green Grass 1&#39;</span>),</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>  (<span class="st">&#39;Richard&#39;</span>, <span class="st">&#39;Sky st 331&#39;</span>),</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>  (<span class="st">&#39;Susan&#39;</span>, <span class="st">&#39;One way 98&#39;</span>),</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>  (<span class="st">&#39;Vicky&#39;</span>, <span class="st">&#39;Yellow Garden 2&#39;</span>),</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>  (<span class="st">&#39;Ben&#39;</span>, <span class="st">&#39;Park Lane 38&#39;</span>),</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>  (<span class="st">&#39;William&#39;</span>, <span class="st">&#39;Central st 954&#39;</span>),</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>  (<span class="st">&#39;Chuck&#39;</span>, <span class="st">&#39;Main Road 989&#39;</span>),</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>  (<span class="st">&#39;Viola&#39;</span>, <span class="st">&#39;Sideway 1633&#39;</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>]</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>mycursor.executemany(sql, val)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>mydb.commit()</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;was inserted.&quot;</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;SELECT * FROM customers&quot;</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>myresult <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="cf">for</span> x <span class="kw">in</span> myresult:</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>  <span class="bu">print</span>(x)</span></code></pre></div>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co"># mycursor.execute(&quot;CREATE TABLE IF NOT EXISTS customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>val <span class="op">=</span> (<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Highway 21&quot;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>mycursor.execute(sql, val)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>mydb.commit()</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;record inserted.&quot;</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>val <span class="op">=</span> [</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>  (<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Lowstreet 4&#39;</span>),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>  (<span class="st">&#39;Amy&#39;</span>, <span class="st">&#39;Apple st 652&#39;</span>),</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>  (<span class="st">&#39;Hannah&#39;</span>, <span class="st">&#39;Mountain 21&#39;</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  (<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Valley 345&#39;</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>  (<span class="st">&#39;Sandy&#39;</span>, <span class="st">&#39;Ocean blvd 2&#39;</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>  (<span class="st">&#39;Betty&#39;</span>, <span class="st">&#39;Green Grass 1&#39;</span>),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>  (<span class="st">&#39;Richard&#39;</span>, <span class="st">&#39;Sky st 331&#39;</span>),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>  (<span class="st">&#39;Susan&#39;</span>, <span class="st">&#39;One way 98&#39;</span>),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>  (<span class="st">&#39;Vicky&#39;</span>, <span class="st">&#39;Yellow Garden 2&#39;</span>),</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>  (<span class="st">&#39;Ben&#39;</span>, <span class="st">&#39;Park Lane 38&#39;</span>),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>  (<span class="st">&#39;William&#39;</span>, <span class="st">&#39;Central st 954&#39;</span>),</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>  (<span class="st">&#39;Chuck&#39;</span>, <span class="st">&#39;Main Road 989&#39;</span>),</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>  (<span class="st">&#39;Viola&#39;</span>, <span class="st">&#39;Sideway 1633&#39;</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a>mycursor.executemany(sql, val)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>mydb.commit()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;was inserted.&quot;</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;SELECT * FROM customers&quot;</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>myresult <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a><span class="cf">for</span> x <span class="kw">in</span> myresult:</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>  <span class="bu">print</span>(x)</span></code></pre></div>
 <ul>
 <li>Tester l’exemple ci-dessus, exemple <code>python exercice1_pymysql.py</code></li>
 </ul>
@@ -329,9 +332,9 @@ mydb = mysql.connector.connect(
 <p><img src="img_flask/memory_leak.jpg" /></p>
 <p><br></p>
 <ul>
-<li><a href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/" target="_blanck">doc flask database</a> - <a href="https://flask.palletsprojects.com/en/2.0.x/appcontext/" target="_blanck"><strong>doc flask appcontext</strong></a></li>
+<li><a href="https://flask.palletsprojects.com/en/3.0.x/tutorial/database/" target="_blanck"><strong>doc flask database 3.0</strong></a> - <a href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/" target="_blanck">doc flask database 2.0</a> - <a href="https://flask.palletsprojects.com/en/2.0.x/appcontext/" target="_blanck"><strong>doc flask appcontext</strong></a></li>
 <li><a href="https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/" target="_blanck">ancienne documentation flask</a> -</li>
-<li><a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/" target="_blanck">doc sqlachemny</a></li>
+<li><a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/" target="_blanck">doc sqlachemny</a> <br></li>
 </ul>
 <h1 id="crud-etudiant">CRUD “etudiant”</h1>
 <p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “type_article” et début du CRUD sur la table “article”</p>
