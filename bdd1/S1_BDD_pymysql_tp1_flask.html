@@ -267,6 +267,9 @@ mydb = mysql.connector.connect(
 </ul>
 <p><br> Fermer la connexion : opération très simple avec un simple script python, c’est un peu plus compliqué sur un <a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/" target="_blanck">serveur web</a>, il faut fermer la connexion à chaque requête HTTP, sinon le serveur risque d’avoir <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">des problèmes de fuite de mémoire</a>. <br></p>
 <h3 id="se-connecter-à-la-base-de-données">Se connecter à la base de données</h3>
+<figure>
+<img src="img_flask/flask_sql_python_img_01.png" style="width:14cm" alt="" /><figcaption>principe et paramètres de connexion à un serveur MySQL</figcaption>
+</figure>
 <p>Il faut créer un objet <strong>objet-connexion</strong> à l’aide de la fonction-fabrique <code>connect()</code>.</p>
 <p><br></p>
 <p>Cet objet assure l’interface entre votre programme et la base de données.</p>
@@ -337,9 +340,9 @@ mydb = mysql.connector.connect(
 <li><a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/" target="_blanck">doc sqlachemny</a> <br></li>
 </ul>
 <h1 id="crud-etudiant">CRUD “etudiant”</h1>
-<p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “type_article” et début du CRUD sur la table “article”</p>
+<p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “etudiant”</p>
 <ul>
-<li>Pour afficher, ajouter, supprimer, modifier un type d’article</li>
+<li>Pour afficher, ajouter, supprimer, modifier les enregistrement de la table “etudiant”, récupérer l’interface FLASK</li>
 </ul>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
@@ -389,23 +392,23 @@ mydb = mysql.connector.connect(
 <h2 id="préparation-de-la-connexion">préparation de la connexion</h2>
 <h2 id="exécution-des-instructions-sql-dans-chaque-fonction-pour-chacune-des-routes-quand-cest-nécessaire">exécution des instructions sql dans chaque fonction pour chacune des routes quand c’est nécessaire</h2>
 <h3 id="pour-chercher-des-informations-select">Pour chercher des informations (SELECT)</h3>
-<pre><code>mycursor = get_db().cursor()
-sql=&quot;&quot;
-mycursor.execute(sql)
+<pre><code>    mycursor = get_db().cursor()
+    sql=&#39;&#39;&#39;   SELECT      &#39;&#39;&#39;
+    mycursor.execute(sql)
 
-liste_enregistrement = mycursor.fetchall()
-un_enregistrement = mycursor.fetchone()</code></pre>
+    liste_enregistrement = mycursor.fetchall()
+    un_enregistrement = mycursor.fetchone()</code></pre>
 <p>Pour <strong>SELECT</strong>, on récupère :</p>
 <ul>
 <li>une <a href="https://www.w3schools.com/python/python_lists.asp" target="_blanck">liste</a> avec à l’intérieur des <a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blanck">dictionnaires</a>. Ces listes peuvent s’apparenter à un tableau à 2 dimensions : un tableau d’enregistrements</li>
 <li>ou un enregistrement : <a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blanck">un dictionnaire</a></li>
 </ul>
 <h3 id="pour-ajouter-modifier-ou-supprimer-des-informations-insert-update-delete">Pour ajouter, modifier ou supprimer des informations (INSERT UPDATE DELETE)</h3>
-<pre><code>mycursor = get_db().cursor()
-sql=&quot;&quot;
-mycursor.execute(sql)
+<pre><code>    mycursor = get_db().cursor()
+    sql=&quot;&quot;
+    mycursor.execute(sql)
 
-mycursor.commit()</code></pre>
+    get_db().commit()</code></pre>
 <p>résultat<br />
 </p>
 <p>Pour <strong>INSERT</strong>, <strong>UPDATE</strong>, <strong>DELETE</strong>, on récupère le même résultat que sur un terminal : <strong>le nombre d’enregistrements affectés</strong> par la requête. La méthode <em>rowcount</em> d’un curseur permet de connaître <strong>le nombre d’enregistrements affectés</strong> (utilisation : <code>mycursor.rowcount</code>).</p>
@@ -425,13 +428,19 @@ mycursor.commit()</code></pre>
 <ul>
 <li>utiliser un curseur : <code>mycursor = mydb.cursor()</code></li>
 <li>créer une chaîne de texte avec commande SQL en remplacant chaque paramètre par <code>%s</code></li>
-<li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder le même nombre de paramètres que l’instruction SQL possède de <code>%s</code> </strong></li>
+<li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder le même nombre de paramètres que l’instruction SQL possède de <code>%s</code></strong></li>
 <li>exécuter <code>result=mycursor.execute(sql, tuple)</code></li>
 <li>pour les instructions <strong>INSERT/UPDATE/DELETE</strong>, le résultat retourné par la commande est le nombre d’enregistrements affectés par la commande. (nombre d’enregistrements ajoutés/modifiés/supprimés)</li>
 <li>Un tableau python <code>[]</code> peut remplacer un tuple python <code>()</code></li>
 </ul></li>
 <li>Avec un curseur les instructions ne sont pas <strong>persister</strong> (exécuter sur le disque dur). Il est nécessaire de valider ces instructions : faire un <code>commit</code> avec la connexion, exemple de commande : <code>mydb.commit()</code></li>
 </ul>
+</div>
+<p><br><br></p>
+<p>Modifier le projet ci dessus de façon à obtenir une interface minimal pour afficher/ajouter/modifier/supprimer des enregistrements dans la table “etudiant”</p>
+<p><br></p>
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git" target="_blank">code branche final du TP1 en BDD avec Flask et PyMSQL</a></p>
 </div>
 </body>
 </html>
