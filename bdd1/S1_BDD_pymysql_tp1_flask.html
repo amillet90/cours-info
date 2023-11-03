@@ -342,7 +342,7 @@ mydb = mysql.connector.connect(
 <h1 id="crud-etudiant">CRUD “etudiant”</h1>
 <p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “etudiant”</p>
 <ul>
-<li>Pour afficher, ajouter, supprimer, modifier les enregistrement de la table “etudiant”, récupérer l’interface FLASK</li>
+<li>Pour afficher, ajouter, supprimer, modifier les enregistrements de la table “etudiant”, récupérer l’interface FLASK</li>
 </ul>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
@@ -409,7 +409,7 @@ mydb = mysql.connector.connect(
     mycursor.execute(sql)
 
     get_db().commit()</code></pre>
-<p>résultat<br />
+<p>Résultat dans le curseur de l’instruction ci-dessus :<br />
 </p>
 <p>Pour <strong>INSERT</strong>, <strong>UPDATE</strong>, <strong>DELETE</strong>, on récupère le même résultat que sur un terminal : <strong>le nombre d’enregistrements affectés</strong> par la requête. La méthode <em>rowcount</em> d’un curseur permet de connaître <strong>le nombre d’enregistrements affectés</strong> (utilisation : <code>mycursor.rowcount</code>).</p>
 <p><br></p>
@@ -426,19 +426,23 @@ mydb = mysql.connector.connect(
 <ul>
 <li>Pour exécuter une requête de type <strong>INSERT/UPDATE/DELETE</strong>
 <ul>
-<li>utiliser un curseur : <code>mycursor = mydb.cursor()</code></li>
+<li>utiliser un curseur : <code>mycursor = mydb.cursor()</code>. Sur FLASK, remplacer <code>mydb</code> par la fonction <code>get_db()</code>.</li>
 <li>créer une chaîne de texte avec commande SQL en remplacant chaque paramètre par <code>%s</code></li>
 <li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder le même nombre de paramètres que l’instruction SQL possède de <code>%s</code></strong></li>
 <li>exécuter <code>result=mycursor.execute(sql, tuple)</code></li>
 <li>pour les instructions <strong>INSERT/UPDATE/DELETE</strong>, le résultat retourné par la commande est le nombre d’enregistrements affectés par la commande. (nombre d’enregistrements ajoutés/modifiés/supprimés)</li>
 <li>Un tableau python <code>[]</code> peut remplacer un tuple python <code>()</code></li>
 </ul></li>
-<li>Avec un curseur les instructions ne sont pas <strong>persister</strong> (exécuter sur le disque dur). Il est nécessaire de valider ces instructions : faire un <code>commit</code> avec la connexion, exemple de commande : <code>mydb.commit()</code></li>
+<li>Avec un curseur les instructions ne sont pas <strong>persister</strong> (exécuter sur le disque dur). Il est nécessaire de valider ces instructions : faire un <code>commit</code> avec la connexion, exemple de commande : <code>mydb.commit()</code> (ATTENTION <code>mydb</code> n’est pas un curseur mais la connexion. Sur FLASK, remplacer <code>mydb</code> par la fonction <code>get_db()</code>.)</li>
 </ul>
 </div>
+<br><br>
+<div class="travail">
+<p><strong>Travail à réaliser :</strong><br />
+</p>
+<p>Modifier le projet ci dessus de façon à obtenir une interface minimale pour afficher/ajouter/modifier/supprimer des enregistrements dans la table “etudiant”.</p>
+</div>
 <p><br><br></p>
-<p>Modifier le projet ci dessus de façon à obtenir une interface minimal pour afficher/ajouter/modifier/supprimer des enregistrements dans la table “etudiant”</p>
-<p><br></p>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git" target="_blank">code branche final du TP1 en BDD avec Flask et PyMSQL</a></p>
 </div>
