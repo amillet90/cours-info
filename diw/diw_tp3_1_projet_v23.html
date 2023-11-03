@@ -78,11 +78,16 @@ Les noms des champs INPUT dans les formulaires doivent porter le nom des clés d
 <img src="img_flask/S1_diw_projet8.png" style="width:15cm" alt="" /><figcaption>exemple</figcaption>
 </figure>
 <h2 id="interfaces-supplémentaires">Interfaces supplémentaires</h2>
-<p>afficher les 2 contenus des 2 tables dans la même vue (il n’est pas utile d’utiliser des images)</p>
+<p>afficher les 2 contenus des 2 tables dans la même vue</p>
 <ul>
-<li>afficher les éléments de la première table sous forme de <a href="https://getbootstrap.com/docs/5.0/components/card/" target="_blank">cards</a></li>
-<li>afficher les éléments de la seconde table sous forme de “toggle” (cases à cocher)</li>
-<li>La validation du filtre n’est pas à gérer. Seul l’affichage du contenu des 2 tableaux (python) est à réaliser.</li>
+<li><p>Formulaire :</p>
+<ul>
+<li>afficher les éléments de la seconde table (la plus petite) sous forme de “toggle” (cases à cocher),</li>
+<li>afficher des champs INPUT pour filtrer un numérique de la table (la plus grosse) de votre sujet ainsi qu’un champ texte pour saisir une chaîne de texte.</li>
+<li>si on valide le formulaire, afficher des messsages “flash” avec les cases “cochées” (id de la petite table) et le contenu des champs INPUT si ils sont correctes sinon afficher un message d’erreur</li>
+</ul></li>
+<li><p>afficher les éléments de la première table sous forme de <a href="https://getbootstrap.com/docs/5.0/components/card/" target="_blank">cards</a></p></li>
+<li><p>Le filtre n’est pas fonctionnel. Seul l’affichage du contenu des 2 tableaux (python) est à réaliser, ainsi que l’affichage du contenu du formulaire dans des messages “flash”. Tester sur <a href="http://amillet1.pythonanywhere.com/article/filtre" class="uri">http://amillet1.pythonanywhere.com/article/filtre</a></p></li>
 </ul>
 <figure>
 <img src="img_flask/ihm_flask_projet_1.png" style="width:18cm" alt="" /><figcaption>exemple avec les articles</figcaption>
