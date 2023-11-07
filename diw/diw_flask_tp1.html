@@ -448,9 +448,11 @@ def edit_etudiant():
     #print(request.args['id'])
     print(request.args.get('id',0))
 -->
-<pre><code>    print(request.args.get(&#39;id&#39;))</code></pre>
+<pre><code>    id=request.args.get(&#39;id&#39;)
+    message=&#39;paramètre dans l URL : &#39;+id
+    print(message)</code></pre>
 <div class="cours">
-<p><span class="modif">* Pour récupérer les paramètres d’une page HTML (dans l’URL) - avec la méthode <code>GET</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code> avec comme clé le nom du paramètre</span></p>
+<p><span class="modif">* Pour récupérer les paramètres dans l’URL d’une page HTML (méthode <code>GET</code> ), utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code> avec comme clé le nom du paramètre</span></p>
 </div>
 <ol start="24" type="1">
 <li>pour la fonction <code>edit_etudiant</code>, ajouter le code ci-dessous puis passer</li>
