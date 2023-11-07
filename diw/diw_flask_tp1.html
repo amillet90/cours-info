@@ -444,9 +444,14 @@ def edit_etudiant():
 <ol start="23" type="1">
 <li>ajouter le code ci-dessous dans la fonction <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
 </ol>
-<pre><code>    #print(request.args[&#39;id&#39;])
-    print(request.args.get(&#39;id&#39;))
-    print(request.args.get(&#39;id&#39;,0))</code></pre>
+<!--
+    #print(request.args['id'])
+    print(request.args.get('id',0))
+-->
+<pre><code>    print(request.args.get(&#39;id&#39;))</code></pre>
+<div class="cours">
+<p><span class="modif">* Pour récupérer les paramètres d’une page HTML (dans l’URL) - avec la méthode <code>GET</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code> avec comme clé le nom du paramètre</span></p>
+</div>
 <ol start="24" type="1">
 <li>pour la fonction <code>edit_etudiant</code>, ajouter le code ci-dessous puis passer</li>
 </ol>
@@ -482,8 +487,10 @@ def valid_edit_etudiant():
 <li><p>afficher dans le terminal dans les 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
 <li><p>créer un message avec les informations pour ajouter un étudiant</p></li>
 </ol>
-<pre><code>nom = request.form[&#39;nom&#39;]
-nom = request.form.get(&#39;nom&#39;)
+<!--
+nom = request.form['nom']
+-->
+<pre><code>nom = request.form.get(&#39;nom&#39;)
 groupe = request.form.get(&#39;groupe&#39;)
 message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe    
 print(message)</code></pre>
