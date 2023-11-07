@@ -419,7 +419,7 @@ mydb = mysql.connector.connect(
 <p><a href="https://docs.djangoproject.com/fr/3.2/topics/db/sql/#passing-parameters-into-raw" target="_blanck">Lors du passage de paramètres</a>, if faut faire <a href="https://en.wikipedia.org/wiki/SQL_injection" target="_blanck">attention aux injections</a></p>
 <p><br></p>
 <p>⚠️ =&gt; Ne jamais former une chaîne de texte avec la concaténation de texte (instruction SQL) et de paramètres de la requête HTTP (INPUT du formulaire par exemple)</p>
-<p><br> Le driver réalise une <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html" target="_blanck">requête préparée</a> - <a href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts" target="_blanck">exemple de requête préparée</a></p>
+<p><br> Le driver réalise une <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html" target="_blanck">requête préparée</a> - <a href="https://mariadb.com/kb/en/prepare-statement/" target="_blanck">doc mariadb</a> - <a href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts" target="_blanck">exemple de requête préparée</a></p>
 </div>
 <p><br></p>
 <p>ATTENTION ne pas construire de code SQL en concaténant du code SQL et des valeurs issues de formulaires HTML =&gt; Injection SQL</p>
