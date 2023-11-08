@@ -138,7 +138,10 @@
 <p><code>PyMySql</code> semble un très bon choix. <code>MySQL/connector</code> est propriétaire. Pour la suite des TPs, on utilisera <code>PyMySql</code> mais on comparera avec <code>MySQL/connector</code> et <code>PyMySql</code>.</p>
 <p><br></p>
 <p>Installation de <a href="https://pymysql.readthedocs.io/en/latest/user/installation.html" target="_blanck">pymysql</a></p>
-<pre><code>pip  install PyMySQL</code></pre>
+<pre><code>pip  install PyMySQL
+
+# sur debian
+pip install pymysql --break-system-packages</code></pre>
 <p>PS : <a href="https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb" target="_blanck">mariadb possède aussi une bibliothèque</a> mais elle semble moins utilisée</p>
 <h1 id="exemple-avec-pymysql">Exemple avec PyMySql</h1>
 <ul>
@@ -348,7 +351,11 @@ mydb = mysql.connector.connect(
 <p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
 </div>
 <p>Cloner le projet avec la commande :</p>
-<pre><code>git clone https://github.com/amillet-iut90/flask_demo1.git</code></pre>
+<pre><code>git clone https://github.com/amillet-iut90/flask_demo1.git
+
+# ouvrir le dossier avec pycharm
+# dans un terminal
+chmod u+x launcher.sh</code></pre>
 <h2 id="préparation-du-sql">préparation du sql</h2>
 <p>Voici la liste des étudiants :</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>liste_etudiants <span class="op">=</span> [</span>
