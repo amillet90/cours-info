@@ -4617,42 +4617,42 @@
 <td>retourne la vue <code>layout.html</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">show_type_enseignant</td>
+<td style="text-align: center;">show_matiere</td>
 <td style="text-align: center;"><code>/matiere/show</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche les matieres</td>
-<td>retourne la vue <code>show_type_enseignant.html</code></td>
+<td>retourne la vue <code>show_matiere.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">add_type_enseignant</td>
+<td style="text-align: center;">add_matiere</td>
 <td style="text-align: center;"><code>/matiere/add</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour ajouter une matiere</td>
-<td>retourne la vue <code>add_type_enseignant.html</code></td>
+<td>retourne la vue <code>add_matiere.html</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">valid_add_type_enseignant</td>
+<td style="text-align: center;">valid_add_matiere</td>
 <td style="text-align: center;"><code>/matiere/add</code></td>
 <td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
 <td>validation (soumission) du formulaire pour ajouter une matiere</td>
 <td>redirection sur la route <code>/matiere/show</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">delete_type_enseignant</td>
+<td style="text-align: center;">delete_matiere</td>
 <td style="text-align: center;"><code>/matiere/delete</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>suppression d’une matiere</td>
 <td>redirection sur la route <code>/matiere/show</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">edit_type_enseignant</td>
+<td style="text-align: center;">edit_matiere</td>
 <td style="text-align: center;"><code>/matiere/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier une matiere</td>
-<td>retourne la vue <code>add_type_enseignant.html</code></td>
+<td>retourne la vue <code>edit_matiere.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">valid_edit_type_enseignant</td>
+<td style="text-align: center;">valid_edit_matiere</td>
 <td style="text-align: center;"><code>/matiere/edit</code></td>
 <td style="text-align: center;"><span style="color:red"><strong>POST</strong></span></td>
 <td>validation (soumission) du formulaire pour modifier une matiere</td>
@@ -4945,6 +4945,169 @@
 <span id="cb55-24"><a href="#cb55-24" aria-hidden="true"></a>(<span class="kw">NULL</span>   , <span class="dv">5300</span>, <span class="st">&#39;2018-03-23&#39;</span>, <span class="st">&#39;Bussang&#39;</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="fl">20.6</span>, <span class="st">&#39;img_Bussang.png&#39;</span> ),</span>
 <span id="cb55-25"><a href="#cb55-25" aria-hidden="true"></a>(<span class="kw">NULL</span>   , <span class="dv">2000</span>, <span class="st">&#39;2015-01-30&#39;</span>, <span class="st">&#39;Kupio&#39;</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="fl">20.7</span>, <span class="st">&#39;img_Kupio.png&#39;</span>);</span>
 <span id="cb55-26"><a href="#cb55-26" aria-hidden="true"></a></span></code></pre></div>
+<h3 id="sujet-27-1">sujet 27</h3>
+<h4 id="livrable-1-vacances-toussaint-27">livrable 1 (vacances Toussaint)</h4>
+<p>éléments à respecter dans le fichier <code>app.py</code></p>
+<h5 id="tableau-des-routes-1">tableau des routes</h5>
+<p><br></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nom fonction</th>
+<th style="text-align: center;">Route</th>
+<th style="text-align: center;">Méthode</th>
+<th>description</th>
+<th>action (réponse HTTP)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">show_accueil</td>
+<td style="text-align: center;"><code>/</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>page d’accueil</td>
+<td>retourne la vue <code>layout.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">show_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/show</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche les types de jeux</td>
+<td>retourne la vue <code>show_type_jeu.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">add_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/add</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour ajouter un type de jeu</td>
+<td>retourne la vue <code>add_type_jeu.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valid_add_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/add</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour ajouter un type de jeu</td>
+<td>redirection sur la route <code>/type-jeu/show</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">delete_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/delete</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>suppression d’un type de jeu</td>
+<td>redirection sur la route <code>/type-jeu/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">edit_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/edit</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour modifier un type de jeu</td>
+<td>retourne la vue <code>add_type_jeu.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">valid_edit_type_jeu</td>
+<td style="text-align: center;"><code>/type-jeu/edit</code></td>
+<td style="text-align: center;"><span style="color:red"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour modifier un type de jeu</td>
+<td>redirection sur la route <code>/type-jeu/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">show_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/show</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche les jeux</td>
+<td>retourne la vue <code>show_jeu.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">add_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/add</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour ajouter une jeu</td>
+<td>retourne la vue <code>add_jeu.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valid_add_jeu</td>
+<td style="text-align: center;"><code>/jeu-plateau/add</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour ajouter un jeu</td>
+<td>redirection sur la route <code>/jeu-plateau/show</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">delete_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/delete</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>suppression d’un jeu</td>
+<td>redirection sur la route <code>/jeu/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">edit_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/edit</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour modifier un jeu</td>
+<td>retourne la vue <code>add_jeu.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">valid_edit_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/edit</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour modifier un jeu</td>
+<td>redirection sur la route <code>/jeu/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">filtre_jeu_plateau</td>
+<td style="text-align: center;"><code>/jeu-plateau/filtre</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affichage du formulaire du filtre et des éléments d’une des tables python sous forme de ‘cards’</td>
+<td>retourne la vue <code>front_jeu_filtre_show.html</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Pour la dernière route : le filtre, il est possible d’utiliser 2 routes de même nom avec 2 méthodes différentes (GET et POST)</li>
+</ul>
+<p><br></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true"></a></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true"></a><span class="co">########################################################### Sujet  27</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true"></a><span class="co"># ? jeuPlateau(id,nomJeu, marque, prix_jeu, nbMiniJoueurs, nbMaxiJoueurs, description, photo, typeJeu_id )  typeJeu(id,libelleTypeJeu)</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true"></a>typesJeu <span class="op">=</span> [</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">1</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Tropicale&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;tropicale.jpeg&#39;</span>},</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">2</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Taiga&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;taiga.jpg&#39;</span>},</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">3</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Jungle&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;jungle.jpg&#39;</span>},</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">4</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Sombre&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;sombre.jpg&#39;</span>},</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">5</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Amazonienne&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;amazonie.jpg&#39;</span>},</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="dv">6</span> ,<span class="st">&#39;libelleTypeJeu&#39;</span>:<span class="st">&#39;Tempéré&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;tempere.jpg&#39;</span>},</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true"></a>]</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true"></a></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true"></a>jeuPlateau <span class="op">=</span> [</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;1&#39;</span> ,<span class="st">&#39;surface&#39;</span>:<span class="st">&#39;1500&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2020-02-02&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Bangui&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;5&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;1&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;20.5&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_bangui.png&#39;</span> },</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;2&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;6000&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2019-01-24&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Deggendorf&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;6&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;6&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;80.3&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Deggendorf.png&#39;</span> },</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;3&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;7800&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2013-08-11&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Manaus&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;7&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;5&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;125.25&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Manaus.png&#39;</span> },</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;4&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;30&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2015-09-12&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Tomsk&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;8&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;2&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;30.2&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Tomsk.png&#39;</span> },</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;5&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;340&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2020-10-23&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Boende&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;9&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;3&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;80.6&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Boende.png&#39;</span> },</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;6&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;1500&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2020-09-01&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Aokigahara&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;10&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;Sombre&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;20.5&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Aokigahara.png&#39;</span> },</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;7&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;74&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2008-08-15&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Blair&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;9&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;Sombre&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;43.2&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Blair.png&#39;</span> },</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;8&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;25000&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2017-02-14&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Jakarta&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;8&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;1&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;13&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Jakarta.png&#39;</span> },</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;9&#39;</span>, <span class="st">&#39;surface&#39;</span>:<span class="st">&#39;5300&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2018-03-23&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Bussang&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;7&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;2&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;20.7&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Bussang.png&#39;</span> },</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span> : <span class="st">&#39;10&#39;</span> ,<span class="st">&#39;surface&#39;</span>:<span class="st">&#39;2000&#39;</span>, <span class="st">&#39;dateRelevee&#39;</span>:<span class="st">&#39;2015-01-30&#39;</span>, <span class="st">&#39;localisation&#39;</span>:<span class="st">&#39;Kupio&#39;</span>, <span class="st">&#39;nbArbreAre&#39;</span>:<span class="st">&#39;6&#39;</span>, <span class="st">&#39;typeForet&#39;</span>:<span class="st">&#39;2&#39;</span>, <span class="st">&#39;coutEntretien&#39;</span>:<span class="st">&#39;20.7&#39;</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;img_Kupio.png&#39;</span>}</span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true"></a>]</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true"></a></span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true"></a></span></code></pre></div>
+<p><br></p>
+<p><a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/images_projet/sujet28.zip"><strong>archive des fichiers d’images de ce sujet</strong></a></p>
+<p><br></p>
+<p><br></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true"></a></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true"></a><span class="co">-- sujet 28 : jeu / type_jeu     --</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true"></a></span></code></pre></div>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
