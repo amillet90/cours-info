@@ -101,6 +101,28 @@ Les noms des champs INPUT dans les formulaires doivent porter le nom des clés d
 <figure>
 <img src="img_flask/ihm_flask_projet_1_3.png" style="width:14cm" alt="" /><figcaption>modification à ajouter pour tester des réels</figcaption>
 </figure>
+<p><br></p>
+<h1 id="annexe">ANNEXE</h1>
+<p><span class="modif">script de test du projet :</span> <br></p>
+<p><span class="modif">Un premier script extrait les archives <code>.tar.gz</code> et <code>.zip</code>, ce script recherche un dossier et copie un autre script <code>test_projet.sh</code> dans le dossier, le script se trouve au même niveau que le fichier app.py (une erreur est signalée dans le cas contraire).</span></p>
+<p><br></p>
+<p>script de test :</p>
+<pre><code>#!/bin/bash
+clear
+echo -e &quot;\033[0;32m \n**** listes des fichiers :&quot;
+ls templates/*
+
+echo -e &quot;\033[0;31m \n*****.sql \033[0m&quot;
+grep &quot;@app.route&quot;  app.py
+
+echo -e &quot;\033[0;32m \n**** listes des paramètres (clés des tableaux associatifs) :&quot;
+grep &quot;request.form.get&quot;  app.py | uniq -c
+echo -e &quot; \033[0m&quot;
+
+code  app.py &amp;
+
+killall python3
+flask --debug  --app app  run   --host 0.0.0.0</code></pre>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
