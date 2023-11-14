@@ -108,14 +108,12 @@
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="co"># sujet 24 : parking / ville </span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a><span class="co"># sujet 25 : ski / typeSki    </span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a><span class="co"># sujet 26 : enseignant / matiere </span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a><span class="co"># sujet 27 : foret / typeForet     --</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a><span class="co"># ? jeuPlateau(id,nomJeu, marque, prix_jeu, nbMiniJoueurs, nbMaxiJoueurs, description, photo, typeJeu_id )  typeJeu(id,libelleTypeJeu)</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a><span class="co"># ? pneu(id,nom_pneu, fabricant, modele_pneu, largeur_pneu , diametre_jante,  proprietes(vtt,ville,route), prix_pneu) / dimension(libelle: 26 28 29 (pouces) ) https://www.lecyclo.com/blogs/conseils/quelle-taille-pour-mes-pneus-velo</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a><span class="co"># salle(id,nom_salle, etage, nbMaxEtudiants, surface, nbPrisesCourant, nbPrisesReseau, batiment, type_salle_id)  typeSalle (id, libelle(amphi, td, td_machine, tp, tp_reseau), type_cours(cours,td, tp)  )</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a><span class="co"># carrelage</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a><span class="co"># parquet</span></span></code></pre></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a><span class="co"># sujet 27 : foret / typeForet    --</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a><span class="co"># sujet 28 : jeu_plateau / type_jeu  </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a><span class="co"># sujet 29 : pneu_velo / type_pneu_velo</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a><span class="co"># sujet 30 : salle_cours / type_salle</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a><span class="co"># carrelage</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a><span class="co"># parquet</span></span></code></pre></div>
 <h3 id="sujet-1">sujet 1</h3>
 <h4 id="livrable-1-vacances-toussaint">livrable 1 (vacances Toussaint)</h4>
 <p>éléments à respecter dans le fichier <code>app.py</code></p>
@@ -4281,7 +4279,7 @@
 <td style="text-align: center;"><code>/ville/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier une ville</td>
-<td>retourne la vue <code>add_ville.html</code></td>
+<td>retourne la vue <code>edit_ville.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_ville</td>
@@ -4323,7 +4321,7 @@
 <td style="text-align: center;"><code>/parking/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un parking</td>
-<td>retourne la vue <code>add_parking.html</code></td>
+<td>retourne la vue <code>edit_parking.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_parking</td>
@@ -4465,7 +4463,7 @@
 <td style="text-align: center;"><code>/type-ski/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un type de ski</td>
-<td>retourne la vue <code>add_type_ski.html</code></td>
+<td>retourne la vue <code>edit_type_ski.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_type_ski</td>
@@ -4507,7 +4505,7 @@
 <td style="text-align: center;"><code>/ski/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un ski</td>
-<td>retourne la vue <code>add_ski.html</code></td>
+<td>retourne la vue <code>edit_ski.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_ski</td>
@@ -4825,7 +4823,7 @@
 <td style="text-align: center;"><code>/type-foret/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un type de foret</td>
-<td>retourne la vue <code>add_type_foret.html</code></td>
+<td>retourne la vue <code>edit_type_foret.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_type_foret</td>
@@ -4867,7 +4865,7 @@
 <td style="text-align: center;"><code>/foret/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier une foret</td>
-<td>retourne la vue <code>add_foret.html</code></td>
+<td>retourne la vue <code>edit_foret.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_foret</td>
@@ -5008,7 +5006,7 @@
 <td style="text-align: center;"><code>/type-jeu/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un type de jeu</td>
-<td>retourne la vue <code>add_type_jeu.html</code></td>
+<td>retourne la vue <code>edit_type_jeu.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_type_jeu</td>
@@ -5050,7 +5048,7 @@
 <td style="text-align: center;"><code>/jeu-plateau/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un jeu</td>
-<td>retourne la vue <code>add_jeu.html</code></td>
+<td>retourne la vue <code>edit_jeu.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_jeu_plateau</td>
@@ -5111,7 +5109,7 @@
 <p><br></p>
 <p><br></p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true"></a></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true"></a><span class="co">-- sujet 28 : jeu / type_jeu     --</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true"></a><span class="co">-- sujet 28 : jeu_plateau / type_jeu     --</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true"></a></span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true"></a></span>
 <span id="cb57-5"><a href="#cb57-5" aria-hidden="true"></a></span>
@@ -5194,7 +5192,7 @@
 <td style="text-align: center;"><code>/type-pneu/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un type de pneu</td>
-<td>retourne la vue <code>add_type_pneu.html</code></td>
+<td>retourne la vue <code>edit_type_pneu.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_type_pneu</td>
@@ -5204,7 +5202,7 @@
 <td>redirection sur la route <code>/type-pneu/show</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">show_pneu_plateau</td>
+<td style="text-align: center;">show_pneu_velo</td>
 <td style="text-align: center;"><code>/pneu-velo/show</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche les pneus</td>
@@ -5236,7 +5234,7 @@
 <td style="text-align: center;"><code>/pneu-velo/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un pneu</td>
-<td>retourne la vue <code>add_pneu_velo.html</code></td>
+<td>retourne la vue <code>edit_pneu_velo.html</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">valid_edit_pneu_velo</td>
@@ -5296,7 +5294,7 @@
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true"></a></span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true"></a></span>
 <span id="cb59-5"><a href="#cb59-5" aria-hidden="true"></a></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_pneu_velo(id_type_teu, libelle_type) <span class="kw">VALUES</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_pneu_velo(id_type_pneu, libelle_type) <span class="kw">VALUES</span></span>
 <span id="cb59-7"><a href="#cb59-7" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 1</span></span>
 <span id="cb59-8"><a href="#cb59-8" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 2</span></span>
 <span id="cb59-9"><a href="#cb59-9" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 3</span></span>
@@ -5312,6 +5310,214 @@
 <span id="cb59-19"><a href="#cb59-19" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
 <span id="cb59-20"><a href="#cb59-20" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
 <span id="cb59-21"><a href="#cb59-21" aria-hidden="true"></a>(<span class="kw">NULL</span> ),;</span></code></pre></div>
+<h3 id="sujet-30">sujet 30</h3>
+<h4 id="livrable-1-vacances-toussaint-29">livrable 1 (vacances Toussaint)</h4>
+<p>éléments à respecter dans le fichier <code>app.py</code></p>
+<h5 id="tableau-des-routes-3">tableau des routes</h5>
+<p><br></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nom fonction</th>
+<th style="text-align: center;">Route</th>
+<th style="text-align: center;">Méthode</th>
+<th>description</th>
+<th>action (réponse HTTP)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">show_accueil</td>
+<td style="text-align: center;"><code>/</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>page d’accueil</td>
+<td>retourne la vue <code>layout.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">show_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/show</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche les types de salles</td>
+<td>retourne la vue <code>show_type_salle.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">add_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/add</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour ajouter un type de salle</td>
+<td>retourne la vue <code>add_type_salle.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valid_add_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/add</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour ajouter un type de salle</td>
+<td>redirection sur la route <code>/type-salle/show</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">delete_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/delete</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>suppression d’un type de salle</td>
+<td>redirection sur la route <code>/type-salle/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">edit_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/edit</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour modifier un type de salle</td>
+<td>retourne la vue <code>edit_type_salle.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">valid_edit_type_salle</td>
+<td style="text-align: center;"><code>/type-salle/edit</code></td>
+<td style="text-align: center;"><span style="color:red"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour modifier un type de salle</td>
+<td>redirection sur la route <code>/type-salle/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">show_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/show</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche les salles</td>
+<td>retourne la vue <code>show_salle_cours.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">add_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/add</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour ajouter une salle</td>
+<td>retourne la vue <code>add_salle_cours.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valid_add_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/add</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour ajouter une salle</td>
+<td>redirection sur la route <code>/salle-cours/show</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">delete_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/delete</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>suppression d’une salle</td>
+<td>redirection sur la route <code>/salle-cours/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">edit_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/edit</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affiche le formulaire pour modifier une salle</td>
+<td>retourne la vue <code>edit_salle_cours.html</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">valid_edit_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/edit</code></td>
+<td style="text-align: center;"><span class="rouge"><strong>POST</strong></span></td>
+<td>validation (soumission) du formulaire pour modifier une salle</td>
+<td>redirection sur la route <code>/salle-cours/show</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">filtre_salle_cours</td>
+<td style="text-align: center;"><code>/salle-cours/filtre</code></td>
+<td style="text-align: center;"><strong>GET</strong></td>
+<td>affichage du formulaire du filtre et des éléments d’une des tables python sous forme de ‘cards’</td>
+<td>retourne la vue <code>front_salle_filtre_show.html</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Pour la dernière route : le filtre, il est possible d’utiliser 2 routes de même nom avec 2 méthodes différentes (GET et POST)</li>
+</ul>
+<p><br></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true"></a></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true"></a><span class="co">########################################################### Sujet  30</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true"></a>typeSalle <span class="op">=</span> [</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nomTypeSalle&#39;</span>: <span class="st">&#39;td&#39;</span>, <span class="st">&#39;typeCours&#39;</span>: <span class="st">&#39;TD&#39;</span>},</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nomTypeSalle&#39;</span>: <span class="st">&#39;amphi&#39;</span>, <span class="st">&#39;typeCours&#39;</span>: <span class="st">&#39;CM&#39;</span>},</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">3</span>, <span class="st">&#39;nomTypeSalle&#39;</span>: <span class="st">&#39;tp_machine&#39;</span>, <span class="st">&#39;typeCours&#39;</span>: <span class="st">&#39;TP&#39;</span>},</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">4</span>, <span class="st">&#39;nomTypeSalle&#39;</span>: <span class="st">&#39;tp_reseau&#39;</span>, <span class="st">&#39;typeCours&#39;</span>: <span class="st">&#39;TP&#39;</span>},</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">5</span>, <span class="st">&#39;nomTypeSalle&#39;</span>: <span class="st">&#39;salle_des_profs&#39;</span>, <span class="st">&#39;typeCours&#39;</span>: <span class="va">None</span>}</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true"></a>]</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true"></a></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true"></a></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true"></a>salleCours <span class="op">=</span> [</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 101&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">30</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 102&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">25</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">102</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">3</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 103&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">28</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">104</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">4</span>},</span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">4</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 104&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">24</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">105</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">5</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 105&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">28</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">98</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">6</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 106&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">23</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">97</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">7</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 107&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">24</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">96</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">8</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 108&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">31</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">85</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">5</span>},</span>
+<span id="cb60-31"><a href="#cb60-31" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">9</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 109&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">34</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">88</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-32"><a href="#cb60-32" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">5</span>},</span>
+<span id="cb60-33"><a href="#cb60-33" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">10</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 200&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">10</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">91</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">15</span>,</span>
+<span id="cb60-34"><a href="#cb60-34" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">25</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-35"><a href="#cb60-35" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">11</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 201&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">10</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">94</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">15</span>,</span>
+<span id="cb60-36"><a href="#cb60-36" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">25</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-37"><a href="#cb60-37" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">12</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 202&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">14</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">95</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">15</span>,</span>
+<span id="cb60-38"><a href="#cb60-38" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">25</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">3</span>},</span>
+<span id="cb60-39"><a href="#cb60-39" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">13</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 203&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">30</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">96</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">25</span>,</span>
+<span id="cb60-40"><a href="#cb60-40" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">35</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-41"><a href="#cb60-41" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">14</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 204&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">28</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">103</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-42"><a href="#cb60-42" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-43"><a href="#cb60-43" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 205&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">27</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">108</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-44"><a href="#cb60-44" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-45"><a href="#cb60-45" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">16</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 206&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">36</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">107</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-46"><a href="#cb60-46" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-47"><a href="#cb60-47" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">17</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 207&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">36</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-48"><a href="#cb60-48" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-49"><a href="#cb60-49" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">18</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 208&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">28</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-50"><a href="#cb60-50" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-51"><a href="#cb60-51" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">19</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Salle 209&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">27</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-52"><a href="#cb60-52" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;E&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">1</span>},</span>
+<span id="cb60-53"><a href="#cb60-53" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">20</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Amphi 1&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">500</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-54"><a href="#cb60-54" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;F&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb60-55"><a href="#cb60-55" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">21</span>, <span class="st">&#39;nomSalle&#39;</span>: <span class="st">&#39;Amphi 3&#39;</span>, <span class="st">&#39;etage&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;nbMaxEtudiants&#39;</span>: <span class="dv">100</span>, <span class="st">&#39;surface&#39;</span>: <span class="dv">500</span>, <span class="st">&#39;nbPrisesCourant&#39;</span>: <span class="dv">10</span>,</span>
+<span id="cb60-56"><a href="#cb60-56" aria-hidden="true"></a>     <span class="st">&#39;nbPrisesReseau&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;batiment&#39;</span>: <span class="st">&#39;D&#39;</span>, <span class="st">&#39;type_salle_id&#39;</span>: <span class="dv">2</span>}</span>
+<span id="cb60-57"><a href="#cb60-57" aria-hidden="true"></a>]</span>
+<span id="cb60-58"><a href="#cb60-58" aria-hidden="true"></a></span>
+<span id="cb60-59"><a href="#cb60-59" aria-hidden="true"></a></span>
+<span id="cb60-60"><a href="#cb60-60" aria-hidden="true"></a></span></code></pre></div>
+<p><br></p>
+<p><a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/images_projet/sujet29.zip"><strong>archive des fichiers d’images de ce sujet</strong></a></p>
+<p><br></p>
+<p><br></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true"></a></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_salle(id_type_salle, nom_type_salle, type_cours) <span class="kw">VALUES</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 1</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 2</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 3</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 4</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true"></a>(<span class="kw">NULL</span> ), <span class="co">-- 5</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true"></a>(<span class="kw">NULL</span> ); <span class="co">-- 6</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true"></a></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true"></a></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> salle_cours (id_salle, nom_salle,  etage, nbMaxEtudiants, surface,diametre_jante , nbPrisesCourant, nbPrisesReseau, batiment, type_salle_id, photo ,  ) <span class="kw">VALUES</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true"></a>(<span class="kw">NULL</span> ),</span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true"></a>(<span class="kw">NULL</span> );</span></code></pre></div>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
