@@ -145,10 +145,10 @@ LOGIN=login
 PASSWORD=secret
 DATABASE=BDD_s1_projet
 
-sed -i &quot;s/host=.*/host=\&quot;${HOST}\&quot;,/g&quot; connexion_db.py
-sed -i &quot;s/user=.*/user=\&quot;${LOGIN}\&quot;,/g&quot; connexion_db.py
-sed -i &quot;s/password=.*/password=\&quot;${PASSWORD}\&quot;,/g&quot; connexion_db.py
-sed -i &quot;s/database=.*/database=\&quot;${DATABASE}\&quot;,/g&quot; connexion_db.py
+sed -i &quot;s/host=.*/host=\&quot;${HOST}\&quot;,/g&quot; app.py
+sed -i &quot;s/user=.*/user=\&quot;${LOGIN}\&quot;,/g&quot; app.py
+sed -i &quot;s/password=.*/password=\&quot;${PASSWORD}\&quot;,/g&quot; app.py
+sed -i &quot;s/database=.*/database=\&quot;${DATABASE}\&quot;,/g&quot; app.py
 
 projet=$(ls -l sql_projet.sql)
 if [ $? -ne 0 ]
