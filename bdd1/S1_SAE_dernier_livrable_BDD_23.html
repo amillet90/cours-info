@@ -388,5 +388,52 @@ local_infile=ON</code></pre>
 relation [ManyToMany](https://en.wikibooks.org/wiki/Java_Persistence/ManyToMany)
 
 https://docs.microsoft.com/fr-fr/power-bi/guidance/relationships-many-to-many -->
+<h2 id="test-de-lapplication">test de l’application</h2>
+<p><span class="modif">script de test du projet :</span> <br></p>
+<p><span class="modif">Un premier script extrait les archives <code>.tar.gz</code> et <code>.zip</code>, ce script recherche un dossier et copie un autre script <code>test_projet.sh</code> dans le dossier. Le script <code>test_projet.sh</code> se trouve au même niveau que le fichier app.py (une erreur est signalée dans le cas contraire).</span></p>
+<p><br></p>
+<p>script de test <code>test_projet.sh</code>:</p>
+<pre><code>#!/bin/bash
+
+# mysql --user=login --password=secret --host=localhost BDD_s1_projet
+
+HOST=localhost
+LOGIN=login
+PASSWORD=secret
+DATABASE=BDD_s1_projet
+
+sed -i &quot;s/host=.*/host=\&quot;${HOST}\&quot;,/g&quot; app.py
+sed -i &quot;s/user=.*/user=\&quot;${LOGIN}\&quot;,/g&quot; app.py
+sed -i &quot;s/password=.*/password=\&quot;${PASSWORD}\&quot;,/g&quot; app.py
+sed -i &quot;s/database=.*/database=\&quot;${DATABASE}\&quot;,/g&quot; app.py
+
+projet=$(ls -l sql_projet.sql)
+if [ $? -ne 0 ]
+    then
+    echo -e &quot;\033[0;31m \n* pas de fichier sql_projet.sql \033[0m&quot;
+    nb_fic_sql=$(ls -l *.sql | wc -l)
+    if [ &quot;${nb_fic_sql}&quot; -eq &quot;1&quot; ]
+    then
+        NOM_FIC_SQL=$(echo *.sql)
+        cp &quot;$NOM_FIC_SQL&quot; sql_projet.sql
+        echo -e &quot;\033[0;32m \n* fichier copier $NOM_FIC_SQL sql_projet.sql \033[0m&quot;
+    else
+        echo -e &quot;\033[0;31m \n* pas de fichier ****.sql \033[0m&quot;
+        exit 2
+    fi  
+fi
+
+echo &quot;DROP DATABASE  IF EXISTS ${DATABASE}; CREATE DATABASE ${DATABASE};&quot; | mysql --user=${LOGIN} --password=${PASSWORD} --host=${HOST} ${DATABASE}
+mysql --user=${LOGIN} --password=${PASSWORD} --host=${HOST} ${DATABASE} &lt; sql_projet.sql
+
+echo &quot;mysql --user=${LOGIN} --password=${PASSWORD} --host=${HOST} ${DATABASE}&quot; &gt; connect.sh
+chmod a+x connect.sh
+gnome-terminal --tab -- ./connect.sh  &amp;
+
+xed sql_projet.sql app.py &amp;
+
+killall python3
+flask --debug  --app app  run   --host 0.0.0.0  &amp;
+chromium 127.0.0.1:5000</code></pre>
 </body>
 </html>
