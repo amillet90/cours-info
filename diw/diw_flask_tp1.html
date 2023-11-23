@@ -79,139 +79,6 @@
   <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-<h1 id="utilisation-de-flask">utilisation de flask</h1>
-<h2 id="lancement-ou-installation-sur-vos-machine-personnelle">lancement (ou installation sur vos machine personnelle)</h2>
-<p>utiliser <strong>pycharm</strong> (à l’IUT <code>/opt/pycharm/bin/pycharm.sh</code> et <code>licence server</code>)</p>
-<p><img src="img_flask/lanceurs.png" /></p>
-<figure>
-<img src="img_flask/lanceur_pycharm.png" alt="" /><figcaption>créer un lanceur ou utiliser le terminal</figcaption>
-</figure>
-<h2 id="configuration">configuration</h2>
-<p><br></p>
-<p>créer une nouvelle application flask (attention : l’explorateur de fichiers de pycharm a parfois du mal à scanner le contenu du dossier HOME monté en NFS)</p>
-<figure>
-<img src="img_flask/ihm_flask_tp1_1_installv2.png" style="width:15cm" alt="" /><figcaption>création d’un projet flask</figcaption>
-</figure>
-<p>utiliser <strong>python3</strong> comme <a href="https://fr-academic.com/dic.nsf/frwiki/969727" target="_blank">interpréteur</a></p>
-<figure>
-<img src="img_flask/ihm_flask_tp1_2_installv2.png" style="width:13cm" alt="" /><figcaption>projet de base sur pycharm</figcaption>
-</figure>
-<p>cette application se présente sous la forme suivante</p>
-<figure>
-<img src="img_flask/ihm_flask_tp1_1v2.png" style="width:13cm" alt="" /><figcaption>projet de base sur pycharm</figcaption>
-</figure>
-<!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur pycharm). -->
-<ul>
-<li>le dossier <code>static</code> contient tous les éléments (contenus) dit <strong>“static”</strong> du site : <strong>images, fichiers CSS, fichiers javascript</strong> utilisé par les pages HTML ….)</li>
-<li>le dossier template contient les pages HTML, ces pages HTML sont appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)" target="_blank"><strong>gabarit</strong></a> ou <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a></li>
-<li>attention : pas de dossier <em>venv</em></li>
-</ul>
-<p><br> <br></p>
-<figure>
-<img src="img_flask/ihm_flask_tp1_5_installv2.png" style="width:13cm" alt="" /><figcaption>projet de base sur pycharm</figcaption>
-</figure>
-<!-- <br>
-Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’environnement virtuel python 
-![terminal dans pycharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
-<p><br></p>
-<ul>
-<li>Ouvrir un terminal dans pycharm et tester l’application avec la commande ci-dessous</li>
-</ul>
-<pre><code>python app.py</code></pre>
-<h1 id="première-application">première application</h1>
-<ul>
-<li>modifier le fichier <strong>app.py</strong> avec comme contenu :</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash, url_for, abort  </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>                <span class="co"># application WSGI</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># (interface de serveur web python)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># comportements et méthodes d&#39;un serveur web</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)    <span class="co"># instance de classe Flask (en paramètre le nom du module)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
-<ul>
-<li>tester l’application : ouvrir un terminal sur pycharm et lancer la commande ci-dessous</li>
-</ul>
-<pre><code>python app.py</code></pre>
-<ul>
-<li>cliquer sur le lien dans le terminal</li>
-</ul>
-<h2 id="lancer-le-serveur-web-la-boite-à-outils">lancer le serveur web ; la boite à outils</h2>
-<ul>
-<li>tester les commandes ci-dessous :</li>
-</ul>
-<pre><code>hostname -i
-ip addr</code></pre>
-<ul>
-<li>tester l’url sur la machine de votre voisin</li>
-</ul>
-<p><br></p>
-<p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution : recopier le contenu ci-dessous dans un terminal de pycharm</p>
-<pre><code>touch launcher.sh
-chmod u+x launcher.sh</code></pre>
-<p>recopier le contenu ci-dessous dans le fichier <code>launcher.sh</code> : voir (<a href="https://flask.palletsprojects.com/en/2.2.x/tutorial/factory/#run-the-application" target="_blanck">documentation</a>)</p>
-<!--
-    voir ([documentation (pour windows, mac)](https://flask.palletsprojects.com/en/2.0.x/tutorial/factory/#run-the-application){target=_blanck})
-
-```
-export FLASK_APP=app
-export FLASK_ENV=development
-python -m flask run  --host 0.0.0.0
-```
-
--->
-<pre><code>flask --debug  --app app  run   --host 0.0.0.0</code></pre>
-<!--python -m flask --debug  --app app  run   --host 0.0.0.0 -->
-<ul>
-<li>lancer ce fichier pour <strong>tester l’application</strong> (utiliser le bouton dans l’editeur)</li>
-</ul>
-<figure>
-<img src="img_flask/ihm_flask_tp1_3_lanceur.png" alt="" /><figcaption>lanceur pycharm</figcaption>
-</figure>
-<div class="cours">
-<p>message d’erreur : “Address already in use”</p>
-<pre><code>ps aux | grep flask</code></pre>
-<p>puis avec xxxx ou xxxx est l’ID (première colonne du résultat de la commande précédente) du ou des processus flask à tuer (arrêter), faire</p>
-<pre><code>kill -9   xxxx</code></pre>
-<p><br><br></p>
-<p>message d’erreur : " option –debug" non reconnue</p>
-<ul>
-<li>version de flask</li>
-</ul>
-<pre><code>flask --version</code></pre>
-<ul>
-<li>mise à jour de flask</li>
-</ul>
-<pre><code>pip install --upgrade Flask</code></pre>
-<ul>
-<li>Installer Flask sur les machines de l’IUT en “local” (sans utiliser un environnement virtuel)</li>
-</ul>
-<pre><code># vérifier si les paquets sont installés
-pip list
-pip3 show pymysql
-pip3 show flask
-
-# installer les paquets dans votre $HOME
-
-pip install flask --break-system-packages
-pip install pymysql --break-system-packages
-
-
-
-# les paquets sont installés sur à l&#39;IUT /usr/local/lib/python3.11/dist-packages
-# les paquets sont installés sur ~/.local/lib/pythonxxxxx sur vos machines linux
-</code></pre>
-</div>
-<p><br><br><br></p>
 <h1 id="exercices-premier-template-première-route-premier-passage-de-paramètres-à-un-template">exercices: premier template, première route, premier passage de paramètres à un template</h1>
 <div class="cours">
 <p><strong>vidéo (niveau NSI) pour bien démarrer flask si on va trop vite et dont s’inspire ces exercices</strong> : <a href="https://www.youtube.com/watch?v=Ihp_cG7c2Rk" target="_blank">FLASK (Un prof de NSI)</a></p>
@@ -545,20 +412,20 @@ print(message)</code></pre>
 <ol start="34" type="1">
 <li>modifier le fichier <strong>templates</strong> <code>show_etudiants.html</code> (gabarits) avec les liens ci-dessous</li>
 </ol>
-<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>....</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;image iut&quot;</span>  <span class="kw">/&gt;</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true"></a>....</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true"></a></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true"></a></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>....</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;image iut&quot;</span>  <span class="kw">/&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>....</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final</a></p>
 </div>
