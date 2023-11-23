@@ -239,6 +239,45 @@ pip install pymysql --break-system-packages
 </code></pre>
 </div>
 <p><br><br><br></p>
+<h1 id="annexe-utilisation-avec-github-ou-gitlab">annexe : utilisation avec GitHub ou GitLab</h1>
+<ul>
+<li>Créez projet GitHub sur votre compte GiHub</li>
+<li>Clonez votre projet dans un dossier sur votre machine</li>
+<li>Copiez les fichiers qui vous voulez dans ce dossier (dossiers static ….)</li>
+</ul>
+<p>dans un terminal</p>
+<pre><code>git clone https://gitlab.com/amillet.iut90/demo_flask_tp1.git
+cd demo_flask_tp1
+</code></pre>
+<p>créer une clé pour l’authentification, voir sur le document (2.1 et 3) <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html" class="uri">https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html</a></p>
+<pre><code>git config credential.helper store
+
+
+# récupérer les modification des autres dans le repository
+git pull
+
+# modifiez le contenu du repository
+git add --all
+git commit -m &quot;modif projet&quot;
+git push</code></pre>
+<ul>
+<li><p>avec Pycharm : ouvrir un projet avec comme dossier principal celui ou se trouve le fichier <code>app.py</code> (important)</p></li>
+<li><p>créer un fichier <code>.gitignore</code> avec comme contenu :</p></li>
+</ul>
+<pre><code>.idea
+.gitignore
+__pycache__
+.git</code></pre>
+<ul>
+<li>dans votre home, dans le fichier <code>~/.git-credentials</code>, vous trouverez le login et la clé</li>
+</ul>
+<p>utilisez cette clé pour l’authentification dans GitHub ou GitLab</p>
+<!--
+cd existing_repo
+git remote add origin https://gitlab.com/amillet.iut90/demo_flask_tp1.git
+git branch -M main
+git push -uf origin main
+-->
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
