@@ -239,17 +239,21 @@ pip install pymysql --break-system-packages
 </code></pre>
 </div>
 <p><br><br><br></p>
-<h1 id="annexe-utilisation-avec-github-ou-gitlab">annexe : utilisation avec GitHub ou GitLab</h1>
+<h1 id="annexe-utiliser-github-ou-gitlab">annexe : utiliser GitHub ou GitLab</h1>
 <ul>
-<li>Créez projet GitHub sur votre compte GiHub</li>
+<li>Créez un projet (repository) sur votre compte GiHub ou GitLab</li>
 <li>Clonez votre projet dans un dossier sur votre machine</li>
+</ul>
+<p>Dans un terminal :</p>
+<pre><code>git clone https://gitlab.com/username/nom_repository.git
+cd nom_repository
+</code></pre>
+<ul>
 <li>Copiez les fichiers qui vous voulez dans ce dossier (dossiers static ….)</li>
 </ul>
-<p>dans un terminal</p>
-<pre><code>git clone https://gitlab.com/amillet.iut90/demo_flask_tp1.git
-cd demo_flask_tp1
-</code></pre>
-<p>créer une clé pour l’authentification, voir sur le document (2.1 et 3) <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html" class="uri">https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html</a></p>
+<p><br></p>
+<p>Créez une clé pour l’authentification, voir sur le document (2.1 et 3) <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html" class="uri">https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/sae_diw_livrables_github_v23_2.html</a></p>
+<p>Tester dans un terminal votre <code>username</code> avec <code>votre_clé</code></p>
 <pre><code>git config credential.helper store
 
 
@@ -261,8 +265,8 @@ git add --all
 git commit -m &quot;modif projet&quot;
 git push</code></pre>
 <ul>
-<li><p>avec Pycharm : ouvrir un projet avec comme dossier principal celui ou se trouve le fichier <code>app.py</code> (important)</p></li>
-<li><p>créer un fichier <code>.gitignore</code> avec comme contenu :</p></li>
+<li><p>avec <strong>Pycharm</strong> : ouvrir un projet avec comme dossier principal celui ou se trouve le fichier <code>app.py</code> (important)</p></li>
+<li><p>créer un fichier <code>.gitignore</code> avec comme contenu (ça évitera de mettre sur le dépôt les fichiers ou dossiers indésirables):</p></li>
 </ul>
 <pre><code>.idea
 .gitignore
