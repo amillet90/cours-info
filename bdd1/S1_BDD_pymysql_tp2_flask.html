@@ -89,29 +89,30 @@
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>                                    <span class="co">## à ajouter</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        )</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        db.close()</span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>                                    <span class="co">## à ajouter</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>        )</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>        db.close()</span></code></pre></div>
 <p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler la fonction <code>close_connection</code> lorsque que le serveur a fini de renvoyer une réponse.</p>
 <p><br> Il faut recréer et fermer la connexion à chaque requête HTTP, sinon il y a un risque de <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">fuite de mémoire</a></p>
 <p><img src="img_flask/memory_leak.jpg" /></p>
