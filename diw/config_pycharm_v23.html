@@ -99,7 +99,7 @@
 <li>Créer un compte sur le <a href="https://account.jetbrains.com/login" target="_blanck">site <strong>jetbrains</strong></a> avec <strong>votre email de l’IUT</strong> comme login</li>
 <li>Valider votre compte en cliquant sur le lien dans votre boite mail.</li>
 <li><a href="https://www.jetbrains.com/shop/eform/students" target="_blanck">Compléter un formulaire</a> avec vos références d’étudiant.</li>
-<li><span class="modif">Activer l’autorisation d’utiliser des licences en cliquant sur le lien dans votre boite mail.</span></li>
+<li>Activer l’autorisation d’utiliser des licences en cliquant sur le lien dans votre boite mail.</li>
 </ol>
 <!-- ![licence jetbrain](img_jetbrains_iut/install_datagrip_iut_3.png){width=12cm} -->
 </div>
@@ -121,7 +121,7 @@
 <ul>
 <li>le dossier <code>static</code> contient tous les éléments (contenus) dit <strong>“static”</strong> du site : <strong>images, fichiers CSS, fichiers javascript</strong> utilisé par les pages HTML ….)</li>
 <li>le dossier template contient les pages HTML, ces pages HTML sont appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)" target="_blank"><strong>gabarit</strong></a> ou <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a></li>
-<li>attention : pas de dossier <em>venv</em></li>
+<li>attention : <span class="modif">pas de dossier entre parenthèse (<em>venv</em> ou autres), vous utilisez une environnement virtuel</span></li>
 </ul>
 <p><br> <br></p>
 <figure>
@@ -198,13 +198,13 @@ python -m flask run  --host 0.0.0.0
 </figure>
 <p>Après avoir récupéré un projet sur GitHub, pensez à utiliser la commande :</p>
 <pre><code>chmod u+x launcher.sh</code></pre>
-<p><br> <span class="modif">Pour recharger automatiquement une application quand on modifie une vue ajouter la ligne :<br />
+<p><br> Pour recharger automatiquement une application quand on modifie une vue (template), ajouter la ligne ci-dessous dans votre code:<br />
 <code>app.config["TEMPLATES_AUTO_RELOAD"] = True</code><br />
-( <a href="https://flask.palletsprojects.com/en/3.0.x/config/#TEMPLATES_AUTO_RELOAD" target="_blank">documentation</a> - <a href="https://stackoverflow.com/questions/9508667/reload-flask-app-when-template-file-changes" target="_blank">documentation</a>)</span></p>
+( <a href="https://flask.palletsprojects.com/en/3.0.x/config/#TEMPLATES_AUTO_RELOAD" target="_blank">documentation</a> - <a href="https://stackoverflow.com/questions/9508667/reload-flask-app-when-template-file-changes" target="_blank">documentation</a>)</p>
 <ul>
 <li>Sur <strong>Windows</strong> :</li>
 </ul>
-<p><span class="modif">Créer un fichier de nom <code>launcher.bat</code> par exemple avec comme contenu :</span></p>
+<p>Créer un fichier de nom <code>launcher.bat</code> par exemple avec comme contenu :</p>
 <pre><code>python -m flask --debug  --app app  run   --host 0.0.0.0</code></pre>
 <h2 id="problèmes-possibles">problèmes possibles</h2>
 <h3 id="adresseport-déjà-utilisée">adresse(port) déjà utilisée</h3>
@@ -302,7 +302,7 @@ git remote add origin https://gitlab.com/amillet.iut90/demo_flask_tp1.git
 git branch -M main
 git push -uf origin main
 -->
-<h2 id="utilisation-de-dotenv"><span class="modif">utilisation de dotenv</span></h2>
+<h2 id="utilisation-de-dotenv">Utilisation de <strong>dotenv</strong></h2>
 <p>Documentation de <a href="https://pypi.org/project/python-dotenv/" target="_blank">dotenv</a><br />
 </p>
 <p>Commencer par installer le paquet :</p>
