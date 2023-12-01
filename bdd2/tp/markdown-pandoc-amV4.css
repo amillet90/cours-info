@@ -222,6 +222,7 @@ pre {
     display: block;
     color : purple;
     background-color:#ffffcc;
+    font-size: 1.2em;
 }
 
 .exercice {
@@ -315,3 +316,63 @@ background-color:moccasin;
 color:purple;
 background-color:moccasin;
 }
+
+/*
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+#myDIV .code{
+  width: 80%;
+  padding: 6px 6px;
+}
+*/
+
+details {
+  /*font: 14px "Open Sans", Calibri, sans-serif;*/
+ /* width: 820px; */
+  cursor: pointer;
+}
+
+details > summary {
+  padding: 2px 6px;
+  /*width: 20em;*/
+  background-color: #ddd;
+  border: none;
+  box-shadow: 3px 3px 4px black;
+  cursor: pointer;
+}
+
+.gros {
+font-size:140%;
+}
+
+
+details  p, details {
+  /*border-radius: 0 0 10px 10px;*/
+  background-color: #ddd;
+  padding: 6px 6px;
+  margin: 0;
+  /*box-shadow: 3px 3px 4px black;*/
+}
+
+
+details[open] > summary {
+  background-color: #ccf;
+}
+details[open] > summary ::before {
+  content: '⬇️';
+}
+
+.requete {
+font-size: 17px;
+margin: 14px 0 14px 0;
+color:olive;
+font-weight: bolder;
+
+}
+
+
