@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<div class="titre">
+TP 1 MySQL : import et export de données, requête avec jointure interne
+</div>
+<p>Un des buts de ce TP est d’utiliser les outils d’importation et d’exportation.</p>
+<h1 id="créer-et-exécuter-un-script-de-création-de-tables"><strong>Créer et exécuter un script de création de tables</strong></h1>
+<p>Écrire dans un fichier script.sql le script de création des tables correspondant au modèle suivant :</p>
+<p><strong>ARTICLE(<span class="underline">idArticle</span>, designation, prix)</strong><br />
+<strong>COMMANDE(<span class="underline">idCommande</span>, dateCommande, <em>#idClient</em>)</strong><br />
+<strong>LIGNE(#<em><span class="underline">idCommande,#idArticle</span></em>, quantite)</strong><br />
+<strong>CLIENT(<span class="underline">idClient</span>, nom, ville)</strong></p>
+<p><br> Pour exécuter ce script :</p>
+<pre><code>Mysql\&gt; source script.sql ;</code></pre>
+<ul>
+<li>Supprimer toutes les tables si elles existent, créer toutes les tables si elles n'existent pas.</li>
+</ul>
+<p><br></p>
+<p>Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.</p>
+<h1 id="importer-des-données"><strong>Importer des données</strong></h1>
+<p>L'objectif est d'importer des données stockées dans un fichier texte.</p>
+<p><img src="img/jointure_tp2_img1.png" style="width:4.44028in;height:2.51319in" /></p>
+<p>Utiliser les données du fichier excel en enregistrant chaque feuille au format csv (séparateur de champ : , et séparateur de texte : vide )</p>
+<p>Utiliser le nom de la table comme nom de Fichier</p>
+<p>Exemple de format pour un fichier : <strong>CLIENT.csv</strong></p>
+<pre><code>, Dupont, Lyon
+, Pierre, Paris
+, Durand, Lille</code></pre>
+<p>Procéder de la même manière avec les autres tables (onglets dans le tableur) pour créer les autres fichiers de données.</p>
+<p>REMARQUE : La première virgule de la ligne de l'exemple signifie que le premier champ est NULL (<code>AUTO_INCREMENT</code>). Faire attention aux clés étrangères et au format de date : yyyy/mm/dd ou yyyy-mm-dd .</p>
+<p>Lancer la commande ci dessous (<strong>dans votre script SQL</strong> ) :</p>
+<pre><code>mysql\&gt; LOAD DATA LOCAL INFILE &#39;CLIENT.csv&#39; INTO TABLE CLIENT FIELDS TERMINATED BY &#39;,&#39;;</code></pre>
+<p>Faire de même avec les autre fichiers.</p>
+<p><strong>ATTENTION</strong> à l’ordre d’importation des données, c’est dans le même ordre généralement que la création des tables</p>
+<p><br></p>
+<h2 id="problème-avec-linstruction-load-data-local-sur-datagrip">problème avec l’instruction <code>LOAD DATA LOCAL</code> sur DATAGRIP</h2>
+<p><br></p>
+<p><strong>ATTENTION</strong> problème résolu : si l’importation des données ne fonctionne par sur <strong>DataGrip</strong> même en indiquant le chemin absolu du fichier ; configurer datagrip ou utiliser <strong>un terminal classique pour exécuter votre script et importer les données</strong> <!-- problème de version de mysql ? --></p>
+<figure>
+<img src="img/jointure_tp2_img2_3.png" alt="" /><figcaption>File &gt; Data Sources [advanced]</figcaption>
+</figure>
+<ul>
+<li>Accès à l’interface ci-dessus : <code>File &gt; Data Sources [sélectionner la source] [advanced]</code></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Sur <strong>DATAGRIP</strong>, il faut indiquer le <strong>chemin absolu</strong> du fichier <strong>CSV</strong>
+<ul>
+<li><code>LOAD DATA LOCAL INFILE '/home/login/Documents/2_S2_BDD/tp1/ARTICLE.csv' INTO TABLE ARTICLE  FIELDS TERMINATED BY ',';</code></li>
+<li>Sur <strong>windows</strong>, il faut indiquer le chemin absolu du fichier CSV avec des <code>\\</code>
+<ul>
+<li><code>LOAD DATA LOCAL INFILE 'C:\\Users\\login\\Documents\\tp1\\ARTICLE.csv' INTO TABLE ARTICLE  FIELDS TERMINATED BY ',';</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<!-- REMARQUE : il existe une autre commande ***mysqlimport*** (plus
+ancienne) pour importer des données. (exemple : `mysqlimport -u login -h
+serveurmysql -p BDD -d -L --fields-terminated-by=, TABLE.txt`) -->
+<p><br></p>
+<p>Ajouter un <strong><a href="https://www.jetbrains.com/help/datagrip/terminal-emulator.html" target="_blanck">terminal dans DataGrip</a></strong></p>
+<ul>
+<li>Dans le menu : [File &gt; Setting] ; choisir [Plugins] Sélectionner “Terminal”</li>
+<li>Une fois installer; Pour configurer le chemin par défaut dans le terminal
+<ul>
+<li>Dans le menu : [File &gt; Setting] ; choisir [Tools] Sélectionner “Terminal” et configurer “Start Directory”</li>
+</ul></li>
+</ul>
+<h2 id="problème-dencodage-de-caractères-dans-les-chaînes-de-caractères">problème d’encodage de caractères dans les chaînes de caractères</h2>
+<p>voir l’encodage de la table</p>
+<p><code>SHOW CREATE TABLE ARTICLE;</code></p>
+<p>ajouter un encodage au caractère dans la table</p>
+<pre><code>CREATE TABLE IF NOT EXISTS ARTICLE (
+
+....
+
+)CHARACTER SET &#39;utf8&#39; ;       </code></pre>
+<p>le terminal mysql n’est pas forcément en <code>utf8</code> et l’import des données n’est donc pas forcément en <code>utf8</code></p>
+<p>forcer l’encodage des caractères lors de l’importation des données</p>
+<pre><code>LOAD DATA LOCAL INFILE &#39;CLIENT.csv&#39; INTO TABLE CLIENT CHARACTER SET utf8
+FIELDS TERMINATED BY &#39;,&#39;;</code></pre>
+<ul>
+<li>Attention sur windows, le terminal (invité de commande ; powershell) est encodé en <a href="https://fr.wikipedia.org/wiki/Page_de_code_850" target="_blanck"><code>cp850</code></a></li>
+</ul>
+<h2 id="problème-pour-utiliser-la-commande-load-data-local-sur-mysql-oracle">problème pour utiliser la commande “LOAD DATA LOCAL” sur MySql (oracle)</h2>
+<p><strong>ATTENTION il n’est parfois pas autorisé d’utiliser la commande “LOAD DATA LOCAL” sur mysql(oracle)</strong><br />
+Vous pouvez essayer de vous connecter avec l’option <code>--local_infile</code> : voir sur <a href="https://stackoverflow.com/questions/10762239/mysql-enable-load-data-local-infile" target="_blanck">stackoverflow</a></p>
+<ul>
+<li>Vérifier dans un terminal connecté à <em>mysql</em> la valeur de la variable <code>local_infile</code>, elle devrait être à <code>true</code>, utiliser la commande :</li>
+</ul>
+<p><code>mysql&gt;SHOW GLOBAL VARIABLES LIKE 'local_infile';</code></p>
+<p><br> <!--
+
+* Se connecter avec l'option `--local_infile` :
+
+`mysql --user=[Utilisateur] --password=[MotDePasse] --host=localhost --database=[baseDeDonnées] --local_infile ` souvent ne fonctionne pas
+
+
+* `SET GLOBAL local_infile=ON` --  souvent ne fonctionne pas
+
+--></p>
+<ul>
+<li>Configurer <strong>mysql</strong> sur <strong>Linux</strong></li>
+</ul>
+<p>éditer le fichier de configuration de mysql (voir sur <a href="https://stackoverflow.com/questions/10762239/mysql-enable-load-data-local-infile" target="_blanck">stackoverflow</a> et <a href="https://stackoverflow.com/questions/23921117/disable-only-full-group-by" target="_blanck">stack</a>)</p>
+<p><code>sudo nano /etc/mysql/my.cnf</code></p>
+<p>ajouter les lignes suivantes à la fin :</p>
+<pre><code>[mysqld]
+local_infile=ON
+sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;
+
+[mysql]
+local_infile=ON</code></pre>
+<p><br> redémarrer le service mysql (<code>service --status-all</code>)</p>
+<p><code>sudo service mysql restart</code></p>
+<p><br></p>
+<p>Sur <strong>windows</strong>, éditer le fichier <code>C:\\tools\\mysql\\current\\my.ini</code> (installation avec <em>chocalatey</em>) et faire les mêmes modifications que dans <code>my.cnf</code> sur <em>linux</em></p>
+<h1 id="exporter-des-données-mysqldump"><strong>Exporter des données : mysqldump</strong></h1>
+<p>Pour exporter une base (<strong>depuis un terminal « shell»</strong>) dans le terminal :</p>
+<pre><code>mysqldump --host=serveurmysql --user=votrelogin --password=motdePasse  votreBaseDeDonnee</code></pre>
+<p>Pour exporter une base (<strong>depuis un terminal « shell»</strong>) dans un fichier :</p>
+<pre><code>mysqldump --host=serveurmysql --user=votrelogin --password=motdePasse  votreBaseDeDonnee --no-tablespaces &gt; base.sql</code></pre>
+<p><br></p>
+<p><strong>ATTENTION</strong> depuis peu la commande fonctionne, mais elle affiche un message d’erreur : <a href="https://dba.stackexchange.com/questions/271981/access-denied-you-need-at-least-one-of-the-process-privileges-for-this-ope" target="_blanck">stackexchange</a> : il faut ajouter <code>--no-tablespaces</code> dans la commande</p>
+<p><br></p>
+<p>On obtient un script de création très complet (base.sql) + les INSERT de données. On peut donc l’exécuter de la même façon qu’en partie 1.</p>
+<p>Pour n'exporter que certaines tables, rajouter le nom des tables derrière la base de données.</p>
+<pre><code>mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee t1 t2 &gt; base.sql</code></pre>
+<p><br></p>
+<h2 id="sauvegarder-la-base-de-données-dans-un-fichier-avec-la-date-daujourdhui">sauvegarder la base de données dans un fichier avec la date d’aujourd’hui</h2>
+<p>faire un backup sur un SE <a href="https://stackoverflow.com/questions/4536376/generate-backup-file-using-date-and-time-as-filename" target="_blanck">linux</a></p>
+<pre><code>echo nom_fichier_backup_$(date +%Y-%m-%d-%H.%M.%S).sql
+
+mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee &gt; nom_fichier_backup_$(date +%Y-%m-%d-%H.%M.%S).sql</code></pre>
+<p><br></p>
+<p>Récupérer la date système sur <a href="https://stackoverflow.com/questions/17853838/how-to-add-date-and-time-with-backupfile-name-using-mysqldump-from-command-promp" target="_blanck">Windows</a>, c’est un peu plus compliqué</p>
+<p><br></p>
+<p>Exemple final :</p>
+<figure>
+<img src="img/jointure_tp2_img2_1.png" style="width:7.56944in" alt="" /><figcaption>depuis un terminal</figcaption>
+</figure>
+<figure>
+<img src="img/jointure_tp2_img2_2.png" style="width:7.56944in" alt="" /><figcaption>depuis un terminal connecté à mysql avec la commande <strong>system</strong></figcaption>
+</figure>
+<h2 id="pour-information-planification-de-tâches">Pour information : <a href="https://www.kinamo.fr/fr/support/faq/mysql-backup-automatique-base-de-donnees" target="_blanck">planification de tâches</a></h2>
+<p>=&gt; Permet de sauvegarder le contenu d’une base de données</p>
+<p><br></p>
+<p>sur <strong>linux</strong></p>
+<ul>
+<li><a href="https://www.linuxtricks.fr/wiki/cron-et-crontab-le-planificateur-de-taches" target="_blanck">“exemple tache cron”</a></li>
+<li><a href="https://www.kinamo.fr/fr/support/faq/mysql-backup-automatique-base-de-donnees" target="_blanck">“exemple 2 tache cron”</a></li>
+<li><a href="https://geekflare.com/fr/crontab-linux-with-real-time-examples-and-tools/" target="_blanck">“exemple 3 tache cron”</a></li>
+<li><a href="https://www.hostinger.fr/tutoriels/cron-job/" target="_blanck">“tuto crontab”</a></li>
+</ul>
+<p><br></p>
+<p>sur <strong>windows</strong></p>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/cc772785(v=ws.10)?redirectedfrom=MSDN">“schtask sur windows”</a></p>
+<p><br></p>
+<h1 id="modifier-la-structure-des-tables"><strong>Modifier la structure des tables</strong></h1>
+<ul>
+<li>Si on supprime le client 'Mutz', que se passe t'il ?</li>
+</ul>
+<p>On désire modifier les contraintes pour pouvoir supprimer en cascade les commandes d'un client (lignes de commandes et commandes)</p>
+<p>Modifier les contraintes sans recréer vos tables (<strong>ALTER TABLE</strong> …. ). Utiliser les mots clés « <strong>ON DELETE CASCADE »</strong>.</p>
+<p>Vérifier les contraintes en regardant la structure de la table.</p>
+<p>Faire un essai et vérifier que le contenu des 3 tables a été modifié.</p>
+<ul>
+<li>Exemple de script</li>
+</ul>
+<blockquote>
+<p><img src="img/jointure_tp2_img3.png" style="width:5.68681in;height:2.39514in" /></p>
+</blockquote>
+<ul>
+<li><p>Afficher le contenu des tables, conclusion</p></li>
+<li><p><strong>Mettre en commentaire ce script pour la suite</strong></p></li>
+</ul>
+<h1 id="quelques-requêtes"><strong>Quelques requêtes</strong></h1>
+<ul>
+<li><strong>R1</strong> : Affichage : Liste des clients dont la ville est Belfort et dont le nom commence par la lettre « m » , « e » ou « d » (majuscule et minuscule). Le résultat est ordonné par nom.</li>
+</ul>
+<pre><code>+-------------+
+| nom         |
++-------------+
+| DECOCK      |
+| duguet      |
+| ESSENBURGER |
+| METTEY      |
+| molin       |
++-------------+</code></pre>
+<ul>
+<li><strong>R2</strong> : Affichage : Liste des articles dont le prix est compris entre 6 et 10 Euros et dont la désignation possède le chaîne de caractères « lég ». Le résultat est ordonné par désignation.</li>
+</ul>
+<pre><code>+-------------------------+------+
+| designation             | prix |
++-------------------------+------+
+| Haricot ( légume )      | 6.50 |
+| Petit pois ( légume )   | 6.00 |
++-------------------------+------+</code></pre>
+<div class="cours">
+<p><strong>RAPPEL COURS : Les jointures internes. Les enregistrements sont retournés quand la condition est vraie dans les 2 tables. C’est l’une des jointures les plus communes.</strong></p>
+<p>commencer par tester les requêtes suivantes :</p>
+<pre><code>
+SELECT * FROM COMMANDE ;
+
+SELECT * FROM CLIENT ;
+
+SELECT * FROM CLIENT, COMMANDE ;</code></pre>
+<p>conclusion</p>
+<p>Il existe 2 manières de faire une <strong>jointure interne</strong> :</p>
+<pre><code>SELECT * -- *Ancienne syntaxe*
+FROM CLIENT, COMMANDE 
+WHERE CLIENT.idClient = COMMANDE.idClient;
+
+
+SELECT *
+FROM CLIENT  -- *Syntaxe actuelle*
+INNER JOIN COMMANDE
+ON CLIENT.idClient = COMMANDE.idClient;</code></pre>
+<p>Remarques :</p>
+<p>* le mot clé « INNER » est optionnel</p>
+<p>* les contraintes sur les tables entre clé primaire et clé étrangère ne lient pas les tables lorsque l’on fait des requêtes</p>
+<p><br></p>
+<p>autres exemples</p>
+<p><img src="img/jointure_tp2_img4.png" style="width:10cm" /></p>
+</div>
+<ul>
+<li><strong>R3</strong> : première jointure ; Affichage : Dates de toutes les commandes du client de nom ‘Mutz’ ordonnées par date</li>
+</ul>
+<pre><code>+------+--------------+
+| nom  | dateCommande |
++------+--------------+
+| Mutz | 2020-09-19   |
+| Mutz | 2020-12-09   |
++------+--------------+</code></pre>
+<ul>
+<li><strong>R4</strong> : Faire une requête pour afficher les articles (prix et quantité commandée) des commandes du client de nom ‘Mutz’ :</li>
+</ul>
+<p>Affichage : nom du client, désignation du produit, prix du produit, quantité commandée, numéro de commande. L’affichage n’est pas trié. <!--        à faire trier  --></p>
+<pre><code>+------+-------------------------------+------+----------+------------+
+| nom  | designation                   | prix | quantite | idCommande |
++------+-------------------------------+------+----------+------------+
+| Mutz | gâteau fraise (pâtisserie)    | 5.25 |       27 |          4 |
+| Mutz | Tomate ( légume )             | 1.50 |        5 |          4 |
+| Mutz | Potiron ( légume )            | 3.00 |        5 |          4 |
+| Mutz | Pomme ( fruit )               | 3.00 |        5 |          4 |
+| Mutz | Petit pois ( légume )         | 6.00 |        6 |          8 |
++------+-------------------------------+------+----------+------------+</code></pre>
+<ul>
+<li><strong>R5</strong> : Faire une requête pour afficher les articles et le C.A. dans chaque commande) des commandes du client de nom ‘Mutz’ :</li>
+</ul>
+<p>Affichage : nom du client, désignation du produit, identifiant de la commande et <strong>prix total pour chaque produit : prix du produit * quantité commandée</strong>. L’affichage est trié par le prix_total dans l’ordre décroissant.</p>
+<pre><code>+------+-------------------------------+------------+------------+
+| nom  | designation                   | idCommande | prix_total |
++------+-------------------------------+------------+------------+
+| Mutz | gâteau fraise (pâtisserie)    |          4 |     141.75 |
+| Mutz | Petit pois ( légume )         |          8 |      36.00 |
+| Mutz | Potiron ( légume )            |          4 |      15.00 |
+| Mutz | Pomme ( fruit )               |          4 |      15.00 |
+| Mutz | Tomate ( légume )             |          4 |       7.50 |
++------+-------------------------------+------------+------------+</code></pre>
+<ul>
+<li><strong>R6</strong> : Faire une requête pour afficher les commandes du client de nom ‘Mutz’ :</li>
+</ul>
+<p>Affichage : Nom du client, numéro de commande , prix total pour chaque commande : somme des (prix du produit * quantité commandée par produit). L’affichage est trié par le prix_total dans l’ordre décroissant.</p>
+<pre><code>+------+------------+------------+
+| nom  | idCommande | prix_total |
++------+------------+------------+
+| Mutz |          4 |     179.25 |
+| Mutz |          8 |      36.00 |
++------+------------+------------+</code></pre>
+<ul>
+<li><strong>R7</strong> : Afficher le nom des clients ayant passés une commande, l'identifiant de leur commande, le prix total HT, la tva et le prix ttc ordonnées par prix (le prix dans la table est HT et la tva est de 20 %). L’affichage est trié par le prix_total_TTC dans l’ordre croissant.</li>
+</ul>
+<pre><code>+--------+------------+---------------+-------+----------------+
+| nom    | idCommande | prix_total_HT | TVA   | prix_total_TTC |
++--------+------------+---------------+-------+----------------+
+| Rato   |          6 |          4.50 |  0.90 | 5.40           |
+| Walter |          7 |          7.50 |  1.50 | 9.00           |
+| Goerig |          5 |         12.00 |  2.40 | 14.40          |
+| Walter |          3 |         35.25 |  7.05 | 42.30          |
+| Mutz   |          8 |         36.00 |  7.20 | 43.20          |
+| Goerig |          1 |         68.24 | 13.65 | 81.89          |
+| Rato   |          2 |         75.24 | 15.05 | 90.29          |
+| Mutz   |          4 |        179.25 | 35.85 | 215.10         |
++--------+------------+---------------+-------+----------------+</code></pre>
+<p><strong><span class="underline">Un peu plus difficile (jointure à gauche ou à droite) :</span></strong></p>
+<ul>
+<li><strong>R8</strong> : Afficher pour chaque produit, la quantité commandée, l’année de la commande et l’identifiant de la commande.<br />
+L’affichage est trié par la désignation de l’article par ordre croissant puis par l’année de la commande dans un ordre décroissant puis par la quantité commandée dans un ordre décroissant et enfin par identifiant de commande.<!--    group by et sum ne servent à rien à faire  --></li>
+</ul>
+<pre><code>
++----------------------------------+-------------+---------------+------------+
+| designation                      | QteCommande | anneeCommande | idCommande |
++----------------------------------+-------------+---------------+------------+
+| Choux ( légume )                 |           6 |          2020 |          2 |
+| Coca cola ( boisson )            |          12 |          2020 |          1 |
+| Fenouil ( légume )               |           3 |          2021 |          3 |
+| Fenouil ( légume )               |           4 |          2020 |          1 |
+| Fenouil ( légume )               |           4 |          2019 |          5 |
+| gâteau fraise (pâtisserie)       |          27 |          2020 |          4 |
+| Gâteaux chocolat ( pâtisserie)   |           3 |          2021 |          3 |
+| Haricot ( légume )               |           4 |          2020 |          1 |
+| Mouchoir ( hygiène)              |           6 |          2020 |          2 |
+| Perrier ( 1L eau )               |        NULL |          NULL |       NULL |
+| Petit pois ( légume )            |           6 |          2020 |          2 |
+| Petit pois ( légume )            |           6 |          2020 |          8 |
+| Pissenlit ( légume )             |        NULL |          NULL |       NULL |
+| Poireau ( légume )               |           3 |          2021 |          3 |
+| Poireau ( légume )               |           3 |          2020 |          6 |
+| Poivron ( légume )               |           4 |          2020 |          1 |
+| Pomme ( fruit )                  |           5 |          2020 |          4 |
+| Pomme de terre ( légume )        |           6 |          2020 |          2 |
+| Potiron ( légume )               |           5 |          2020 |          4 |
+| Radis ( légume )                 |           3 |          2021 |          3 |
+| Salade ( légume )                |        NULL |          NULL |       NULL |
+| Tomate ( légume )                |           5 |          2020 |          4 |
+| Tomate ( légume )                |           5 |          2020 |          7 |
+| Vittel ( 1L eau )                |        NULL |          NULL |       NULL |
++----------------------------------+-------------+---------------+------------+
+</code></pre>
+<ul>
+<li><strong>R9</strong> : Afficher les produits, la quantité commandée, l’année de la commande et l’identifiant de la commande des produits commandés en 2020 qui sont dans la liste des produits commandés en 2021.</li>
+</ul>
+<pre><code>+----------------------+-------------+---------------+------------+
+| designation          | QteCommande | anneeCommande | idCommande |
++----------------------+-------------+---------------+------------+
+| Fenouil ( légume )   |           4 |          2020 |          1 |
+| Poireau ( légume )   |           3 |          2020 |          6 |
++----------------------+-------------+---------------+------------+</code></pre>
+<ul>
+<li><strong>R10</strong> : Afficher le nombre de commandes de chaque client en 2020. Si le nombre de commande est 0, le résultat affiché doit être “null”, utiliser la fonction “<a href="https://www.w3schools.com/Sql/trymysql.asp?filename=trysql_func_mysql_coalesce" target="_blanck">coalesce</a>” pour remplacer “null” par “0” ; Utiliser la fonction “<a href="https://www.w3schools.com/Sql/func_mysql_ifnull.asp" target="_blanck">ifnull</a>” qui est identique à “coalesce” pour afficher “pas de commande” au lieu de “null”.<br />
+L’affichage est trié par le nombre de commande décroissant puis par le nom des clients.</li>
+</ul>
+<pre><code>+--------------+------------+-----------------+
+| nom          | nbCommande | anneeCommande   |
++--------------+------------+-----------------+
+| Rato         |          3 | 2020            |
+| Mutz         |          2 | 2020            |
+| Walter       |          1 | 2020            |
+| Goerig       |          1 | 2020            |
+| AMGHAR       |          0 | pas de commande |
+| dirand       |          0 | pas de commande |
+| SAINT DIZIER |          0 | pas de commande |
+| WOLF         |          0 | pas de commande |
+| TYRODE       |          0 | pas de commande |
+| DECOCK       |          0 | pas de commande |
+| duguet       |          0 | pas de commande |
+| molin        |          0 | pas de commande |
+| COTTARD      |          0 | pas de commande |
+| PETIT        |          0 | pas de commande |
+| METTEY       |          0 | pas de commande |
+| TERRAT       |          0 | pas de commande |
+| chaillet     |          0 | pas de commande |
+| DAROSEY      |          0 | pas de commande |
+| JAOUEN       |          0 | pas de commande |
+| BOUCHAUD     |          0 | pas de commande |
+| PAUTOT       |          0 | pas de commande |
+| LAMOTTE      |          0 | pas de commande |
+| SALVI        |          0 | pas de commande |
+| BISMUTH      |          0 | pas de commande |
+| ALANKAYA     |          0 | pas de commande |
+| ESSENBURGER  |          0 | pas de commande |
++--------------+------------+-----------------+</code></pre>
+<h1 id="modèle-conceptuel-de-données"><strong>Modèle Conceptuel de données</strong></h1>
+<p><strong>Établir le Modèle Conceptuel de Données (MCD) associé à ce Modèle Relationnel</strong> (MR ou MLD) avec le logiciel <a href="https://www.looping-mcd.fr/" target="_blanck">LOOPING-MCD</a></p>
+<p><br><br><br></p>
+<h1 id="annexe-faire-attention-aux-points-suivants">ANNEXE : faire attention aux points suivants :</h1>
+<p><strong>Lors de la création des tables</strong> :</p>
+<p>* Faire attention à l'ordre, on ne crée pas une table avec une contrainte sur une table qui n'existe pas.</p>
+<p>* Si un champ utilise l'attribut « AUTO_INCREMENT », celui-ci doit être une clé primaire.</p>
+<p><strong>Lors de la suppression des tables </strong>:<br />
+Faire attention à l'ordre, on ne supprime pas une table qui a sa clé primaire utilisée dans une contrainte d'une autre table (clé étrangère dans une autre table).<br />
+<strong>Lors de la création des contraintes</strong> sur les clés étrangères, en cas d'erreur :</p>
+<p>* Vérifier que vous avez créé le champ de la clé étrangère.</p>
+<p>* Le type des 2 champs reliés par la contraintes doivent être identiques (erreur fréquente : « int » relié à « unsigned int »).</p>
+<p>* ATTENTION aux noms des contraintes : pas de doublons dans la base de données (différents d'un nom de table ….), exemple « fk_table1_table2 ».</p>
+<p>* Vérifier que le le nom de l'autre table ainsi que sa clé primaire sont corrects.</p>
+<p><strong>Lors de l'importation des données :</strong></p>
+<p><strong>*</strong> Certaines tables utilisent des clés primaires de type « AUTO_INCREMENT » : si les champs sont nuls lors de l'importation, la clé primaire doit utiliser l'attribut « AUTO_INCREMENT ».</p>
+<p>* L'ordre des champs importés est important : <strong>respecter l'ordre de création du modèle logique</strong> (tables).</p>
+<h1 id="annexe-documentation">ANNEXE : documentation</h1>
+<p><a href="https://www.w3schools.com/sql/sql_join.asp" target="_blanck"><span class="underline">https://www.w3schools.com/sql/sql_join.asp</span></a></p>
+<p><a href="http://sql.sh/cours/jointures" target="_blanck"><span class="underline">http://sql.sh/cours/jointures</span></a></p>
+<h1 id="annexe-mcd-sur-différents-logiciels">ANNEXE MCD sur différents logiciels</h1>
+<p><strong>MCD (modèle conceptuel de données)</strong> : schéma à réaliser lors du partiel</p>
+<figure>
+<img src="img/jointure_tp2_img6.png" style="width:4.11319in;height:2.52986in" alt="" /><figcaption>MCD sur looping-mcd</figcaption>
+</figure>
+<figure>
+<img src="img/jointure_tp2_img7.png" style="width:4.11319in;height:2.52986in" alt="" /><figcaption>MCD sur JMERISE</figcaption>
+</figure>
+<p><br></p>
+<figure>
+<img src="img/jointure_tp2_img8.png" style="width:2.92431in;height:1.425in" alt="" /><figcaption>MLD sur looping-mcd</figcaption>
+</figure>
+<figure>
+<img src="img/jointure_tp2_img9.png" style="width:4.29167in;height:1.51319in" alt="" /><figcaption>MLD sur JMERISE</figcaption>
+</figure>
+<figure>
+<img src="img/jointure_tp2_img10.png" style="width:6.22222in;height:2.75694in" alt="" /><figcaption>ERD sur www.draw.io</figcaption>
+</figure>
+<!-- https://www.developpez.net/forums/d2080188/general-developpement/alm/modelisation/schema/mcd-gestion-d-magasin-vente-details/ 
+
+
+https://mariadb.com/kb/en/sql-mode/
+
+
+
+# **ERD (Entity RelationShip Diagram)**  pour les plus rapides
+
+Dessiner l'ERD de ce schéma (feuille de papier)
+
+En utilisant le modèle logique de données sur le logiciel ***JMerise***
+et ajouter les relations ManyToOne ( Texte « ManyToOne » et symboles)
+
+Dessiner l'ERD avec les contraintes de l'ORM doctrine :
+
+\- chaque entité possède pour clé primaire « **id **» (entier de type
+« AUTO\_INCREMENT »)\
+voir ANNEXE sur les « ERD » (logiciel utilisé :
+[[https://www.draw.io/?libs=general;uml]{.underline}](https://www.draw.io/?libs=general;uml)
+(dans basic, « Entity RelationShip Diagram ») )
+
+
+avec le formalisme du framework *laravel*, le schéma aurait la forme
+suivante :
+
+
+articles([id]{.underline}, designation, prix)\
+commandes([id]{.underline}, dateCommande, c*lient\_id\**)\
+lignes(c*[ommande\_id\*,article\_id\*]{.underline}*, quantite)\
+clients(id, nom, ville)\
+
+
+## [ANNEXE]{.underline}
+
+
+### **ERD (Entity RelationShip Diagram):**
+
+**Une entité c'est quoi ? =\>**
+[[**https://www.lucidchart.com/pages/fr/diagramme-entite-association\#section\_**3]{.underline}](https://www.lucidchart.com/pages/fr/diagramme-entite-association#section_3)
+
+[[https://www.lucidchart.com/pages/database-diagram/database-models]{.underline}](https://www.lucidchart.com/pages/database-diagram/database-models)
+**(**[[ERD]{.underline}](https://www.lucidchart.com/pages/er-diagrams)**)**
+
+<br>
+
+> **E.R.D. sur Symfony**
+>
+> **( Entity RelationShip Diagram )**
+>
+
+**annexe :**
+
+
+**ATTENTION: Il faut utiliser du CamelCase**
+
+* [[https://www.youtube.com/watch?v=tI\_5zCLQYug]{.underline}](https://www.youtube.com/watch?v=tI_5zCLQYug&feature=emb_rel_end)
+* [[https://stph.scenari-community.org/bdd/gen1/co/pri1c24.html]{.underline}](https://stph.scenari-community.org/bdd/gen1/co/pri1c24.html)
+
+](https://fr.wikipedia.org/wiki/Camel_case)
+
+
+
+![ERD résumé](img/jointure_tp2_img5.gif){width="8.189583333333333in" height="8.347222222222221in"}
+-->
+</body>
+</html>

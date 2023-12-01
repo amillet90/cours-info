@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV3.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<div class="titre">
+TP 3 SQL : compétitions de ski interne
+</div>
+<p>Soit le modèle relationnel suivant :</p>
+<p><br></p>
+<p><strong>station(<span class="underline"><strong>idStation</strong></span>,nomStation,altitude,pays)</strong><br />
+</p>
+<p><strong>competition(<span class="underline"><strong>idCompetition</strong></span>,libelleCompet,dateComp,#station_id)</strong><br />
+</p>
+<p><strong>classement(#skieur_id,#competition_id,classement)</strong><br />
+</p>
+<p><strong>comporte(<span class="underline">#competetion_id, #specialite_id</span>)</strong><br />
+</p>
+<p><strong>skieur(<span class="underline"><strong>idSkieur</strong></span> ,nomSkieur,<em>#specialite_id,#station_id</em>)</strong><br />
+</p>
+<p><strong>specialite(<span class="underline"><strong>idSpecialite</strong></span>,libelleSpecialite)</strong><br />
+</p>
+<p><br></p>
+<h1 id="sql-création-des-tables-et-importation-des-données">SQL, création des tables et importation des données</h1>
+<p>Écrire dans un fichier <em>script_tp3.sql</em> le script de création des tables correspondant au modèle ci dessus.</p>
+<p><br />
+</p>
+<ul>
+<li><p>Supprimer toutes les tables si elles existent.</p></li>
+<li><p>Créer toutes les tables si elles n'existent pas.</p></li>
+</ul>
+<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
+<ul>
+<li>Insérer les données des fichiers <strong>csv</strong> joints : utiliser les fichiers <em>CLASSEMENT.csv SKIEUR.csv COMPETITION.csv SPECIALITE.csv STATION.csv COMPORTE.csv</em> (les fichiers COMPORTEv2.csv CLASSEMENTv2.csv COMPETITIONv2.csv sont prévus pour la fin du TP)</li>
+</ul>
+<p><br></p>
+<h1 id="sql-traitement-de-linformation">SQL, traitement de l’information</h1>
+<p>Écrire les requêtes SQL suivantes :</p>
+<p><br />
+</p>
+<ol type="1">
+<li>Nombre de skieurs ayant participé à au moins une compé<span lang="en-US">tition.</span></li>
+</ol>
+<pre><code>+-------------------------+
+| NbreSkieurDansUneCompet |
++-------------------------+
+|                       6 |
++-------------------------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="2" type="1">
+<li>Nom de la station de chaque skieur (affichage : nom skieur + nom station)</li>
+</ol>
+<pre><code>+-----------+------------+
+| nomSkieur | nomStation |
++-----------+------------+
+| robert    | Chambery   |
+| jacques   | Tignes     |
+| paul      | Tignes     |
+| pierre    | Tignes     |
+| tom       | Tignes     |
+| edouard   | Verbier    |
++-----------+------------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="3" type="1">
+<li>Classement de la compétition de libellé ‘compet’ (affichage : nom skieur + classement)</li>
+</ol>
+<pre><code>+-----------+------------+---------------------------+
+| nomSkieur | classement | libelleCompet             |
++-----------+------------+---------------------------+
+| pierre    |          1 | compet cadet france       |
+| tom       |          2 | compet cadet france       |
+| jacques   |          3 | compet cadet france       |
+| robert    |          4 | compet cadet france       |
+| edouard   |          5 | compet cadet france       |
+| paul      |          1 | compet junior france      |
+| pierre    |          2 | compet junior france      |
+| robert    |          3 | compet junior france      |
+| jacques   |          4 | compet junior france      |
+| tom       |          5 | compet junior france      |
+| edouard   |          6 | compet junior france      |
+| paul      |          1 | competition cadet europe  |
+| jacques   |          2 | competition cadet europe  |
+| edouard   |          3 | competition cadet europe  |
+| robert    |          4 | competition cadet europe  |
+| jacques   |          1 | competition junior europe |
+| pierre    |          2 | competition junior europe |
+| edouard   |          3 | competition junior europe |
+| robert    |          4 | competition junior europe |
++-----------+------------+---------------------------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="4" type="1">
+<li>Liste des compétitions s’étant déroulées à ‘Tignes’ (nom de station) avec leur vainqueur (affichage : libellé Compétition, nom skieur vainqueur)</li>
+</ol>
+<pre><code>+--------------------------+-----------+
+| libelleCompet            | nomSkieur |
++--------------------------+-----------+
+| compet cadet france      | pierre    |
+| compet junior france     | paul      |
+| competition cadet europe | paul      |
++--------------------------+-----------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="5" type="1">
+<li><span lang="es-ES">Nombre de comp</span>étitions se déroulant dans chaque station (affichage : id station + nom station + nb de compétition)</li>
+</ol>
+<pre><code>+-----------+------------+-------------+
+| idStation | nomStation | nbrDeCompet |
++-----------+------------+-------------+
+|         3 | Chambery   |           2 |
+|         1 | Tignes     |           5 |
+|         2 | Verbier    |           1 |
++-----------+------------+-------------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="6" type="1">
+<li>Nombre de victoires à ‘Tignes’ pour chaque skieur (affichage : id skieur + nom skieur + nb victoires)</li>
+</ol>
+<pre><code>+----------+-----------+-----------------+
+| idSkieur | nomSkieur | NbreDeVictoires |
++----------+-----------+-----------------+
+|        2 | pierre    |               1 |
+|        3 | paul      |               2 |
++----------+-----------+-----------------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<ol start="7" type="1">
+<li>Noms des skieurs ayant toujours terminé premier (nom skieur)</li>
+</ol>
+<pre><code>+-----------+
+| nomSkieur |
++-----------+
+| paul      |
++-----------+</code></pre>
+<p>(exemple avec les données jointes)</p>
+<p><br />
+</p>
+<h1 id="question-3-analyse-du-mcd"><strong>Question 3</strong> : analyse du MCD</h1>
+<p><br />
+</p>
+<p>Utiliser un des 2 logiciels suivants :</p>
+<ul>
+<li><a href="https://www.looping-mcd.fr/">Looping-MCD</a></li>
+<li><a href="http://www.jfreesoft.com/JMerise/">JMerise</a></li>
+</ul>
+<p><strong>Utiliser de préférence looping</strong></p>
+<p><strong>Établir le modèle conceptuel des données associé à ce modèle relationnel.</strong></p>
+<p><br><br></p>
+<h1 id="requêtes-avancées-pour-les-plus-rapides">requêtes avancées (Pour les plus rapides)</h1>
+<p>Commencer par ajouter des enregistrements :</p>
+<ul>
+<li>supprimer le contenu des tables <strong>comporte classement</strong> et <strong>competition</strong> avec l’instruction <code>DELETE</code></li>
+<li>insérer des enregistrements avec les fichiers <em>COMPORTEv2.csv CLASSEMENTv2.csv COMPETITIONv2.csv</em>, il devrait y avoir des erreurs car les valeurs des clés primaires continues de s’incrémenter pour compétition</li>
+<li>pour la table <em>competition</em>, utiliser l’instruction <code>TRUNCATE</code> pour supprimer les enregistrements. Il faudra peut être autoriser l’instruction <code>TRUNCATE</code>, avec mettant la variable d’environement <em>FOREIGN_KEY_CHECKS</em> à 0 puis à 1 : <code>SET FOREIGN_KEY_CHECKS = 0;  ... SET FOREIGN_KEY_CHECKS = 1;</code></li>
+</ul>
+<p><br />
+</p>
+<p>Vérifier les requêtes ci-dessous avec les nouveaux enregistrements</p>
+<p><br />
+</p>
+<ul>
+<li>R8 : Noms des skieurs et leurs classements ayant toujours terminé dans les 3 premiers à “Tigne”, afficher aussi le club(la station) du skieur</li>
+</ul>
+<pre><code>+-----------+------------+------------+
+| nomSkieur | classement | nomStation |
++-----------+------------+------------+
+| pierre    |          1 | Tignes     |
+| pierre    |          2 | Tignes     |
+| paul      |          1 | Tignes     |
+| robert    |          3 | Chambery   |
+| robert    |          2 | Chambery   |
++-----------+------------+------------+</code></pre>
+<ul>
+<li>R9 : Noms des skieurs ayant toujours terminé dans les 3 premiers “à la maison” (dans leur station)</li>
+</ul>
+<pre><code>+-----------+
+| nomSkieur |
++-----------+
+| pierre    |
+| paul      |
++-----------+</code></pre>
+<ul>
+<li>En vous aidant du document</li>
+</ul>
+<p><br />
+</p>
+<p><a href="http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf">[http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf]</a></p>
+<p><span class="underline">(<a href="http://perso.modulonet.fr/placurie/Alsi1.htm" class="uri">http://perso.modulonet.fr/placurie/Alsi1.htm</a>)</span></p>
+<p><br />
+</p>
+<ul>
+<li>R10 : Modifier le MLD : sans supprimer la table, ajouter une colonne dans la table « classement » de nom « spécialite_id », créer une clé primaire sur cette table, ajouter une colonne « temps ». Un skieur ne peut pas se classer plusieurs fois dans la même spécialité. Mais si on supposait que un skieur peut se classer plusieurs fois dans la même spécialité lors de la même compétition, il faudrait ajouter une colonne « passage » ou « heureDepart ». (2.3)</li>
+</ul>
+<p><br />
+</p>
+<ul>
+<li>R11 : Donner la liste des stations dont sont originaires au moins 2 skieurs</li>
+</ul>
+<pre><code>+------------+
+| nomStation |
++------------+
+| Tignes     |
++------------+</code></pre>
+<p><br />
+</p>
+<ul>
+<li>R12 : Donner la liste des skieurs qui pratiquent la même spécialité que le skieur « paul »</li>
+</ul>
+<pre><code>+-----------+
+| nomSkieur |
++-----------+
+| tom       |
++-----------+</code></pre>
+<p><br />
+</p>
+<ul>
+<li>R13 : Insérer dans la table SKIEUR le skieur «alphand» qui a la même spécialité que le skieur «paul» et la même station que le skieur «pierre» (4.2)</li>
+</ul>
+<p><br />
+</p>
+<ul>
+<li>R14 : Créer une transaction qui supprime la station «chambery» et déplace toutes les compétions dans la station «valoire» (4.4)</li>
+</ul>
+<h1 id="erd-question-4">ERD <strong>Question 4</strong></h1>
+<p><br />
+</p>
+<p>Réaliser sur feuille de papier un schéma de type “ERD” compatible sur l’ORM Doctrine symfony</p>
+<p>(que des clés primaires qui portent comme nom “id” , <span class="underline"><strong>mettre en évidence</strong></span> <strong>les relations ManyToOne</strong>)</p>
+<p>voir le tuto ci-dessous (on retrouve le même concept pour l’ORM hibernate (java) )</p>
+<p><br></p>
+<p><a href="https://www.visual-paradigm.com/tutorials/generatehibernatemapwithoracledb.jsp">https://www.visual-paradigm.com/tutorials/generatehibernatemapwithoracledb.jsp</a></p>
+</body>
+</html>
