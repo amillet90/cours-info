@@ -204,8 +204,175 @@ pre {
   display: block;
   color : purple;
   background-color:#ffffcc;
+  padding : 0.5em;
 }
 
-strong {
-  color:red;
+.resultat{
+    background-color:#ffffee;
 }
+
+.titre{
+  border : 1px green solid;
+  text-align:center;
+  background-color:#ffffee;
+}
+
+
+.important {
+    display: block;
+    color : purple;
+    background-color:#ffffcc;
+    font-size: 1.2em;
+}
+
+.exercice {
+    display: block;
+    color : blue;
+    background-color:#ffccff;
+}
+
+table, th {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.rapide{
+color:purple;
+}
+
+.texte_rapide{
+  font-size: 1.2em;
+}
+
+.validation {
+    display: block;
+    color : blue;
+    background-color:yellow;
+    padding : 0.2em;
+}
+
+/*table          { margin: auto; }    */              /* centre le tableau dans la page */
+table, th, td  { border-collapse: collapse; border: solid 1px #999; padding: 3px; }  /* ajout bordures */
+caption        { caption-side: bottom; }          /* déplace la légende en-dessous du tableau */
+
+img {
+border-image: linear-gradient(#FFFFFF, #000000) 30;
+border: 1px solid;
+padding: 20px;
+text-align: center;
+}
+
+.rouge {
+  color: red;
+  font-weight: bold;
+
+}
+
+.underline {
+ text-decoration: underline; 
+}
+
+.vert {
+  color: green;
+}
+.bleu {
+  color: blue;
+}
+
+.noir {
+  color: black;
+}
+
+.orange {
+  color: orange;
+  font-weight: bold;
+
+}
+
+.evaluation {
+  border-image: linear-gradient(#FFFFFF, #000000) 30;
+  border: 1px solid;
+  display: block;
+  background-color: rgba(255, 255, 128, .5);
+  padding : 0.2em;
+}
+
+.underlineblue {
+ text-decoration: underline;
+ color: rgba(0, 0, 255, .5);
+}
+
+
+.modif {
+color:purple;
+background-color:moccasin;
+}
+.modifimp{
+color:purple;
+background-color:moccasin;
+}
+
+/*
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+#myDIV .code{
+  width: 80%;
+  padding: 6px 6px;
+}
+*/
+
+details {
+  /*font: 14px "Open Sans", Calibri, sans-serif;*/
+ /* width: 820px; */
+  cursor: pointer;
+}
+
+details > summary {
+  padding: 2px 6px;
+  /*width: 20em;*/
+  background-color: #ddd;
+  border: none;
+  box-shadow: 3px 3px 4px black;
+  cursor: pointer;
+}
+
+.gros {
+font-size:140%;
+}
+
+
+details  p, details {
+  /*border-radius: 0 0 10px 10px;*/
+  background-color: #ddd;
+  padding: 6px 6px;
+  margin: 0;
+  /*box-shadow: 3px 3px 4px black;*/
+}
+
+
+details[open] > summary {
+  background-color: #ccf;
+}
+details[open] > summary ::before {
+  content: '⬇️';
+}
+
+.requete {
+font-size: 17px;
+margin: 14px 0 14px 0;
+color:olive;
+font-weight: bolder;
+
+}
+
+
