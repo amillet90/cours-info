@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="instruction-select">instruction SELECT</h1>
+<p>SELECT “seul”</p>
+<ul>
+<li>Tester les 2 requêtes ci-dessous</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&#39;texte&#39;</span> ;  <span class="co">-- mysql et sqlserver</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&#39;texte&#39;</span> <span class="kw">FROM</span> dual;   <span class="co">-- Oracle (FROM est obligatoire)</span></span></code></pre></div>
+<p>FROM permet le rajout des Noms des objets du serveur SQL (tables, colonnes(champs))</p>
+<h2 id="les-commentaires">Les commentaires</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">-- commentaires</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">/* commentaires pour les bloques */</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a># pas conventionnel mais fonctionne sur MYSQL (voir coloration du code par l<span class="st">&#39;éditeur !)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="st">// interdit</span></span></code></pre></div>
+<h2 id="synonymes-alias-des-noms-des-objets">synonymes / ALIAS des noms des OBJETS</h2>
+<p>Utiliser des synonymes (ALIAS) de noms de tables</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">SELECT</span> marq.libelle <span class="kw">AS</span> NomMarque</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>, tel.prix</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>, tel.proprietaire_id</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">FROM</span> TD_marque_tel <span class="kw">AS</span> marq</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_telephone <span class="kw">AS</span> tel</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">WHERE</span> marq.idMarque <span class="op">=</span> tel.marque_id;</span></code></pre></div>
+<p><strong>Le mot clé AS n’est pas obligatoire sur <a href="http://dev.mysql.com/doc/refman/5.7/en/select.html">MYSQL</a></strong></p>
+<p><br></p>
+<p>ATTENTION à l’ordre de traitement un alias dans le nom des champs sélectionnés ne peut pas être utilisé dans le WHERE contrairement à un ALIAS derrière le nom d’une table</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>                ordre d’exécution dans le moteur de base de données</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">SELECT</span>            <span class="co">-- 3        -- PROJECTION   </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">FROM</span>              <span class="co">-- 1        -- SELECTION   </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">WHERE</span>             <span class="co">-- 2        -- RESTRICTION : condition sur la SELECTION    </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">HAVING</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>          <span class="co">-- 4</span></span></code></pre></div>
+<p>REMARQUE : (à corriger)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SELECT</span> type_id marque_id , <span class="fl">1.2</span><span class="op">*</span>prix <span class="kw">AS</span> Prix_TTC</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_telephone <span class="kw">AS</span> c;</span></code></pre></div>
+<p>marque_id est un alias, erreur classique !</p>
+<h1 id="null">NULL</h1>
+<h2 id="problématique">problématique</h2>
+<ul>
+<li>Tester les 2 requêtes ci-dessous :</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_telephone;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">FROM</span> TD_telephone </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">WHERE</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>couleur <span class="op">=</span> <span class="st">&#39;ROUGE&#39;</span> <span class="kw">OR</span> couleur <span class="op">&lt;&gt;</span> <span class="st">&#39;ROUGE&#39;</span>;</span></code></pre></div>
+<ul>
+<li>le résultat ne comprend pas les valeurs “NULL”
+<ul>
+<li>logique dite " 3 états " VRAI FAUX INCONNU</li>
+<li>NULL = NULL : on ne connaît pas la valeur, ce n’est ni une chaîne vide ni la valeur 0. En SQL, l’opérateur est “IS NULL” ou “IS NOT NULL”</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">from</span> <span class="kw">table</span> <span class="kw">WHERE</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>NOM_CHAMP <span class="op">=</span> <span class="st">&#39;valeur&#39;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">OR</span> NOM_CHAMP <span class="op">&lt;&gt;</span> <span class="st">&#39;valeur&#39;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">OR</span> NOM_CHAMP <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<ul>
+<li>Modifier la requête ci-dessus pour sélectionner tous les téléphones</li>
+</ul>
+<p><a href="http://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html#operator_equal-to" class="uri">http://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html#operator_equal-to</a></p>
+<h2 id="concaténer-ou-faire-des-calculs-avec-des-valeurs-null">concaténer ou faire des calculs avec des valeurs ‘null’</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(type_id,<span class="st">&#39; - &#39;</span>,couleur) <span class="kw">FROM</span> TD_telephone;</span></code></pre></div>
+<ul>
+<li>que se passe t’il si un des 2 champs est “NULL” ?</li>
+<li>NULL est considéré comme chaîne vide sur oracle ( l’opérateur pour concaténer est || ), sur SQLSERVER, c’est comme MYSQL</li>
+</ul>
+<p><a href="http://www.w3schools.com/sql/sql_isnull.asp" class="uri">http://www.w3schools.com/sql/sql_isnull.asp</a></p>
+<ul>
+<li><strong>IFNULL</strong> (sur MYSQL) <strong>ISNULL</strong> (SQLSERVER) <strong>NVL</strong> (NullVaLue sur ORACLE)</li>
+<li><strong>COALESCE</strong>(param1, param2 si param1 is NULL, param3 si param2 is NULL, …) (sur les 3 SGBD car dans la norme SQL)</li>
+</ul>
+<p>ATTENTION si sur un champ le “NULL” est autorisé, lors de l’exécution d’une requête on peut avoir un résultat différent de celui désiré en cas de valeur NULL.</p>
+<hr />
+<ul>
+<li>Exercice :
+<ul>
+<li>utiliser les fonctions IFNULL pour afficher l’identifiant du type du téléphone, un “-”, la couleur.
+<ul>
+<li>Si le type_id n’est pas renseigné (NULL), afficher “NV”</li>
+<li>Si la couleur n’est pas renseignée (NULL), afficher l’identifiant du type du téléphone, un “-”, remplacer la couleur par NC</li>
+</ul></li>
+<li>écrire la même requête avec COALESCE qui fonctionne sur la majorité des SGBD (norme SQL)</li>
+<li>modifier votre requête pour n’afficher que les 3 premières lettres de la couleur</li>
+</ul></li>
+</ul>
+<pre><code>+---------------+
+| votreFonction |
++---------------+
+| SP - ROUGE    |
+| SP - NC       |
+| CL - NOIR     |
+| CO - BLANC    |
+| IP - NC       |
+| CO - BLANC    |
+| SP - ROUGE    |
+| NV            |
+| NV            |
++---------------+</code></pre>
+</body>
+</html>

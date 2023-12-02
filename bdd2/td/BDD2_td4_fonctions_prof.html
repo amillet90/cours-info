@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<ul>
+<li>SOLUTION POSSIBLES :</li>
+</ul>
+<p>```{.sql} – requête 1</p>
+<p>SELECT tel.idTelephone, m.libelle , t.libelle , tel.prix , tel.date_achat, DATE_ADD(tel.date_achat, INTERVAL 1 YEAR) as date_fin_garantie FROM TD_telephone AS tel INNER JOIN TD_type_tel AS t ON tel.type_id = t.idType INNER JOIN TD_marque_tel AS m ON tel.marque_id = m.idMarque ORDER BY tel.date_achat;</p>
+<p>– requête 2</p>
+<p>SELECT tel.idTelephone , m.libelle , t.libelle , tel.prix , tel.date_achat , CASE WHEN m.libelle like ‘%SAMSUNG%’ THEN DATE_ADD(tel.date_achat, INTERVAL 2 YEAR) WHEN m.libelle like ‘%APPLE%’ THEN DATE_ADD(tel.date_achat, INTERVAL 3 YEAR) ELSE DATE_ADD(tel.date_achat, INTERVAL 1 YEAR) END AS date_fin_garantie FROM TD_telephone AS tel INNER JOIN TD_type_tel AS t ON tel.type_id = t.idType INNER JOIN TD_marque_tel AS m ON tel.marque_id = m.idMarque ORDER BY tel.date_achat;</p>
+<p>– requête 3</p>
+<p>SELECT tel.proprietaire_id, m.libelle , t.libelle, tel.prix , tel.date_achat , DATEDIFF(CURDATE(), DATE_ADD(tel.date_achat, INTERVAL 2 YEAR)) as calcul_tmp, CASE WHEN m.libelle like ‘%SAMSUNG%’ THEN prix<em>0.07 WHEN m.libelle like ‘%APPLE%’ THEN prix</em>0.1 ELSE prix*0.05 END AS remise FROM TD_telephone AS tel INNER JOIN TD_type_tel AS t ON tel.type_id = t.idType INNER JOIN TD_marque_tel AS m ON tel.marque_id = m.idMarque WHERE prix IS NOT NULL AND DATEDIFF(CURDATE(), DATE_ADD(date_achat, INTERVAL 5 YEAR)) &lt; 0 ORDER BY tel.date_achat;</p>
+<p>SELECT tel.proprietaire_id, m.libelle , t.libelle, tel.prix , CONCAT( LPAD(CAST(DAY(date_achat) AS CHAR(2)),2,0),‘/’, LPAD(CAST(MONTH(date_achat) AS CHAR(2)),2,0),‘/’,YEAR(date_achat)) AS DATE_ACHAT_FR FROM TD_telephone AS tel INNER JOIN TD_type_tel AS t ON tel.type_id = t.idType INNER JOIN TD_marque_tel AS m ON tel.marque_id = m.idMarque ORDER BY tel.date_achat;</p>
+<p>~~~</p>
+</body>
+</html>

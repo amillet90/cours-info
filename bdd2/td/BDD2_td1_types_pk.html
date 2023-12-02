@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="sql-structured-query-language">SQL (Structured Query Language)</h1>
+<h2 id="rappel-sur-les-sgbdr">rappel sur les SGBDR</h2>
+<p>Les Systèmes de Gestion de Base de Données Relationnelles (SGBDR) permettent d’avoir :</p>
+<ul>
+<li>un Stockage organisé (performance, meilleur résultat)</li>
+<li>une Cohérence (contraintes, valeur unique)</li>
+<li>une Exploitation facile avec un langage pour obtenir le résultat voulu : le SQL</li>
+<li>une Évolution des structures : modification des tables</li>
+<li>des Contrôles d’accès : privilèges sur certaines tables (sécurité des données)</li>
+<li>une Conception pour être utilisée par plusieurs utilisateurs (problème de transaction, protection des données : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_traitement_transactionnel" target="_blanck">système transactionnel</a> )<br />
+</li>
+</ul>
+<p>Lien sur <a href="http://db-engines.com/en/ranking" target="_blanck">un classement des SGBD</a></p>
+<p>Les langages que l’on utilise classiquement (java) sont des langages dit “<a href="https://fr.wikipedia.org/wiki/Programmation_proc%C3%A9durale" target="_blanck">procédural</a>” ou “<a href="https://fr.wikipedia.org/wiki/Programmation_imp%C3%A9rative" target="_blanck">impératif</a>”<br />
+<strong>SQL est un langage “<a href="https://fr.wikipedia.org/wiki/Programmation_d%C3%A9clarative" target="_blanck">déclaratif</a>”</strong> : on ne définit pas d’étape pour arriver au résultat, on décrit le résultat</p>
+<p>Dans la documentation, SQL est composé de “sous ensembles”, “sous langages”</p>
+<p><br></p>
+<p>Cas particulier :</p>
+<p>Le <a href="https://fr.wikipedia.org/wiki/NoSQL" target="_blanck">NOSQL</a>, exemple “<a href="https://fr.wikipedia.org/wiki/MongoDB" target="_blanck">MongoDB</a>”</p>
+<ul>
+<li><a href="https://www.data-bird.co/sql/nosql" target="_blanck">avantages</a> : “…. base de données distribuée …. (disponibilité des données),…. flexibilité …”</li>
+<li>Inconvénients : les données sont <strong>dé-normalisées</strong> =&gt; " … <strong>anomalies</strong> … et les <strong>duplications de données</strong>… NoSQL ne s’associe pas avec une utilisation complexe des requêtes ….. le NoSQL ne peut pas faire de jointures complexes …. "</li>
+</ul>
+<p><br></p>
+<p>chatGPT : “<a href="https://en.wikipedia.org/wiki/Prompt_engineering" target="_blanck">prompt engeneering</a>”</p>
+<h2 id="configuration-et-stockage-de-données">configuration et stockage de données</h2>
+<pre><code>mysql&gt; select @@datadir;
+
+mysql&gt;SHOW VARIABLES LIKE &quot;%datadir%&quot;;
+
+mysql&gt;SHOW VARIABLES LIKE &quot;%dir%&quot;;
+
+mysql --help | grep cnf
+
+ 2001  sudo xed /etc/mysql/my.cnf
+ 2002  sudo xed /etc/mysql/mariadb.conf.d/50-server.cnf
+
+ 1142  ls /var/lib/mysql/
+ 1143  sudo ls /var/lib/mysql/
+ 1144  sudo ls /var/lib/
+ 1145  sudo ls /var/lib/mysql
+ 1146  sudo ls /var/lib/mysql/S3_BDD
+ 1147  sudo ls /var/lib/mysql/S2_BDD
+ 1148  sudo cat /var/lib/mysql/S2_BDD/ADHERENT.ibd
+
+ 1149  sudo cat /var/lib/mysql/S2_BDD/ADHERENT.frm</code></pre>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04" target="_blanck">https://www.digitalocean.com/community/tutorials/how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04</a> <br></p>
+<h2 id="les-types-de-langages-sous-ensembles-de-commandes-instructions-en-sql">les types de langages (sous ensembles de commandes, instructions) en SQL</h2>
+<ul>
+<li><strong>D.M.L. (Data Manipulation Language)</strong> : SELECT INSERT UPDATE DELETE “manipuler les enregistrements (contenu des tables)”</li>
+<li><strong>D.D.L. (Data Definition Language)</strong> : CREATE ALTER DROP “manipuler la structure des tables (vues …)”</li>
+<li><strong>D.C.L. (Data Control Language)</strong> : GRANT REVOKE (DENY) “donner des droits sur la manipulation des structures de la B.D.”</li>
+<li><em>T.C.L. (Transaction Control Language)</em> : BEGIN/START ; COMMIT / END ; ROOLBACK “gère l’environnement transactionnel du moteur de base de données”</li>
+</ul>
+<p>Connaître ces mots clés facilite la recherche d’informations dans la documentation d’un SGBDR.</p>
+<h2 id="origine-du-sql-algèbre-relationnelle">origine du SQL : algèbre relationnelle</h2>
+<p>Le SQL est issu de l’Algèbre Relationnelle introduite par CODD en 1970 (IBM). L’Algèbre Relationnelle permet de formaliser les opérations sur les ensembles. C’est une approche un peu plus mathématique avec un formalisme un peu différent.</p>
+<pre><code>                  -- ALGEBRE RELATIONNELLE      
+SELECT            -- PROJECTION                     
+FROM                                               
+WHERE             -- RESTRICTION                   
+GROUP BY
+HAVING
+ORDER BY                                           </code></pre>
+<ul>
+<li><a href="https://fr.wikipedia.org/wiki/Alg%C3%A8bre_relationnelle" target="_blanck">Ouvrir ce lien sur Wikipédia qui concerne l’algèbre relationnelle</a></li>
+</ul>
+<h1 id="création-dune-table">Création d’une table</h1>
+<h2 id="les-clés">les clés</h2>
+<ul>
+<li><strong>clé primaire</strong> : elle définit de façon unique l’enregistrement</li>
+<li><strong>clé étrangère</strong> : intégrité référentielle (contrainte)</li>
+</ul>
+<p>l’<strong><a href="https://fr.wikipedia.org/wiki/Int%C3%A9grit%C3%A9_r%C3%A9f%C3%A9rentielle" target="_blanck">Intégrité référentielle</a> est une situation dans laquelle pour chaque information d’une table A qui fait référence à une information d’une table B, l’information référencée existe dans la table B.</strong> L’intégrité référentielle est un gage de cohérence du contenu de la base de données.</p>
+<p><br></p>
+<p>Exemple particulier : Un employé passe des commandes et quitte l’entreprise. Si on supprime l’employé de la base de données, on a plus de référence avec ses commandes. Une solution consiste à ajouter un champ départ pour signaler la date à laquelle l’employé a quitté l’entreprise.</p>
+<p><br></p>
+<h2 id="schéma">schéma</h2>
+<ul>
+<li>Schéma : nom de familles, boite dans laquelle on dépose des objets</li>
+</ul>
+<p><br></p>
+<ul>
+<li>sur MYSQL le nom du schéma est le nom de la base de données.</li>
+<li>sur Oracle ou SqlServer, un schéma représente plutôt un conteneur d’objet auquel l’utilisateur a accès.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Sur certaines requêtes, vous pouvez préfixer le nom du schéma (base de données sur MYSQL).</li>
+</ul>
+<p><br></p>
+<p>Tester la commande ci dessous :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> INFORMATION_SCHEMA.<span class="kw">TABLES</span>;</span></code></pre></div>
+<p><br></p>
+<p><strong>TEST</strong> : accès aux données d’une BDD à une autre BDD</p>
+<ul>
+<li><p>se connecter depuis un terminal à votre 1ere base de données <code>mysql --user=votreLogin --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin</code></p></li>
+<li><p>se connecter depuis un terminal à votre 2eme base de données <code>mysql --user=votreLogin --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin_orm</code></p></li>
+<li><p><strong>afficher le contenu d’une table depuis les 2 connexions</strong></p></li>
+</ul>
+<p><br></p>
+<p>RAPPEL : <code>Select * from schema_name.table_name</code></p>
+<h2 id="types-de-données-en-sql">types de données en SQL</h2>
+<p>Documentations</p>
+<ul>
+<li><a href="https://msdn.microsoft.com/fr-fr/library/ms187752.aspx" target="_blanck">SQL server</a></li>
+<li><a href="https://docs.oracle.com/cd/B28359_01/server.111/b28318/datatype.htm#CNCPT012" target="_blanck">Oracle</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.7/en/data-types.html" target="_blanck">MySQL</a></li>
+</ul>
+<h3 id="les-dates">les dates</h3>
+<p><a href="http://dev.mysql.com/doc/refman/5.7/en/date-and-time-literals.html" target="_blanck">format dates</a> voir les exemples de la documentation ci-dessus (sensiblement identiques dans les différents SGBDR)</p>
+<p><strong>type “date/heure”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">date</td>
+<td>date</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">time</td>
+<td style="text-align: center;">time</td>
+<td style="text-align: center;">date</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">datetime</td>
+<td style="text-align: center;">datetime</td>
+<td style="text-align: center;">date</td>
+<td>timestamp</td>
+</tr>
+</tbody>
+</table>
+<h3 id="les-numériques">les numériques</h3>
+<ul>
+<li><strong>types numériques exacts</strong> : (INTEGER, SMALLINT, DECIMAL, and NUMERIC)
+<ul>
+<li>documentation MYSQL =&gt; salary DECIMAL(5,2) =&gt; values that can be stored in the salary column range from -999.99 to 999.99</li>
+<li>documentation SQL SERVER =&gt; Decimal et numeric sont synonymes et peuvent être utilisées indifféremment</li>
+<li>documentation ORACLE =&gt; For numeric columns, you can specify the column as: column_name NUMBER<br />
+Optionally, you can also specify a precision (total number of digits) and scale (number of digits to the right of the decimal point): column_name NUMBER (precision, scale)</li>
+</ul></li>
+</ul>
+<p><br></p>
+<p><strong>type “Numérique exact : entier”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">int</td>
+<td style="text-align: center;">int</td>
+<td style="text-align: center;">number(10)</td>
+<td>integer</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">byte</td>
+<td style="text-align: center;">tinyint</td>
+<td style="text-align: center;">number(3)</td>
+<td>smallint</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">smallint</td>
+<td style="text-align: center;">smallint</td>
+<td style="text-align: center;">number(5)</td>
+<td>smallint</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>précision : tinyint, smallint, int, bigint</li>
+</ul>
+<p><br></p>
+<p><strong>type “Numérique exact : avec virgule”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">decimal(n,d)</td>
+<td style="text-align: center;">decimal(n,d)</td>
+<td style="text-align: center;">number(n)</td>
+<td style="text-align: center;">numeric(n)</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver15" target="_blanck">decimal(n,d)</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>decimal(n,d) : nombre décimal de “n” chiffres dont “d” après la virgule, un <strong>alias</strong> est <strong>numeric</strong> <br></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>types numériques approximatifs</strong> : (FLOAT, REAL, and DOUBLE PRECISION)</li>
+</ul>
+<p><strong>type “Numérique approximatif” : réel </strong> <br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">real</td>
+<td style="text-align: center;"><a href="https://dev.mysql.com/doc/refman/5.7/en/numeric-types.html" target="_blanck">float</a></td>
+<td style="text-align: center;">binary_float</td>
+<td style="text-align: center;">real</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver15#approximate-numerics" target="_blanck">float</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">double</td>
+<td style="text-align: center;">doble</td>
+<td style="text-align: center;">binary_double</td>
+<td style="text-align: center;">double precision</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver15" target="_blanck">real</a></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Pour enregistrer une donnée qui est un numérique avec une virgule comme un prix, utiliser de préférence un type numérique exact (DECIMAL ou NUMBER(ORACLE))</strong>, sinon la valeur stockée ne sera pas exacte.</p>
+<h3 id="les-chaînes-de-caractères">les chaînes de caractères</h3>
+<ul>
+<li>CHAR, VARCHAR ; <strong>NCHAR, NVARCHAR</strong> permet de stocker des caractères UTF-8 : autres caractères que les caractères européens (existe sur ORACLE et SQL SERVER, mais n’existe pas sur MYSQL)</li>
+<li>CHAR et BINARY sur MYSQL (BINARY remplace NCHAR)</li>
+</ul>
+<p><strong>type “TEXTE”</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">varchar(n)</td>
+<td style="text-align: center;">varchar(n)</td>
+<td style="text-align: center;">varchar2(n)</td>
+<td>varchar(n)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">char(n)</td>
+<td style="text-align: center;">char(n)</td>
+<td style="text-align: center;">char(n)</td>
+<td>char(n)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">text</td>
+<td style="text-align: center;">text</td>
+<td style="text-align: center;">text</td>
+<td>clob</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://www.chine-nouvelle.com/outils/dictionnaire.html" class="uri">http://www.chine-nouvelle.com/outils/dictionnaire.html</a></p>
+<ul>
+<li>‘Bonjour’ 你好 nǐ hǎo</li>
+</ul>
+<p>Tester la requête ci-dessous:</p>
+<pre><code>SELECT &#39;你好&#39;;</code></pre>
+<p>Le TD suivant porte sur les problèmes liés aux chaînes de caractères</p>
+<h4 id="gros-objets">gros objets</h4>
+<ul>
+<li>sur ORACLE : CLOB BLOB (character binary)Large OBject</li>
+<li>sur MYSQL (BLOB : binary, TEXT : character)</li>
+<li>sur SQL SERVER : TEXT et NTEXT (character binary) (supprimer dans les prochaines versions)</li>
+</ul>
+<h3 id="les-booleens">les booleens</h3>
+<p>valeur “vrai” ou “faux” codée sur un octet</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">logical</td>
+<td style="text-align: center;">tinyint(1)</td>
+<td style="text-align: center;">number(1)</td>
+<td style="text-align: center;">booleen</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/bit-transact-sql?view=sql-server-ver15" target="_blanck">byte</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>sur mysql, c’est un entier dans lequel on place “0” ou “1”</li>
+<li>sur <a href="https://mariadb.com/kb/en/boolean/" target="_blanck">mariadb</a>, il existe des alias, mais ces alias ne fonctionne pas obligatoirement sur <a href="https://dev.mysql.com/doc/refman/8.0/en/other-vendor-data-types.html" target="_blanck">mysql d’Oracle</a></li>
+</ul>
+<h3 id="les-autres-types">les autres types</h3>
+<p>currency : valeur monétaire codée sur 8 octets comprenant 15 chiffres + 4 décimales</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">currency</td>
+<td style="text-align: center;">decimal(19,4)</td>
+<td style="text-align: center;">number(19,4)</td>
+<td style="text-align: center;">money</td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/money-and-smallmoney-transact-sql?view=sql-server-ver15" target="_blanck">money</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="propriété-auto_increment-sur-msql">Propriété AUTO_INCREMENT sur MSQL</h1>
+<p>AUTO_INCREMENT : on doit mettre à NULL le champ lors de la création d’un enregistrement. Il est interdit de mettre une valeur sur SQLSERVER, c’est autorisé sur MYSQL.<br />
+</p>
+<ul>
+<li>de type INT avec auto-incrémentation à chaque nouvelle entité</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">Oracle</th>
+<th style="text-align: center;">PostgreSQL</th>
+<th>SQL server</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://www.w3schools.com/sql/sql_autoincrement.asp" target="_blanck">AUTOINCREMENT</a></td>
+<td style="text-align: center;"><a href="https://www.w3schools.com/sql/sql_autoincrement.asp" target="_blanck">int AUTO_INCREMENT</a></td>
+<td style="text-align: center;"><a href="https://livesql.oracle.com/apex/livesql/file/content_GL1PAE2CYMKDK32A42NZIGJVR.html" target="_blanck">number(10) + trigger</a></td>
+<td style="text-align: center;"><a href="https://www.tutorialspoint.com/postgresql/postgresql_using_autoincrement.htm" target="_blanck">serial</a></td>
+<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15" target="_blanck">identity(seed,increment)</a></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://mariadb.com/kb/en/auto_increment/" target="_blanck">documentation mariadb</a></p>
+<p>ORACLE : c’est plus compliqué, utilisation d’un mécanisme de séquenceur (objet qui gère l’incrémentation des numéros =&gt; déclencheur(comme un <a href="https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1973090-triggers" target="_blanck">TRIGGER</a> qui incrémente ce numéro)</p>
+<p><br> Ce mot clé prend une forme différente selon le SGBDR, voir <a href="https://www.w3schools.com/sql/sql_autoincrement.asp" target="_blanck">AUTO_INCREMENT</a> ou sur <a href="https://www.tutorialspoint.com/postgresql/postgresql_using_autoincrement.htm" target="_blanck">postgresql</a> <br></p>
+<pre><code>DROP TABLE IF EXISTS TD_demo1;
+CREATE TABLE TD_demo1(
+id INT AUTO_INCREMENT,
+CONSTRAINT PK_id_TD_demo1 PRIMARY KEY (id)
+);
+
+INSERT INTO TD_demo1 VALUES (NULL);
+INSERT INTO TD_demo1 VALUES (NULL);
+SELECT LAST_INSERT_ID();
+
+SELECT * FROM TD_demo1;
+SHOW CREATE TABLE TD_demo1;
+
+DELETE FROM TD_demo1;
+
+INSERT INTO TD_demo1 VALUES (NULL);
+INSERT INTO TD_demo1 VALUES (NULL);
+SELECT LAST_INSERT_ID();
+
+SELECT * FROM TD_demo1;
+SHOW CREATE TABLE TD_demo1;
+
+TRUNCATE TABLE  TD_demo1;
+
+INSERT INTO TD_demo1 VALUES (NULL);
+SELECT LAST_INSERT_ID();
+
+SELECT * FROM TD_demo1;
+SHOW CREATE TABLE TD_demo1;
+DROP TABLE IF EXISTS TD_demo1;</code></pre>
+<p>rôle de : <code>ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</code> en fin de création de table</p>
+<ul>
+<li><strong>ENGINE=InnoDB</strong> =&gt; moteur de traitement de la base de données : InnoDB permet la gestion de clés étrangères <a href="http://dev.mysql.com/doc/refman/5.7/en/storage-engines.html" target="_blanck">documentation</a></li>
+<li><strong>AUTO_INCREMENT</strong> =&gt; voir exemple</li>
+</ul>
+<p><br> <br> <strong>LAST_INSERT_ID</strong></p>
+<ul>
+<li>Pour récupérer et utiliser le dernier identifiant créé :</li>
+</ul>
+<pre><code>SELECT LAST_INSERT_ID();</code></pre>
+<ul>
+<li><p><code>SCOPE_IDENTITY</code> sur SQL SERVEUR</p></li>
+<li><p><code>SELECT mytable_seq.nextval MyTableID FROM DUAL</code> (before we did any inserts) sur ORACLE</p></li>
+</ul>
+<p><strong>TEST</strong> :</p>
+<ul>
+<li><p>ouvrir 2 terminaux sur la même base de données (2 sessions), insérer 2 valeurs dans l’exemple ci-dessus, afficher le dernier ID créé : conclusion</p></li>
+<li><p>comparer LAST_INSERT_ID avec <code>SELECT MAX(id) FROM TD_demo1;</code> dans les 2 terminaux</p></li>
+<li><p>tester l’alias <code>SERIAL</code></p></li>
+</ul>
+<pre><code>DROP TABLE IF EXISTS TD_demo1;
+CREATE TABLE TD_demo1(
+id SERIAL
+);
+DESCRIBE TD_demo1;
+SHOW CREATE TABLE TD_demo1;
+DROP TABLE IF EXISTS TD_demo1;</code></pre>
+<p>REMARQUE : ATTENTION, les clés étrangéres doivent avoir le même type que les clés primaires</p>
+<h1 id="les-clés-étrangéres">les clés étrangéres</h1>
+<pre><code>-- pas d&#39;utilisation de compteur : AUTO_INCREMENT
+
+DROP TABLE IF EXISTS TD_groupe;
+DROP TABLE IF EXISTS TD_etudiant;
+
+CREATE TABLE TD_groupe (
+    idGroupe int
+    , libelle varchar(25)
+    , PRIMARY KEY (idGroupe)
+);
+SHOW CREATE TABLE TD_groupe;
+
+CREATE TABLE TD_etudiant (
+    noEtudiant int
+    , nomEtudiant varchar(25)
+    , idGroupe int
+    , PRIMARY KEY (noEtudiant)
+    , CONSTRAINT fk_TD_etudiant_groupe
+        FOREIGN KEY (idGroupe) 
+        REFERENCES TD_groupe(idGroupe)
+);
+SHOW CREATE TABLE TD_etudiant;
+
+INSERT INTO TD_groupe VALUES(1,&#39;S2A1&#39;);  -- id 1
+INSERT INTO TD_groupe VALUES(2,&#39;S2A2&#39;); -- id 2
+INSERT INTO TD_groupe VALUES(3,&#39;S2bisA1&#39;); -- id 3
+
+INSERT INTO TD_etudiant VALUES(1,&#39;paul&#39;,1);
+INSERT INTO TD_etudiant VALUES(2,&#39;pierre&#39;,2);
+INSERT INTO TD_etudiant VALUES(3,&#39;toto&#39;,3);
+
+SELECT * FROM TD_etudiant;
+UPDATE TD_groupe SET idGroupe=25 WHERE idGroupe=2;
+SELECT * FROM TD_etudiant;
+DELETE FROM  TD_groupe  WHERE idGroupe=1;
+SELECT * FROM TD_etudiant;
+SELECT * FROM TD_groupe;
+
+DROP TABLE IF EXISTS TD_etudiant;
+DROP TABLE IF EXISTS TD_groupe;
+SHOW TABLES;</code></pre>
+<p><br></p>
+<ul>
+<li><p>ajouter dans la clé étrangére <code>ON UPDATE CASCADE</code></p></li>
+<li><p>ajouter dans la clé étrangére <code>ON DELETE CASCADE</code></p></li>
+<li><p>TESTER</p></li>
+</ul>
+<p><br><br></p>
+<ul>
+<li><p>remplacer le mot clé <code>CASCADE</code> par <code>SET NULL</code></p></li>
+<li><p>TESTER</p></li>
+</ul>
+<p><br><br></p>
+<ul>
+<li><p>remplacer le mot clé <code>CASCADE</code> par <code>NO ACTION</code></p></li>
+<li><p>TESTER (conclusion : option par défaut)</p></li>
+</ul>
+<h1 id="uuid-universally-unique-identifier">UUID : universally Unique Identifier</h1>
+<p>wikipedia : Il existe <a href="https://fr.wikipedia.org/wiki/Universally_unique_identifier" target="_blanck">plusieurs algorithmes (versions) pour calculer un UUID</a></p>
+<p><br></p>
+<p>UUID existe en <a href="https://docs.python.org/3/library/uuid.html" target="_blanck">python</a>, <a href="https://www.npmjs.com/package/uuid" target="_blanck">javascript</a></p>
+<p>documentation <a href="https://mariadb.com/kb/en/uuid/" target="_blanck">SQL uuid</a> ; <a href="https://mariadb.com/kb/en/uuid-data-type/" target="_blanck">SQL uuid type</a></p>
+<pre><code>
+DROP TABLE IF EXISTS TD_etudiant;
+
+
+CREATE TABLE TD_etudiant (
+    noEtudiant varchar(255)
+    , nomEtudiant varchar(25)
+    , idGroupe int
+    , PRIMARY KEY (noEtudiant)
+);
+SHOW CREATE TABLE TD_etudiant;
+
+
+INSERT INTO TD_etudiant VALUES(UUID(),&#39;paul&#39;,1);
+INSERT INTO TD_etudiant VALUES(UUID(),&#39;pierre&#39;,2);
+INSERT INTO TD_etudiant VALUES(UUID(),&#39;toto&#39;,3);
+
+SELECT * FROM TD_etudiant;
+
+DROP TABLE IF EXISTS TD_etudiant;
+SHOW TABLES;</code></pre>
+<ul>
+<li>UUID <a href="https://www.mysqltutorial.org/mysql-uuid/" target="_blanck">https://www.mysqltutorial.org/mysql-uuid/</a> <br></li>
+</ul>
+<p><strong>Avantages :</strong></p>
+<ul>
+<li><strong>valeur unique</strong> : Les valeurs UUID sont uniques dans les tables, les bases de données et même les serveurs, ce qui vous permet de fusionner des lignes de différentes bases de données ou de répartir les bases de données sur les serveurs.</li>
+<li><strong>plus sécurisé</strong> : Les valeurs UUID n’exposent pas les informations sur vos données, elles sont donc plus sûres à utiliser dans une URL. Par exemple, si un client avec l’identifiant 10 accède à son compte via <code>http://www.example.com/customers/10/</code> comme URL, il est facile de deviner qu’il y a un client 11, 12, etc., et cela pourrait être une cible pour une attaque.</li>
+<li><strong>calcul coté application possible</strong> : Les valeurs UUID peuvent être générées n’importe où, ce qui évite un aller-retour vers le serveur de base de données. Cela simplifie également la logique de l’application. Par exemple, pour insérer des données dans une table parent et des tables enfants, vous devez d’abord insérer dans la table parent, obtenir l’identifiant généré, puis insérer des données dans les tables enfants. En utilisant UUID, vous pouvez générer la valeur de clé primaire de la table parent à l’avance et insérer des lignes dans les tables parent et enfant en même temps au sein d’une transaction.</li>
+</ul>
+<p><br></p>
+<p><strong>Inconvénient :</strong></p>
+<ul>
+<li><strong>plus de mémoire</strong> : Le stockage des valeurs UUID (16 octets) prend plus de stockage que les entiers (4 octets) ou même les grands entiers (8 octets).</li>
+<li><strong>débogage difficile</strong> : Le débogage semble être plus difficile, imaginez l’expression <code>WHERE id = 'df3b7cb7-6a95-11e7-8846-b05adad3f0ae'</code> au lieu de<code>WHERE id = 10</code></li>
+<li><strong>performance moindre</strong> : L’utilisation de valeurs UUID peut entraîner des problèmes de performances en raison de leur taille et de leur non-commande.</li>
+</ul>
+<p><br> REFLEXION :</p>
+<ul>
+<li><strong>utilisation de 2 clés ?</strong> <a href="https://www.jdecool.fr/blog/2018/07/23/la-gestion-des-uuid-dans-mysql.html" target="_blanck">https://www.jdecool.fr/blog/2018/07/23/la-gestion-des-uuid-dans-mysql.html</a></li>
+<li><strong>passage des “uuid” en binaire ?</strong></li>
+</ul>
+<!-- https://learntutorials.net/fr/mysql/topic/5771/transaction -->
+<!--
+
+* Exécuter les commandes SQL suivantes pour supprimer les « warnings » : (dates qui ont prises comme valeur "0000-00-00")
+
+
+![](img/tp5_img1_1.jpg){width=14cm}
+
+<br>
+Remarque: 
+La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables sont mises par défaut `NO_ZERO_DATE` et `NO_ZERO_IN_DATE`, il est donc interdit sauf si l’on change ces variables d’utiliser des dates ayant pour valeur `’0000-00-00’`.
+
+* Si vous rencontrez des problèmes d’encodage, vous pouvez tester la commande suivante :
+
+
+![](img/tp5_img1_2.jpg){width=10cm}
+
+-->
+</body>
+</html>

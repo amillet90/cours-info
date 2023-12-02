@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="jointure-relationnelle">jointure relationnelle</h1>
+<p>Dans une requête, si les noms de colonnes ne sont pas ambiguës, il n’est pas nécessaire de rajouter devant un champ le nom de la table.<br />
+Mais ce n’est pas “propre”, c’est difficile à relire, donc si il y a des jointures au minimum préfixer le nom des champs par de simple alias pour savoir à quelle table appartient chaque champ.</p>
+<h2 id="jointure-interne">jointure interne</h2>
+<p>C’est la jointure par défaut <strong>celle que vous devez maîtriser parfaitement</strong></p>
+<p>Il existe 2 manières de réaliser (écrire) une jointure interne :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">&lt;</span>fields<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">FROM</span> TableA </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>[<span class="kw">INNER</span>] <span class="kw">JOIN</span> TableB  <span class="kw">ON</span> TableA.PrimaryKey <span class="op">=</span> TableB.ForeignKey;</span></code></pre></div>
+<ul>
+<li>ancienne notation</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">&lt;</span>fields<span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">FROM</span> TableA , TableB </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">WHERE</span> TableA.PrimaryKey <span class="op">=</span> TableB.ForeignKey;</span></code></pre></div>
+<p>La première méthode d’écrire une jointure avec “INNER JOIN” est recommandée bien que un peu plus difficile à écrire au début, elle est plus normalisée plus rapide pour les moteurs de SGBDR. <strong>C’est cette méthode que vous devez privilégier</strong>.</p>
+<p>Si les clés dans les tables portent le même nom, avec le mot clé <a href="http://sql.sh/cours/jointures/natural-join">NATURAL</a>, il est possible de définir la jointure sans utiliser le mot clé “ON” (à titre d’information, éviter cette notation).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">&lt;</span>fields<span class="op">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">FROM</span> TableA </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">NATURAL</span> <span class="kw">JOIN</span> TableB;</span></code></pre></div>
+<p>Les Différents types de jointures :</p>
+<figure>
+<img src="BDD2_td5_img1.png" alt="" /><figcaption>jointures SQL</figcaption>
+</figure>
+<ul>
+<li>équijointure non-équijointure : pour l’équijointure la comparaison des clés se fait avec une égalité</li>
+<li>les jointures internes sont les jointures naturelles</li>
+<li>les jointures externes (droite gauche) permettent de rajouter les champs quand une des clés est “NULL”</li>
+<li>les autres cas sont très peu utilisés et peuvent être réalisés sur MYSQL grâce à l’opérateur UNION (qui est vu dans la suite du TD)</li>
+</ul>
+<p>Créer les 2 tables ci dessous :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> TD_EMPLOYE,TD_DEPARTEMENT;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span>  TD_DEPARTEMENT (</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    idDept <span class="dt">INT</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    nom <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    lieu <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idDept)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>);</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_DEPARTEMENT (idDept,nom,lieu)  <span class="kw">VALUES</span> (<span class="dv">10</span>,<span class="ot">&quot;recherche&quot;</span>,<span class="ot">&quot;Besançon&quot;</span>);</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_DEPARTEMENT (idDept,nom,lieu)  <span class="kw">VALUES</span> (<span class="dv">20</span>,<span class="ot">&quot;vente&quot;</span>,<span class="ot">&quot;Montbéliard&quot;</span>);</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_DEPARTEMENT (idDept,nom,lieu)  <span class="kw">VALUES</span> (<span class="dv">30</span>,<span class="ot">&quot;direction&quot;</span>,<span class="ot">&quot;Belfort&quot;</span>);</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_DEPARTEMENT (idDept,nom,lieu)  <span class="kw">VALUES</span> (<span class="dv">40</span>,<span class="ot">&quot;fabrication&quot;</span>,<span class="ot">&quot;Sochaux&quot;</span>);</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span>  TD_EMPLOYE (</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    idEmploye <span class="dt">INT</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    nom <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    fonction <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>    idResponsable <span class="dt">INT</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    date_embauche <span class="dt">date</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>    salaire <span class="dt">NUMERIC</span>(<span class="dv">8</span>,<span class="dv">2</span>),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    prime <span class="dt">NUMERIC</span>(<span class="dv">8</span>,<span class="dv">2</span>),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    departement_id <span class="dt">INT</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idEmploye)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>);</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_EMPLOYE(nom,idEmploye,fonction,idResponsable,date_embauche,salaire,prime,departement_id) <span class="kw">VALUES</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>(<span class="st">&#39;MARTIN&#39;</span>,<span class="dv">16712</span>,<span class="st">&#39;directeur&#39;</span>,<span class="dv">25717</span>,<span class="st">&#39;2000-05-23&#39;</span>,<span class="dv">8000</span>,<span class="kw">NULL</span>,<span class="dv">30</span>);</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_EMPLOYE(nom,idEmploye,fonction,idResponsable,date_embauche,salaire,prime,departement_id) <span class="kw">VALUES</span> </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>(<span class="st">&#39;DUPONT&#39;</span>,<span class="dv">17574</span>,<span class="st">&#39;administratif&#39;</span>,<span class="dv">16712</span>,<span class="st">&#39;2005-05-03&#39;</span>,<span class="dv">1800</span>,<span class="kw">NULL</span>,<span class="dv">30</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a>(<span class="st">&#39;DUPOND&#39;</span>,<span class="dv">26691</span>,<span class="st">&#39;commercial&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;1998-04-04&#39;</span>,<span class="dv">5000</span>,<span class="dv">500</span>,<span class="dv">20</span>),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>(<span class="st">&#39;LAMBERT&#39;</span>,<span class="dv">25012</span>,<span class="st">&#39;administratif&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;2001-03-14&#39;</span>,<span class="kw">NULL</span>,<span class="dv">2400</span>,<span class="dv">20</span>),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>(<span class="st">&#39;JOUBERT&#39;</span>,<span class="dv">25717</span>,<span class="st">&#39;president&#39;</span>,<span class="kw">NULL</span>,<span class="st">&#39;1992-08-10&#39;</span>,<span class="dv">10000</span>,<span class="kw">NULL</span>,<span class="dv">30</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a>(<span class="st">&#39;LEBRETON&#39;</span>,<span class="dv">16034</span>,<span class="st">&#39;commercial&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;2001-06-01&#39;</span>,<span class="dv">3000</span>,<span class="dv">0</span>,<span class="dv">20</span>),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a>(<span class="st">&#39;MARTIN&#39;</span>,<span class="dv">17147</span>,<span class="st">&#39;commercial&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;2005-05-03&#39;</span>,<span class="dv">4000</span>,<span class="dv">500</span>,<span class="dv">20</span>),</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a>(<span class="st">&#39;PAQUEL&#39;</span>,<span class="dv">27546</span>,<span class="st">&#39;commercial&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;1993-09-03&#39;</span>,<span class="dv">4400</span>,<span class="dv">1000</span>,<span class="dv">20</span>),</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a>(<span class="st">&#39;LEFEBVRE&#39;</span>,<span class="dv">25935</span>,<span class="st">&#39;commercial&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;1994-01-11&#39;</span>,<span class="dv">4700</span>,<span class="dv">400</span>,<span class="dv">20</span>),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a>(<span class="st">&#39;GARDARIN&#39;</span>,<span class="dv">15155</span>,<span class="st">&#39;ingenieur&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;1995-03-22&#39;</span>,<span class="dv">4800</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a>(<span class="st">&#39;SIMON&#39;</span>,<span class="dv">26834</span>,<span class="st">&#39;ingenieur&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;1998-10-04&#39;</span>,<span class="dv">4000</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a>(<span class="st">&#39;DELOBEL&#39;</span>,<span class="dv">16278</span>,<span class="st">&#39;ingenieur&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;2004-11-16&#39;</span>,<span class="dv">4200</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a>(<span class="st">&#39;ADIBA&#39;</span>,<span class="dv">25067</span>,<span class="st">&#39;ingenieur&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;1997-10-05&#39;</span>,<span class="dv">6000</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a>(<span class="st">&#39;CODD&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;directeur&#39;</span>,<span class="dv">25717</span>,<span class="st">&#39;1985-11-12&#39;</span>,<span class="dv">11000</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a>(<span class="st">&#39;LAMERE&#39;</span>,<span class="dv">27047</span>,<span class="st">&#39;directeur&#39;</span>,<span class="dv">25717</span>,<span class="st">&#39;1999-09-07&#39;</span>,<span class="dv">9000</span>,<span class="kw">NULL</span>,<span class="dv">20</span>),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a>(<span class="st">&#39;BALIN&#39;</span>,<span class="dv">17232</span>,<span class="st">&#39;administratif&#39;</span>,<span class="dv">24533</span>,<span class="st">&#39;1997-10-03&#39;</span>,<span class="dv">2700</span>,<span class="kw">NULL</span>,<span class="dv">10</span>),</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a>(<span class="st">&#39;BARA&#39;</span>,<span class="dv">24831</span>,<span class="st">&#39;administratif&#39;</span>,<span class="dv">16712</span>,<span class="st">&#39;1998-11-10&#39;</span>,<span class="dv">3000</span>,<span class="kw">NULL</span>,<span class="dv">30</span>),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a>(<span class="st">&#39;toto&#39;</span>,<span class="st">&#39;00001&#39;</span>,<span class="st">&#39;livreur de pizzas&#39;</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>);</span></code></pre></div>
+<p><strong>EXERCICES : les différents cas vont être présentés à l’aide d’exemples </strong></p>
+<h2 id="jointure">jointure</h2>
+<ul>
+<li>R1 : Réaliser la jointure entre les 2 tables et afficher le nom, la fonction et le département de chaque employé (avec INNER JOIN)</li>
+<li>R2 : Réaliser la même requête avec la deuxième écriture (sans INNER JOIN) ; ancienne notation moins performante</li>
+</ul>
+<p>Dans les 2 requêtes, <strong>le résultat sera trié selon l’ordre lexicographique sur le nom de département puis le nom d’employé</strong></p>
+<pre><code>+----------+---------------+----------------+
+| nom      | fonction      | nomDepartement |
++----------+---------------+----------------+
+| BARA     | administratif | direction      |
+| DUPONT   | administratif | direction      |
+| JOUBERT  | president     | direction      |
+| MARTIN   | directeur     | direction      |
+| ADIBA    | ingenieur     | recherche      |
+| BALIN    | administratif | recherche      |
+| CODD     | directeur     | recherche      |
+| DELOBEL  | ingenieur     | recherche      |
+| GARDARIN | ingenieur     | recherche      |
+| SIMON    | ingenieur     | recherche      |
+| DUPOND   | commercial    | vente          |
+| LAMBERT  | administratif | vente          |
+| LAMERE   | directeur     | vente          |
+| LEBRETON | commercial    | vente          |
+| LEFEBVRE | commercial    | vente          |
+| MARTIN   | commercial    | vente          |
+| PAQUEL   | commercial    | vente          |
++----------+---------------+----------------+</code></pre>
+<p><strong>reponse</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- R1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,D.nom <span class="kw">AS</span> nomDepartement</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nomDepartement, E.nom ;</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">-- il est possible d&#39;utiliser les ALIAS de la projection (SELECT) dans le ORDER BR </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">-- R2  ( ancienne notation ; moins performant)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,D.nom <span class="kw">AS</span> nomDepartement</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E, TD_DEPARTEMENT <span class="kw">AS</span> D </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">WHERE</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nomDepartement, E.nom ;</span></code></pre></div>
+<p><strong>Utiliser dans la suite le mot clé JOIN pour vos jointures</strong></p>
+<ul>
+<li>R3 : refaire la même chose avec une jointure externe à droite et à gauche</li>
+<li>Quelle est la différence avec le résultat précédent ?</li>
+</ul>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,D.nom <span class="kw">AS</span> nomDepartement</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nomDepartement, E.nom ;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">-- une ligne en plus </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">-- | toto     | livreur de pizzas | NULL      |</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,D.nom <span class="kw">AS</span> nomDepartement</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nomDepartement, E.nom ;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="co">-- une ligne en plus </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="co">-- | NULL     | NULL          | fabrication |</span></span></code></pre></div>
+<ul>
+<li>R4 : afficher le nombre d’employés par département</li>
+</ul>
+<pre><code>+----------------+----------------+
+| NombreEmployes | nomDepartement |
++----------------+----------------+
+|              4 | direction      |
+|              6 | recherche      |
+|              7 | vente          |
++----------------+----------------+
+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(E.nom) <span class="kw">as</span> NombreEmployes,D.nom <span class="kw">AS</span> nomDepartement</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> D.nom</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  D.nom;</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(E.nom) <span class="kw">as</span> NombreEmployes,D.nom <span class="kw">AS</span> nomDepartement, D.lieu</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> D.nom       <span class="co">-- , D.lieu</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  D.nom;</span></code></pre></div>
+<ul>
+<li>PROVOQUER une erreur de type <code>ONLY_FULL_GROUP_BY</code> ; Regarder la valeur de la variable <code>@@sql_mode</code> ; ajouter puis retirer le mode <code>ONLY_FULL_GROUP_BY</code></li>
+</ul>
+<pre><code>SELECT @@sql_mode ;
+
+
+
+-- ajouter le mode
+SET sql_mode=(SELECT CONCAT(@@sql_mode,&#39;,ONLY_FULL_GROUP_BY&#39;));
+-- supprimer le mode
+SET sql_mode=(SELECT REPLACE(@@sql_mode, &#39;ONLY_FULL_GROUP_BY&#39;, &#39;&#39;));</code></pre>
+<p>ne pas faire <code>SET sql_mode = '';</code> ; conséquence =&gt; <a href="https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html" target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html</a></p>
+<p><br></p>
+<ul>
+<li>R5 : Refaire la même chose avec une jointure externe à droite et à gauche</li>
+<li>Comment doit être la jointure pour obtenir le résultat ci dessous :</li>
+</ul>
+<pre><code>+---------------+-------------+
+| NombreEmploye | nom         |
++---------------+-------------+
+|             4 | direction   |
+|             0 | fabrication |
+|             6 | recherche   |
+|             7 | vente       |
++---------------+-------------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(E.nom) <span class="kw">as</span> NombreEmploye,D.nom</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> D.nom</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  D.nom;</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co">-- jointure à droite : compte les employés par département (EMPLOYE.departement_id IS NULL) : valeur NULL à droite de la jointure</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co">-- jointure à gauche : compte les employés n&#39;ayant n&#39;ayant pas de département (DEPARTEMENT.departement_id IS NULL) : valeur NULL à gauche de la jointure</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>|             <span class="dv">1</span> | <span class="kw">NULL</span>      |</span></code></pre></div>
+<ul>
+<li>R6 : Retrouver les départements n’ayant aucun employé.</li>
+</ul>
+<pre><code>+-------------+
+| nom         |
++-------------+
+| fabrication |
++-------------+
++---------------+-------------+
+| NombreEmploye | nom         |
++---------------+-------------+
+|             0 | fabrication |
++---------------+-------------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">SELECT</span> D.nom</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="kw">is</span> <span class="kw">NULL</span>;</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(E.nom) <span class="kw">as</span> NombreEmploye,D.nom</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT <span class="kw">AS</span> D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="kw">is</span> <span class="kw">NULL</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> D.nom;</span></code></pre></div>
+<h2 id="jointure-dune-table-à-elle-même">Jointure d’une table à elle-même</h2>
+<ul>
+<li>R7 : Donner pour chaque employé le nom de son supérieur hiérarchique.</li>
+</ul>
+<p><strong>le résultat sera trié selon l’ordre lexicographique sur la fonction du responsable puis le nom du responsable puis la fonction de l’employé puis le nom de l’employé</strong></p>
+<pre><code>+----------+---------------+----------------+---------------------+
+| nom      | fonction      | nomResponsable | FonctionResponsable |
++----------+---------------+----------------+---------------------+
+| BALIN    | administratif | CODD           | directeur           |
+| ADIBA    | ingenieur     | CODD           | directeur           |
+| DELOBEL  | ingenieur     | CODD           | directeur           |
+| GARDARIN | ingenieur     | CODD           | directeur           |
+| SIMON    | ingenieur     | CODD           | directeur           |
+| LAMBERT  | administratif | LAMERE         | directeur           |
+| DUPOND   | commercial    | LAMERE         | directeur           |
+| LEBRETON | commercial    | LAMERE         | directeur           |
+| LEFEBVRE | commercial    | LAMERE         | directeur           |
+| MARTIN   | commercial    | LAMERE         | directeur           |
+| PAQUEL   | commercial    | LAMERE         | directeur           |
+| BARA     | administratif | MARTIN         | directeur           |
+| DUPONT   | administratif | MARTIN         | directeur           |
+| CODD     | directeur     | JOUBERT        | president           |
+| LAMERE   | directeur     | JOUBERT        | president           |
+| MARTIN   | directeur     | JOUBERT        | president           |
++----------+---------------+----------------+---------------------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">SELECT</span> E1.nom,E1.fonction,E2.nom <span class="kw">as</span> nomResponsable,  E2.fonction <span class="kw">as</span> FonctionResponsable</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E1 </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_EMPLOYE <span class="kw">AS</span> E2 <span class="kw">ON</span> E1.idResponsable<span class="op">=</span> E2.idEmploye</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> FonctionResponsable, nomResponsable , fonction, nom;</span></code></pre></div>
+<ul>
+<li>R8 : Donner pour chaque employé le nom de son supérieur hiérarchique avec un supérieur hiérarchique qui n’a pas de supérieur.</li>
+</ul>
+<pre><code>+--------+-----------+----------------+---------------------+
+| nom    | fonction  | nomResponsable | FonctionResponsable |
++--------+-----------+----------------+---------------------+
+| MARTIN | directeur | JOUBERT        | president           |
+| CODD   | directeur | JOUBERT        | president           |
+| LAMERE | directeur | JOUBERT        | president           |
++--------+-----------+----------------+---------------------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">SELECT</span> E1.nom,E1.fonction,E2.nom <span class="kw">as</span> nomResponsable,  E2.fonction <span class="kw">as</span> FonctionResponsable</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E1 </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_EMPLOYE <span class="kw">AS</span> E2 <span class="kw">ON</span> E1.idResponsable<span class="op">=</span> E2.idEmploye</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="kw">WHERE</span> E2.idResponsable <span class="kw">is</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<h2 id="non-équijointure-la-jointure-nutilise-pas-entre-les-2-clés">non-équijointure (la jointure n’utilise pas “=” entre les 2 clés)</h2>
+<ul>
+<li>R9 : Quels sont les employés gagnant plus que SIMON ?</li>
+</ul>
+<pre><code>+----------+------------+----------+
+| nom      | fonction   | salaire  |
++----------+------------+----------+
+| GARDARIN | ingenieur  |  4800.00 |
+| DELOBEL  | ingenieur  |  4200.00 |
+| MARTIN   | directeur  |  8000.00 |
+| CODD     | directeur  | 11000.00 |
+| ADIBA    | ingenieur  |  6000.00 |
+| JOUBERT  | president  | 10000.00 |
+| LEFEBVRE | commercial |  4700.00 |
+| DUPOND   | commercial |  5000.00 |
+| LAMERE   | directeur  |  9000.00 |
+| PAQUEL   | commercial |  4400.00 |
++----------+------------+----------+</code></pre>
+<p><strong>reponse</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="kw">SELECT</span> E1.nom,E1.fonction,E1.salaire</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E1 </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_EMPLOYE <span class="kw">AS</span> E2 <span class="kw">ON</span> E1.salaire<span class="op">&gt;</span>E2.salaire</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="kw">WHERE</span> E2.nom <span class="kw">like</span> <span class="ot">&quot;SIMON&quot;</span>;</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a><span class="co">-- avec une sous interrogation (chapitre suivant)</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.salaire</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a><span class="kw">WHERE</span> E.salaire <span class="op">&gt;</span> (<span class="kw">SELECT</span> salaire</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a>         <span class="kw">FROM</span> TD_EMPLOYE </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a>         <span class="kw">WHERE</span> nom <span class="op">=</span> <span class="st">&#39;SIMON&#39;</span>);</span></code></pre></div>
+<h1 id="les-sous-interrogations">Les sous-interrogations</h1>
+<p>Une caractéristique puissante de SQL est la possibilité qu’un critère de recherche employé dans une clause WHERE (expression à droite d’un opérateur de comparaison) soit lui-même le résultat d’un SELECT ; c’est ce qu’on appelle une sous-interrogation.</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/any-in-some-subqueries.html" class="uri">https://dev.mysql.com/doc/refman/5.7/en/any-in-some-subqueries.html</a></p>
+<p>Remarque : Tout ces cas ne sont pas à connaître par cœur mais l’objectif est de vous montrer la complexité possible de certaines requêtes faites avec un SELECT</p>
+<h2 id="sous-interrogation-ramenant-une-seule-valeur">Sous-interrogation ramenant une seule valeur</h2>
+<p>R10 : Quels sont les employés ayant la même fonction que “codd” ?</p>
+<pre><code>+--------+-----------+----------+---------------+
+| nom    | fonction  | salaire  | idResponsable |
++--------+-----------+----------+---------------+
+| MARTIN | directeur |  8000.00 |         25717 |
+| CODD   | directeur | 11000.00 |         25717 |
+| LAMERE | directeur |  9000.00 |         25717 |
++--------+-----------+----------+---------------+</code></pre>
+<p><strong>reponse</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.salaire, E.idResponsable</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.fonction <span class="op">=</span> (<span class="kw">SELECT</span> fonction</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>                    <span class="kw">FROM</span> TD_EMPLOYE</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a>                    <span class="kw">WHERE</span> nom <span class="op">=</span> <span class="st">&#39;CODD&#39;</span>);</span></code></pre></div>
+<p>R11 : Liste des employés gagnant plus de la moyenne des salaires.</p>
+<pre><code>+---------+-----------+----------+
+| nom     | fonction  | salaire  |
++---------+-----------+----------+
+| MARTIN  | directeur |  8000.00 |
+| CODD    | directeur | 11000.00 |
+| ADIBA   | ingenieur |  6000.00 |
+| JOUBERT | president | 10000.00 |
+| LAMERE  | directeur |  9000.00 |
++---------+-----------+----------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.salaire</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.salaire <span class="op">&gt;</span> (<span class="kw">SELECT</span> <span class="fu">AVG</span>(salaire)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a>         <span class="kw">FROM</span> TD_EMPLOYE);</span></code></pre></div>
+<p>Remarques :</p>
+<ul>
+<li>Une sous-interrogation qui ne ramène aucune ligne se termine avec un code d’erreur.</li>
+<li>Une sous-interrogation ramenant plusieurs lignes provoquera aussi, dans ce cas, une erreur (pour traiter correctement ce cas, voir paragraphe ci-dessous)</li>
+</ul>
+<h2 id="sous-interrogation-ramenant-plusieurs-lignes">Sous-interrogation ramenant plusieurs lignes</h2>
+<ul>
+<li>l’opérateur IN (exemple dernière requête du tp3)</li>
+<li>les opérateurs obtenus en ajoutant ANY ou ALL à la suite d’un opérateur de comparaison classique (=, !=, &gt;, &gt;=, &lt;, &lt;=)
+<ul>
+<li><strong>ANY</strong>: la comparaison est vraie si elle est vraie pour au moins un des éléments de l’ensemble. (alias <a href="https://mariadb.com/kb/en/library/subqueries-and-any/"><strong>some</strong></a>)</li>
+<li><strong>ALL</strong>: la comparaison sera vraie si elle est vraie pour tous les éléments de l’ensemble.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li>R12 : Quels sont les employés gagnant plus que tous les employés du département 20.</li>
+<li>Commencer par afficher le salaire minimum et maximum dans le département 20</li>
+</ul>
+<pre><code>+---------+-----------+----------+
+| nom     | fonction  | salaire  |
++---------+-----------+----------+
+| CODD    | directeur | 11000.00 |
+| JOUBERT | president | 10000.00 |
++---------+-----------+----------+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.salaire</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.salaire <span class="op">&gt;</span> <span class="kw">ALL</span> (</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>    <span class="kw">SELECT</span> E2.salaire</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a>    <span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E2</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a>    <span class="kw">WHERE</span> E2.departement_id <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a>    <span class="kw">AND</span> E2.salaire <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a>);</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a><span class="co">-- pour vérifier</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(salaire)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE E</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="op">=</span> <span class="dv">20</span>;</span></code></pre></div>
+<ul>
+<li>R13 : Quels sont les employés gagnant plus que au moins un employé du département 20 ?</li>
+</ul>
+<pre><code>+--------------+
+| min(salaire) |
++--------------+
+|      3000.00 |
++--------------+
+
++----------+------------+----------+
+| nom      | fonction   | salaire  |
++----------+------------+----------+
+| GARDARIN | ingenieur  |  4800.00 |
+| DELOBEL  | ingenieur  |  4200.00 |
+| MARTIN   | directeur  |  8000.00 |
+| MARTIN   | commercial |  4000.00 |
+| CODD     | directeur  | 11000.00 |
+| ADIBA    | ingenieur  |  6000.00 |
+| JOUBERT  | president  | 10000.00 |
+| LEFEBVRE | commercial |  4700.00 |
+| DUPOND   | commercial |  5000.00 |
+| SIMON    | ingenieur  |  4000.00 |
+| LAMERE   | directeur  |  9000.00 |
+| PAQUEL   | commercial |  4400.00 |
++----------+------------+----------+
+</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.salaire</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.salaire <span class="op">&gt;</span> <span class="kw">ANY</span> (</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a>    <span class="kw">SELECT</span> E2.salaire</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true"></a>    <span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E2</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true"></a>    <span class="kw">WHERE</span> E2.departement_id <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true"></a>    <span class="kw">AND</span> E2.salaire <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true"></a>);</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true"></a><span class="co">-- pour vérifier</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MIN</span>(salaire)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true"></a><span class="kw">FROM</span>  TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="op">=</span> <span class="dv">20</span>;</span></code></pre></div>
+<h2 id="sous-interrogation-ramenant-plusieurs-colonnes">Sous-interrogation ramenant plusieurs colonnes</h2>
+<p>Il est possible de comparer le résultat d’un SELECT ramenant plusieurs colonnes à une liste de colonnes. La liste de colonnes figurera entre parenthèses à gauche de l’opérateur de comparaison.</p>
+<ul>
+<li>R14 : Quels sont les employés ayant même fonction et même supérieur que CODD?</li>
+</ul>
+<pre><code>+--------+-----------+----------+---------------+
+| nom    | fonction  | salaire  | idResponsable |
++--------+-----------+----------+---------------+
+| MARTIN | directeur |  8000.00 |         25717 |
+| CODD   | directeur | 11000.00 |         25717 |
+| LAMERE | directeur |  9000.00 |         25717 |
++--------+-----------+----------+---------------+</code></pre>
+<p><strong>reponse</strong></p>
+<pre><code>SELECT E.nom,E.fonction,E.salaire, E.idResponsable
+FROM  TD_EMPLOYE AS E
+WHERE (E.fonction, E.idResponsable) = (SELECT E2.fonction, E2.idResponsable
+                                        FROM TD_EMPLOYE  AS E2
+                                        WHERE E2.nom = &#39;CODD&#39;);
+</code></pre>
+<h2 id="sous-interrogation-synchronisée-avec-linterrogation-principale">Sous-interrogation synchronisée avec l’interrogation principale</h2>
+<p>Dans les exemples précédents, la sous-interrogation était évaluée d’abord, puis le résultat pouvait être utilisé pour exécuter l’interrogation principale.<br />
+SQL sait également traiter une sous-interrogation faisant référence à une colonne de la table de l’interrogation principale.<br />
+Le traitement dans ce cas est plus complexe car il faut évaluer la sous-interrogation pour chaque ligne de l’interrogation principale.</p>
+<ul>
+<li>R15 : Quels sont les employés ne travaillant pas dans le même département que leur supérieur hiérarchique ?</li>
+</ul>
+<pre><code>+--------+
+| nom    |
++--------+
+| CODD   |
+| LAMERE |
++--------+</code></pre>
+<p><strong>reponse</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="op">&lt;&gt;</span> (<span class="kw">SELECT</span> E2.departement_id</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a>                          <span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E2</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true"></a>                          <span class="kw">WHERE</span> E.idResponsable <span class="op">=</span> E2.idEmploye)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true"></a><span class="kw">AND</span> E.idResponsable <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<ul>
+<li>IS NOT NULL est nécessaire car dans le cas de JOUBERT la colonne idResponsable est NULL et la sous-requête ne ramène alors aucune valeur.</li>
+</ul>
+<h2 id="sous-interrogation-ramenant-au-moins-une-ligne">Sous-interrogation ramenant au moins une ligne</h2>
+<p>L’opérateur <strong>EXISTS</strong> permet de construire un prédicat vrai si la sous-interrogation qui suit ramène au moins une ligne.</p>
+<p><br></p>
+<ul>
+<li>R16 : Quels sont les employés travaillant dans un département qui a procédé à des embauches depuis le début de l’année 2005 ?</li>
+</ul>
+<pre><code>+----------+-----------+---------------+---------------+----------------+
+| nom      | idEmploye | fonction      | date_embauche | departement_id |
++----------+-----------+---------------+---------------+----------------+
+| LEBRETON |     16034 | commercial    | 2001-06-01    |             20 |
+| MARTIN   |     16712 | directeur     | 2000-05-23    |             30 |
+| MARTIN   |     17147 | commercial    | 2005-05-03    |             20 |
+| DUPONT   |     17574 | administratif | 2005-05-03    |             30 |
+| BARA     |     24831 | administratif | 1998-11-10    |             30 |
+| LAMBERT  |     25012 | administratif | 2001-03-14    |             20 |
+| JOUBERT  |     25717 | president     | 1992-08-10    |             30 |
+| LEFEBVRE |     25935 | commercial    | 1994-01-11    |             20 |
+| DUPOND   |     26691 | commercial    | 1998-04-04    |             20 |
+| LAMERE   |     27047 | directeur     | 1999-09-07    |             20 |
+| PAQUEL   |     27546 | commercial    | 1993-09-03    |             20 |
++----------+-----------+---------------+---------------+----------------+
+</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.idEmploye,E.fonction,E.date_embauche,E.departement_id</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="kw">WHERE</span> <span class="kw">EXISTS</span> (<span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a>              <span class="kw">FROM</span> TD_EMPLOYE</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true"></a>              <span class="kw">WHERE</span> date_embauche <span class="op">&gt;=</span> <span class="st">&#39;2005-1-1&#39;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true"></a>              <span class="kw">AND</span> departement_id <span class="op">=</span> E.departement_id);</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true"></a><span class="co">-- pour vérifier</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_EMPLOYE  <span class="kw">WHERE</span> date_embauche <span class="op">&gt;=</span> <span class="st">&#39;2005-1-1&#39;</span>;</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true"></a><span class="kw">SELECT</span> nom,idEmploye,fonction,date_embauche,departement_id</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E <span class="kw">WHERE</span> departement_id <span class="kw">IN</span> (<span class="dv">20</span>,<span class="dv">30</span>);</span></code></pre></div>
+<h2 id="sous-interrogations-multiples">Sous-interrogations multiples</h2>
+<p>Un SELECT peut comporter plusieurs sous-interrogations, soit imbriquées, soit au même niveau dans différents prédicats combinés par des AND ou des OR.</p>
+<ul>
+<li>R17 : Liste des employés du département 10 ayant même fonction que quelqu’un du département de DUPONT (le nom fini par un “T” et son département est 30).
+<ul>
+<li>Commencer par afficher le département de DUPONT</li>
+<li>Afficher la liste des fonctions dans ce département</li>
+</ul></li>
+</ul>
+<pre><code>+-------+---------------+----------------+
+| nom   | fonction      | departement_id |
++-------+---------------+----------------+
+| BALIN | administratif |             10 |
+| CODD  | directeur     |             10 |
++-------+---------------+----------------+</code></pre>
+<p><strong>reponse</strong></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a><span class="kw">SELECT</span> E.nom,E.fonction,E.departement_id</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true"></a><span class="kw">WHERE</span> E.departement_id <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true"></a><span class="kw">AND</span> E.fonction <span class="kw">IN</span> (<span class="kw">SELECT</span> E2.fonction</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true"></a>            <span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E2</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true"></a>            <span class="kw">WHERE</span> E2.departement_id <span class="op">=</span> (<span class="kw">SELECT</span> departement_id</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true"></a>                            <span class="kw">FROM</span> TD_EMPLOYE</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true"></a>                            <span class="kw">WHERE</span> nom <span class="op">=</span> <span class="st">&#39;DUPONT&#39;</span>));</span></code></pre></div>
+<h1 id="union-requête-ensembliste">UNION (requête ensembliste)</h1>
+<ul>
+<li>créer les 2 tables ci dessous et tester les requêtes</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> TD_CLIENT1,TD_CLIENT2;</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_CLIENT1 (</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a>    nom <span class="dt">varchar</span>(<span class="dv">30</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>);</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT1 <span class="kw">VALUES</span> (<span class="st">&#39;nom1&#39;</span>);</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT1 <span class="kw">VALUES</span> (<span class="st">&#39;nom2&#39;</span>);</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT1 <span class="kw">VALUES</span> (<span class="st">&#39;nom3&#39;</span>);</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_CLIENT2 (</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true"></a>    nom <span class="dt">varchar</span>(<span class="dv">30</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true"></a>);</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT2 <span class="kw">VALUES</span> (<span class="st">&#39;nom1&#39;</span>);</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT2 <span class="kw">VALUES</span> (<span class="st">&#39;nom2&#39;</span>);</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT2 <span class="kw">VALUES</span> (<span class="st">&#39;nom10&#39;</span>);</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_CLIENT2 <span class="kw">VALUES</span> (<span class="st">&#39;nom11&#39;</span>);</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1;</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2;</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a><span class="kw">UNION</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2;</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true"></a><span class="kw">UNION</span> <span class="kw">ALL</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2;</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a>             <span class="co">-- ==&gt; ne fonctionne pas sur MYSQL mais sur ORACLE (en 2018)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a><span class="kw">INTERSECT</span>                    </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2;   <span class="co">-- (nom1 et nom2)</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a><span class="co">-- utiliser IN sur MYSQL</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true"></a><span class="kw">WHERE</span> nom <span class="kw">IN</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true"></a>(<span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2);</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a>       <span class="co">-- ==&gt; ne fonctionne pas sur MYSQL mais sur ORACLE </span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="kw">EXCEPT</span>             </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2; <span class="co">-- (nom3)</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a><span class="co">-- utiliser NOT IN sur MYSQL</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a><span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT1</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a><span class="kw">WHERE</span> nom <span class="kw">NOT</span> <span class="kw">IN</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true"></a>(<span class="kw">SELECT</span> nom <span class="kw">FROM</span> TD_CLIENT2);</span></code></pre></div>
+<p><br></p>
+<ul>
+<li>R18 : afficher tous les employés et tous les départements (nom fonction identifiant du département et nom du département) y compris ceux qui ont une valeur “identifiant de département” à NULL dans la table Employe ou les département qui n’ont pas d’employé grâce à une jointure à droite et à gauche</li>
+</ul>
+<pre><code>+-------------+--------+----------+-------------------+----------------+
+| nom         | idDept | nom      | fonction          | departement_id |
++-------------+--------+----------+-------------------+----------------+
+| recherche   |     10 | GARDARIN | ingenieur         |             10 |
+....
+| direction   |     30 | JOUBERT  | president         |             30 |
+| fabrication |     40 | NULL     | NULL              |           NULL |
+| NULL        |   NULL | toto     | livreur de pizzas |           NULL |
++-------------+--------+----------+-------------------+----------------+
+19 rows in set (0.01 sec)</code></pre>
+<p><strong>réponse</strong></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="kw">SELECT</span> D.nom,D.idDept, E.nom,E.fonction,E.departement_id</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT  D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true"></a><span class="kw">UNION</span> </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true"></a><span class="kw">SELECT</span> D.nom,D.idDept, E.nom,E.fonction,E.departement_id</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true"></a><span class="kw">FROM</span> TD_EMPLOYE <span class="kw">AS</span> E</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> TD_DEPARTEMENT  D <span class="kw">ON</span> D.idDept<span class="op">=</span>E.departement_id</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true"></a>;</span></code></pre></div>
+<h1 id="les-clés-index-ou-key">Les clés : “INDEX” ou “KEY”</h1>
+<p>Structure de données qui reprend la liste ordonnée des valeurs auxquelles il se rapporte. (<a href="https://sql.sh/cours/index" target="_blanck_">exemple de définition</a>)</p>
+<p><br></p>
+<p>Lorsque vous créez un index sur une table, MySQL stocke cet index sous forme d’une structure particulière, contenant les valeurs des colonnes impliquées dans l’index.</p>
+<figure>
+<img src="img/BDD2_td5_img2_index.png" alt="" /><figcaption>rôle d’un index sur <a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/949_index-jointures-et-sous-requetes/3935_index/" target="_blanck_">zeste du savoir</a></figcaption>
+</figure>
+<figure>
+<img src="img/BDD2_td5_img2_index2.png" style="width:20cm" alt="" /><figcaption>structure en arbre et test : <a href="https://www.sqlshack.com/sql-server-clustered-indexes-internals-with-examples/" target="_blanck_">sqlshack</a></figcaption>
+</figure>
+<p>Création d’un index sur MySql</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nom_table (</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true"></a>    colonne1 description_colonne1,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true"></a>    [colonne2 description_colonne2,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true"></a>    colonne3 description_colonne3,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a>    <span class="op">..</span>.,]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true"></a>    [<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (colonne_clé_primaire)],</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true"></a>    [{<span class="kw">INDEX</span>|<span class="kw">KEY</span>} [nom_index] (colonne1_index [, colonne2_index, <span class="op">..</span>.]],</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true"></a>    [<span class="kw">UNIQUE</span> [<span class="kw">INDEX</span>|<span class="kw">KEY</span>] [nom_index] (colonne1_index [, colonne2_index, <span class="op">..</span>.]]</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true"></a>);</span></code></pre></div>
+<p>exemple :</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_EMPLOYE;</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TD_EMPLOYE <span class="kw">ADD</span> <span class="kw">INDEX</span> `departement_nom_index` (`nom`);</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TD_EMPLOYE <span class="kw">ADD</span> <span class="kw">INDEX</span> `employe_date_embauche_index` (`date_embauche`);</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_EMPLOYE;</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true"></a>SHOW <span class="kw">INDEX</span> <span class="kw">FROM</span> TD_EMPLOYE \G</span></code></pre></div>
+<p><a href="https://www.a2hosting.com/kb/developer-corner/mysql/using-indexes-to-improve-mysql-query-performance" target="_blanck_">Test de performance des INDEX</a></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true"></a><span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> TD_EMPLOYE.nom <span class="kw">FROM</span> TD_EMPLOYE <span class="kw">WHERE</span> fonction <span class="kw">LIKE</span> <span class="st">&#39;d%&#39;</span> <span class="kw">AND</span> date_embauche <span class="op">&gt;=</span><span class="st">&#39;1985-11-12&#39;</span> \G</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true"></a><span class="kw">EXPLAIN</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> E1.nom </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true"></a>  <span class="kw">FROM</span> TD_EMPLOYE E1, TD_DEPARTEMENT D1, TD_EMPLOYE E2, TD_DEPARTEMENT D2</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true"></a><span class="kw">WHERE</span> E1.departement_id<span class="op">=</span>D1.idDept </span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true"></a>       <span class="kw">AND</span> E2.departement_id<span class="op">=</span>D2.idDept </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true"></a><span class="kw">AND</span> D1.nom<span class="op">=</span><span class="st">&#39;vente&#39;</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true"></a><span class="kw">AND</span> D2.nom<span class="op">=</span><span class="st">&#39;direction&#39;</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true"></a><span class="kw">AND</span> E1.date_embauche<span class="op">=</span>E2.date_embauche</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true"></a>\G</span></code></pre></div>
+<p>réflexion sur l’optimisation des requêtes</p>
+<ul>
+<li><a href="https://sql.sh/optimisation" target="_blanck">conseils optimisation</a></li>
+<li><a href="https://ircf.fr/actualites/optimiser-votre-base-de-donnees-mysql/" target="_blanck">conseils optimisation</a></li>
+<li><a href="https://buzut.net/maitrisez-mysql-en-cli-avance/" target="_blanck_">conseils optimisation</a></li>
+<li><a href="https://gafish.fr/explain-optimisation-de-requetes-mysql/" target="_blanck">interprétation EXPLAIN</a></li>
+<li><a href="https://buzut.net/optimiser-performances-de-mysql/" target="_blanck">les variables d’environnement</a></li>
+<li><a href="https://code.tutsplus.com/fr/tutorials/writing-blazing-fast-mysql-queries--cms-25085" target="_blanck">recherches sur la machine</a></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Tracer les requêtes</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a>SHOW PROCESSLIST;</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true"></a><span class="co">-- ouvrir 2 terminaux connectés à mysql</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true"></a><span class="kw">SET</span> profiling <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true"></a><span class="co">--exécuter une requête</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true"></a>SHOW <span class="kw">PROFILE</span>;</span></code></pre></div>
+<ul>
+<li>Consulter les variables pour voir la charge du serveur (<a href="https://www.dnsstuff.com/fr/outils-surveillance-bases-de-donnees" target="_blanck">surveillance des bases de données</a>, équilibrage des serveurs, supervision, graphique)</li>
+</ul>
+<p><img src="img/BDD2_td5_img3_opt.png" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true"></a>SHOW <span class="kw">GLOBAL</span> STATUS <span class="kw">like</span> <span class="ot">&quot;%used_connections&quot;</span>;</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true"></a>show <span class="kw">global</span> status <span class="kw">like</span> <span class="st">&#39;opened_tables&#39;</span>;</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true"></a><span class="kw">SELECT</span> @@table_open_cache;</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true"></a><span class="kw">SELECT</span> @@max_connections;</span></code></pre></div>
+<p><a href="https://www.altidev.com/livres.php" target="_blanck_">optimisation du code sur www.altidev.com/livres.php</a> un <a href="https://www.altidev.com/images/2412_chap06.pdf" target="_blanck">article</a></p>
+<h1 id="les-vues">Les VUES</h1>
+<p>Les vues permettent d’assurer l’objectif d’indépendance logique. Grâce à elles, chaque utilisateur pourra avoir sa vision propre des données.<br />
+</p>
+<p>On a vu que le résultat d’un SELECT est lui-même une table.<br />
+Une telle table, qui n’existe pas dans la base mais est créée dynamiquement lors de l’exécution du SELECT, peut être vue comme une table réelle par les utilisateurs. Pour cela, il suffit de cataloguer le SELECT en tant que vue.<br />
+</p>
+<p>Les utilisateurs pourront consulter la base, ou modifier la base (avec certaines restrictions) à travers la vue, c’est-à-dire manipuler la table résultat du SELECT comme si c’était une table réelle.</p>
+<h2 id="créer-une-vue">Créer une vue</h2>
+<p>La commande CREATE VIEW permet de créer une vue en spécifiant le SELECT constituant la définition de la vue :</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> nom_vue [(nom_col1,<span class="op">..</span>.)]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true"></a><span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">..</span>.</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true"></a>[<span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span>] ;</span></code></pre></div>
+<p>La spécification des noms de colonnes de la vue est facultative. Par défaut, les noms des colonnes de la vue sont les mêmes que les noms des colonnes résultat du SELECT (si certaines colonnes résultat du SELECT sont des expressions, il faut renommer ces colonnes dans le SELECT, ou spécifier les noms de colonne de la vue).<br />
+</p>
+<p>Une fois créée, une vue s’utilise comme une table. Il n’y a pas de duplication des informations mais stockage de la définition de la vue.<br />
+</p>
+<p>Exemple : Création d’une vue constituant une restriction de la table TD_EMPLOYE aux employés du département 10.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> v_emp10 <span class="kw">AS</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true"></a>    <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true"></a>    <span class="kw">FROM</span> TD_EMPLOYE</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true"></a>    <span class="kw">WHERE</span> departement_id <span class="op">=</span> <span class="dv">10</span> ;</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> v_emp10co <span class="kw">AS</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true"></a>    <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true"></a>    <span class="kw">FROM</span> TD_EMPLOYE</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true"></a>    <span class="kw">WHERE</span> departement_id <span class="op">=</span> <span class="dv">10</span> </span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true"></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span> ;</span></code></pre></div>
+<p>Le CHECK OPTION permet de vérifier que la mise à jour ou l’insertion faite à travers la vue ne produisent que des lignes qui font partie de la sélection de la vue.</p>
+<p>Ainsi donc, si la vue v_emp10co a été créée avec CHECK OPTION on ne pourra à travers cette vue ni modifier, ni insérer des employés ne faisant pas partie du département 10.</p>
+<ul>
+<li>Il est possible d’effectuer des INSERT et des UPDATE à travers des vues, sous deux conditions :
+<ul>
+<li>Le SELECT définissant la vue ne doit pas comporter de jointure,</li>
+<li>les colonnes résultat du SELECT doivent être des colonnes réelles et non pas des expressions.</li>
+</ul></li>
+</ul>
+<p>Exemple : Modification des salaires du département 10 à travers la vue v_emp10.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10 <span class="kw">SET</span> salaire  <span class="op">=</span> salaire <span class="op">*</span> <span class="fl">1.1</span>;</span></code></pre></div>
+<p>Toutes les lignes de la table TD_EMPLOYE, telles que le contenu de la colonne departement_id est égal à 10 seront modifiées.</p>
+<ul>
+<li>autre test :</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10;</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10 <span class="kw">SET</span> departement_id<span class="op">=</span><span class="dv">20</span> <span class="kw">where</span> idEmploye<span class="op">=</span><span class="dv">15155</span>;</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10;</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10 <span class="kw">SET</span> departement_id<span class="op">=</span><span class="dv">10</span> <span class="kw">where</span> idEmploye<span class="op">=</span><span class="dv">15155</span>;   </span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10;   </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true"></a>            <span class="co">--  on ne retrouve plus l&#39;employe GARDARIN !</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10co;</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10co <span class="kw">SET</span> departement_id<span class="op">=</span><span class="dv">20</span> <span class="kw">where</span> idEmploye<span class="op">=</span><span class="dv">26834</span>;   </span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10co;</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10co <span class="kw">SET</span> departement_id<span class="op">=</span><span class="dv">10</span> <span class="kw">where</span> idEmploye<span class="op">=</span><span class="dv">26834</span>;</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true"></a><span class="kw">UPDATE</span> v_emp10co <span class="kw">SET</span> nom<span class="op">=</span><span class="st">&#39;ADIB&#39;</span> <span class="kw">where</span> idEmploye<span class="op">=</span><span class="dv">25067</span>;</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_emp10co;</span></code></pre></div>
+<h2 id="supprimer-une-vue">Supprimer une vue</h2>
+<p>Une vue peut être détruite par la commande :</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true"></a><span class="kw">DROP</span>  <span class="kw">VIEW</span> nom_vue;</span></code></pre></div>
+<h2 id="renommer-une-vue">Renommer une vue</h2>
+<p>On peut renommer une vue par la commande :</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true"></a><span class="kw">RENAME</span> ancien_nom <span class="kw">TO</span> nouveau_nom;</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true"></a><span class="kw">DROP</span>  <span class="kw">VIEW</span>  v_emp10,v_emp10co;</span></code></pre></div>
+<p><a href="http://polymorphe.free.fr/cours/bd/sql/sql_avance/poly_39.html" target="_blanck_">http://polymorphe.free.fr/cours/bd/sql/sql_avance/poly_39.html</a></p>
+<h1 id="la-suite-supprimer-et-recréer-les-tables">La suite : Supprimer et recréer les tables</h1>
+</body>
+</html>

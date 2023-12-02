@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<p>Premier niveau de l’administration des SGBD : utilisateurs, rôles, droits</p>
+<!-- https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/952_securiser-et-automatiser-ses-actions/3955_procedures-stockees/ -->
+<h1 id="utilisateurs-classification">utilisateurs : classification</h1>
+<p>Le <strong>DBA (DataBase Administrator)</strong>. Il en existe au moins un. Une petite base peut n’avoir qu’un seul administrateur. Une base importante peut en regrouper plusieurs qui se partagent les tâches suivantes :</p>
+<ul>
+<li>installation et mises à jour de la base et des outils éventuels ;</li>
+<li>gestion de l’espace disque et des espaces pour les données (<a href="https://fr.wikipedia.org/wiki/Tablespace" target="_blanck">tablespaces</a>) ;</li>
+<li>gestion des utilisateurs et de leurs objets (s’ils ne les gèrent pas eux-mêmes) ;</li>
+<li>optimisation des performances ;</li>
+<li>sauvegardes, restaurations et archivages ;</li>
+<li>contact avec le support technique.</li>
+</ul>
+<p><br></p>
+<p>● L’administrateur réseaux (qui peut être le DBA) se charge de la configuration des couches clients pour les accès distants.</p>
+<p>● Les développeurs qui conçoivent et mettent à jour la base. Ils peuvent aussi agir sur leurs objets (création et modification des tables, index, séquences, etc.). Ils transmettent au DBA leurs demandes spécifiques (stockage, optimisation, sécurité).</p>
+<p>● Les administrateurs d’applications qui gèrent les données manipulées par l’application ou les applications. Pour les petites et les moyennes bases, le DBA joue ce rôle.</p>
+<p>● Les utilisateurs qui se connectent et interagissent avec la base à travers les applications ou à l’aide d’outils (interrogations pour la génération de rapports, ajouts, modifications ou suppressions d’enregistrements).<br />
+TOus seront des utilisateurs (au sens Oracle) avec des privilèges différents.</p>
+<h1 id="mysql-structure">mysql : structure</h1>
+<pre><code>SHOW DATABASES;</code></pre>
+<ul>
+<li><strong>information_schema</strong> : cette base de données stocke les informations sur toutes les bases de données. Les <strong>tables</strong>, les <strong>colonnes</strong>, le <strong>type des colonnes</strong>, les procédures des bases de données y sont recensées, avec leurs caractéristiques. Nous verrons cette base de données plus en détail dans le prochain chapitre.</li>
+<li><strong>performance_schema</strong> : permet de stocker des <strong>informations sur les actions effectuées</strong> sur le serveur (temps d’exécution, temps d’attente dus aux verrous, etc.)</li>
+<li><strong>mysql</strong> : qui contient de nombreuses <strong>informations sur le serveur</strong>. Entre autres, c’est dans cette base que sont stockés <strong>les utilisateurs et leurs privilèges</strong>.</li>
+</ul>
+<h1 id="créer-un-des-utilisateurs">créer un (des) utilisateurs</h1>
+<p>Depuis sur l’IUT la machine utilisée est <code>serveurmysql2</code> :</p>
+<p><strong>Se connecter en tant que root</strong> :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">-- sur un poste de l&#39;IUT</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>mysql <span class="co">--user=root --host=serveurmysql2 --database=mysql --password=secret</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">-- avec VPN à l&#39;IUT</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>mysql <span class="co">--user=root --host=serveurmysql2.iut-bm.univ-fcomte.fr --database=mysql --password=secret</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">-- sur une machine personnelle</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>sudo mysql <span class="op">-</span>u root <span class="op">-</span>p</span></code></pre></div>
+<p><strong>Créer des utilisateurs préfixés de votre login de l’iut</strong></p>
+<p><br></p>
+<p><strong>L’hôte est l’adresse à partir de laquelle l’utilisateur va se connecter.</strong></p>
+<pre><code>login@912e002-01:~/Desktop$ hostname -i
+172.20.176.%
+
+ip address
+# recherche adresse IP</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">-- remplacer l&#39;adresse IP par localhost sur vos machines personnelles</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user2&#39;</span>@<span class="st">&#39;172.20.178.%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user3&#39;</span>@<span class="st">&#39;172.20%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;serveurmysql2&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_user5 <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_user6;</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user7&#39;</span>@<span class="st">&#39;10.248%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_admin <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user8&#39;</span>@<span class="st">&#39;%912e007-0%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user9&#39;</span>@<span class="st">&#39;912e007-03.iut-bm.univ-fcomte.fr&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;   </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>                  <span class="co">-- remplacer 007-03 par le numéro de votre poste</span></span></code></pre></div>
+<p><strong>Tester les connexions dans un terminal</strong></p>
+<pre><code>mysql --user=login --password=secret --host=serveurmysql2
+mysql --user=login_user2 --password=secret --host=serveurmysql2 
+mysql --user=login_user3  --password=secret --host=serveurmysql2
+mysql --user=login_user4  --password=secret --host=serveurmysql2 
+mysql --user=login_user5  --password=secret --host=serveurmysql2
+mysql --user=login_user6                    --host=serveurmysql2
+
+mysql --user=login_user7 --password=secret --host=serveurmysql2  -- NON
+mysql --user=login_user8  --password=secret --host=serveurmysql2   -- ok
+mysql --user=login_user9  --password=secret --host=serveurmysql2  -- ok
+mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
+<p>voir</p>
+<pre><code></code></pre>
+<h2 id="liste-des-utilisateurs">Liste des utilisateurs</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
+<p>Remarque : en remplaçant <code>'login'@'hostclient'</code> par <code>'login'@'%'</code></p>
+<p><br></p>
+<p><a href="https://stackoverflow.com/questions/1913984/re-assign-host-access-permission-to-mysql-user" target="_blanck">lien</a></p>
+<h2 id="information-sur-lutilisateur">information sur l’utilisateur</h2>
+<ul>
+<li>Connaître l’identité effective : <code>select user()</code></li>
+</ul>
+<pre><code>mysql&gt; SELECT user() ;</code></pre>
+<p>Le résultat peut être : moi@localhost ou moi@maMachine. C’est le nom de l’utilisateur et son hôte (sa machine)</p>
+<ul>
+<li>Connaître le profil de connexion : select current_user()</li>
+</ul>
+<pre><code>mysql&gt; SELECT current_user() ;</code></pre>
+<p>Le current_user est un profil d’utilisateur et pas l’utilisateur avec son nom et sa machine. On peut par exemple avoir un profil de connexion correspondant à :</p>
+<p>• un nom d’utilisateur pouvant se connecter de n’importe quelle machine : moi@’%’<br />
+• un nom d’utilisateur pouvant se connecter de la machine du serveur : moi@localhost<br />
+• un nom d’utilisateur pouvant se connecter de sa machine uniquement : moi@maMachine<br />
+• n’importe quel utilisateur se connectant à partir d’une machine particulière : ‘%’<span class="citation" data-cites="cetteMachine">@cetteMachine</span><br />
+• un nom d’utilisateur pouvant se connecter de sa machine uniquement : moi@maMachine<br />
+</p>
+<p><strong>afficher la liste des utilisateurs</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">SELECT</span> Host,<span class="fu">User</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>,Select_priv</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">-- ,max_connections</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">-- ,max_user_connections</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>, plugin,authentication_string</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>, password_expired</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>, password_last_changed</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">-- , password_lifetime</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>, account_locked</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="kw">FROM</span> <span class="fu">user</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="co">-- WHERE User LIKE &#39;%login%&#39;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>;</span></code></pre></div>
+<h2 id="renommer-un-utilisateur">Renommer un utilisateur</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>  <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">RENAME</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span> <span class="kw">TO</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;%&#39;</span>;         <span class="co">-- NON</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">RENAME</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;serveurmysql2&#39;</span> <span class="kw">TO</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>  <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span></code></pre></div>
+<h2 id="supprimer-un-utilisateur">Supprimer un utilisateur</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span>;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_user3&#39;</span>@<span class="st">&#39;172.20%&#39;</span>;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user3&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>  <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span></code></pre></div>
+<h2 id="modifier-un-mot-de-passe">Modifier un mot de passe</h2>
+<p><br> L’instruction dépend de la version de mysql (<code>mysql --version</code> dans un terminal)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">SELECT</span> VERSION();  <span class="co">-- SELECT @@version;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret3&#39;</span>;                               <span class="co">-- (OK mint+mariadb)(OK iut)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">-- test de la connexion</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret3 --host=serveurmysql2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">WITH</span> plugin_authentification <span class="kw">BY</span> <span class="st">&#39;secret2&#39;</span>;  <span class="co">-- (NON mint+mariadb)(NON iut ?)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">-- jusqu&#39;à la version 5.7.6</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">PASSWORD</span> <span class="cf">FOR</span> <span class="st">&#39;login&#39;</span> <span class="op">=</span> <span class="kw">PASSWORD</span>(<span class="st">&#39;secret2&#39;</span>);                           <span class="co">-- (OK mint+mariadb)(OK iut)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">-- test de la connexion</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret2 --host=serveurmysql2</span></span></code></pre></div>
+<p>sur <a href="https://mariadb.com/kb/en/alter-user/" target="_blanck">mariadb</a> - sur <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-user.html" target="_blanck">mysql</a></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> VIA mysql_native_password  <span class="kw">USING</span> <span class="kw">PASSWORD</span>(<span class="st">&#39;secret&#39;</span>); <span class="co">-- (Ok mint+mariadb)(NON iut )</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">WITH</span> <span class="st">&#39;mysql_native_password&#39;</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;            <span class="co">-- sur mysql 8 ?  (Non mint+mariadb)(OK iut )</span></span></code></pre></div>
+<ul>
+<li>avec un <strong>UPDATE</strong> ( <span class="orange"><strong>pas recommandé, déprécié, pas conforme aux autres SGBDR</strong></span> )</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">USE</span> mysql;</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>DESCRIBE <span class="fu">user</span>;</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">UPDATE</span> <span class="fu">user</span> <span class="kw">SET</span> <span class="kw">Password</span><span class="op">=</span><span class="kw">PASSWORD</span>(<span class="st">&#39;secret4&#39;</span>) <span class="kw">WHERE</span> <span class="fu">User</span><span class="op">=</span><span class="st">&#39;login&#39;</span>;   <span class="co">-- MySQL 5.7.5 and earlier version</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">-- ne fonctionne plus </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="kw">UPDATE</span> <span class="fu">user</span> <span class="kw">SET</span> authentication_string<span class="op">=</span><span class="kw">PASSWORD</span>(<span class="st">&#39;secret4&#39;</span>) <span class="kw">WHERE</span> <span class="fu">User</span><span class="op">=</span><span class="st">&#39;login&#39;</span>;    <span class="co">-- MySQL 5.7.6 et versions ultérieures(pas ok mint)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;           <span class="co">-- ne fonctionne pas avec 10.5.15-MariaDB-0+deb11u1     (ok IUT car old version)</span></span></code></pre></div>
+<p><strong>PostgreSQL</strong><br />
+</p>
+<p><code>CREATE USER user_name WITH encrypted password 'mypassword';</code> <br> <code>ALTER USER user_name WITH PASSWORD 'new_password';</code></p>
+<p><strong>Oracle</strong><br />
+<code>CREATE USER username IDENTIFIED BY password;</code> <br> <code>ALTER USER user_name IDENTIFIED BY 'new_password';</code></p>
+<p><strong>SQLserver</strong><br />
+<code>CREATE USER user_name WITH PASSWORD = 'new_password';</code> <br> <code>ALTER LOGIN user_name WITH PASSWORD = 'new_password';</code></p>
+<h1 id="base-de-données">Base de données</h1>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login2</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>    <span class="kw">DEFAULT</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>    COLLATE utf8_bin;</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login3;</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login4;</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> db;</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">SELECT</span> SCHEMA_NAME , default_character_set_name <span class="st">&#39;charset&#39;</span>, DEFAULT_COLLATION_NAME <span class="st">&#39;collation&#39;</span> <span class="kw">FROM</span> information_schema.SCHEMATA;</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="kw">SELECT</span> SCHEMA_NAME , default_character_set_name <span class="st">&#39;charset&#39;</span>, DEFAULT_COLLATION_NAME <span class="st">&#39;collation&#39;</span> <span class="kw">FROM</span> information_schema.SCHEMATA</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="kw">WHERE</span> SCHEMA_NAME <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> BDD_login4;</span></code></pre></div>
+<ul>
+<li><strong>utilisation ou changement de base de données</strong></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">USE</span> BDD_login;</span></code></pre></div>
+<p><a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/954_gestion-des-utilisateurs-et-configuration-du-serveur/3962_gestion-des-utilisateurs/" target="_blanck">https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/954_gestion-des-utilisateurs-et-configuration-du-serveur/3962_gestion-des-utilisateurs/</a> <br></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motdepasse) dans tout le script</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  --database=BDD_login</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span>  <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  BDD_login.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a><span class="co">-- pb avec LOAD DATA</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a><span class="co">-- GRANT ALL PRIVILEGES ON  BDD_login.* TO &#39;login&#39;@&#39;%&#39;;</span></span></code></pre></div>
+<h1 id="priviléges-droits">priviléges (droits)</h1>
+<p>Consulter les droits d’un utilisateur : ➢ Pour n’importe quel utilisateur :</p>
+<pre><code>SHOW GRANTS [FOR user];</code></pre>
+<p>➢ Pour <strong>soi-même</strong> :</p>
+<pre><code>mysql&gt; SHOW GRANTS;</code></pre>
+<p>➢ Droit d’USAGE Quand on crée un utilisateur, il n’a qu’un seul droit : le droit d’usage. Ca lui permet de se connecter mais il ne peut rien faire d’autre !</p>
+<pre><code>mysql&gt; SHOW GRANTS;
++------------------------------------------+
+| Grants for nouvelUtilisateur@localhost
+|
++------------------------------------------+
+| GRANT USAGE ON *.* TO ` nouvelUtilisateur `@`localhost` |
++------------------------------------------+</code></pre>
+<p><a href="https://dba.stackexchange.com/questions/23265/mysql-show-grants-for-all-users">info : pour voir tous les priviléges</a></p>
+<p><strong>GRANT</strong><br />
+</p>
+<p>La commande GRANT appliquée à un utilisateur n’existant pas crée cet utilisateur.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">privilege</span> [,<span class="kw">privilege</span>] <span class="kw">ON</span> composant <span class="kw">TO</span> nomUtilisateur [<span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span>]</span></code></pre></div>
+<p>➢ Exemple de création d’un utilisateur sans droits</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>mysql<span class="op">&gt;</span> <span class="kw">GRANT</span> <span class="kw">USAGE</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> login@localhost;</span></code></pre></div>
+<p>L’utilisateur login peut se connecter sur n’importe quelle machine et n’a aucun droit. Il accède uniquement à la BD information_schema.</p>
+<ul>
+<li>On donne d’abord l’USAGE, puis des droits particulier.</li>
+<li><code>ON *.*</code> veut dire : toutes les BD . toutes les tables</li>
+</ul>
+<p>➢ Exemple de création d’un utilisateur qui peut tout consulter</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>mysql<span class="op">&gt;</span> <span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> login ;</span></code></pre></div>
+<p>➢ Exemple de création d’un super-utilisateur</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>mysql<span class="op">&gt;</span> <span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> login_admin  <span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span>;</span></code></pre></div>
+<p>L’utilisateur admin peut se connecter sur la machine du serveur et a les mêmes droits que l’administrateur root. <strong>Il faut éviter de multiplier les administrateurs sur une machine en production !!!</strong></p>
+<p><a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/954_gestion-des-utilisateurs-et-configuration-du-serveur/3962_gestion-des-utilisateurs/#3-11933_les-privileges-introduction" target="_blanck">https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/954_gestion-des-utilisateurs-et-configuration-du-serveur/3962_gestion-des-utilisateurs/#3-11933_les-privileges-introduction</a> <br></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  BDD_login.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  BDD_login2.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>,<span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span>  BDD_login3.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> login ;</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true"></a> </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> login_admin  <span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span>;</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>,<span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span>  BDD_login2.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true"></a>mysql <span class="co">--user=login3 --password=secret --host=serveurmysql2 --database=BDD_login</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true"></a>mysql <span class="co">--user=login4 --password=secret --host=serveurmysql2 --database=BDD_login</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true"></a></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_admin;</span></code></pre></div>
+<p><code>ip address</code></p>
+<p><code>hostname -i</code></p>
+<p>documentation</p>
+<pre><code>GRANT
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    ON [object_type] priv_level
+    TO user_specification [, user_specification] ...
+    [REQUIRE {NONE | ssl_option [[AND] ssl_option] ...}]
+    [WITH with_option ...]
+
+object_type:
+    TABLE
+  | FUNCTION
+  | PROCEDURE
+
+priv_level:
+    *
+  | *.*
+  | db_name.*
+  | db_name.tbl_name
+  | tbl_name
+  | db_name.routine_name</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> db;</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="ot">&quot;login&quot;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span>  <span class="kw">by</span> <span class="ot">&quot;motdepasse&quot;</span>; </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  BDD_login.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>mysql <span class="co">--user=login --host=serveurmysql2 --password=motdepasse BDD_login</span></span></code></pre></div>
+<p><strong>La liste des droits</strong></p>
+<h1 id="la-liste-des-droits">La liste des droits</h1>
+<p>Voici la liste des droits fréquemment utilisés :</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>Droit</strong></td>
+<td><strong>Signification</strong></td>
+</tr>
+<tr class="even">
+<td><code>ALL</code> ou <code>ALL PRIVILEGES</code></td>
+<td>TOus les droits sauf <code>WITH GRANT OPTION</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>USAGE</code></td>
+<td>Synonyme de “pas de droits”.</td>
+</tr>
+<tr class="even">
+<td><code>ALTER</code></td>
+<td>Autorise l’utilisation de <code>ALTER TABLE</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>CREATE</code></td>
+<td>Autorise l’utilisation de <code>CREATE TABLE</code>.</td>
+</tr>
+<tr class="even">
+<td><code>DELETE</code></td>
+<td>Autorise l’utilisation de <code>DELETE</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>DROP</code></td>
+<td>Autorise l’utilisation de <code>DROP TABLE</code>.</td>
+</tr>
+<tr class="even">
+<td><code>INSERT</code></td>
+<td>Autorise l’utilisation de <code>INSERT</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>INDEX</code></td>
+<td>Autorise l’utilisation de <code>CREATE INDEX</code> et <code>DROP INDEX</code>.</td>
+</tr>
+<tr class="even">
+<td><code>SELECT</code></td>
+<td>Autorise l’utilisation de <code>SELECT</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>UPDATE</code></td>
+<td>Autorise l’utilisation de <code>UPDATE</code>.</td>
+</tr>
+<tr class="even">
+<td><code>GRANT OPTION</code></td>
+<td>Synonyme pour <code>WITH GRANT OPTION</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>autres droits</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Droit</strong></td>
+<td><strong>Signification</strong></td>
+</tr>
+<tr class="even">
+<td><code>CREATE TEMPORARY TABLES</code></td>
+<td>Autorise l’utilisation de <code>CREATE TEMPORARY TABLE</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>EXECUTE</code></td>
+<td>Autorise l’utilisateur à exécuter des procédures stockées (pour MySQL 5.0).</td>
+</tr>
+<tr class="even">
+<td><code>FILE</code></td>
+<td>Autorise l’utilisation de <code>SELECT ... INTO OUTFILE</code> et <code>LOAD DATA INFILE</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>LOCK TABLES</code></td>
+<td>Autorise l’utilisation de <code>LOCK TABLES</code> sur les tables pour lesquelles l’utilisateur a les droits de <code>SELECT</code>.</td>
+</tr>
+<tr class="even">
+<td><code>PROCESS</code></td>
+<td>Autorise l’utilisation de <code>SHOW FULL PROCESSLIST</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>REFERENCES</code></td>
+<td>Réservé pour le futur.</td>
+</tr>
+<tr class="even">
+<td><code>RELOAD</code></td>
+<td>Autorise l’utilisation de <code>FLUSH</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>REPLICATION CLIENT</code></td>
+<td>Donne le droit à l’utilisateur de savoir où sont les maîtres et esclaves.</td>
+</tr>
+<tr class="even">
+<td><code>REPLICATION SLAVE</code></td>
+<td>Nécessaire pour les esclaves de réplication (pour lire les historiques binaires du maître).</td>
+</tr>
+<tr class="odd">
+<td><code>SHOW DATABASES</code></td>
+<td><code>SHOW DATABASES</code> affiche toutes les bases de données.</td>
+</tr>
+<tr class="even">
+<td><code>SHUTDOWN</code></td>
+<td>Autorise l’utilisation de <code>mysqladmin shutdown</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>SUPER</code></td>
+<td>Autorise une connexion unique même si <code>max_connections</code> est atteint, et l’exécution des commandes <code>CHANGE MASTER</code>, <code>KILL thread</code>, <code>mysqladmin debug</code>, <code>PURGE MASTER LOGS</code> et <code>SET GLOBAL</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://www.bts-sio.com/cours/SI3/sql/8%20-%20GRANT.php" target="_blanck">source</a></p>
+<h2 id="retirer-des-priviléges-droits">retirer des priviléges (droits)</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;  </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">UPDATE</span> <span class="kw">ON</span> BDD_login2.<span class="op">*</span> <span class="kw">FROM</span> login; </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> BDD_login.<span class="op">*</span> <span class="kw">FROM</span> login;</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login; </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> BDD_login2.<span class="op">*</span> <span class="kw">FROM</span> login; <span class="co">-- supprime la ligne</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_admin;</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span> <span class="kw">FROM</span> login_admin ;</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_admin;</span></code></pre></div>
+<h1 id="créer-des-groupes">créer des groupes</h1>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> <span class="st">&#39;&lt;role&gt;&#39;</span>;</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> <span class="st">&#39;&lt;role&gt;&#39;</span>@<span class="st">&#39;&lt;host&gt;&#39;</span>;</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="op">&lt;</span><span class="kw">privileges</span><span class="op">&gt;</span> <span class="kw">ON</span> <span class="op">&lt;</span><span class="kw">database</span><span class="op">&gt;</span>.<span class="op">&lt;</span><span class="dt">object</span><span class="op">&gt;</span> <span class="kw">TO</span> <span class="st">&#39;&lt;role&gt;&#39;</span>@<span class="st">&#39;&lt;host&gt;&#39;</span>;</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE();</span></code></pre></div>
+<p><a href="https://www.prisma.io/dataguide/mysql/authentication-and-authorization/role-management" target="_blanck">https://www.prisma.io/dataguide/mysql/authentication-and-authorization/role-management</a> <br></p>
+<ul>
+<li>session root</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> developer;</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">GRANT</span> developer <span class="kw">TO</span> login;</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>,<span class="kw">INSERT</span>  <span class="kw">ON</span> BDD_login.<span class="op">*</span> <span class="kw">TO</span> developer;</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE();</span></code></pre></div>
+<p><a href="https://mariadb.com/kb/en/set-role/" target="_blanck">https://mariadb.com/kb/en/set-role/</a> <br></p>
+<ul>
+<li>session client</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">ROLE</span> developer;</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">ROLE</span> <span class="kw">NONE</span>;</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span></code></pre></div>
+<h1 id="exercice-1">exercice 1</h1>
+<p>autre exo</p>
+<pre><code>Exercice 3 : Droits d’accès
+On considère trois utilisateurs Alice, Bob et Caroline ayant chacun respectivement un compte
+A,B,C sur une base de données.
+— Alice dispose de trois tables TA1, TA2, TA3
+— Bob dispose de deux tables TB1, TB2 et une vue VB1.
+— Caroline dispose d’une table TC1.
+A partir des hypothèses suivantes, écrire les commandes SQL permettant de définir la politique
+de gestion des droits d’accès.
+Alice souhaite que :
+— TA1 soit visible pour Bob et Caroline mais que seul Bob puisse mettre à jour ses données.
+— TA2 soit privée
+— TA3 soit accessible en lecture pour tout le monde (tous les utilisateurs du SGBD)
+Bob souhaite que :
+— TB1 soit modifiable (insertion, mise à jour et suppression) par Alice et Caroline.
+— TB2 soit accessible en lecture pour tout le monde sauf pour Alice.
+— VB1 soit visible uniquement pour Caroline.
+Caroline souhaite que les attributs AT1 et AT2 soient visibles par tous les utilisateurs de la
+base et que les attributs AT3 et AT4 soient visibles uniquement par Bob.</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Alice;</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Bob;</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Caroline;</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true"></a><span class="kw">USE</span> login_bdd;</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA1 (</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true"></a>no_ta1 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true"></a>);</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA2 (</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true"></a>no_ta2 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true"></a>);</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA3 (</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true"></a>no_ta3 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true"></a>);</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true"></a></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB1 (</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true"></a>no_tb1 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true"></a>);</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB2 (</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true"></a>no_tb2 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true"></a>);</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> VB1 </span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true"></a><span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true"></a><span class="kw">FROM</span> login_bdd.login_TB1</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true"></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span>;</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true"></a></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TC1 (</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true"></a>AT1 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true"></a>AT2 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true"></a>AT3 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true"></a>AT4 <span class="dt">varchar</span>(<span class="dv">50</span>);</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true"></a>);</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true"></a></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true"></a><span class="co">-- droit pour les tables de login_Alice</span></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true"></a></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true"></a></span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA2 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true"></a></span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA1 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">FROM</span> login_Bob;</span>
+<span id="cb38-50"><a href="#cb38-50" aria-hidden="true"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA3 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
+<span id="cb38-51"><a href="#cb38-51" aria-hidden="true"></a></span>
+<span id="cb38-52"><a href="#cb38-52" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob;</span>
+<span id="cb38-53"><a href="#cb38-53" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
+<span id="cb38-54"><a href="#cb38-54" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb38-55"><a href="#cb38-55" aria-hidden="true"></a></span>
+<span id="cb38-56"><a href="#cb38-56" aria-hidden="true"></a><span class="co">-- droit pour les tables de login_Bob</span></span>
+<span id="cb38-57"><a href="#cb38-57" aria-hidden="true"></a></span>
+<span id="cb38-58"><a href="#cb38-58" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb38-59"><a href="#cb38-59" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
+<span id="cb38-60"><a href="#cb38-60" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb38-61"><a href="#cb38-61" aria-hidden="true"></a></span>
+<span id="cb38-62"><a href="#cb38-62" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb38-63"><a href="#cb38-63" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB2 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb38-64"><a href="#cb38-64" aria-hidden="true"></a></span>
+<span id="cb38-65"><a href="#cb38-65" aria-hidden="true"></a></span>
+<span id="cb38-66"><a href="#cb38-66" aria-hidden="true"></a></span>
+<span id="cb38-67"><a href="#cb38-67" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
+<span id="cb38-68"><a href="#cb38-68" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb38-69"><a href="#cb38-69" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
+<span id="cb38-70"><a href="#cb38-70" aria-hidden="true"></a></span>
+<span id="cb38-71"><a href="#cb38-71" aria-hidden="true"></a><span class="co">-- droit pour les tables de login_Caroline</span></span>
+<span id="cb38-72"><a href="#cb38-72" aria-hidden="true"></a></span>
+<span id="cb38-73"><a href="#cb38-73" aria-hidden="true"></a><span class="co">-- GRANT SELECT (col1), INSERT (col1,col2) ON mydb.mytbl TO &#39;someuser&#39;@&#39;somehost&#39;;</span></span>
+<span id="cb38-74"><a href="#cb38-74" aria-hidden="true"></a></span>
+<span id="cb38-75"><a href="#cb38-75" aria-hidden="true"></a></span>
+<span id="cb38-76"><a href="#cb38-76" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb38-77"><a href="#cb38-77" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
+<span id="cb38-78"><a href="#cb38-78" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline; </span>
+<span id="cb38-79"><a href="#cb38-79" aria-hidden="true"></a></span>
+<span id="cb38-80"><a href="#cb38-80" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb38-81"><a href="#cb38-81" aria-hidden="true"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Alice;</span>
+<span id="cb38-82"><a href="#cb38-82" aria-hidden="true"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Bob;</span>
+<span id="cb38-83"><a href="#cb38-83" aria-hidden="true"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Caroline;</span></code></pre></div>
+<p><a href="https://stackoverflow.com/questions/45596542/grant-permission-to-all-columns-individually-in-mysql" target="_blanck">https://stackoverflow.com/questions/45596542/grant-permission-to-all-columns-individually-in-mysql</a> <br></p>
+<h1 id="exercice-2">exercice 2</h1>
+<p>Soit les 2 tables ci-dessous</p>
+<p>Soit le schéma relationnel suivant:</p>
+<p>Enseignant (numEns, nomEns, prenomEns, Ville) Article (numArt, titre, genre, dateSortie, #numEns)</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> Enseignant;</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Enseignant </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a>    numEns <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>, </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true"></a>    nomEns <span class="dt">VARCHAR</span>(<span class="dv">30</span>), </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true"></a>    prenomEns <span class="dt">VARCHAR</span>(<span class="dv">30</span>), </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true"></a>    ville <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true"></a>    <span class="kw">CONSTRAINT</span> pk_Enseignant <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (numEns)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true"></a>);</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;DOMAS&#39;</span>, <span class="st">&#39;STEPHANE&#39;</span>, <span class="st">&#39;BELFORT&#39;</span>);</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;COUTURIER&#39;</span>, <span class="st">&#39;INGRID&#39;</span>, <span class="st">&#39;BELFORT&#39;</span>);</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;COUTURIER&#39;</span>, <span class="st">&#39;RAPHAEL&#39;</span>, <span class="st">&#39;BELFORT&#39;</span>);</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant <span class="kw">VALUES</span> (<span class="dv">4</span>, <span class="st">&#39;AMBERT&#39;</span>, <span class="st">&#39;FABRICE&#39;</span>, <span class="st">&#39;BELFORT&#39;</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> Salaire, Cours, Salle;</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> Article;</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Article </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a>    numArt <span class="dt">INT</span>, </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a>    titre <span class="dt">VARCHAR</span>(<span class="dv">30</span>), </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true"></a>    genre <span class="dt">VARCHAR</span>(<span class="dv">30</span>), </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true"></a>    dateSortie <span class="dt">DATE</span>, </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true"></a>    <span class="kw">type</span> <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;NoType&#39;</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true"></a>    numEns <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>, </span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (numArt)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true"></a>    , <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (numEns) <span class="kw">REFERENCES</span> Enseignant(numEns)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true"></a>);</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Article <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;prog. obj. 1&#39;</span>, <span class="st">&#39;ALGO&#39;</span>, NOW(), <span class="kw">NULL</span>, <span class="dv">1</span>);</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Article <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;vueJs&#39;</span>, <span class="st">&#39;WEB&#39;</span>, NOW(),<span class="kw">NULL</span>, <span class="dv">1</span>);</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Article <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;anglais&#39;</span>, <span class="st">&#39;anglais&#39;</span>, NOW(), <span class="kw">NULL</span>, <span class="dv">2</span>);</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salaire </span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true"></a>(</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true"></a>    numSalaire <span class="dt">INT</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true"></a></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true"></a>);</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salaire <span class="kw">VALUES</span> (<span class="dv">1</span>),(<span class="dv">2</span>),(<span class="dv">3</span>);</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Cours </span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true"></a>(</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true"></a>    numCours <span class="dt">INT</span></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true"></a></span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true"></a>);</span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Cours <span class="kw">VALUES</span> (<span class="dv">1</span>),(<span class="dv">2</span>),(<span class="dv">3</span>);</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Salle </span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true"></a>(</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true"></a>    numSalle <span class="dt">INT</span></span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true"></a>    , nb_places <span class="dt">INT</span></span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true"></a>    , commentaire_perso <span class="dt">VARCHAR</span>(<span class="dv">10</span>)</span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true"></a>);</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Salle <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="dv">30</span>,<span class="st">&#39;perso&#39;</span>),(<span class="dv">2</span>,<span class="dv">30</span>,<span class="st">&#39;perso&#39;</span>),(<span class="dv">3</span>,<span class="dv">30</span>,<span class="st">&#39;perso&#39;</span>);</span></code></pre></div>
+<p>remplacer <strong>login</strong> par votre login</p>
+<ol type="1">
+<li>Créer une base de données <strong>cours_login</strong>, créer les 2 tables ci-dessus dans cette base</li>
+</ol>
+<p>Ajouter toutes les tables ci-dessus dans cette base de données</p>
+<ol start="2" type="1">
+<li><p>Donnez la commande pour créer les utilisateurs <strong>adm_login</strong> identifié par le mot de passe <code>secret</code> et <strong>visit_login</strong> sans mot de passe, <strong>adm_login</strong> a le privilège d’accorder des privilèges à d’autres utilisateurs.</p></li>
+<li><p>tester les 2 connexions dans un terminal</p></li>
+<li><p>Créer une vue <strong>art_view</strong> permettant de consulter les champs: <strong>nom, ville, titre et dateSortie</strong> des tables <strong>Article</strong> et <strong>Enseignant</strong></p></li>
+<li><p>Attribuer le privilège <strong>SELECT</strong> sur la vue <strong>art_view</strong> à l’utilisateur <strong>visit_login</strong></p></li>
+<li><p>Se connecter en tant que <strong>visit_login</strong> et vérifier</p></li>
+<li><p>Donnez la commande pour accorder le droit à <strong>adm_login</strong> d’afficher le contenu de la table <code>cours_login.Enseignant</code> et de créer des index sur cette table (liste des droits plus bas)</p></li>
+<li><p>Donnez à <strong>adm_login</strong> les droits de lire et d’éditer (ajouter, supprimer, modifier les données) la table <code>cours_login.Article</code></p></li>
+<li><p>Donnez à <strong>adm_login</strong> les droits de lecture sur toutes les tables de <code>cours_login</code>, sauf sur la table salaires :</p></li>
+</ol>
+<p>QUESTION : si on crée une nouvelle table, <strong>ens_login</strong> a t’il le droit en lecture sur cette table</p>
+<ol start="10" type="1">
+<li><p>Se connecter en tant que <strong>adm_login</strong> et vérifier</p></li>
+<li><p>Donnez à <strong>visit_login</strong> les droits de lecture sur tous les champs de la table cours_login.Salle, sauf sur le champ commentaire_perso</p></li>
+<li><p>Créer un rôle <strong>admin_ens_login</strong></p></li>
+<li><p>Attribuer tous les privilèges sur la table Enseignant pour le rôle <strong>admin_ens_login</strong> (<a href="https://severalnines.com/database-blog/moving-mysql-57-mysql-80-what-you-should-know">tuto</a>)</p></li>
+<li><p>Créer un utilisateur <strong>userAdmin_ens_login</strong>, donner le rôle à cet utilisateur</p></li>
+</ol>
+<p><a href="https://www.univ-mascara.dz/fse/images/departement/corrige/ABDD---L3.pdf" target="_blanck">idée de sujet</a></p>
+<p>Tester le code ci-dessous :</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="co">-- DELETE FROM Enseignant WHERE numEns &gt;= 5;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="kw">SET</span> autocommit<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant (numEns, nomEns) <span class="kw">VALUES</span> (<span class="dv">5</span>, <span class="st">&#39;NomEns5&#39;</span>);</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant (numEns, nomEns) <span class="kw">VALUES</span> (<span class="dv">6</span>, <span class="st">&#39;NomEns6&#39;</span>);</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant (numEns, nomEns) <span class="kw">VALUES</span> (<span class="dv">7</span>, <span class="st">&#39;NomEns7&#39;</span>);</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a><span class="kw">UPDATE</span> Enseignant <span class="kw">SET</span> ville <span class="op">=</span> <span class="st">&#39;Montbeliard&#39;</span> <span class="kw">WHERE</span> numEns <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Enseignant <span class="kw">WHERE</span> numEns <span class="op">=</span> <span class="dv">5</span>;</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(numEns) <span class="kw">FROM</span> Enseignant;</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true"></a><span class="kw">SAVEPOINT</span> P1;</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true"></a><span class="kw">UPDATE</span> Enseignant <span class="kw">SET</span> ville <span class="op">=</span> <span class="st">&#39;BESANCON&#39;</span> <span class="kw">WHERE</span> numEns <span class="op">=</span> <span class="dv">3</span>;</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Enseignant (numEns, nomEns) <span class="kw">VALUES</span> (<span class="dv">8</span>, <span class="st">&#39;NomEns8&#39;</span>);</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(numEns) <span class="kw">FROM</span> Enseignant;</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true"></a><span class="co">-- SELECT * FROM Enseignant;</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true"></a><span class="kw">ROLLBACK</span> <span class="kw">TO</span> <span class="kw">SAVEPOINT</span> P1;</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">count</span>(numEns) <span class="kw">FROM</span> Enseignant;</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Enseignant;</span></code></pre></div>
+<ol start="15" type="1">
+<li><p>donner l’affichage de ce script</p></li>
+<li><p>Donner le nombre de mises à jour validées si autocommit = 1 ou autocommit = 0</p></li>
+</ol>
+<hr />
+<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> CREATE DATABASE cours_login;</p>
+<p>CREATE USER ‘adm_login’@‘%’ IDENTIFIED BY ‘secret’; CREATE USER ‘visit_login’@‘%’;</p>
+<p>– mysql –user=adm_login –host=localhost –password=secret</p>
+<p>– mysql –user=visit_login –host=localhost</p>
+<p>CREATE VIEW art_view(nom,ville,titre,dateSortie) AS SELECT nom,ville,titre,dateSortie FROM Enseignant INNER JOIN Article ON Enseignant.numEns = Article.numEns; WITH CHECK OPTION ;</p>
+<p>GRANT SELECT ON art_view TO visit_login;</p>
+<p>GRANT SELECT,INDEX ON cours_login.Enseignant TO admin_login;</p>
+<p>GRANT SELECT,INSERT, UPDATE,DELETE ON cours_login.Article TO admin_login;</p>
+<p>GRANT SELECT ON cours_login.* TO admin_login;</p>
+<p>REVOKE ALL PRIVILEGES ON cours_login.* TO admin_login;</p>
+<p>SHOW GRANTS FOR admin_login;</p>
+</body>
+</html>

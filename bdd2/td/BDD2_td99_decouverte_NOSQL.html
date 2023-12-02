@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="première-console-lancement-du-serveur">première console : lancement du serveur</h1>
+<pre><code>mkdir data_mongo
+chmod 777 data_mongo/
+mongod --dbpath data_mongo/</code></pre>
+<h2 id="remarque-1-on-change-de-port">remarque 1 : on change de port</h2>
+<p>mongod –dbpath data_mongo/ –port 27018</p>
+<h2 id="remarque-2-les-données-sont-stockées-dans-varlibmongodb">remarque 2 : les données sont stockées dans /var/lib/mongodb</h2>
+<h2 id="des-collections-et-des-documents">Des collections et des documents</h2>
+<p>Chaque entrée d’une base MongoDB est appelée document. Un document n’est rien d’autre qu’un objet <a href="http://www.json.org/json-fr.html">JSON</a> contenant une série de clefs/valeurs.</p>
+<ul>
+<li><p>collections = tables</p></li>
+<li><p>document = enregistrement</p></li>
+<li><p>remarque : les documents sont stockés au format <a href="http://bsonspec.org/">BSON (Binary) et non JSON</a></p>
+<ul>
+<li>pas une question de place</li>
+<li>plus efficace à traverser</li>
+<li>les types sont stockés nativement (pas de transtypage)</li>
+<li>plus rapide à <a href="https://fr.wiktionary.org/wiki/parser">parser</a></li>
+</ul></li>
+</ul>
+<h1 id="deuxieme-console-invité-de-commandes-pour-faire-des-tests">deuxieme console : invité de commandes pour faire des tests</h1>
+<ul>
+<li>pour lancer une console, ouvrir un deuxième terminal</li>
+</ul>
+<pre><code>mongo</code></pre>
+<ul>
+<li>utiliser la base de données test1</li>
+<li>insérer un enregistrement</li>
+<li>afficher l’enregistrement</li>
+</ul>
+<pre><code>&gt; use test1                // on change de base
+&gt; db.acteurs.insert({nom:&quot;Johansson&quot;, prenom:&quot;Scarlett&quot;})   // insérer une
+&gt; db.acteurs.find()</code></pre>
+<ul>
+<li><p>afficher le contenu du répertoire <strong>data_mongo/</strong></p></li>
+<li><p>insérer à l’aide du code ci dessous 2 enregistrements</p></li>
+</ul>
+<pre><code>&gt; j = { name : &quot;mongo&quot; }
+&gt; k = { x : 3 }
+&gt; db.testData.insert( j )
+&gt; db.testData.insert( k )
+&gt; db.testData.find()</code></pre>
+<ul>
+<li>afficher le contenu du répertoire <strong>data_mongo/</strong></li>
+</ul>
+<pre><code>for (var i = 1; i &lt;= 10; i++) {
+   db.testData.insert( { x : i } )
+}
+db.testData.find()</code></pre>
+<pre><code>var c = db.testData.find()
+printjson( c [ 6 ] )</code></pre>
+<pre><code>db.testData.find( { x : 7 } )
+
+var c = db.testData.find()
+while ( c.hasNext() ) printjson( c.next() )
+c.findOne()
+
+db.testData.findOne()
+db.testData.findOne()
+
+db.testData.find().limit(3)</code></pre>
+<hr />
+<p>les commandes</p>
+<pre><code>&gt; show dbs
+&gt; db                 
+&gt; show collections</code></pre>
+<p>remarque : mongodb ne verifie pas si une base de données existe et si une collection existe, si un objet n’existe pas, il le crée ! fichier.ns : fichier de métadonnées (structure nom) fichier.0 : fichier de données (64M : alloué pour diminuer le problème de fragmentation) Il y a des collections systèmes en plus de nos collections</p>
+<pre><code>db.testData.drop()
+show collections
+db.dropDatabase()
+show dbs
+db 
+
+db.stats() </code></pre>
+<h2 id="objectid">objectId</h2>
+<p>"_id" : "" =&gt; clé primaire (timestamp Unix - id Machine - process Id - compteur)</p>
+<pre><code>db.testData.findOne()._id.getTimestamp().toString()   // afficher l&#39;objet Id 
+o = ObjectId()   // création d&#39;un objet Id
+o.getTimestamp().toString()</code></pre>
+<p>les types https://docs.mongodb.com/manual/reference/mongo-shell/</p>
+<p>http://harry-wanki.developpez.com/tutoriels/mongodb/debuter-mongodb-introduction-base-donnees-nosql/</p>
+</body>
+</html>

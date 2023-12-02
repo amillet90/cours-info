@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<p>La normalisation du modèle relationnel (et du MCD)</p>
+<h1 id="rappels-sur-la-notion-de-dépendance-fonctionnelle">Rappels sur la notion de dépendance fonctionnelle</h1>
+<p>La construction du MCD mais également du modèle relationnel correspondant, repose presque entièrement sur le concept de dépendance fonctionnelle</p>
+<h2 id="définition"><strong>Définition</strong></h2>
+<p><br></p>
+<p>On dit que <strong>b</strong> est en <strong>dépendance fonctionnelle (DF)</strong> de <strong>a</strong> si à une valeur quelconque de la propriété a, on ne peut faire correspondre qu’une seule valeur au plus de la propriété b.<br />
+On note a <code>➞</code> b<br />
+(source) <code>➞</code> (but)</p>
+<p><br></p>
+<p>Autrement dit, si on connaît la valeur de a, on peut en déduire <strong>une seule valeur de b</strong>.<br />
+Mais la réciproque n’est pas vrai (si on connaît b, on ne peut pas en déduire a).</p>
+<h2 id="df-composée">DF composée</h2>
+<p>DF à partir de propriétés concaténées (partie gauche composée de plusieurs attributs)<br />
+Il peut exister des dépendances fonctionnelles à partir de propriétés concaténées, c’est-à-dire qui forment un tout indissociable.</p>
+<p>On note par un <strong>+</strong> cette concaténation.<br />
+Exemple : Considérons une commande qui comporte plusieurs produits<br />
+Num_Commande + Ref_Produit quantité <code>➞</code> commandée</p>
+<h2 id="propriétés-des-dépendances-fonctionnelles">Propriétés des dépendances fonctionnelles</h2>
+<ul>
+<li><strong>Union</strong></li>
+</ul>
+<p>Si a <code>➞</code> b et a <code>➞</code> c alors ont peut écrire que a <code>➞</code> b, c</p>
+<p><br></p>
+<p>Ex : Référence <code>➞</code> Désignation et Référence <code>➞</code> Prix de vente unitaire<br />
+Alors par union on a : Référence <code>➞</code> Désignation, Prix de vente unitaire<br />
+Lors du tracé du graphe des dépendances fonctionnelles, l’union permet de regrouper sur une seule ligne toutes les dépendances fonctionnelles ayant la même source.</p>
+<ul>
+<li><strong>Transitivité</strong></li>
+</ul>
+<p>Si a <code>➞</code> b et b<code>➞</code> c alors on a a <code>➞</code> c</p>
+<p><br></p>
+<p>Ex : Num Médecin <code>➞</code> Code Service et Code Service <code>➞</code> Num Hopital<br />
+Alors on a Num Médecin <code>➞</code> Num Hopital</p>
+<h1 id="la-normalisation">la normalisation</h1>
+<h2 id="intérêt">intérêt</h2>
+<p>http://devsup.free.fr/Cours/Informatique/1%2AAlsi/merise/normalisation.pdf</p>
+</body>
+</html>

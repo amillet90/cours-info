@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="les-transactions-en-bdd">les transactions en BDD</h1>
+<p>Quand on développe un programme P accédant à une base de données, on suppose que :</p>
+<ul>
+<li><p>P s’exécutera indépendamment de tout autre programme ou utilisateur</p></li>
+<li><p>l’exécution de P se déroulera toujours intégralement.</p></li>
+</ul>
+<p>Or les bases de données constituent des ressources accessibles simultanément à plusieurs utilisateurs pour rechercher, créer, modifier ou détruire des informations :</p>
+<p><strong>les accès simultanés à une même ressource sont dits concurrents</strong> =&gt; <strong>contrôle de concurrence</strong></p>
+<p>Il existe une multitude de raison qu’un programme ne se déroule pas intégralement (arrêt des serveurs, erreurs de code, violation de contrainte …) =&gt; <strong>reprise sur panne</strong></p>
+<p><a href="http://sql.bdpedia.fr/transactions.html" target="_blanck">http://sql.bdpedia.fr/transactions.html</a></p>
+<p><br></p>
+<ul>
+<li>Définition des points de sauvegardes.(commit)</li>
+<li>Blocages des autres utilisateurs. Le contrôle de concurrence =&gt; verrouillage de certaines resources (tables blocs, n-uplets)</li>
+<li>Choix d’un niveau d’isolation</li>
+</ul>
+<p><br></p>
+<h1 id="les-bases">les bases</h1>
+<p>DELETE UPDATE INSERT : <strong>ce sont des instructions transactionnelles atomiques (elles fonctionnent complètement ou pas du tout)</strong></p>
+<p>Le concept de transaction sur un compte (bancaire …)</p>
+<ul>
+<li>on désire :
+<ul>
+<li>retirer 1000€ sur le compte de ref 111111</li>
+<li>rajouter 1000€ sur le compte de ref 222222</li>
+<li>enregistrer l’information : ‘M Dupond’ a déplacé de l’argent (1000€) de son compte 111111 à son compte 222222</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">UPDATE</span> sb_accounts <span class="kw">SET</span> balance <span class="op">=</span> balance <span class="op">-</span> <span class="dv">1000</span> <span class="kw">WHERE</span> account_no <span class="op">=</span> <span class="dv">111111</span> ; </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">UPDATE</span> ca_accounts <span class="kw">SET</span> balance <span class="op">=</span> balance <span class="op">+</span> <span class="dv">1000</span> <span class="kw">WHERE</span> account_no <span class="op">=</span> <span class="dv">222222</span> ; </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> journal <span class="kw">VALUES</span> (<span class="dv">100896</span>, <span class="st">&#39;Transfert de M Dupond &#39;</span>, <span class="st">&#39;2017-01-01&#39;</span>, <span class="dv">111111</span>, <span class="dv">222222</span>, <span class="dv">1000</span>); </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">COMMIT</span> <span class="kw">WORK</span>;</span></code></pre></div>
+<ul>
+<li>Si pour une raison quelconque entre les 2 “UPDATE” la session est stoppée, l’argent serait perdu !</li>
+</ul>
+<p>documentation : “<a href="http://mysql.developpez.com/faq/?page=Transactions" target="_blanck">doc developpez.com</a>” “<a href="http://docs.postgresql.fr/8.2/tutorial-transactions.html" target="_blanck">doc postgreSQL</a>”</p>
+<p><br> <!-- [doc openclassroom](https://openclassrooms.com/courses/administrez-vos-bases-de-donnees-avec-mysql/transactions){target="_blanck"} --></p>
+<ul>
+<li>Tester les instructions ci dessous :</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;USA&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">SET</span> autocommit<span class="op">=</span><span class="dv">0</span>;  <span class="co">-- Les &quot;COMMIT&quot; ne sont plus automatiques</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;usa1&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">ROLLBACK</span>;</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;usa2&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">-- se connecter depuis un autre terminal sur cette base de données (nouvelle session) ; qu&#39;elle est la valeur du champ pays ?</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">ROLLBACK</span>;</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span></code></pre></div>
+<ul>
+<li>l’instruction “START TRANSACTION;” est elle obligatoire pour faire une transaction (revenir en arrière avant le COMMIT) ?</li>
+<li>lorsqu’une transaction est démarrée, peut on voir les changements depuis une autre session avant le “COMMIT” ?</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Reprendre le script précédent, démarrer la transaction, modifier la valeur du pays.</li>
+<li>Ouvrir un autre terminal sur la même base de données : une <strong>autre session</strong>, exécuter l’instruction ci-dessous</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;usa ***** 1&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;</span></code></pre></div>
+<ul>
+<li>terminer la première transaction, … conclusion</li>
+</ul>
+<p><br></p>
+<p>CONCLUSION : Propriétés des transactions : ACIDité [Harder&amp;Reuter, ACM CS 15(4), 1983]</p>
+<ul>
+<li>Atomicité : Toutes les MAJ sont exécutées ou aucune</li>
+<li>Cohérence : Passer d’un état cohérent à un autre (pas géré par le système)</li>
+<li>Isolation : La transaction s’effectue comme si elle était seule</li>
+<li>Durabilité : Une fois une transactions validée, son effet ne peut pas être perdu suite à une panne quelconque.</li>
+</ul>
+<p><a href="https://makina-corpus.com/devops/bien-debuter-avec-les-transactions-sql" target="_blanck">https://makina-corpus.com/devops/bien-debuter-avec-les-transactions-sql</a></p>
+<p><a href="http://sys.bdpedia.fr/transactions.html" target="_blanck">http://sys.bdpedia.fr/transactions.html</a></p>
+<p><a href="https://sgbd.developpez.com/tutoriels/cours-complet-bdd-sql/?page=concurrence-et-reprise#LXI" target="_blanck">https://sgbd.developpez.com/tutoriels/cours-complet-bdd-sql/?page=concurrence-et-reprise#LXI</a></p>
+<p><a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/952_securiser-et-automatiser-ses-actions/3952_transactions/" target="_blanck">https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/952_securiser-et-automatiser-ses-actions/3952_transactions/</a></p>
+<h1 id="exercice-transaction">exercice transaction</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_Client, td_Spectacle, td_Journal;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Client (</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    id_client <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    nom <span class="dt">varchar</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    nb_places_reservees <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    solde <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_client)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>);</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Spectacle (</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    id_spectacle <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    titre <span class="dt">VARCHAR</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    nb_places_offertes <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">CHECK</span>(nb_places_offertes<span class="op">&gt;=</span><span class="dv">0</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    nb_places_libres <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">CHECK</span>(nb_places_libres<span class="op">&gt;=</span><span class="dv">0</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    tarif <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_spectacle)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>);</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Journal (</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span>  AUTO_INCREMENT,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    libelle_transaction <span class="dt">VARCHAR</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    client_id <span class="dt">INTEGER</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>    nb_places <span class="dt">INTEGER</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>    spectacle_id <span class="dt">INTEGER</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>    tarif <span class="dt">DECIMAL</span>(<span class="dv">19</span>,<span class="dv">4</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>);</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Philippe&#39;</span>, <span class="dv">0</span>, <span class="dv">2000</span>);</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Julie&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Spectacle <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Ben hur&#39;</span>, <span class="dv">250</span>, <span class="dv">50</span>, <span class="dv">50</span>);</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Spectacle <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Tartuffe&#39;</span>, <span class="dv">120</span>, <span class="dv">30</span>, <span class="dv">30</span>);</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span></code></pre></div>
+<ul>
+<li>faire un premier script (transaction pour acheter 20 places de ‘Ben hur’)</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SET</span> @nb_place<span class="op">=</span><span class="dv">20</span>;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SET</span> @spectacle_id<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">SET</span> @client_id<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="kw">SELECT</span> @nb_place,@spectacle_id,@client_id;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> @nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>@client_id;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> @nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>@spectacle_id;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="kw">SELECT</span> @prix<span class="op">:=</span>@nb_place<span class="op">*</span>tarif</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>@spectacle_id;</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,@client_id,@nb_place,@spectacle_id,@prix);</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span></code></pre></div>
+<p>REMARQUE : lors du COMMIT toutes les opérations valides sont exécutées =&gt; programme pour vérifier l’intégrité des données</p>
+<p><a href="http://sql.bdpedia.fr/transactions.html#s1-transactions" target="_blanck">http://sql.bdpedia.fr/transactions.html#s1-transactions</a></p>
+<h1 id="les-verrous">les verrous</h1>
+<pre><code>LOCK TABLES nom_table [AS alias_table]  [READ  | WRITE]   [,....];</code></pre>
+<ul>
+<li>En utilisant <strong>READ</strong> : verrou en lecture, les autres sessions pourront que lire les données des tables verrouillées, mais ne pourront pas les modifier (<strong>SELECT uniquement</strong>)</li>
+<li>En utilisant <strong>WRITE</strong> : verrou en écriture, les autres sessions pourront ni lire ni modifié les données des tables verrouillées.</li>
+</ul>
+<p>Conséquence de l’utilisation de verrou :</p>
+<ul>
+<li>Accès uniquement au table verrouillée</li>
+</ul>
+<p><strong>Lorsqu’une session MySQL pose un verrou sur un élément de la base de données, cela veut dire qu’il restreint, voire interdit, l’accès à cet élément aux autres sessions MySQL qui voudraient y accéder</strong>.</p>
+<p><strong>session 1 (terminal)</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">LOCK</span> <span class="kw">TABLES</span> td_Client   <span class="kw">READ</span>,              <span class="co">-- On pose un verrou de lecture sur td_Client</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>            td_Spectacle  <span class="kw">WRITE</span>;  <span class="co">-- et un verrou d&#39;écriture sur td_Spectacle avec l&#39;alias spectacle</span></span></code></pre></div>
+<p>exécuter les 3 requêtes ci-dessous dans 2 terminaux</p>
+<p><strong>session 1 et Session 2 (terminal)</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span></code></pre></div>
+<p><strong>session 1 et Session 2 (terminal)</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> <span class="dv">1</span>  <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> <span class="dv">2</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>;</span></code></pre></div>
+<p><strong>session 1 (terminal)</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">UNLOCK</span> <span class="kw">TABLES</span>  ;</span></code></pre></div>
+<p>Verrous de TABLE et verrous de ligne Il est possible de poser un verrou sur une TABLE entière, ou seulement sur une ou plusieurs lignes d’une TABLE. Étant donné qu’un verrou empêche l’accès d’autres sessions, il est en général plus intéressant de poser un verrou sur la plus petite partie de la base possible.</p>
+<p><br></p>
+<p>Cette notion d’accès simultané aux données par plusieurs sessions différentes s’appelle la concurrence. Plus la concurrence est possible, donc plus le nombre de sessions pouvant accéder aux données simultanément est grand, mieux c’est. En effet, prenons l’exemple d’un site web. En général, on préfère permettre à plusieurs utilisateurs de surfer en même temps, sans devoir attendre entre chaque action de pouvoir accéder aux informations chacun à son tour. Or, chaque utilisateur crée une session chaque fois qu’il se connecte à la base de données (pour lire les informations ou les modifier). Préférez donc (autant que possible) les verrous de ligne aux verrous de TABLE !</p>
+<p><br></p>
+<p><strong>Conséquences pour les autres sessions</strong></p>
+<p>Si une session a obtenu un <strong>verrou de lecture</strong> sur une TABLE, les autres sessions :</p>
+<ul>
+<li>peuvent lire les données de la TABLE ;</li>
+<li>peuvent également acquérir un verrou de lecture sur cette TABLE ;</li>
+<li>ne peuvent pas modifier les données, ni acquérir un verrou d’écriture sur cette TABLE.</li>
+</ul>
+<p>Si par contre une session a obtenu un <strong>verrou d’écriture</strong>, les autres sessions ne peuvent absolument pas accéder à cette TABLE tant que ce verrou existe.</p>
+<h2 id="verrou-mortel">Verrou mortel</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;pays bas&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;  <span class="co">-- --</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;usa&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;         <span class="co">-- --</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">-- lancer l&#39;autre script dans un terminal</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;USA1&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">5</span>;        <span class="co">-- --</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="kw">UPDATE</span> TD_marque_tel <span class="kw">SET</span> pays<span class="op">=</span><span class="ot">&quot;PAYS BAS1&quot;</span> <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span>;   <span class="co">-- --</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_marque_tel <span class="kw">WHERE</span> idMarque<span class="op">=</span><span class="dv">3</span> <span class="kw">OR</span> idMarque<span class="op">=</span><span class="dv">5</span> ;</span></code></pre></div>
+<p><code>SHOW VARIABLES  LIKE 'innodb_lock_wait_timeout';</code> <a href="https://mariadb.com/kb/en/innodb-system-variables/#innodb_lock_wait_timeout" target="_blanck">doc</a></p>
+<p><code>SHOW GLOBAL VARIABLES LIKE 'innodb_rollback_on_timeout';</code></p>
+<p><a href="https://docs.microsoft.com/fr-fr/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#deadlocks" target="_blanck">interblocage (deadlocks)</a></p>
+<h1 id="autres-moyens-de-verrouillage">autres moyens de verrouillage</h1>
+<pre><code>SELECT * FROM td_Spectacle WHERE id_spectacle = 1 LOCK IN SHARE MODE;
+UPDATE td_Spectacle SET nb_places_libres=5 WHERE id_spectacle = 1;</code></pre>
+<p>: pose un verrou partagé sur la prochaine clé sur tous les index que la lecture rencontre.</p>
+<pre><code>SELECT * FROM td_Spectacle WHERE id_spectacle = 1 FOR UPDATE;
+UPDATE td_Spectacle SET nb_places_libres=10 WHERE id_spectacle = 1;</code></pre>
+<p>: pose un verrou exclusif sur la prochaine clé sur tous les index que la lecture rencontre.</p>
+<p><a href="http://samisd2003.free.fr/WinLAMP/MYSQL/innodb-locking-reads.html" target="_blanck">http://samisd2003.free.fr/WinLAMP/MYSQL/innodb-locking-reads.html</a></p>
+<h1 id="niveau-disolation-transaction">niveau d’isolation transaction</h1>
+<p>niveau 0 : READ-UNCOMMITTED ; autorise la lecture sale</p>
+<p>niveau 1 : READ-COMMITTED ; interdit la lecture sale</p>
+<p>niveau 2 : REPEATABLE-READ (niveau par défaut) ; idem, et rend la session aveugle aux modifications (mêmes validées) faites par les autres sessions (“lecture cohérente” ou consistent read)</p>
+<p>niveau 3 : SERIALIZABLE : idem, et fait comme si les transactions étaient validées les unes après les autres et non en même temps</p>
+<p><a href="https://www.arbinada.com/fr/node/1413" target="_blanck">article sur MS SQLserver</a></p>
+<pre><code>SELECT @@TX_ISOLATION;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a># Et voici les commandes pour régler le niveau d<span class="st">&#39;isolation</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="st">SET session transaction isolation level read uncommitted;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="st">SET session transaction isolation level read committed;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="st">SET session transaction isolation level repeatable read;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="st">SET session transaction isolation level serializable;</span></span></code></pre></div>
+<p><a href="https://dev.mysql.com/doc/refman/5.6/en/innodb-transaction-isolation-levels.html" target="_blanck">https://dev.mysql.com/doc/refman/5.6/en/innodb-transaction-isolation-levels.html</a></p>
+<p><a href="https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached" target="_blanck">https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached</a></p>
+<p>MySQL 8+ <code>SELECT @@transaction_isolation;        -- session</code> <code>SELECT @@global.transaction_isolation; -- global</code></p>
+<p><a href="https://mysql.developpez.com/faq/?page=Transactions" target="_blanck">https://mysql.developpez.com/faq/?page=Transactions</a></p>
+<p><a href="https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd" target="_blanck">https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd</a></p>
+<p><strong>article sympa :</strong></p>
+<p><a href="https://medium.com/neoxia/deepdive-voyage-au-pays-des-lock-mysql-innodb-2bb043f9739" target="_blanck">https://medium.com/neoxia/deepdive-voyage-au-pays-des-lock-mysql-innodb-2bb043f9739</a></p>
+<h1 id="procédure-et-fonction">procédure et fonction</h1>
+<p><a href="https://fr.wikibooks.org/wiki/MySQL/Proc%C3%A9dures_stock%C3%A9es" target="_blanck">https://fr.wikibooks.org/wiki/MySQL/Proc%C3%A9dures_stock%C3%A9es</a></p>
+<p>gestion d’une erreur</p>
+<pre><code>DROP PROCEDURE IF EXISTS sp_commande_spectacle ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_commande_spectacle(IN s_nb_places INT, IN s_client_id INT, IN s_spectacle_id INT)
+
+BEGIN
+
+START TRANSACTION;
+
+
+UPDATE td_Client SET nb_places_reservees = nb_places_reservees + s_nb_places WHERE id_client=s_client_id;
+UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - s_nb_places WHERE id_spectacle=s_spectacle_id;
+
+SELECT @prix:=s_nb_places*tarif
+FROM td_Spectacle 
+WHERE  id_spectacle=s_spectacle_id;
+
+INSERT td_Journal VALUES (NULL,&#39;achat de place&#39;,s_client_id,s_nb_places,s_spectacle_id,@prix);
+
+COMMIT;
+
+END; //
+
+DELIMITER ;</code></pre>
+<pre><code>SELECT * FROM td_Spectacle;
+SELECT * FROM td_Client;
+SELECT * FROM td_Journal;
+CALL sp_commande_spectacle(25,1,1);
+SELECT * FROM td_Spectacle;
+SELECT * FROM td_Client;
+SELECT * FROM td_Journal;</code></pre>
+<p><a href="https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached" target="_blanck">https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached</a></p>
+<p><a href="https://khanrahim.wordpress.com/2010/05/16/transaction-with-stored-procedure-in-mysql-server/" target="_blanck">https://khanrahim.wordpress.com/2010/05/16/transaction-with-stored-procedure-in-mysql-server/</a></p>
+<pre><code>DECLARE exit handler for sqlexception
+  BEGIN
+  ROLLBACK;
+END;
+
+DECLARE exit handler for sqlwarning
+ BEGIN
+ ROLLBACK;
+END;</code></pre>
+<p>CREATE DEFINER=<code>##</code>@<code>%</code> PROCEDURE sp_commande_spectacle(IN nb_places INT, IN client_id INT, IN spectacle_id INT)</p>
+<pre><code>DROP PROCEDURE IF EXISTS sp_commande_spectacle ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_commande_spectacle(IN s_nb_places INT, IN s_client_id INT, IN s_spectacle_id INT)
+
+BEGIN
+
+DECLARE exit handler for sqlexception
+  BEGIN
+  ROLLBACK;
+  SIGNAL SQLSTATE &#39;45000&#39; SET MESSAGE_TEXT = &#39;SQLError occured. Procedure error ROLLBACK&#39;;
+END;
+
+DECLARE exit handler for sqlwarning
+ BEGIN
+ ROLLBACK;
+ SIGNAL SQLSTATE &#39;35000&#39; SET MESSAGE_TEXT = &#39;SQLwarning occured. Procedure warning ROLLBACK&#39;;
+END;
+
+START TRANSACTION;
+
+UPDATE td_Client SET nb_places_reservees = nb_places_reservees + s_nb_places WHERE id_client=s_client_id;
+UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - s_nb_places WHERE id_spectacle=s_spectacle_id;
+
+SELECT @prix:=s_nb_places*tarif
+FROM td_Spectacle 
+WHERE  id_spectacle=s_spectacle_id;
+
+INSERT td_Journal VALUES (NULL,&#39;achat de place&#39;,s_client_id,s_nb_places,s_spectacle_id,@prix);
+
+COMMIT;
+
+END; //
+
+DELIMITER ;</code></pre>
+<h1 id="trigger">trigger</h1>
+<p>Dans MySQL, un <strong>trigger</strong> (ou déclencheur) est une commande SQL définie par l’utilisateur qui est automatiquement invoquée lors d’une opération <strong>INSERT, DELETE ou UPDATE</strong>. Le code trigger est associé à une table et est détruit une fois que la table est <strong>supprimée</strong>.</p>
+<p>un trigger, c’est quoi ?<a href="https://www.w3resource.com/mysql/mysql-triggers.php" target="_blanck">https://www.w3resource.com/mysql/mysql-triggers.php</a></p>
+<p>présentation (<a href="https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-mysql-database-triggers-on-ubuntu-18-04-fr" target="_blanck">voir article</a>)</p>
+<pre><code>DELIMITER //
+CREATE TRIGGER [TRIGGER_NAME]
+[TRIGGER TIME] [TRIGGER EVENT]
+ON [TABLE]
+FOR EACH ROW
+[TRIGGER BODY]//
+DELIMITER ;</code></pre>
+<p>exemple :</p>
+<pre><code>DELIMITER #
+
+CREATE TRIGGER trigger_CLIENT_insert_before
+BEFORE INSERT
+ON td_Client
+FOR EACH ROW
+BEGIN
+IF NEW.nom=&#39;&#39; THEN
+    SIGNAL SQLSTATE &#39;45000&#39;
+    SET MESSAGE_TEXT = &#39;Le nom ne peut pas etre une chaine vide&#39;;
+END IF;    
+END; #
+
+DELIMITER ;
+</code></pre>
+<p>autre solution</p>
+<pre><code>IF NEW.nom=&#39;&#39; THEN
+    SIGNAL SQLSTATE &#39;45000&#39;
+    SET MESSAGE_TEXT = &#39;Le nom ne peut pas etre une chaine vide&#39;;
+ELSE
+    SET NEW.nom=LOWER(NEW.nom);
+END IF;</code></pre>
+<p>pour tester</p>
+<pre><code>SHOW TRIGGERS;
+SELECT * FROM td_Client;
+INSERT into td_Client VALUES (3, &#39;SEBastien&#39;, 0, 350);
+INSERT into td_Client VALUES (4, &#39;&#39;, 0, 350);
+SELECT * FROM td_Client;
+
+
+DROP TRIGGER trigger_CLIENT_insert_before;
+DELETE FROM td_Client WHERE id_client&gt;2;</code></pre>
+<p><a href="https://stackoverflow.com/questions/5271997/trigger-syntax-and-if-else-then" target="_blanck">autre exemple</a></p>
+<ul>
+<li>exercice : trigger ; fonctionnalité : lors d’une mise à jour de client mettre le nom en MAJUSCULE</li>
+</ul>
+<pre><code>DROP TABLE IF EXISTS td_log_client_update;
+CREATE TABLE td_log_client_update (
+    id INTEGER  AUTO_INCREMENT,
+    client_id INTEGER,
+    updated_date  DATETIME,
+    updated_by VARCHAR(255),
+    PRIMARY KEY (id)
+);</code></pre>
+<pre><code>DROP TRIGGER td_Client_after_update;
+DELIMITER //
+
+CREATE TRIGGER td_Client_after_update
+AFTER UPDATE
+   ON td_Client FOR EACH ROW
+
+BEGIN
+
+   DECLARE vUser varchar(50);
+
+   -- Find username of person performing the INSERT into table
+   SELECT USER() INTO vUser;
+
+   -- Insert record into audit table
+   INSERT INTO td_log_client_update
+   ( client_id,
+     updated_date,
+     updated_by)
+   VALUES
+   ( NEW.id_client,
+     SYSDATE(),
+     vUser );
+
+END; //
+
+DELIMITER ;</code></pre>
+<pre><code>UPDATE td_Client SET nom=&#39;SEBastien&#39; , nb_places_reservees = nb_places_reservees + 1
+WHERE id_client=1;
+SELECT * FROM td_Client;
+SELECT * FROM td_log_client_update;</code></pre>
+<pre><code>IF NEW.nom=&#39;&#39; THEN
+    SIGNAL SQLSTATE &#39;45000&#39;
+    SET MESSAGE_TEXT = &#39;Le nom ne peut pas etre une chaine vide&#39;;
+ELSE
+    -- BEFORE SET NEW.nom=UPPER(OLD.nom);
+    SET OLD.nom=UPPER(OLD.nom);
+END IF;</code></pre>
+<p><a href="https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf" target="_blanck">https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf</a></p>
+<p><a href="https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees" target="_blanck">https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees</a></p>
+</body>
+</html>
