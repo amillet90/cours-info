@@ -375,4 +375,20 @@ font-weight: bolder;
 
 }
 
+.important,  .livrable {
+    display: block;
+    color : purple;
+    background-color:#ffffcc;
+    font-size: 1.2em;
+}
+
+
+.vert {
+  color: green;
+ font-weight: bold;
+}
+.violet {
+  color: purple;
+ font-weight: bold;
+}
 
