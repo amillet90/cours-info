@@ -158,13 +158,13 @@ etat (id_etat, libelle )</code></pre>
 <li>et <span class="vert">le type d’article pour le filtre en vert</span></li>
 </ul>
 <p><br></p>
-<p><strong>sujet 1 : meubles</strong>/<span class="violet">materiaux</span></p>
+<p><strong>sujet 1 : meuble</strong>/<span class="violet">materiau</span></p>
 <p>meuble <strong>materiau(chene, pin -ou- modele unique)</strong> <span class="vert">type_meuble</span> fournisseur marque <strong>…..</strong><br />
 <a href="https://www.ikea.com/fr/fr/p/ekedalen-ekedalen-table-et-4-chaises-brun-fonce-orrsta-gris-clair-s69221278/" target="_blanck">exemple</a> - <a href="https://www.ikea.com/fr/fr/search/products/?q=chaise" target="_blanck">exemple2</a></p>
 <ul>
 <li>MLD
 <ul>
-<li>meuble(id_meuble, nom_meuble, largeur, hauteur, prix_meuble, materiau_id, type_meuble_id, fournisseur, marque )</li>
+<li>meuble(id_meuble, nom_meuble, largeur, hauteur, prix_meuble, #materiau_id, #type_meuble_id, fournisseur, marque )</li>
 <li><span class="violet">materiau (id_materiau, libelle_materiau)</span></li>
 <li><span class="vert">type_meuble (id_type, libelle_type)</span></li>
 </ul></li>
@@ -175,9 +175,9 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>MLD
 <ul>
-<li>vetement(id_vetement, nom_vetement, prix_vetement, taille_id, type_vetement_id, matiere, description, fournisseur, marque )</li>
-<li>taille (id_taille, libelle_taille)</li>
-<li>type_vetement (id_type_vetement, libelle_type_vetement)</li>
+<li>vetement(id_vetement, nom_vetement, prix_vetement, #taille_id, #type_vetement_id, matiere, description, fournisseur, marque )</li>
+<li><span class="violet">taille (id_taille, libelle_taille)</span></li>
+<li><span class="vert">type_vetement (id_type_vetement, libelle_type_vetement)</span></li>
 </ul></li>
 </ul>
 <p><br></p>
@@ -187,8 +187,8 @@ etat (id_etat, libelle )</code></pre>
 <li>MLD
 <ul>
 <li>velo(id_velo, nom_velo, prix_velo, taille_id, type_velo_id, matiere, description, fournisseur, marque )</li>
-<li>taille (id_taille, libelle_taille)</li>
-<li>type_velo (id_type_velo, libelle_type_velo)</li>
+<li><span class="violet">taille (id_taille, libelle_taille)</span></li>
+<li><span class="vert">type_velo (id_type_velo, libelle_type_velo)</span></li>
 </ul></li>
 </ul>
 <p><br></p>
@@ -197,15 +197,22 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>MLD
 <ul>
-<li>ski(id_ski, nom_ski, largeur, hauteur, prix_ski, longueur_id, type_ski_id, fournisseur, marque )</li>
-<li>longueur (id_longueur, libelle_longueur)</li>
-<li>type_ski (id_type_ski, libelle_type_ski)</li>
+<li>ski(id_ski, nom_ski, largeur, prix_ski, longueur_id, type_ski_id, fournisseur, marque , conseil_utilisation )</li>
+<li><span class="violet">longueur (id_longueur, libelle_longueur)</span></li>
+<li><span class="vert">type_ski (id_type_ski, libelle_type_ski)</span></li>
 </ul></li>
 </ul>
 <p><br></p>
 <p><strong>sujet 5: chaussure</strong>/<span class="violet">pointure</span></p>
-<p>chaussure <strong>pointure(36,38…)</strong> ou produit nettoyant ; <span class="vert">type_chaussure</span> pointure fournisseur marque couleur <strong>…..</strong> <a href="https://www.cirages-et-compagnie.fr/product/lait-nettoyant-pour-cuir" target="_blanck">exemple</a> ou <a href="https://www.galerieslafayette.com/c/homme/chaussures/chaussures-de-ville/mocassins" target="_blanck">exemple</a></p>
-<p><br></p>
+<p>chaussure <strong>pointure(36,38…)</strong> ou produit nettoyant ; <span class="vert">type_chaussure</span> fournisseur marque couleur <strong>…..</strong> <a href="https://www.cirages-et-compagnie.fr/product/lait-nettoyant-pour-cuir" target="_blanck">exemple</a> ou <a href="https://www.galerieslafayette.com/c/homme/chaussures/chaussures-de-ville/mocassins" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>chaussure(id_chaussure, nom_chaussure, sexe, entretien, prix_chaussure, pointure_id, type_chaussure_id, fournisseur, marque )</li>
+<li><span class="violet">pointure (id_pointure, libelle_pointure)</span></li>
+<li><span class="vert">type_chaussure (id_type_chaussure, libelle_type_chaussure)</span> <br></li>
+</ul></li>
+</ul>
 <p><strong>sujet 6: telephone</strong>/<span class="violet">couleur</span></p>
 <p>telephone <strong>couleur(bleu noie…)</strong> modele <span class="vert">categorie</span> fournisseur marque <strong>…..</strong> <a href="https://www.ldlc.com/telephonie/telephonie-portable/mobile-smartphone/c4416/" target="_blanck">exemple</a> <a href="https://www.amazon.fr/Blackview-BV4900-T%C3%A9l%C3%A9phone-Incassable-Smartphone/dp/B08HYSQBVT/" target="_blanck">exemple</a></p>
 <p><br></p>
