@@ -92,6 +92,10 @@ exemple de fichier PDF (format A4) avec un MLD qui sera imprimé
 </ul>
 <p><br></p>
 <p><span class="modif">La <strong>qualité du jeu de test</strong> est vraiment prise en compte, nombre de colonnes pour les articles, les types d’articles, le nombre d’articles. Le tout devant ressembler à quelque chose dans laquelle un client pourrait se projeter. (Minimum 15 articles et 4 types d’articles (15 photos différentes minimum, pas de photos identiques pour un article sinon malus, les photos doivent être réalistes et attractives))</span></p>
+<p><br></p>
+<ul>
+<li><span class="modif">La route <code>/base/init</code> fonctionne (contrôleur <code>fixtures_load.py</code>). Cette fonction supprime puis crée toutes les tables et insert les enregistrements dans la base de données.</span></li>
+</ul>
 <p><br> Sur l’hébergeur <em>pythonanywhere</em>, votre application doit permettre :</p>
 <ul>
 <li>de s’authentifier avec le code vu en TD (le mot de passe pour le login “client” est “client”, pour “client2” est “client2” et pour “admin” est “admin”)</li>
@@ -155,17 +159,49 @@ etat (id_etat, libelle )</code></pre>
 </ul>
 <p><br></p>
 <p><strong>sujet 1 : meubles</strong>/<span class="violet">materiaux</span></p>
-<p>meuble <strong>materiaux(chene, pin -ou- modele unique)</strong> <span class="vert">type_meuble</span> fournisseur marque <strong>…..</strong><br />
+<p>meuble <strong>materiau(chene, pin -ou- modele unique)</strong> <span class="vert">type_meuble</span> fournisseur marque <strong>…..</strong><br />
 <a href="https://www.ikea.com/fr/fr/p/ekedalen-ekedalen-table-et-4-chaises-brun-fonce-orrsta-gris-clair-s69221278/" target="_blanck">exemple</a> - <a href="https://www.ikea.com/fr/fr/search/products/?q=chaise" target="_blanck">exemple2</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>meuble(id_meuble, nom_meuble, largeur, hauteur, prix_meuble, materiau_id, type_meuble_id, fournisseur, marque )</li>
+<li><span class="violet">materiau (id_materiau, libelle_materiau)</span></li>
+<li><span class="vert">type_meuble (id_type, libelle_type)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 2 : vetement</strong>/<span class="violet">taille</span></p>
 <p>vetement <strong>taille(taille unique -ou- XS,S,M,M,XL…)</strong> <span class="vert">type_vetement</span> couleur fournisseur marque <strong>…..</strong> <a href="https://www.leslipfrancais.fr/marius-plus-bleu-marine-boxer-court-en-coton-14675.html" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>vetement(id_vetement, nom_vetement, prix_vetement, taille_id, type_vetement_id, matiere, description, fournisseur, marque )</li>
+<li>taille (id_taille, libelle_taille)</li>
+<li>type_vetement (id_type_vetement, libelle_type_vetement)</li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 3: velo</strong>/<span class="violet">taille</span></p>
 <p>velo <strong>taille(taille unique -ou- XS,S,M,M,XL… )</strong> couleur fournisseur <span class="vert">type_velo</span> <strong>…..</strong> <a href="https://www.canyon.com/fr-fr/vtt/" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>velo(id_velo, nom_velo, prix_velo, taille_id, type_velo_id, matiere, description, fournisseur, marque )</li>
+<li>taille (id_taille, libelle_taille)</li>
+<li>type_velo (id_type_velo, libelle_type_velo)</li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 4: ski</strong>/<span class="violet">longueur</span></p>
 <p>ski <strong>longueur(longueur unique -ou- 150,160…)</strong> <span class="vert">type_ski</span> modèle fabricant fournisseur <strong>…..</strong> <a href="https://www.snowleader.com/hustle-10-2023-BLIZZ00157.html" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>ski(id_ski, nom_ski, largeur, hauteur, prix_ski, longueur_id, type_ski_id, fournisseur, marque )</li>
+<li>longueur (id_longueur, libelle_longueur)</li>
+<li>type_ski (id_type_ski, libelle_type_ski)</li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 5: chaussure</strong>/<span class="violet">pointure</span></p>
 <p>chaussure <strong>pointure(36,38…)</strong> ou produit nettoyant ; <span class="vert">type_chaussure</span> pointure fournisseur marque couleur <strong>…..</strong> <a href="https://www.cirages-et-compagnie.fr/product/lait-nettoyant-pour-cuir" target="_blanck">exemple</a> ou <a href="https://www.galerieslafayette.com/c/homme/chaussures/chaussures-de-ville/mocassins" target="_blanck">exemple</a></p>
@@ -203,7 +239,7 @@ etat (id_etat, libelle )</code></pre>
 <p><br></p>
 <p><strong>sujet 16: boisson (eau ou jus de fruit)</strong>/<span class="violet">conditionnement ou fruit ou arome</span></p>
 <p>boisson <strong>conditionnement( voir exemple le catalogue celtic)</strong>, conteneur (verre, plastique(PET), <a href="https://www.ugap.fr/achat-public/eau-minerale-l-eau-neuve-tetra-50-cl-carton-de-12-bouteilles_3312362.html" target="_blanck">brique carton</a>, aluminium), <span class="vert">type_eau</span>(petillante, plate, aromatisé …) fournisseur marque <strong>…..</strong> <a href="https://www.eauceltic.com/" target="_blanck">exemple</a> - <a href="https://www.eauceltic.com/" target="_blanck">exemple2</a></p>
-<hr />
+<h2 id="autre-idée---autre-idée---autre-idée"><a href="https://www.norev.com/fr/12979-citroen-2cv-azam-1966-gris-rose-1-17.html" target="_blanck">autre idée</a> - <a href="https://www.ambientedirect.com/fr/smeg/grille-pain-2-tranches-tsf01-mat_pid_1325203.html" target="_blanck">autre idée</a> - <a href="https://www.amazon.fr/dp/B0B7HCR3K8/ref=twister_B0BZTV43K2?_encoding=UTF8&amp;th=1" target="_blanck">autre idée</a></h2>
 <p><br><br><br></p>
 <!--
 
@@ -309,10 +345,10 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>(ADMIN) interface pour compléter le stock des articles en fonction de la propriété (taille ou couleur).</li>
 <li>(ADMIN) <span class="modif">afficher dans le tableau des articles si une déclinaison est en rupture de stock (=0) et du nombre d’articles en stock</span></li>
 <li>(ADMIN <span class="modif">gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée</span></li>
-<li><span class="visu">VISUALISATION de données sur les stocks pour l’administrateur (coût du stock/catégorie stock/(taille ou couleur) …. )</span><br />
-<span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></li>
+<li><span class="visu">VISUALISATION de données sur les stocks pour l’administrateur (coût du stock/catégorie stock/(taille ou couleur) …. )</span></li>
 </ul></li>
 </ul>
+<p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
 <p><br></p>
 <ul>
 <li>étudiant 2 : gestion des commentaires et des notes
@@ -329,7 +365,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></li>
 </ul></li>
 </ul>
-<p><br> * <span class="modif"></span></p>
+<p><br></p>
 <ul>
 <li>étudiant 3 : gestion des adresses d’expédition et de livraison
 <ul>
@@ -372,7 +408,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ul></li>
 </ul>
 <p><br></p>
-<p>Chaque étudiant doit réaliser une requête sur les données de sa partie, et réaliser un graphique (dataviz) qui serait <strong>un support de décision</strong><span class="modif">, la qualité du jeu de test livré est prise en compte.</span></p>
+<p>Chaque étudiant doit réaliser une(des) requêtes sur les données de sa partie, et réaliser un graphique (dataviz) qui serait <strong>un support de décision</strong><span class="modif">, la qualité du jeu de test livré est prise en compte.</span></p>
 <p><br></p>
 <div class="livrable">
 <p><strong>Livrable 3 (oral en TP):</strong></p>
