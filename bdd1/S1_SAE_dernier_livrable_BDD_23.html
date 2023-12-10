@@ -359,7 +359,7 @@ MLD
 </ul>
 <p><img src="img_flask/sae_err_1.png" /></p>
 <h2 id="configuration-de-mysql">Configuration de MySql</h2>
-<p>MySql est moins “strict” par défaut sur Windows :</p>
+<p>MySql est moins “strict” par défaut sur <strong>Windows</strong> et <strong>parfois</strong> sur <strong>Linux</strong>:</p>
 <p>Alors que MySQL est sensible par défaut à la casse (au niveau des noms de base et de table)dans la plupart des distributions Unix, il ne l’est pas pour Windows! En revanche, concernant les noms de colonnes, index, alias de colonnes, déclencheurs et procédures MySQL n’est pas sensible à la casse tous systèmes confondus. En fait, tous ces noms sont stockés en minuscules dans le dictionnaire de données.<br />
 La variable <strong>lower_case_table_names</strong> permet de forcer la sensibilité à la casse pour les noms des tables et des bases de données (si elle vaut 0, la sensibilité à la casse est active et les noms sont stockés en minuscules; 1, pas de sensibilité à la casse et les noms sont stockés en minuscules; 2, pas de sensibilité à la casse et les noms sont stockés en respectant la casse). Je vous invite à positionner cette variable à 0 de manière à homogénéiser le codage et à contrôler un peu plus l’écriture de vos instructions SQL. De plus, c’est l’option par défaut sur Linux.</p>
 <p><code>SELECT @@lower_case_table_names;</code> : Cette requête retournera la valeur actuelle de la variable <strong>lower_case_table_names</strong> qui doit être à <code>0</code></p>
@@ -376,7 +376,8 @@ Le résultat sera une chaîne de caractères contenant les différents modes SQL
 
 SELECT @@sql_mode;
 -- a réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
-<p><br> Sinon dans le fichier <strong>my.ini</strong>, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
+<p><br> Sinon rechercher le fichier <strong>my.ini</strong> (sur windows, qui se trouve à coté du fichier mysql.exe) ou <strong>my.ini</strong> (sur Linux, pour le trouver sur linux : <code>find / -name '*my.cnf' 2&gt;/dev/null</code>).<br />
+Éditer ce fichier, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
 <pre><code>[mysqld]
 lower_case_table_names=0
 local_infile=ON
@@ -392,7 +393,11 @@ local_infile=ON</code></pre>
 
 relation [ManyToMany](https://en.wikibooks.org/wiki/Java_Persistence/ManyToMany)
 
-https://docs.microsoft.com/fr-fr/power-bi/guidance/relationships-many-to-many -->
+https://docs.microsoft.com/fr-fr/power-bi/guidance/relationships-many-to-many 
+
+[documentation](https://support.cpanel.net/hc/en-us/articles/360050089274-How-to-change-the-SQL-mode-in-MySQL-or-MariaDB){target=_blanck}
+
+-->
 <h2 id="test-de-lapplication">test de l’application</h2>
 <p><span class="modif">script de test du projet :</span> <br></p>
 <p><span class="modif">Un premier script extrait les archives <code>.tar.gz</code> et <code>.zip</code>, ce script recherche un dossier et copie un autre script <code>test_projet.sh</code> dans le dossier. Le script <code>test_projet.sh</code> se trouve au même niveau que le fichier app.py (une erreur est signalée dans le cas contraire).</span></p>

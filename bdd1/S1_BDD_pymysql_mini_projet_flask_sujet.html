@@ -133,7 +133,43 @@ https://stackabuse.com/deploying-a-flask-application-to-heroku/
 https://realpython.com/flask-by-example-part-1-project-setup/
 https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask/4526644-deployez-efficacement-sur-le-cloud-avec-heroku
 -->
-<h1 id="annexe-test-de-lapplication">annexe : test de l’application</h1>
+<h2 id="annexe-1-configuration-de-mysql">annexe 1 : Configuration de MySql</h2>
+<p>MySql est moins “strict” par défaut sur <strong>Windows</strong> et <strong>parfois</strong> sur <strong>Linux</strong>:</p>
+<p>Alors que MySQL est sensible par défaut à la casse (au niveau des noms de base et de table)dans la plupart des distributions Unix, il ne l’est pas pour Windows! En revanche, concernant les noms de colonnes, index, alias de colonnes, déclencheurs et procédures MySQL n’est pas sensible à la casse tous systèmes confondus. En fait, tous ces noms sont stockés en minuscules dans le dictionnaire de données.<br />
+La variable <strong>lower_case_table_names</strong> permet de forcer la sensibilité à la casse pour les noms des tables et des bases de données (si elle vaut 0, la sensibilité à la casse est active et les noms sont stockés en minuscules; 1, pas de sensibilité à la casse et les noms sont stockés en minuscules; 2, pas de sensibilité à la casse et les noms sont stockés en respectant la casse). Je vous invite à positionner cette variable à 0 de manière à homogénéiser le codage et à contrôler un peu plus l’écriture de vos instructions SQL. De plus, c’est l’option par défaut sur Linux.</p>
+<p><code>SELECT @@lower_case_table_names;</code> : Cette requête retournera la valeur actuelle de la variable <strong>lower_case_table_names</strong> qui doit être à <code>0</code></p>
+<p><br></p>
+<ul>
+<li>Attention aussi au mode de fonctionnement de MySQL, qui peut être moins strict sur les machines individuelles par rapport aux machines de l’IUT.</li>
+</ul>
+<p>Pour vérifier le mode SQL en cours d’utilisation dans votre serveur MySQL, vous pouvez exécuter la requête suivante : <code>SELECT @@sql_mode;</code>.<br />
+Cette requête renverra la valeur actuelle de la variable <strong>sql_mode</strong>, qui représente le mode SQL en cours d’utilisation.<br />
+Le résultat sera une chaîne de caractères contenant les différents modes SQL activés et leurs paramètres. Assurez-vous de trouver la valeur <code>ONLY_FULL_GROUP_BY</code> dans la chaîne de caractères renvoyée. Si ce mode n’est pas activé, cela signifie que MySQL peut être moins strict en ce qui concerne la clause <strong>GROUP BY</strong> dans vos requêtes, ce qui peut entraîner des résultats inattendus. Il est possible que votre application fonctionne correctement sur votre machine, mais rencontre des erreurs lorsqu’elle est exécutée sur une machine de l’IUT.</p>
+<p><br> En résumé, tester sur votre machine :</p>
+<pre><code>SELECT @@lower_case_table_names;
+-- la réponse devrait être 0
+
+SELECT @@sql_mode;
+-- a réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
+<p><br> Sinon rechercher le fichier <strong>my.ini</strong> (sur windows, qui se trouve à coté du fichier mysql.exe) ou <strong>my.ini</strong> (sur Linux, pour le trouver sur linux : <code>find / -name '*my.cnf' 2&gt;/dev/null</code>).<br />
+Éditer ce fichier, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
+<pre><code>[mysqld]
+lower_case_table_names=0
+local_infile=ON
+sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;
+
+[mysql]
+local_infile=ON</code></pre>
+<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysqld --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
+<p><br><br></p>
+<p>Vous pouvez vérifier l’encodage du serveur MySQL par défaut avec la commande SQL <code>SHOW VARIABLES LIKE 'character_set_%';</code>. Cette requête renvoie les variables liées à l’encodage dans MySQL, y compris la variable <em>character_set_server</em> qui indique l’encodage du serveur MySQL. Les dernières versions de MySQL utilisent par défaut <strong>utf8mb4</strong> qui convient parfaitement.</p>
+<!-- 
+
+
+relation [ManyToMany](https://en.wikibooks.org/wiki/Java_Persistence/ManyToMany)
+
+https://docs.microsoft.com/fr-fr/power-bi/guidance/relationships-many-to-many -->
+<h1 id="annexe-2-test-de-lapplication">annexe 2 : test de l’application</h1>
 <p><span class="modif">script de test du projet :</span> <br></p>
 <p><span class="modif">Un premier script extrait les archives <code>.tar.gz</code> et <code>.zip</code>, ce script recherche un dossier et copie un autre script <code>test_projet.sh</code> dans le dossier. Le script <code>test_projet.sh</code> se trouve au même niveau que le fichier app.py (une erreur est signalée dans le cas contraire).</span></p>
 <p><br></p>
