@@ -370,8 +370,13 @@ La variable <strong>lower_case_table_names</strong> permet de forcer la sensibil
 <p>Pour vérifier le mode SQL en cours d’utilisation dans votre serveur MySQL, vous pouvez exécuter la requête suivante : <code>SELECT @@sql_mode;</code>.<br />
 Cette requête renverra la valeur actuelle de la variable <strong>sql_mode</strong>, qui représente le mode SQL en cours d’utilisation.<br />
 Le résultat sera une chaîne de caractères contenant les différents modes SQL activés et leurs paramètres. Assurez-vous de trouver la valeur <code>ONLY_FULL_GROUP_BY</code> dans la chaîne de caractères renvoyée. Si ce mode n’est pas activé, cela signifie que MySQL peut être moins strict en ce qui concerne la clause <strong>GROUP BY</strong> dans vos requêtes, ce qui peut entraîner des résultats inattendus. Il est possible que votre application fonctionne correctement sur votre machine, mais rencontre des erreurs lorsqu’elle est exécutée sur une machine de l’IUT.</p>
-<p><br></p>
-<p>Dans le fichier <strong>my.ini</strong>, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
+<p><br> En résumé, tester sur votre machine :</p>
+<pre><code>SELECT @@lower_case_table_names;
+-- la réponse devrait être 0
+
+SELECT @@sql_mode;
+-- a réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
+<p><br> Sinon dans le fichier <strong>my.ini</strong>, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
 <pre><code>[mysqld]
 lower_case_table_names=0
 local_infile=ON
