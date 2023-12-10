@@ -162,7 +162,7 @@ Le résultat sera une chaîne de caractères contenant les différents modes SQL
 -- la réponse devrait être 0
 
 SELECT @@sql_mode;
--- a réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
+-- la réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
 <p><br> Sinon rechercher le fichier <strong>my.ini</strong> (sur windows, qui se trouve à coté du fichier mysql.exe) ou <strong>my.ini</strong> (sur Linux, pour le trouver sur linux : <code>find / -name '*my.cnf' 2&gt;/dev/null</code>).<br />
 Éditer ce fichier, sous la section serveur identifiée par <code>[mysqld]</code>, ajouter la ligne et le commentaire suivants:</p>
 <pre><code>[mysqld]
