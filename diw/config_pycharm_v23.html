@@ -79,6 +79,21 @@
   <link rel="icon" href="favicon.ico" />
 </head>
 <body>
+<h1 id="python-doit-être-installé">Python doit être installé</h1>
+<ul>
+<li>tester si <code>python</code> est présent</li>
+</ul>
+<pre><code>python --version
+python3 --version</code></pre>
+<ul>
+<li>sur linux (ubuntu mint debian), la commande pour installer <code>python</code> est :</li>
+</ul>
+<pre class="shell"><code>sudo apt install python3-pip
+python --version</code></pre>
+<ul>
+<li>si la commande <code>python3 --version</code> donne une version mais pas la commande <code>python --version</code>, créer un lien symbolique en python et python3</li>
+</ul>
+<pre><code>sudo sudo ln -s /usr/bin/python3 /usr/bin/python</code></pre>
 <h1 id="utilisation-de-flask">utilisation de flask</h1>
 <h2 id="lancement-ou-installation-sur-vos-machine-personnelle">lancement (ou installation sur vos machine personnelle)</h2>
 <p>utiliser <strong>pycharm</strong> (à l’IUT <code>/opt/pycharm/bin/pycharm.sh</code> et <code>licence server</code>)</p>
@@ -139,24 +154,24 @@ Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’en
 <ul>
 <li>modifier le fichier <strong>app.py</strong> avec comme contenu :</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash, url_for, abort  </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>                <span class="co"># application WSGI</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># (interface de serveur web python)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># comportements et méthodes d&#39;un serveur web</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)    <span class="co"># instance de classe Flask (en paramètre le nom du module)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">#app.config[&quot;TEMPLATES_AUTO_RELOAD&quot;] = True </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash, url_for, abort  </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>                <span class="co"># application WSGI</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co"># (interface de serveur web python)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co"># comportements et méthodes d&#39;un serveur web</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)    <span class="co"># instance de classe Flask (en paramètre le nom du module)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">#app.config[&quot;TEMPLATES_AUTO_RELOAD&quot;] = True </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
 <ul>
 <li>tester l’application : ouvrir un terminal sur pycharm et lancer la commande ci-dessous</li>
 </ul>
@@ -308,37 +323,37 @@ git push -uf origin main
 <p>Commencer par installer le paquet :</p>
 <pre><code>pip install python-dotenv</code></pre>
 <p>Modifier un peu le début du fichier <code>app.py</code></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true"></a></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true"></a>        )</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true"></a></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true"></a>        db.close()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true"></a>        )</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true"></a>        db.close()</span></code></pre></div>
 <p>Créez un fichier <code>.env</code> à la racine du projet (au même niveau que <code>app.py</code>)</p>
 <pre><code>HOST=&quot;localhost&quot;,  
 PASSWORD=&quot;secret&quot;
