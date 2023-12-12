@@ -177,7 +177,7 @@ sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_
 
 [mysql]
 local_infile=ON</code></pre>
-<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysqld --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
+<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysql --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
 <p><br><br></p>
 <p>Vous pouvez vérifier l’encodage du serveur MySQL par défaut avec la commande SQL <code>SHOW VARIABLES LIKE 'character_set_%';</code>. Cette requête renvoie les variables liées à l’encodage dans MySQL, y compris la variable <em>character_set_server</em> qui indique l’encodage du serveur MySQL. Les dernières versions de MySQL utilisent par défaut <strong>utf8mb4</strong> qui convient parfaitement.</p>
 <p><a href="https://support.cpanel.net/hc/en-us/articles/360050089274-How-to-change-the-SQL-mode-in-MySQL-or-MariaDB" target="_blanck">documentation</a></p>
