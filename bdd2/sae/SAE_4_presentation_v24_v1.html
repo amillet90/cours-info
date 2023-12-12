@@ -208,7 +208,7 @@ etat (id_etat, libelle )</code></pre>
 </ul></li>
 </ul>
 <p><br></p>
-<p><strong>sujet 5: chaussure</strong>/<span class="violet">pointure</span></p>
+<p><strong>sujet 5: chaussure</strong>/<span class="violet">couleur</span></p>
 <p>chaussure <strong>pointure(36,38…)</strong> ou produit nettoyant ; <span class="vert">type_chaussure</span> fournisseur marque couleur <strong>…..</strong> <a href="https://www.cirages-et-compagnie.fr/product/lait-nettoyant-pour-cuir" target="_blanck">exemple</a> ou <a href="https://www.galerieslafayette.com/c/homme/chaussures/chaussures-de-ville/mocassins" target="_blanck">exemple</a></p>
 <ul>
 <li>MLD
@@ -220,37 +220,126 @@ etat (id_etat, libelle )</code></pre>
 </ul>
 <p><strong>sujet 6: telephone</strong>/<span class="violet">couleur</span></p>
 <p>telephone <strong>couleur(bleu noie…)</strong> modele <span class="vert">categorie</span> fournisseur marque <strong>…..</strong> <a href="https://www.ldlc.com/telephonie/telephonie-portable/mobile-smartphone/c4416/" target="_blanck">exemple</a> <a href="https://www.amazon.fr/Blackview-BV4900-T%C3%A9l%C3%A9phone-Incassable-Smartphone/dp/B08HYSQBVT/" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>telephone(id_telephone, nom_telephone, poids, taille, prix_telephone, couleur_id, type_telephone_id, fournisseur, marque )</li>
+<li><span class="violet">couleur (id_couleur, libelle_couleur)</span></li>
+<li><span class="vert">type_telephone (id_type_telephone, libelle_type_telephone)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 7: casque</strong>/<span class="violet">taille</span></p>
 <p>casque <strong>taille(XS,S,M,L,XL…)</strong> <span class="vert">type_casque</span> couleur taille fabricant fournisseur <strong>…..</strong></p>
 <p><a href="https://www.alltricks.fr/F-10007-casques/P-1426733-casque_abus_hyban_2_0_ace_velvet_jaune_avec_visiere_transparente" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>casque(id_casque, nom_casque, poids, couleur, prix_casque, taille_id, type_casque_id, fournisseur, marque )</li>
+<li><span class="violet">taille (id_taille, libelle_taille)</span></li>
+<li><span class="vert">type_casque (id_type_casque, libelle_type_casque)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 8: lunette</strong>/<span class="violet">couleur</span></p>
-<p>lunette <strong>couleur(bleu noir…)</strong> taille indice_protection <span class="vert">categorie</span>(soleil protection vue enfant) fournisseur marque <strong>…..</strong> <a href="https://www.afflelou.com/lunettes-de-soleil/luxe/" target="_blanck">exemple</a></p>
+<p>lunette <strong>couleur(bleu noir…)</strong> <a href="https://www.easylunettes.fr/p/guide-des-tailles/" target="_blanck">taille</a> indice_protection <span class="vert">categorie</span>(soleil protection vue enfant) fournisseur marque <strong>…..</strong> <a href="https://www.afflelou.com/lunettes-de-soleil/luxe/" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>lunette(id_lunette, nom_lunette, sexe, indice_protection, taille_monture, prix_lunette, couleur_id, categorie_id, fournisseur, marque )</li>
+<li><span class="violet">couleur (id_couleur, libelle_couleur)</span></li>
+<li><span class="vert">categorie (id_categorie, libelle_categorie)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 9: peinture</strong>/<span class="violet">couleur</span></p>
 <p>peinture <strong>couleur(bleu noir… vert)</strong> volume_pot(0.5L 1L …) <span class="vert">categorie</span>(intérieur bois extérieur métal) fournisseur marque <strong>…..</strong> <a href="https://www.4murs.com/articles/1147897-peinture-absolu-acrylique-coconut-mat-2-5-l" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>peinture(id_peinture, nom_peinture, volume_pot, numero_melange, prix_peinture, couleur_id, categorie_id, fournisseur, marque )</li>
+<li><span class="violet">couleur (id_couleur, nom_couleur)</span></li>
+<li><span class="vert">categorie (id_categorie, nom_categorie)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 10: gant</strong>/<span class="violet">taille</span></p>
-<p>gant <strong>taille(6,7,8,9,10…) ou taille unique</strong> <span class="vert">type_gant</span>(jardinage ski hiver mode) fournisseur marque <strong>…..</strong> <a href="https://www.jardideco.fr/protection-du-jardinier/18510-gants-de-protection-en-cuir-frenchie-jardinage.html#/39-taille-taille_10" target="_blanck">exemple</a></p>
+<p>gant <strong>taille(6,7,8,9,10…) ou <a href="https://www.1000gants.com/calculer-sa-taille/" target="_blanck">taille</a> unique</strong> <span class="vert">type_gant</span>(jardinage ski hiver mode) fournisseur marque <strong>…..</strong> <a href="https://www.jardideco.fr/protection-du-jardinier/18510-gants-de-protection-en-cuir-frenchie-jardinage.html#/39-taille-taille_10" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>gant(id_gant, nom_gant, poids, couleur, prix_gant, taille_id, type_gant_id, fournisseur, marque )</li>
+<li><span class="violet">taille (id_taille, num_taille_fr, taille_us, tour_de_main)</span></li>
+<li><span class="vert">type_gant (id_type_gant, nom_type_gant)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
-<p><strong>sujet 11: câbles</strong>/<span class="violet">longueur</span></p>
-<p>cable <strong>longueur(50cm , 1m , 1m50 ,…) ou taille unique</strong> <span class="vert">type_prise</span>(usb jack hdmi …) fournisseur marque <strong>…..</strong></p>
+<p><strong>sujet 11: câble</strong>/<span class="violet">longueur</span></p>
+<p><a href="https://www.ldlc.com/connectiques/connectique-reseau/cable-rj45/c4512/+fi256-l10h10.html" target="_blanck">cable</a> <strong>longueur(50cm , 1m , 1m50 ,…) ou taille unique</strong> <span class="vert">type_prise</span>(usb jack hdmi …) fournisseur marque <strong>…..</strong></p>
+<ul>
+<li>MLD
+<ul>
+<li>cable(id_cable, nom_cable, type_cable, couleur, prix_cable, <a href="https://www.ldlc.com/connectiques/connectique-reseau/cable-rj45/c4512/+fi256-l10h10.html">blindage</a>, type_prise_id, fournisseur, marque )</li>
+<li><span class="violet">longueur (id_longueur, nom_longueur)</span></li>
+<li><span class="vert">type_prise (id_type_prise, nom_type_prise)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 12: clé usb(cle_usb)</strong>/<span class="violet">capacité</span></p>
 <p>cle_usb <strong>capacité (8GO , 16 G0 , …) ou capacité unique</strong> <span class="vert">type_port</span>( usb C, USB classique, mini …) fournisseur marque <strong>…..</strong></p>
+<ul>
+<li>MLD
+<ul>
+<li>cle_usb(id_cle_usb, nom_cle_usb, capacite, decription, vitesse_transfert, prix_cle_usb, couleur_id, type_cle_usb_id, fournisseur, marque )</li>
+<li><span class="violet">couleur (id_couleur, libelle_couleur)</span></li>
+<li><span class="vert">type_cle_usb (id_type_cle_usb, libelle_type_cle_usb)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 13: jean</strong>/<span class="violet">taille</span></p>
-<p>jean <strong>taille(W29 W31 W33… L32 (taille américaine))</strong> <span class="vert">type_vetement</span> couleur fournisseur marque <strong>…..</strong> <a href="https://www.1083.fr/homme.html" target="_blanck">exemple</a></p>
+<p>jean <strong>taille(W29 W31 W33… L32 (taille américaine))</strong> <span class="vert">coupe_jean</span> couleur fournisseur marque <strong>…..</strong> <a href="https://www.1083.fr/homme.html" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>jean(id_jean, nom_jean, prix_jean, #taille_id, #coupe_jean_id, matiere, couleur, description, fournisseur, marque )</li>
+<li><span class="violet">taille (id_taille, nom_taille)</span></li>
+<li><span class="vert">coupe_jean (id_coupe_jean, <a href="https://www.kingofwear.com/fr/p-guide-jeans.html">nom_coupe</a>)</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 14: parfum</strong>/<span class="violet">volume</span></p>
-<p>parfum <strong>volume(50ml 100ml)</strong> <span class="vert">type_parfum</span>(homme femme mixte ) fournisseur marque <strong>…..</strong> <a href="https://www.parfumdo.com/30258-patchouli-vaporisateur-eau-de-toilette.html" target="_blanck">exemple</a></p>
+<p>parfum <strong>volume(50ml 100ml)</strong> <span class="vert">genre</span>(homme femme mixte ) fournisseur marque <strong>…..</strong> <a href="https://www.parfumdo.com/30258-patchouli-vaporisateur-eau-de-toilette.html" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>parfum(id_parfum, nom_parfum, prix_parfum, volume, #conditionnement_id (ou conditionnement), #volume_id, #type_parfum_id, description, fournisseur, marque )</li>
+<li><span class="violet">volume (id_volume, nom_volume)</span></li>
+<li><span class="vert">genre (id_genre, nom_genre</span></li>
+</ul></li>
+</ul>
 <p><br></p>
 <p><strong>sujet 15: linge</strong>/<span class="violet">coloris</span></p>
-<p>linge <strong>coloris( voir exemple)</strong>, taille, <span class="vert">type_linge</span>(serviette bain, ) fournisseur marque <strong>…..</strong> <a href="https://www.linvosges.com/fr/la-salle-de-bain/tapis-de-bain/bain-a-etretat/" target="_blanck">exemple</a></p>
+<p>linge <strong>coloris( voir exemple)</strong>, taille, <span class="vert">type_linge</span>(serviette bain, drap … ) fournisseur marque <strong>…..</strong> <a href="https://www.linvosges.com/fr/la-salle-de-bain/tapis-de-bain/bain-a-etretat/" target="_blanck">exemple</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>linge(id_linge, nom_linge, prix_linge, dimension, #coloris_id, #type_linge_id, matiere, description, fournisseur, marque )</li>
+<li><span class="violet">coloris (id_coloris, nom_coloris)</span></li>
+<li><span class="vert">type_linge (id_type_linge, nom_type_linge</span></li>
+</ul></li>
+</ul>
 <p><br></p>
-<p><strong>sujet 16: boisson (eau ou jus de fruit)</strong>/<span class="violet">conditionnement ou fruit ou arome</span></p>
-<p>boisson <strong>conditionnement( voir exemple le catalogue celtic)</strong>, conteneur (verre, plastique(PET), <a href="https://www.ugap.fr/achat-public/eau-minerale-l-eau-neuve-tetra-50-cl-carton-de-12-bouteilles_3312362.html" target="_blanck">brique carton</a>, aluminium), <span class="vert">type_eau</span>(petillante, plate, aromatisé …) fournisseur marque <strong>…..</strong> <a href="https://www.eauceltic.com/" target="_blanck">exemple</a> - <a href="https://www.eauceltic.com/" target="_blanck">exemple2</a></p>
+<p><strong>sujet 16: boisson (eau ou jus de fruit)</strong>/<span class="violet"><a href="https://www.evianchezvous.com/tous-les-produits.html">arome</a> ou conditionnement ou fruit</span></p>
+<p>boisson <strong>conditionnement( voir exemple le catalogue celtic)</strong>, arome (sans arome, orange, citron …) conteneur (verre, plastique(PET), <a href="https://www.ugap.fr/achat-public/eau-minerale-l-eau-neuve-tetra-50-cl-carton-de-12-bouteilles_3312362.html" target="_blanck">brique carton</a>, aluminium), <span class="vert">type_eau</span>(petillante, plate, aromatisé …) fournisseur marque <strong>…..</strong> <a href="https://www.eauceltic.com/" target="_blanck">exemple</a> - <a href="https://www.eauceltic.com/" target="_blanck">exemple2</a></p>
+<ul>
+<li>MLD
+<ul>
+<li>boisson(id_boisson, nom_boisson, prix_boisson, volume, #conditionnement_id (ou conditionnement), #arome_id, #type_boisson_id, description, fournisseur, marque )</li>
+<li><span class="violet">arome (id_arome, nom_arome)</span></li>
+<li><span class="vert">type_boisson (id_type_boisson, nom_type_boisson</span></li>
+</ul></li>
+</ul>
+<hr />
 <h2 id="autre-idée---autre-idée---autre-idée"><a href="https://www.norev.com/fr/12979-citroen-2cv-azam-1966-gris-rose-1-17.html" target="_blanck">autre idée</a> - <a href="https://www.ambientedirect.com/fr/smeg/grille-pain-2-tranches-tsf01-mat_pid_1325203.html" target="_blanck">autre idée</a> - <a href="https://www.amazon.fr/dp/B0B7HCR3K8/ref=twister_B0BZTV43K2?_encoding=UTF8&amp;th=1" target="_blanck">autre idée</a></h2>
 <p><br><br><br></p>
 <!--
