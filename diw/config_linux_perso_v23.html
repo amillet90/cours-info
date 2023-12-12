@@ -144,12 +144,42 @@ sudo apt install chromium</code></pre>
 </ul>
 <p><br></p>
 <p><strong>Remarque :</strong><br />
-Tester la commande suivante dans un terminal connecté à MySql : <code>SELECT @@sql_mode;</code><br />
-Dans la réponse du type : <code>ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION</code><br />
-Vous devez trouver le mot clé <code>ONLY_FULL_GROUP_BY</code> Sinon il est conseillé de modifié le fichier <code>my.ini</code> (sur Windows) et my.cnf (sur Linux, pour le trouver sur linux : <code>find / -name '*my.cnf' 2&gt;/dev/null</code>)</p>
-<p>Puis modifier le contenu de la variable <code>sql_mode</code></p>
-<p><code>[mysqld]</code><br />
-<code>sql_mode = "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"</code></p>
+</p>
+<h3 id="configuration-de-mysql">Configuration de MySql</h3>
+<p>MySql est moins “strict” par défaut sur <strong>Windows</strong> et <strong>parfois</strong> sur <strong>Linux</strong>:</p>
+<p>Alors que MySQL est sensible par défaut à la casse (au niveau des noms de base et de table)dans la plupart des distributions Unix, il ne l’est pas pour Windows! En revanche, concernant les noms de colonnes, index, alias de colonnes, déclencheurs et procédures MySQL n’est pas sensible à la casse tous systèmes confondus. En fait, tous ces noms sont stockés en minuscules dans le dictionnaire de données.<br />
+La variable <strong>lower_case_table_names</strong> permet de forcer la sensibilité à la casse pour les noms des tables et des bases de données (si elle vaut 0, la sensibilité à la casse est active et les noms sont stockés en minuscules; 1, pas de sensibilité à la casse et les noms sont stockés en minuscules; 2, pas de sensibilité à la casse et les noms sont stockés en respectant la casse). Je vous invite à positionner cette variable à 0 de manière à homogénéiser le codage et à contrôler un peu plus l’écriture de vos instructions SQL. De plus, c’est l’option par défaut sur Linux.</p>
+<p><code>SELECT @@lower_case_table_names;</code> : Cette requête retournera la valeur actuelle de la variable <strong>lower_case_table_names</strong> qui doit être à <code>0</code></p>
+<p><br></p>
+<ul>
+<li>Attention aussi au mode de fonctionnement de MySQL, qui peut être moins strict sur les machines individuelles par rapport aux machines de l’IUT.</li>
+</ul>
+<p>Pour vérifier le mode SQL en cours d’utilisation dans votre serveur MySQL, vous pouvez exécuter la requête suivante : <code>SELECT @@sql_mode;</code>.<br />
+Cette requête renverra la valeur actuelle de la variable <strong>sql_mode</strong>, qui représente le mode SQL en cours d’utilisation.<br />
+Le résultat sera une chaîne de caractères contenant les différents modes SQL activés et leurs paramètres. Assurez-vous de trouver la valeur <code>ONLY_FULL_GROUP_BY</code> dans la chaîne de caractères renvoyée. Si ce mode n’est pas activé, cela signifie que MySQL peut être moins strict en ce qui concerne la clause <strong>GROUP BY</strong> dans vos requêtes, ce qui peut entraîner des résultats inattendus. Il est possible que votre application fonctionne correctement sur votre machine, mais rencontre des erreurs lorsqu’elle est exécutée sur une machine de l’IUT.</p>
+<p><br> En résumé, tester sur votre machine :</p>
+<pre><code>SELECT @@lower_case_table_names;
+-- la réponse devrait être 0
+
+SELECT @@sql_mode;
+-- la réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
+<p><br> <br> Si la configuration de <strong>MySQL</strong> n’est pas bonne :</p>
+<ul>
+<li>sur <strong>Windows</strong> : rechercher le fichier <strong>my.ini</strong> qui se trouve à coté du fichier “mysql.exe”. Pour trouver ce fichier sur Windows, utiliser la commande : <code>dir /s *my.ini*</code> depuis la racine <code>C:\</code></li>
+<li>sur <strong>Linux</strong> : rechercher le fichier <strong>my.cnf</strong>. Pour le trouver ce fichier sur linux, utiliser la commande : <code>find / -name '*my.cnf' 2&gt;/dev/null</code><br />
+</li>
+</ul>
+<p>Éditer le fichier de configuration <code>my.ini</code> ou <code>my.cnf</code> en tant que root. Dans ce fichier, sous la section serveur identifiée par <code>[mysqld]</code> si elle existe, ajouter les lignes ci-dessous (créer la section si elle n’existe pas):</p>
+<pre><code>[mysqld]
+lower_case_table_names=0
+local_infile=ON
+sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;
+
+[mysql]
+local_infile=ON</code></pre>
+<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysqld --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
+<p><br><br></p>
+<p>Vous pouvez vérifier l’encodage du serveur MySQL par défaut avec la commande SQL <code>SHOW VARIABLES LIKE 'character_set_%';</code>. Cette requête renvoie les variables liées à l’encodage dans MySQL, y compris la variable <em>character_set_server</em> qui indique l’encodage du serveur MySQL. Les dernières versions de MySQL utilisent par défaut <strong>utf8mb4</strong> qui convient parfaitement.</p>
 <p><a href="https://support.cpanel.net/hc/en-us/articles/360050089274-How-to-change-the-SQL-mode-in-MySQL-or-MariaDB" target="_blanck">documentation</a></p>
 <h2 id="éditeur-de-mcd">éditeur de MCD</h2>
 <ul>
@@ -236,10 +266,10 @@ free -mt
 <li><p>redémarrer le service <code>sudo systemctl restart mysql</code></p></li>
 <li><p>éventuellement pour l’utilisateur <em>root</em></p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">USE</span> mysql;</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">-- sur mysql</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>, Host, plugin,authentication_string <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">USE</span> mysql;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="co">-- sur mysql</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>, Host, plugin,authentication_string <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span></code></pre></div>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-fr" target="_BLANCK">doc ubuntu</a></p>
 <h1 id="annexes-windows-installation-sur-windows">annexes Windows : installation sur windows</h1>
 <br>
@@ -282,21 +312,21 @@ choco install openjdk8jre -y
 <ul>
 <li>tester dans un terminal (invité de commandes) : <code>cmder</code>, <code>code</code></li>
 </ul>
-<h1 id="configuration-de-mysql">configuration de mysql</h1>
+<h1 id="configuration-de-mysql-1">configuration de mysql</h1>
 <p>de ce que j’ai pu tester sur mysql, ouvrir une console <strong>sans être administrateur</strong></p>
 <pre><code>mysql -u root               # pour se connecter à mysql</code></pre>
 <ul>
 <li>recopier le script ci-dessous dans vscode, et remplacer login par votre login de l’iut, motdepasse pas JJMM (votre jour mois de naissance) =&gt; <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code sur l’invité de commande mysql.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
 <li>tester dans un terminal (invité de commande) la commande : <code>mysql -u login -h localhost -pmotdepasse BDD_login</code></li>
 </ul>
