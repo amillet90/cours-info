@@ -166,7 +166,7 @@ SELECT @@sql_mode;
 <p><br> <br> Si la configuration de <strong>MySQL</strong> n’est pas bonne :</p>
 <ul>
 <li>sur <strong>Windows</strong> : rechercher le fichier <strong>my.ini</strong> qui se trouve à coté du fichier “mysql.exe”. Pour trouver ce fichier, utiliser la commande : <code>dir /s *my.ini*</code> depuis la racine <code>C:\</code></li>
-<li>sur <strong>Linux</strong> : rechercher le fichier <strong>my.cnf</strong>. Pour le trouver ce fichier sur linux, utiliser la commande : <code>find / -name '*my.cnf' 2&gt;/dev/null</code><br />
+<li>sur <strong>Linux</strong> : rechercher le fichier <strong>my.cnf</strong>. Pour trouver ce fichier, utiliser la commande : <code>find / -name '*my.cnf' 2&gt;/dev/null</code><br />
 </li>
 </ul>
 <p>Éditer le fichier de configuration <code>my.ini</code> ou <code>my.cnf</code> en tant que root. Dans ce fichier, sous la section serveur identifiée par <code>[mysqld]</code> si elle existe, ajouter les lignes ci-dessous (créer la section si elle n’existe pas):</p>
