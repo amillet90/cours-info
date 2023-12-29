@@ -370,3 +370,7 @@ details[open] > summary ::before {
 }
 
 
+div.special_table + table tr:td:nth-child(2){
+   width: 180px;
+}
+

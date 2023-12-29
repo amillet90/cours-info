@@ -82,7 +82,7 @@
 <h1 id="sujets">sujets</h1>
 <h2 id="liste-des-sujets">liste des sujets</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co"># sujet 1 : departement_entreprise / employe  </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co"># sujet 1 : departement_usine / employe  </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co"># sujet 2 : activite / localisation_activite  </span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co"># sujet 3 : joueur / club_foot</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co"># sujet 4 : voiture / categorie_voiture</span></span>
@@ -91,9 +91,9 @@
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co"># sujet 7 : reparation / type_reparation   </span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co"># sujet 8 :  bande_dessinee / auteur</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># sujet 9 :  ordinateur / salle_info  </span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co"># sujet 10 : commercants  type_commercant    </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co"># sujet 10 : commercant  type_commercant    </span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co"># sujet 11 : depense / categorie_depense </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co"># sujet 12 : spectacle_representatio / theatre   </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co"># sujet 12 : spectacle_representation / theatre   </span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co"># sujet 13 : hotel / station_ski </span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co"># sujet 14 : vetement /  type_vetement </span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co"># sujet 15 : outil / type_outil </span></span>
@@ -267,7 +267,7 @@
 <h4 id="livrable-2-vacances-noel">livrable 2 (vacances Noel)</h4>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a># sujet <span class="dv">1</span> : departement <span class="op">/</span> employe       <span class="op">**</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a># sujet <span class="dv">1</span> : departement_usine <span class="op">/</span> employe       <span class="op">**</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> departement_usine (id_departement, nom_departement, logo) </span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">VALUES</span></span>
@@ -293,6 +293,9 @@
 <h3 id="sujet-2">sujet 2</h3>
 <h4 id="livrable-1-vacances-toussaint-1">livrable 1 (vacances Toussaint)</h4>
 <p>éléments à respecter dans le fichier <code>app.py</code></p>
+<div class="special_table">
+
+</div>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -445,7 +448,7 @@
 <p><br></p>
 <h4 id="livrable-2-vacances-noel-1">livrable 2 (vacances Noel)</h4>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">-- sujet 2 : activite / localisation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">-- sujet 2 : activite / localisation_activite</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> localisation_activite  (id_localisation , nom_lieu,nom_adresse,lat,lng) <span class="kw">VALUES</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    (  <span class="kw">NULL</span>,  <span class="st">&#39;Gymnase IUT&#39;</span>,<span class="st">&#39;11 Rue Rosa Bonheur, 90000 Belfort&#39;</span>, <span class="fl">47.644096</span>,<span class="fl">6.839176</span> ),</span>
