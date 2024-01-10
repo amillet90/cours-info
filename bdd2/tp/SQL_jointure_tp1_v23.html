@@ -31,7 +31,7 @@ TP 1 MySQL : import et export de données, requête avec jointure interne
 <p><br> Pour exécuter ce script :</p>
 <pre><code>Mysql\&gt; source script.sql ;</code></pre>
 <ul>
-<li>Supprimer toutes les tables si elles existent, créer toutes les tables si elles n'existent pas.</li>
+<li>Supprimer toutes les tables si elles existent (une table par instruction), créer toutes les tables si elles n'existent pas.</li>
 </ul>
 <p><br></p>
 <p>Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.</p>
@@ -246,8 +246,8 @@ ON CLIENT.idClient = COMMANDE.idClient;</code></pre>
 <pre><code>+------+--------------+
 | nom  | dateCommande |
 +------+--------------+
-| Mutz | 2020-09-19   |
-| Mutz | 2020-12-09   |
+| Mutz | 2023-09-19   |
+| Mutz | 2023-12-09   |
 +------+--------------+</code></pre>
 <ul>
 <li><strong>R4</strong> : Faire une requête pour afficher les articles (prix et quantité commandée) des commandes du client de nom ‘Mutz’ :</li>
@@ -309,52 +309,52 @@ L’affichage est trié par la désignation de l’article par ordre croissant p
 +----------------------------------+-------------+---------------+------------+
 | designation                      | QteCommande | anneeCommande | idCommande |
 +----------------------------------+-------------+---------------+------------+
-| Choux ( légume )                 |           6 |          2020 |          2 |
-| Coca cola ( boisson )            |          12 |          2020 |          1 |
-| Fenouil ( légume )               |           3 |          2021 |          3 |
-| Fenouil ( légume )               |           4 |          2020 |          1 |
-| Fenouil ( légume )               |           4 |          2019 |          5 |
-| gâteau fraise (pâtisserie)       |          27 |          2020 |          4 |
-| Gâteaux chocolat ( pâtisserie)   |           3 |          2021 |          3 |
-| Haricot ( légume )               |           4 |          2020 |          1 |
-| Mouchoir ( hygiène)              |           6 |          2020 |          2 |
+| Choux ( légume )                 |           6 |          2023 |          2 |
+| Coca cola ( boisson )            |          12 |          2023 |          1 |
+| Fenouil ( légume )               |           3 |          2024 |          3 |
+| Fenouil ( légume )               |           4 |          2023 |          1 |
+| Fenouil ( légume )               |           4 |          2022 |          5 |
+| gâteau fraise (pâtisserie)       |          27 |          2023 |          4 |
+| Gâteaux chocolat ( pâtisserie)   |           3 |          2024 |          3 |
+| Haricot ( légume )               |           4 |          2023 |          1 |
+| Mouchoir ( hygiène)              |           6 |          2023 |          2 |
 | Perrier ( 1L eau )               |        NULL |          NULL |       NULL |
-| Petit pois ( légume )            |           6 |          2020 |          2 |
-| Petit pois ( légume )            |           6 |          2020 |          8 |
+| Petit pois ( légume )            |           6 |          2023 |          2 |
+| Petit pois ( légume )            |           6 |          2023 |          8 |
 | Pissenlit ( légume )             |        NULL |          NULL |       NULL |
-| Poireau ( légume )               |           3 |          2021 |          3 |
-| Poireau ( légume )               |           3 |          2020 |          6 |
-| Poivron ( légume )               |           4 |          2020 |          1 |
-| Pomme ( fruit )                  |           5 |          2020 |          4 |
-| Pomme de terre ( légume )        |           6 |          2020 |          2 |
-| Potiron ( légume )               |           5 |          2020 |          4 |
-| Radis ( légume )                 |           3 |          2021 |          3 |
+| Poireau ( légume )               |           3 |          2024 |          3 |
+| Poireau ( légume )               |           3 |          2023 |          6 |
+| Poivron ( légume )               |           4 |          2023 |          1 |
+| Pomme ( fruit )                  |           5 |          2023 |          4 |
+| Pomme de terre ( légume )        |           6 |          2023 |          2 |
+| Potiron ( légume )               |           5 |          2023 |          4 |
+| Radis ( légume )                 |           3 |          2024 |          3 |
 | Salade ( légume )                |        NULL |          NULL |       NULL |
-| Tomate ( légume )                |           5 |          2020 |          4 |
-| Tomate ( légume )                |           5 |          2020 |          7 |
+| Tomate ( légume )                |           5 |          2023 |          4 |
+| Tomate ( légume )                |           5 |          2023 |          7 |
 | Vittel ( 1L eau )                |        NULL |          NULL |       NULL |
 +----------------------------------+-------------+---------------+------------+
 </code></pre>
 <ul>
-<li><strong>R9</strong> : Afficher les produits, la quantité commandée, l’année de la commande et l’identifiant de la commande des produits commandés en 2020 qui sont dans la liste des produits commandés en 2021.</li>
+<li><strong>R9</strong> : Afficher les produits, la quantité commandée, l’année de la commande et l’identifiant de la commande des produits commandés en 2023 qui sont dans la liste des produits commandés en 2024.</li>
 </ul>
 <pre><code>+----------------------+-------------+---------------+------------+
 | designation          | QteCommande | anneeCommande | idCommande |
 +----------------------+-------------+---------------+------------+
-| Fenouil ( légume )   |           4 |          2020 |          1 |
-| Poireau ( légume )   |           3 |          2020 |          6 |
+| Fenouil ( légume )   |           4 |          2023 |          1 |
+| Poireau ( légume )   |           3 |          2023 |          6 |
 +----------------------+-------------+---------------+------------+</code></pre>
 <ul>
-<li><strong>R10</strong> : Afficher le nombre de commandes de chaque client en 2020. Si le nombre de commande est 0, le résultat affiché doit être “null”, utiliser la fonction “<a href="https://www.w3schools.com/Sql/trymysql.asp?filename=trysql_func_mysql_coalesce" target="_blanck">coalesce</a>” pour remplacer “null” par “0” ; Utiliser la fonction “<a href="https://www.w3schools.com/Sql/func_mysql_ifnull.asp" target="_blanck">ifnull</a>” qui est identique à “coalesce” pour afficher “pas de commande” au lieu de “null”.<br />
+<li><strong>R10</strong> : Afficher le nombre de commandes de chaque client en 2023. Si le nombre de commande est 0, le résultat affiché doit être “null”, utiliser la fonction “<a href="https://www.w3schools.com/Sql/trymysql.asp?filename=trysql_func_mysql_coalesce" target="_blanck">coalesce</a>” pour remplacer “null” par “0” ; Utiliser la fonction “<a href="https://www.w3schools.com/Sql/func_mysql_ifnull.asp" target="_blanck">ifnull</a>” qui est identique à “coalesce” pour afficher “pas de commande” au lieu de “null”.<br />
 L’affichage est trié par le nombre de commande décroissant puis par le nom des clients.</li>
 </ul>
 <pre><code>+--------------+------------+-----------------+
 | nom          | nbCommande | anneeCommande   |
 +--------------+------------+-----------------+
-| Rato         |          3 | 2020            |
-| Mutz         |          2 | 2020            |
-| Walter       |          1 | 2020            |
-| Goerig       |          1 | 2020            |
+| Rato         |          3 | 2023            |
+| Mutz         |          2 | 2023            |
+| Walter       |          1 | 2023            |
+| Goerig       |          1 | 2023            |
 | AMGHAR       |          0 | pas de commande |
 | dirand       |          0 | pas de commande |
 | SAINT DIZIER |          0 | pas de commande |
