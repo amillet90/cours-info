@@ -150,7 +150,9 @@ local_infile=ON</code></pre>
 
 mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee &gt; nom_fichier_backup_$(date +%Y-%m-%d-%H.%M.%S).sql</code></pre>
 <p><br></p>
-<p>Récupérer la date système sur <a href="https://stackoverflow.com/questions/17853838/how-to-add-date-and-time-with-backupfile-name-using-mysqldump-from-command-promp" target="_blanck">Windows</a>, c’est un peu plus compliqué</p>
+<p>Sur <a href="https://stackoverflow.com/questions/17853838/how-to-add-date-and-time-with-backupfile-name-using-mysqldump-from-command-promp" target="_blanck">Windows</a> récupérer la date système, et créer un script de ce type dans un terminal “Powershell” comme celui ci-dessous :</p>
+<pre><code>$timestamp = Get-Date -Format &quot;yyyy-MM-dd_HH_mm_ss&quot;
+mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee &gt; &quot;backup_$timestamp.sql&quot;</code></pre>
 <p><br></p>
 <p>Exemple final :</p>
 <figure>
