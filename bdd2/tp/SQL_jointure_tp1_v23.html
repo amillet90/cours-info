@@ -145,12 +145,12 @@ local_infile=ON</code></pre>
 <pre><code>mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee t1 t2 &gt; base.sql</code></pre>
 <p><br></p>
 <h2 id="sauvegarder-la-base-de-données-dans-un-fichier-avec-la-date-daujourdhui">sauvegarder la base de données dans un fichier avec la date d’aujourd’hui</h2>
-<p>faire un backup sur un SE <a href="https://stackoverflow.com/questions/4536376/generate-backup-file-using-date-and-time-as-filename" target="_blanck">linux</a></p>
+<p>Sur le SE <a href="https://stackoverflow.com/questions/4536376/generate-backup-file-using-date-and-time-as-filename" target="_blanck">Linux</a> pour faire un backup, créer un script “bash” avec les commandes ci-dessous :</p>
 <pre><code>echo nom_fichier_backup_$(date +%Y-%m-%d-%H.%M.%S).sql
 
 mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee &gt; nom_fichier_backup_$(date +%Y-%m-%d-%H.%M.%S).sql</code></pre>
 <p><br></p>
-<p>Sur <a href="https://stackoverflow.com/questions/17853838/how-to-add-date-and-time-with-backupfile-name-using-mysqldump-from-command-promp" target="_blanck">Windows</a> récupérer la date système, et créer un script de ce type dans un terminal “Powershell” comme celui ci-dessous :</p>
+<p>Sur <a href="https://stackoverflow.com/questions/17853838/how-to-add-date-and-time-with-backupfile-name-using-mysqldump-from-command-promp" target="_blanck">Windows</a>, créer un script “Powershell” (<code>.ps1</code>) avec les commandes celui ci-dessous :</p>
 <pre><code>$timestamp = Get-Date -Format &quot;yyyy-MM-dd_HH_mm_ss&quot;
 mysqldump --host=host --user=votrelogin --password=motdePasse --no-tablespaces votreBaseDeDonnee &gt; &quot;backup_$timestamp.sql&quot;</code></pre>
 <p><br></p>
