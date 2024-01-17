@@ -123,6 +123,7 @@ Vous pouvez essayer de vous connecter avec l’option <code>--local_infile</code
 <p><code>sudo nano /etc/mysql/my.cnf</code></p>
 <p>ajouter les lignes suivantes à la fin :</p>
 <pre><code>[mysqld]
+lower_case_table_names=0
 local_infile=ON
 sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;
 
@@ -132,6 +133,8 @@ local_infile=ON</code></pre>
 <p><code>sudo service mysql restart</code></p>
 <p><br></p>
 <p>Sur <strong>windows</strong>, éditer le fichier <code>C:\\tools\\mysql\\current\\my.ini</code> (installation avec <em>chocalatey</em>) et faire les mêmes modifications que dans <code>my.cnf</code> sur <em>linux</em></p>
+<p><br></p>
+<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysql --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
 <h1 id="exporter-des-données-mysqldump"><strong>Exporter des données : mysqldump</strong></h1>
 <p>Pour exporter une base (<strong>depuis un terminal « shell»</strong>) dans le terminal :</p>
 <pre><code>mysqldump --host=serveurmysql --user=votrelogin --password=motdePasse  votreBaseDeDonnee</code></pre>
