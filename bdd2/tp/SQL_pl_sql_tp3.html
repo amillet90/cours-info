@@ -159,7 +159,9 @@
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">77889</span>, <span class="dv">123</span>,   <span class="st">&#39;1-3-2014&#39;</span>  ,<span class="st">&#39;Deve&#39;</span>);</span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">90011</span>, <span class="dv">123</span>,   <span class="st">&#39;1-5-2014&#39;</span>  ,<span class="st">&#39;Tech&#39;</span>);</span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">22233</span>, <span class="dv">757</span>,   <span class="st">&#39;1-3-2014&#39;</span>  ,<span class="st">&#39;Deve&#39;</span>);</span></code></pre></div>
-<p>modifier le script ci-dessus :</p>
+<ol start="4" type="1">
+<li>[Utiliser une IA générative (réaliser un prompt) pour modifier le script ci-dessus :</li>
+</ol>
 <ul>
 <li>ajouter les clés primaires</li>
 <li>ajouter les clés étrangéres</li>
@@ -230,5 +232,117 @@ INSERT INTO Embauche VALUES (22233, 757, STR_TO_DATE(&#39;01-03-2014&#39;, &#39;
 </code></pre>
 <p>
 </details>
+<ol start="5" type="1">
+<li>[Utiliser une IA générative (réaliser un prompt) pour modifier la procédure PL-SQL ci-dessus :</li>
+</ol>
+<pre><code>DECLARE 
+    trouve BOOLEAN;
+BEGIN
+   FOR  r  IN (SELECT numproj, nomproj, villep FROM Projet ORDER BY nomproj)
+    LOOP
+             dbms_output.put_line(&#39;-----------------------------------&#39;);
+             dbms_output.put_line(&#39;Projet: &#39;||r.nomproj||&#39; dans la ville  &#39;||r.villep);
+             dbms_output.put_line(&#39;-----------------------------------&#39;);
+                       trouve := FALSE;
+                       FOR r2 IN (SELECT nome, prenome FROM employe e, embauche b 
+                                      WHERE e.numss=b.numss AND b.numproj=r.numproj )
+                       LOOP
+                            dbms_output.put_line(&#39;Employé: &#39;|| r2.nome||&#39;, &#39;|| r2.prenome);
+                            trouve := TRUE;
+                      END LOOP;
+                      IF(trouve = FALSE) THEN
+                            dbms_output.put_line(&#39;Pas d&#39;&#39;employé&#39;);
+                       END IF;
+    END LOOP;
+END;</code></pre>
+<p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
+<pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
++-------------------------------------+
+| Ligne                               |
++-------------------------------------+
+| ----------------------------------- |
+| Projet: ADOOP dans la ville Paris   |
+| ----------------------------------- |
+| Employé: Florent, Girac             |
+| Employé: Mayla, Aoun                |
+| ----------------------------------- |
+| Projet: BAJA dans la ville Paris    |
+| ----------------------------------- |
+| ----------------------------------- |
+| Projet: SKALA dans la ville Lyon    |
+| ----------------------------------- |
+| Employé: Christine, Lara            |
++-------------------------------------+
+12 rows in set (0,006 sec)
+
+Query OK, 12 rows affected (0,006 sec)
+</code></pre>
+<ol start="2" type="1">
+<li>Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. Utilisez les attributs d’un curseur implicite.</li>
+</ol>
+<pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
++-----------------------------+
+| Message                     |
++-----------------------------+
+| 1 employé(s) supprimé(s).   |
++-----------------------------+
+1 row in set (0,004 sec)</code></pre>
+<p>L’instruction <code>SELECT * FROM Employe;</code> permet de voir que franck a disparu</p>
+<ol start="3" type="1">
+<li>Exo3 (Curseur). Écrivez un bloc PL/SQL anonyme qui modifie tous les noms des profils dans la table grille_sal en ajoutant la lettre ‘P’ devant chaque nom de profil. Pour chaque profil modifié dans la table grille_sal les valeurs correspondantes dans la table embauche doivent également être modifiées. Utilisez un curseur.</li>
+</ol>
+<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
+    -&gt;         FROM Grille_sal;
++--------+----------+
+| profil | salaire  |
++--------+----------+
+| Admin  | 80000.00 |
+| Deve   | 45000.00 |
+| Tech   | 35000.00 |
++--------+----------+
+3 rows in set (0,001 sec)
+
+MariaDB [BDD_s2_tp]&gt; SHOW CREATE TABLE Embauche;
++----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Embauche | CREATE TABLE `Embauche` (
+  `NumSS` int(11) NOT NULL,
+  `NumProj` int(11) NOT NULL,
+  `DateEmb` date NOT NULL DEFAULT curdate(),
+  `Profil` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`NumSS`,`NumProj`,`DateEmb`),
+  KEY `NumProj` (`NumProj`),
+  KEY `Profil` (`Profil`),
+  CONSTRAINT `Embauche_ibfk_1` FOREIGN KEY (`NumSS`) REFERENCES `Employe` (`NumSS`),
+  CONSTRAINT `Embauche_ibfk_2` FOREIGN KEY (`NumProj`) REFERENCES `Projet` (`NumProj`),
+  CONSTRAINT `Embauche_ibfk_3` FOREIGN KEY (`Profil`) REFERENCES `Grille_sal` (`profil`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
++----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0,000 sec)
+
+MariaDB [BDD_s2_tp]&gt; CALL ModifierProfilsEtSalaire();
++-----------------------------------------------+  
+| Message                                       |
++-----------------------------------------------+
+| Les profils ont été modifiés avec succès.     |
++-----------------------------------------------+
+1 row in set (0,568 sec)
+
+Query OK, 12 rows affected (0,568 sec)
+
+MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
+    -&gt;         FROM Grille_sal;
++--------+----------+
+| profil | salaire  |
++--------+----------+
+| PAdmin | 80000.00 |
+| PDeve  | 45000.00 |
+| PTech  | 35000.00 |
++--------+----------+
+3 rows in set (0,001 sec)</code></pre>
+<ol start="4" type="1">
+<li>(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. Utiliser un curseur avec des paramètres.</li>
+</ol>
 </body>
 </html>
