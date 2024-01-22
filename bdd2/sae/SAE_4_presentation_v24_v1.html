@@ -279,7 +279,7 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>MLD
 <ul>
-<li>cable(id_cable, nom_cable, type_cable, couleur, prix_cable, <a href="https://www.ldlc.com/connectiques/connectique-reseau/cable-rj45/c4512/+fi256-l10h10.html">blindage</a>, type_prise_id, fournisseur, marque )</li>
+<li>cable(id_cable, nom_cable, type_cable_id, longueur_id couleur, prix_cable, <a href="https://www.ldlc.com/connectiques/connectique-reseau/cable-rj45/c4512/+fi256-l10h10.html">blindage</a>, type_prise_id, fournisseur, marque )</li>
 <li><span class="violet">longueur (id_longueur, nom_longueur)</span></li>
 <li><span class="vert">type_prise (id_type_prise, nom_type_prise)</span></li>
 </ul></li>
@@ -290,8 +290,8 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>MLD
 <ul>
-<li>cle_usb(id_cle_usb, nom_cle_usb, capacite, decription, vitesse_transfert, prix_cle_usb, couleur_id, type_cle_usb_id, fournisseur, marque )</li>
-<li><span class="violet">couleur (id_couleur, libelle_couleur)</span></li>
+<li>cle_usb(id_cle_usb, nom_cle_usb, capacite_id, decription, vitesse_transfert, prix_cle_usb, couleur_id, type_cle_usb_id, fournisseur, marque )</li>
+<li><span class="violet">capacite (id_capacite, libelle_capacite)</span></li>
 <li><span class="vert">type_cle_usb (id_type_cle_usb, libelle_type_cle_usb)</span></li>
 </ul></li>
 </ul>
@@ -312,7 +312,7 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>MLD
 <ul>
-<li>parfum(id_parfum, nom_parfum, prix_parfum, volume, #conditionnement_id (ou conditionnement), #volume_id, #type_parfum_id, description, fournisseur, marque )</li>
+<li>parfum(id_parfum, nom_parfum, prix_parfum, volume_id, #conditionnement_id (ou conditionnement), #volume_id, #type_parfum_id, description, fournisseur, marque )</li>
 <li><span class="violet">volume (id_volume, nom_volume)</span></li>
 <li><span class="vert">genre (id_genre, nom_genre</span></li>
 </ul></li>
@@ -336,7 +336,17 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>boisson(id_boisson, nom_boisson, prix_boisson, volume, #conditionnement_id (ou conditionnement), #arome_id, #type_boisson_id, description, fournisseur, marque )</li>
 <li><span class="violet">arome (id_arome, nom_arome)</span></li>
-<li><span class="vert">type_boisson (id_type_boisson, nom_type_boisson</span></li>
+<li><span class="vert">type_boisson (id_type_boisson, nom_type_boisson</span> <br></li>
+</ul></li>
+</ul>
+<p><strong>sujet 17: equipement de sport</strong>/[ <span class="violet">taille</span></p>
+<p>equipement_sport <strong>couleur( <a href="https://www.totalsport.fr/sports-individuels.html" target="_blanck">voir exemple</a> )</strong>, <span class="vert">type_linge</span>(serviette bain, drap … ) fournisseur marque <strong>…..</strong></p>
+<ul>
+<li>MLD
+<ul>
+<li>equipement_sport (id_equipement, nom_equipement, prix_equipement, #couleur_id, #type_sport_id, matiere, couleur, description, fournisseur, marque )</li>
+<li><span class="violet">couleur (id_coiuleur, nom_couleur</span></li>
+<li><span class="vert">type_sport (id_type_sport)</span> equipement_sport (id_equipement, nom_equipement, prix_equipement, #taille_id, #type_sport_id, matiere, couleur, description, fournisseur, marque )</li>
 </ul></li>
 </ul>
 <hr />
