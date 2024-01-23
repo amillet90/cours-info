@@ -81,8 +81,7 @@
 </head>
 <body>
 <h1 id="présentation">présentation</h1>
-<p>Le problème ci-dessous s’inspire du problème sur Oracle du TP suivant : <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" class="uri">http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql</a></p>
-<p><br></p>
+<p>Le problème ci-dessous s’inspire du problème sur Oracle du TP suivant : <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" target="_blanck">http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql</a> <br></p>
 <p>Nous travaillerons par la suite sur les trois tables suivantes qui permettent de décrire des employés, des projets, l’affectation des employés aux projets et les grilles de salaire pour différents profils de postes :</p>
 <p><strong>EMPLOYE(<span class="underline">NumSS</span>, NomE, PrenomE, VilleE, DateNaiss)</strong><br />
 <strong>PROJET(<span class="underline">NumProj</span>, NomProj, <em>#iRespProj</em>,, VilleP, Budget)</strong><br />
@@ -345,5 +344,95 @@ MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
 <ol start="4" type="1">
 <li>(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. Utiliser un curseur avec des paramètres.</li>
 </ol>
+<p>voir question 1</p>
+<ol start="5" type="1">
+<li>(Utilisation CASE et Curseur)Écrire un bloc anonyme qui augmente tous les salaires dans la table Grille_Sal. Les salaires inférieurs à 40000 sont augmentés de 30%, les salaires compris entre 40000 et 60000 de 20% et les salaires supérieurs à 60000 sont augmentés de 10%. Utilisez un CASE pour tester les différentes valeurs possibles du salaire.</li>
+</ol>
+<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
+    -&gt;         FROM Grille_sal;
++--------+----------+
+| profil | salaire  |
++--------+----------+
+| PAdmin | 80000.00 |
+| PDeve  | 45000.00 |
+| PTech  | 35000.00 |
++--------+----------+
+3 rows in set (0,001 sec)
+
+MariaDB [BDD_s2_tp]&gt; CALL AugmenterSalaires();
++-------------------------------------------------+
+| Message                                         |
++-------------------------------------------------+
+| Les salaires ont été augmentés avec succès.     |
++-------------------------------------------------+
+1 row in set (0,010 sec)
+
+Query OK, 3 rows affected (0,010 sec)
+
+MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
+    -&gt;         FROM Grille_sal;
++--------+----------+
+| profil | salaire  |
++--------+----------+
+| PAdmin | 88000.00 |
+| PDeve  | 54000.00 |
+| PTech  | 45500.00 |
++--------+----------+
+3 rows in set (0,001 sec)
+
+MariaDB [BDD_s2_tp]&gt; 
+</code></pre>
+<ol start="6" type="1">
+<li>(Exception prédéfinie) Écrire une procédure PL/SQL qui a 3 paramètres: le numSS, le nomE et prenomE d’un nouvel employé à insérer dans la table Employé. S’il existe déjà un autre employé avec le même numSS dans la table Employé elle doit afficher un message d’erreur sans insérer l’utilisateur. Dans le cas contraire la procédure doit insérer le nouvel employé et afficher un message de confirmation. Utilisez l’exception prédéfinie NO_DATA_FOUND.</li>
+</ol>
+<pre><code></code></pre>
+<ol start="7" type="1">
+<li>(Exception utilisateur) Écrire une procédure qui prend comme paramètre le numéro et le budget d’un projet et qui l’ajoute à la table projet seulement si la somme tous les budgets après l’ajout ne dépasse pas 400000. Dans le cas contraire le projet n’est pas ajouté et un message d’erreur est affiché à l’utilisateur. Utilisez une exception utilisateur.</li>
+</ol>
+<pre><code>CALL InsererNouvelEmploye(1234567, &#39;Alain&#39;, &#39;Paul&#39;);
+SELECT *  FROM Employe;
+CALL InsererNouvelEmploye(22334, &#39;Adam&#39;, &#39;Funk&#39;);</code></pre>
+<h1 id="utilisation-des-procédures-dans-un-script-python">utilisation des procédures dans un script python</h1>
+<p>Proposer une exemple de programme python qui utilise la dernière procédure</p>
+<pre><code>
+import pymysql
+
+# Connexion à la base de données MySQL
+conn = pymysql.connect(
+    host=&quot;votre_hôte&quot;,
+    user=&quot;votre_utilisateur&quot;,
+    password=&quot;votre_mot_de_passe&quot;,
+    database=&quot;votre_base_de_données&quot;,
+    port=3306  # Remplacez par le port MySQL utilisé dans votre configuration
+)
+
+try:
+    # Création d&#39;un curseur
+    cursor = conn.cursor()
+
+    # Exécution de la procédure stockée
+    num_ss = 123456789
+    nom_e = &quot;Doe&quot;
+    prenom_e = &quot;John&quot;
+    cursor.callproc(&quot;NomDeVotreProcedureMySQL&quot;, (num_ss, nom_e, prenom_e))
+
+    # Commit pour valider les modifications
+    conn.commit()
+
+    # Affichage du résultat ou de tout message renvoyé par la procédure
+    result = cursor.fetchall()
+    print(result)
+
+except pymysql.Error as e:
+    # Récupération du message d&#39;erreur
+    error_message = e.args[1]
+    print(f&quot;Erreur MySQL: {error_message}&quot;)
+
+finally:
+    # Fermeture du curseur et de la connexion
+    cursor.close()
+    conn.close()
+</code></pre>
+<p><a href="https://www.w3schools.com/python/python_try_except.asp" class="uri">https://www.w3schools.com/python/python_try_except.asp</a></p>
 </body>
 </html>
