@@ -385,7 +385,9 @@ MariaDB [BDD_s2_tp]&gt;
 <ol start="6" type="1">
 <li><span class="orange">(Exception prédéfinie) Écrire une procédure PL/SQL qui a 3 paramètres: le numSS, le nomE et prenomE d’un nouvel employé à insérer dans la table Employé. S’il existe déjà un autre employé avec le même numSS dans la table Employé elle doit afficher un message d’erreur sans insérer l’utilisateur. Dans le cas contraire la procédure doit insérer le nouvel employé et afficher un message de confirmation. Utilisez l’exception prédéfinie NO_DATA_FOUND.</span></li>
 </ol>
-<pre><code></code></pre>
+<pre><code>SELECT profil, salaire  FROM Grille_sal;
+CALL AugmenterSalaires();
+SELECT profil, salaire  FROM Grille_sal;</code></pre>
 <ol start="7" type="1">
 <li><span class="orange">(Exception utilisateur) Écrire une procédure qui prend comme paramètre le numéro et le budget d’un projet et qui l’ajoute à la table projet seulement si la somme tous les budgets après l’ajout ne dépasse pas 400000. Dans le cas contraire le projet n’est pas ajouté et un message d’erreur est affiché à l’utilisateur. Utilisez une exception utilisateur.</span></li>
 </ol>
@@ -433,6 +435,10 @@ finally:
     cursor.close()
     conn.close()
 </code></pre>
+<ul>
+<li><span class="orange">afficher le resultat de la requête ainsi que le message d’erreur</span></li>
+<li><span class="orange">essayer de modifier le message d’erreur</span></li>
+</ul>
 <p><a href="https://www.w3schools.com/python/python_try_except.asp" class="uri">https://www.w3schools.com/python/python_try_except.asp</a></p>
 </body>
 </html>
