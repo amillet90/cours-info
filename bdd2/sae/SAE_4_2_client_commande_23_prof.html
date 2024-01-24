@@ -164,18 +164,20 @@
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>stylos <span class="op">=</span> mycursor.fetchall()</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>articles <span class="op">=</span> stylos</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="st">            SELECT id_couleur  AS id_type_article</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="st">                    ,libelle</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="st">            FROM couleur</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="st">            ORDER BY  libelle</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="st">            &#39;&#39;&#39;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>mycursor.execute(sql)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>couleurs <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>types_article <span class="op">=</span> couleurs</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * , 10 as prix , concat(&#39;nomarticle&#39;,stylo_id) as nom FROM ligne_panier&quot;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>mycursor.execute(sql)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>articles_panier <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>prix_total <span class="op">=</span> <span class="dv">123</span>  <span class="co"># requete à faire</span></span></code></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="st">        SELECT id_marque  AS id_type_article</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="st">                ,libelle</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="st">                    </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="st">        FROM marque</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="st">        ORDER BY  libelle</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="st">        &#39;&#39;&#39;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>mycursor.execute(sql)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>marques <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>types_article <span class="op">=</span> marques</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * , 10 as prix , concat(&#39;nomarticle&#39;,stylo_id) as nom FROM ligne_panier&quot;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>mycursor.execute(sql)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>articles_panier <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>prix_total <span class="op">=</span> <span class="dv">123</span>  <span class="co"># requete à faire</span></span></code></pre></div>
 <h1 id="ajouter-un-article-dans-le-panier">ajouter un article dans le panier</h1>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>id_article <span class="op">=</span> request.form.get(<span class="st">&#39;id_article&#39;</span>)</span>
