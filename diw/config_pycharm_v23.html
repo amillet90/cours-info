@@ -293,7 +293,16 @@ git pull
 # modifiez le contenu du repository
 git add --all
 git commit -m &quot;modif projet&quot;
-git push</code></pre>
+git push
+
+
+# commande pour revenir en arrière  dans son code si on a oublier de faire un &quot;pull&quot; (dernière version avec un &quot;commit&quot;)
+
+git reset --hard HEAD^
+
+# lister les &quot;commits&quot;
+git log
+</code></pre>
 <p><br></p>
 <ul>
 <li><p>Avec <strong>Pycharm</strong> : ouvrir un projet avec comme dossier principal celui où se trouve le fichier <code>app.py</code> (important)</p></li>
@@ -366,16 +375,22 @@ DATABASE=&quot;BDD_login&quot;</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>project_folder <span class="op">=</span> os.path.expanduser(<span class="st">&#39;~/sae_s2_2024&#39;</span>)  <span class="co"># adjust as appropriate (avec le dossier où se trouve le fichier .env et app.py)</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a>load_dotenv(os.path.join(project_folder, <span class="st">&#39;.env&#39;</span>))</span></code></pre></div>
 <h1 id="annexes">annexes</h1>
-https://www.nicelydev.com/git
+<p>https://www.nicelydev.com/git</p>
+<p><br><br> <a href="https://fr.wikipedia.org/wiki/D%C3%A9ploiement_continu">Déploiement continu</a></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=AZMQVI6Ss64" class="uri">https://www.youtube.com/watch?v=AZMQVI6Ss64</a></li>
+<li><a href="https://www.pythonanywhere.com/forums/topic/30370/" class="uri">https://www.pythonanywhere.com/forums/topic/30370/</a></li>
+<li><a href="https://docs.gitlab.com/ee/user/project/integrations/webhooks.html" class="uri">https://docs.gitlab.com/ee/user/project/integrations/webhooks.html</a>
 <script>
 function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+var x = document.getElementById("myDIV");
+if (x.style.display === "none") {
+  x.style.display = "block";
+} else {
+  x.style.display = "none";
 }
-</script>
+}
+</script></li>
+</ul>
 </body>
 </html>
