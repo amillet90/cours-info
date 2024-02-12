@@ -50,6 +50,8 @@ TP 1 MySQL : import et export de données, requête avec jointure interne
 <pre><code>mysql\&gt; LOAD DATA LOCAL INFILE &#39;CLIENT.csv&#39; INTO TABLE CLIENT FIELDS TERMINATED BY &#39;,&#39;;</code></pre>
 <p>Faire de même avec les autre fichiers.</p>
 <p><strong>ATTENTION</strong> à l’ordre d’importation des données, c’est dans le même ordre généralement que la création des tables</p>
+<p><br> Exemple d’utilisation de la commande “<a href="https://tecfa.unige.ch/guides/mysql/fr-man/manuel_LOAD_DATA.html" target="_blanck">LOAD DATA</a>” avec plusieurs options :</p>
+<pre><code>LOAD DATA LOCAL INFILE &#39;C:\\Users\\login\\S2\\BDD\\TP\\TP2\\STATION.csv&#39; REPLACE INTO TABLE `bdd_tp2ski`.`station` CHARACTER SET utf8 FIELDS TERMINATED BY &#39;,&#39; ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39; (`nomStation`, `altitude`, `pays`);</code></pre>
 <p><br></p>
 <h2 id="problème-avec-linstruction-load-data-local-sur-datagrip">problème avec l’instruction <code>LOAD DATA LOCAL</code> sur DATAGRIP</h2>
 <p><br></p>
