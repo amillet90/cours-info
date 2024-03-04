@@ -104,7 +104,7 @@
 <li>Inconvénients : les données sont <strong>dé-normalisées</strong> =&gt; " … <strong>anomalies</strong> … et les <strong>duplications de données</strong>… NoSQL ne s’associe pas avec une utilisation complexe des requêtes ….. le NoSQL ne peut pas faire de jointures complexes …. "</li>
 </ul>
 <p><br></p>
-<p>chatGPT : “<a href="https://en.wikipedia.org/wiki/Prompt_engineering" target="_blanck">prompt engeneering</a>”</p>
+<!-- chatGPT : "[prompt engeneering](https://en.wikipedia.org/wiki/Prompt_engineering){target="_blanck"}" -->
 <h2 id="configuration-et-stockage-de-données">configuration et stockage de données</h2>
 <pre><code>mysql&gt; select @@datadir;
 
@@ -113,6 +113,8 @@ mysql&gt;SHOW VARIABLES LIKE &quot;%datadir%&quot;;
 mysql&gt;SHOW VARIABLES LIKE &quot;%dir%&quot;;
 
 mysql --help | grep cnf
+
+(sur windows (gemini) : mysql --help | findstr /i &quot;cnf&quot;)
 
  2001  sudo xed /etc/mysql/my.cnf
  2002  sudo xed /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -146,6 +148,10 @@ HAVING
 ORDER BY                                           </code></pre>
 <ul>
 <li><a href="https://fr.wikipedia.org/wiki/Alg%C3%A8bre_relationnelle" target="_blanck">Ouvrir ce lien sur Wikipédia qui concerne l’algèbre relationnelle</a></li>
+</ul>
+<p><br></p>
+<ul>
+<li><a href="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=le-modele-relationnel#LXI-5-5" target="_blanck">algébre relationnelle avec des graphiques</a></li>
 </ul>
 <h1 id="création-dune-table">Création d’une table</h1>
 <h2 id="les-clés">les clés</h2>

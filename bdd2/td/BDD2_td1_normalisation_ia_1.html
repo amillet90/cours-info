@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<p>La méthode Merise est une méthode de conception de systèmes d’information (Merise est plus axé sur la modélisation conceptuelle des systèmes d’information, tandis qu’UML offre une notation plus générale et polyvalente pouvant être utilisée pour modéliser divers aspects de systèmes).<br />
+Lorsqu’il s’agit de normaliser un schéma dans le contexte de Merise, cela se réfère généralement à la normalisation des schémas de bases de données relationnelles. La normalisation est un processus visant à organiser les données d’une base de données de manière à <strong>réduire la redondance</strong> et à <strong>garantir l’intégrité des données</strong>.</p>
+<p><br></p>
+<p>Voici quelques règles générales pour normaliser un schéma dans le contexte de Merise :</p>
+<ol type="1">
+<li><p><strong>Utilisation des entités</strong> : Identifiez les entités principales dans votre modèle conceptuel. Une entité représente un objet du monde réel (par exemple, un client, un produit) que vous souhaitez suivre dans votre système d’information.</p></li>
+<li><p><strong>Décomposition des entités</strong> : Si une entité a des attributs multivalués ou des attributs complexes, décomposez-les en entités distinctes. Assurez-vous que chaque entité ne représente qu’un concept unique et atomique.</p></li>
+<li><p><strong>Identification des clés primaires</strong> : Chaque entité doit avoir une clé primaire unique qui identifie de manière unique chaque occurrence de l’entité. Choisissez judicieusement les clés primaires en fonction de la nature des données.</p></li>
+<li><p><strong>Relations entre entités</strong> : Identifiez les relations entre les entités. Utilisez les associations pour représenter ces relations. Déterminez la cardinalité (1:1, 1:N, N:M) et la participation (totale ou partielle) de chaque entité dans une relation.</p></li>
+<li><p><strong>Normalisation des relations</strong> : Appliquez les règles de normalisation pour organiser les attributs de chaque entité en relations normalisées. La première forme normale (1NF), la deuxième forme normale (2NF) et la troisième forme normale (3NF) sont les formes normales couramment utilisées.</p></li>
+<li><p><strong>Élimination des dépendances fonctionnelles</strong> : Assurez-vous qu’il n’y a pas de dépendances fonctionnelles transitives ou dépendances partielles dans vos relations. Cela garantit que la base de données est en 3NF.</p></li>
+</ol>
+<p><br></p>
+<h2 id="rappel">rappel</h2>
+<p>La normalisation est une technique de conception de bases de données qui vise à minimiser la redondance des données et à améliorer la cohérence et la performance de la base de données. La méthode Merise définit neuf règles de normalisation qui doivent être appliquées aux schémas entité-association afin de les rendre conformes aux principes de la normalisation.</p>
+<p>Les règles de normalisation Merise sont les suivantes :</p>
+<ul>
+<li><strong>Règle 1 : Normalisation des entités</strong><br />
+</li>
+</ul>
+<p>Une entité doit avoir une existence propre et un identifiant. <br> Une entité doit avoir une existence propre, c’est-à-dire qu’elle doit pouvoir être identifiée de manière unique. Pour cela, elle doit avoir un identifiant, qui est un ensemble d’attributs qui la caractérisent de manière unique.</p>
+<ul>
+<li><strong>Règle 2 : Normalisation des identifiants</strong><br />
+Un identifiant doit être unique, non null et minimal.</li>
+</ul>
+<p>Unique : Chaque enregistrement d’une table doit avoir un identifiant unique. Non null : L’identifiant d’un enregistrement ne doit pas pouvoir être nul. Minimal : Un identifiant ne doit pas pouvoir être décomposé en sous-ensembles d’attributs qui satisfont également à la définition d’un identifiant.</p>
+<ul>
+<li><strong>Règle 3 : Normalisation des attributs</strong><br />
+Un attribut doit être simple, non redondant, non null, complet et cohérent.</li>
+</ul>
+<p>Simple : Un attribut ne doit pas être composé de plusieurs sous-attributs. Non redondant : Un attribut ne doit pas stocker des données qui sont déjà stockées dans un autre attribut de la table. Non null : La valeur d’un attribut ne doit pas pouvoir être nulle. Complet : La valeur d’un attribut doit être complète, c’est-à-dire que tous les enregistrements de la table doivent avoir une valeur pour cet attribut. Cohérent : Les valeurs d’un attribut doivent être cohérentes entre elles. Règle 4 : Normalisation des attributs des associations</p>
+<ul>
+<li><p><strong>Règle 4 : Normalisation des attributs des associations</strong><br />
+Un attribut d’association doit être simple, non redondant, non null, complet et cohérent.</p></li>
+<li><p><strong>Règle 5 : Normalisation des associations</strong><br />
+Une association doit avoir une cardinalité minimale de 1 et une cardinalité maximale de 1 ou n.</p></li>
+<li><p><strong>Règle 6 : Normalisation des cardinalités</strong><br />
+Les cardinalités d’une association doivent être compatibles.</p></li>
+<li><p><strong>Règle 7 : 1ère forme normale (1NF)</strong><br />
+Aucune donnée redondante ne doit être stockée dans une table.</p></li>
+<li><p><strong>Règle 8 : 2ème forme normale (2NF)</strong><br />
+Toutes les dépendances fonctionnelles non triviales d’une table doivent être sur la clé primaire.</p></li>
+<li><p><strong>Règle 9 : 3ème forme normale (3NF)</strong><br />
+Toutes les dépendances fonctionnelles non triviales d’une table doivent être sur la clé primaire ou sur un attribut de la clé primaire.</p></li>
+</ul>
+<p>Règle 2 : Normalisation des identifiants</p>
+<p>Un identifiant doit être unique, non null et minimal.</p>
+<p>Règle 3 : Normalisation des attributs</p>
+<p>Un attribut doit être simple, non redondant, non null, complet et cohérent.</p>
+<p>Simple : Un attribut ne doit pas être composé de plusieurs sous-attributs. Non redondant : Un attribut ne doit pas stocker des données qui sont déjà stockées dans un autre attribut de la table. Non null : La valeur d’un attribut ne doit pas pouvoir être nulle. Complet : La valeur d’un attribut doit être complète, c’est-à-dire que tous les enregistrements de la table doivent avoir une valeur pour cet attribut. Cohérent : Les valeurs d’un attribut doivent être cohérentes entre elles. Règle 4 : Normalisation des attributs des associations</p>
+<p>Un attribut d’association doit être simple, non redondant, non null, complet et cohérent.</p>
+<p>Cette règle est similaire à la règle 3, mais elle s’applique aux attributs des associations.</p>
+<p>Règle 5 : Normalisation des associations</p>
+<p>Une association doit avoir une cardinalité minimale de 1 et une cardinalité maximale de 1 ou n.</p>
+<p>Cardinalité minimale : La cardinalité minimale d’une association indique le nombre minimal d’enregistrements d’une entité qui peuvent être associés à un enregistrement d’une autre entité. Cardinalité maximale : La cardinalité maximale d’une association indique le nombre maximal d’enregistrements d’une entité qui peuvent être associés à un enregistrement d’une autre entité. Règle 6 : Normalisation des cardinalités</p>
+<p>Les cardinalités d’une association doivent être compatibles.</p>
+<p>Les cardinalités d’une association doivent être compatibles entre elles</p>
+<hr />
+<p>ChatGPT : quelle est</p>
+<p>Pour qu’une table soit en première forme normale (1NF), elle doit respecter les règles suivantes :</p>
+<ol type="1">
+<li><p><strong>Atomicité des valeurs</strong> : Chaque cellule de la table doit contenir une seule valeur atomique, c’est-à-dire qu’elle ne doit pas être divisible en parties plus petites. Il ne devrait y avoir aucun élément multivalué ou répété dans une cellule.</p></li>
+<li><p><strong>Définition de colonnes ordonnées</strong> : Chaque colonne doit avoir un nom unique et chaque valeur dans une colonne doit être de même type de données, ce qui signifie que chaque colonne doit représenter un attribut unique de l’entité qu’elle décrit.</p></li>
+<li><p><strong>Identification des lignes</strong> : Chaque ligne de la table doit être unique et identifiable. Cela signifie généralement qu’il devrait y avoir une colonne ou un ensemble de colonnes qui peut être utilisé comme clé primaire pour identifier de manière unique chaque ligne de la table.</p></li>
+<li><p><strong>Absence de redondance</strong> : La 1NF ne l’exige pas explicitement, mais elle découle généralement du respect des autres règles. Il ne devrait y avoir aucune redondance de données dans la table, ce qui signifie que chaque fait devrait être stocké une seule fois dans la table.</p></li>
+</ol>
+<p>En respectant ces règles, une table peut être considérée comme étant en première forme normale. Si une table ne respecte pas l’une de ces règles, elle doit être normalisée pour atteindre la 1NF. Cela implique souvent de décomposer la table en plusieurs tables plus petites, ce qui permet de respecter ces règles et d’éviter les anomalies de données.</p>
+<p>Bard</p>
+<p>Pour qu’une table soit en première forme normale (1NF), elle doit respecter les règles suivantes :</p>
+<ol type="1">
+<li><p><strong>Atomicité des valeurs</strong> : Chaque cellule de la table doit contenir une seule valeur atomique, c’est-à-dire qu’elle ne doit pas être divisible en parties plus petites. Il ne devrait y avoir aucun élément multivalué ou répété dans une cellule.</p></li>
+<li><p><strong>Définition de colonnes ordonnées</strong> : Chaque colonne doit avoir un nom unique et chaque valeur dans une colonne doit être de même type de données, ce qui signifie que chaque colonne doit représenter un attribut unique de l’entité qu’elle décrit.</p></li>
+<li><p><strong>Identification des lignes</strong> : Chaque ligne de la table doit être unique et identifiable. Cela signifie généralement qu’il devrait y avoir une colonne ou un ensemble de colonnes qui peut être utilisé comme clé primaire pour identifier de manière unique chaque ligne de la table.</p></li>
+<li><p><strong>Absence de redondance</strong> : La 1NF ne l’exige pas explicitement, mais elle découle généralement du respect des autres règles. Il ne devrait y avoir aucune redondance de données dans la table, ce qui signifie que chaque fait devrait être stocké une seule fois dans la table.</p></li>
+</ol>
+<p>En respectant ces règles, une table peut être considérée comme étant en première forme normale. Si une table ne respecte pas l’une de ces règles, elle doit être normalisée pour atteindre la 1NF. Cela implique souvent de décomposer la table en plusieurs tables plus petites, ce qui permet de respecter ces règles et d’éviter les anomalies de données.</p>
+<h2 id="tables-non-en-première-forme-normale-1nf">Tables non en première forme normale (1NF)</h2>
+<p><strong>1. Table “Clients” avec attributs multiples:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>ClientID</th>
+<th>Nom</th>
+<th>Adresse</th>
+<th>Téléphone1</th>
+<th>Téléphone2</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Dupont</td>
+<td>1 rue de la Paix</td>
+<td>0123456789</td>
+<td>0987654321</td>
+<td>dupont@email.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Martin</td>
+<td>2 rue du Lac</td>
+<td>0987654321</td>
+<td></td>
+<td>martin@email.com</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Clients (ClientID, Nom, Adresse, Email) * Téléphones (ClientID, NuméroTéléphone) * Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</p>
+<p><strong>2. Table “Commandes” avec attributs composés:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>CommandeID</th>
+<th>ClientID</th>
+<th>DateCommande</th>
+<th>Produits</th>
+<th>PrixTotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2023-11-14</td>
+<td>ProduitA, ProduitB</td>
+<td>100 €</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>2023-11-15</td>
+<td>ProduitC, ProduitD</td>
+<td>150 €</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Commandes (CommandeID, ClientID, DateCommande, PrixTotal) * LignesCommande (CommandeID, ProduitID, Quantité) * Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</p>
+<p><strong>3. Table “Factures” avec attributs imbriqués:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>FactureID</th>
+<th>ClientID</th>
+<th>DateFacture</th>
+<th>DétailsFacturation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2023-11-16</td>
+<td>{“ProduitA”: 2, “ProduitB”: 1}</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>2023-11-17</td>
+<td>{“ProduitC”: 1, “ProduitD”: 3}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Factures (FactureID, ClientID, DateFacture) * LignesFacture (FactureID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</p>
+<p><strong>En conclusion,</strong> il est important de normaliser les tables d’un modèle logique de données pour garantir la cohérence, l’intégrité et la précision des données. La normalisation en 1NF est une étape essentielle pour éviter les anomalies de données et faciliter la gestion de la base de données.</p>
+<p><strong>Note:</strong> * Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF). * La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique. * Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</p>
+<h2 id="tables-non-en-première-forme-normale-1nf-1">Tables non en première forme normale (1NF)</h2>
+<p><strong>1. Table “Clients” avec attributs multiples:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>ClientID</th>
+<th>Nom</th>
+<th>Adresse</th>
+<th>Téléphone1</th>
+<th>Téléphone2</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Dupont</td>
+<td>1 rue de la Paix</td>
+<td>0123456789</td>
+<td>0987654321</td>
+<td>dupont@email.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Martin</td>
+<td>2 rue du Lac</td>
+<td>0987654321</td>
+<td></td>
+<td>martin@email.com</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Clients (ClientID, Nom, Adresse, Email) * Téléphones (ClientID, NuméroTéléphone) * Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</p>
+<p><strong>2. Table “Commandes” avec attributs composés:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>CommandeID</th>
+<th>ClientID</th>
+<th>DateCommande</th>
+<th>Produits</th>
+<th>PrixTotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2023-11-14</td>
+<td>ProduitA, ProduitB</td>
+<td>100 €</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>2023-11-15</td>
+<td>ProduitC, ProduitD</td>
+<td>150 €</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Commandes (CommandeID, ClientID, DateCommande, PrixTotal) * LignesCommande (CommandeID, ProduitID, Quantité) * Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</p>
+<p><strong>3. Table “Factures” avec attributs imbriqués:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>FactureID</th>
+<th>ClientID</th>
+<th>DateFacture</th>
+<th>DétailsFacturation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2023-11-16</td>
+<td>{“ProduitA”: 2, “ProduitB”: 1}</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>2023-11-17</td>
+<td>{“ProduitC”: 1, “ProduitD”: 3}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Factures (FactureID, ClientID, DateFacture) * LignesFacture (FactureID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</p>
+<p><strong>En conclusion,</strong> il est important de normaliser les tables d’un modèle logique de données pour garantir la cohérence, l’intégrité et la précision des données. La normalisation en 1NF est une étape essentielle pour éviter les anomalies de données et faciliter la gestion de la base de données.</p>
+<p><strong>Note:</strong> * Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF). * La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique. * Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</p>
+<p>proposer encore d’autres exemples</p>
+<p>proposer encore d’autres exemples</p>
+<h2 id="exemples-de-tables-non-en-première-forme-normale-1nf-avec-dautres-noms-de-tables">Exemples de tables non en première forme normale (1NF) avec d’autres noms de tables:</h2>
+<p><strong>1. Table “Livres” avec attributs multiples:</strong></p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>LivreID</th>
+<th>Titre</th>
+<th>Auteur</th>
+<th>Genre</th>
+<th>AnnéePublication</th>
+<th>Pages</th>
+<th>Prix</th>
+<th>ISBN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>L’Alchimiste</td>
+<td>Paulo Coelho</td>
+<td>Fiction</td>
+<td>1988</td>
+<td>208</td>
+<td>12 €</td>
+<td>978-2-253-08954-6</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Sapiens : Une brève histoire de l’humanité</td>
+<td>Yuval Noah Harari</td>
+<td>Non-fiction</td>
+<td>2011</td>
+<td>464</td>
+<td>20 €</td>
+<td>978-2-253-13948-4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “Auteur” peut contenir plusieurs auteurs pour un même livre (co-auteurs). * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Livres (LivreID, Titre, Genre, AnnéePublication, Pages, Prix, ISBN) * AuteursLivres (LivreID, AuteurID) * Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les livres et les auteurs.</p>
+<p><strong>2. Table “Etudiants” avec attributs composés:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>EtudiantID</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>DateNaissance</th>
+<th>Adresse</th>
+<th>Ville</th>
+<th>CodePostal</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Dupont</td>
+<td>Jean</td>
+<td>1999-01-01</td>
+<td>1 rue de la Paix</td>
+<td>Paris</td>
+<td>75001</td>
+<td>dupont.jean@email.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Martin</td>
+<td>Marie</td>
+<td>2000-02-02</td>
+<td>2 rue du Lac</td>
+<td>Lyon</td>
+<td>69002</td>
+<td>martin.marie@email.com</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “Adresse” est composé de plusieurs attributs (rue, ville, code postal). * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Etudiants (EtudiantID, Nom, Prénom, DateNaissance, Email) * Adresses (EtudiantID, Rue, Ville, CodePostal) * Cette décomposition permet de normaliser la table en 1NF et de gérer les adresses des étudiants.</p>
+<p><strong>3. Table “Commandes” avec attributs imbriqués:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>CommandeID</th>
+<th>ClientID</th>
+<th>DateCommande</th>
+<th>Produits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2023-11-14</td>
+<td>{“ProduitA”: 2, “ProduitB”: 1}</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>2023-11-15</td>
+<td>{“ProduitC”: 1, “ProduitD”: 3}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problème:</strong> * L’attribut “Produits” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
+<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Commandes (CommandeID, ClientID, DateCommande) * LignesCommande (CommandeID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les commandes, les produits et les lignes de commande.</p>
+<p><strong>Note:</strong> * Il est important de choisir des noms de tables clairs et précis pour faciliter la compréhension du modèle logique. * Les noms de tables doivent refléter le contenu des tables et les relations entre elles.</p>
+<p>J’espère que ces exemples supplémentaires vous seront utiles.</p>
+<hr />
+<p>chatgpt</p>
+<p>En informatique et en modélisation de données, la première forme normale (1NF) stipule que les valeurs d’une table de base de données doivent être atomiques, c’est-à-dire qu’elles ne doivent pas être divisées en parties plus petites. Pour qu’une table soit en première forme normale, chaque cellule doit contenir une seule valeur, et il ne devrait y avoir aucun élément multivalué ou répété.</p>
+<p>Voici un exemple de tables qui ne sont pas en première forme normale :</p>
+<ol type="1">
+<li><p><strong>Table de commandes avec plusieurs produits</strong> :</p>
+<p>Cette table peut contenir plusieurs produits dans une seule colonne, ce qui viole la 1NF.</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Commande</th>
+<th>Produits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Pommes, Oranges, Bananes</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Lait, Oeufs, Pain</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Poulet, Riz, Légumes, Tomates</td>
+</tr>
+</tbody>
+</table>
+<p>Pour respecter la 1NF, la table devrait être décomposée comme suit :</p>
+<p>Table Commandes :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Commande</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Table Produits_Commande :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Commande</th>
+<th>Produit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Pommes</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Oranges</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>Bananes</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Lait</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Oeufs</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Pain</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Poulet</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Riz</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Légumes</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Tomates</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Table de personnes avec des listes de numéros de téléphone</strong> :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Personne</th>
+<th>Nom</th>
+<th>Téléphones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+<td>123-456-7890, 456-789-0123</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bob</td>
+<td>987-654-3210</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+<td>111-222-3333, 444-555-6666, 777-888-9999</td>
+</tr>
+</tbody>
+</table>
+<p>Cette table viole la 1NF car la colonne Téléphones contient des valeurs multiples. Pour respecter la 1NF, vous pourriez séparer les numéros de téléphone en différentes lignes :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Personne</th>
+<th>Nom</th>
+<th>Téléphone</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+<td>123-456-7890</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Alice</td>
+<td>456-789-0123</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Bob</td>
+<td>987-654-3210</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Charlie</td>
+<td>111-222-3333</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+<td>444-555-6666</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Charlie</td>
+<td>777-888-9999</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>En résumé, pour être en première forme normale, une table de base de données ne doit pas contenir de données multivaluées dans une seule cellule. Si c’est le cas, il est nécessaire de décomposer la table en plusieurs tables pour respecter les règles de la 1NF.</p>
+<p>Bien sûr ! Voici quelques exemples de tables qui ne sont pas en première forme normale en raison de colonnes non renseignées :</p>
+<ol type="1">
+<li><p><strong>Table des employés avec des colonnes non renseignées pour les numéros de téléphone et les adresses e-mail</strong> :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Employé</th>
+<th>Nom</th>
+<th>Téléphone</th>
+<th>Adresse Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+<td>123-456-7890</td>
+<td>alice@example.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bob</td>
+<td></td>
+<td>bob@example.com</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+<td>987-654-3210</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Dans cet exemple, les colonnes Téléphone et Adresse Email contiennent des valeurs manquantes. Pour respecter la première forme normale, vous pourriez séparer ces informations dans des tables distinctes et permettre des valeurs NULL :</p>
+<p>Table Employés :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Employé</th>
+<th>Nom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bob</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+</tr>
+</tbody>
+</table>
+<p>Table Téléphones_Employé :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Employé</th>
+<th>Téléphone</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>123-456-7890</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>NULL</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>987-654-3210</td>
+</tr>
+</tbody>
+</table>
+<p>Table Emails_Employé :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Employé</th>
+<th>Adresse Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>alice@example.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>bob@example.com</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Table des étudiants avec des colonnes non renseignées pour les notes</strong> :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Etudiant</th>
+<th>Nom</th>
+<th>Note_Maths</th>
+<th>Note_Physique</th>
+<th>Note_Anglais</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+<td>90</td>
+<td>85</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bob</td>
+<td>75</td>
+<td></td>
+<td>80</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+<td></td>
+<td>92</td>
+<td>88</td>
+</tr>
+</tbody>
+</table>
+<p>Dans cette table, les colonnes Note_Maths, Note_Physique et Note_Anglais contiennent des valeurs manquantes. Pour respecter la première forme normale, vous pourriez envisager quelque chose comme :</p>
+<p>Table Étudiants :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Etudiant</th>
+<th>Nom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Alice</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bob</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Charlie</td>
+</tr>
+</tbody>
+</table>
+<p>Table Notes_Etudiant :</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID_Etudiant</th>
+<th>Matière</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Maths</td>
+<td>90</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Physique</td>
+<td>85</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Maths</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Anglais</td>
+<td>80</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Physique</td>
+<td>92</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Anglais</td>
+<td>88</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>Dans ces exemples, en décomposant les données en plusieurs tables, nous permettons aux colonnes d’être complètement renseignées ou de contenir des valeurs NULL, ce qui est conforme à la première forme normale.</p>
+<hr />
+</body>
+</html>
