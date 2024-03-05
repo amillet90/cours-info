@@ -18,6 +18,7 @@
   <title>BDD</title>
 </head>
 <body>
+<h1 id="merise-un-résumé-possible">Merise (un résumé possible)</h1>
 <p>La méthode Merise est une méthode de conception de systèmes d’information (Merise est plus axé sur la modélisation conceptuelle des systèmes d’information, tandis qu’UML offre une notation plus générale et polyvalente pouvant être utilisée pour modéliser divers aspects de systèmes).<br />
 Lorsqu’il s’agit de normaliser un schéma dans le contexte de Merise, cela se réfère généralement à la normalisation des schémas de bases de données relationnelles. La normalisation est un processus visant à organiser les données d’une base de données de manière à <strong>réduire la redondance</strong> et à <strong>garantir l’intégrité des données</strong>.</p>
 <p><br></p>
@@ -31,7 +32,7 @@ Lorsqu’il s’agit de normaliser un schéma dans le contexte de Merise, cela s
 <li><p><strong>Élimination des dépendances fonctionnelles</strong> : Assurez-vous qu’il n’y a pas de dépendances fonctionnelles transitives ou dépendances partielles dans vos relations. Cela garantit que la base de données est en 3NF.</p></li>
 </ol>
 <p><br></p>
-<h2 id="rappel">rappel</h2>
+<h1 id="normalisation-avec-merise-résumé-possible-des-différentes-rêgles">Normalisation avec Merise : résumé possible des différentes rêgles</h1>
 <p>La normalisation est une technique de conception de bases de données qui vise à minimiser la redondance des données et à améliorer la cohérence et la performance de la base de données. La méthode Merise définit neuf règles de normalisation qui doivent être appliquées aux schémas entité-association afin de les rendre conformes aux principes de la normalisation.</p>
 <p>Les règles de normalisation Merise sont les suivantes :</p>
 <ul>
@@ -41,8 +42,9 @@ Lorsqu’il s’agit de normaliser un schéma dans le contexte de Merise, cela s
 <p>Une entité doit avoir une existence propre et un identifiant. <br> Une entité doit avoir une existence propre, c’est-à-dire qu’elle doit pouvoir être identifiée de manière unique. Pour cela, elle doit avoir un identifiant, qui est un ensemble d’attributs qui la caractérisent de manière unique.</p>
 <ul>
 <li><strong>Règle 2 : Normalisation des identifiants</strong><br />
-Un identifiant doit être unique, non null et minimal.</li>
+</li>
 </ul>
+<p>Un identifiant doit être unique, non null et minimal.</p>
 <p>Unique : Chaque enregistrement d’une table doit avoir un identifiant unique. Non null : L’identifiant d’un enregistrement ne doit pas pouvoir être nul. Minimal : Un identifiant ne doit pas pouvoir être décomposé en sous-ensembles d’attributs qui satisfont également à la définition d’un identifiant.</p>
 <ul>
 <li><strong>Règle 3 : Normalisation des attributs</strong><br />
@@ -126,8 +128,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Clients (ClientID, Nom, Adresse, Email) * Téléphones (ClientID, NuméroTéléphone) * Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Clients (ClientID, Nom, Adresse, Email)</li>
+<li>Téléphones (ClientID, NuméroTéléphone)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</li>
+</ul>
 <p><strong>2. Table “Commandes” avec attributs composés:</strong></p>
 <table>
 <thead>
@@ -156,8 +170,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Commandes (CommandeID, ClientID, DateCommande, PrixTotal) * LignesCommande (CommandeID, ProduitID, Quantité) * Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Commandes (CommandeID, ClientID, DateCommande, PrixTotal)</li>
+<li>LignesCommande (CommandeID, ProduitID, Quantité)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</li>
+</ul>
 <p><strong>3. Table “Factures” avec attributs imbriqués:</strong></p>
 <table>
 <thead>
@@ -183,10 +209,28 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Factures (FactureID, ClientID, DateFacture) * LignesFacture (FactureID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en trois tables distinctes :
+<ul>
+<li>Factures (FactureID, ClientID, DateFacture)</li>
+<li>LignesFacture (FactureID, ProduitID, Quantité)</li>
+<li>Produits (ProduitID, NomProduit, PrixUnitaire)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</li>
+</ul>
 <p><strong>En conclusion,</strong> il est important de normaliser les tables d’un modèle logique de données pour garantir la cohérence, l’intégrité et la précision des données. La normalisation en 1NF est une étape essentielle pour éviter les anomalies de données et faciliter la gestion de la base de données.</p>
-<p><strong>Note:</strong> * Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF). * La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique. * Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF).</li>
+<li>La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique.</li>
+<li>Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</li>
+</ul>
 <h2 id="tables-non-en-première-forme-normale-1nf-1">Tables non en première forme normale (1NF)</h2>
 <p><strong>1. Table “Clients” avec attributs multiples:</strong></p>
 <table>
@@ -219,8 +263,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Clients (ClientID, Nom, Adresse, Email) * Téléphones (ClientID, NuméroTéléphone) * Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>Les attributs “Téléphone1” et “Téléphone2” stockent des valeurs multiples (plusieurs numéros de téléphone) pour un même client.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique (unique et indivisible).</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Clients (ClientID, Nom, Adresse, Email)</li>
+<li>Téléphones (ClientID, NuméroTéléphone)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant la redondance et les anomalies de données.</li>
+</ul>
 <p><strong>2. Table “Commandes” avec attributs composés:</strong></p>
 <table>
 <thead>
@@ -249,8 +305,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Commandes (CommandeID, ClientID, DateCommande, PrixTotal) * LignesCommande (CommandeID, ProduitID, Quantité) * Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “Produits” stocke une liste de produits sous forme de chaîne de caractères, ce qui est une valeur composée.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Commandes (CommandeID, ClientID, DateCommande, PrixTotal)</li>
+<li>LignesCommande (CommandeID, ProduitID, Quantité)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant les valeurs composées et en gérant les relations entre les tables.</li>
+</ul>
 <p><strong>3. Table “Factures” avec attributs imbriqués:</strong></p>
 <table>
 <thead>
@@ -276,10 +344,28 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Factures (FactureID, ClientID, DateFacture) * LignesFacture (FactureID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “DétailsFacturation” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en trois tables distinctes :
+<ul>
+<li>Factures (FactureID, ClientID, DateFacture)</li>
+<li>LignesFacture (FactureID, ProduitID, Quantité)</li>
+<li>Produits (ProduitID, NomProduit, PrixUnitaire)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF en supprimant les structures imbriquées et en gérant les relations entre les tables.</li>
+</ul>
 <p><strong>En conclusion,</strong> il est important de normaliser les tables d’un modèle logique de données pour garantir la cohérence, l’intégrité et la précision des données. La normalisation en 1NF est une étape essentielle pour éviter les anomalies de données et faciliter la gestion de la base de données.</p>
-<p><strong>Note:</strong> * Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF). * La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique. * Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Il existe des formes normales plus strictes que la 1NF, comme la deuxième forme normale (2NF) et la troisième forme normale (3NF).</li>
+<li>La normalisation peut impliquer de décomposer une table en plusieurs tables, ce qui peut complexifier le modèle logique.</li>
+<li>Il est important de trouver un équilibre entre la normalisation et la complexité du modèle en fonction des besoins spécifiques de l’application.</li>
+</ul>
 <p>proposer encore d’autres exemples</p>
 <p>proposer encore d’autres exemples</p>
 <h2 id="exemples-de-tables-non-en-première-forme-normale-1nf-avec-dautres-noms-de-tables">Exemples de tables non en première forme normale (1NF) avec d’autres noms de tables:</h2>
@@ -330,8 +416,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “Auteur” peut contenir plusieurs auteurs pour un même livre (co-auteurs). * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Livres (LivreID, Titre, Genre, AnnéePublication, Pages, Prix, ISBN) * AuteursLivres (LivreID, AuteurID) * Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les livres et les auteurs.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “Auteur” peut contenir plusieurs auteurs pour un même livre (co-auteurs).</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Livres (LivreID, Titre, Genre, AnnéePublication, Pages, Prix, ISBN)</li>
+<li>AuteursLivres (LivreID, AuteurID)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les livres et les auteurs.</li>
+</ul>
 <p><strong>2. Table “Etudiants” avec attributs composés:</strong></p>
 <table>
 <thead>
@@ -369,8 +467,20 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “Adresse” est composé de plusieurs attributs (rue, ville, code postal). * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en deux tables distinctes : * Etudiants (EtudiantID, Nom, Prénom, DateNaissance, Email) * Adresses (EtudiantID, Rue, Ville, CodePostal) * Cette décomposition permet de normaliser la table en 1NF et de gérer les adresses des étudiants.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “Adresse” est composé de plusieurs attributs (rue, ville, code postal).</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en deux tables distinctes :
+<ul>
+<li>Etudiants (EtudiantID, Nom, Prénom, DateNaissance, Email)</li>
+<li>Adresses (EtudiantID, Rue, Ville, CodePostal)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF et de gérer les adresses des étudiants.</li>
+</ul>
 <p><strong>3. Table “Commandes” avec attributs imbriqués:</strong></p>
 <table>
 <thead>
@@ -396,9 +506,26 @@ Toutes les dépendances fonctionnelles non triviales d’une table doivent être
 </tr>
 </tbody>
 </table>
-<p><strong>Problème:</strong> * L’attribut “Produits” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités. * Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</p>
-<p><strong>Solution:</strong> * Décomposer la table en trois tables distinctes : * Commandes (CommandeID, ClientID, DateCommande) * LignesCommande (CommandeID, ProduitID, Quantité) * Produits (ProduitID, NomProduit, PrixUnitaire) * Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les commandes, les produits et les lignes de commande.</p>
-<p><strong>Note:</strong> * Il est important de choisir des noms de tables clairs et précis pour faciliter la compréhension du modèle logique. * Les noms de tables doivent refléter le contenu des tables et les relations entre elles.</p>
+<p><strong>Problème:</strong></p>
+<ul>
+<li>L’attribut “Produits” stocke un objet JSON imbriqué avec des informations sur les produits et les quantités.</li>
+<li>Cela contrevient à la règle de la 1NF qui stipule que chaque cellule doit contenir une valeur atomique.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Décomposer la table en trois tables distinctes :
+<ul>
+<li>Commandes (CommandeID, ClientID, DateCommande)</li>
+<li>LignesCommande (CommandeID, ProduitID, Quantité)</li>
+<li>Produits (ProduitID, NomProduit, PrixUnitaire)</li>
+</ul></li>
+<li>Cette décomposition permet de normaliser la table en 1NF et de gérer les relations entre les commandes, les produits et les lignes de commande.</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Il est important de choisir des noms de tables clairs et précis pour faciliter la compréhension du modèle logique.</li>
+<li>Les noms de tables doivent refléter le contenu des tables et les relations entre elles.</li>
+</ul>
 <p>J’espère que ces exemples supplémentaires vous seront utiles.</p>
 <hr />
 <p>chatgpt</p>

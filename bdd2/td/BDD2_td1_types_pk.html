@@ -151,7 +151,7 @@ ORDER BY                                           </code></pre>
 </ul>
 <p><br></p>
 <ul>
-<li><a href="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=le-modele-relationnel#LXI-5-5" target="_blanck">algébre relationnelle avec des graphiques</a></li>
+<li><a href="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=le-modele-relationnel#LXI-5-5" target="_blanck">algèbre relationnelle avec des graphiques</a></li>
 </ul>
 <h1 id="création-dune-table">Création d’une table</h1>
 <h2 id="les-clés">les clés</h2>
@@ -187,7 +187,7 @@ ORDER BY                                           </code></pre>
 <li><p><strong>afficher le contenu d’une table depuis les 2 connexions</strong></p></li>
 </ul>
 <p><br></p>
-<p>RAPPEL : <code>Select * from schema_name.table_name</code></p>
+<p>RAPPEL : <code>SELECT * FROM schema_name.table_name;</code></p>
 <h2 id="types-de-données-en-sql">types de données en SQL</h2>
 <p>Documentations</p>
 <ul>
@@ -521,6 +521,7 @@ id SERIAL
 );
 DESCRIBE TD_demo1;
 SHOW CREATE TABLE TD_demo1;
+INSERT INTO TD_demo1 VALUES (NULL);
 DROP TABLE IF EXISTS TD_demo1;</code></pre>
 <p>REMARQUE : ATTENTION, les clés étrangéres doivent avoir le même type que les clés primaires</p>
 <h1 id="les-clés-étrangéres">les clés étrangéres</h1>
@@ -567,8 +568,8 @@ DROP TABLE IF EXISTS TD_groupe;
 SHOW TABLES;</code></pre>
 <p><br></p>
 <ul>
-<li><p>ajouter dans la clé étrangére <code>ON UPDATE CASCADE</code></p></li>
-<li><p>ajouter dans la clé étrangére <code>ON DELETE CASCADE</code></p></li>
+<li><p>ajouter dans la clé étrangère <code>ON UPDATE CASCADE</code></p></li>
+<li><p>ajouter dans la clé étrangère <code>ON DELETE CASCADE</code></p></li>
 <li><p>TESTER</p></li>
 </ul>
 <p><br><br></p>
