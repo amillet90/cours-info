@@ -236,19 +236,48 @@ pas d'intérèt
 -->
 <p>10 : Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. On précisera pour chaque boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique inverse.</p>
 <div class="vert">
-<pre><code>
+<pre><code>+------------+--------+-------------------+------------+---------+--------------+
+| idBoutique | nom    | adresse           | codePostal | ville   | dateEmbauche |
++------------+--------+-------------------+------------+---------+--------------+
+|          1 | MANTEY | 16 rue principale |      90300 | Valdoie | 2001-06-01   |
++------------+--------+-------------------+------------+---------+--------------+
 </code></pre>
 </div>
 <p><br></p>
-<p>11 : Donner les personnes de moins de 40 ans (cette année) qui sont auteurs d’au moins une recette.</p>
+<p>11 : Donner les personnes de moins de 55 ans (cette année) qui sont auteurs d’au moins une recette.</p>
+<div class="vert">
+<pre><code>+-------------+
+| auteur      |
++-------------+
+| Mantey jean |
++-------------+</code></pre>
+</div>
+<p><br></p>
+<p>12: Pour chaque nom de pâtisserie, donner le nombre total de réalisations durant l’année 2021. Le résultat sera renommé en ’total2015’.</p>
 <div class="vert">
 <pre><code>
++-----------------------------------+-----------+
+| nom                               | total2021 |
++-----------------------------------+-----------+
+| Baba au Rhum                      |       143 |
+| brioche                           |       400 |
+| bûche poires marrons et chocolat  |        20 |
+| éclair au chocolat                |        10 |
+| macaron marrons                   |       220 |
+| tarte aux pommes                  |         9 |
++-----------------------------------+-----------+
+
 </code></pre>
 </div>
 <p><br></p>
 <p>12 : Donner les boutiques n’ayant jamais proposé de pâtisserie à base de Rhum.</p>
 <div class="vert">
 <pre><code>
++------------+-------------+------------------+------------+---------+
+| idBoutique | nom         | adresse          | codePostal | ville   |
++------------+-------------+------------------+------------+---------+
+|          4 | le bon pain | 9 rue du chateau |      90000 | Belfort |
++------------+-------------+------------------+------------+---------+
 </code></pre>
 </div>
 <p><br></p>
@@ -260,7 +289,12 @@ pas d'intérèt
 <p><br></p>
 <p>13 : Donner les pâtissiers qui ont déjà réalisés au moins une recette de chacune des pâtisseries du catalogue. (indice : Pour ces pâtissiers, il n’existe aucune pâtisserie pour laquelle il n’existe aucune réalisation effectuée par le pâtissier)</p>
 <div class="vert">
-<pre><code>
+<pre><code>+-------------+-------------------------+
+| nomPersonne | nb_patisseries_distinct |
++-------------+-------------------------+
+| DURAND      |                       6 |
++-------------+-------------------------+
+
 </code></pre>
 </div>
 <p><br></p>
