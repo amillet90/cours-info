@@ -72,7 +72,7 @@ Dans ce sujet, le mot « <strong>Patisserie</strong> » fait référence à la �
 </ul>
 <p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
 <ul>
-<li>Insérer les données en annexe dans un autre fichier ‘sql’ ; Vous pouvez utiliser la commande <code>source</code> dans le fichier <em>script_tp5.sql</em> pour importer les données</li>
+<li>Utilisez les données du <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S2_BDD/tp/ressources/script_patissier_etu_23.sql">fichier</a></li>
 </ul>
 <!--  (il est parfois préférable de mettre le flag [`autocommit`](https://mariadb.com/kb/en/mysql_autocommit/){target="_blanck"} à 0 puis de le remettre à 1 , après avoir utiliser la commande `source` : voir sur internet ) -->
 <!-- https://learntutorials.net/fr/mysql/topic/5771/transaction -->
@@ -170,12 +170,12 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 <li>Pour chaque boutique de la ville valdoie, donner le montant en euros des pâtisseries réalisées dans le mois de décembre 2021. Le résultat sera renommé en ’prod12-2021-euros’, afficher le montant et le nom des boutiques. (Le résultat sera trié de façon à afficher les plus gros chiffres d’affaires en premier).</li>
 </ol>
 <div class="vert">
-<pre><code>+-----------------+-----------------------+-----------------+
-| nom             | prod12−2021−euros     | nom             |
-+-----------------+-----------------------+-----------------+
-| MANTEY          |                  1485 | MANTEY          |
-| La RoseMontoise |                 152.5 | La RoseMontoise |
-+-----------------+-----------------------+-----------------+</code></pre>
+<pre><code>+-----------------+-----------------------+
+| nom             | prod12−2021−euros     |
++-----------------+-----------------------+
+| MANTEY          |                  1485 |
+| La RoseMontoise |                 152.5 |
++-----------------+-----------------------+</code></pre>
 </div>
 <p><br></p>
 <p>—— requêtes plus difficiles</p>
@@ -227,17 +227,42 @@ Dans le champ auteur (table « recette »), il y a le nom et le prénom (sépar�
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blanck">doc SET</a> - <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blanck">doc type-conversion</a></p>
 <h1 id="requêtes-pour-les-plus-rapides">requêtes pour les plus rapides :</h1>
 <p><br></p>
-<p>Pour les requêtes ci-dessous, ajouter des enregistrements pour obtenir un résultat</p>
+<!--
+
+10 :  Donner les recettes initiales dont on ne connaît pas l’auteur. On précisera le nom de la pâtisserie avec la recette.
+
+pas d'intérèt
+<br>
+-->
+<p>10 : Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. On précisera pour chaque boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique inverse.</p>
+<div class="vert">
+<pre><code>
+</code></pre>
+</div>
 <p><br></p>
-<p>10 : Donner les recettes initiales dont on ne connaît pas l’auteur. On précisera le nom de la pâtisserie avec la recette.</p>
+<p>11 : Donner les personnes de moins de 40 ans (cette année) qui sont auteurs d’au moins une recette.</p>
+<div class="vert">
+<pre><code>
+</code></pre>
+</div>
 <p><br></p>
-<p>11 : Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. On précisera pour chaque boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique inverse.</p>
+<p>12 : Donner les boutiques n’ayant jamais proposé de pâtisserie à base de Rhum.</p>
+<div class="vert">
+<pre><code>
+</code></pre>
+</div>
 <p><br></p>
-<p>12 : Donner les personnes de moins de 40 ans (cette année) qui sont auteurs d’au moins une recette.</p>
+<p>Pour cette dernière requête, ajouter des enregistrements pour obtenir un résultat</p>
+<div class="vert">
+<pre><code>
+</code></pre>
+</div>
 <p><br></p>
-<p>13 : Donner les boutiques n’ayant jamais proposé de pâtisserie à base de Rhum.</p>
-<p><br></p>
-<p>14 : Donner les pâtissiers qui ont déjà réalisés au moins une recette de chacune des pâtisseries du catalogue. (indice : Pour ces pâtissiers, il n’existe aucune pâtisserie pour laquelle il n’existe aucune réalisation effectuée par le pâtissier)</p>
+<p>13 : Donner les pâtissiers qui ont déjà réalisés au moins une recette de chacune des pâtisseries du catalogue. (indice : Pour ces pâtissiers, il n’existe aucune pâtisserie pour laquelle il n’existe aucune réalisation effectuée par le pâtissier)</p>
+<div class="vert">
+<pre><code>
+</code></pre>
+</div>
 <p><br></p>
 </div>
 <hr />
