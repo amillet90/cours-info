@@ -83,7 +83,7 @@
 <p><br><br><br></p>
 <p><strong>EXERCICE</strong> : créer les 3 tables ci dessous :</p>
 <ul>
-<li>Créer une table TD_telephone, cette table se compose des champs suivants :
+<li><p>Créer une table TD_telephone, cette table se compose des champs suivants :</p>
 <ul>
 <li>un identifiant (unique non null) par un entier qui s’incrémente automatiquement (gérer par MYSQL) de nom <strong>idTelephone</strong></li>
 <li>un champ <strong>type_id</strong> qui fait référence au type du téléphone, avec une chaîne de 2 caractères</li>
@@ -93,18 +93,19 @@
 <li>un champ <strong>proprietaire_id</strong> qui référence au propriétaire, de type entier</li>
 <li>un champ <strong>couleur</strong> de type chaîne de caractère variable de taille maximum de 25 caractères</li>
 </ul></li>
-<li>Créer une table TD_type_tel, cette table se compose des champs suivants :
+<li><p>Créer une table TD_type_tel, cette table se compose des champs suivants :</p>
 <ul>
 <li>un identifiant (unique non NULL) avec une chaîne de 2 caractères de nom <strong>idType</strong></li>
 <li>un champ <strong>libelle</strong> de type chaîne de caractère variable de taille maximum de 25 caractères</li>
 </ul></li>
-<li>Créer une table TD_marque_tel, cette table se compose des champs suivants :
+<li><p>Créer une table TD_marque_tel, cette table se compose des champs suivants :</p>
 <ul>
 <li>un identifiant (unique non NULL) par un entier qui s’incrémente automatiquement (gérer par MYSQL) de nom <strong>idMarque</strong></li>
 <li>un champ <strong>libelle</strong> de type chaîne de caractère variable de taille maximum de 25 caractères</li>
 <li>un champ <strong>pays</strong> de type chaîne de caractère variable de taille maximum de 25 caractères</li>
 </ul></li>
-<li>ajouter les enregistrements suivants :</li>
+<li><p>Ajouter les clés étrangéres et organiser la création des tables</p></li>
+<li><p>Ajouter et organiser les enregistrements suivants :</p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_telephone (idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,STR_TO_DATE(<span class="st">&#39;15/01/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">139.99</span>,<span class="dv">190120</span>,<span class="st">&#39;ROUGE&#39;</span>);</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">-- il est déconseillé de mettre une valeur à une clé primaire =&gt; pour vérification</span></span>
@@ -120,7 +121,7 @@
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="st">&#39;IP&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;30/09/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">359.49</span>,<span class="dv">190561</span>);</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_telephone</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">6</span>,STR_TO_DATE(<span class="st">&#39;01/01/2021&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.51</span>,<span class="dv">122120</span>,<span class="st">&#39;BLANC&#39;</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;01/01/2021&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.51</span>,<span class="dv">122120</span>,<span class="st">&#39;BLANC&#39;</span>),</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">189</span>,<span class="dv">190622</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="kw">NULL</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">20</span>,<span class="dv">190623</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>);</span>
