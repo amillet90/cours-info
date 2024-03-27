@@ -89,14 +89,18 @@
 <p>« Enseigner, ce n’est pas remplir un vase, c’est allumer un feu » Une phrase qui ne date pas d’hier puisqu’elle est de Montaigne …</p>
 <p>L’objectif n’est pas de les voir toutes mais d’en utiliser certaines (si possible les plus pertinentes), pour voir les différences entre SGBD et en retenir quelques une.</p>
 <h2 id="fonction-sur-les-dates">fonction sur les dates</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">SELECT</span> CURDATE();     <span class="co">--  fonction sur MYSQL</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">SELECT</span> CURDATE();     <span class="co">--  fonction sur MYSQL (juste la date)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">SELECT</span> GETDATE();     <span class="co">-- fonction transactSQL de SQLSERVER</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">SYSDATE</span>();     <span class="co">-- fonction sur ORACLE</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CURRENT_TIMESTAMP</span>;   <span class="co">-- norme SQL  : fonction &quot;système&quot; pas de  paramètres </span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">-- (fonctionne sur MYSQL et PostGreSQL , mais pas sur ORACLE et SQLSERVER)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">SELECT</span> NOW();    <span class="co">--  fonction sur MYSQL</span></span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">SELECT</span> NOW();    <span class="co">--  fonction sur MYSQL (date+heure)</span></span></code></pre></div>
+<ol type="1">
+<li><p>Quelles sont les fonctions pour obtenir la date d’aujourd’hui sur les principaux SGBDR ?</p></li>
+<li><p>Indiquer si ces fonctions tiennent compte du fuseau horaire et le format de la date retournée.</p></li>
+</ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> TD_telephone;</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_telephone </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>(</span>
