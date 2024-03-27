@@ -183,26 +183,72 @@ WHERE idPersonne=:id1 or idPersonne=:id2;
 
 -- 9 :   Donner les pâtisseries réalisées par plus de 2 pâtissiers différents en 2021.
 
+-- +--------------+--------------+-----------+--------------+--------------+
+-- | idPatisserie | nom          | categorie | prixunitaire | nb_pers_diff |
+-- +--------------+--------------+-----------+--------------+--------------+
+-- |            1 | Baba au Rhum | gâteau    | 4.15         |            3 |
+-- +--------------+--------------+-----------+--------------+--------------+
 
 -- ------------------
 
 
--- 10 :  Donner les recettes initiales dont on ne connaît pas l’auteur. On précisera le nom de la pâtisserie avec
--- la recette.
+-- 10 :  Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. 
+-- On précisera pour chaque boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique inverse.
 
--- 11 :  Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. On précisera pour chaque
--- boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique
--- inverse.
+-- +------------+--------+-------------------+------------+---------+--------------+
+-- | idBoutique | nom    | adresse           | codePostal | ville   | dateEmbauche |
+-- +------------+--------+-------------------+------------+---------+--------------+
+-- |          1 | MANTEY | 16 rue principale |      90300 | Valdoie | 2001-06-01   |
+-- +------------+--------+-------------------+------------+---------+--------------+
 
--- 12 :   Donner les personnes de moins de 40 ans (cette année) qui sont auteurs d’au moins une recette.
+-- 11 :   Donner les personnes de moins de 55 ans (cette année) qui sont auteurs d’au moins une recette.
+
+-- +-------------+
+-- | auteur      |
+-- +-------------+
+-- | Mantey jean |
+-- +-------------+
+
+-- 12: Pour chaque nom de pâtisserie, donner le nombre total de réalisations durant l’année 2021. Le résultat sera renommé en ’total2021’.
+
+-- +-----------------------------------+-----------+
+-- | nom                               | total2021 |
+-- +-----------------------------------+-----------+
+-- | Baba au Rhum                      |       143 |
+-- | brioche                           |       400 |
+-- | bûche poires marrons et chocolat  |        20 |
+-- | éclair au chocolat                |        10 |
+-- | macaron marrons                   |       220 |
+-- | tarte aux pommes                  |         9 |
+-- +-----------------------------------+-----------+
+
+
 
 -- 13 :    Donner les boutiques n’ayant jamais proposé de pâtisserie à base de Rhum.
+
+-- +------------+-------------+------------------+------------+---------+
+-- | idBoutique | nom         | adresse          | codePostal | ville   |
+-- +------------+-------------+------------------+------------+---------+
+-- |          4 | le bon pain | 9 rue du chateau |      90000 | Belfort |
+-- +------------+-------------+------------------+------------+---------+
+
+-- INSERT INTO realisation(idPersonne, idPatisserie, numDeclinaison, dateRealisation, nbRealisation)
+--  VALUES (1, 3, 0, '2020-10-02', 99);
+-- INSERT INTO realisation(idPersonne, idPatisserie, numDeclinaison, dateRealisation, nbRealisation)
+--  VALUES (1, 6, 0, '2021-12-02', 99);
 
 
 -- 14 :  Donner les pâtissiers qui ont déjà réalisés au moins une recette de chacune des pâtisseries du catalogue.
 -- (indice : Pour ces pâtissiers, il n’existe aucune pâtisserie pour laquelle il n’existe aucune réalisation
 -- effectuée par le pâtissier)
 
+
+
+-- +-------------+-------------------------+
+-- | nomPersonne | nb_patisseries_distinct |
+-- +-------------+-------------------------+
+-- | DURAND      |                       6 |
+-- +-------------+-------------------------+
 
 
 
