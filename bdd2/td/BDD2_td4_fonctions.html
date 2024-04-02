@@ -167,7 +167,7 @@
 <li>fonction <a href="https://mariadb.com/kb/en/library/format/" target="_blanck">FORMAT</a></li>
 </ul>
 <h3 id="exemple-de-configuration-de-la-time_zone">exemple de configuration de la “time_zone”</h3>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blanck">documentation datetime timestamp</a> - <a href="https://planetscale.com/blog/datetimes-vs-timestamps-in-mysql" target="_blanck">limite</a> - <a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/951_fonctions-manipuler-les-dates/3950_calculs-sur-les-donnees-temporelles/" target="_blanck">exemple fonctions</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blanck">documentation datetime timestamp</a> - <a href="https://planetscale.com/blog/datetimes-vs-timestamps-in-mysql" target="_blanck">limite</a></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> posts;</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> posts (</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>id_post  <span class="dt">INT</span>  AUTO_INCREMENT</span>
@@ -220,6 +220,8 @@ SELECT UTC_TIMESTAMP()+0;</code></pre>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> posts <span class="kw">VALUES</span>(<span class="kw">NULL</span>, <span class="st">&#39;titre post9&#39;</span>, <span class="kw">NULL</span>, <span class="dv">0</span>, <span class="st">&#39;2023-03-29 12:00:00&#39;</span>, <span class="st">&#39;2023-03-29 12:00:00&#39;</span>, <span class="st">&#39;2023-03-29 12:00:00&#39;</span>, <span class="st">&#39;2023-03-29 12:00:00&#39;</span>);</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> posts;</span></code></pre></div>
+<p><br></p>
+<p>Il existe beaucoup de fonctions : <a href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/951_fonctions-manipuler-les-dates/3950_calculs-sur-les-donnees-temporelles/" target="_blanck">exemple de fonctions</a></p>
 <h2 id="fonction-sur-les-chaînes-de-caractères">fonction sur les chaînes de caractères</h2>
 <ul>
 <li>les fonctions sur les chaînes de caractères <a href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html">MySQL</a> <a href="https://mariadb.com/kb/en/library/string-functions/" target="_blanck">mariaDB</a></li>
