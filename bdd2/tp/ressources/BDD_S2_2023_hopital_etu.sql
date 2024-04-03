@@ -197,6 +197,8 @@ VALUES
 
 -- R2
 
+-- remplacer "genycologie" par "ophtalmologie"
+
 -- +---------------------+
 -- | nbr_hospitalisation |
 -- +---------------------+
@@ -222,7 +224,7 @@ VALUES
 
 -- R5
 
--- appendicite => 'typeacte2' 
+-- remplacer  'appendicite' par 'typeacte2' 
 
 -- +-----------+
 -- | libelle   |
@@ -239,7 +241,7 @@ VALUES
 -- |               3 |
 -- +-----------------+
 
--- 'medecin2' => durand
+--  remplacer 'durand' par 'medecin2' =
 
 -- R7
 
