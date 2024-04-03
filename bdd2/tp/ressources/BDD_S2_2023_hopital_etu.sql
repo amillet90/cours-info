@@ -241,7 +241,7 @@ VALUES
 -- |               3 |
 -- +-----------------+
 
---  remplacer 'durand' par 'medecin2' =
+--  remplacer 'durand' par 'medecin2' 
 
 -- R7
 
