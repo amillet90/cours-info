@@ -450,7 +450,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>étudiant 1 : gestion du stock pour des articles ou services de catégories différentes (déclinaisons)
 <ul>
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
-<li>affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le front-office : client)</li>
+<li>affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
 <li>le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article</li>
 <li>lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article.</li>
 <li>Affichage du prix total de la commande en cours (panier) et affichage du prix total des commandes.</li>
@@ -468,6 +468,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>étudiant 2 : gestion des commentaires et des notes
 <ul>
+<li>affichage du nombre de commentaires et de la note moyenne (si ces données existent) pour chaque article (dans le <strong>front-office</strong> : boutique du client)</li>
 <li>ajout de commentaires sur un article par un client ; seule une personne qui a acheté un article donne un avis dessus ; l’administrateur peut supprimer certains avis</li>
 <li>l’utilisateur ne peut saisir que 3 commentaires par articles</li>
 <li>l’utilisateur peut supprimer des commentaires mais l’édition pour les modifier n’est pas obligatoire</li>
@@ -484,6 +485,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>étudiant 3 : gestion des adresses d’expédition et de livraison
 <ul>
+<li><span class="modif">afficher clairement dans “mes coordonnées”, dans le tableau des adresses, l’adresse favorite, les adresses non valides (modifiées ou supprimées mais déjà utilisées dans une commande)</span></li>
 <li>l’utilisateur peut créer maximum 4 adresses, il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 est atteint)</li>
 <li>lors de la création d’une commande :
 <ul>
@@ -496,6 +498,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><span class="modif">Afficher l’adresse favorite (mettre cette adresse en gras, utiliser une autre couleur …).</span></li>
 <li>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email). Pas de doublon possible avec l’email et le login. Mettre à jour les valeurs de connexion (session).</li>
 <li>Le client peut faire l’ajout/la modification/la suppression d’une adresse ; vérifier que l’utilisateur connecté possède bien cette adresse.</li>
+<li><span class="modif">Une adresse supprimée ou modifié non utilisée dans une commande</span></li>
 <li><span class="modif">Le <strong>nombre de commandes</strong> par adresse ainsi que l’<strong>adresse favorite</strong> est indiquée dans le <strong>tableau</strong> des adresses.</span></li>
 <li><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></li>
 <li><span class="modif">Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations</span></li>
