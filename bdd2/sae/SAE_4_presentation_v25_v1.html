@@ -450,6 +450,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>étudiant 1 : gestion du stock pour des articles ou services de catégories différentes (déclinaisons)
 <ul>
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
+<li>Affichage du nombre de déclinaison(s) des articles qui en possédent plusieurs dans la boutique (vue pour faire les commandes)</li>
 <li>affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
 <li>le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article</li>
 <li>lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article.</li>
@@ -468,17 +469,20 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>étudiant 2 : gestion des commentaires et des notes
 <ul>
-<li>affichage du nombre de commentaires et de la note moyenne (si ces données existent) pour chaque article (dans le <strong>front-office</strong> : boutique du client)</li>
-<li>ajout de commentaires sur un article par un client ; seule une personne qui a acheté un article donne un avis dessus ; l’administrateur peut supprimer certains avis</li>
-<li>l’utilisateur ne peut saisir que 3 commentaires par articles</li>
-<li>l’utilisateur peut supprimer des commentaires mais l’édition pour les modifier n’est pas obligatoire</li>
-<li>l’utilisateur ne peut saisir que une note par article ou la modifier</li>
-<li>afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients)</li>
-<li><span class="modif">afficher dans la boutique (vue pour faire les commandes), le nombre de commentaires s’il y en a, et la moyenne de la note s’il y a au moins une note</span></li>
-<li><span class="modif">afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></li>
-<li>(ADMIN) l’administrateur peut voir si il y a de nouveaux commentaires sur un article, il peut supprimer un commentaire ou répondre à un commentaire</li>
-<li><span class="modif">(ADMIN) lorsque l’administrateur lit les commentaires, l’attribut “valider” passe de 0 à 1 (2 choix possibles, “valider” permet d’indiquer que les commentaires ont été lus par l’administrateur ; autres possibilités, tant que les commentaires ne sont pas “valider”, les cacher aux autres utilisateurs)</span></li>
-<li><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></li>
+<li><p><span class="modif">Afficher le nombre de commentaires et de la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes))</span></p></li>
+<li><p>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note</p></li>
+<li><p>l’utilisateur ne peut saisir que 3 commentaires par articles (faire la vérification coté serveur, faire le calcul grâce à du SQL)</p></li>
+<li><p>l’utilisateur peut supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire</p></li>
+<li><p>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></p></li>
+<li><p>afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients)</p></li>
+<li><p><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir els commentaires : faire ce calcul en SQL dans le controleur</span></p></li>
+<li><p><span class="modif">afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></p></li>
+<li><p>(ADMIN) l’administrateur peut supprimer certains avis (commentaires)</p></li>
+<li><p>(ADMIN) l’administrateur peut voir si il y a de nouveaux commentaires sur un article : il voit la différence entre les nouveaux commentaires non validés et les commentaires validés</p></li>
+<li><p><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></p></li>
+<li><p><span class="modif">(ADMIN) l’administrateur peut répondre à un commentaire</span></p></li>
+<li><p><span class="modif">(ADMIN) la réponse de l’administrateur se trouve sous le commentaire du client</span></p></li>
+<li><p><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></p></li>
 </ul></li>
 </ul>
 <p><br></p>
@@ -498,6 +502,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><span class="modif">Afficher l’adresse favorite (mettre cette adresse en gras, utiliser une autre couleur …).</span></li>
 <li>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email). Pas de doublon possible avec l’email et le login. Mettre à jour les valeurs de connexion (session).</li>
 <li>Le client peut faire l’ajout/la modification/la suppression d’une adresse ; vérifier que l’utilisateur connecté possède bien cette adresse.</li>
+<li><span class="modif">Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide</span></li>
 <li><span class="modif">Une adresse supprimée ou modifié non utilisée dans une commande</span></li>
 <li><span class="modif">Le <strong>nombre de commandes</strong> par adresse ainsi que l’<strong>adresse favorite</strong> est indiquée dans le <strong>tableau</strong> des adresses.</span></li>
 <li><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></li>
@@ -515,17 +520,18 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>étudiant 4 (uniquement pour les groupes de 4) : gestion d’une liste d’envies(wishlist) et historique des articles consultés
 <ul>
-<li>Difficulté 1 : La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</li>
-<li>Dans la <strong>liste d’envie</strong> (“wishlist”), un article ne peut pas être ajouté 2 fois, le client peut supprimer un article ou ajouter depuis cette liste l’article dans le panier.</li>
-<li>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</li>
-<li>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</li>
-<li>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste</li>
-<li>Difficulté 2 : l’<strong>historique</strong> est défini par les articles consultés (on clique sur la photo de l’article)</li>
-<li>L’<strong>historique</strong> n’est composé que de <strong>6 articles différents maximum</strong> (on ne stocke que 6 articles au maximum dans la table de la base de données), les 6 derniers consultés.</li>
-<li>Le nombre de consultation d’un article est stocké dans un numérique.</li>
-<li>Les articles des historiques sont retirés au bout de 1 mois.</li>
-<li>Pas de doublon dans l’historique</li>
-<li><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></li>
+<li><p><strong>Difficulté 1 :</strong> La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</p></li>
+<li><p>Dans la <strong>liste d’envie</strong> (“wishlist”), un article ne peut pas être ajouté 2 fois, le client peut supprimer un article ou ajouter depuis cette liste l’article dans le panier.</p></li>
+<li><p>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</p></li>
+<li><p>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</p></li>
+<li><p>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste</p></li>
+<li><p><strong>Difficulté 2 :</strong> l’<strong>historique</strong> est défini par les articles consultés (on clique sur la photo de l’article)</p></li>
+<li><p>L’<strong>historique</strong> n’est composé que de <strong>6 articles différents maximum</strong> (on ne stocke que 6 articles au maximum dans la table de la base de données), les 6 derniers consultés.</p></li>
+<li><p>Le nombre de consultation d’un article est stocké dans un numérique.</p></li>
+<li><p>Les articles des historiques sont retirés au bout de 1 mois.</p></li>
+<li><p>Pas de doublon dans l’historique</p></li>
+<li><p><span class="modif">Afficher le nombre d’article dans l’historique du client et de tout les clients. Afficher le nombre d’article dans la liste d’envies du client ainsi que la popularité d’un article, c’est à dire combien de fois un article est dans la liste d’envies</span></p></li>
+<li><p><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></p></li>
 </ul></li>
 </ul>
 <p><br></p>
