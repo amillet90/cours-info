@@ -457,18 +457,21 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>étudiant 1 : gestion du stock pour des articles ou services de catégories différentes (déclinaisons)
 <ul>
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
-<li>Affichage du nombre de déclinaison(s) des articles qui en possédent plusieurs dans la boutique (vue pour faire les commandes)</li>
-<li>affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
-<li>le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article</li>
-<li>lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article.</li>
-<li>Affichage du prix total de la commande en cours (panier) et affichage du prix total des commandes.</li>
+<li>Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (<strong>front-office</strong> :vue pour faire les commandes) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
+<li>Affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
+<li>Lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.</li>
+<li>Le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article.</li>
+<li>Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.</li>
 <li><span class="modif">Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possible</span></li>
-<li><span class="modif">Affichage des la(les)déclinaison(s) dans les commandes (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possible</span></li>
-<li>(ADMIN) affichage du stock restant pour l’administrateur pour ré-approvisionner des articles (dans le back-office) ; mettre en valeur ces articles.</li>
-<li>(ADMIN) interface pour compléter le stock des articles en fonction de la propriété (taille ou couleur).</li>
-<li>(ADMIN) <span class="modif">afficher dans le tableau des articles si une déclinaison est en rupture de stock (=0) et du nombre d’articles en stock</span></li>
-<li>(ADMIN <span class="modif">gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée</span></li>
-<li><span class="visu">VISUALISATION de données sur les stocks pour l’administrateur (coût du stock/catégorie stock/(taille ou couleur) …. )</span></li>
+<li>Commande : Affichage du prix total des commandes, du nombre d’articles.</li>
+<li>Lors de l’affichage du détails d’une commande : affichage du nom de l’article, du nombre d’article, du prix unitaire et du prix total de ces articles mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
+<li>(ADMIN) <span class="modif">Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles</span></li>
+<li>(ADMIN) <span class="modif">Pour l’administrateur : Interface qui affiche un tableau avec les articles (nom), le nombre de déclinaison, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>.</span>. <span class="modif">Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</span></li>
+<li>(ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur …).</li>
+<li>(ADMIN)<span class="modif">Interface pour ajouter/modifier supprimer de nouvelle déclinaison</span></li>
+<li>(ADMIN) [Pour les plus à l’aise : Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.</li>
+<li>(ADMIN) <span class="modif">Pour les plus à l’aise : Gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée</span></li>
+<li><span class="visu">VISUALISATION de données sur les stocks pour l’administrateur (coût du stock/déclinaison ; nombre d’article en stock par déclinaison(taille, couleur) …. )</span></li>
 </ul></li>
 </ul>
 <p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
@@ -476,51 +479,74 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>étudiant 2 : gestion des commentaires et des notes
 <ul>
-<li><p><span class="modif">Afficher le nombre de commentaires et de la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes))</span></p></li>
-<li><p>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note</p></li>
-<li><p>l’utilisateur ne peut saisir que 3 commentaires par articles (faire la vérification coté serveur, faire le calcul grâce à du SQL)</p></li>
-<li><p>l’utilisateur peut supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire</p></li>
-<li><p>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></p></li>
-<li><p>afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients)</p></li>
-<li><p><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir els commentaires : faire ce calcul en SQL dans le controleur</span></p></li>
-<li><p><span class="modif">afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></p></li>
-<li><p>(ADMIN) l’administrateur peut supprimer certains avis (commentaires)</p></li>
-<li><p>(ADMIN) l’administrateur peut voir si il y a de nouveaux commentaires sur un article : il voit la différence entre les nouveaux commentaires non validés et les commentaires validés</p></li>
-<li><p><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></p></li>
-<li><p><span class="modif">(ADMIN) l’administrateur peut répondre à un commentaire</span></p></li>
-<li><p><span class="modif">(ADMIN) la réponse de l’administrateur se trouve sous le commentaire du client</span></p></li>
-<li><p><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></p></li>
+<li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes)) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
+<li>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</li>
+<li>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire). L’utilisateur peut supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire.</li>
+<li>l’utilisateur ne peut saisir que 3 commentaires par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash clair s’affiche lorsque ce quota est atteint)</li>
+<li><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur</span></li>
+<li>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></li>
+<li>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients)</li>
+<li><span class="modif">Afficher le nombre de commentaires de l’utilisateur pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur. Afficher un message flash si ce quota est atteint.</span></li>
+<li><span class="modif">Afficher le nombre de commentaires totales et le nombre de commentaires “validés” pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur.</span></li>
+<li><span class="modif">Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span><br />
+</li>
+<li>(ADMIN) Liste des articles : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</li>
+<li>(ADMIN) Liste des articles : afficher le nombre de commentaires total</li>
+<li>(ADMIN) liste des commentaires : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</li>
+<li>(ADMIN) liste des commentaires : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles : il voit la différence entre les nouveaux commentaires non validés et les commentaires validés</li>
+<li><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></li>
+<li><span class="modif">(ADMIN) l’administrateur peut répondre à un commentaire</span></li>
+<li><span class="modif">(ADMIN) La réponse de l’administrateur se trouve sous le commentaire du client : Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></li>
+<li><span class="modif">(ADMIN) afficher le nombre de commentaires “validés”(lus) et le nombre de commentaires total des clients</span> ****</li>
+<li><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></li>
 </ul></li>
 </ul>
 <p><br></p>
 <ul>
 <li>étudiant 3 : gestion des adresses d’expédition et de livraison
 <ul>
-<li><span class="modif">afficher clairement dans “mes coordonnées”, dans le tableau des adresses, l’adresse favorite, les adresses non valides (modifiées ou supprimées mais déjà utilisées dans une commande)</span></li>
-<li>l’utilisateur peut créer maximum 4 adresses, il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 est atteint)</li>
-<li>lors de la création d’une commande :
+<li><p>Lors de la création d’une commande : le client doit sélectionner une adresse pour passer une commande (<strong>par défaut c’est l’adresse favorite qui est proposée</strong>, sinon il faut soit créer une adresse soit sélectionner une adresse dans la liste des adresses valides)</p></li>
+<li><ol type="1">
+<li>Afficher dans “mes coordonnées” un tableau d’adresses.</li>
+</ol>
 <ul>
-<li>l’utilisateur doit créer une adresse si elle n’existe pas</li>
-<li>sinon la dernière adresse utilisée pour la livraison (favori) est proposée (une seule adresse favorite (ou 2 au choix) pour les 2 adresses)</li>
+<li>Dans ce tableau, <strong>afficher clairement l’adresse favorite</strong> (mettre en bleu),</li>
+<li>Dans ce tableau, <strong>afficher clairement les adresses non valides</strong> seront en jaunes (ce sont des adresses qui ont été modifiées ou supprimées mais qui étaient déjà utilisées dans une commande)</li>
+<li><span class="modif">Le <strong>nombre de commandes</strong> par adresse est indiquée dans le <strong>tableau</strong> des adresses.</span></li>
 </ul></li>
-<li>si l’adresse de facturation est la même que l’adresse de livraison, indiquer à l’utilisateur que ce sont les mêmes adresses</li>
-<li>le client peut consulter ses commandes avec les adresses de livraison et facturation.</li>
+<li><p>afficher le nombre d’adresses de l’utilisateur valide</p></li>
+<li><ol start="2" type="1">
+<li>l’utilisateur peut utiliser et créer au maximum 4 adresses “fonctionnelles” (valides), il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 adresses valides est atteint)</li>
+</ol></li>
+<li><ol start="3" type="1">
 <li><span class="modif">Si l’utilisateur crée une adresse, cette adresse devient adresse “favorite” sinon c’est la dernière utilisée qui est “favorite”.</span></li>
-<li><span class="modif">Afficher l’adresse favorite (mettre cette adresse en gras, utiliser une autre couleur …).</span></li>
-<li>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email). Pas de doublon possible avec l’email et le login. Mettre à jour les valeurs de connexion (session).</li>
-<li>Le client peut faire l’ajout/la modification/la suppression d’une adresse ; vérifier que l’utilisateur connecté possède bien cette adresse.</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>le client peut consulter ses commandes avec les adresses de livraison et facturation.</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>si l’adresse de facturation est la même que l’adresse de livraison, indiquer à l’utilisateur que ce sont les mêmes adresses</li>
+</ol></li>
+<li><ol start="6" type="1">
+<li>Le client peut faire l’ajout/la modification/la suppression d’une adresse.</li>
+</ol></li>
+<li><ol start="7" type="1">
+<li>vérifier coté serveur que l’utilisateur connecté possède bien cette adresse lors de l’ajout/modification/suppression d’une adresse, indiquer par un message flash très visible orange le problème.</li>
+</ol></li>
+<li><p><span class="modif">Conserver uniquement les adresses utilisées dans les commandes (factures) même si on modifie ou supprime l’une de ces adresses</span></p>
+<ul>
 <li><span class="modif">Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide</span></li>
-<li><span class="modif">Une adresse supprimée ou modifié non utilisée dans une commande</span></li>
-<li><span class="modif">Le <strong>nombre de commandes</strong> par adresse ainsi que l’<strong>adresse favorite</strong> est indiquée dans le <strong>tableau</strong> des adresses.</span></li>
-<li><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></li>
-<li><span class="modif">Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations</span></li>
-<li><span class="modif">Re-proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”)</span></li>
-<li><span class="modif">Conserver les adresses utilisées dans les factures même si on modifie l’une de ces adresses</span></li>
-<li><span class="modif">Si on supprime l’adresse “favorite”, celle l’adresse encore valide qui a la date de commande la plus récente qui devient “favorite”</span></li>
-<li><span class="modif">Pour la démonstration, afficher aussi les adresses “non valides” (en jaune par exemple).</span></li>
-<li>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</li>
-<li><span class="visu">VISUALISATION de données sur les ventes (nombre de commandes, Chiffre d’affaire / départements …)</span></li>
-<li><span class="modif">VISUALISATION 2 : affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec les informations sur les clients (nombre de commandes par département …., livraison …)</span></li>
+</ul></li>
+<li><p><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></p></li>
+<li><p><span class="modif">Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations</span></p></li>
+<li><p><span class="modif">Re-proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”)</span></p></li>
+<li><p><span class="modif">Si on supprime l’adresse “favorite”, l’adresse valide qui a la date de commande la plus récente qui devient “favorite”</span></p></li>
+<li><p>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email).</p></li>
+<li><p>Pas de doublon possible avec l’email et le login.</p></li>
+<li><p>Mettre à jour les valeurs de connexion (session).</p></li>
+<li><p>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</p></li>
+<li><p><span class="visu">VISUALISATION de données sur les ventes (nombre de commandes, Chiffre d’affaire / départements …)</span></p></li>
+<li><p><span class="modif">VISUALISATION 2 : affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec les informations sur les clients (nombre de commandes par département …., livraison …)</span></p></li>
 </ul></li>
 </ul>
 <p><br></p>
@@ -588,13 +614,12 @@ Votre MR doit au maximum être composé de 20/30 tables \n
 </div>
 <h1 id="idée-sur-des-coefficients-des-évaluations-et-livrables-approximatif-en-2022">idée sur des coefficients des évaluations et livrables (approximatif) en 2022</h1>
 <ul>
-<li>Note de M. Noura : coef 1 (visualisation de données)</li>
 <li>Note de Mme Couturier : coef 1</li>
 <li>Note de M Millet : coef 8
 <ul>
-<li>livrable 1 : 0,5</li>
+<li>livrable 1 : 1</li>
 <li>livrable 2 : 2</li>
-<li>contrôle MLD/MCD : 1,5</li>
+<li>contrôle MLD/MCD : 2</li>
 <li>livrable 3 : 4</li>
 </ul></li>
 </ul>
