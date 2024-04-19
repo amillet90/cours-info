@@ -483,7 +483,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes)) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
 </ol></li>
 </ul>
-<p>Détails d’un Article :</p>
+<p>Détails d’un Article (vue pour saisir les commentaires) :</p>
 <ul>
 <li><ol start="2" type="1">
 <li>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</li>
@@ -495,8 +495,14 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>l’utilisateur ne peut saisir que 3 commentaires par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash clair s’affiche lorsque ce quota est atteint)</li>
 </ol></li>
 <li><ol start="5" type="1">
-<li><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir les commentaires, le nombre de commentaire(s) validé(s) de l’utilisateur et total : faire ce calcul en SQL dans le contrôleur</span></li>
-</ol></li>
+<li>afficher</li>
+</ol>
+<ul>
+<li>le nombre de commentaire(s) de l’utilisateur</li>
+<li>le nombre de commentaire(s) total pour l’article</li>
+<li>le nombre de commentaire(s) total validé(s)</li>
+<li>le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL dans le contrôleur pour toutes ces valeurs</strong></li>
+</ul></li>
 <li><ol start="6" type="1">
 <li>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></li>
 </ol></li>
