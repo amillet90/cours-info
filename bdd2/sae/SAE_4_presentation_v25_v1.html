@@ -477,15 +477,32 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
 <p><br></p>
 <ul>
-<li>étudiant 2 : gestion des commentaires et des notes
+<li><p>étudiant 2 : gestion des commentaires et des notes</p>
 <ul>
+<li><ol type="1">
 <li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes)) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
+</ol></li>
+</ul>
+<p>Détails d’un Article :</p>
+<ul>
+<li><ol start="2" type="1">
 <li>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</li>
-<li>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire). L’utilisateur peut supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</li>
+</ol></li>
+<li><ol start="4" type="1">
 <li>l’utilisateur ne peut saisir que 3 commentaires par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash clair s’affiche lorsque ce quota est atteint)</li>
-<li><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur</span></li>
+</ol></li>
+<li><ol start="5" type="1">
+<li><span class="modif">afficher le nombre de commentaires de l’utilisateur et le nombre de commentaires totales pour l’article dans le vue pour saisir les commentaires, le nombre de commentaire(s) validé(s) de l’utilisateur et total : faire ce calcul en SQL dans le contrôleur</span></li>
+</ol></li>
+<li><ol start="6" type="1">
 <li>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></li>
-<li>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients)</li>
+</ol></li>
+<li><ol start="7" type="1">
+<li>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients) ; faire le calcul grâce à du SQL</li>
+</ol></li>
 <li><span class="modif">Afficher le nombre de commentaires de l’utilisateur pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur. Afficher un message flash si ce quota est atteint.</span></li>
 <li><span class="modif">Afficher le nombre de commentaires totales et le nombre de commentaires “validés” pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur.</span></li>
 <li><span class="modif">Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span><br />
@@ -536,8 +553,8 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><p><span class="modif">Conserver uniquement les adresses utilisées dans les commandes (factures) même si on modifie ou supprime l’une de ces adresses</span></p>
 <ul>
 <li><span class="modif">Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide</span></li>
+<li><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></li>
 </ul></li>
-<li><p><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></p></li>
 <li><p><span class="modif">Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations</span></p></li>
 <li><p><span class="modif">Re-proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”)</span></p></li>
 <li><p><span class="modif">Si on supprime l’adresse “favorite”, l’adresse valide qui a la date de commande la plus récente qui devient “favorite”</span></p></li>
