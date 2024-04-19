@@ -477,10 +477,11 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
 <p><br></p>
 <ul>
-<li><p>étudiant 2 : gestion des commentaires et des notes</p>
+<li><p><span class="modif">étudiant 2 : gestion des commentaires et des notes</span></p>
+<p>Boutique ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ul>
 <li><ol type="1">
-<li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article (dans le <strong>front-office</strong> : boutique du client (vue pour faire les commandes)) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
+<li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
 </ol></li>
 </ul>
 <p>Détails d’un Article (vue pour saisir les commentaires) :</p>
@@ -511,8 +512,10 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ol></li>
 <li><span class="modif">Afficher le nombre de commentaires de l’utilisateur pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur. Afficher un message flash si ce quota est atteint.</span></li>
 <li><span class="modif">Afficher le nombre de commentaires totales et le nombre de commentaires “validés” pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur.</span></li>
-<li><span class="modif">Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span><br />
-</li>
+<li><span class="modif">Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></li>
+</ul>
+<p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
+<ul>
 <li>(ADMIN) Liste des articles : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</li>
 <li>(ADMIN) Liste des articles : afficher le nombre de commentaires total</li>
 <li>(ADMIN) liste des commentaires : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</li>
