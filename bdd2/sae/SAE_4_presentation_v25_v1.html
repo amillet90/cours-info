@@ -162,7 +162,7 @@ etat (id_etat, libelle )</code></pre>
 <ul>
 <li>le nom de la première table (qui remplace article)</li>
 <li>ainsi que <span class="violet">le nom de la déclinaison en violet</span> (à remplacer par le nom derrière <code>/</code>)</li>
-<li>et <span class="vert">le type d’article pour le filtre en vert</span></li>
+<li>et <span class="vert">le type d’article (<strong>catégorie</strong>) pour le filtre en vert</span></li>
 </ul>
 <p><br></p>
 <p><strong>sujet 1 : meuble</strong>/<span class="violet">materiau</span></p>
@@ -386,10 +386,11 @@ autres : selles équitations ....
 <ul>
 <li><a href="http://amillet2.pythonanywhere.com/" target="_blank">Démonstration livrable 2</a> <span class="modif">(à rendre pendant les vacances de février)</span></li>
 </ul>
+<p><br><br></p>
 <div class="livrable">
 <p>Livrable 2 : Ce livrable est composé <!--d'un fichier pdf (MCD+MLD), --> d’un fichier archive (.zip ou .tar.gz) qui contient le dossier de votre projet (ne pas oublier le fichier SQL (jeu de test) qui est dans le même dossier que le fichier <em>app.py</em>)</p>
 <!-- **partie analyse : MCD et MR  Version 2** -->
-<p>Cette partie est à rendre sur <a href="https://moodle.univ-fcomte.fr/course/view.php?id=20184#section-1">moodle</a></p>
+<p>Cette partie est à rendre sur <a href="https://moodle.univ-fcomte.fr/course/view.php?id=20184#section-1" target="_blank">moodle</a></p>
 <!--
 
 * fichier **mcd_projet_v2.loo** MCD du projet 
@@ -447,6 +448,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li><a href="http://amillet4.pythonanywhere.com/" target="_blank">Démonstration livrable 3</a> <span class="modif">(à rendre 3 semaines avant les vacances de pâques)</span></li>
 </ul>
+<p>Un petit bonus est donné à ceux qui ont une à deux semaine d’avance dans leur rendu et leur présentation.</p>
 <p><br></p>
 <p>Lors des SAE vous définirez et vous m’informerez de la partie de chaque étudiant dans le groupe</p>
 <p><strong>tâche par étudiant</strong> (1 tâche par étudiant)<br />
@@ -454,43 +456,55 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <p>modifier le modèle logique de données de façon à ce que votre application puisse réaliser une des tâches suivantes</p>
 <p><br></p>
 <ul>
-<li>étudiant 1 : gestion du stock pour des articles ou services de catégories différentes (déclinaisons)
+<li><span class="modif">étudiant 1 : gestion du stock pour des articles ou services de déclinaisons différentes (propriétés comme taille couleur)</span>
 <ul>
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
-<li>Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (<strong>front-office</strong> :vue pour faire les commandes) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
-<li>Affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
-<li>Lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.</li>
-<li>Le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article.</li>
-<li>Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.</li>
-<li><span class="modif">Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possible</span></li>
-<li>Commande : Affichage du prix total des commandes, du nombre d’articles.</li>
-<li>Lors de l’affichage du détails d’une commande : affichage du nom de l’article, du nombre d’article, du prix unitaire et du prix total de ces articles mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
-<li>(ADMIN) <span class="modif">Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles</span></li>
-<li>(ADMIN) <span class="modif">Pour l’administrateur : Interface qui affiche un tableau avec les articles (nom), le nombre de déclinaison, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>.</span>. <span class="modif">Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</span></li>
-<li>(ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur …).</li>
-<li>(ADMIN)<span class="modif">Interface pour ajouter/modifier supprimer de nouvelle déclinaison</span></li>
-<li>(ADMIN) [Pour les plus à l’aise : Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.</li>
-<li>(ADMIN) <span class="modif">Pour les plus à l’aise : Gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée</span></li>
-<li><span class="visu">VISUALISATION de données sur les stocks pour l’administrateur (coût du stock/déclinaison ; nombre d’article en stock par déclinaison(taille, couleur) …. )</span></li>
 </ul></li>
 </ul>
+<p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
+<pre><code>* 1. Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (**front-office** :vue pour faire les commandes) ; faire ce calcul dans une requête SQL   pour extraire les données (sans boucle en python pour ajouter des données).
+* 2. Affichage du stock restant avec une ou plusieurs déclinaisons de l&#39;article (dans le **front-office** : boutique du client) 
+* 3. Lors de l&#39;ajout d&#39;un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n&#39;y a qu&#39;une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.
+* 4. Le stock se décrémente lorsque l&#39;on ajoute un/des articles dans le panier, la suppression d&#39;articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l&#39;article.
+* 5. Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.
+* 6. Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur ...) de l&#39;article choisi si il y en a plusieurs possible.
+* 7. Commande : Affichage du prix total des commandes, du nombre d&#39;articles. 
+* 8. Lors de l&#39;affichage du détails d&#39;une commande : affichage du nom de l&#39;article, du nombre d&#39;article, du prix unitaire et du prix total de ces articles mais surtout **de la déclinaison si il y en a une**.
+
+Interface Administrateur ;  ( **bask-office** )
+
+* 9. (ADMIN) Pour l&#39;administrateur :  Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles
+* 10. (ADMIN) Pour l&#39;administrateur :  Interface qui affiche **un tableau avec les articles** (nom, identifiant), le nombre de déclinaison, le stock restant de chaque article ; **mettre en valeur les articles à ré-approvisionner : un message s&#39;affiche si une déclinaison  est en rupture de stock (=0)**. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n&#39;est plus possible de le supprimer.
+* 11. (ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur ...).
+* 12. (ADMIN) Interface pour ajouter/modifier/supprimer de nouvelle déclinaison.
+* 13. (ADMIN) Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.
+* 14. (ADMIN) Gestion de la &quot;taille unique&quot; ou &quot;couleur unique&quot;, lors de la sélection de cette propriété, il n&#39;est plus possible d&#39;en sélectionner une autre. Cette propriété n&#39;est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée]{.modif}
+* 15. (ADMIN) Pour les plus à l&#39;aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient &quot;non utilisable&quot; de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit resté identique)
+
+Interface Administrateur, visualisation de données ;  ( **bask-office** )
+
+Attention à la qualité du jeu de test pour cette partie.
+
+* 16. VISUALISATION de données sur les stocks pour l&#39;administrateur  
+    * coût du stock par déclinaison(taille, couleur)
+    * nombre d&#39;article en stock par déclinaison(taille, couleur) .... )</code></pre>
 <p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
 <p><br></p>
 <ul>
 <li><p><span class="modif">étudiant 2 : gestion des commentaires et des notes</span></p>
-<p>Boutique ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
+<p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ul>
 <li><ol type="1">
-<li><span class="modif">Boutique : Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</span></li>
+<li>Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
 </ol></li>
 </ul>
-<p>Détails d’un Article (vue pour saisir les commentaires) :</p>
+<p><strong>Détails d’un Article pour le client</strong> (vue pour saisir les commentaires) :</p>
 <ul>
 <li><ol start="2" type="1">
 <li>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</li>
 </ol></li>
 <li><ol start="3" type="1">
-<li>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</li>
+<li>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire ainsi que l’identifiant du commentaire(id)). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</li>
 </ol></li>
 <li><ol start="4" type="1">
 <li>l’utilisateur ne peut saisir que 3 commentaires par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash clair s’affiche lorsque ce quota est atteint)</li>
@@ -510,88 +524,228 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><ol start="7" type="1">
 <li>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients) ; faire le calcul grâce à du SQL</li>
 </ol></li>
-<li><span class="modif">Afficher le nombre de commentaires de l’utilisateur pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur. Afficher un message flash si ce quota est atteint.</span></li>
-<li><span class="modif">Afficher le nombre de commentaires totales et le nombre de commentaires “validés” pour l’article dans le vue pour saisir les commentaires : faire ce calcul en SQL dans le contrôleur.</span></li>
-<li><span class="modif">Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></li>
+<li><ol start="8" type="1">
+<li>Quota de commentaire pour un article : Lors de l’ajout d’un commentaire calculer le nombre de commentaire, faire ce calcul en SQL dans le contrôleur puis afficher un message flash si ce quota est atteint très visible.]{.modif}</li>
+</ol></li>
+<li><ol start="9" type="1">
+<li>Afficher dans un ordre chronologique (temporel inverse) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</li>
+</ol></li>
 </ul>
 <p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
 <ul>
-<li>(ADMIN) Liste des articles : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</li>
-<li>(ADMIN) Liste des articles : afficher le nombre de commentaires total</li>
-<li>(ADMIN) liste des commentaires : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</li>
-<li>(ADMIN) liste des commentaires : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles : il voit la différence entre les nouveaux commentaires non validés et les commentaires validés</li>
-<li><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></li>
+<li><ol start="10" type="1">
+<li>(ADMIN) <strong>Liste des articles</strong> : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</li>
+</ol></li>
+<li><ol start="11" type="1">
+<li>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients. ******</li>
+</ol></li>
+<li><ol start="12" type="1">
+<li>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus) et non “valider” avec des couleurs de fond différentes) ; les réponses de l’administrateur ont aussi une couleur de fond différentes.</li>
+</ol></li>
+<li><ol start="13" type="1">
 <li><span class="modif">(ADMIN) l’administrateur peut répondre à un commentaire</span></li>
-<li><span class="modif">(ADMIN) La réponse de l’administrateur se trouve sous le commentaire du client : Afficher dans un ordre chronologique (temporel) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</span></li>
-<li><span class="modif">(ADMIN) afficher le nombre de commentaires “validés”(lus) et le nombre de commentaires total des clients</span> ****</li>
-<li><span class="visu">VISUALISATION de données sur les commentaires, les catégories, les ventes … (note moyenne/catégorie , nombre de note/catégorie) pour l’administrateur</span></li>
-</ul></li>
+</ol></li>
+<li><ol start="14" type="1">
+<li>[(ADMIN) La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire</li>
+</ol></li>
+<li><ol start="15" type="1">
+<li>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</li>
+</ol></li>
+<li><ol start="16" type="1">
+<li><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></li>
+</ol></li>
+<li><ol start="17" type="1">
+<li>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées : Afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse). Les réponses de l’administrateur sont affichés à la suite d’un commentaire</li>
+</ol></li>
 </ul>
-<p><br></p>
+<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+<p>Attention à la qualité du jeu de test pour cette partie.</p>
+<p>rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p>
 <ul>
-<li>étudiant 3 : gestion des adresses d’expédition et de livraison
+<li><ol start="18" type="1">
+<li>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) :</li>
+</ol>
 <ul>
-<li><p>Lors de la création d’une commande : le client doit sélectionner une adresse pour passer une commande (<strong>par défaut c’est l’adresse favorite qui est proposée</strong>, sinon il faut soit créer une adresse soit sélectionner une adresse dans la liste des adresses valides)</p></li>
+<li>tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie (ou type d’article)</li>
+<li>graphique avec la note moyenne/catégorie d’article (ou type d’article)</li>
+<li>graphique avec le nombre de commentaires(s) par catégorie (ou type d’article)</li>
+<li>graphique avec le nombre de note(s) par catégorie (ou type d’article)</li>
+</ul></li>
+<li><ol start="19" type="1">
+<li>VISUALISATION de données : interface plus évoluée</li>
+</ol>
+<ul>
+<li>si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante</li>
+<li>afficher dans la page
+<ul>
+<li>tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article)</li>
+<li>graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article)</li>
+<li>graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+</ul></li>
+</ul></li>
+<li><ol start="20" type="1">
+<li>Attention à la qualité du jeu de test pour cette partie. <br></li>
+</ol></li>
+</ul></li>
+<li><p><span class="modif">étudiant 3 : gestion des adresses d’expédition et de livraison</span></p>
+<ul>
+<li>Lors de la création d’une commande : le client doit sélectionner une adresse pour passer une commande (<strong>par défaut c’est l’adresse favorite qui est proposée</strong>, sinon il faut soit créer une adresse soit sélectionner une adresse dans la liste des adresses valides)</li>
 <li><ol type="1">
 <li>Afficher dans “mes coordonnées” un tableau d’adresses.</li>
 </ol>
 <ul>
 <li>Dans ce tableau, <strong>afficher clairement l’adresse favorite</strong> (mettre en bleu),</li>
 <li>Dans ce tableau, <strong>afficher clairement les adresses non valides</strong> seront en jaunes (ce sont des adresses qui ont été modifiées ou supprimées mais qui étaient déjà utilisées dans une commande)</li>
-<li><span class="modif">Le <strong>nombre de commandes</strong> par adresse est indiquée dans le <strong>tableau</strong> des adresses.</span></li>
+<li>Le <strong>nombre de commandes</strong> par adresse est indiquée dans le <strong>tableau</strong> des adresses.</li>
 </ul></li>
-<li><p>afficher le nombre d’adresses de l’utilisateur valide</p></li>
 <li><ol start="2" type="1">
-<li>l’utilisateur peut utiliser et créer au maximum 4 adresses “fonctionnelles” (valides), il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 adresses valides est atteint)</li>
+<li>afficher le nombre d’adresses de l’utilisateur <strong>“valide”</strong> (utilisable) et le nombre d’adresses <strong>total</strong> de l’utilisateur</li>
 </ol></li>
 <li><ol start="3" type="1">
-<li><span class="modif">Si l’utilisateur crée une adresse, cette adresse devient adresse “favorite” sinon c’est la dernière utilisée qui est “favorite”.</span></li>
+<li>l’utilisateur peut utiliser et créer au maximum 4 adresses “fonctionnelles” (valides), il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 adresses valides est atteint)</li>
 </ol></li>
 <li><ol start="4" type="1">
-<li>le client peut consulter ses commandes avec les adresses de livraison et facturation.</li>
+<li>Si l’utilisateur crée une adresse, cette adresse devient adresse “favorite” sinon c’est la dernière utilisée qui est “favorite”.</li>
 </ol></li>
 <li><ol start="5" type="1">
-<li>si l’adresse de facturation est la même que l’adresse de livraison, indiquer à l’utilisateur que ce sont les mêmes adresses</li>
+<li>le client peut consulter ses commandes avec les adresses de livraison et facturation.</li>
 </ol></li>
 <li><ol start="6" type="1">
-<li>Le client peut faire l’ajout/la modification/la suppression d’une adresse.</li>
+<li>si l’adresse de facturation est la même que l’adresse de livraison, indiquer à l’utilisateur que ce sont les mêmes adresses</li>
 </ol></li>
 <li><ol start="7" type="1">
-<li>vérifier coté serveur que l’utilisateur connecté possède bien cette adresse lors de l’ajout/modification/suppression d’une adresse, indiquer par un message flash très visible orange le problème.</li>
+<li>Le client peut faire l’ajout/la modification/la suppression d’une adresse.</li>
 </ol></li>
-<li><p><span class="modif">Conserver uniquement les adresses utilisées dans les commandes (factures) même si on modifie ou supprime l’une de ces adresses</span></p>
+<li><ol start="8" type="1">
+<li>vérifier coté serveur (avec du SQL) que l’utilisateur connecté possède bien cette adresse lors de l’ajout/modification/suppression d’une adresse, indiquer par un message flash très visible orange le problème.</li>
+</ol></li>
+<li><ol start="9" type="1">
+<li>Gestion avancée suppression/modification adresses : Conserver uniquement les adresses utilisées dans les commandes (factures) même si on modifie ou supprime l’une de ces adresses</li>
+</ol>
 <ul>
-<li><span class="modif">Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide</span></li>
-<li><span class="modif">Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</span></li>
+<li>Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide.</li>
+<li>Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</li>
+<li>Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations.</li>
 </ul></li>
-<li><p><span class="modif">Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations</span></p></li>
-<li><p><span class="modif">Re-proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”)</span></p></li>
-<li><p><span class="modif">Si on supprime l’adresse “favorite”, l’adresse valide qui a la date de commande la plus récente qui devient “favorite”</span></p></li>
-<li><p>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email).</p></li>
-<li><p>Pas de doublon possible avec l’email et le login.</p></li>
-<li><p>Mettre à jour les valeurs de connexion (session).</p></li>
-<li><p>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</p></li>
-<li><p><span class="visu">VISUALISATION de données sur les ventes (nombre de commandes, Chiffre d’affaire / départements …)</span></p></li>
-<li><p><span class="modif">VISUALISATION 2 : affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec les informations sur les clients (nombre de commandes par département …., livraison …)</span></p></li>
+<li><ol start="10" type="1">
+<li>Proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”).</li>
+</ol></li>
+<li><ol start="11" type="1">
+<li>Si on supprime l’adresse “favorite”, l’adresse valide qui a la date de commande la plus récente qui devient “favorite”.</li>
+</ol></li>
+<li><ol start="12" type="1">
+<li>Vérifier que le code postal est composé de 5 chiffres coté serveur, afficher un message flash qui signal l’erreur si le code postal n’est pas composé de 5 chiffre (faire la vérification coté serveur avec du python ou du SQL)</li>
+</ol></li>
+<li><ol start="13" type="1">
+<li>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email).</li>
+</ol>
+<ul>
+<li>Pas de doublon possible avec l’email et le login.</li>
+<li>Mettre à jour les valeurs de connexion (session).</li>
+</ul></li>
+</ul>
+<p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
+<ul>
+<li>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</li>
+</ul>
+<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+<p>Attention à la qualité du jeu de test pour cette partie.</p>
+<ul>
+<li><ol start="14" type="1">
+<li>VISUALISATION de données sur adresses (utiliser les 2 chiffres de gauches du code postal )</li>
+</ol>
+<ul>
+<li>tableau avec le nombre de vente, le chiffre d’affaire par département</li>
+<li>graphique avec le nombre de vente par département</li>
+<li>graphique avec le chiffre d’affaire par département</li>
+</ul></li>
+<li><ol start="15" type="1">
+<li>VISUALISATION de données : interface plus évoluée</li>
+</ol>
+<ul>
+<li>affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec les informations sur les clients (nombre de commandes par département …., livraison …)</li>
+</ul></li>
 </ul></li>
 </ul>
 <p><br></p>
 <ul>
-<li>étudiant 4 (uniquement pour les groupes de 4) : gestion d’une liste d’envies(wishlist) et historique des articles consultés
+<li><span class="modif">étudiant 4 (uniquement pour les groupes de 4) : gestion d’une liste d’envies(wishlist) et historique des articles consultés</span></li>
+</ul>
+<p><strong>Difficulté 1 :</strong> La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</p>
 <ul>
-<li><p><strong>Difficulté 1 :</strong> La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</p></li>
-<li><p>Dans la <strong>liste d’envie</strong> (“wishlist”), un article ne peut pas être ajouté 2 fois, le client peut supprimer un article ou ajouter depuis cette liste l’article dans le panier.</p></li>
-<li><p>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</p></li>
-<li><p>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</p></li>
-<li><p>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste</p></li>
-<li><p><strong>Difficulté 2 :</strong> l’<strong>historique</strong> est défini par les articles consultés (on clique sur la photo de l’article)</p></li>
-<li><p>L’<strong>historique</strong> n’est composé que de <strong>6 articles différents maximum</strong> (on ne stocke que 6 articles au maximum dans la table de la base de données), les 6 derniers consultés.</p></li>
-<li><p>Le nombre de consultation d’un article est stocké dans un numérique.</p></li>
-<li><p>Les articles des historiques sont retirés au bout de 1 mois.</p></li>
-<li><p>Pas de doublon dans l’historique</p></li>
-<li><p><span class="modif">Afficher le nombre d’article dans l’historique du client et de tout les clients. Afficher le nombre d’article dans la liste d’envies du client ainsi que la popularité d’un article, c’est à dire combien de fois un article est dans la liste d’envies</span></p></li>
-<li><p><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></p></li>
+<li><ol type="1">
+<li>Ajout/suppression des articles dans la wishlist en cliquant sur “💛”</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Dans la <strong>liste d’envie</strong> (“wishlist”), un article ne peut pas être ajouté 2 fois, le client peut supprimer un article ou ajouter depuis cette liste l’article dans le panier.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste</li>
+</ol>
+<ul>
+<li>monter/descendre d’un niveau</li>
+<li>monter/descendre au premier/dernier rang</li>
 </ul></li>
+<li><ol start="6" type="1">
+<li>en cliquant sur l’article, afficher en vert au dessus de la liste le nombre de personne qui ont ajouté cet article dans leur wishlist, le nombre d’article que vous avez déjà dans votre wishlist de cette catégorie (ou type d’article)</li>
+</ol></li>
+</ul>
+<p>rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p>
+<p><strong>Difficulté 2 :</strong> l’<strong>historique</strong> est défini par les articles consultés (on clique sur la photo de l’article)</p>
+<ul>
+<li><ol start="7" type="1">
+<li>affichage de l’<strong>historique</strong> dans l’ordre de consultation</li>
+</ol></li>
+<li><ol start="8" type="1">
+<li>L’<strong>historique</strong> n’est composé que de <strong>6 articles différents maximum</strong> (on ne stocke que 6 articles au maximum dans la table “historique” de la base de données), les 6 derniers consultés. (faire ce calcul en SQL dans le contrôleur )</li>
+</ol></li>
+<li><ol start="9" type="1">
+<li>Le nombre de consultation d’un article est stocké dans un numérique.</li>
+</ol></li>
+<li><ol start="10" type="1">
+<li>Les articles des historiques sont retirés au bout de 1 mois.</li>
+</ol></li>
+<li><ol start="11" type="1">
+<li>Pas de doublon dans l’historique</li>
+</ol></li>
+<li><ol start="12" type="1">
+<li>en cliquant sur l’article de la liste de l’historique, afficher en vert au dessus le nom de l’article, combien de personnes ont cet article dans leur historique. Afficher le nombre de clic sur cet d’article depuis qu’il existe.</li>
+</ol></li>
+<li><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></li>
+</ul>
+<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+<p>Attention à la qualité du jeu de test pour cette partie.</p>
+<ul>
+<li><ol start="13" type="1">
+<li>VISUALISATION de données sur les wishlist pour les catégories (ou types d’article) :
+<ul>
+<li>tableau avec le nombre d’articles dans une wishlist dans chaque catégorie</li>
+<li>graphique avec le nombre d’article dans une wishlist /catégorie d’article</li>
+<li>graphique avec le nombre d’article dans un historique sur le mois /catégorie d’article</li>
+</ul></li>
+</ol></li>
+<li><ol start="14" type="1">
+<li>VISUALISATION de données : interface plus évoluée
+<ul>
+<li>si on clique sur une catégorie ou on sélectionne une catégorie dans une liste déroulante</li>
+<li>afficher dans la page
+<ul>
+<li>tableau avec le nombre d’articles dans une wishlist, le nombre d’articles dans un historique sur le mois <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>graphique avec le nombre d’articles dans une wishlist <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>graphique avec le nombre d’articles dans un historique sur le mois <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li><ol start="15" type="1">
+<li>Attention à la qualité du jeu de test pour cette partie.</li>
+</ol></li>
 </ul>
 <p><br></p>
 <p>Chaque étudiant doit réaliser une(des) requêtes sur les données de sa partie, et réaliser un graphique (dataviz) qui serait <strong>un support de décision</strong><span class="modif">, la qualité du jeu de test livré est prise en compte.</span></p>
