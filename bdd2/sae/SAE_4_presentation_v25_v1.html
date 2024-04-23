@@ -462,42 +462,78 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ul></li>
 </ul>
 <p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
-<pre><code>* 1. Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (**front-office** :vue pour faire les commandes) ; faire ce calcul dans une requête SQL   pour extraire les données (sans boucle en python pour ajouter des données).
-* 2. Affichage du stock restant avec une ou plusieurs déclinaisons de l&#39;article (dans le **front-office** : boutique du client) 
-* 3. Lors de l&#39;ajout d&#39;un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n&#39;y a qu&#39;une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.
-* 4. Le stock se décrémente lorsque l&#39;on ajoute un/des articles dans le panier, la suppression d&#39;articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l&#39;article.
-* 5. Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.
-* 6. Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur ...) de l&#39;article choisi si il y en a plusieurs possible.
-* 7. Commande : Affichage du prix total des commandes, du nombre d&#39;articles. 
-* 8. Lors de l&#39;affichage du détails d&#39;une commande : affichage du nom de l&#39;article, du nombre d&#39;article, du prix unitaire et du prix total de ces articles mais surtout **de la déclinaison si il y en a une**.
-
-Interface Administrateur ;  ( **bask-office** )
-
-* 9. (ADMIN) Pour l&#39;administrateur :  Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles
-* 10. (ADMIN) Pour l&#39;administrateur :  Interface qui affiche **un tableau avec les articles** (nom, identifiant), le nombre de déclinaison, le stock restant de chaque article ; **mettre en valeur les articles à ré-approvisionner : un message s&#39;affiche si une déclinaison  est en rupture de stock (=0)**. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n&#39;est plus possible de le supprimer.
-* 11. (ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur ...).
-* 12. (ADMIN) Interface pour ajouter/modifier/supprimer de nouvelle déclinaison.
-* 13. (ADMIN) Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.
-* 14. (ADMIN) Gestion de la &quot;taille unique&quot; ou &quot;couleur unique&quot;, lors de la sélection de cette propriété, il n&#39;est plus possible d&#39;en sélectionner une autre. Cette propriété n&#39;est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée]{.modif}
-* 15. (ADMIN) Pour les plus à l&#39;aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient &quot;non utilisable&quot; de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit resté identique)
-
-Interface Administrateur, visualisation de données ;  ( **bask-office** )
-
-Attention à la qualité du jeu de test pour cette partie.
-
-* 16. VISUALISATION de données sur les stocks pour l&#39;administrateur  
-    * coût du stock par déclinaison(taille, couleur)
-    * nombre d&#39;article en stock par déclinaison(taille, couleur) .... )</code></pre>
+<ul>
+<li><ol type="1">
+<li>Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (<strong>front-office</strong> :vue pour faire les commandes) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article.</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.</li>
+</ol></li>
+<li><ol start="6" type="1">
+<li>Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possible.</li>
+</ol></li>
+<li><ol start="7" type="1">
+<li>Commande : Affichage du prix total des commandes, du nombre d’articles.</li>
+</ol></li>
+<li><ol start="8" type="1">
+<li>Lors de l’affichage du détails d’une commande : affichage du nom de l’article, du nombre d’article, du prix unitaire et du prix total de ces articles mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
+</ol></li>
+</ul>
+<p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
+<ul>
+<li><ol start="9" type="1">
+<li>(ADMIN) Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles</li>
+</ol></li>
+<li><ol start="10" type="1">
+<li>(ADMIN) Pour l’administrateur : Interface qui affiche <strong>un tableau avec les articles</strong> (nom, identifiant), le nombre de déclinaison, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</li>
+</ol></li>
+<li><ol start="11" type="1">
+<li>(ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur …).</li>
+</ol></li>
+<li><ol start="12" type="1">
+<li>(ADMIN) Interface pour ajouter/modifier/supprimer de nouvelle déclinaison.</li>
+</ol></li>
+<li><ol start="13" type="1">
+<li>(ADMIN) Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.</li>
+</ol></li>
+<li><ol start="14" type="1">
+<li>(ADMIN) Gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée]{.modif}</li>
+</ol></li>
+<li><ol start="15" type="1">
+<li>(ADMIN) Pour les plus à l’aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient “non utilisable” de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit resté identique)</li>
+</ol></li>
+</ul>
+<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+<p>Attention à la qualité du jeu de test pour cette partie.</p>
+<ul>
+<li><ol start="16" type="1">
+<li>VISUALISATION de données sur les stocks pour l’administrateur<br />
+</li>
+</ol>
+<ul>
+<li>coût du stock par déclinaison(taille, couleur)</li>
+<li>nombre d’article en stock par déclinaison(taille, couleur) …. )</li>
+</ul></li>
+</ul>
 <p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
 <p><br></p>
 <ul>
-<li><p><span class="modif">étudiant 2 : gestion des commentaires et des notes</span></p>
+<li><span class="modif">étudiant 2 : gestion des commentaires et des notes</span></li>
+</ul>
 <p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ul>
 <li><ol type="1">
 <li>Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
-</ol></li>
-</ul>
+</ol>
 <p><strong>Détails d’un Article pour le client</strong> (vue pour saisir les commentaires) :</p>
 <ul>
 <li><ol start="2" type="1">
