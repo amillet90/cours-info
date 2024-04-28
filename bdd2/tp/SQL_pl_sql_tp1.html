@@ -186,58 +186,64 @@ END ;</code></pre>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="kw">CALL</span> VerifierAge(<span class="dv">20</span>);</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">CALL</span> VerifierAge(<span class="dv">15</span>);</span></code></pre></div>
-<p><span class="modif">Modifier la fonction VerifierAge pour compléter la colonne <em>majeur</em> de la table <em>utilisateur</em>. La procédure <em>VerifierAge</em> prend 2 paramètres en entrée : age_utilisateur et id_utilisateur, la colonne <em>majeur</em> de l’utilisateur vaut 1 si l’utilisateur est majeur et 0 sinon. Mettre à jour la colonne age de l’utilisateur.</span></p>
+<p><span class="modif">Modifier la fonction VerifierAge pour mettre à jour la colonne <em>age</em> et <em>majeur</em> de la table <em>utilisateur</em>. La procédure <em>VerifierAge</em> prend 2 paramètres en entrée : age_utilisateur et id_utilisateur, la colonne <em>majeur</em> de l’utilisateur vaut 1 si l’utilisateur est majeur et 0 sinon.</span></p>
+<p>test :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- test : Appel de la procédure</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">CALL</span> VerifierAge(<span class="dv">1</span>,<span class="dv">20</span>);</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">CALL</span> VerifierAge(<span class="dv">2</span>,<span class="dv">15</span>);</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
 <h1 id="exercice-5-boucles">Exercice 5: Boucles</h1>
 <p>Créez une table nombres avec une colonne valeur. Utilisez une boucle pour insérer des valeurs de 1 à 10 dans la table. Affichez le contenu de la table nombres.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- Création de la table</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nombres (</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>    valeur <span class="dt">INT</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>);</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">-- Insertion des valeurs de 1 à 10</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> RemplirNombres()</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    <span class="kw">DECLARE</span> i <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>;</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>    <span class="cf">WHILE</span> i <span class="op">&lt;=</span> <span class="dv">10</span> DO</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> nombres (valeur) <span class="kw">VALUES</span> (i);</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>        <span class="kw">SET</span> i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span>;</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>DELIMITER ;</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="kw">CALL</span> RemplirNombres();</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">-- Création de la table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nombres (</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>    valeur <span class="dt">INT</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>);</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">-- Insertion des valeurs de 1 à 10</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> RemplirNombres()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>    <span class="kw">DECLARE</span> i <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>    <span class="cf">WHILE</span> i <span class="op">&lt;=</span> <span class="dv">10</span> DO</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> nombres (valeur) <span class="kw">VALUES</span> (i);</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>        <span class="kw">SET</span> i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span>;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="kw">CALL</span> RemplirNombres();</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
 <h1 id="exercice-6-déclencheurs-triggers">Exercice 6: Déclencheurs (Triggers)</h1>
 <p>Créez une table historique_utilisateurs avec des colonnes telles que id_utilisateur, nom_utilisateur, action et date_action. Créez un déclencheur qui enregistre une nouvelle ligne dans historique_utilisateurs à chaque fois qu’un utilisateur est ajouté à la table utilisateurs.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">-- Création de la table historique_utilisateurs</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> utilisateurs;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> utilisateurs (</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>    nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>    prenom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>    age <span class="dt">INT</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>    majeur <span class="dt">INT</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>);</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="co">-- Création du déclencheur</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> after_insert_utilisateur</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="kw">AFTER</span> <span class="kw">INSERT</span> <span class="kw">ON</span> utilisateurs</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> historique_utilisateurs (id_utilisateur, nom_utilisateur, action)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>    <span class="kw">VALUES</span> (<span class="kw">NEW</span>.<span class="kw">id</span>, <span class="kw">NEW</span>.nom, <span class="st">&#39;Ajout&#39;</span>);</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>DELIMITER ;</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a><span class="co">-- Ajout d&#39;un utilisateur pour déclencher le déclencheur</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateurs (nom, age) <span class="kw">VALUES</span> (<span class="st">&#39;Nouvel Utilisateur&#39;</span>, <span class="dv">28</span>);</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table historique_utilisateurs</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> historique_utilisateurs;</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">-- Création de la table historique_utilisateurs</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> utilisateurs;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> utilisateurs (</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>    nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    prenom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    age <span class="dt">INT</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>    majeur <span class="dt">INT</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>);</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">-- Création du déclencheur</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> after_insert_utilisateur</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="kw">AFTER</span> <span class="kw">INSERT</span> <span class="kw">ON</span> utilisateurs</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> historique_utilisateurs (id_utilisateur, nom_utilisateur, action)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>    <span class="kw">VALUES</span> (<span class="kw">NEW</span>.<span class="kw">id</span>, <span class="kw">NEW</span>.nom, <span class="st">&#39;Ajout&#39;</span>);</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a><span class="co">-- Ajout d&#39;un utilisateur pour déclencher le déclencheur</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateurs (nom, age) <span class="kw">VALUES</span> (<span class="st">&#39;Nouvel Utilisateur&#39;</span>, <span class="dv">28</span>);</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table historique_utilisateurs</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> historique_utilisateurs;</span></code></pre></div>
 </body>
 </html>
