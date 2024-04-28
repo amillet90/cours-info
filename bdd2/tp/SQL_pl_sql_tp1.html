@@ -125,7 +125,7 @@ END ;</code></pre>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">-- Affichage de la variable</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> @nom_utilisateur <span class="kw">AS</span> NomUtilisateur;</span></code></pre></div>
-<h1 id="exercice-2-procédures-stockées">Exercice 2: Procédures Stockées</h1>
+<h1 id="exercice-1-procédures-stockées">Exercice 1: Procédures Stockées</h1>
 <p>Créez une procédure stockée nommée ajouter_utilisateur qui prend en paramètres le nom et l’âge d’un utilisateur, et insère ces informations dans une table utilisateurs. Appelez la procédure avec quelques exemples.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- Création de la table utilisateurs</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> utilisateurs;</span>
@@ -151,8 +151,8 @@ END ;</code></pre>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table utilisateurs</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
-<p><span class="modif">Modifier la fonction AjouterUtilisateur pour mettre en majuscule le nom et en minuscule le prénom. (il faut modifier l’appel de la procédure et passer dans 2 paramètres distincts le nom et le prenom)</span></p>
-<h1 id="exercice-3-fonctions">Exercice 3: Fonctions</h1>
+<p><span class="modif">Modifier la fonction AjouterUtilisateur pour mettre en majuscule le nom et en minuscule le prénom. (il faut modifier l’appel de la procédure et passer dans 2 paramètres distincts le nom et le prénom)</span></p>
+<h1 id="exercice-2-fonctions">Exercice 2: Fonctions</h1>
 <p>Créez une fonction appelée <strong>calculer_moyenne</strong> qui prend en paramètre deux nombres et retourne leur moyenne. Utilisez la fonction pour calculer la moyenne de deux ensembles de nombres différents.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">-- Création de la fonction</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
@@ -167,17 +167,8 @@ END ;</code></pre>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">-- Utilisation de la fonction</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">AS</span> MoyenneSet1;</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">5</span>, <span class="dv">15</span>) <span class="kw">AS</span> MoyenneSet2;</span></code></pre></div>
-<p><span class="modif">Reprendre l’exercice vu en TD :</span></p>
-<p><span class="modif">Créez une fonction appelée calculer_remise qui prend en paramètre le prix et la marque et retourne la remise.</span></p>
-<ul>
-<li><span class="modif">Remise :</span>
-<ul>
-<li><span class="modif">le bon de remise s’élève à 10% pour les téléphones de la marque APPLE</span></li>
-<li><span class="modif">le bon de remise s’élève à 7% pour les téléphones de la marque SAMSUNG</span></li>
-<li><span class="modif">le bon de remise s’élève à 5% pour les autres téléphones</span></li>
-</ul></li>
-</ul>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">5</span>, <span class="fl">16.3333</span>) <span class="kw">AS</span> MoyenneSet2;</span></code></pre></div>
+<p><span class="modif">Reprendre l’exercice, modifier le type des variables pour calculer la moyenne de 2 monétaires</span></p>
 <h1 id="exercice-4-structures-de-contrôle">Exercice 4: Structures de Contrôle</h1>
 <p>Créez une procédure qui prend un paramètre en entrée (par exemple, age_utilisateur) et affiche “Majeur” si l’âge est supérieur ou égal à 18, sinon affiche “Mineur”. Testez la procédure en passant différentes valeurs à age_utilisateur.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">-- Création de la procédure</span></span>
