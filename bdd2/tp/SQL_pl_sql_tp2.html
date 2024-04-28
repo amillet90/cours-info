@@ -169,65 +169,64 @@
 <details>
 <summary>💡 exemple de solution proposer par l’IA générative </summary>
 <p>
-<pre><code>CREATE TABLE Employe (
-    NumSS INT(5) PRIMARY KEY,
-    NomE VARCHAR(20),
-    PrenomE VARCHAR(20),
-    VilleE VARCHAR(20),
-    DateNaiss DATE
-);
-
-CREATE TABLE Projet (
-    NumProj INT(3) PRIMARY KEY,
-    NomProj VARCHAR(20),
-    RespProj INT,
-    VilleP VARCHAR(20),
-    Budget DECIMAL(10,2),
-    FOREIGN KEY (RespProj) REFERENCES Employe(NumSS)
-);
-
-CREATE TABLE Grille_sal (
-    profil VARCHAR(20) PRIMARY KEY,
-    salaire DECIMAL(7,2)
-);
-
-CREATE TABLE Embauche (
-    NumSS INT,
-    NumProj INT,
-    DateEmb DATE DEFAULT CURRENT_DATE,
-    Profil VARCHAR(20),
-    PRIMARY KEY (NumSS, NumProj, DateEmb),
-    FOREIGN KEY (NumSS) REFERENCES Employe(NumSS),
-    FOREIGN KEY (NumProj) REFERENCES Projet(NumProj),
-    FOREIGN KEY (Profil) REFERENCES Grille_sal(profil)
-);
-
-INSERT INTO Employe (NumSS, NomE, PrenomE, VilleE, DateNaiss)
-VALUES
-(22334, &#39;Adam&#39;, &#39;Funk&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;01-12-1982&#39;, &#39;%d-%m-%Y&#39;)),
-(45566, &#39;Rachid&#39;, &#39;Allaoui&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;13-04-1986&#39;, &#39;%d-%m-%Y&#39;)),
-(77889, &#39;Florent&#39;, &#39;Girac&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;04-11-1990&#39;, &#39;%d-%m-%Y&#39;)),
-(90011, &#39;Mayla&#39;, &#39;Aoun&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;26-03-1987&#39;, &#39;%d-%m-%Y&#39;)),
-(22233, &#39;Christine&#39;, &#39;Lara&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;09-08-1982&#39;, &#39;%d-%m-%Y&#39;)),
-(34445, &#39;Amel&#39;, &#39;Orlando&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;14-02-1976&#39;, &#39;%d-%m-%Y&#39;)),
-(55666, &#39;Mohsen&#39;, &#39;Charef&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;28-05-1991&#39;, &#39;%d-%m-%Y&#39;)),
-(77788, &#39;Tim&#39;, &#39;Arabi&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;08-06-1984&#39;, &#39;%d-%m-%Y&#39;)),
-(89990, &#39;Fernando&#39;, &#39;Lopez&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;05-10-1993&#39;, &#39;%d-%m-%Y&#39;)),
-(11122, &#39;Ada&#39;, &#39;Tan Lee&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;21-03-1994&#39;, &#39;%d-%m-%Y&#39;)),
-(11123, &#39;Franck&#39;, &#39;Morel&#39;, &#39;Lille&#39;, STR_TO_DATE(&#39;10-01-1945&#39;, &#39;%d-%m-%Y&#39;));
-
-INSERT INTO Projet VALUES (123, &#39;ADOOP&#39;, 22334, &#39;Paris&#39;, 120000);
-INSERT INTO Projet VALUES (757, &#39;SKALA&#39;, 45566, &#39;Lyon&#39;, 180000);
-INSERT INTO Projet VALUES (890, &#39;BAJA&#39;, 22334, &#39;Paris&#39;, 24000);
-
-INSERT INTO Grille_sal VALUES (&#39;Admin&#39;, 80000);
-INSERT INTO Grille_sal VALUES (&#39;Deve&#39;, 45000);
-INSERT INTO Grille_sal VALUES (&#39;Tech&#39;, 35000);
-
-INSERT INTO Embauche VALUES (77889, 123, STR_TO_DATE(&#39;01-03-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Deve&#39;);
-INSERT INTO Embauche VALUES (90011, 123, STR_TO_DATE(&#39;01-05-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Tech&#39;);
-INSERT INTO Embauche VALUES (22233, 757, STR_TO_DATE(&#39;01-03-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Deve&#39;);
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Employe (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    NumSS <span class="dt">INT</span>(<span class="dv">5</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    NomE <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    PrenomE <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    VilleE <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    DateNaiss <span class="dt">DATE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>);</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Projet (</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    NumProj <span class="dt">INT</span>(<span class="dv">3</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    NomProj <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    RespProj <span class="dt">INT</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    VilleP <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    Budget <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (RespProj) <span class="kw">REFERENCES</span> Employe(NumSS)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>);</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Grille_sal (</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>    profil <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    salaire <span class="dt">DECIMAL</span>(<span class="dv">7</span>,<span class="dv">2</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>);</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Embauche (</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    NumSS <span class="dt">INT</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    NumProj <span class="dt">INT</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    DateEmb <span class="dt">DATE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_DATE</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    Profil <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (NumSS, NumProj, DateEmb),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (NumSS) <span class="kw">REFERENCES</span> Employe(NumSS),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (NumProj) <span class="kw">REFERENCES</span> Projet(NumProj),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (Profil) <span class="kw">REFERENCES</span> Grille_sal(profil)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>);</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Employe (NumSS, NomE, PrenomE, VilleE, DateNaiss)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="kw">VALUES</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>(<span class="dv">22334</span>, <span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;Funk&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;01-12-1982&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>(<span class="dv">45566</span>, <span class="st">&#39;Rachid&#39;</span>, <span class="st">&#39;Allaoui&#39;</span>, <span class="st">&#39;Lyon&#39;</span>, STR_TO_DATE(<span class="st">&#39;13-04-1986&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>(<span class="dv">77889</span>, <span class="st">&#39;Florent&#39;</span>, <span class="st">&#39;Girac&#39;</span>, <span class="st">&#39;Marseille&#39;</span>, STR_TO_DATE(<span class="st">&#39;04-11-1990&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>(<span class="dv">90011</span>, <span class="st">&#39;Mayla&#39;</span>, <span class="st">&#39;Aoun&#39;</span>, <span class="st">&#39;Lyon&#39;</span>, STR_TO_DATE(<span class="st">&#39;26-03-1987&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>(<span class="dv">22233</span>, <span class="st">&#39;Christine&#39;</span>, <span class="st">&#39;Lara&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;09-08-1982&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>(<span class="dv">34445</span>, <span class="st">&#39;Amel&#39;</span>, <span class="st">&#39;Orlando&#39;</span>, <span class="st">&#39;Lyon&#39;</span>, STR_TO_DATE(<span class="st">&#39;14-02-1976&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>(<span class="dv">55666</span>, <span class="st">&#39;Mohsen&#39;</span>, <span class="st">&#39;Charef&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;28-05-1991&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>(<span class="dv">77788</span>, <span class="st">&#39;Tim&#39;</span>, <span class="st">&#39;Arabi&#39;</span>, <span class="st">&#39;Marseille&#39;</span>, STR_TO_DATE(<span class="st">&#39;08-06-1984&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>(<span class="dv">89990</span>, <span class="st">&#39;Fernando&#39;</span>, <span class="st">&#39;Lopez&#39;</span>, <span class="st">&#39;Lyon&#39;</span>, STR_TO_DATE(<span class="st">&#39;05-10-1993&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>(<span class="dv">11122</span>, <span class="st">&#39;Ada&#39;</span>, <span class="st">&#39;Tan Lee&#39;</span>, <span class="st">&#39;Marseille&#39;</span>, STR_TO_DATE(<span class="st">&#39;21-03-1994&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>(<span class="dv">11123</span>, <span class="st">&#39;Franck&#39;</span>, <span class="st">&#39;Morel&#39;</span>, <span class="st">&#39;Lille&#39;</span>, STR_TO_DATE(<span class="st">&#39;10-01-1945&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>));</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Projet <span class="kw">VALUES</span> (<span class="dv">123</span>, <span class="st">&#39;ADOOP&#39;</span>, <span class="dv">22334</span>, <span class="st">&#39;Paris&#39;</span>, <span class="dv">120000</span>);</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Projet <span class="kw">VALUES</span> (<span class="dv">757</span>, <span class="st">&#39;SKALA&#39;</span>, <span class="dv">45566</span>, <span class="st">&#39;Lyon&#39;</span>, <span class="dv">180000</span>);</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Projet <span class="kw">VALUES</span> (<span class="dv">890</span>, <span class="st">&#39;BAJA&#39;</span>, <span class="dv">22334</span>, <span class="st">&#39;Paris&#39;</span>, <span class="dv">24000</span>);</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Grille_sal <span class="kw">VALUES</span> (<span class="st">&#39;Admin&#39;</span>, <span class="dv">80000</span>);</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Grille_sal <span class="kw">VALUES</span> (<span class="st">&#39;Deve&#39;</span>, <span class="dv">45000</span>);</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Grille_sal <span class="kw">VALUES</span> (<span class="st">&#39;Tech&#39;</span>, <span class="dv">35000</span>);</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Embauche <span class="kw">VALUES</span> (<span class="dv">77889</span>, <span class="dv">123</span>, STR_TO_DATE(<span class="st">&#39;01-03-2014&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>), <span class="st">&#39;Deve&#39;</span>);</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Embauche <span class="kw">VALUES</span> (<span class="dv">90011</span>, <span class="dv">123</span>, STR_TO_DATE(<span class="st">&#39;01-05-2014&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>), <span class="st">&#39;Tech&#39;</span>);</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Embauche <span class="kw">VALUES</span> (<span class="dv">22233</span>, <span class="dv">757</span>, STR_TO_DATE(<span class="st">&#39;01-03-2014&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>), <span class="st">&#39;Deve&#39;</span>);</span></code></pre></div>
 <p>
 </details>
 <ol start="5" type="1">
