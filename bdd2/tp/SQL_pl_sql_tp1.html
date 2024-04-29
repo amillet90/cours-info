@@ -167,7 +167,11 @@ END ;</code></pre>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">-- Utilisation de la fonction</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">AS</span> MoyenneSet1;</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">5</span>, <span class="fl">16.3333</span>) <span class="kw">AS</span> MoyenneSet2;</span></code></pre></div>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">5</span>, <span class="fl">16.3333</span>) <span class="kw">AS</span> MoyenneSet2;</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">FUNCTION</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> CalculerMoyenne;</span></code></pre></div>
+<p>REMARQUE : <a href="https://stackoverflow.com/questions/26015160/deterministic-no-sql-or-reads-sql-data-in-its-declaration-and-binary-logging-i" target="_blanck"><strong>erreur de droit sur MySQL(Oracle) sur la machine de l’iut</strong></a> :</p>
+<p>Commande en tant que <em>root</em> : <code>SET GLOBAL log_bin_trust_function_creators = 1;</code></p>
 <p><span class="modif">Reprendre l’exercice, modifier le type des variables pour calculer la moyenne de 2 monétaires</span></p>
 <h1 id="exercice-3-structures-de-contrôle">Exercice 3: Structures de Contrôle</h1>
 <p>Créez une procédure qui prend un paramètre en entrée (par exemple, age_utilisateur) et affiche “Majeur” si l’âge est supérieur ou égal à 18, sinon affiche “Mineur”. Testez la procédure en passant différentes valeurs à age_utilisateur.</p>
