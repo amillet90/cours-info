@@ -324,26 +324,27 @@ BEGIN
 END;</code></pre>
 <p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
 <pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
-+-------------------------------------+
-| Ligne                               |
-+-------------------------------------+
-| ----------------------------------- |
-| Projet: ADOOP dans la ville Paris   |
-| ----------------------------------- |
-| Employé: Florent, Girac             |
-| Employé: Mayla, Aoun                |
-| ----------------------------------- |
-| Projet: BAJA dans la ville Paris    |
-| ----------------------------------- |
-| ----------------------------------- |
-| Projet: SKALA dans la ville Lyon    |
-| ----------------------------------- |
-| Employé: Christine, Lara            |
-+-------------------------------------+
-12 rows in set (0,006 sec)
-
-Query OK, 12 rows affected (0,006 sec)
-</code></pre>
++--------------------------------------+
+| Ligne                                |
++--------------------------------------+
+| -----------------------------------  |
+| Projet: ADOOP dans la ville Paris    |
+| -----------------------------------  |
+| Nombre d&#39;employés: 2                 |
+| Employé(s): Florent, Girac           |
+| Employé(s): Mayla, Aoun              |
+| -----------------------------------  |
+| Projet: BAJA dans la ville Paris     |
+| -----------------------------------  |
+| Nombre d&#39;employés: 0                 |
+| *** personne affecté sur ce projet   |
+| -----------------------------------  |
+| Projet: SKALA dans la ville Lyon     |
+| -----------------------------------  |
+| Nombre d&#39;employés: 1                 |
+| Employé(s): Christine, Lara          |
++--------------------------------------+
+16 rows in set (0,007 sec)</code></pre>
 <p><br> <br></p>
 <ol start="5" type="1">
 <li><span class="orange">(Utilisation CASE et Curseur)Écrire un bloc anonyme qui augmente tous les salaires dans la table Grille_Sal. Les salaires inférieurs à 40000 sont augmentés de 30%, les salaires compris entre 40000 et 60000 de 20% et les salaires supérieurs à 60000 sont augmentés de 10%. Utilisez un CASE pour tester les différentes valeurs possibles du salaire.</span></li>
