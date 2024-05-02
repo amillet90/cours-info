@@ -229,54 +229,10 @@
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Embauche <span class="kw">VALUES</span> (<span class="dv">22233</span>, <span class="dv">757</span>, STR_TO_DATE(<span class="st">&#39;01-03-2014&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>), <span class="st">&#39;Deve&#39;</span>);</span></code></pre></div>
 <p>
 </details>
-<ol start="5" type="1">
-<li><span class="orange">Utiliser une IA générative (réaliser un prompt) pour modifier la procédure PL-SQL ci-dessus :</span></li>
-</ol>
-<pre><code>DECLARE 
-    trouve BOOLEAN;
-BEGIN
-   FOR  r  IN (SELECT numproj, nomproj, villep FROM Projet ORDER BY nomproj)
-    LOOP
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-             dbms_output.put_line(&#39;Projet: &#39;||r.nomproj||&#39; dans la ville  &#39;||r.villep);
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-                       trouve := FALSE;
-                       FOR r2 IN (SELECT nome, prenome FROM employe e, embauche b 
-                                      WHERE e.numss=b.numss AND b.numproj=r.numproj )
-                       LOOP
-                            dbms_output.put_line(&#39;Employé: &#39;|| r2.nome||&#39;, &#39;|| r2.prenome);
-                            trouve := TRUE;
-                      END LOOP;
-                      IF(trouve = FALSE) THEN
-                            dbms_output.put_line(&#39;Pas d&#39;&#39;employé&#39;);
-                       END IF;
-    END LOOP;
-END;</code></pre>
-<p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
-+-------------------------------------+
-| Ligne                               |
-+-------------------------------------+
-| ----------------------------------- |
-| Projet: ADOOP dans la ville Paris   |
-| ----------------------------------- |
-| Employé: Florent, Girac             |
-| Employé: Mayla, Aoun                |
-| ----------------------------------- |
-| Projet: BAJA dans la ville Paris    |
-| ----------------------------------- |
-| ----------------------------------- |
-| Projet: SKALA dans la ville Lyon    |
-| ----------------------------------- |
-| Employé: Christine, Lara            |
-+-------------------------------------+
-12 rows in set (0,006 sec)
-
-Query OK, 12 rows affected (0,006 sec)
-</code></pre>
-<p><br> <br> <br></p>
-<ol start="2" type="1">
-<li><span class="orange">Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. Utilisez les attributs d’un curseur implicite.</span></li>
+<p><br></p>
+<ol type="1">
+<li><p>la question 1 du TP sur oracle sera traitée à la question 4 (c’est la même chose mais c’est bien plus compliqué sur MySQL)</p></li>
+<li><p><span class="orange">Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. Utilisez les attributs d’un curseur implicite.</span></p></li>
 </ol>
 <pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
 +-----------------------------+
@@ -342,7 +298,53 @@ MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
 <ol start="4" type="1">
 <li><span class="orange">(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. Utiliser un curseur avec des paramètres.</span></li>
 </ol>
-<p>voir question 1</p>
+<p><br></p>
+<p>voir question 1 dans le <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" target="_blanck">tp sur oracle</a></p>
+<p><br></p>
+<p><span class="orange">Utiliser une IA générative (réaliser un prompt) pour modifier la procédure PL-SQL ci-dessus :</span></p>
+<pre><code>DECLARE 
+    trouve BOOLEAN;
+BEGIN
+   FOR  r  IN (SELECT numproj, nomproj, villep FROM Projet ORDER BY nomproj)
+    LOOP
+             dbms_output.put_line(&#39;-----------------------------------&#39;);
+             dbms_output.put_line(&#39;Projet: &#39;||r.nomproj||&#39; dans la ville  &#39;||r.villep);
+             dbms_output.put_line(&#39;-----------------------------------&#39;);
+                       trouve := FALSE;
+                       FOR r2 IN (SELECT nome, prenome FROM employe e, embauche b 
+                                      WHERE e.numss=b.numss AND b.numproj=r.numproj )
+                       LOOP
+                            dbms_output.put_line(&#39;Employé: &#39;|| r2.nome||&#39;, &#39;|| r2.prenome);
+                            trouve := TRUE;
+                      END LOOP;
+                      IF(trouve = FALSE) THEN
+                            dbms_output.put_line(&#39;Pas d&#39;&#39;employé&#39;);
+                       END IF;
+    END LOOP;
+END;</code></pre>
+<p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
+<pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
++-------------------------------------+
+| Ligne                               |
++-------------------------------------+
+| ----------------------------------- |
+| Projet: ADOOP dans la ville Paris   |
+| ----------------------------------- |
+| Employé: Florent, Girac             |
+| Employé: Mayla, Aoun                |
+| ----------------------------------- |
+| Projet: BAJA dans la ville Paris    |
+| ----------------------------------- |
+| ----------------------------------- |
+| Projet: SKALA dans la ville Lyon    |
+| ----------------------------------- |
+| Employé: Christine, Lara            |
++-------------------------------------+
+12 rows in set (0,006 sec)
+
+Query OK, 12 rows affected (0,006 sec)
+</code></pre>
+<p><br> <br></p>
 <ol start="5" type="1">
 <li><span class="orange">(Utilisation CASE et Curseur)Écrire un bloc anonyme qui augmente tous les salaires dans la table Grille_Sal. Les salaires inférieurs à 40000 sont augmentés de 30%, les salaires compris entre 40000 et 60000 de 20% et les salaires supérieurs à 60000 sont augmentés de 10%. Utilisez un CASE pour tester les différentes valeurs possibles du salaire.</span></li>
 </ol>
