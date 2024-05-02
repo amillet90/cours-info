@@ -207,28 +207,29 @@ END ;</code></pre>
 <h1 id="exercice-4-boucles">Exercice 4: Boucles</h1>
 <p>Créez une table nombres avec une colonne valeur. Utilisez une boucle pour insérer des valeurs de 1 à 10 dans la table. Affichez le contenu de la table nombres.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">-- Création de la table</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nombres (</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>    valeur <span class="dt">INT</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>);</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> RemplirNombres;</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">-- Insertion des valeurs de 1 à 10</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> RemplirNombres()</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>    <span class="kw">DECLARE</span> i <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>;</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>    <span class="cf">WHILE</span> i <span class="op">&lt;=</span> <span class="dv">10</span> DO</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> nombres (valeur) <span class="kw">VALUES</span> (i);</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>        <span class="kw">SET</span> i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span>;</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>DELIMITER ;</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="kw">CALL</span> RemplirNombres();</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> nombres;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nombres (</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    valeur <span class="dt">INT</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>);</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> RemplirNombres;</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">-- Insertion des valeurs de 1 à 10</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> RemplirNombres()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>    <span class="kw">DECLARE</span> i <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>;</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>    <span class="cf">WHILE</span> i <span class="op">&lt;=</span> <span class="dv">10</span> DO</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> nombres (valeur) <span class="kw">VALUES</span> (i);</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>        <span class="kw">SET</span> i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span>;</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a><span class="kw">CALL</span> RemplirNombres();</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
 <h1 id="exercice-5-déclencheurs-triggers">Exercice 5: Déclencheurs (Triggers)</h1>
 <p>Créez une table historique_utilisateurs avec des colonnes telles que id_utilisateur, nom_utilisateur, action et date_action. Créez un déclencheur qui enregistre une nouvelle ligne dans historique_utilisateurs à chaque fois qu’un utilisateur est ajouté à la table utilisateurs.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">-- Création de la table historique_utilisateurs</span></span>
