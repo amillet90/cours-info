@@ -302,26 +302,26 @@ MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
 <p>voir question 1 dans le <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" target="_blanck">tp sur oracle</a></p>
 <p><br></p>
 <p><span class="orange">Utiliser une IA générative (réaliser un prompt) pour modifier la procédure PL-SQL ci-dessus :</span></p>
-<pre><code>DECLARE 
-    trouve BOOLEAN;
-BEGIN
-   FOR  r  IN (SELECT numproj, nomproj, villep FROM Projet ORDER BY nomproj)
-    LOOP
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-             dbms_output.put_line(&#39;Projet: &#39;||r.nomproj||&#39; dans la ville  &#39;||r.villep);
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-                       trouve := FALSE;
-                       FOR r2 IN (SELECT nome, prenome FROM employe e, embauche b 
-                                      WHERE e.numss=b.numss AND b.numproj=r.numproj )
-                       LOOP
-                            dbms_output.put_line(&#39;Employé: &#39;|| r2.nome||&#39;, &#39;|| r2.prenome);
-                            trouve := TRUE;
-                      END LOOP;
-                      IF(trouve = FALSE) THEN
-                            dbms_output.put_line(&#39;Pas d&#39;&#39;employé&#39;);
-                       END IF;
-    END LOOP;
-END;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">DECLARE</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    trouve <span class="dt">BOOLEAN</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>   <span class="cf">FOR</span>  r  <span class="kw">IN</span> (<span class="kw">SELECT</span> numproj, nomproj, villep <span class="kw">FROM</span> Projet <span class="kw">ORDER</span> <span class="kw">BY</span> nomproj)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="cf">LOOP</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>             dbms_output.put_line(<span class="st">&#39;-----------------------------------&#39;</span>);</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>             dbms_output.put_line(<span class="st">&#39;Projet: &#39;</span><span class="op">||</span>r.nomproj<span class="op">||</span><span class="st">&#39; dans la ville  &#39;</span><span class="op">||</span>r.villep);</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>             dbms_output.put_line(<span class="st">&#39;-----------------------------------&#39;</span>);</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>                       trouve <span class="op">:=</span> <span class="kw">FALSE</span>;</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>                       <span class="cf">FOR</span> r2 <span class="kw">IN</span> (<span class="kw">SELECT</span> nome, prenome <span class="kw">FROM</span> employe e, embauche b </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>                                      <span class="kw">WHERE</span> e.numss<span class="op">=</span>b.numss <span class="kw">AND</span> b.numproj<span class="op">=</span>r.numproj )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>                       <span class="cf">LOOP</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>                            dbms_output.put_line(<span class="st">&#39;Employé: &#39;</span><span class="op">||</span> r2.nome<span class="op">||</span><span class="st">&#39;, &#39;</span><span class="op">||</span> r2.prenome);</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>                            trouve <span class="op">:=</span> <span class="kw">TRUE</span>;</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>                      <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>                      <span class="cf">IF</span>(trouve <span class="op">=</span> <span class="kw">FALSE</span>) <span class="cf">THEN</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>                            dbms_output.put_line(<span class="st">&#39;Pas d</span><span class="ch">&#39;&#39;</span><span class="st">employé&#39;</span>);</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>                       <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="cf">END</span>;</span></code></pre></div>
 <p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
 <pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
 +--------------------------------------+

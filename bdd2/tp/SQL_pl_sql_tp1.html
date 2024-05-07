@@ -291,5 +291,34 @@ END ;</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="kw">CALL</span> testUtilisateurs();</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p>Une autre façon d’utiliser le curseur (boucle WHILE), <a href="https://www.youtube.com/watch?v=4H2GMEwqCjA" target="_blanck">idée exemple</a></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> AfficherUtilisateurs ;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> AfficherUtilisateurs()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_id <span class="dt">INT</span>;</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>);</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_age <span class="dt">INT</span>;</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_majeur <span class="dt">INT</span>;</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_utilisateur <span class="dt">VARCHAR</span>(<span class="dv">255</span>);</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a>    <span class="kw">DECLARE</span> fin <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a>    <span class="kw">DECLARE</span> curs_utilisateur <span class="kw">CURSOR</span> <span class="cf">FOR</span> <span class="kw">SELECT</span> <span class="kw">id</span>,nom,age, majeur <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a>    <span class="kw">DECLARE</span> <span class="kw">CONTINUE</span> HANDLER <span class="cf">FOR</span> <span class="kw">NOT</span> FOUND <span class="kw">SET</span> fin <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a>    <span class="kw">OPEN</span> curs_utilisateur;</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a>    FETCH curs_utilisateur <span class="kw">INTO</span> v_id,v_nom,v_age,v_majeur;</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>    <span class="cf">WHILE</span> (fin<span class="op">&lt;&gt;</span><span class="dv">1</span>) DO</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a>        <span class="kw">SET</span> v_utilisateur<span class="op">=</span><span class="fu">CONCAT</span>(v_id,<span class="st">&#39; ; &#39;</span>, v_nom,<span class="st">&#39; ; &#39;</span>,v_age,<span class="st">&#39; ; &#39;</span>,v_majeur);</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a>        <span class="kw">SELECT</span> v_utilisateur;</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a>        FETCH curs_utilisateur <span class="kw">INTO</span> v_id,v_nom,v_age,v_majeur;</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a>    <span class="kw">CLOSE</span> curs_utilisateur;</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a><span class="kw">CALL</span> afficherUtilisateurs();</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p><span class="modif">Modifier le code ci-dessus pour afficher correctement les enregistrements dans la procédure ci-dessus (utiliser la fonction IFNULL)</span></p>
 </body>
 </html>
