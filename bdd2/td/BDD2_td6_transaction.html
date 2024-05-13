@@ -510,39 +510,56 @@
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true"></a><span class="co">-- à compléter</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true"></a><span class="cf">END</span> <span class="cf">IF</span>;</span></code></pre></div>
 <p><a href="https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf" target="_blanck">https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf</a> <br></p>
-<p><a href="https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees" target="_blanck">https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees</a> <br> <br> <br><br><br> <br></p>
-<h1 id="annexe-solution">annexe : solution</h1>
-<p>code de la transaction</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> @nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>@client_id;</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> @nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>@spectacle_id;</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a><span class="kw">SELECT</span> @prix<span class="op">:=</span>@nb_place<span class="op">*</span>tarif</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>@spectacle_id;</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,@client_id,@nb_place,@spectacle_id,@prix);</span></code></pre></div>
-<p>code dans la procédure pour la transaction</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> s_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>s_client_id;</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> s_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a><span class="kw">SELECT</span> @prix<span class="op">:=</span>s_nb_places<span class="op">*</span>tarif</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,s_client_id,s_nb_places,s_spectacle_id,@prix);</span></code></pre></div>
-<ul>
-<li>exercice : trigger</li>
-</ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>   <span class="co">-- Insert record into audit table</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>   <span class="kw">INSERT</span> <span class="kw">INTO</span> td_log_client_update</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a>   ( client_id,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true"></a>     updated_date,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true"></a>     updated_by)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true"></a>   <span class="kw">VALUES</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true"></a>   ( <span class="kw">NEW</span>.id_client,</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true"></a>     <span class="fu">SYSDATE</span>(),</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true"></a>     vUser );</span></code></pre></div>
+<p><a href="https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees" target="_blanck">https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees</a> <br> <br> <br><br><br> <br> <!--
+# annexe : solution
+
+
+code de la transaction
+
+```sql
+UPDATE td_Client SET nb_places_reservees = nb_places_reservees + @nb_place WHERE id_client=@client_id;
+UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - @nb_place WHERE id_spectacle=@spectacle_id;
+
+SELECT @prix:=@nb_place*tarif
+FROM td_Spectacle 
+WHERE  id_spectacle=@spectacle_id;
+
+INSERT td_Journal VALUES (NULL,'achat de place',@client_id,@nb_place,@spectacle_id,@prix);
+```
+
+code dans la procédure pour la transaction
+
+```sql
+UPDATE td_Client SET nb_places_reservees = nb_places_reservees + s_nb_places WHERE id_client=s_client_id;
+UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - s_nb_places WHERE id_spectacle=s_spectacle_id;
+
+SELECT @prix:=s_nb_places*tarif
+FROM td_Spectacle 
+WHERE  id_spectacle=s_spectacle_id;
+
+INSERT td_Journal VALUES (NULL,'achat de place',s_client_id,s_nb_places,s_spectacle_id,@prix);
+```
+
+
+
+
+
+
+* exercice : trigger
+
+```sql
+
+   -- Insert record into audit table
+   INSERT INTO td_log_client_update
+   ( client_id,
+     updated_date,
+     updated_by)
+   VALUES
+   ( NEW.id_client,
+     SYSDATE(),
+     vUser );
+```
+--></p>
 <!--   
 print in mysql
 
