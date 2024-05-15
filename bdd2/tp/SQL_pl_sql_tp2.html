@@ -194,7 +194,7 @@
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Embauche (</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    NumSS <span class="dt">INT</span>,</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    NumProj <span class="dt">INT</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    DateEmb <span class="dt">DATE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_DATE</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    DateEmb <span class="dt">DATE</span> <span class="kw">DEFAULT</span> (<span class="fu">CURRENT_DATE</span>), <span class="co">-- curdate() , -- CURRENT_DATE, </span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    Profil <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (NumSS, NumProj, DateEmb),</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (NumSS) <span class="kw">REFERENCES</span> Employe(NumSS),</span>
@@ -232,7 +232,7 @@
 <p><br></p>
 <ol type="1">
 <li><p>la question 1 du TP sur oracle sera traitée à la question 4 (c’est la même chose mais c’est bien plus compliqué sur MySQL)</p></li>
-<li><p><span class="orange">Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. Utilisez les attributs d’un curseur implicite.</span></p></li>
+<li><p><span class="orange">Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. <strong>Utilisez les attributs d’un curseur implicite</strong>.</span></p></li>
 </ol>
 <pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
 +-----------------------------+
