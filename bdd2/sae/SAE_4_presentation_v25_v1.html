@@ -503,29 +503,32 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ul>
 <p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ol type="1">
-<li><p>Afficher le nombre de commentaires et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</p>
+<li><p>Afficher le nombre de commentaires (<strong>avis</strong>) et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</p>
 <p><strong>Détails d’un Article pour le client</strong> (vue pour saisir les commentaires) :</p></li>
 <li><p>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</p></li>
 <li><p>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire ainsi que l’identifiant du commentaire(id)). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</p></li>
-<li><p>l’utilisateur ne peut saisir que 3 commentaires par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash clair s’affiche lorsque ce quota est atteint)</p></li>
-<li><p>afficher * le nombre de commentaire(s) de l’utilisateur * le nombre de commentaire(s) total pour l’article * le nombre de commentaire(s) total validé(s) * le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL dans le contrôleur pour toutes ces valeurs</strong></p></li>
+<li><p>l’utilisateur ne peut saisir que 3 commentaires (quota) par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash ( très visible ) s’affiche lorsque ce quota est atteint)</p></li>
+<li><p>afficher (dans la vue qui affiche le détails d’un article en cliquant dessus) * le nombre de commentaire(s) de l’utilisateur * le nombre de commentaire(s) total pour l’article * le nombre de commentaire(s) total validé(s) * le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL dans le contrôleur pour toutes ces valeurs</strong></p></li>
 <li><p>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></p></li>
 <li><p>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients) ; faire le calcul grâce à du SQL</p></li>
-<li><p>Quota de commentaire pour un article : Lors de l’ajout d’un commentaire calculer le nombre de commentaire, faire ce calcul en SQL dans le contrôleur puis afficher un message flash si ce quota est atteint très visible.]{.modif}</p></li>
 <li><p>Afficher dans un ordre chronologique (temporel inverse) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</p>
 <p>Interface Administrateur ; ( <strong>bask-office</strong> )</p></li>
 <li><p>(ADMIN) <strong>Liste des articles</strong> : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</p></li>
 <li><p>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients. ******</p></li>
-<li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus) et non “valider” avec des couleurs de fond différentes) ; les réponses de l’administrateur ont aussi une couleur de fond différentes.</p></li>
-<li><p><span class="modif">(ADMIN) l’administrateur peut répondre à un commentaire</span></p></li>
-<li><p>[(ADMIN) La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire</p></li>
+<li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus sur fond jaune) et non “valider” (sur fond blanc) ; les réponses de l’administrateur (sur fond vert).</p></li>
+<li><p>(ADMIN) l’administrateur peut répondre à un commentaire.</p></li>
 <li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</p></li>
-<li><p><span class="modif">(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur</span></p></li>
-<li><p>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées : Afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse). Les réponses de l’administrateur sont affichés à la suite d’un commentaire</p>
+<li><p>(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur.</p></li>
+<li><p>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées :</p>
+<ul>
+<li>afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse</li>
+<li>puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse).</li>
+<li>La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire</li>
+</ul>
 <p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
 <p>rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p></li>
-<li><p>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) : * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie (ou type d’article) * graphique avec la note moyenne/catégorie d’article (ou type d’article) * graphique avec le nombre de commentaires(s) par catégorie (ou type d’article) * graphique avec le nombre de note(s) par catégorie (ou type d’article)</p></li>
+<li><p>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) : * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie du filtre (ou type d’article du filtre) * graphique avec la note moyenne/catégorie d’article du filtre (ou type d’article) * graphique avec le nombre de commentaires(s) par catégorie du filtre(ou type d’article) * graphique avec le nombre de note(s) par catégorie du filtre (ou type d’article)</p></li>
 <li><p>VISUALISATION de données : interface plus évoluée * si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante * afficher dans la page * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie * graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</p></li>
 <li><p>Attention à la qualité du jeu de test pour cette partie.</p></li>
 </ol>
@@ -546,8 +549,14 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Le <strong>nombre de commandes</strong> par adresse est indiquée dans le <strong>tableau</strong> des adresses.</li>
 </ul></li>
 <li><p>afficher le nombre d’adresses de l’utilisateur <strong>“valide”</strong> (utilisable) et le nombre d’adresses <strong>total</strong> de l’utilisateur</p></li>
-<li><p>l’utilisateur peut utiliser et créer au maximum 4 adresses “fonctionnelles” (valides), il peut les modifier (la vérification est faite coté serveur et un message “flash” s’affiche lorsque le maximum de 4 adresses valides est atteint)</p></li>
-<li><p>Si l’utilisateur crée une adresse, cette adresse devient adresse “favorite” sinon c’est la dernière utilisée qui est “favorite”.</p></li>
+<li><p>l’utilisateur peut utiliser et créer au maximum 4 adresses “fonctionnelles” (valides), il peut les modifier (la vérification est faite coté serveur (en SQL) et un message “flash” s’affiche lorsque le maximum de 4 adresses valides est atteint)</p></li>
+<li><p>Gestion de l’adresse favorite</p>
+<ul>
+<li>Si l’utilisateur crée une adresse, cette adresse devient adresse “favorite” sinon c’est la dernière utilisée qui est “favorite”.</li>
+<li>Sinon si le client passe une commande, c’est l’adresse de livraison utilisée qui devient favorite</li>
+<li>Sinon si on modifie l’adresse favorite, l’adresse modifiée reste l’adresse favorite</li>
+<li>Sinon si on supprime l’adresse favorite, c’est la dernière adresse utilisée qui devient favorite (“date de commande la plus récente et adresse valide”)</li>
+</ul></li>
 <li><p>le client peut consulter ses commandes avec les adresses de livraison et facturation.</p></li>
 <li><p>si l’adresse de facturation est la même que l’adresse de livraison, indiquer à l’utilisateur que ce sont les mêmes adresses</p></li>
 <li><p>Le client peut faire l’ajout/la modification/la suppression d’une adresse.</p></li>
@@ -556,10 +565,8 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide.</li>
 <li>Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</li>
-<li>Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, cette adresse devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations.</li>
+<li>Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, si on modifie cette adresse, elle devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations.</li>
 </ul></li>
-<li><p>Proposer par défaut la dernière adresse utilisée comme adresse de livraison dans les listes déroulantes des adresses lors du passage d’une commande(l’adresse devient “favorite”).</p></li>
-<li><p>Si on supprime l’adresse “favorite”, l’adresse valide qui a la date de commande la plus récente qui devient “favorite”.</p></li>
 <li><p>Vérifier que le code postal est composé de 5 chiffres coté serveur, afficher un message flash qui signal l’erreur si le code postal n’est pas composé de 5 chiffre (faire la vérification coté serveur avec du python ou du SQL)</p></li>
 <li><p>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email).</p>
 <ul>
@@ -571,7 +578,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ol>
 <p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> ) <br></p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
-<ol start="14" type="1">
+<ol start="13" type="1">
 <li>VISUALISATION de données sur adresses (utiliser les 2 chiffres de gauches du code postal )
 <ul>
 <li>tableau avec le nombre de vente, le chiffre d’affaire par département</li>
@@ -629,7 +636,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>si on clique sur une catégorie ou on sélectionne une catégorie dans une liste déroulante</li>
 <li>afficher dans la page
 <ul>
-<li>tableau avec le nombre d’articles dans une wishlist, le nombre d’articles dans un historique sur le mois <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>tableau des articles dans une wishlist d’une catégorie, le nombre d’articles dans un historique sur le mois <strong>uniquement</strong> pour chaque article de cette catégorie</li>
 <li>graphique avec le nombre d’articles dans une wishlist <strong>uniquement</strong> pour chaque article de cette catégorie</li>
 <li>graphique avec le nombre d’articles dans un historique sur le mois <strong>uniquement</strong> pour chaque article de cette catégorie</li>
 </ul></li>
