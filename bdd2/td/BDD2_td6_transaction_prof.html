@@ -507,7 +507,7 @@
 <span id="cb22-80"><a href="#cb22-80" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_libres</span>
 <span id="cb22-81"><a href="#cb22-81" aria-hidden="true"></a>                                     <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
 <span id="cb22-82"><a href="#cb22-82" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la reservation</span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_libres <span class="op">&gt;=</span> v_nb_place)</span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_libres <span class="op">&gt;=</span> p_nb_place)</span>
 <span id="cb22-84"><a href="#cb22-84" aria-hidden="true"></a>    <span class="cf">THEN</span></span>
 <span id="cb22-85"><a href="#cb22-85" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
 <span id="cb22-86"><a href="#cb22-86" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
@@ -560,12 +560,12 @@
 <span id="cb22-133"><a href="#cb22-133" aria-hidden="true"></a>    <span class="cf">IF</span> v_nb_places_libres <span class="op">&gt;=</span> p_nb_place <span class="cf">THEN</span></span>
 <span id="cb22-134"><a href="#cb22-134" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places réservées pour le client</span></span>
 <span id="cb22-135"><a href="#cb22-135" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client</span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> v_nb_place</span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place</span>
 <span id="cb22-137"><a href="#cb22-137" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_client <span class="op">=</span> p_client_id;</span>
 <span id="cb22-138"><a href="#cb22-138" aria-hidden="true"></a></span>
 <span id="cb22-139"><a href="#cb22-139" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places libres pour le spectacle</span></span>
 <span id="cb22-140"><a href="#cb22-140" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle</span>
-<span id="cb22-141"><a href="#cb22-141" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> v_nb_place</span>
+<span id="cb22-141"><a href="#cb22-141" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place</span>
 <span id="cb22-142"><a href="#cb22-142" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
 <span id="cb22-143"><a href="#cb22-143" aria-hidden="true"></a></span>
 <span id="cb22-144"><a href="#cb22-144" aria-hidden="true"></a>        <span class="co">-- Calculer le prix total</span></span>
@@ -575,7 +575,7 @@
 <span id="cb22-148"><a href="#cb22-148" aria-hidden="true"></a></span>
 <span id="cb22-149"><a href="#cb22-149" aria-hidden="true"></a>        <span class="co">-- Insérer une entrée dans le journal</span></span>
 <span id="cb22-150"><a href="#cb22-150" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> td_Journal (<span class="kw">id</span>, libelle_transaction, client_id, nb_places, spectacle_id, tarif)</span>
-<span id="cb22-151"><a href="#cb22-151" aria-hidden="true"></a>        <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;achat de place&#39;</span>, p_client_id, v_nb_place, p_spectacle_id, v_prix);</span>
+<span id="cb22-151"><a href="#cb22-151" aria-hidden="true"></a>        <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;achat de place&#39;</span>, p_client_id, p_nb_place, p_spectacle_id, v_prix);</span>
 <span id="cb22-152"><a href="#cb22-152" aria-hidden="true"></a></span>
 <span id="cb22-153"><a href="#cb22-153" aria-hidden="true"></a>        <span class="kw">COMMIT</span>;</span>
 <span id="cb22-154"><a href="#cb22-154" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Réservation effectuée avec succès.&#39;</span> <span class="kw">AS</span> Message;</span>
