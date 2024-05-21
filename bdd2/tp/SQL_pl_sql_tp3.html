@@ -157,14 +157,24 @@
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">17</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">19</span>,<span class="dv">4</span>),</span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">17</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">4</span>)</span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true"></a>;</span></code></pre></div>
-<p>Créer une procédure sur le SGBDR Mysql en pl-SQL qui reçoit en paramètre un identifiant de client, cette procédure permet de :</p>
+<h1 id="exercice-1">exercice 1</h1>
+<p>Créer une procédure sur le SGBDR MySQL en PL/SQL qui reçoit en paramètre un identifiant de client, cette procédure permet de :</p>
 <ul>
-<li><p>Créer un enregistrement dans la table commande avec pour comme date la date d’aujourd’hui et comme identifiant de client, celui passé en paramètre.</p></li>
-<li><p>Recopier les enregistrements de la table panier ayant pour identifiant client l’identifiant client passé en paramètre dans la table ligne avec comme identifiant de commande celui de l’enregistrement créé précédemment.</p>
+<li><p>Créer un enregistrement dans la table commande avec comme date la date d’aujourd’hui et comme identifiant de client le paramètre passé.</p></li>
+<li><p>Recopiez les enregistrements de la table “panier” ayant pour identifiant client l’identifiant client passé en paramètre dans la table ligne avec comme identifiant de commande celui de l’enregistrement créé précédemment.</p>
 <ul>
-<li>Pour cette partie, il est demandé d’utiliser un curseur (qui sélectionne tous les enregistrements de la table panier ayant pour identifiant client l’identifiant client passé en paramètre) et une boucle qui crée un enregistrement pour chaque valeur de ce curseur.</li>
-<li>Tester une autre solution sans curseur <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp" class="uri">https://www.w3schools.com/sql/sql_insert_into_select.asp</a></li>
+<li>Pour cette partie, il est demandé d’utiliser un curseur (qui sélectionne tous les enregistrements de la table “panier” ayant pour identifiant client l’identifiant client passé en paramètre) et une boucle qui crée un enregistrement pour chaque valeur de ce curseur. Dans votre boucle, utilisez un “WHILE”.</li>
+<li>Testez une autre solution sans curseur <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp" class="uri">https://www.w3schools.com/sql/sql_insert_into_select.asp</a></li>
 </ul></li>
+</ul>
+<h1 id="exercice-2">exercice 2</h1>
+<ul>
+<li>Ajouter une transaction</li>
+<li>Dans votre script, décrémenter le stock de produit. Si le stock de produit n’est pas suffisant, faire une levée d’exeption et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
+</ul>
+<h1 id="exercice-3">exercice 3</h1>
+<ul>
+<li>Faire un script python qui teste cette procédure PL/SQL. Le script python affiche que tout s’est bien passé ou l’erreur et son code.</li>
 </ul>
 <p>Pour tester cette procédure, utiliser la commande suivante :</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">3</span>;</span>
@@ -177,5 +187,69 @@
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="im">import</span> pymysql</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co"># Connexion à la base de données MySQL</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>conn <span class="op">=</span> pymysql.<span class="ex">connect</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    host<span class="op">=</span><span class="st">&quot;votre_hôte&quot;</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    user<span class="op">=</span><span class="st">&quot;votre_utilisateur&quot;</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    password<span class="op">=</span><span class="st">&quot;votre_mot_de_passe&quot;</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    database<span class="op">=</span><span class="st">&quot;votre_base_de_données&quot;</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    port<span class="op">=</span><span class="dv">3306</span>  <span class="co"># Remplacez par le port MySQL utilisé dans votre configuration</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="cf">try</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="co"># Création d un curseur</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    <span class="co"># Exécution de la procédure stockée</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    num_ss <span class="op">=</span> <span class="dv">123456789</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>    nom_e <span class="op">=</span> <span class="st">&quot;Doe&quot;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    prenom_e <span class="op">=</span> <span class="st">&quot;John&quot;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    cursor.callproc(<span class="st">&quot;NomDeVotreProcedureMySQL&quot;</span>, (num_ss, nom_e, prenom_e))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>    <span class="co"># Commit pour valider les modifications</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>    conn.commit()</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    <span class="co"># Affichage du résultat ou de tout message renvoyé par la procédure</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>    result <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    <span class="bu">print</span>(result)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="cf">except</span> pymysql.Error <span class="im">as</span> e:</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>    <span class="co"># Récupération du message d erreur</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>    <span class="bu">print</span>(e)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>    error_message <span class="op">=</span> e.args[<span class="dv">1</span>]</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Erreur MySQL: </span><span class="sc">{</span>error_message<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="cf">finally</span>:</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>    <span class="co"># Fermeture du curseur et de la connexion</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>    cursor.close()</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>    conn.close()</span></code></pre></div>
+<h1 id="exercice-4">exercice 4</h1>
+<p>en testant, le SQL ci-dessous, on voit que la procédure PL/SQL autorise des commandes sans articles ; modifier votre script pour éviter ce problème.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">SELECT</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    c.id_commande,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    c.date_commande,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    cl.nom <span class="kw">AS</span> client_nom,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    cl.ville <span class="kw">AS</span> client_ville,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    a.id_article,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    a.designation,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    l.quantite,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    a.prix</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">FROM</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    commande c</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">JOIN</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="kw">WHERE</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>    c.id_client <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>    c.date_commande, c.id_commande, l.id_article;</span></code></pre></div>
 </body>
 </html>
