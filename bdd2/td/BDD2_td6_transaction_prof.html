@@ -498,23 +498,23 @@
 <span id="cb22-71"><a href="#cb22-71" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb22-72"><a href="#cb22-72" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> reserver_places_spectacles(<span class="kw">IN</span> v_nb_place <span class="dt">INT</span>, <span class="kw">IN</span> v_spectacle_id <span class="dt">INT</span>, <span class="kw">IN</span> v_client_id <span class="dt">INT</span>)</span>
 <span id="cb22-73"><a href="#cb22-73" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nb_places_restantes_libre <span class="dt">INT</span>;</span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nb_places_libres <span class="dt">INT</span>;</span>
 <span id="cb22-75"><a href="#cb22-75" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_prix <span class="dt">DECIMAL</span>(<span class="dv">19</span>,<span class="dv">5</span>);</span>
 <span id="cb22-76"><a href="#cb22-76" aria-hidden="true"></a></span>
 <span id="cb22-77"><a href="#cb22-77" aria-hidden="true"></a>    <span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
 <span id="cb22-78"><a href="#cb22-78" aria-hidden="true"></a>    <span class="co">-- On recherche le spectacle</span></span>
 <span id="cb22-79"><a href="#cb22-79" aria-hidden="true"></a>     <span class="co">-- On recherche le nombre de places disponibles pour le spectacle</span></span>
-<span id="cb22-80"><a href="#cb22-80" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_restantes_libre</span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_libres</span>
 <span id="cb22-81"><a href="#cb22-81" aria-hidden="true"></a>                                     <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>v_spectacle_id;</span>
 <span id="cb22-82"><a href="#cb22-82" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la reservation</span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_restantes_libre <span class="op">&gt;=</span> v_nb_place)</span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_libres <span class="op">&gt;=</span> v_nb_place)</span>
 <span id="cb22-84"><a href="#cb22-84" aria-hidden="true"></a>    <span class="cf">THEN</span></span>
 <span id="cb22-85"><a href="#cb22-85" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> v_nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>v_client_id;</span>
 <span id="cb22-86"><a href="#cb22-86" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> v_nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>v_spectacle_id;</span>
 <span id="cb22-87"><a href="#cb22-87" aria-hidden="true"></a>        <span class="kw">SELECT</span> v_nb_place<span class="op">*</span>tarif <span class="kw">INTO</span> v_prix <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>v_spectacle_id;</span>
 <span id="cb22-88"><a href="#cb22-88" aria-hidden="true"></a>        <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,v_client_id,v_nb_place,v_spectacle_id,v_prix);</span>
 <span id="cb22-89"><a href="#cb22-89" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;probleme nombre de places :&#39;</span>, IFNULL(v_nb_places_restantes_libre,<span class="st">&#39;-2&#39;</span>)) <span class="kw">AS</span> Message;</span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;probleme nombre de places :&#39;</span>, IFNULL(v_nb_places_libres,<span class="st">&#39;-2&#39;</span>)) <span class="kw">AS</span> Message;</span>
 <span id="cb22-91"><a href="#cb22-91" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
 <span id="cb22-92"><a href="#cb22-92" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
 <span id="cb22-93"><a href="#cb22-93" aria-hidden="true"></a>DELIMITER ;</span>
@@ -698,6 +698,6 @@
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>    <span class="kw">SET</span> <span class="kw">OLD</span>.nom<span class="op">=</span><span class="fu">UPPER</span>(<span class="kw">OLD</span>.nom);</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a><span class="cf">END</span> <span class="cf">IF</span>;</span></code></pre></div>
 <p><a href="https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf" target="_blanck">https://www.orleans-informatique.com/info/sio/exercices/TP%20N%C2%B05%20-%20SQL%20et%20triggers.pdf</a> <br></p>
-<p><a href="https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees" target="_blanck">https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees</a> <br></p>
+<p><a href="https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees" target="_blanck">https://www.orleans-informatique.com/etudiants/informatique/bts-sio/sql-conception-base-donnees</a> <br> <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S2_BDD/tp/ressources/BTS_TP_5_SQL_triggers_corrige.pdf" target="_blanck">exemples</a></p>
 </body>
 </html>
