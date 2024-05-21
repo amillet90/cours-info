@@ -383,7 +383,7 @@ SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> s_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> s_client_id <span class="dt">INT</span>, <span class="kw">IN</span> s_spectacle_id <span class="dt">INT</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> p_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> p_client_id <span class="dt">INT</span>, <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>)</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a></span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a></span>
@@ -424,7 +424,7 @@ SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> s_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> s_client_id <span class="dt">INT</span>, <span class="kw">IN</span> s_spectacle_id <span class="dt">INT</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> p_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> p_client_id <span class="dt">INT</span>, <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a></span>
