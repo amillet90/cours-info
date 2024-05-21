@@ -121,10 +121,16 @@ END ;</code></pre>
 <h2 id="rappel-1-variables-et-affichage">Rappel 1: Variables et Affichage</h2>
 <p>Créez une variable nommée nom_utilisateur et initialisez-la avec votre nom. Affichez le contenu de la variable nom_utilisateur à l’aide d’une instruction SELECT.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">-- Création de la variable</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SET</span> @nom_utilisateur <span class="op">=</span> <span class="st">&#39;VotreNom&#39;</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SET</span> @variable1 <span class="op">=</span> <span class="st">&#39;Valeur1&#39;</span>;</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">-- Affichage de la variable</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> @nom_utilisateur <span class="kw">AS</span> NomUtilisateur;</span></code></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> @variable1 <span class="kw">AS</span> variable1;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">-- Création de la variable dans une requête</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;test:&#39;</span>,<span class="dv">2</span>) <span class="kw">INTO</span> @variable2 <span class="kw">FROM</span> DUAL;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">-- Affichage de la variable</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">SELECT</span> @variable2 <span class="kw">AS</span> variable2;</span></code></pre></div>
 <h1 id="exercice-1-procédures-stockées">Exercice 1: Procédures Stockées</h1>
 <p>Créez une procédure stockée nommée ajouter_utilisateur qui prend en paramètres le nom et l’âge d’un utilisateur, et insère ces informations dans une table utilisateurs. Appelez la procédure avec quelques exemples.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- Création de la table utilisateurs</span></span>
