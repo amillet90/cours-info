@@ -351,14 +351,14 @@
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> p_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> p_client_id <span class="dt">INT</span>, <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>    <span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>    <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>    <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>    <span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> prix</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>    <span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> v_prix</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>    <span class="kw">FROM</span> td_Spectacle</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a>    <span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a>    <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,prix);</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a>    <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,v_prix);</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a>    <span class="kw">COMMIT</span>;</span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
@@ -388,35 +388,37 @@
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a><span class="kw">DECLARE</span> exit handler <span class="cf">for</span> sqlexception</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a>  <span class="cf">BEGIN</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a>  <span class="kw">ROLLBACK</span>;</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a>  SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;SQLError occured. Procedure error ROLLBACK&#39;</span>;</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a><span class="cf">END</span>;</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a><span class="kw">DECLARE</span> exit handler <span class="cf">for</span> sqlwarning</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a> <span class="cf">BEGIN</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a> <span class="kw">ROLLBACK</span>;</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a> SIGNAL SQLSTATE <span class="st">&#39;35000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;SQLwarning occured. Procedure warning ROLLBACK&#39;</span>;</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="cf">END</span>;</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a>    <span class="kw">DECLARE</span> prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a><span class="kw">DECLARE</span> v_prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a><span class="kw">DECLARE</span> exit handler <span class="cf">for</span> sqlexception</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a>  <span class="cf">BEGIN</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a>  <span class="kw">ROLLBACK</span>;</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a>  SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;SQLError occured. Procedure error ROLLBACK&#39;</span>;</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a><span class="cf">END</span>;</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a><span class="kw">DECLARE</span> exit handler <span class="cf">for</span> sqlwarning</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a> <span class="cf">BEGIN</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a> <span class="kw">ROLLBACK</span>;</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a> SIGNAL SQLSTATE <span class="st">&#39;35000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;SQLwarning occured. Procedure warning ROLLBACK&#39;</span>;</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a><span class="cf">END</span>;</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a></span>
 <span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> prix</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,prix);</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> v_prix</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
 <span id="cb21-32"><a href="#cb21-32" aria-hidden="true"></a></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,v_prix);</span>
 <span id="cb21-34"><a href="#cb21-34" aria-hidden="true"></a></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
 <span id="cb21-36"><a href="#cb21-36" aria-hidden="true"></a></span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true"></a></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
 <p>Autre solution :</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">USE</span> BDD_s2_td;</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_Client, td_Spectacle, td_Journal;</span>
