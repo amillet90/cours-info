@@ -349,27 +349,19 @@
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> s_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> s_client_id <span class="dt">INT</span>, <span class="kw">IN</span> s_spectacle_id <span class="dt">INT</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> s_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>s_client_id;</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> s_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a><span class="kw">SELECT</span> @prix<span class="op">:=</span>s_nb_places<span class="op">*</span>tarif</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle </span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,s_client_id,s_nb_places,s_spectacle_id,@prix);</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true"></a></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true"></a></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true"></a></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> p_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> p_client_id <span class="dt">INT</span>, <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>    <span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>    <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>    <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>    <span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> prix</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>    <span class="kw">FROM</span> td_Spectacle</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a>    <span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a>    <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,prix);</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a>    <span class="kw">COMMIT</span>;</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
@@ -392,7 +384,7 @@
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> s_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> s_client_id <span class="dt">INT</span>, <span class="kw">IN</span> s_spectacle_id <span class="dt">INT</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> sp_commande_spectacle(<span class="kw">IN</span> p_nb_places <span class="dt">INT</span>, <span class="kw">IN</span> p_client_id <span class="dt">INT</span>, <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a></span>
@@ -408,22 +400,23 @@
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a> SIGNAL SQLSTATE <span class="st">&#39;35000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;SQLwarning occured. Procedure warning ROLLBACK&#39;</span>;</span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="cf">END</span>;</span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> s_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>s_client_id;</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> s_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a><span class="kw">SELECT</span> @prix<span class="op">:=</span>s_nb_places<span class="op">*</span>tarif</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle </span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>s_spectacle_id;</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,s_client_id,s_nb_places,s_spectacle_id,@prix);</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a></span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a>    <span class="kw">DECLARE</span> prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">2</span>);</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_places <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_places <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="kw">SELECT</span> p_nb_places<span class="op">*</span>tarif <span class="kw">INTO</span> prix</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="kw">FROM</span> td_Spectacle</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a><span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_places,p_spectacle_id,prix);</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true"></a></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a><span class="kw">COMMIT</span>;</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true"></a></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a><span class="cf">END</span>; <span class="op">//</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true"></a></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
 <p>Autre solution :</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">USE</span> BDD_s2_td;</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_Client, td_Spectacle, td_Journal;</span>
@@ -505,106 +498,107 @@
 <span id="cb22-78"><a href="#cb22-78" aria-hidden="true"></a>    <span class="co">-- On recherche le spectacle</span></span>
 <span id="cb22-79"><a href="#cb22-79" aria-hidden="true"></a>     <span class="co">-- On recherche le nombre de places disponibles pour le spectacle</span></span>
 <span id="cb22-80"><a href="#cb22-80" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_libres</span>
-<span id="cb22-81"><a href="#cb22-81" aria-hidden="true"></a>                                     <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la reservation</span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_libres <span class="op">&gt;=</span> p_nb_place)</span>
-<span id="cb22-84"><a href="#cb22-84" aria-hidden="true"></a>    <span class="cf">THEN</span></span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
-<span id="cb22-86"><a href="#cb22-86" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true"></a>        <span class="kw">SELECT</span> p_nb_place<span class="op">*</span>tarif <span class="kw">INTO</span> v_prix <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
-<span id="cb22-88"><a href="#cb22-88" aria-hidden="true"></a>        <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_place,p_spectacle_id,v_prix);</span>
-<span id="cb22-89"><a href="#cb22-89" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;probleme nombre de places :&#39;</span>, IFNULL(v_nb_places_libres,<span class="st">&#39;-2&#39;</span>)) <span class="kw">AS</span> Message;</span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true"></a>DELIMITER ;</span>
-<span id="cb22-94"><a href="#cb22-94" aria-hidden="true"></a></span>
-<span id="cb22-95"><a href="#cb22-95" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb22-96"><a href="#cb22-96" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb22-97"><a href="#cb22-97" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb22-98"><a href="#cb22-98" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">25</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
-<span id="cb22-99"><a href="#cb22-99" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb22-100"><a href="#cb22-100" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb22-101"><a href="#cb22-101" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb22-102"><a href="#cb22-102" aria-hidden="true"></a></span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true"></a>    <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true"></a>    </span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la reservation</span></span>
+<span id="cb22-84"><a href="#cb22-84" aria-hidden="true"></a>    <span class="cf">IF</span> (v_nb_places_libres <span class="op">&gt;=</span> p_nb_place)</span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true"></a>    <span class="cf">THEN</span></span>
+<span id="cb22-86"><a href="#cb22-86" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place <span class="kw">WHERE</span> id_client<span class="op">=</span>p_client_id;</span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place <span class="kw">WHERE</span> id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb22-88"><a href="#cb22-88" aria-hidden="true"></a>        <span class="kw">SELECT</span> p_nb_place<span class="op">*</span>tarif <span class="kw">INTO</span> v_prix <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span>  id_spectacle<span class="op">=</span>p_spectacle_id;</span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true"></a>        <span class="kw">INSERT</span> td_Journal <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;achat de place&#39;</span>,p_client_id,p_nb_place,p_spectacle_id,v_prix);</span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
+<span id="cb22-91"><a href="#cb22-91" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;probleme nombre de places :&#39;</span>, IFNULL(v_nb_places_libres,<span class="st">&#39;-2&#39;</span>)) <span class="kw">AS</span> Message;</span>
+<span id="cb22-92"><a href="#cb22-92" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb22-93"><a href="#cb22-93" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb22-94"><a href="#cb22-94" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb22-95"><a href="#cb22-95" aria-hidden="true"></a></span>
+<span id="cb22-96"><a href="#cb22-96" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb22-97"><a href="#cb22-97" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb22-98"><a href="#cb22-98" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb22-99"><a href="#cb22-99" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">25</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb22-100"><a href="#cb22-100" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb22-101"><a href="#cb22-101" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb22-102"><a href="#cb22-102" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
 <span id="cb22-103"><a href="#cb22-103" aria-hidden="true"></a></span>
 <span id="cb22-104"><a href="#cb22-104" aria-hidden="true"></a></span>
 <span id="cb22-105"><a href="#cb22-105" aria-hidden="true"></a></span>
 <span id="cb22-106"><a href="#cb22-106" aria-hidden="true"></a></span>
 <span id="cb22-107"><a href="#cb22-107" aria-hidden="true"></a></span>
-<span id="cb22-108"><a href="#cb22-108" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> reserver_places_spectacles;</span>
-<span id="cb22-109"><a href="#cb22-109" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
-<span id="cb22-110"><a href="#cb22-110" aria-hidden="true"></a></span>
-<span id="cb22-111"><a href="#cb22-111" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> reserver_places_spectacles(</span>
-<span id="cb22-112"><a href="#cb22-112" aria-hidden="true"></a>    <span class="kw">IN</span> p_nb_place <span class="dt">INT</span>,</span>
-<span id="cb22-113"><a href="#cb22-113" aria-hidden="true"></a>    <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>,</span>
-<span id="cb22-114"><a href="#cb22-114" aria-hidden="true"></a>    <span class="kw">IN</span> p_client_id <span class="dt">INT</span>)</span>
-<span id="cb22-115"><a href="#cb22-115" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
-<span id="cb22-116"><a href="#cb22-116" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nb_places_libres <span class="dt">INT</span>;</span>
-<span id="cb22-117"><a href="#cb22-117" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_prix <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>);</span>
-<span id="cb22-118"><a href="#cb22-118" aria-hidden="true"></a>    <span class="kw">DECLARE</span> EXIT HANDLER <span class="cf">FOR</span> SQLEXCEPTION</span>
-<span id="cb22-119"><a href="#cb22-119" aria-hidden="true"></a>    <span class="cf">BEGIN</span></span>
-<span id="cb22-120"><a href="#cb22-120" aria-hidden="true"></a>        <span class="co">-- Gestion des erreurs, annule la transaction</span></span>
-<span id="cb22-121"><a href="#cb22-121" aria-hidden="true"></a>        <span class="kw">ROLLBACK</span>;</span>
-<span id="cb22-122"><a href="#cb22-122" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Une erreur est survenue, la transaction a été annulée.&#39;</span> <span class="kw">AS</span> Message;</span>
-<span id="cb22-123"><a href="#cb22-123" aria-hidden="true"></a>    <span class="cf">END</span>;</span>
-<span id="cb22-124"><a href="#cb22-124" aria-hidden="true"></a></span>
-<span id="cb22-125"><a href="#cb22-125" aria-hidden="true"></a>    <span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
-<span id="cb22-126"><a href="#cb22-126" aria-hidden="true"></a></span>
-<span id="cb22-127"><a href="#cb22-127" aria-hidden="true"></a>    <span class="co">-- On recherche le nombre de places disponibles pour le spectacle</span></span>
-<span id="cb22-128"><a href="#cb22-128" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_libres</span>
-<span id="cb22-129"><a href="#cb22-129" aria-hidden="true"></a>    <span class="kw">FROM</span> td_Spectacle</span>
-<span id="cb22-130"><a href="#cb22-130" aria-hidden="true"></a>    <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
-<span id="cb22-131"><a href="#cb22-131" aria-hidden="true"></a></span>
-<span id="cb22-132"><a href="#cb22-132" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la réservation</span></span>
-<span id="cb22-133"><a href="#cb22-133" aria-hidden="true"></a>    <span class="cf">IF</span> v_nb_places_libres <span class="op">&gt;=</span> p_nb_place <span class="cf">THEN</span></span>
-<span id="cb22-134"><a href="#cb22-134" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places réservées pour le client</span></span>
-<span id="cb22-135"><a href="#cb22-135" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client</span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place</span>
-<span id="cb22-137"><a href="#cb22-137" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_client <span class="op">=</span> p_client_id;</span>
-<span id="cb22-138"><a href="#cb22-138" aria-hidden="true"></a></span>
-<span id="cb22-139"><a href="#cb22-139" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places libres pour le spectacle</span></span>
-<span id="cb22-140"><a href="#cb22-140" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle</span>
-<span id="cb22-141"><a href="#cb22-141" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place</span>
-<span id="cb22-142"><a href="#cb22-142" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
-<span id="cb22-143"><a href="#cb22-143" aria-hidden="true"></a></span>
-<span id="cb22-144"><a href="#cb22-144" aria-hidden="true"></a>        <span class="co">-- Calculer le prix total</span></span>
-<span id="cb22-145"><a href="#cb22-145" aria-hidden="true"></a>        <span class="kw">SELECT</span> p_nb_place <span class="op">*</span> tarif <span class="kw">INTO</span> v_prix</span>
-<span id="cb22-146"><a href="#cb22-146" aria-hidden="true"></a>        <span class="kw">FROM</span> td_Spectacle</span>
-<span id="cb22-147"><a href="#cb22-147" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
-<span id="cb22-148"><a href="#cb22-148" aria-hidden="true"></a></span>
-<span id="cb22-149"><a href="#cb22-149" aria-hidden="true"></a>        <span class="co">-- Insérer une entrée dans le journal</span></span>
-<span id="cb22-150"><a href="#cb22-150" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> td_Journal (<span class="kw">id</span>, libelle_transaction, client_id, nb_places, spectacle_id, tarif)</span>
-<span id="cb22-151"><a href="#cb22-151" aria-hidden="true"></a>        <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;achat de place&#39;</span>, p_client_id, p_nb_place, p_spectacle_id, v_prix);</span>
-<span id="cb22-152"><a href="#cb22-152" aria-hidden="true"></a></span>
-<span id="cb22-153"><a href="#cb22-153" aria-hidden="true"></a>        <span class="kw">COMMIT</span>;</span>
-<span id="cb22-154"><a href="#cb22-154" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Réservation effectuée avec succès.&#39;</span> <span class="kw">AS</span> Message;</span>
-<span id="cb22-155"><a href="#cb22-155" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
-<span id="cb22-156"><a href="#cb22-156" aria-hidden="true"></a>        <span class="co">-- Si pas assez de places disponibles, annuler la transaction</span></span>
-<span id="cb22-157"><a href="#cb22-157" aria-hidden="true"></a>        <span class="kw">ROLLBACK</span>;</span>
-<span id="cb22-158"><a href="#cb22-158" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Message Problème : pas assez de places disponibles.&#39;</span> <span class="kw">AS</span> Message;</span>
-<span id="cb22-159"><a href="#cb22-159" aria-hidden="true"></a>              <span class="co">-- Lever une exception s&#39;il n&#39;y a pas assez de places disponibles</span></span>
-<span id="cb22-160"><a href="#cb22-160" aria-hidden="true"></a>        SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span></span>
-<span id="cb22-161"><a href="#cb22-161" aria-hidden="true"></a>        <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;Problème: pas assez de places disponibles.&#39;</span>;</span>
-<span id="cb22-162"><a href="#cb22-162" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
-<span id="cb22-163"><a href="#cb22-163" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
-<span id="cb22-164"><a href="#cb22-164" aria-hidden="true"></a>DELIMITER ;</span>
-<span id="cb22-165"><a href="#cb22-165" aria-hidden="true"></a></span>
-<span id="cb22-166"><a href="#cb22-166" aria-hidden="true"></a><span class="kw">USE</span> BDD_s2_td;</span>
-<span id="cb22-167"><a href="#cb22-167" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
-<span id="cb22-168"><a href="#cb22-168" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb22-169"><a href="#cb22-169" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb22-170"><a href="#cb22-170" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb22-171"><a href="#cb22-171" aria-hidden="true"></a><span class="co">-- enlever puis ajouter l&#39;instruction SIGNAL ...</span></span>
-<span id="cb22-172"><a href="#cb22-172" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
-<span id="cb22-173"><a href="#cb22-173" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb22-174"><a href="#cb22-174" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb22-175"><a href="#cb22-175" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb22-176"><a href="#cb22-176" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
-<span id="cb22-177"><a href="#cb22-177" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb22-178"><a href="#cb22-178" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb22-179"><a href="#cb22-179" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb22-180"><a href="#cb22-180" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span></code></pre></div>
+<span id="cb22-108"><a href="#cb22-108" aria-hidden="true"></a></span>
+<span id="cb22-109"><a href="#cb22-109" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> reserver_places_spectacles;</span>
+<span id="cb22-110"><a href="#cb22-110" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb22-111"><a href="#cb22-111" aria-hidden="true"></a></span>
+<span id="cb22-112"><a href="#cb22-112" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> reserver_places_spectacles(</span>
+<span id="cb22-113"><a href="#cb22-113" aria-hidden="true"></a>    <span class="kw">IN</span> p_nb_place <span class="dt">INT</span>,</span>
+<span id="cb22-114"><a href="#cb22-114" aria-hidden="true"></a>    <span class="kw">IN</span> p_spectacle_id <span class="dt">INT</span>,</span>
+<span id="cb22-115"><a href="#cb22-115" aria-hidden="true"></a>    <span class="kw">IN</span> p_client_id <span class="dt">INT</span>)</span>
+<span id="cb22-116"><a href="#cb22-116" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb22-117"><a href="#cb22-117" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nb_places_libres <span class="dt">INT</span>;</span>
+<span id="cb22-118"><a href="#cb22-118" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_prix <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>);</span>
+<span id="cb22-119"><a href="#cb22-119" aria-hidden="true"></a>    <span class="kw">DECLARE</span> EXIT HANDLER <span class="cf">FOR</span> SQLEXCEPTION</span>
+<span id="cb22-120"><a href="#cb22-120" aria-hidden="true"></a>    <span class="cf">BEGIN</span></span>
+<span id="cb22-121"><a href="#cb22-121" aria-hidden="true"></a>        <span class="co">-- Gestion des erreurs, annule la transaction</span></span>
+<span id="cb22-122"><a href="#cb22-122" aria-hidden="true"></a>        <span class="kw">ROLLBACK</span>;</span>
+<span id="cb22-123"><a href="#cb22-123" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Une erreur est survenue, la transaction a été annulée.&#39;</span> <span class="kw">AS</span> Message;</span>
+<span id="cb22-124"><a href="#cb22-124" aria-hidden="true"></a>    <span class="cf">END</span>;</span>
+<span id="cb22-125"><a href="#cb22-125" aria-hidden="true"></a></span>
+<span id="cb22-126"><a href="#cb22-126" aria-hidden="true"></a>    <span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
+<span id="cb22-127"><a href="#cb22-127" aria-hidden="true"></a></span>
+<span id="cb22-128"><a href="#cb22-128" aria-hidden="true"></a>    <span class="co">-- On recherche le nombre de places disponibles pour le spectacle</span></span>
+<span id="cb22-129"><a href="#cb22-129" aria-hidden="true"></a>    <span class="kw">SELECT</span> nb_places_libres <span class="kw">INTO</span> v_nb_places_libres</span>
+<span id="cb22-130"><a href="#cb22-130" aria-hidden="true"></a>    <span class="kw">FROM</span> td_Spectacle</span>
+<span id="cb22-131"><a href="#cb22-131" aria-hidden="true"></a>    <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
+<span id="cb22-132"><a href="#cb22-132" aria-hidden="true"></a></span>
+<span id="cb22-133"><a href="#cb22-133" aria-hidden="true"></a>    <span class="co">-- S&#39;il reste assez de places: on effectue la réservation</span></span>
+<span id="cb22-134"><a href="#cb22-134" aria-hidden="true"></a>    <span class="cf">IF</span> v_nb_places_libres <span class="op">&gt;=</span> p_nb_place <span class="cf">THEN</span></span>
+<span id="cb22-135"><a href="#cb22-135" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places réservées pour le client</span></span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Client</span>
+<span id="cb22-137"><a href="#cb22-137" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> p_nb_place</span>
+<span id="cb22-138"><a href="#cb22-138" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_client <span class="op">=</span> p_client_id;</span>
+<span id="cb22-139"><a href="#cb22-139" aria-hidden="true"></a></span>
+<span id="cb22-140"><a href="#cb22-140" aria-hidden="true"></a>        <span class="co">-- Mettre à jour le nombre de places libres pour le spectacle</span></span>
+<span id="cb22-141"><a href="#cb22-141" aria-hidden="true"></a>        <span class="kw">UPDATE</span> td_Spectacle</span>
+<span id="cb22-142"><a href="#cb22-142" aria-hidden="true"></a>        <span class="kw">SET</span> nb_places_libres <span class="op">=</span> nb_places_libres <span class="op">-</span> p_nb_place</span>
+<span id="cb22-143"><a href="#cb22-143" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
+<span id="cb22-144"><a href="#cb22-144" aria-hidden="true"></a></span>
+<span id="cb22-145"><a href="#cb22-145" aria-hidden="true"></a>        <span class="co">-- Calculer le prix total</span></span>
+<span id="cb22-146"><a href="#cb22-146" aria-hidden="true"></a>        <span class="kw">SELECT</span> p_nb_place <span class="op">*</span> tarif <span class="kw">INTO</span> v_prix</span>
+<span id="cb22-147"><a href="#cb22-147" aria-hidden="true"></a>        <span class="kw">FROM</span> td_Spectacle</span>
+<span id="cb22-148"><a href="#cb22-148" aria-hidden="true"></a>        <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> p_spectacle_id;</span>
+<span id="cb22-149"><a href="#cb22-149" aria-hidden="true"></a></span>
+<span id="cb22-150"><a href="#cb22-150" aria-hidden="true"></a>        <span class="co">-- Insérer une entrée dans le journal</span></span>
+<span id="cb22-151"><a href="#cb22-151" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> td_Journal (<span class="kw">id</span>, libelle_transaction, client_id, nb_places, spectacle_id, tarif)</span>
+<span id="cb22-152"><a href="#cb22-152" aria-hidden="true"></a>        <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;achat de place&#39;</span>, p_client_id, p_nb_place, p_spectacle_id, v_prix);</span>
+<span id="cb22-153"><a href="#cb22-153" aria-hidden="true"></a></span>
+<span id="cb22-154"><a href="#cb22-154" aria-hidden="true"></a>        <span class="kw">COMMIT</span>;</span>
+<span id="cb22-155"><a href="#cb22-155" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Réservation effectuée avec succès.&#39;</span> <span class="kw">AS</span> Message;</span>
+<span id="cb22-156"><a href="#cb22-156" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
+<span id="cb22-157"><a href="#cb22-157" aria-hidden="true"></a>        <span class="co">-- Si pas assez de places disponibles, annuler la transaction</span></span>
+<span id="cb22-158"><a href="#cb22-158" aria-hidden="true"></a>        <span class="kw">ROLLBACK</span>;</span>
+<span id="cb22-159"><a href="#cb22-159" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Message Problème : pas assez de places disponibles.&#39;</span> <span class="kw">AS</span> Message;</span>
+<span id="cb22-160"><a href="#cb22-160" aria-hidden="true"></a>              <span class="co">-- Lever une exception s&#39;il n&#39;y a pas assez de places disponibles</span></span>
+<span id="cb22-161"><a href="#cb22-161" aria-hidden="true"></a>        SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span></span>
+<span id="cb22-162"><a href="#cb22-162" aria-hidden="true"></a>        <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;Problème: pas assez de places disponibles.&#39;</span>;</span>
+<span id="cb22-163"><a href="#cb22-163" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb22-164"><a href="#cb22-164" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb22-165"><a href="#cb22-165" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb22-166"><a href="#cb22-166" aria-hidden="true"></a></span>
+<span id="cb22-167"><a href="#cb22-167" aria-hidden="true"></a><span class="kw">USE</span> BDD_s2_td;</span>
+<span id="cb22-168"><a href="#cb22-168" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb22-169"><a href="#cb22-169" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb22-170"><a href="#cb22-170" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb22-171"><a href="#cb22-171" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb22-172"><a href="#cb22-172" aria-hidden="true"></a><span class="co">-- enlever puis ajouter l&#39;instruction SIGNAL ...</span></span>
+<span id="cb22-173"><a href="#cb22-173" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb22-174"><a href="#cb22-174" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb22-175"><a href="#cb22-175" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb22-176"><a href="#cb22-176" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb22-177"><a href="#cb22-177" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb22-178"><a href="#cb22-178" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb22-179"><a href="#cb22-179" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb22-180"><a href="#cb22-180" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb22-181"><a href="#cb22-181" aria-hidden="true"></a><span class="kw">CALL</span> reserver_places_spectacles(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span></code></pre></div>
 <h1 id="trigger">trigger</h1>
 <p>Dans MySQL, un <strong>trigger</strong> (ou déclencheur) est une commande SQL définie par l’utilisateur qui est automatiquement invoquée lors d’une opération <strong>INSERT, DELETE ou UPDATE</strong>. Le code trigger est associé à une table et est détruit une fois que la table est <strong>supprimée</strong>.</p>
 <p>un trigger, c’est quoi ?<a href="https://www.w3resource.com/mysql/mysql-triggers.php" target="_blanck">https://www.w3resource.com/mysql/mysql-triggers.php</a> <br> présentation (<a href="https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-mysql-database-triggers-on-ubuntu-18-04-fr" target="_blanck">voir article</a>)</p>
