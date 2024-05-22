@@ -167,22 +167,76 @@
 <li>Testez une autre solution sans curseur <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp" class="uri">https://www.w3schools.com/sql/sql_insert_into_select.asp</a></li>
 </ul></li>
 </ul>
-<h1 id="exercice-2">exercice 2</h1>
-<ul>
-<li>Ajouter une transaction</li>
-<li>Dans votre script, décrémenter le stock de produit. Si le stock de produit n’est pas suffisant, faire une levée d’exeption et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
-</ul>
 <p>Pour tester cette procédure, utiliser la commande suivante :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">3</span>;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">-- test exercice 1 </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">1</span>;                              </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);       <span class="co">-- commande 1</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="co">-- test exercice 2 </span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);    <span class="co">-- commande 2</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="kw">SELECT</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>    c.id_commande, c.date_commande, cl.nom <span class="kw">AS</span> client_nom, cl.ville <span class="kw">AS</span> client_ville,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>    a.id_article, a.designation, l.quantite, a.prix, a.stock</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="kw">FROM</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>commande c <span class="kw">JOIN</span>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="kw">WHERE</span>     c.id_client <span class="op">=</span> @id_client</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>     c.date_commande, c.id_commande, l.id_article;</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span>     <span class="co">-- article quantité non suffisante</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>(@id_client,<span class="dv">7</span>,<span class="dv">14</span>),(@id_client,<span class="dv">17</span>,<span class="dv">4</span>)    ;</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);  <span class="co">-- commande 3</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a><span class="kw">SELECT</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>    c.id_commande, c.date_commande, cl.nom <span class="kw">AS</span> client_nom, cl.ville <span class="kw">AS</span> client_ville,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>    a.id_article, a.designation, l.quantite, a.prix, a.stock</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="kw">FROM</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>commande c <span class="kw">JOIN</span>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="kw">WHERE</span>     c.id_client <span class="op">=</span> @id_client</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>     c.date_commande, c.id_commande, l.id_article;</span></code></pre></div>
+<h1 id="exercice-2">exercice 2</h1>
+<p>En testant, le SQL ci-dessus, on voit que la procédure PL/SQL autorise des commandes sans articles et que le stock n’est pas gérer ; modifier votre script pour éviter ce problème.</p>
+<ul>
+<li><p>Dans votre script :</p></li>
+<li><p>Tester</p></li>
+<li><p>Ajouter une transaction</p></li>
+<li><p>Vérifiez si le curseur sur la table “panier” retourne des lignes et générez une erreur si ce n’est pas le cas.</p></li>
+<li><p>Si le stock de produit n’est pas suffisant,</p>
+<ul>
+<li>faire une levée d’exeption et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
+</ul></li>
+<li><p>Sinon</p>
+<ul>
+<li>décrémenter le stock de produit.</li>
+</ul></li>
+</ul>
 <h1 id="exercice-3">exercice 3</h1>
 <ul>
 <li>Faire un script python qui teste cette procédure PL/SQL. Le script python affiche que tout s’est bien passé ou l’erreur et son code.</li>
@@ -237,32 +291,12 @@
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>    <span class="co"># Fermeture du curseur et de la connexion</span></span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>    cursor.close()</span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a>    conn.close()</span></code></pre></div>
-<h1 id="exercice-4">exercice 4</h1>
-<p>en testant, le SQL ci-dessous, on voit que la procédure PL/SQL autorise des commandes sans articles ; modifier votre script pour éviter ce problème.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">SELECT</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    c.id_commande, c.date_commande, cl.nom <span class="kw">AS</span> client_nom, cl.ville <span class="kw">AS</span> client_ville,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    a.id_article, a.designation, l.quantite, a.prix, a.stock</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">FROM</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    commande c</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">JOIN</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">WHERE</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    c.id_client <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    c.date_commande, c.id_commande, l.id_article;</span></code></pre></div>
-<p>Il faut donc :</p>
-<ul>
-<li>Décrémentez le stock pour chaque article réservé.</li>
-<li>Vérifiez que le stock est suffisant avant de décrémenter.</li>
-<li>Vérifiez si le curseur retourne des lignes et générez une erreur si ce n’est pas le cas.</li>
-</ul>
 <p>Exemple de résultat dans un terminal :</p>
 <pre><code>$ python script_python_exo3.py 3
 (1644, &quot;Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6&quot;)
 Erreur MySQL: Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6</code></pre>
+<h1 id="exercice-4">exercice 4</h1>
+<p>Créez des triggers (déclencheurs) sur la table panier. Ces triggers lorsque l’on crée/supprime/modifie un enregistrement dans la table panier met à jour le stock dans la table article. (le stock ne peut pas être négatif).</p>
+<p>Dans ce cas, la mise à jour du stock dans la procédure PL/SQL précédente n’a plus de sens (il faut la retirer).</p>
 </body>
 </html>
