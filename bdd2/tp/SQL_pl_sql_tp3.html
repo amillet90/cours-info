@@ -222,19 +222,18 @@
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="kw">WHERE</span>     c.id_client <span class="op">=</span> @id_client</span>
 <span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>     c.date_commande, c.id_commande, l.id_article;</span></code></pre></div>
 <h1 id="exercice-2">exercice 2</h1>
-<p>En testant, le SQL ci-dessus, on voit que la procédure PL/SQL autorise des commandes sans articles et que le stock n’est pas gérer ; modifier votre script pour éviter ce problème.</p>
+<p>En testant, le SQL ci-dessus, on peut voir que la procédure PL/SQL autorise des commandes sans articles et que le stock n’est pas géré ; modifier votre script pour éviter ce problème.</p>
+<p>Dans votre script, il faut prendre en compte est les opérations suivantes :</p>
 <ul>
-<li><p>Dans votre script :</p></li>
-<li><p>Tester</p></li>
-<li><p>Ajouter une transaction</p></li>
-<li><p>Vérifiez si le curseur sur la table “panier” retourne des lignes et générez une erreur si ce n’est pas le cas.</p></li>
-<li><p>Si le stock de produit n’est pas suffisant,</p>
+<li>Ajouter une transaction.</li>
+<li>Vérifiez si le curseur sur la table “panier” retourne des lignes et générez une erreur si ce n’est pas le cas.</li>
+<li>Si le stock de produit n’est pas suffisant,
 <ul>
-<li>faire une levée d’exeption et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
+<li>faire une levée d’exception et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
 </ul></li>
-<li><p>Sinon</p>
+<li>Sinon
 <ul>
-<li>décrémenter le stock de produit.</li>
+<li>décrémentez le stock de produit.</li>
 </ul></li>
 </ul>
 <h1 id="exercice-3">exercice 3</h1>
@@ -296,7 +295,7 @@
 (1644, &quot;Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6&quot;)
 Erreur MySQL: Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6</code></pre>
 <h1 id="exercice-4">exercice 4</h1>
-<p>Créez des triggers (déclencheurs) sur la table panier. Ces triggers lorsque l’on crée/supprime/modifie un enregistrement dans la table panier met à jour le stock dans la table article. (le stock ne peut pas être négatif).</p>
+<p>Créez des triggers (déclencheurs) sur la table panier. Ces triggers, lorsque l’on crée/supprime/modifie un enregistrement dans la table panier, mettent à jour le stock dans la table article. (le stock ne peut pas être négatif).</p>
 <p>Dans ce cas, la mise à jour du stock dans la procédure PL/SQL précédente n’a plus de sens (il faut la retirer).</p>
 </body>
 </html>
