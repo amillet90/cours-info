@@ -97,7 +97,7 @@
 <p>● Les développeurs qui conçoivent et mettent à jour la base. Ils peuvent aussi agir sur leurs objets (création et modification des tables, index, séquences, etc.). Ils transmettent au DBA leurs demandes spécifiques (stockage, optimisation, sécurité).</p>
 <p>● Les administrateurs d’applications qui gèrent les données manipulées par l’application ou les applications. Pour les petites et les moyennes bases, le DBA joue ce rôle.</p>
 <p>● Les utilisateurs qui se connectent et interagissent avec la base à travers les applications ou à l’aide d’outils (interrogations pour la génération de rapports, ajouts, modifications ou suppressions d’enregistrements).<br />
-TOus seront des utilisateurs (au sens Oracle) avec des privilèges différents.</p>
+Tous seront des utilisateurs (au sens Oracle) avec des privilèges différents.</p>
 <h1 id="mysql-structure">mysql : structure</h1>
 <pre><code>SHOW DATABASES;</code></pre>
 <ul>
@@ -141,23 +141,36 @@ ip address
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_user9&#39;</span>@<span class="st">&#39;912e007-03.iut-bm.univ-fcomte.fr&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;   </span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>                  <span class="co">-- remplacer 007-03 par le numéro de votre poste</span></span></code></pre></div>
 <p><strong>Tester les connexions dans un terminal</strong></p>
-<pre><code>mysql --user=login --password=secret --host=serveurmysql2
-mysql --user=login_user2 --password=secret --host=serveurmysql2 
-mysql --user=login_user3  --password=secret --host=serveurmysql2
-mysql --user=login_user4  --password=secret --host=serveurmysql2 
-mysql --user=login_user5  --password=secret --host=serveurmysql2
-mysql --user=login_user6                    --host=serveurmysql2
-
-mysql --user=login_user7 --password=secret --host=serveurmysql2  -- NON
-mysql --user=login_user8  --password=secret --host=serveurmysql2   -- ok
-mysql --user=login_user9  --password=secret --host=serveurmysql2  -- ok
-mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=secret --host=serveurmysql2</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user2 --password=secret --host=serveurmysql2 </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user3  --password=secret --host=serveurmysql2</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user4  --password=secret --host=serveurmysql2 </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user5  --password=secret --host=serveurmysql2</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user6                    --host=serveurmysql2</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user7 --password=secret --host=serveurmysql2  -- NON</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user8  --password=secret --host=serveurmysql2   -- ok</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user9  --password=secret --host=serveurmysql2  -- ok</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_admin  --password=secret --host=serveurmysql2</span></code></pre></div>
 <p>voir</p>
-<pre><code></code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user2 --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user3  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user4  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user5  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user6                    --host=serveurmysql2.iut-bm.univ-fcomte.fr</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user7 --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr  -- NON</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user8  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr   -- ok</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_user9  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr  -- ok</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="ex">mysql</span> --user=login_admin  --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr</span></code></pre></div>
+<p>on peut l’adresse ip qui est refusé</p>
 <h2 id="liste-des-utilisateurs">Liste des utilisateurs</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span> <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span></code></pre></div>
 <p>Remarque : en remplaçant <code>'login'@'hostclient'</code> par <code>'login'@'%'</code></p>
 <p><br></p>
 <p><a href="https://stackoverflow.com/questions/1913984/re-assign-host-access-permission-to-mysql-user" target="_blanck">lien</a></p>
@@ -165,12 +178,12 @@ mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
 <ul>
 <li>Connaître l’identité effective : <code>select user()</code></li>
 </ul>
-<pre><code>mysql&gt; SELECT user() ;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="fu">user</span>() ;</span></code></pre></div>
 <p>Le résultat peut être : moi@localhost ou moi@maMachine. C’est le nom de l’utilisateur et son hôte (sa machine)</p>
 <ul>
 <li>Connaître le profil de connexion : select current_user()</li>
 </ul>
-<pre><code>mysql&gt; SELECT current_user() ;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> current_user() ;</span></code></pre></div>
 <p>Le current_user est un profil d’utilisateur et pas l’utilisateur avec son nom et sa machine. On peut par exemple avoir un profil de connexion correspondant à :</p>
 <p>• un nom d’utilisateur pouvant se connecter de n’importe quelle machine : moi@’%’<br />
 • un nom d’utilisateur pouvant se connecter de la machine du serveur : moi@localhost<br />
@@ -195,7 +208,7 @@ mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>  <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">RENAME</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span> <span class="kw">TO</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;%&#39;</span>;         <span class="co">-- NON</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">RENAME</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;serveurmysql2&#39;</span> <span class="kw">TO</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">RENAME</span> <span class="fu">USER</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;serveurmysql2.iut-bm.univ-fcomte.fr&#39;</span> <span class="kw">TO</span> <span class="st">&#39;login_user4&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>,Host <span class="kw">FROM</span> mysql.<span class="fu">user</span>  <span class="kw">WHERE</span> <span class="fu">User</span> <span class="kw">LIKE</span> <span class="st">&#39;%login%&#39;</span>;</span></code></pre></div>
 <h2 id="supprimer-un-utilisateur">Supprimer un utilisateur</h2>
@@ -211,7 +224,7 @@ mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret3&#39;</span>;                               <span class="co">-- (OK mint+mariadb)(OK iut)</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">-- test de la connexion</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret3 --host=serveurmysql2</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret3 --host=serveurmysql2.iut-bm.univ-fcomte.fr</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">WITH</span> plugin_authentification <span class="kw">BY</span> <span class="st">&#39;secret2&#39;</span>;  <span class="co">-- (NON mint+mariadb)(NON iut ?)</span></span>
@@ -221,7 +234,7 @@ mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">PASSWORD</span> <span class="cf">FOR</span> <span class="st">&#39;login&#39;</span> <span class="op">=</span> <span class="kw">PASSWORD</span>(<span class="st">&#39;secret2&#39;</span>);                           <span class="co">-- (OK mint+mariadb)(OK iut)</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">-- test de la connexion</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret2 --host=serveurmysql2</span></span></code></pre></div>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">-- mysql --user=login  --password=secret2 --host=serveurmysql2.iut-bm.univ-fcomte.fr</span></span></code></pre></div>
 <p>sur <a href="https://mariadb.com/kb/en/alter-user/" target="_blanck">mariadb</a> - sur <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-user.html" target="_blanck">mysql</a></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> VIA mysql_native_password  <span class="kw">USING</span> <span class="kw">PASSWORD</span>(<span class="st">&#39;secret&#39;</span>); <span class="co">-- (Ok mint+mariadb)(NON iut )</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">WITH</span> <span class="st">&#39;mysql_native_password&#39;</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;            <span class="co">-- sur mysql 8 ?  (Non mint+mariadb)(OK iut )</span></span></code></pre></div>
@@ -323,8 +336,8 @@ mysql --user=login_admin  --password=secret --host=serveurmysql2</code></pre>
 <span id="cb28-18"><a href="#cb28-18" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>,<span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span>  BDD_login2.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
 <span id="cb28-19"><a href="#cb28-19" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
 <span id="cb28-20"><a href="#cb28-20" aria-hidden="true"></a></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true"></a>mysql <span class="co">--user=login3 --password=secret --host=serveurmysql2 --database=BDD_login</span></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true"></a>mysql <span class="co">--user=login4 --password=secret --host=serveurmysql2 --database=BDD_login</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true"></a>mysql <span class="co">--user=login3 --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr --database=BDD_login</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true"></a>mysql <span class="co">--user=login4 --password=secret --host=serveurmysql2.iut-bm.univ-fcomte.fr --database=BDD_login</span></span>
 <span id="cb28-23"><a href="#cb28-23" aria-hidden="true"></a></span>
 <span id="cb28-24"><a href="#cb28-24" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login;</span>
 <span id="cb28-25"><a href="#cb28-25" aria-hidden="true"></a>SHOW GRANTS <span class="cf">FOR</span> login_admin;</span></code></pre></div>
@@ -359,7 +372,7 @@ priv_level:
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  BDD_login.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>mysql <span class="co">--user=login --host=serveurmysql2 --password=motdepasse BDD_login</span></span></code></pre></div>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>mysql <span class="co">--user=login --host=serveurmysql2.iut-bm.univ-fcomte.fr --password=motdepasse BDD_login</span></span></code></pre></div>
 <p><strong>La liste des droits</strong></p>
 <h1 id="la-liste-des-droits">La liste des droits</h1>
 <p>Voici la liste des droits fréquemment utilisés :</p>
