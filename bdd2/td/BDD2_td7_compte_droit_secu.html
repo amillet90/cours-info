@@ -298,7 +298,7 @@ ip address
 +------------------------------------------+
 | GRANT USAGE ON *.* TO ` nouvelUtilisateur `@`localhost` |
 +------------------------------------------+</code></pre>
-<p><a href="https://dba.stackexchange.com/questions/23265/mysql-show-grants-for-all-users">info : pour voir tous les priviléges</a></p>
+<p><a href="https://dba.stackexchange.com/questions/23265/mysql-show-grants-for-all-users" target="_blanck">info : pour voir tous les priviléges</a></p>
 <p><strong>GRANT</strong><br />
 </p>
 <p>La commande GRANT appliquée à un utilisateur n’existant pas crée cet utilisateur.</p>
@@ -522,11 +522,13 @@ priv_level:
 <ul>
 <li>session client</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE();</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">ROLE</span> developer;</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">ROLE</span> <span class="kw">NONE</span>;</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE;</span></code></pre></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE();</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a>SHOW GRANTS;</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a><span class="kw">SET</span> <span class="kw">ROLE</span> <span class="kw">NONE</span>;</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true"></a><span class="kw">SELECT</span> CURRENT_ROLE();</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true"></a>SHOW GRANTS;</span></code></pre></div>
 <h1 id="exercice-1">exercice 1</h1>
 <p>autre exo</p>
 <pre><code>Exercice 3 : Droits d’accès
