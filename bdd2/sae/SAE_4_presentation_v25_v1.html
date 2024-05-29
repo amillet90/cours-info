@@ -133,7 +133,7 @@ ligne_panier (#utilisateur_id , #article_id, quantite, date_ajout)
 etat (id_etat, libelle )</code></pre>
 <ul>
 <li><strong>Par convention le code SQL est en <a href="https://fr.wikipedia.org/wiki/Snake_case" target="_blank">snake_case</a> (sinon pénalité et vous devrez changer vos scripts SQL pour les prochains livrables)</strong></li>
-<li><span class="modif"><strong>Toutes les clés étrangéres sont nommées avec le format suivant : <code>table_id</code></strong> (table est le nom de la table dont la clé primaire permet de verifier l’intégrité référencielle de la colonne)<strong>(sinon pénalité et vous devrez changer vos scripts SQL pour les prochains livrables)</strong></span></li>
+<li><span class="modif"><strong>Toutes les clés étrangères sont nommées avec le format suivant : <code>table_id</code></strong> (table est le nom de la table dont la clé primaire permet de vérifier l’intégrité référentielle de la colonne)<strong>(sinon pénalité et vous devrez changer vos scripts SQL pour les prochains livrables)</strong></span></li>
 </ul>
 <p><br></p>
 <ul>
@@ -508,22 +508,22 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><p>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</p></li>
 <li><p>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire ainsi que l’identifiant du commentaire(id)). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</p></li>
 <li><p>l’utilisateur ne peut saisir que 3 commentaires (quota) par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash ( très visible ) s’affiche lorsque ce quota est atteint)</p></li>
-<li><p>afficher (dans la vue qui affiche le détails d’un article en cliquant dessus) * le nombre de commentaire(s) de l’utilisateur * le nombre de commentaire(s) total pour l’article * le nombre de commentaire(s) total validé(s) * le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL dans le contrôleur pour toutes ces valeurs</strong></p></li>
+<li><p>afficher (dans la vue qui affiche le détails d’un article en cliquant dessus) * le nombre de commentaire(s) de l’utilisateur * le nombre de commentaire(s) total pour l’article * le nombre de commentaire(s) total validé(s) * le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL avec 1 requête dans le contrôleur pour toutes ces valeurs</strong></p></li>
 <li><p>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></p></li>
 <li><p>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients) ; faire le calcul grâce à du SQL</p></li>
 <li><p>Afficher dans un ordre chronologique (temporel inverse) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</p>
 <p>Interface Administrateur ; ( <strong>bask-office</strong> )</p></li>
 <li><p>(ADMIN) <strong>Liste des articles</strong> : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</p></li>
-<li><p>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients. ******</p></li>
+<li><p>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients.</p></li>
 <li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus sur fond jaune) et non “valider” (sur fond blanc) ; les réponses de l’administrateur (sur fond vert).</p></li>
 <li><p>(ADMIN) l’administrateur peut répondre à un commentaire.</p></li>
 <li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</p></li>
 <li><p>(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur.</p></li>
 <li><p>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées :</p>
 <ul>
-<li>afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse</li>
-<li>puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse).</li>
-<li>La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire</li>
+<li>afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse (descendant) : sur fond blanc.</li>
+<li>puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse) : sur fond jaune.</li>
+<li>La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire : sur fond vert.</li>
 </ul>
 <p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
@@ -545,7 +545,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><p>Afficher dans “mes coordonnées” un tableau d’adresses.</p>
 <ul>
 <li>Dans ce tableau, <strong>afficher clairement l’adresse favorite</strong> (mettre en bleu),</li>
-<li>Dans ce tableau, <strong>afficher clairement les adresses non valides</strong> seront en jaunes (ce sont des adresses qui ont été modifiées ou supprimées mais qui étaient déjà utilisées dans une commande)</li>
+<li>Dans ce tableau, <strong>afficher clairement les adresses non valides</strong> seront en jaunes (ce sont des adresses qui ont été modifiées ou supprimées mais qui étaient déjà utilisées dans une commande, de fait elles ne sont plus utilisables)</li>
 <li>Le <strong>nombre de commandes</strong> par adresse est indiquée dans le <strong>tableau</strong> des adresses.</li>
 </ul></li>
 <li><p>afficher le nombre d’adresses de l’utilisateur <strong>“valide”</strong> (utilisable) et le nombre d’adresses <strong>total</strong> de l’utilisateur</p></li>
@@ -564,7 +564,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><p>Gestion avancée suppression/modification adresses : Conserver uniquement les adresses utilisées dans les commandes (factures) même si on modifie ou supprime l’une de ces adresses</p>
 <ul>
 <li>Une adresse non utilisé dans une commande doit être modifiée ou supprimée dans la base de données sans générer d’adresse non valide.</li>
-<li>Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses.</li>
+<li>Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses utilisables.</li>
 <li>Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, si on modifie cette adresse, elle devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations.</li>
 </ul></li>
 <li><p>Vérifier que le code postal est composé de 5 chiffres coté serveur, afficher un message flash qui signal l’erreur si le code postal n’est pas composé de 5 chiffre (faire la vérification coté serveur avec du python ou du SQL)</p></li>
@@ -587,8 +587,9 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ul></li>
 <li>VISUALISATION de données : interface plus évoluée
 <ul>
-<li>affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec les informations sur les clients (nombre de commandes par département …., livraison …)</li>
+<li>affichage d’<a href="https://codepen.io/sebastiensz/pen/qBWqGxY?editors=1000" target="_blanck">une carte</a> avec le nombre de vente par département ou le CA par département ; la sélection du choix est faite par un lien : on clique sur “Chiffre d’affaire” ou “nombre de commandes”</li>
 </ul></li>
+<li>Attention à la qualité du jeu de test pour cette partie.</li>
 </ol>
 <br>
 <hr>
