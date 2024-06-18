@@ -567,7 +567,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Gestion d’une <strong>adresse supprimée</strong> utilisée dans une commande. Elle ne peut pas être supprimée mais devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses utilisables.</li>
 <li>Gestion de la <strong>modification</strong> d’une adresse. Une adresse utilisée pour une commande ne peut pas être modifiée, si on modifie cette adresse, elle devient non “valide”. De fait cette adresse n’est plus utilisable et n’est plus comptée dans les adresses. Cependant un doublon (une nouvelle adresse) est créée avec les nouvelles informations.</li>
 </ul></li>
-<li><p>Vérifier que le code postal est composé de 5 chiffres coté serveur, afficher un message flash qui signal l’erreur si le code postal n’est pas composé de 5 chiffre (faire la vérification coté serveur avec du python ou du SQL)</p></li>
+<li><p>Vérifier que le code postal est composé de 5 chiffres coté serveur, afficher un message flash qui signal l’erreur si le code postal n’est pas composé de 5 chiffre lors de la création d’une adresse ; les données saisies sont ré-affichées dans le formulaire en cas d’erreur (faire la vérification coté serveur avec du python ou du SQL)</p></li>
 <li><p>Interface pour ajouter/modifier les informations de l’utilisateur (nom, login, email).</p>
 <ul>
 <li>Pas de doublon possible avec l’email et le login.</li>
@@ -599,26 +599,26 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 </ul>
 <p><strong>Difficulté 1 :</strong> La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</p>
 <ol type="1">
-<li>Ajout/suppression des articles dans la wishlist en cliquant sur “💛”</li>
-<li>Dans la <strong>liste d’envie</strong> (“wishlist”), un article ne peut pas être ajouté 2 fois, le client peut supprimer un article ou ajouter depuis cette liste l’article dans le panier.</li>
-<li>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</li>
-<li>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</li>
-<li>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste
+<li><p>Ajout/suppression des articles dans la wishlist en cliquant sur “💛”</p></li>
+<li><p>Si l’article est commandé il est retiré de cette liste (“wishlist”) dans la base de données.</p></li>
+<li><p>L’affichage des articles dans la <strong>liste d’envie</strong> est décroissant et dépend de l’ordre d’ajout (date et heure)</p></li>
+<li><p>Affichage du nombre d’article(s) dans la <strong>liste d’envie</strong> (“wishlist”) et du nombre d’article dans l’<strong>historique</strong> d’un client. Utiliser du SQL pour faire ce calcul.</p></li>
+<li><p>Pouvoir avec l’interface fournie, monter/descendre les articles dans la “wishlist” dans cette liste</p>
 <ul>
 <li>monter/descendre d’un niveau</li>
 <li>monter/descendre au premier/dernier rang</li>
 </ul></li>
-<li>en cliquant sur l’article, afficher en vert au dessus de la liste le nombre de personne qui ont ajouté cet article dans leur wishlist, le nombre d’article que vous avez déjà dans votre wishlist de cette catégorie (ou type d’article)</li>
+<li><p>Uniquement si on clique sur l’article, afficher en vert au dessus de la liste le nombre de client(s) autre(s) qui ont ajouté cet article dans leur wishlist sinon afficher “Vous êtes le seul à avoir cet article dans votre wishlist” ; Utiliser du SQL pour faire ce calcul.</p></li>
+<li><p>Uniquement si on clique sur l’article, afficher en bleu au dessus de la liste le nombre d’article autre que celui là vous avez déjà dans votre wishlist de cette catégorie (ou type d’article) ; Utiliser du SQL pour faire ce calcul.</p></li>
 </ol>
 <p>rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p>
 <p><strong>Difficulté 2 :</strong> l’<strong>historique</strong> est défini par les articles consultés (on clique sur la photo de l’article)</p>
-<ol start="7" type="1">
+<ol start="8" type="1">
 <li>affichage de l’<strong>historique</strong> dans l’ordre de consultation</li>
 <li>L’<strong>historique</strong> n’est composé que de <strong>6 articles différents maximum</strong> (on ne stocke que 6 articles au maximum dans la table “historique” de la base de données), les 6 derniers consultés. (faire ce calcul en SQL dans le contrôleur )</li>
 <li>Le nombre de consultation d’un article est stocké dans un numérique.</li>
 <li>Les articles des historiques sont retirés au bout de 1 mois.</li>
 <li>Pas de doublon dans l’historique</li>
-<li>en cliquant sur l’article de la liste de l’historique, afficher en vert au dessus le nom de l’article, combien de personnes ont cet article dans leur historique. Afficher le nombre de clic sur cet d’article depuis qu’il existe.</li>
 </ol>
 <ul>
 <li><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></li>
