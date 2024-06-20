@@ -502,7 +502,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li><span class="modif">étudiant 2 : gestion des commentaires et des notes</span></li>
 </ul>
-<p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
+<p><span style="border-bottom: 3px solid grey;">Boutique du client</span> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ol type="1">
 <li><p>Afficher le nombre de commentaires (<strong>avis</strong>) et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</p>
 <p><strong>Détails d’un Article pour le client</strong> (vue pour saisir les commentaires) :</p></li>
@@ -523,24 +523,26 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <p><br></p>
 <p><span style="border-bottom: 3px solid grey;">Interface Administrateur</span> ( <strong>bask-office</strong> )</p>
 <ol start="9" type="1">
-<li><p>(ADMIN) <strong>Liste des articles</strong> : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</p></li>
-<li><p>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients.</p></li>
-<li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus sur fond jaune) et non “valider” (sur fond blanc) ; les réponses de l’administrateur (sur fond vert).</p></li>
-<li><p>(ADMIN) l’administrateur peut répondre à un commentaire.</p></li>
-<li><p>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</p></li>
-<li><p>(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur.</p></li>
-<li><p>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées :</p>
+<li>(ADMIN) <strong>Liste des articles</strong> : l’administrateur peut voir si il y a de nouveaux commentaires sur un article dans la liste des articles et leurs nombres.</li>
+<li>(ADMIN) <strong>Liste des articles</strong> : afficher le nombre de commentaires total et le nombre de commentaires “validés”(lus) des clients.</li>
+<li>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur voir si il y a de nouveaux commentaires parmi tous les commentaires d’un article (l’administrateur peut distinguer les commentaires “valider” (lus sur fond jaune) et non “valider” (sur fond blanc) ; les réponses de l’administrateur (sur fond vert).</li>
+<li>(ADMIN) l’administrateur peut répondre à un commentaire.</li>
+<li>(ADMIN) <strong>liste des commentaires</strong> : l’administrateur peut supprimer certains avis (commentaires) (dans la liste des commentaires)</li>
+<li>(ADMIN) l’administrateur peut “valider” des commentaires (“valider” permet d’indiquer que les commentaires ont été lus par l’administrateur.</li>
+<li>(ADMIN) <strong>Affichage liste des commentaires</strong> : les commentaires sont correctement ordonnées :
 <ul>
 <li>afficher en premier les commentaires non “validés” (non lus) des clients dans un ordre chronologique temporel inverse (descendant) : sur fond blanc.</li>
 <li>puis les commentaires validés (lus) dans un ordre chronologique (temporel inverse) : sur fond jaune.</li>
 <li>La réponse de l’administrateur se trouve sous le commentaire du client : insérer correctement les réponses de l’administrateur derrière un commentaire : sur fond vert.</li>
-</ul>
-<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+</ul></li>
+</ol>
+<p><span style="border-bottom: 3px solid grey;">Interface Administrateur, visualisation de données</span> ( <strong>bask-office</strong> )</p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
-<p>rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p></li>
-<li><p>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) : * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie du filtre (ou type d’article du filtre) * graphique avec la note moyenne/catégorie d’article du filtre (ou type d’article) * graphique avec le nombre de commentaires(s) par catégorie du filtre(ou type d’article) * graphique avec le nombre de note(s) par catégorie du filtre (ou type d’article)</p></li>
-<li><p>VISUALISATION de données : interface plus évoluée * si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante * afficher dans la page * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie * graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</p></li>
-<li><p>Attention à la qualité du jeu de test pour cette partie.</p></li>
+<p>Rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p>
+<ol start="16" type="1">
+<li>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) : * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie du filtre (ou type d’article du filtre) * graphique avec la note moyenne/catégorie d’article du filtre (ou type d’article) * graphique avec le nombre de commentaires(s) par catégorie du filtre(ou type d’article) * graphique avec le nombre de note(s) par catégorie du filtre (ou type d’article)</li>
+<li>VISUALISATION de données : interface plus évoluée * si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante * afficher dans la page * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie * graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>Attention à la qualité du jeu de test pour cette partie.</li>
 </ol>
 <br>
 <hr>
