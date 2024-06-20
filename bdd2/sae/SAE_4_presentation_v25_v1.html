@@ -464,7 +464,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
 </ul></li>
 </ul>
-<p><strong>Boutique du client</strong> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
+<p><span style="border-bottom: 3px solid grey;">Boutique du client</span> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ol type="1">
 <li>Affichage du nombre de déclinaison(s) des articles qui en possèdent plusieurs dans la boutique (<strong>front-office</strong> :vue pour faire les commandes) ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</li>
 <li>Affichage du stock restant avec une ou plusieurs déclinaisons de l’article (dans le <strong>front-office</strong> : boutique du client)</li>
@@ -553,6 +553,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Lors de la création d’une commande : le client doit sélectionner une adresse pour passer une commande (<strong>par défaut c’est l’adresse favorite qui est proposée</strong>, sinon il faut soit créer une adresse soit sélectionner une adresse dans la liste des adresses valides)</li>
 </ul></li>
 </ul>
+<p><span style="border-bottom: 3px solid grey;">Boutique du client</span> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <ol type="1">
 <li><p>Afficher dans “mes coordonnées” un tableau d’adresses.</p>
 <ul>
@@ -584,11 +585,14 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li>Pas de doublon possible avec l’email et le login.</li>
 <li>Mettre à jour les valeurs de connexion (session).</li>
-</ul>
-<p>Interface Administrateur ; ( <strong>bask-office</strong> )</p></li>
-<li><p>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</p></li>
+</ul></li>
 </ol>
-<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> ) <br></p>
+<p><span style="border-bottom: 3px solid grey;">Interface Administrateur</span> ( <strong>bask-office</strong> )</p>
+<ol start="12" type="1">
+<li>(ADMIN) si l’administrateur consulte une commande il peut voir l’adresse d’expédition et l’adresse de facturation</li>
+</ol>
+<p><br><br />
+<span style="border-bottom: 3px solid grey;">Interface Administrateur, visualisation de données</span> ( <strong>bask-office</strong> )</p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
 <ol start="13" type="1">
 <li>VISUALISATION de données sur adresses (utiliser les 2 chiffres de gauches du code postal )
@@ -609,6 +613,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <ul>
 <li><span class="modif">étudiant 4 (uniquement pour les groupes de 4) : gestion d’une liste d’envies(wishlist) et historique des articles consultés</span></li>
 </ul>
+<p><span style="border-bottom: 3px solid grey;">Boutique du client</span> ( <strong>front-office</strong> : boutique du client, vue pour faire les commandes )</p>
 <p><strong>Difficulté 1 :</strong> La <strong>liste d’envie</strong> est composée par les articles sélectionnés par le “💛”</p>
 <ol type="1">
 <li><p>Ajout/suppression des articles dans la wishlist en cliquant sur “💛”</p></li>
@@ -632,11 +637,10 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Les articles des historiques sont retirés au bout de 1 mois.</li>
 <li>Pas de doublon dans l’historique</li>
 </ol>
+<p><span style="border-bottom: 3px solid grey;">Interface Administrateur, visualisation de données</span> ( <strong>bask-office</strong> )</p>
 <ul>
 <li><span class="visu">VISUALISATION de données sur les listes d’envies pour l’administrateur(nombre d’articles /catégorie ) dans la liste d’envies, nombre de clic (consultation) d’un article ….)</span></li>
 </ul>
-<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
-<p>Attention à la qualité du jeu de test pour cette partie.</p>
 <ol start="13" type="1">
 <li>VISUALISATION de données sur les wishlist pour les catégories (ou types d’article) :
 <ul>
