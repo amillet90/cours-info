@@ -507,9 +507,15 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li><p>Afficher le nombre de commentaires (<strong>avis</strong>) et la note moyenne (uniquement si ces données existent sinon ne rien afficher) pour chaque article ; faire ce calcul dans une requête SQL pour extraire les données (sans boucle en python pour ajouter des données).</p>
 <p><strong>Détails d’un Article pour le client</strong> (vue pour saisir les commentaires) :</p></li>
 <li><p>Seule un client qui a acheté un article peut donner un avis dessus (ajouter des commentaires) ou mettre une note.</p></li>
-<li><p>Les commentaires sont lié à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire ainsi que l’identifiant du commentaire(id)). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</p></li>
-<li><p>l’utilisateur ne peut saisir que 3 commentaires (quota) par articles (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash ( très visible ) s’affiche lorsque ce quota est atteint)</p></li>
-<li><p>afficher (dans la vue qui affiche le détails d’un article en cliquant dessus) * le nombre de commentaire(s) de l’utilisateur * le nombre de commentaire(s) total pour l’article * le nombre de commentaire(s) total validé(s) * le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL avec 1 requête dans le contrôleur pour toutes ces valeurs</strong></p></li>
+<li><p>Les commentaires sont liés à l’utilisateur (afficher le pseudo de chaque utilisateur devant chaque commentaire ainsi que l’identifiant du commentaire (id)). L’utilisateur peut ajouter et supprimer uniquement ses commentaires mais l’édition pour les modifier n’est pas obligatoire ; afficher le login ou pseudo de l’utilisateur avant le commentaire.</p></li>
+<li><p>L’utilisateur ne peut saisir que 3 commentaires (quota) par article (<strong>faire la vérification coté serveur</strong>, faire le calcul grâce à du SQL, un message flash ( très visible ) s’affiche lorsque ce quota est atteint)</p></li>
+<li><p>afficher (dans la vue qui affiche le détail d’un article en cliquant dessus)</p>
+<ul>
+<li>le nombre de commentaire(s) de l’utilisateur</li>
+<li>le nombre de commentaire(s) total pour l’article</li>
+<li>le nombre de commentaire(s) total validé(s)</li>
+<li>le nombre de commentaire(s) de l’utilisateur validé(s) <strong>=&gt; faire ce calcul en SQL avec 1 requête dans le contrôleur pour toutes ces valeurs</strong></li>
+</ul></li>
 <li><p>l’utilisateur ne peut saisir que une note par article ou la <strong>modifier</strong></p></li>
 <li><p>Afficher la note moyenne de l’article en tenant compte des autres notes (les notes des autres clients) ; faire le calcul grâce à du SQL</p></li>
 <li><p>Afficher dans un ordre chronologique (temporel inverse) les commentaires des clients et insérer correctement les réponses de l’administrateur derrière un commentaire</p>
