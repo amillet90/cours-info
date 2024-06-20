@@ -475,7 +475,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Commande : affichage du prix total des commandes, du nombre d’articles.</li>
 <li>Lors de l’affichage du détail d’une commande : affichage du nom de l’article, du nombre d’articles, du prix unitaire et du prix total de cet (ces) article(s) mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
 </ol>
-<p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
+<p><span style="border-bottom: 3px solid grey;">Interface Administrateur</span> ( <strong>bask-office</strong> )</p>
 <ol start="9" type="1">
 <li>(ADMIN) Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détail des commandes avec la déclinaison des articles</li>
 <li>(ADMIN) Pour l’administrateur : Interface qui affiche <strong>un tableau avec les articles</strong> (nom, identifiant), le nombre de déclinaisons, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</li>
@@ -486,14 +486,14 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>(ADMIN) Pour les plus à l’aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient “non utilisable” de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit rester identique).</li>
 </ol>
 <p><br></p>
-<p>Interface Administrateur, visualisation de données ( <strong>bask-office</strong> )</p>
-<p>Attention à la qualité du jeu de test pour cette partie.</p>
+<p><span style="border-bottom: 3px solid grey;">Interface Administrateur, visualisation de données</span> ( <strong>bask-office</strong> )</p>
 <ol start="16" type="1">
 <li>VISUALISATION de données sur les stocks pour l’administrateur
 <ul>
 <li>coût du stock par déclinaison(taille, couleur)</li>
 <li>nombre d’article en stock par déclinaison(taille, couleur) …. )</li>
 </ul></li>
+<li>Attention à la qualité du jeu de test pour cette partie.</li>
 </ol>
 <p><i><strong>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</strong></i></p>
 <br>
@@ -540,8 +540,24 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
 <p>Rappel : la catégorie ou le type d’article sont les valeurs dans le filtre</p>
 <ol start="16" type="1">
-<li>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) : * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie du filtre (ou type d’article du filtre) * graphique avec la note moyenne/catégorie d’article du filtre (ou type d’article) * graphique avec le nombre de commentaires(s) par catégorie du filtre(ou type d’article) * graphique avec le nombre de note(s) par catégorie du filtre (ou type d’article)</li>
-<li>VISUALISATION de données : interface plus évoluée * si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante * afficher dans la page * tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article) * graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie * graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>VISUALISATION de données sur les commentaires pour les catégories (ou type d’article) :
+<ul>
+<li>tableau avec le nombre de notes, la note moyenne et le nombre de commentaires dans chaque catégorie du filtre (ou type d’article du filtre)</li>
+<li>graphique avec la note moyenne/catégorie d’article du filtre (ou type d’article)</li>
+<li>graphique avec le nombre de commentaires(s) par catégorie du filtre(ou type d’article)</li>
+<li>graphique avec le nombre de note(s) par catégorie du filtre (ou type d’article)</li>
+</ul></li>
+<li>VISUALISATION de données : interface plus évoluée
+<ul>
+<li>si on clique sur une catégorie (ou type d’article) ou on sélectionne une catégorie dans une liste déroulante</li>
+<li>afficher dans la page
+<ul>
+<li>tableau avec le nombre de notes, la note moyenne et le nombre de commentaires <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article)</li>
+<li>graphique avec la note moyenne/article <strong>uniquement</strong> pour chaque article de cette catégorie (ou type d’article)</li>
+<li>graphique avec le nombre de commentaires(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+<li>graphique avec le nombre de note(s) par article <strong>uniquement</strong> pour chaque article de cette catégorie</li>
+</ul></li>
+</ul></li>
 <li>Attention à la qualité du jeu de test pour cette partie.</li>
 </ol>
 <br>
