@@ -459,7 +459,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <hr>
 <p><br></p>
 <ul>
-<li><span class="modif">étudiant 1 : gestion du stock pour des articles ou services de déclinaisons différentes (propriétés comme taille couleur)</span>
+<li><span class="modif">étudiant 1 : gestion du stock pour des articles ou services de déclinaison différente (propriété comme taille, couleur)</span>
 <ul>
 <li><strong>Le stock dépend au minimum d’une des propriétés d’un article (couleur et/ou taille). Si l’article existe en plusieurs propriétés différentes le stock total des déclinaisons est affiché dans la page principale</strong> (<a href="https://www.etowline.fr/limportance-de-la-gestion-des-tailles-et-des-coloris-dans-le-e-commerce/" target="_blanck">une déclinaison</a> ou <a href="https://woocommerce.com/document/produits-variables/" target="_blanck">variation</a>)</li>
 </ul></li>
@@ -471,21 +471,21 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>Lors de l’ajout d’un article dans le panier, le client passe par une interface supplémentaire pour saisir la propriété (choisir la déclinaison) sauf si il n’y a qu’une seule déclinaison (propriété) pour un article. La quantité de chaque déclinaison est affichée dans cette interface.</li>
 <li>Le stock se décrémente lorsque l’on ajoute un/des articles dans le panier, la suppression d’articles du panier re-incrémente le stock avec une ou plusieurs déclinaisons de l’article.</li>
 <li>Affichage du prix total de la commande en cours (panier) en tenant compte des déclinaisons.</li>
-<li>Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possible.</li>
-<li>Commande : Affichage du prix total des commandes, du nombre d’articles.</li>
-<li>Lors de l’affichage du détails d’une commande : affichage du nom de l’article, du nombre d’article, du prix unitaire et du prix total de ces articles mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
+<li>Affichage de la(les) déclinaison(s) dans le panier (propriété : taille, couleur …) de l’article choisi si il y en a plusieurs possibles.</li>
+<li>Commande : affichage du prix total des commandes, du nombre d’articles.</li>
+<li>Lors de l’affichage du détail d’une commande : affichage du nom de l’article, du nombre d’articles, du prix unitaire et du prix total de cet (ces) article(s) mais surtout <strong>de la déclinaison si il y en a une</strong>.</li>
 </ol>
 <p>Interface Administrateur ; ( <strong>bask-office</strong> )</p>
 <ol start="9" type="1">
-<li>(ADMIN) Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détails des commandes avec la déclinaison des articles</li>
-<li>(ADMIN) Pour l’administrateur : Interface qui affiche <strong>un tableau avec les articles</strong> (nom, identifiant), le nombre de déclinaison, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</li>
+<li>(ADMIN) Pour l’administrateur : Interface pour consulter toutes les commandes, valider les commandes, consulter le détail des commandes avec la déclinaison des articles</li>
+<li>(ADMIN) Pour l’administrateur : Interface qui affiche <strong>un tableau avec les articles</strong> (nom, identifiant), le nombre de déclinaisons, le stock restant de chaque article ; <strong>mettre en valeur les articles à ré-approvisionner : un message s’affiche si une déclinaison est en rupture de stock (=0)</strong>. Ce tableau dispose de bouton de modifier, ajouter voir supprimer le stock des articles. Si un article a été commandé, il n’est plus possible de le supprimer.</li>
 <li>(ADMIN) Interface pour compléter le stock des articles en fonction de la déclinaison (taille, couleur …).</li>
 <li>(ADMIN) Interface pour ajouter/modifier/supprimer de nouvelle déclinaison.</li>
 <li>(ADMIN) Gestion de 2 déclinaisons . Chaque déclinaison possède 2 propriétés différentes.</li>
-<li>(ADMIN) Gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposé dans la liste déroulante si une autre déclinaison a déjà été sélectionnée]{.modif}</li>
-<li>(ADMIN) Pour les plus à l’aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient “non utilisable” de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit resté identique)</li>
+<li>(ADMIN) Gestion de la “taille unique” ou “couleur unique”, lors de la sélection de cette propriété, il n’est plus possible d’en sélectionner une autre. Cette propriété n’est pas proposée dans la liste déroulante si une autre déclinaison a déjà été sélectionnée.</li>
+<li>(ADMIN) Pour les plus à l’aise : Gestion de la suppression/modification de déclinaisons déjà commandés : Si on supprime ou on modifie un article une déclinaison déjà achetée on fait une copie et qui devient “non utilisable” de la déclinaison, et on crée une nouvelle déclinaison. (la facture du produit acheté doit rester identique)</li>
 </ol>
-<p>Interface Administrateur, visualisation de données ; ( <strong>bask-office</strong> )</p>
+<p>Interface Administrateur, visualisation de données ( <strong>bask-office</strong> )</p>
 <p>Attention à la qualité du jeu de test pour cette partie.</p>
 <ol start="16" type="1">
 <li>VISUALISATION de données sur les stocks pour l’administrateur
@@ -494,7 +494,7 @@ Ce MCD et le MLD doivent intégrer la partie suivante :
 <li>nombre d’article en stock par déclinaison(taille, couleur) …. )</li>
 </ul></li>
 </ol>
-<p><span class="modif"><i>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</i></span></p>
+<p><i><strong>Remarque : pour simplifier le problème, lorsque l’identifiant de la taille ou la couleur (ou autre déclinaison) est “1”, la taille ou la couleur est considérée comme ‘unique’</strong></i></p>
 <br>
 <hr>
 <p><br></p>
