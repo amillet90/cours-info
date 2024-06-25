@@ -256,6 +256,13 @@ color:purple;
     padding : 0.2em;
 }
 
+.code {
+    display: block;
+    color : blue;
+    background-color:yellow;
+    padding : 0.2em;
+}
+
 /*table          { margin: auto; }    */              /* centre le tableau dans la page */
 table, th, td  { border-collapse: collapse; border: solid 1px #999; padding: 3px; }  /* ajout bordures */
 caption        { caption-side: bottom; }          /* déplace la légende en-dessous du tableau */
@@ -346,11 +353,6 @@ details > summary {
   cursor: pointer;
 }
 
-.gros {
-font-size:140%;
-}
-
-
 details  p, details {
   /*border-radius: 0 0 10px 10px;*/
   background-color: #ddd;
@@ -367,12 +369,8 @@ details[open] > summary ::before {
   content: '⬇️';
 }
 
-.requete {
-font-size: 17px;
-margin: 14px 0 14px 0;
-color:olive;
-font-weight: bolder;
 
+div.special_table + table tr:td:nth-child(2){
+   width: 180px;
 }
-
 
