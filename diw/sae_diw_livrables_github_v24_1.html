@@ -213,7 +213,7 @@ Etudiant 5 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)
 <p>https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fs1-demo.gitlab.io%2Fprojet-sae-demo%2Fpage1_bootrap.html&amp;profile=css3svg&amp;usermedium=all&amp;warning=1&amp;vextwarning=&amp;lang=fr</p>
 <p>bootstrap n’est pas valide sur W3C –&gt;</p>
 <figure>
-<img src="img_github/sae1_github_validation.png" style="width:15cm" alt="" /><figcaption>* Figure 3 : exemple d’affichage (liens + images) sur <em>GitHub</em> en regardant le fichier README.md pour attester que toutes les pages HTML sont conformes aux standards W3C*</figcaption>
+<img src="img_github/sae1_github_validation.png" style="width:15cm" alt="" /><figcaption><em>Figure 3 : exemple d’affichage (liens + images) sur </em>GitHub* en regardant le fichier README.md pour attester que toutes les pages HTML sont conformes aux standards W3C*</figcaption>
 </figure>
 <p>exemple de lien :</p>
 <pre><code>https://validator.w3.org/nu/?showsource=yes&amp;showoutline=yes&amp;showimagereport=yes&amp;doc=https%3A%2F%2Fdemo-am90.github.io%2Fs1-demo%2Findex.html</code></pre>
@@ -315,7 +315,7 @@ Verification W3C : [Détail ICI](https://validator.w3.org/nu/?showsource=yes&amp
 ![capture d&#39;écran de sur la contribution des membres du projet](doc/livrable2_contributors.png)
 </code></pre>
 <figure>
-<img src="img_github/sae1_livrable1_contributors_3.png" style="width:10cm" alt="" /><figcaption>* Figure 4 : Exemple de capture d’écran de sur la contribution des membres du projet*</figcaption>
+<img src="img_github/sae1_livrable1_contributors_3.png" style="width:10cm" alt="" /><figcaption><em>Figure 4 : Exemple de capture d’écran de sur la contribution des membres du projet</em></figcaption>
 </figure>
 <p>Voir exemple sur :</p>
 <ul>
@@ -402,9 +402,7 @@ git push</code></pre>
 git add --all
 git commit -m &quot;modif projet ...&quot;
 git push</code></pre>
-<figure>
-<img src="img_github/sae1_github_push_pull.png" alt="" /><figcaption>* Figure 5 : présentation push/pull (<a href="https://delicious-insights.com/fr/articles-et-tutos/git-depot-distant-et-local/">source</a>)*</figcaption>
-</figure>
+<p><img src="img_github/sae1_github_push_pull.png" alt="* Figure 5 : présentation push/pull (source)*" /> <br></p>
 <h1 id="gitlab-groupe-de-4-personnes-et-plus">GitLab : Groupe de 4 personnes et plus</h1>
 <p>Hébergement sur <strong>GitLab</strong></p>
 <ul>
@@ -414,7 +412,8 @@ git push</code></pre>
 <ul>
 <li><a href="https://s1-demo.gitlab.io/projet-sae-demo/" target="_blanck">demo : URL du site « gitlab page »</a><br />
 </li>
-<li><a href="https://gitlab.com/s1-demo/projet-sae-demo/" target="_blanck">compte: URL du projet « gitlab »</a></li>
+<li><a href="https://gitlab.com/s1-demo/projet-sae-demo/" target="_blanck">compte: URL du projet « gitlab »</a><br />
+<br></li>
 </ul>
 <pre><code># la première fois
 git clone https://gitlab.com/************************.git
@@ -432,7 +431,9 @@ git pull
 git add --all
 git commit -m &quot;modif projet&quot;
 git push</code></pre>
-<p><img src="img_github/sae1_gitlab_menu_token.png" style="width:5cm" /></p>
+<figure>
+<img src="img_github/sae1_gitlab_menu_token.png" style="width:5cm" alt="" /><figcaption>* Figure 6 : *</figcaption>
+</figure>
 <ul>
 <li>l’utilisation d’un token est obligatoire dans le terminal
 <ul>
@@ -498,6 +499,7 @@ git push</code></pre>
 </ul>
 <p><img src="img_github/sae1_bitbucket_menu_mdp_2.png" style="width:15cm" /></p>
 <h1 id="fichier-de-connexion-.git-credentials">fichier de connexion <code>~/.git-credentials</code></h1>
+<p>La commande système <code>git config credential.helper store</code> permet de stocker le login et le mot de passe dans un fichier <code>.git-credentials</code> qui se trouve sur le répertoire <code>$HOME</code> (répertoire de connexion), c’est la façon la plus simple de s’authentifier automatiquement sur <em>Github</em>, <em>GitLab</em> et <em>BitBucket</em>.</p>
 <pre><code>cat ~/.git-credentials
 
 https://USERNAME:glpat-1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@gitlab.com
