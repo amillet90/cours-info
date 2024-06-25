@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DIW</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<h1 id="exercices-premier-template-première-route-premier-passage-de-paramètres-à-un-template">exercices: premier template, première route, premier passage de paramètres à un template</h1>
+<div class="cours">
+<p><strong>vidéo (niveau NSI) pour bien démarrer flask si on va trop vite et dont s’inspire ces exercices</strong> : <a href="https://www.youtube.com/watch?v=Ihp_cG7c2Rk" target="_blank">FLASK (Un prof de NSI)</a></p>
+<p><a href="https://github.com/germainbecker/tuto-flask" target="_blank">lien sur son code source</a></p>
+</div>
+<h2 id="exercice-1-rôle-des-routes">exercice 1 : rôle des routes</h2>
+<p><br></p>
+<ol type="1">
+<li>modifier la route</li>
+</ol>
+<pre><code>@app.route(&#39;/&#39;)
+@app.route(&#39;/hello&#39;)
+def hello_world():  # put application&#39;s code here
+    return &#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
+<ol start="2" type="1">
+<li>ajouter une autre route qui appelle un template</li>
+</ol>
+<pre><code>@app.route(&#39;/heure&#39;)
+def heure():
+    date_heure = datetime.datetime.now()
+    h = date_heure.hour
+    m = date_heure.minute
+    s = date_heure.second
+    return render_template(&#39;index_demo.html&#39;, h=h,min=m,sec=s )
+</code></pre>
+<ol start="3" type="1">
+<li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction <code>from flask import Flask</code>. Importer plusieurs fonctions dans la bibliothèque <code>flask</code>.</li>
+</ol>
+<pre><code>from flask import Flask, request, render_template, redirect, url_for, abort  # application WSGI
+import datetime</code></pre>
+<ol start="4" type="1">
+<li>créer le <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> (fichier) <code>index_demo.html</code> dans le dossier <code>templates</code></li>
+</ol>
+<p><br></p>
+<ol start="5" type="1">
+<li>utiliser le snippet <code>html:5</code> puis dans la balise <code>&lt;body&gt;</code></li>
+</ol>
+<pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
+
+    &lt;br&gt;
+    &lt;a href=&quot;/&quot;&gt;home&lt;/a&gt;</code></pre>
+<p><strong>Il faut corriger le nom de la variable : remplacer m par min</strong></p>
+<div class="cours">
+<ul>
+<li>Dans le fichier de l’application que l’on lance (<code>app.py</code>), il n’y a que des fonctions sauf <code>app.run</code> qui lance l’application</li>
+<li>Les <strong><a href="https://fr.wikipedia.org/wiki/Annotation_(informatique)" target="_blank">annotations</a></strong> permettent de définir des <strong>routes</strong></li>
+<li>La fonction qui se trouve dans le code juste en dessous d’une ou plusieurs routes est associée à cette(ces) route(s) : la fonction est lancée si la route est trouvée<br />
+</li>
+<li>Si plusieurs routes portent le même nom (utilisent le même chemin), c’est la première trouvée par le programme qui est utilisée (pas d’erreurs)</li>
+<li>Si aucune route est trouvée, l’application affiche une erreur</li>
+</ul>
+<p><br></p>
+<ul>
+<li>le mot clé <code>return</code> devant <code>render_template</code> est obligatoire</li>
+<li>sur <a href="https://fr.wikipedia.org/wiki/Jinja_(moteur_de_template)" target="_blank">jinja</a>, le moteur de <a href="https://fr.wikipedia.org/wiki/Template" target="_blank"><strong>template</strong></a> :
+<ul>
+<li>les variables sont interprétées</li>
+<li>si une variable n’existe pas, rien n’est affiché</li>
+</ul></li>
+</ul>
+</div>
+<h2 id="exercice-2-récupérer-les-paramètres-dans-un-lien-et-les-champs-input-dans-un-formulaire">exercice 2 : récupérer les paramètres dans un lien et les champs input dans un formulaire</h2>
+<div class="cours">
+<p><strong><a href="https://www.youtube.com/watch?v=lvxqvNXniVc" target="_blank">vidéo (niveau NSI) pour bien démarrer flask dont est inspiré cet exercice</a></strong></p>
+</div>
+<p>nous allons utiliser un tableau de dictionnaires de données</p>
+<pre><code>liste_etudiants = [
+    {&#39;id&#39;:1,&#39;nom&#39;:&#39;tom&#39;, &#39;groupe&#39;:&#39;A1&#39;},
+    {&#39;id&#39;:2,&#39;nom&#39;:&#39;enzo&#39;, &#39;groupe&#39;:&#39;A1&#39;},
+    {&#39;id&#39;:3,&#39;nom&#39;:&#39;laurence&#39;, &#39;groupe&#39;:&#39;A2&#39;},
+    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;},
+    {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
+]</code></pre>
+<ol start="6" type="1">
+<li><p>ajouter ce tableau au début du fichier d’application flask après avoir importé les bibliothèques</p></li>
+<li><p>créer une route <code>/etudiant/show</code> qui appelle la fonction <code>show_etudiants</code></p></li>
+<li><p>à l’intérieur du dossier <em>templates</em>, créer un dossier <code>etudiant</code> ; dans le dossier <code>templates/etudiant/</code> créer une vue (un fichier) <code>show_etudiant.html</code></p></li>
+<li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre la liste <code>liste_etudiants</code> avec comme nom <code>etudiants</code></p></li>
+<li><p>afficher la liste des étudiants dans le fichier <code>templates/etudiant/show_etudiant.html</code></p></li>
+</ol>
+<pre><code>&lt;h1&gt;listes des étudiants&lt;/h1&gt;
+
+{{ etudiants }}
+
+</code></pre>
+<ol start="11" type="1">
+<li>ajouter un lien sur la page d’accueil dans le fichier <code>templates/index_demo.html</code></li>
+</ol>
+<pre><code>    &lt;br&gt;
+    &lt;a href=&quot;/etudiant/show&quot;&gt;etudiants&lt;/a&gt;</code></pre>
+<!-- https://docs.github.com/fr/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests
+-->
+<ol start="12" type="1">
+<li>afficher la liste des étudiants dans un tableau ; il faut utiliser une boucle</li>
+</ol>
+<pre><code>&lt;table&gt;
+    {% for etudiant in etudiants %}
+         &lt;tr&gt;
+                &lt;td&gt;{{ etudiant }}&lt;/td&gt;
+           &lt;/tr&gt;
+        {% endfor %}
+&lt;/table&gt;
+</code></pre>
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1" target="_blank">code branche 1</a></p>
+</div>
+<ol start="13" type="1">
+<li>remplacer la ligne qui affiche chaque étudiant avec le code ci-dessous</li>
+</ol>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;id&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;groupe&lt;/th&gt;
+    &lt;/tr&gt;
+    {% for etudiant in etudiants %}
+        &lt;tr&gt;
+            {# commentaires : autre notation possible, on affiche un element du dictionnaire               
+                &lt;td&gt;{{ etudiant[&#39;id&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;nom&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;groupe&#39;] }}&lt;/td&gt;
+            #}
+                &lt;td&gt;{{ etudiant.id }}&lt;/td&gt;&lt;td&gt;{{ etudiant.nom }}&lt;/td&gt;&lt;td&gt;{{ etudiant.groupe }}&lt;/td&gt;
+        &lt;/tr&gt;
+    {% endfor %}
+&lt;/table&gt;
+</code></pre>
+<ol start="14" type="1">
+<li><p>tester avec un tableau de dictionnaire d’étudiant vide dans le fichier <code>app.py</code></p></li>
+<li><p>afficher la liste des étudiants si le tableau n’est pas vide en intégrant le code ci-dessous dans le <em>template</em> <code>show_etudiant.html</code></p></li>
+</ol>
+<pre><code>    {% if etudiants | length &gt;= 1 %}
+       ...
+    {% else %}
+           &lt;h2&gt; la liste des étudiants est vide&lt;/h2&gt; 
+    {% endif %}
+</code></pre>
+<p>autre exemple : <a href="https://info-mounier.fr/terminale_nsi/base_de_donnees/flask_sqlite/flask-sqlite.php" target="_blank">cours NSI</a></p>
+<div class="cours">
+<p>Sur les outils JetBrains<br />
+<strong>Remarque : Ctrl+alt+I =&gt; indentation</strong><br />
+<strong>Ctrl+r =&gt; rechercher/remplacer</strong><br />
+<strong>Dans le contrôleur Ctrl+clic sur le nom d’un template dans le contrôleur (app)</strong></p>
+</div>
+<h2 id="utilisation-de-lien">utilisation de lien</h2>
+<ul>
+<li>ajouter des liens pour modifier ou supprimer chaque ligne, les routes appelées seront <code>/etudiant/edit</code> et <code>/etudiant/delete</code> .</li>
+</ul>
+<ol start="16" type="1">
+<li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de l’étudiant.</p></li>
+<li><p>ajouter un lien pour ajouter un étudiant avant l’affichage du tableau</p></li>
+</ol>
+<pre><code>&lt;a href=&quot;/etudiant/add&quot; &gt;ajouter un étudiant&lt;/a&gt;
+
+
+....
+
+
+&lt;td&gt;
+    &lt;a href=&quot;/etudiant/edit?id={{ etudiant.id }}&quot;&gt;editer&lt;/a&gt;&amp;nbsp;
+    &lt;a href=&quot;/etudiant/delete?id={{ etudiant.id }}&quot; &gt;supprimer&lt;/a&gt;
+&lt;/td&gt;
+
+</code></pre>
+<h2 id="passage-de-paramètres">passage de paramètres</h2>
+<ol start="18" type="1">
+<li>créer 3 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associées à 3 fonctions <code>add_etudiant</code> , <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+</ol>
+<pre><code>@app.route(&#39;/etudiant/add&#39;)
+def add_etudiant():
+    print(&#39;&#39;&#39;affichage du formulaire pour saisir un étudiant&#39;&#39;&#39;)
+    return render_template(&#39;etudiant/add_etudiant.html&#39;)
+
+@app.route(&#39;/etudiant/delete&#39;)
+def delete_etudiant():
+    print(&#39;&#39;&#39;suppression d&#39;un étudiant&#39;&#39;&#39;)
+
+@app.route(&#39;/etudiant/edit&#39;)
+def edit_etudiant():
+    print(&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;)
+    return render_template(&#39;etudiant/edit_etudiant.html&#39;)</code></pre>
+<h2 id="utilisation-de-paramètres-issus-de-liens">utilisation de paramètres issus de liens</h2>
+<p>voici le code HTML généré par ChatGPT pour saisir les informations d’un étudiant :</p>
+<p><br></p>
+<p>(code généré en saisissant le prompt : <em>donner le code HTML d’un formulaire en utilisant le framework bootstrap 5 pour saisir les informations du tableau python :</em> )</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Formulaire d&#39;Étudiant&lt;/title&gt;
+    &lt;!-- Inclure Bootstrap 5 CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container mt-4&quot;&gt;
+        &lt;h1&gt;Formulaire d&#39;Étudiant&lt;/h1&gt;
+        &lt;form&gt;
+            &lt;!-- Champs pour saisir les informations de l&#39;étudiant --&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label for=&quot;nom&quot; class=&quot;form-label&quot;&gt;Nom de l&#39;étudiant :&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;nom&quot; placeholder=&quot;Entrez le nom de l&#39;étudiant&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label for=&quot;groupe&quot; class=&quot;form-label&quot;&gt;Groupe de l&#39;étudiant :&lt;/label&gt;
+                &lt;select class=&quot;form-select&quot; id=&quot;groupe&quot; required&gt;
+                    &lt;option value=&quot;A1&quot;&gt;A1&lt;/option&gt;
+                    &lt;option value=&quot;A2&quot;&gt;A2&lt;/option&gt;
+                    &lt;option value=&quot;B1&quot;&gt;B1&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Enregistrer&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ol start="19" type="1">
+<li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et <code>etudiant/edit_etudiant.html</code></p></li>
+<li><p>dans les 2 fonctions <code>delete_etudiant</code> et <code>edit_etudiant</code>, afficher à l’aide de l’instruction <code>print</code> dans le terminal le paramètre reçu de nom <code>id</code>. Utiliser la fonction <code>print(request.args)</code>.</p></li>
+<li><p>pour<code>delete_etudiant</code> , une erreur est générée car il n’y a pas de réponse retournée au navigateur (pas de <code>return</code>)</p></li>
+</ol>
+<div class="cours">
+<p><strong>redirection</strong></p>
+<ol start="22" type="1">
+<li>à la fin de la fonction <code>delete_etudiant</code> faire une redirection sur la route <code>show_etudiants</code> avec l’instruction :</li>
+</ol>
+<p><br></p>
+<p><code>return redirect('/etudiant/show')</code></p>
+</div>
+<ol start="23" type="1">
+<li>ajouter le code ci-dessous dans la fonction <code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+</ol>
+<!--
+    #print(request.args['id'])
+    print(request.args.get('id',0))
+-->
+<pre><code>    id=request.args.get(&#39;id&#39;)
+    message=&#39;paramètre dans l URL : &#39;+id
+    print(message)</code></pre>
+<div class="cours">
+<p><span class="modif">* Pour récupérer les paramètres dans l’URL d’une page HTML (méthode <code>GET</code> ), utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code> avec comme clé le nom du paramètre</span></p>
+</div>
+<ol start="24" type="1">
+<li>pour la fonction <code>edit_etudiant</code>, ajouter le code ci-dessous puis passer</li>
+</ol>
+<pre><code>    id=request.args.get(&#39;id&#39;)
+    if id != None and id.isnumeric():
+        indice = int(id)
+        etudiant=liste_etudiants[indice-1]
+    else:
+        etudiant=[]</code></pre>
+<ol start="25" type="1">
+<li>Passer en paramètre l’étudiant sélectionné au template <code>edit_etudiant.html</code> . Afficher dans chaque champ <code>input</code> de ce template la valeur de l’information concernant l’étudiant (id, nom , groupe) .</li>
+</ol>
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_demo1/tree/2-demo-etape2" target="_blank">code branche 2</a> <span class="modif">– étape 23 tester et modifier le code sur github</span></p>
+</div>
+<h2 id="utilisation-des-paramètres-issus-dun-formulaire">utilisation des paramètres issus d’un formulaire</h2>
+<ol start="26" type="1">
+<li>créer 2 routes <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le fichier de l’application flask associées à 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code></li>
+</ol>
+<pre><code>@app.route(&#39;/etudiant/add&#39;, methods=[&#39;POST&#39;])
+def valid_add_etudiant():
+    print(&#39;&#39;&#39;ajout de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
+    return redirect(&#39;/etudiant/show&#39;)
+
+@app.route(&#39;/etudiant/edit&#39;, methods=[&#39;POST&#39;])
+def valid_edit_etudiant():
+    print(&#39;&#39;&#39;modification de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
+    return redirect(&#39;/etudiant/show&#39;)
+</code></pre>
+<ol start="27" type="1">
+<li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs <code>action="/etudiant/add" method="post"</code> ou les attributs <code>action="/etudiant/edit" method="post"</code></p></li>
+<li><p>indiquer pour les routes des 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> la méthode pour la route : il faut ajouter dans l’annotation <code>, methods=['GET']</code></p></li>
+<li><p>afficher dans le terminal dans les 2 fonctions <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code> les paramètres reçu de chaque formulaire <code>print(request.form)</code></p></li>
+<li><p>créer un message avec les informations pour ajouter un étudiant</p></li>
+</ol>
+<!--
+nom = request.form['nom']
+-->
+<pre><code>nom = request.form.get(&#39;nom&#39;)
+groupe = request.form.get(&#39;groupe&#39;)
+message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe    
+print(message)</code></pre>
+<ol start="31" type="1">
+<li><p>tester et modifier l’erreur : ChatGPT a oublier l’attribut <code>name=</code> dans les balises <code>&lt;input&gt;</code> et <code>&lt;select&gt;</code></p></li>
+<li><p>créer un message avec les informations pour modifier un étudiant</p></li>
+</ol>
+<pre><code>id = request.form.get(&#39;id&#39;)
+nom = request.form.get(&#39;nom&#39;)
+groupe = request.form.get(&#39;groupe&#39;)
+message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe+&#39; pour l etudiant d identifiant :&#39;+id   
+print(message)</code></pre>
+<ol start="33" type="1">
+<li>dans le formulaire <span class="modif">pour modifier les données d’un étudiant</span> il faut un champ caché avec l’identifiant de l’étudiant</li>
+</ol>
+<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
+<p><span class="modif">Dans ce formulaire, il manque l’attribut <code>value={{etudiant.nom}}</code> dans la balise <code>&lt;input&gt;</code> pour que ce champ soit initialisé avec le nom de l’étudiant à éventuellement modifier.</span><br />
+</p>
+<p><span class="modif">Afficher la valeur du groupe <code>{{etudiant.groupe}}</code> ; pour la liste déroulante, c’est plus compliqué, le code est présenté dans le tp suivant.</span></p>
+<p><br></p>
+<div class="cours">
+<ul>
+<li>Pour récupérer les paramètres d’une page HTML (formulaire ou lien)
+<ul>
+<li>avec la méthode <code>GET</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.args.get</code></li>
+<li>avec la méthode <code>POST</code> , utiliser la méthode de l’objet <em>request</em> : <code>request.form.get</code></li>
+</ul></li>
+</ul>
+</div>
+<h2 id="fichiers-static">fichiers “static”</h2>
+<p><br></p>
+<ol start="34" type="1">
+<li>Supprimer la route <code>/hello</code> et la fonction <code>hello_world</code> ; associer la route <code>/</code> à la fonction <code>show_etudiants</code></li>
+<li>Supprimer la route <code>/heure</code> et la fonction <code>heure</code></li>
+</ol>
+<p>Il n’est pas possible dans le dossier <code>templates</code> d’utiliser des fichiers CSS des images ….</p>
+<ol start="33" type="1">
+<li>placer le contenu du <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1_flask.zip">fichier ressources suivant</a> dans le fichier <code>static</code></li>
+</ol>
+<p><br></p>
+<!-- ![exemple avec les gabarits](img_flask/ihm_flask_gabarit_1.png) -->
+<div class="cours">
+<p><strong>Les fichiers <a href="https://docs.djangoproject.com/fr/3.2/howto/static-files/">STATIC</a> sont tous des fichiers dont le contenu ne changent jamais</strong> : les fichiers CSS (vos styles, bootstrap), les images, les fichiers <em>javascript</em></p>
+<p><br></p>
+<p>Ce dossier s’appelle aussi <strong>public</strong> dans d’autres framework(s) (symfony laravel …)</p>
+<p><br></p>
+<p>Dans flask pour utiliser le contenu de ces fichiers dans les templates il faut utiliser la fonction : <code>{{ url_for('static', filename='dossier_dans_static/nom_du_fichier') }}</code></p>
+</div>
+<p><br></p>
+<ol start="34" type="1">
+<li>modifier le fichier <strong>templates</strong> <code>show_etudiants.html</code> (gabarits) avec les liens ci-dessous</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>....</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;image iut&quot;</span>  <span class="kw">/&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>....</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<div class="code">
+<p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final</a></p>
+</div>
+<div class="important">
+<p>Un gabarit (template) est un fichier dont le contenu va être modifié par l’application. <strong>L’application va passer des paramètres (données) à la vue : la vue est renvoyée au client</strong></p>
+</div>
+<!-- ![](img_flask/S1_ciw_img1_http.png)
+ -->
+<figure>
+<img src="img_flask/S1_ciw_img2_router.png" alt="" /><figcaption>principe du MVC</figcaption>
+</figure>
+<h1 id="annexe">annexe</h1>
+<p>en cas de problème avec pycharm (blocage) : supprimer le dossier <code>.cache/jetbrains/pycharm</code></p>
+<p><br> probleme <a href="https://stackoverflow.com/questions/59916531/how-to-change-python3-to-default-in-linux-mint">version python</a></p>
+<!--
+https://info-mounier.fr/terminale_nsi/base_de_donnees/flask_sqlite/flask-sqlite.php
+-->
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>

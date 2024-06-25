@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DIW</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<h1 id="script-de-création-des-icones-et-des-alias-dans-le-fichier-.bashrc">script de création des icones et des alias dans le fichier .bashrc</h1>
+<pre><code>#!/bin/bash
+
+
+echo &quot;&quot;  &gt;&gt; ~/.bashrc
+echo &quot;alias looping=&#39;wine /opt/looping-mcd/Looping.exe&#39;&quot; &gt;&gt; ~/.bashrc
+echo &quot;alias datagrip=&#39;/opt/datagrip/bin/datagrip.sh&#39;&quot; &gt;&gt; ~/.bashrc
+echo &quot;alias pycharm=&#39;/opt/pycharm/bin/pycharm.sh&#39;&quot; &gt;&gt; ~/.bashrc 
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Icon=/opt/DataGrip/bin/datagrip.png&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Exec=/opt/DataGrip/bin/datagrip.sh&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Name=datagrip&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Icon=/opt/pycharm/bin/pycharm.png&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Exec=/opt/pycharm/bin/pycharm.sh&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Name=pycharm&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Icon=/opt/looping-mcd/looping.png&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Exec=wine /opt/looping-mcd/Looping.exe&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Name=Looping&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+
+</code></pre>
+<p><br><br><br><br><br><br></p>
+<h1 id="supprimer-les-fichiers-de-configuration-dune-session-défaillante-sur-les-machines-de-liut">supprimer les fichiers de configuration d’une session défaillante sur les machines de l’iut</h1>
+<p>Problème de trousseau de clefs, tester :</p>
+<pre><code>rm -Rf .cache .config .dbus .gconf .gnome .icons .local .m2 .themes .thunderbird .Xauthority .vscode .wine .java .atom</code></pre>
+<h1 id="vider-la-corbeille-à-liut">vider la corbeille à l’iut</h1>
+<pre><code>cd .local/share/TRASH
+rm lesPlusGrosFichiers</code></pre>
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
