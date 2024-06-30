@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DIW</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<h1 id="présentation">Présentation</h1>
+<p>Dans la plupart des SGBD-R, il existe un langage de programmation impératif classique qui permet d’écrire des successions d’opérations relationnelles en utilisant les possibilités habituelles de la programmation impérative type Pascal, C ou C++ (variable, affectation, tests,boucle, exception, procédure et fonction…).<br />
+PL-SQL est le nom générique de ce langage pour tous les SGBD. La syntaxe du PL-SQL est en partie standardisée.<br />
+</p>
+<ul>
+<li>Sous Oracle, ce langage s’appelle : le <strong>PL-SQL</strong>, (Procedural Language extensions to SQL).</li>
+<li>Sous SQL Server, ce langage s’appelle : <strong>Transact-SQL</strong>. SQL-Server permet aussi d’écrire des procédures en « CLR », c’est-à-dire avec un langage .NET pris en charge par le serveur (C#.NET, Visual Basic.NET)</li>
+</ul>
+<p>Ce type de programme est très interessant pour :</p>
+<ul>
+<li>vérifier des données</li>
+<li>gérer facilement les droits sur certains élèments d’une base de données</li>
+</ul>
+<p>Développer un Bloc simple PL/SQL</p>
+<pre><code>[ DECLARE ]
+- Variables, constantes, curseurs,
+exceptions utilisateurs
+BEGIN
+- Ordres SQL
+- Instructions de Contrôle PL/SQL
+[ EXCEPTION ]
+- Traitements à effectuer lors d&#39;erreurs
+END ;</code></pre>
+<p><a href="https://www.irit.fr/~Guillaume.Cabanac/enseignement/m2106/cm4.pdf" target="_blanck">CM4 toulouse guillaume Cabanac : introduction PL/SQL</a><br />
+<br> <a href="https://www.irit.fr/~Guillaume.Cabanac/enseignement/m2106/cm5.pdf" target="_blanck">CM5 toulouse guillaume Cabanac : PL/SQL Exceptions et curseurs</a><br />
+</p>
+<p><br> <!--
+
+<details>
+<summary>💡 Contenu de la base de données pour tester les exemples ci-dessous </summary>
+<p>
+
+```sql
+
+```
+<p>
+</details>
+--></p>
+<h2 id="rappel-1-variables-et-affichage">Rappel 1: Variables et Affichage</h2>
+<p>Créez une variable nommée nom_utilisateur et initialisez-la avec votre nom. Affichez le contenu de la variable nom_utilisateur à l’aide d’une instruction SELECT.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">-- Création de la variable</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SET</span> @variable1 <span class="op">=</span> <span class="st">&#39;Valeur1&#39;</span>;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">-- Affichage de la variable</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">SELECT</span> @variable1 <span class="kw">AS</span> variable1;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">-- Création de la variable dans une requête</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;test:&#39;</span>,<span class="dv">2</span>) <span class="kw">INTO</span> @variable2 <span class="kw">FROM</span> DUAL;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">-- Affichage de la variable</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">SELECT</span> @variable2 <span class="kw">AS</span> variable2;</span></code></pre></div>
+<h1 id="exercice-1-procédures-stockées">Exercice 1: Procédures Stockées</h1>
+<p>Créez une procédure stockée nommée ajouter_utilisateur qui prend en paramètres le nom et l’âge d’un utilisateur, et insère ces informations dans une table utilisateurs. Appelez la procédure avec quelques exemples.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- Création de la table utilisateurs</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> utilisateurs;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> utilisateurs (</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    prenom <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    age <span class="dt">INT</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    majeur <span class="dt">INT</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> AjouterUtilisateur;  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">-- Création de la procédure stockée</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> AjouterUtilisateur(<span class="kw">IN</span> nom_utilisateur <span class="dt">VARCHAR</span>(<span class="dv">50</span>), <span class="kw">IN</span> age_utilisateur <span class="dt">INT</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateurs (nom, age) <span class="kw">VALUES</span> (nom_utilisateur, age_utilisateur);</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="kw">CALL</span> AjouterUtilisateur(<span class="st">&#39;John Doe&#39;</span>, <span class="dv">25</span>);</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="kw">CALL</span> AjouterUtilisateur(<span class="st">&#39;Jane Doe&#39;</span>, <span class="dv">30</span>);</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table utilisateurs</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p><span class="modif">Modifier la fonction AjouterUtilisateur pour mettre en majuscule le nom et en minuscule le prénom. (il faut modifier l’appel de la procédure et passer dans 2 paramètres distincts le nom et le prénom)</span></p>
+<h1 id="exercice-2-fonctions">Exercice 2: Fonctions</h1>
+<p>Créez une fonction appelée <strong>calculer_moyenne</strong> qui prend en paramètre deux nombres et retourne leur moyenne. Utilisez la fonction pour calculer la moyenne de deux ensembles de nombres différents.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">-- Création de la fonction</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">FUNCTION</span> CalculerMoyenne(a <span class="dt">INT</span>, b <span class="dt">INT</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>RETURNS <span class="dt">DECIMAL</span>(<span class="dv">5</span>,<span class="dv">2</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> moyenne <span class="dt">DECIMAL</span>(<span class="dv">5</span>,<span class="dv">2</span>);</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="kw">SET</span> moyenne <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span>;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="kw">RETURN</span> moyenne;</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">-- Utilisation de la fonction</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">AS</span> MoyenneSet1;</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="kw">SELECT</span> CalculerMoyenne(<span class="dv">5</span>, <span class="fl">16.3333</span>) <span class="kw">AS</span> MoyenneSet2;</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">FUNCTION</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> CalculerMoyenne;</span></code></pre></div>
+<p>REMARQUE : <a href="https://stackoverflow.com/questions/26015160/deterministic-no-sql-or-reads-sql-data-in-its-declaration-and-binary-logging-i" target="_blanck"><strong>erreur de droit sur MySQL(Oracle) sur la machine de l’iut</strong></a> :</p>
+<p>Commande en tant que <em>root</em> : <code>SET GLOBAL log_bin_trust_function_creators = 1;</code></p>
+<p><span class="modif">Reprendre l’exercice, modifier le type des variables pour calculer la moyenne de 2 monétaires</span></p>
+<p><br></p>
+<p>Afficher les procédures</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">SELECT</span> ROUTINE_NAME, ROUTINE_TYPE   </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">FROM</span> information_schema.routines;</span></code></pre></div>
+<h1 id="exercice-3-structures-de-contrôle">Exercice 3: Structures de Contrôle</h1>
+<p>Créez une procédure qui prend un paramètre en entrée (par exemple, age_utilisateur) et affiche “Majeur” si l’âge est supérieur ou égal à 18, sinon affiche “Mineur”. Testez la procédure en passant différentes valeurs à age_utilisateur.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> MiseAJourAge; </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">-- Création de la procédure</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> MiseAJourAge(<span class="kw">IN</span> age_utilisateur <span class="dt">INT</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    <span class="cf">IF</span> age_utilisateur <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">THEN</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Majeur&#39;</span> <span class="kw">AS</span> Statut;</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    <span class="cf">ELSE</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>        <span class="kw">SELECT</span> <span class="st">&#39;Mineur&#39;</span> <span class="kw">AS</span> Statut;</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">20</span>);</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">15</span>);</span></code></pre></div>
+<p><span class="modif">Modifier la fonction MiseAJourAge pour mettre à jour la colonne <em>age</em> et <em>majeur</em> de la table <em>utilisateur</em>. La procédure <em>MiseAJourAge</em> prend 2 paramètres en entrée : age_utilisateur et id_utilisateur, la colonne <em>majeur</em> de l’utilisateur vaut 1 si l’utilisateur est majeur et 0 sinon.</span></p>
+<p>test :</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">-- test : Appel de la procédure</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">1</span>,<span class="dv">20</span>);</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">2</span>,<span class="dv">15</span>);</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<h1 id="exercice-4-boucles">Exercice 4: Boucles</h1>
+<p>Créez une table nombres avec une colonne valeur. Utilisez une boucle pour insérer des valeurs de 1 à 10 dans la table. Affichez le contenu de la table nombres.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">-- Création de la table</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> nombres;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> nombres (</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    valeur <span class="dt">INT</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>);</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> RemplirNombres;</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">-- Insertion des valeurs de 1 à 10</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> RemplirNombres()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>    <span class="kw">DECLARE</span> i <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>;</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>    <span class="cf">WHILE</span> i <span class="op">&lt;=</span> <span class="dv">10</span> DO</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>        <span class="kw">INSERT</span> <span class="kw">INTO</span> nombres (valeur) <span class="kw">VALUES</span> (i);</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>        <span class="kw">SET</span> i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span>;</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="co">-- Appel de la procédure</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a><span class="kw">CALL</span> RemplirNombres();</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
+<h1 id="exercice-5-déclencheurs-triggers">Exercice 5: Déclencheurs (Triggers)</h1>
+<p>Créez une table historique_utilisateurs avec des colonnes telles que id_utilisateur, nom_utilisateur, action et date_action. Créez un déclencheur qui enregistre une nouvelle ligne dans historique_utilisateurs à chaque fois qu’un utilisateur est ajouté à la table utilisateurs.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">-- Création de la table historique_utilisateurs</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> historique_utilisateurs;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> historique_utilisateurs (</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>    id_utilisateur <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>    nom_utilisateur <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>    action <span class="dt">VARCHAR</span>(<span class="dv">50</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>);</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TRIGGER</span> <span class="cf">IF</span> <span class="kw">EXISTS</span>  after_insert_utilisateur; </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">-- Création du déclencheur</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> after_insert_utilisateur</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="kw">AFTER</span> <span class="kw">INSERT</span> <span class="kw">ON</span> utilisateurs</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> historique_utilisateurs (id_utilisateur, nom_utilisateur, action)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a>    <span class="kw">VALUES</span> (<span class="kw">NEW</span>.<span class="kw">id</span>, <span class="kw">NEW</span>.nom, <span class="st">&#39;Ajout&#39;</span>);</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="co">-- Ajout d&#39;un utilisateur pour déclencher le déclencheur</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateurs (nom, age) <span class="kw">VALUES</span> (<span class="st">&#39;lionel&#39;</span>, <span class="dv">28</span>);</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a><span class="co">-- Affichage du contenu de la table historique_utilisateurs</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> historique_utilisateurs;</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p><span class="modif">Créer un nouveau “trigger” (déclencheur) pour mettre en majuscule le nom et en minuscule le prénom lors d’un INSERT</span></p>
+<h1 id="exercice-6-exemple-de-curseurs">Exercice 6: exemple de curseurs</h1>
+<p>Un curseur est une structure de contrôle qui permet d’itérer à travers un ensemble de lignes renvoyées par une requête SQL. Il agit comme un pointeur sur un ensemble de résultats et permet de traiter chaque ligne de manière séquentielle.</p>
+<figure>
+<img src="img/pl_sql_tp1_1.png" alt="" /><figcaption>exemple de code produit par une IA générative</figcaption>
+</figure>
+<details>
+<summary>💡 exemple de solution proposer par l’IA générative </summary>
+<p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">-- procedure</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">-- https://dev.mysql.com/doc/refman/8.0/en/cursors.html</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> testUtilisateurs ;</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> testUtilisateurs()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>  <span class="kw">DECLARE</span> done <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="kw">FALSE</span>;</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>  <span class="kw">DECLARE</span> b <span class="dt">CHAR</span>(<span class="dv">50</span>);</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>  <span class="kw">DECLARE</span> a <span class="dt">INT</span>;</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>  <span class="kw">DECLARE</span> c <span class="dt">INT</span>;</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>  <span class="kw">DECLARE</span> d <span class="dt">INT</span>;</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>  <span class="kw">DECLARE</span> cur1 <span class="kw">CURSOR</span> <span class="cf">FOR</span> <span class="kw">SELECT</span> <span class="kw">id</span>,nom,age, majeur <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>  <span class="kw">DECLARE</span> <span class="kw">CONTINUE</span> HANDLER <span class="cf">FOR</span> <span class="kw">NOT</span> FOUND <span class="kw">SET</span> done <span class="op">=</span> <span class="kw">TRUE</span>;</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>  <span class="kw">OPEN</span> cur1;</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>  read_loop: <span class="cf">LOOP</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>    FETCH cur1 <span class="kw">INTO</span> a, b, c ,d;</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>    <span class="cf">IF</span> done <span class="cf">THEN</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>      LEAVE read_loop;</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>    <span class="kw">SELECT</span> a,b,c,d ;   <span class="co">-- affichage</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>  <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>  <span class="kw">CLOSE</span> cur1;</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a>DELIMITER ;</span></code></pre></div>
+<p>
+</details>
+<p><br></p>
+<p>Une autre façon d’utiliser le curseur (boucle WHILE), <a href="https://www.youtube.com/watch?v=4H2GMEwqCjA" target="_blanck">idée exemple</a></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> AfficherUtilisateurs ;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> AfficherUtilisateurs()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="cf">BEGIN</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_id <span class="dt">INT</span>;</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>);</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_age <span class="dt">INT</span>;</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_majeur <span class="dt">INT</span>;</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>    <span class="kw">DECLARE</span> v_utilisateur <span class="dt">VARCHAR</span>(<span class="dv">255</span>);</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>    <span class="kw">DECLARE</span> fin <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>;</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a>    <span class="kw">DECLARE</span> curs_utilisateur <span class="kw">CURSOR</span> <span class="cf">FOR</span> <span class="kw">SELECT</span> <span class="kw">id</span>,nom,age, majeur <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a>    <span class="kw">DECLARE</span> <span class="kw">CONTINUE</span> HANDLER <span class="cf">FOR</span> <span class="kw">NOT</span> FOUND <span class="kw">SET</span> fin <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>    <span class="kw">OPEN</span> curs_utilisateur;</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>    FETCH curs_utilisateur <span class="kw">INTO</span> v_id,v_nom,v_age,v_majeur;</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a>    <span class="cf">WHILE</span> (fin<span class="op">&lt;&gt;</span><span class="dv">1</span>) DO</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a>        <span class="kw">SET</span> v_utilisateur<span class="op">=</span><span class="fu">CONCAT</span>(v_id,<span class="st">&#39; ; &#39;</span>, v_nom,<span class="st">&#39; ; &#39;</span>,v_age,<span class="st">&#39; ; &#39;</span>,v_majeur);</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a>        <span class="kw">SELECT</span> v_utilisateur;</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a>        FETCH curs_utilisateur <span class="kw">INTO</span> v_id,v_nom,v_age,v_majeur;</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a>    <span class="cf">END</span> <span class="cf">WHILE</span>;</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a>    <span class="kw">CLOSE</span> curs_utilisateur;</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true"></a>DELIMITER ;</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true"></a><span class="kw">CALL</span> afficherUtilisateurs();</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p><span class="modif">Modifier le code ci-dessus pour afficher correctement les enregistrements dans la procédure ci-dessus (utiliser la fonction IFNULL)</span></p>
+<p><br></p>
+<p><span class="modif">ajouter un an à l’age de tous les utilisateurs dans la procédure ci-dessus</span></p>
+<p>Test :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">CALL</span> AfficherUtilisateurs();</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+Exemple utilisation de <a href="https://rpbouman.blogspot.com/2005/10/nesting-mysql-cursor-loops.html" target="_blanck">2 curseurs imbriqués</a> <!--https://openclassrooms.com/forum/sujet/mysql-curseurs-imbriques        -->
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>

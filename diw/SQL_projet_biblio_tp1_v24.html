@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DIW</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+  <title>BDD</title>
+</head>
+<body>
+<div class="titre">
+Mini Projet : application pour gérer une bibliothèque
+</div>
+<p><br></p>
+<div class="evaluation">
+
+<p><strong>Évaluation du projet</strong> : ce projet se déroule durant 6 semaines</p>
+<p><br></p>
+<p><strong>L’avancement et le sérieux durant cette activité sont prises en compte</strong></p>
+<p><br></p>
+<p><strong><a href="http://amillet3.pythonanywhere.com/" target="_blank">Démonstration</a></strong> <br></p>
+<p><span class="travail"> </span></p>
+<p><span class="bleu underline"><strong>semaine 1</strong></span> :<br />
+<span class="vert"> * Réaliser le MCD (Modèle Conceptuel de Données) à partir du MR (Modèle Relationnel) sur le logiciel “looping”.<br />
+* Modifier le script SQL de looping, de façon à avoir un script SQL pour supprimer puis re-créer toutes les tables en étant conforme au modèle relationnel joint, utiliser ensuite le jeu de test en fin de TP sans le modifier.<br />
+* Compléter/Modifier le code (uniquement les requêtes SQL) du contrôleur de la table <strong>auteur</strong> de façon à faire fonctionner le CRUD de l’application sur cette table </span> <br> <span class="orange"> <strong>Évaluation</strong> du MCD, du script SQL, du CRUD (Create/Read/Update/Delete) de la table “auteur” </span></p>
+<p><span class="bleu underline"><strong>semaine 2</strong></span> :<br />
+<span class="vert"> * Compléter/Modifier le code (uniquement les requêtes SQL) du contrôleur de la table <strong>adherent</strong> de façon à faire fonctionner le CRUD de l’application sur cette table.<br />
+* Mettre en MVC (Modède/Vue/Controleur) le code dans les dossiers <strong>Modele</strong> et <strong>Controller</strong> (et <strong>validator</strong>) de façon à ce que le CRUD sur la table <strong>auteur</strong> soit toujours fonctionnel. </span> <br> <span class="orange"> <strong>Évaluation</strong> du CRUD sur la table “adherent”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table <strong>auteur</strong><br />
+</span> <span class="rouge"> <strong>Évaluation</strong> du MCD, du script SQL, du CRUD (Create/Read/Update/Delete) de la table “auteur” </span></p>
+<p><span class="bleu underline"><strong>semaine 3</strong></span> :<br />
+<span class="vert"> * Compléter/Modifier le code (uniquement les requêtes SQL) du contrôleur de la table <strong>oeuvre</strong> de façon à faire fonctionner le CRUD de l’application sur cette table.<br />
+* Mettre en MVC (Modède/Vue/Controleur) le code dans les dossiers <strong>Modele</strong> et <strong>Controller</strong> (et <strong>validator</strong>) de façon à ce que le CRUD sur la table <strong>adherent</strong> soit toujours fonctionnel. </span> <br> <span class="orange"> <strong>Évaluation</strong> du CRUD sur la table “oeuvre”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table <strong>adherent</strong><br />
+</span> <span class="rouge"> <strong>Évaluation</strong> du CRUD sur la table “adherent”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table <strong>auteur</strong> </span></p>
+<p><span class="bleu underline"><strong>semaine 4</strong></span> :<br />
+<span class="vert"> * Compléter/Modifier le code (uniquement les requêtes SQL) du contrôleur de la table <strong>exemplaire</strong> de façon à faire fonctionner le CRUD de l’application sur cette table * Mettre en MVC (Modède/Vue/Controleur) le code dans les dossiers <strong>Modele</strong> et <strong>Controller</strong> (et <strong>validator</strong>) de façon à ce que le CRUD sur la table <strong>oeuvre</strong> soit toujours fonctionnel. </span> <br> <span class="orange"> <strong>Évaluation</strong> du CRUD sur la table “emprunt”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table <strong>exemplaire</strong><br />
+</span> <span class="rouge"> <strong>Évaluation</strong> du CRUD sur la table “oeuvre”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table <strong>adherent</strong> </span></p>
+<p><span class="bleu underline"><strong>semaine 5</strong></span> :<br />
+<span class="vert"> Compléter/Modifier le code (uniquement les requêtes SQL) du contrôleur de la table <strong>emprunt</strong> de façon à faire fonctionner les différentes fonctionnalités de l’application : </span></p>
+<ul>
+<li>sélectionner un adhérent autorisé à emprunter ou rendre un exemplaire d’un livre
+<ul>
+<li>pour emprunter : l’adhérent doit être à jour sur sa date d’adhésion (moins d’un an), il doit avoir emprunté moins de 5 exemplaires, il ne doit pas avoir emprunté de livre depuis plus de 3 mois.</li>
+<li>pour rendre : l’adhérent doit avoir emprunté des exemplaires</li>
+</ul></li>
+<li>emprunter des exemplaires : la liste des livres est composée des exemplaires disponibles dans la bibliothèques</li>
+<li>rendre des exemplaires</li>
+<li>supprimer des exemplaires en cascade</li>
+<li>bilan sur les exemplaires en retard</li>
+</ul>
+<p><span class="vert"> Mettre en MVC (Modède/Vue/Controleur) le code dans les dossiers <strong>Modele</strong> et <strong>Controller</strong> (et <strong>validator</strong>) de façon à ce que le CRUD sur la table <strong>exemplaire</strong> soit toujours fonctionnel. </span> <br></p>
+<p><span class="orange"> <strong>Évaluation</strong> des différentes fonctionnalités de l’application sur la table “emprunt”<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table “exemplaire”<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table “emprunt” (fin de séance) </span><br />
+<span class="rouge"> <strong>Évaluation</strong> du CRUD sur la table “exemplaire”,<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table “oeuvre” </span></p>
+<p><span class="bleu underline"><strong>semaine 6 (40mn)</strong></span> : dernière évaluation<br />
+</span> <span class="modif">semaine 6 : présentation de nodeJs + fin du projet</span><br />
+<span class="modif">semaine 7 : correction partiel + fin du projet</span></p>
+<p><span class="modif">ajouter le validator pour les dates dans “emprunt”</span><br />
+<span class="modif">Dans adhérent : modifier la requête pour afficher le nombre de livre en retard pour un adhérent</span></p>
+<p><span class="vert"> * Finaliser l’application : MVC de toute l’application (table “emprunt”) </span></p>
+<p><span class="rouge"> <strong>Évaluation</strong> des différentes fonctionnalités de l’application sur la table “emprunt”<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table “exemplaire”<br />
+<strong>Évaluation</strong> de la version MVC (Modède/Vue/Controleur) du CRUD de l’application sur la table “emprunt” (fin de séance)</p>
+<p></span></p>
+<!--
+* sélectionner un adhérent autorisé à emprunter ou rendre un exemplaire d'un livre 
+    * pour emprunter : l'adhérent doit être à jour sur sa date d'adhésion (moins d'un an), il doit avoir emprunté moins de 5 exemplaires, il ne doit  pas avoir emprunté  de livre depuis plus de 3 mois.
+    * pour rendre : l'adhérent doit avoir emprunté des exemplaires
+* emprunter des exemplaires : la liste des livres est composée des exemplaires disponibles dans la bibliothèques
+* rendre des exemplaires
+* supprimer des exemplaires en cascade
+* bilan sur les exemplaires en retard
+-->
+<hr>
+<p><span class="bleu">Remarque importante :</span></p>
+<ul>
+<li><p>Le code doit être validé sans être en version MVC et avec la version MVC sinon pénalité de 50%.</p></li>
+<li><p>En cas d’absence : l’évaluation est gelée lors de son absence (50% de la note sur l’évaluation) ; l’étudiant doit prendre ses dispositions pour rattraper le retard et valider comme les autres son projet le jour de son retour (les 3 premières parties sont indépendantes).</p></li>
+<li><p><span class="orange">à valider pendant la séance</span></p></li>
+<li><p><span class="rouge">à valider en début de séance (sinon considéré comme non validé)</span></p></li>
+</ul>
+</div>
+<p><br></p>
+<p>On désire dans cet exercice, modéliser de façon simplifiée le système d’information d’emprunts de livres dans une bibliothèque.</p>
+<p>L’objectif est de tester des requêtes (sur un terminal ou ‘datagrip’) avant de les utiliser dans une application <code>python</code> pour gérer les emprunts, les livres (exemplaires et oeuvres), les adhérents et les auteurs des livres.</p>
+<p>Soit le modèle relationnel suivant :</p>
+<p><br></p>
+<p><strong>adherent(<span class="underlineblue"><strong><span class="noir">id_adherent</span></strong></span>,nom,adresse,date_paiement)</strong></p>
+<p><strong>auteur(<span class="underlineblue"><strong><span class="noir">id_auteur</span></strong></span>,nom, prenom)</strong><br />
+</p>
+<p><strong>exemplaire(<span class="underlineblue"><strong><span class="noir">id_exemplaire</span></strong></span>, etat, date_achat, prix, #oeuvre_id)</strong><br />
+</p>
+<p><strong>oeuvre(<span class="underlineblue"><strong><span class="noir">id_oeuvre</span></strong></span> ,titre, date_parution ,photo, #auteur_id)</strong><br />
+</p>
+<p><strong>emprunt(<span class="underlineblue"><strong><span class="noir">#adherent_id,#exemplaire_id, date_emprunt</span></strong></span>, date_retour)</strong><br />
+</p>
+<p><br></p>
+<ul>
+<li><p>L’état d’un exemplaire d’une oeuvre est une chaîne de caractères : Etat = neuf, bon , moyen ou mauvais</p></li>
+<li><p>Les dates sont au <a href="https://fr.wikipedia.org/wiki/ISO_8601" target="_blanck">format ISO : AAAA-MM-JJ</a> dans la base de données mais sont affichées et manipulées au format JJ/MM/AAAA (dans les 4 premières interfaces).</p></li>
+<li><p>La majorité des données sont contrôlées coté serveur</p></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Si date_retour = NULL alors l’exemplaire du livre n’a pas été rendu.</strong></li>
+</ul>
+<h1 id="semaine-1-définition-des-données-ldd-premier-crud-auteur">Semaine 1 : Définition des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es" target="_blanck">LDD</a>), premier CRUD : auteur</h1>
+<h2 id="question-1-mcd">Question 1 : MCD</h2>
+<p>Établir le modèle conceptuel des données (<strong>MCD</strong>) associé à ce modèle relationnel sur le logiciel Looping.</p>
+<h2 id="sql-création-des-tables-et-importation-des-données">SQL, création des tables et importation des données</h2>
+<p>En utilisant le script généré par looping :</p>
+<p>Écrire dans un fichier <em>script_tp5.sql</em> le script de création des tables correspondant au modèle ci dessus.</p>
+<p><br />
+</p>
+<ul>
+<li><p>Supprimer toutes les tables si elles existent.</p></li>
+<li><p>Créer toutes les tables si elles n'existent pas.</p></li>
+</ul>
+<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
+<ul>
+<li>Insérer les données en annexe dans un autre fichier ‘sql’ ; Importer les données à l’aide de datagrip</li>
+</ul>
+<h2 id="logiciel-pour-gérer-les-emprunts-la-table-auteur">Logiciel pour gérer les emprunts : la table “auteur”</h2>
+<p>Dans un terminal ou sur le logiciel ‘datagrip’, réaliser les requêtes suivantes :</p>
+<h3 id="interrogation-des-données-lid-select">Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">LID</a>) : <strong>SELECT</strong></h3>
+<ul>
+<li>Requête 1_1 : Afficher tous les auteurs ainsi que le nombre d’œuvres par auteur (y compris ceux qui n’ont pas d’œuvre)</li>
+</ul>
+<pre><code>+----------------+------------------------+----------+-----------+
+| nom            | prenom                 | id       | nbrOeuvre |
++----------------+------------------------+----------+-----------+
+| Azimov         | Isaac                  |       14 |         2 |
+| Baudelaire     | Charles                |       15 |         2 |
+| Chateaubriand  | François-René          |        2 |         1 |
+| Christie       | Agatha                 |        1 |         4 |
+| Daudet         | Alphonse               |        6 |         0 |
+| De La Fontaine | Jean                   |        5 |         2 |
+| Duras          | Marguerite             |        9 |         2 |
+| Flaubert       | Gustave                |        3 |         1 |
+| Highsmith      | Patricia               |       12 |         1 |
+| Hugo           | Victor                 |        7 |         0 |
+| Kessel         | Joseph                 |        8 |         0 |
+| Kipling        | Rudyard                |       13 |         2 |
+| Moliere        | Jean-Baptiste Poquelin |       16 |         2 |
+| Prévert        | Jacques                |        4 |         2 |
+| Proust         | Marcel                 |       10 |         0 |
+| Zola           | Émile                  |       11 |         3 |
++----------------+------------------------+----------+-----------+</code></pre>
+<h3 id="manipulation-des-données-lmd-insert-update-delete">Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">LMD</a>) : <strong>INSERT – UPDATE – DELETE</strong></h3>
+<ul>
+<li><p>Requête 1_2 : ajouter un auteur avec 2 variables (paramètres)</p></li>
+<li><p>Requête 1_4 : afficher uniquement l’enregistrement créé</p></li>
+<li><p>Requête 1_5 : modifier l’ enregistrement en mettant par exemple en majuscule le nom et en minuscule le prénom de l’auteur</p></li>
+<li><p>Requête 1_3 : supprimer l’enregistrement créé ci-dessus</p></li>
+<li><p>Requête 1_6 : compter le nombre d’œuvres d’un auteur dont l’identifiant est passé en paramètre dans une variable, le résultat est une colonne unique de nom ‘nbrOeuvre’</p></li>
+</ul>
+<h3 id="application-python-flask-pour-gérer-la-bibliothèque">application python (flask) pour gérer la bibliothèque</h3>
+<p><br></p>
+<p><strong>Configurer le fichier de connexion à la base de données : <code>connexion_db.py</code></strong> avec vos paramètres : <strong>host,login,password,database</strong></p>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus dans le fichier <code>controllers/admin_auteur.py</code> ; tester l’application pour afficher/ajouter/supprimer/modifier des enregistrements.</p>
+<p>L’interface web (mini-projet) ci-dessous réutilise le résultat de cette requête .</p>
+<figure>
+<img src="img/tp5_1_23_img1.jpg" style="width:14cm" alt="" /><figcaption>résultat dans l’application python</figcaption>
+</figure>
+<p>Pour la suppression d’un auteur, décommenter le code sous la requête ; ce code permet de compter le nombre d’oeuvres d’un auteur. Si l’auteur possède des oeuvres, un message informe l’utilisateur qu’il ne peut pas supprimer cet auteur</p>
+<h2 id="validation-la-semaine-prochaine">validation la semaine prochaine</h2>
+<h2 id="annexe">annexe</h2>
+<figure>
+<img src="img/tp5_1_23_img2.png" style="width:13cm" alt="" /><figcaption>exemple de script, remplacer les paramètres par <code>%s</code> dans les requêtes de l’application</figcaption>
+</figure>
+<hr />
+<h1 id="semaine-2-la-table-adherent">Semaine 2 : la table “adherent”</h1>
+<p>Dans un terminal ou sur le logiciel datagrip, réaliser les requêtes suivantes :</p>
+<h2 id="interrogation-des-données-lid-select-1">Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">LID</a>) : <strong>SELECT</strong></h2>
+<ul>
+<li>Requête 2_1 : Afficher les informations sur chaque adhérent</li>
+</ul>
+<p>Dans le logiciel :</p>
+<p><br></p>
+<p>La durée de cotisation étant de 1 an, donc 1 an après la date de cotisation, celle-ci n’est plus valide : un message affiche en rouge <strong>paiement en retard depuis le “date_cotisation au format JJ/MM/AAAA”</strong> .<br />
+Un petit symbole “⚠️” indique que l’adhérent n’est plus à jour dans sa cotisation et qu’il possède encore des livres (exemplaires) chez lui ; un message en vert <strong>paiement à renouveler</strong> indique à la bibliothécaire que l’adhérent devra renouveler sa cotisation si entre la date d’aujourd’hui et la date de cotisation il y a entre 11 et 12 mois.<br />
+</p>
+<p>Voir la capture d’écran dans le 2.2.3 de l’application python.</p>
+<p><br></p>
+<p>Pour réaliser cette requête :</p>
+<ul>
+<li><p>Reprendre la requête ci dessus et ajouter le nombre d’emprunt en cours (faire une jointure à gauche sur emprunt). ATTENTION, la jointure est compliquée, il faut ajouter dans condition de la jointure <code>AND emprunt.date_retour IS NULL</code></p></li>
+<li><p>Reprendre la requête ci dessus et ajouter la date limite (datePaiementFutur) pour renouveler la cotisation annuelle (datePaiement + 1 an). Utiliser la fonction <code>DATE_ADD(colonne, INTERVAL xx YEAR)</code></p></li>
+<li><p>Reprendre la requête ci dessus et ajouter 2 drapeaux (flag) qui indiquent si l’adhérent est en retard sur sa cotisation ou devra bientôt renouveler sa cotisation.</p>
+<ul>
+<li>si la date courante (<a href="https://mariadb.com/kb/en/curdate/" target="_blanck"><code>CURRENT_DATE()</code></a> ou <a href="https://mariadb.com/kb/en/now/" target="_blanck"><code>NOW()</code></a> ) est supérieure à la date de paiement + 1 an alors le drapeau “retard” a pour valeur 1 sinon 0</li>
+<li>si la date courante (<a href="https://mariadb.com/kb/en/curdate/" target="_blanck"><code>CURRENT_DATE()</code></a> ou <a href="https://mariadb.com/kb/en/now/" target="_blanck"><code>NOW()</code></a> ) est supérieure à la date de paiement + 11 mois alors le drapeau “retardProche” a pour valeur 1 sinon 0</li>
+</ul></li>
+</ul>
+<p>exemple de colonne : <code>IF(CURRENT_DATE()&gt;DATE_ADD(colonne, INTERVAL xx YEAR/MONTH),1,0) as colonne_flag</code></p>
+<p><span class="modif">* Reprendre la requête ci dessus et calculer le nombre d’exemplaire à rendre ( dont la date d’emprunt + 3 mois est supérieure à la date d’aujourd’hui ) alors l’entier “nbre_empr_retard” a pour valeur la somme de <code>IF(CURRENT_DATE()&gt;DATE_ADD(empr.date_emprunt, INTERVAL 3 MONTH),1,0)</code></span></p>
+<pre><code>+-----------+-------------+---------------+-------------+-------------+---------------------+--------+---------------+
+| nom       | adresse     | date_paiement | id_adherent | nbr_emprunt | date_paiement_futur | retard | retard_proche |
++-----------+-------------+---------------+-------------+-------------+---------------------+--------+---------------+
+| asproitis | grenoble    | 2022-12-04    |           8 |           0 | 2023-12-04          |      0 |             0 |
+| axelrad   | sevenans    | 2022-01-12    |           3 |           4 | 2023-01-12          |      1 |             1 |
+| bedez     | hericourt   | 2022-04-17    |           4 |           3 | 2023-04-17          |      0 |             1 |
+| berger    | les glacis  | 2013-11-03    |           5 |           0 | 2014-11-03          |      1 |             1 |
+| billot    | Montbeliard | 2022-11-03    |           1 |           0 | 2023-11-03          |      0 |             0 |
+| bonilla   | sochaux     | 2022-02-17    |           7 |           0 | 2023-02-17          |      1 |             1 |
+| cambot    | sevenans    | 2022-12-15    |           6 |           0 | 2023-12-15          |      0 |             0 |
+| dupont    | grenoble    | 2022-03-14    |          10 |           0 | 2023-03-14          |      1 |             1 |
+| durant    | belfort     | 2022-12-16    |          11 |           0 | 2023-12-16          |      0 |             0 |
+| lauvernay | sevenans    | 2022-06-13    |           2 |           5 | 2023-06-13          |      0 |             0 |
+| pereira   | danjoutin   | 2022-11-03    |           9 |           2 | 2023-11-03          |      0 |             0 |
+| piton     | belfort     | 2022-11-03    |          12 |           0 | 2023-11-03          |      0 |             0 |
++-----------+-------------+---------------+-------------+-------------+---------------------+--------+---------------+
+
+</code></pre>
+<h2 id="manipulation-des-données-lmd-insert-update-delete-1">Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">LMD</a>) : <strong>INSERT – UPDATE – DELETE</strong></h2>
+<ul>
+<li><p>Requête 2_2 : ajouter un adhérent avec les informations du formulaire</p></li>
+<li><p>Requête 2_4 : afficher uniquement l’enregistrement créé (pour la modification)</p></li>
+<li><p>Requête 2_5 : modifier l’ enregistrement avec les informations du formulaire</p></li>
+<li><p>Requête 2_3 : supprimer l’enregistrement créé ci-dessus</p></li>
+<li><p>Requête 2_6 : compter le nombre d’emprunt d’un adhérent dont l’identifiant est passé en paramètre dans une variable, le résultat est une colonne unique de nom ‘nb_emprunts’ ; Dans le code si cette variable est différente de 0, la suppression est annulée et un message informe l’utilisateur que ce n’est pas possible.</p></li>
+</ul>
+<h2 id="application-python-flask-pour-gérer-la-bibliothèque-1">application python (flask) pour gérer la bibliothèque</h2>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_adherent.py</code> ; tester l’application pour afficher/ajouter/supprimer/modifier des enregistrements</p>
+<p>L’interface web (mini-projet) ci-dessous réutilise le résultat de cette requête</p>
+<figure>
+<img src="img/tp5_1_23_img3_2.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python</figcaption>
+</figure>
+<p><br></p>
+<h2 id="amélioration-du-code-mettre-en-mvc-le-contrôleur-de-la-table-auteur">amélioration du code : mettre en MVC le contrôleur de la table “auteur”</h2>
+<h4 id="objectif-réaliser-une-couche-modèle-dans-lapplication">objectif : réaliser une couche “modèle” dans l’application</h4>
+<h3 id="couche-modèle-pour-le-contrôleur-de-la-table-auteur">couche “modèle” pour le contrôleur de la table “auteur”</h3>
+<p>Dans le dossier “models”, il faudrait placer tous les éléments de code qui interagissent avec la base de données.</p>
+<p>L’objectif est de se rapprocher le plus possible d’<a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur" target="_blanck">une application MVC (commune à tous les langages)</a></p>
+<p><br></p>
+<p><strong>Principe du MVC</strong></p>
+<p><img src="img/TP6_S3_tp1_img2_router.png" style="width:15cm" /></p>
+<p>L’objectif est de compléter les fonctions dans les fichiers du dossier <strong>models</strong> et de supprimer tous les accès à la base de données dans les contrôleurs.</p>
+<p><br></p>
+<p>étapes :</p>
+<ul>
+<li>recopier les requêtes dans les <strong>models</strong></li>
+<li>importer le <strong>model</strong> (voir les <strong>models</strong>) nécessaire dans chaque <strong>controller</strong></li>
+<li>supprimer le code inutile dans chaque <strong>controller</strong></li>
+</ul>
+<p><br></p>
+<p>Signification de <a href="https://fr.wikipedia.org/wiki/Objet_de_transfert_de_donn%C3%A9es#:~:text=Les%20objets%20de%20transfert%20de,avec%20des%20mutateurs%20et%20accesseurs" target="_blanck">DTO</a> et <a href="https://en.wikipedia.org/wiki/Data_access_object" target="_blanck">DAO</a></p>
+<figure>
+<img src="img/tp6_img2.png" style="width:15cm" alt="" /><figcaption>exemple de code dans le premier contrôleur</figcaption>
+</figure>
+<h3 id="validateurs-de-la-table-auteur">validateurs de la table “auteur”</h3>
+<p>Les validateurs (<code>validator</code>) servent à vérifier le contenu de toutes les entrées (<code>INPUT</code>) coté <strong>serveur</strong> lorsque l’on valide un formulaire pour informer l’utilisateur si une donnée en entrée n’est pas valide.</p>
+<p><br></p>
+<p>La vérification coté client avec l’HTML5 ou du code javascript n’est pas suffisante : il y a des problèmes liés aux failles de sécurité (petite présentation en TP), des problèmes possibles liés à la compatibilité des anciennes versions de navigateurs.</p>
+<p><br> Dans une API, le principe est le même.</p>
+<p><br> Utiliser le fichier <strong>validator_auteur.py</strong> dans le dossier <strong>validator</strong>, déplacer le code du validateur dans ce fichier.</p>
+<p><br> L’objectif est de mettre les logiques du code dans des dossiers différents.</p>
+<h2 id="annexe-1">annexe</h2>
+<figure>
+<img src="img/tp5_1_23_img2.png" style="width:13cm" alt="" /><figcaption>exemple de script pour la requête de selection</figcaption>
+</figure>
+<p>tp5_img1_4 tp5_1_23_img1.png tp5_1_23_img2.png</p>
+<hr />
+<p><br></p>
+<h1 id="semaine-3-la-table-oeuvre">Semaine 3 : la table “oeuvre”</h1>
+<p>Dans un terminal ou sur le logiciel datagrip, réaliser les requêtes suivantes :</p>
+<h2 id="interrogation-des-données-lid-select-2">Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">LID</a>) : <strong>SELECT</strong></h2>
+<ul>
+<li><p>Requête 3_1 : Afficher les références des œuvres et le nombre d’exemplaires, si la date est NULL mettre une chaîne de caractères vide à la place de la valeur NULL.</p></li>
+<li><p>la dernière colonne est difficile à réaliser, il faut calculer si les exemplaires sont disponibles, une possibilité est d’ajouter dans une deuxième jointure sur la table exemplaire avec une condition</p></li>
+</ul>
+<pre><code>LEFT JOIN exemplaire AS E2 ON E2.id = E1.id
+    AND E2.id NOT IN (SELECT emprunt.exemplaire_id FROM emprunt WHERE emprunt.date_retour IS NULL)</code></pre>
+<p>résultat</p>
+<pre><code>+----------------+-------------------------+-----------+-------------------+---------------+----------------+
+| nom            | titre                   | id_oeuvre | date_parution_iso | nb_exemplaire | nb_exemp_dispo |
++----------------+-------------------------+-----------+-------------------+---------------+----------------+
+| Azimov         | La guerre des mondes    |        15 | 1970-03-15        |             2 |              2 |
+| Azimov         | les mondes perdus       |        14 | 1980-05-06        |             2 |              1 |
+| Baudelaire     | Les fleurs du mal       |        12 | 1957-06-25        |             1 |              1 |
+| Baudelaire     | petits poèmes en prose  |        13 | 1969-01-01        |             2 |              2 |
+| Chateaubriand  | mémoire d&#39;outre-tombe   |         7 | 1949-01-01        |             2 |              1 |
+| Christie       | dix brèves rencontres   |         3 | 1982-10-01        |             2 |              1 |
+| Christie       | le miroir de la mort    |         4 | 1961-01-01        |             3 |              2 |
+| Christie       | le retour de Poirot     |         1 | 1960-02-12        |             4 |              2 |
+| Christie       | Poirot quitte la scène  |         2 | 1975-05-01        |             2 |              0 |
+| De La Fontaine | Le triomphe de l&#39;amour  |        18 | 1980-05-06        |             0 |              0 |
+| De La Fontaine | Les fables              |        17 | 1694-01-01        |             2 |              2 |
+| Duras          | le marin de Gibraltar   |        21 | 1952-07-12        |             0 |              0 |
+| Duras          | un amour de swam        |         9 | 2004-06-01        |             1 |              1 |
+| Flaubert       | Madame de Bovary        |         8 | 1956-12-15        |             1 |              1 |
+| Highsmith      | une créature de rêve    |         6 | 1992-02-01        |             2 |              1 |
+| Kipling        | kim                     |        20 | 1901-07-01        |             3 |              3 |
+| Kipling        | le livre de la jungle   |        19 | 1968-12-11        |             5 |              3 |
+| Moliere        | le misanthrope          |        11 | 1666-01-01        |             1 |              1 |
+| Moliere        | les femmes savantes     |        10 | 1672-03-16        |             4 |              2 |
+| Prévert        | spectacles              |        16 | 1948-05-12        |             1 |              1 |
+| Zola           | j&#39;accuse                |        23 | 1898-01-13        |             0 |              0 |
+| Zola           | la terre                |        24 | 1887-01-01        |             0 |              0 |
+| Zola           | l’assommoir             |        22 | 1976-01-01        |             0 |              0 |
++----------------+-------------------------+-----------+-------------------+---------------+----------------+
+
+</code></pre>
+<ul>
+<li>ajouter les photos et convertir la date du format ISO (YYYY-MM-DD) au format FR (DD/MM/AAAA)</li>
+</ul>
+<pre><code>+----------------+-------------------------+----+------------------+-------------------------+--------------+-------------+---------------+
+| nom            | titre                   | id | date_parution_en | photo                   | nbExemplaire | nombreDispo | date_parution |
++----------------+-------------------------+----+------------------+-------------------------+--------------+-------------+---------------+
+| Azimov         | La guerre des mondes    | 15 | 1970-03-15       |                         |            2 |           2 | 15/03/1970    |
+| Azimov         | les mondes perdus       | 14 | 1980-05-06       | lesMondesPerdus.jpg     |            2 |           1 | 06/05/1980    |
+| Baudelaire     | Les fleurs du mal       | 12 | 1957-06-25       | lesFleursDuMal.jpg      |            1 |           1 | 25/06/1957    |
+| Baudelaire     | petits poèmes en prose  | 13 | 1969-01-01       |                         |            2 |           2 | 01/01/1969    |
+| Chateaubriand  | mémoire d&#39;outre-tombe   |  7 | 1949-01-01       |                         |            2 |           1 | 01/01/1949    |
+| Christie       | dix brèves rencontres   |  3 | 1982-10-01       | dixBrevesRencontres.jpg |            2 |           1 | 01/10/1982    |
+| Christie       | le miroir de la mort    |  4 | 1961-01-01       | leMiroirDuMort.jpeg     |            3 |           2 | 01/01/1961    |
+| Christie       | le retour de Poirot     |  1 | 1960-02-12       | leRetourDePoirot.jpg    |            4 |           2 | 12/02/1960    |
+| Christie       | Poirot quitte la scène  |  2 | 1975-05-01       |                         |            2 |           0 | 01/05/1975    |
+| De La Fontaine | Le triomphe de l&#39;amour  | 18 | 1980-05-06       |                         |            0 |           0 | 06/05/1980    |
+| De La Fontaine | Les fables              | 17 | 1694-01-01       |                         |            2 |           2 | 01/01/1694    |
+| Duras          | le marin de Gibraltar   | 21 | 1952-07-12       |                         |            0 |           0 | 12/07/1952    |
+| Duras          | un amour de swam        |  9 | 2004-06-01       | unAmourDeSwann.jpeg     |            1 |           1 | 01/06/2004    |
+| Flaubert       | Madame de Bovary        |  8 | 1956-12-15       |                         |            1 |           1 | 15/12/1956    |
+| Highsmith      | une créature de rêve    |  6 | 1992-02-01       |                         |            2 |           1 | 01/02/1992    |
+| Kipling        | kim                     | 20 | 1901-07-01       |                         |            3 |           3 | 01/07/1901    |
+| Kipling        | le livre de la jungle   | 19 | 1968-12-11       |                         |            5 |           3 | 11/12/1968    |
+| Moliere        | le misanthrope          | 11 | 1666-01-01       |                         |            1 |           1 | 01/01/1666    |
+| Moliere        | les femmes savantes     | 10 | 1672-03-16       |                         |            4 |           2 | 16/03/1672    |
+| Prévert        | spectacles              | 16 | 1948-05-12       |                         |            1 |           1 | 12/05/1948    |
+| Zola           | j&#39;accuse                | 23 | 1898-01-13       |                         |            0 |           0 | 13/01/1898    |
+| Zola           | la terre                | 24 | 1887-01-01       |                         |            0 |           0 | 01/01/1887    |
+| Zola           | l’assommoir             | 22 | 1976-01-01       |                         |            0 |           0 | 01/01/1976    |
++----------------+-------------------------+----+------------------+-------------------------+--------------+-------------+---------------+
+</code></pre>
+<h2 id="manipulation-des-données-lmd-insert-update-delete-2">Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">LMD</a>) : <strong>INSERT – UPDATE – DELETE</strong></h2>
+<ul>
+<li><p>Requête 3_2 : ajouter une oeuvre avec les informations du formulaire</p></li>
+<li><p>Requête 3_4 : afficher l’enregistrement oeuvre dont l’identifiant est passé en paramètre (pour la modification)</p></li>
+<li><p>Requête 3_5 : modifier l’ enregistrement créé ci-dessus</p></li>
+<li><p>Requête 3_3 : supprimer l’enregistrement créé ci-dessus</p></li>
+<li><p>Requête 3_6 : contenu de la liste déroulante : afficher l’identifiant et le nom de tous les auteurs, trier les enregistrements par nom d’auteur</p></li>
+<li><p>Requête 3_7 : compter le nombre d’exemplaires d’une oeuvre dont l’identifiant est passé en paramètre dans une variable, le résultat est une colonne unique de nom ‘nb_exemplaires’</p></li>
+</ul>
+<h2 id="application-python-flask-pour-gérer-la-bibliothèque-2">application python (flask) pour gérer la bibliothèque</h2>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_oeuvre.py</code> ; tester l’application pour afficher/ajouter/supprimer/modifier des enregistrements</p>
+<p>L’interface web (mini-projet) ci-dessous réutilise le résultat de cette requête</p>
+<figure>
+<img src="img/tp5_img1_7.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python</figcaption>
+</figure>
+<p>Modification du code, les dates sont au format “YYYY-MM-DD” par défaut. Le filtre dans jinja <code>{{ adherent.datePaiement.strftime('%d-%m-%Y')  }}</code> ne fonctionne pas (faire un essai). La plage des dates est limitée (rappel : Quelle est la différence entre les types DATETIME et TIMESTAMP ? (<a href="https://fr.wikipedia.org/wiki/Bug_de_l%27an_2038" data-taget="_blanck">voir bug de l’an 2038</a>).</p>
+<p><br> Renommer la colonne <code>date_parution</code> en <code>date_parution_en</code> Modifier la requête pour retourner une colonne supplémentaire : <code>date_parution</code> qui met la date de parution au format <code>JJ/MM/AAAA</code> : utiliser les fonctions <code>CONCAT, DAY, MONTH, YEAR, CAST, LPAD</code> (faire des recherches sur internet)</p>
+<hr />
+<h1 id="semaine-4-la-table-exemplaire">Semaine 4 : la table “exemplaire”</h1>
+<p><br></p>
+<p>Dans le logiciel qui gère la bibliothèque, la gestion des exemplaires est différente des autres tables.</p>
+<p><br> Le lien “gérer les exemplaires” depuis l’interface d’affichage des oeuvres permet de gérer les exemplaires uniquement de l’oeuvre sélectionnée. Chaque requête par la suite va faire référence au numéro de l’oeuvre passé dans le lien.</p>
+<p><img src="img/tp5_1_23_img4.png" style="width:14cm" alt="résultat dans l’application python" /> <br></p>
+<p>Dans un terminal ou sur le logiciel datagrip, réaliser les requêtes suivantes :</p>
+<h2 id="interrogation-des-données-lid-select-3">Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">LID</a>) : <strong>SELECT</strong></h2>
+<ul>
+<li><p>Afficher les informations communes à tous les exemplaires :</p></li>
+<li><p>Requête 4_1 : Afficher pour une oeuvre : nom de l’auteur, Titre , date de parution, nombre d’exemplaires dans la bibliothèque (présents) ainsi que le nombre d’exemplaires total, l’identifiant de l’oeuvre (renommé noOeuvre)</p></li>
+</ul>
+<p>exemple de résultat pour l’oeuvre d’identifiant 1 :</p>
+<pre><code>+-----------+---------------------+-----------+---------------+---------------+----------------+
+| nomAuteur | titre               | id_oeuvre | date_parution | nb_exemplaire | nb_exemp_dispo |
++-----------+---------------------+-----------+---------------+---------------+----------------+
+| Christie  | le retour de Poirot |         1 | 1960-02-12    |             4 |              2 |
++-----------+---------------------+-----------+---------------+---------------+----------------+
+</code></pre>
+<p>exemple de résultat pour l’oeuvre d’identifiant 14 :</p>
+<pre><code>+-----------+-------------------+-----------+---------------+---------------+----------------+
+| nomAuteur | titre             | id_oeuvre | date_parution | nb_exemplaire | nb_exemp_dispo |
++-----------+-------------------+-----------+---------------+---------------+----------------+
+| Azimov    | les mondes perdus |        14 | 1980-05-06    |             2 |              1 |
++-----------+-------------------+-----------+---------------+---------------+----------------+
+</code></pre>
+<ul>
+<li>Requête 4_2 : Afficher la liste des exemplaires disponibles pour une oeuvre : numéro, état , date d’achat, prix , mettre 1 drapeau pour indiquer si l’exemplaire est dans la bibliothèque</li>
+</ul>
+<p>exemple de résultat pour l’oeuvre d’identifiant 1 :</p>
+<pre><code>
++---------------+-------+------------+-------+---------------------+-----------+---------------+------------------+---------+
+| id_exemplaire | etat  | date_achat | prix  | titre               | id_oeuvre | date_parution | exemplaire_dispo | present |
++---------------+-------+------------+-------+---------------------+-----------+---------------+------------------+---------+
+|             4 | BON   | 2015-01-11 | 10.00 | le retour de Poirot |         1 | 1960-02-12    |             NULL | abs     |
+|             3 | MOYEN | 2021-05-26 | 12.00 | le retour de Poirot |         1 | 1960-02-12    |             NULL | abs     |
+|             2 | MOYEN | 2015-09-28 | 12.50 | le retour de Poirot |         1 | 1960-02-12    |                2 | present |
+|             1 | BON   | 2021-08-25 | 13.50 | le retour de Poirot |         1 | 1960-02-12    |                1 | present |
++---------------+-------+------------+-------+---------------------+-----------+---------------+------------------+---------+
+</code></pre>
+<p>exemple de résultat pour l’oeuvre d’identifiant 14 :</p>
+<pre><code>
++---------------+---------+------------+-------+-------------------+-----------+---------------+------------------+---------+
+| id_exemplaire | etat    | date_achat | prix  | titre             | id_oeuvre | date_parution | exemplaire_dispo | present |
++---------------+---------+------------+-------+-------------------+-----------+---------------+------------------+---------+
+|            27 | MOYEN   | 2015-12-26 | 13.00 | les mondes perdus |        14 | 1980-05-06    |             NULL | abs     |
+|            26 | MAUVAIS | 2022-01-23 | 26.00 | les mondes perdus |        14 | 1980-05-06    |               26 | present |
++---------------+---------+------------+-------+-------------------+-----------+---------------+------------------+---------+
+</code></pre>
+<figure>
+<img src="img/tp5_1_23_img6.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python</figcaption>
+</figure>
+<ul>
+<li>Requête 4_3 : Afficher pour une oeuvre : nom de l’auteur, Titre , date de parution, l’identifiant de l’oeuvre (renommé noOeuvre) à partir de l’identifiant de l’oeuvre passé en paramètre</li>
+</ul>
+<p>exemple avec l’oeuvre 1</p>
+<pre><code>+----------+---------------------+-----------+---------------+
+| nom      | titre               | id_oeuvre | date_parution |
++----------+---------------------+-----------+---------------+
+| Christie | le retour de Poirot |         1 | 1960-02-12    |
++----------+---------------------+-----------+---------------+
+</code></pre>
+<h2 id="manipulation-des-données-lmd-insert-update-delete-3">Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">LMD</a>) : <strong>INSERT – UPDATE – DELETE</strong></h2>
+<ul>
+<li>Requête 4_5 : ajouter un exemplaire avec 3 paramètres(variables) (la date est au format YYYY-MM-DD)</li>
+</ul>
+<p>Pour modifier un enregistrement :</p>
+<ul>
+<li><p>Requête 4_10 : Afficher pour une oeuvre (un exemplaire d’une oeuvre) : nom de l’auteur, Titre , date de parution, l’identifiant de l’oeuvre (renommé noOeuvre) à partir de l’identifiant de l’exemplaire passé en paramètre</p></li>
+<li><p>Requête 4_11 : afficher toutes les colonnes de l’enregistrement (à partir du numéro d’exemplaire)</p></li>
+<li><p>Requête 4_12 : modifier l’ enregistrement en mettant par exemple en majuscule le nom et en minuscule l’adresse de l’adhérent</p></li>
+</ul>
+<p>Pour supprimer un enregistrement :</p>
+<ul>
+<li><p>Requête 4_8 : supprimer l’enregistrement créé ci-dessus</p></li>
+<li><p>Requête 4_7 : compter le nombre d’emprunts d’un exemplaire dont l’identifiant est passé en paramètre dans une variable, le résultat est une colonne unique de nom ‘nb_emprunts’</p></li>
+<li><p>Requête 4_9 : retrouver (afficher) le numero d’oeuvre à partir de l’identifiant de l’exemplaire pour faire une redirection sur la bonne route : <code>'/admin/exemplaire/show?noOeuvre='+oeuvre_id</code></p></li>
+</ul>
+<h2 id="application-python-flask-pour-gérer-la-bibliothèque-3">application python (flask) pour gérer la bibliothèque</h2>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_exemplaire.py</code> ; tester l’application pour afficher/ajouter/supprimer/modifier des enregistrements</p>
+<p>L’interface web (mini-projet) ci-dessous réutilise le résultat de cette requête</p>
+<figure>
+<img src="img/tp5_1_23_img4.png" style="width:10cm" alt="" /><figcaption>résultat dans l’application python</figcaption>
+</figure>
+<p><img src="img/tp5_1_23_img6.png" style="width:14cm" alt="résultat dans l’application python" /> <br></p>
+<hr />
+<h1 id="semaine-5-la-table-la-table-emprunt">Semaine 5 : la table la table “emprunt”</h1>
+<p>Méthodes nécessaires pour faire l’application</p>
+<h2 id="pour-sélectionner-un-adhérent-fonction-emprunt_select_adherent">Pour sélectionner un adhérent ; fonction : emprunt_select_adherent</h2>
+<p>Dans le fichier <code>controllers/admin_emprunt.py</code>, pour sélectionner des adhérents, il y a 2 cas :</p>
+<ul>
+<li>Requête 5_1 : les adhérents ayant le droit d’emprunter un livre</li>
+</ul>
+<p>Liste des adhérents qui peuvent emprunter un exemplaire : (find_adherents_emprunter)</p>
+<p><br> Condition pour emprunter un livre (exemplaire) :</p>
+<ul>
+<li>l’adhérent est à jour dans sa cotisation (la “date_paiement” + 1 an est supérieure à la date d’aujourd’hui )</li>
+<li>l’adhérent a emprunté moins de 6 documents (exemplaires)</li>
+<li>l’adhérent n’a pas d’exemplaire emprunté et non rendu en retard (un adhérent ne peut conserver que 90 jours un livre (exemplaire), après 90 jours si l’adhérent n’a pas rendu un livre, il ne peut plus emprunter de livre.)</li>
+</ul>
+<p><br></p>
+<p>Trier les adhérents par nom</p>
+<!-- findEmpruntDropdownAdherents() -->
+<p>exemple de résultat</p>
+<pre><code>+----+-----------+---------------+--------------------------------------------------------+--------------------------------------------------------+------------+------------------+-------------+------------+
+| id | nom       | date_paiement | group_concat(empr.date_emprunt)                        | liste_retour                                           | nbrEmprunt | retardCotisation | listeRetard | nbreRetard |
++----+-----------+---------------+--------------------------------------------------------+--------------------------------------------------------+------------+------------------+-------------+------------+
+|  8 | asproitis | 2022-12-04    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
+|  1 | billot    | 2022-11-03    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
+|  6 | cambot    | 2022-12-15    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
+| 10 | dupont    | 2022-03-14    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
+| 11 | durant    | 2022-12-16    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
+|  2 | lauvernay | 2022-06-13    | 2022-12-01,2022-12-15,2022-12-30,2023-02-26,2023-02-11 | 2022-12-01,2022-12-15,2022-12-30,2023-02-26,2023-02-11 |          5 |                0 | 0,0,0,0,0   |          0 |
+|  9 | pereira   | 2022-11-03    | 2023-02-22,2023-01-30                                  | 2023-02-22,2023-01-30                                  |          2 |                0 | 0,0         |          0 |
+| 12 | piton     | 2022-11-03    | NULL                                                   | NULL                                                   |          0 |                0 | 0           |          0 |
++----+-----------+---------------+--------------------------------------------------------+--------------------------------------------------------+------------+------------------+-------------+------------+
+</code></pre>
+<figure>
+<img src="img/tp5_requete5_1_1.png" alt="" /><figcaption>exemple de résultat (variable selon la date)</figcaption>
+</figure>
+<figure>
+<img src="img/tp5_requete5_1_2.png" alt="" /><figcaption>exemple de résultat sans mettre de condition</figcaption>
+</figure>
+<ul>
+<li>Requête 5_2 : les adhérents désirant rendre un livre</li>
+</ul>
+<p>Lorsqu’un adhérent rend des livres, utiliser</p>
+<p>Liste des adhérents (distincts) ayant empruntés un exemplaire d’un livre (les exemplaires ne sont pas encore rendus) (find_adherents_rendre) ; Trier les adhérents par nom</p>
+<p>exemple de résultat</p>
+<pre><code>+----+-----------+
+| id | nom       |
++----+-----------+
+|  3 | axelrad   |
+|  4 | bedez     |
+|  2 | lauvernay |
++----+-----------+</code></pre>
+<h2 id="lorsque-que-lon-emprunte-des-livres-fonction-emprunt_emprunter">lorsque que l’on emprunte des livres ; fonction : emprunt_emprunter</h2>
+<p>Lors d’un emprunt :</p>
+<ul>
+<li>Requête 5_3 : vérification des droits de l’emprunteur</li>
+</ul>
+<p><br></p>
+<p>Nombre d’exemplaire en retard pour un adhérent (find_adherent_nbre_emprunt_retardDatePaiment(idAdherent))</p>
+<p><br></p>
+<p>Pour l’adhérent dont l’identifiant est passé en paramètre, retourner le nombre d’emprunt et le nombre d’emprunt en retard, exemple pour l’adhérent 4 (bedez)</p>
+<pre><code>+------------+--------+
+| nbrEmprunt | retard |
++------------+--------+
+|          3 |      0 |
++------------+--------+</code></pre>
+<ul>
+<li>Requête 5_4 :<br />
+Liste des exemplaires disponibles : nomAuteur, titre, idOeuvre(id), idExemplaire(id) (find_exemplaire_oeuvre_disponible)</li>
+</ul>
+<pre><code>+----------------+------------------------+----------+--------------+
+| nomAuteur      | titre                  | noOeuvre | noExemplaire |
++----------------+------------------------+----------+--------------+
+| Azimov         | La guerre des mondes   |       15 |           28 |
+| Azimov         | La guerre des mondes   |       15 |           29 |
+| Azimov         | les mondes perdus      |       14 |           26 |
+| Baudelaire     | Les fleurs du mal      |       12 |           23 |
+| Chateaubriand  | mémoire d&#39;outre-tombe  |        7 |           14 |
+| Christie       | dix brèves rencontres  |        3 |            7 |
+| Christie       | le miroir de la mort   |        4 |           10 |
+| Christie       | le miroir de la mort   |        4 |           11 |
+| Christie       | le retour de Poirot    |        1 |            1 |
+| Christie       | le retour de Poirot    |        1 |            2 |
+| De La Fontaine | Les fables             |       17 |           31 |
+| De La Fontaine | Les fables             |       17 |           32 |
+| Duras          | un amour de swam       |        9 |           17 |
+| Flaubert       | Madame de Bovary       |        8 |           16 |
+| Highsmith      | une créature de rêve   |        6 |           12 |
+| Kipling        | kim                    |       20 |           40 |
+| Kipling        | kim                    |       20 |           38 |
+| Kipling        | kim                    |       20 |           39 |
+| Kipling        | le livre de la jungle  |       19 |           34 |
+| Kipling        | le livre de la jungle  |       19 |           35 |
+| Kipling        | le livre de la jungle  |       19 |           36 |
+| Moliere        | le misanthrope         |       11 |           22 |
+| Moliere        | les femmes savantes    |       10 |           20 |
+| Moliere        | les femmes savantes    |       10 |           21 |
+| Prévert        | spectacles             |       16 |           30 |
++----------------+------------------------+----------+--------------+</code></pre>
+<ul>
+<li>Requête 5_5 :</li>
+</ul>
+<p>Liste des emprunts (livre non rendu) par un adhérent : idAdherent(id), noExemplaire(id), titre, nomAdherent, date_emprunt, date_retour, nombre de jours entre la date d’aujourd’hui (curdate) et la date_emprunt (find_emprunt_data_adherent(idAdherent))</p>
+<!-- Liste des exemplaires que doit rendre un adhérent :  nomAuteur, titre, idOeuvre(id), idExemplaire(id) 
+ ( findExemplairesArendre($idAdherent)) ; Trier les adhérents par nom -->
+<p><br></p>
+<p>exemple pour l’adhérent 4 (bedez)</p>
+<pre><code>+------------+--------------+-------------------------+-------+--------------+-------------+----------------+
+| idAdherent | noExemplaire | titre                   | nom   | date_emprunt | date_retour | nbJoursEmprunt |
++------------+--------------+-------------------------+-------+--------------+-------------+----------------+
+|          4 |           27 | les mondes perdus       | bedez | 2023-02-22   | NULL        |             -1 |
+|          4 |            6 | Poirot quitte la scène  | bedez | 2023-01-25   | NULL        |             27 |
+|          4 |           19 | les femmes savantes     | bedez | 2022-09-21   | NULL        |            153 |
++------------+--------------+-------------------------+-------+--------------+-------------+----------------+</code></pre>
+<ul>
+<li><p>Requête 5_6 : requête pour ajouter un emprunt</p></li>
+<li><p>Requête 5_7 : requête pour afficher des informations sur l’adhérent sélectionné :</p></li>
+</ul>
+<pre><code>+----+-------+-----------+--------------+
+| id | nom   | adresse   | datePaiement |
++----+-------+-----------+--------------+
+|  4 | bedez | hericourt | 2022-04-17   |
++----+-------+-----------+--------------+</code></pre>
+<h2 id="lors-du-retour-de-livre-fonction-emprunt_rendre">Lors du retour de livre ; fonction : emprunt_rendre</h2>
+<ul>
+<li>Requête 5_8 : requête pour modifier un emprunt : modifier la date de retour</li>
+</ul>
+<p>Les autres requêtes sont identiques</p>
+<h3 id="application-python-flask-pour-gérer-la-bibliothèque-emprunter-rendre">application python (flask) pour gérer la bibliothèque : emprunter / rendre</h3>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_emprunt.py</code> ; tester l’application pour emprunter et rendre des livres des enregistrements</p>
+<p><em>L’interface web (mini-projet) ci-dessous réutilise le résultat de ces requêtes</em></p>
+<figure>
+<img src="img/tp5_1_23_img11.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python : <strong>sélectionner des adhérents pour rendre/emprunter des livres</strong></figcaption>
+</figure>
+<figure>
+<img src="img/tp5_1_23_img12.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python : <strong>emprunter des livres</strong></figcaption>
+</figure>
+<figure>
+<img src="img/tp5_1_23_img13.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python : <strong>rendre des livres</strong></figcaption>
+</figure>
+<p><br></p>
+<h2 id="lors-de-la-suppression-des-emprunts-en-cascade">Lors de la suppression des emprunts (en cascade)</h2>
+<ul>
+<li><p>Requête 5_9 : requête pour sélectionner un emprunt avec une clé primaire (pas de jointure, uniquement la table emprunt)</p></li>
+<li><p>Requête 5_10 : requête pour supprimer un emprunt avec une clé primaire</p></li>
+<li><p>Requête 5_11 : requête pour sélectionner tous les emprunts (trié par nom d’adhérent et date d’emprunt)</p></li>
+</ul>
+<p>Liste des emprunts idAdherent(id), idExemplaire(id), titre, nomAdherent , date_emprunt, date_retour , nombre de jours entre la date d’aujourd’hui (curdate) et la date_emprunt, si le paramètre <code>idAdherent</code> est vide, afficher tous les emprunts (find_adherents_select_emprunts(idAdherent))</p>
+<pre><code>+------------+--------------+-------------------------+-------------+-------------+------------+----------------+
+| idAdherent | idExemplaire | titre                   | nomAdherent | dateEmprunt | dateRetour | nbJoursEmprunt |
++------------+--------------+-------------------------+-------------+-------------+------------+----------------+
+|          8 |            2 | le retour de Poirot     | asproitis   | 2022-11-21  | 2022-11-28 |             90 |
+|          8 |            9 | le miroir de la mort    | asproitis   | 2022-07-26  | 2022-09-22 |            208 |
+|          3 |            7 | dix brèves rencontres   | axelrad     | 2023-02-22  | 2023-03-29 |             -3 |
+|          3 |           33 | le livre de la jungle   | axelrad     | 2023-01-30  | NULL       |             20 |
+|          3 |           11 | le miroir de la mort    | axelrad     | 2023-01-26  | 2023-02-21 |             24 |
+|          3 |            9 | le miroir de la mort    | axelrad     | 2023-01-25  | NULL       |             25 |
+|          3 |           13 | une créature de rêve    | axelrad     | 2023-01-04  | NULL       |             46 |
+|          3 |            5 | Poirot quitte la scène  | axelrad     | 2022-11-23  | 2022-12-24 |             88 |
+|          3 |           40 | kim                     | axelrad     | 2022-11-23  | 2022-12-24 |             88 |
+|          3 |            3 | le retour de Poirot     | axelrad     | 2022-09-13  | NULL       |            159 |
+|          3 |            5 | Poirot quitte la scène  | axelrad     | 2022-07-26  | 2022-08-23 |            208 |
+|          4 |           27 | les mondes perdus       | bedez       | 2023-02-22  | NULL       |             -3 |
+|          4 |            6 | Poirot quitte la scène  | bedez       | 2023-01-25  | NULL       |             25 |
+|          4 |           34 | le livre de la jungle   | bedez       | 2023-01-23  | 2023-02-20 |             27 |
+|          4 |            6 | Poirot quitte la scène  | bedez       | 2023-01-22  | 2023-01-23 |             28 |
+|          4 |           19 | les femmes savantes     | bedez       | 2022-09-21  | NULL       |            151 |
+|          5 |           40 | kim                     | berger      | 2022-07-25  | 2022-09-22 |            209 |
+|          7 |            2 | le retour de Poirot     | bonilla     | 2022-10-21  | 2022-10-28 |            121 |
+|          7 |           38 | kim                     | bonilla     | 2022-07-26  | 2022-10-22 |            208 |
+|          6 |           15 | mémoire d&#39;outre-tombe   | cambot      | 2022-09-23  | 2022-09-26 |            149 |
+|          6 |            2 | le retour de Poirot     | cambot      | 2022-09-21  | 2022-09-28 |            151 |
+|          2 |           19 | les femmes savantes     | lauvernay   | 2023-02-26  | NULL       |             -7 |
+|          2 |           37 | le livre de la jungle   | lauvernay   | 2023-02-11  | NULL       |              8 |
+|          2 |           40 | kim                     | lauvernay   | 2023-01-23  | 2023-02-23 |             27 |
+|          2 |            8 | dix brèves rencontres   | lauvernay   | 2022-12-30  | NULL       |             51 |
+|          2 |            5 | Poirot quitte la scène  | lauvernay   | 2022-12-15  | NULL       |             66 |
+|          2 |            4 | le retour de Poirot     | lauvernay   | 2022-12-01  | NULL       |             80 |
+|          2 |           18 | les femmes savantes     | lauvernay   | 2022-09-23  | 2022-10-28 |            149 |
+|          2 |            5 | Poirot quitte la scène  | lauvernay   | 2022-08-23  | 2022-09-23 |            180 |
+|          2 |           35 | le livre de la jungle   | lauvernay   | 2022-07-13  | 2022-09-21 |            221 |
++------------+--------------+-------------------------+-------------+-------------+------------+----------------+
+</code></pre>
+<ul>
+<li>Requête 5_12 : liste des adhérents (id, nom) ordonnée par nom pour la liste déroulante</li>
+</ul>
+<h3 id="application-python-flask-pour-gérer-la-bibliothèque-suppression-en-cascade-denregistrements">application python (flask) pour gérer la bibliothèque : suppression en cascade d’enregistrements</h3>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_emprunt.py</code> ; tester l’application pour supprimer des enregistrements</p>
+<p><em>L’interface web (mini-projet) ci-dessous réutilise le résultat de ces requêtes</em></p>
+<figure>
+<img src="img/tp5_1_23_img10.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python le 25 avril : <strong>supprimer en cascade des emprunts</strong></figcaption>
+</figure>
+<p><br></p>
+<h2 id="bilan">bilan :</h2>
+<ul>
+<li>Requête 5_13</li>
+</ul>
+<p>Afficher le nom des adhérents qui ont emprunté un exemplaire d’un livre et qui ne l’ont pas rendu, afficher la date de retour prévue maximum (90 jours) …, voici le détail des informations nécessaires :<br />
+idAdherent(id), idExemplaire(id), titre, nomAdherent, date_emprunt, date_retour<br />
+, nbre de jours entre la date d’aujourd’hui (curdate) et la date_emprunt<br />
+, nbre de jours entre la date d’aujourd’hui (curdate) et la date_emprunt+90j<br />
+, date limite d’emprunt<br />
+, un booleen flagRetard egal à 1 si la date d’emprunt est supérieure à la date d’aujourd’hui + 90 jours<br />
+, un booleen flagPenalite egal à 1 si la date d’emprunt est supérieure à la date d’aujourd’hui + 120 jours<br />
+, la Pénalité : (nombre de jours de retard-120j) * 0,5 si c’est inférieur à 25€ sinon 25 €<br />
+</p>
+<pre><code>+------------+--------------+---------------------+---------+--------------+-------------+----------------+--------+--------------------+------------+--------------+-------+
+| idAdherent | idExemplaire | titre               | nom     | date_emprunt | date_retour | nbJoursEmprunt | RETARD | dateRenduTheorique | flagRetard | flagPenalite | dette |
++------------+--------------+---------------------+---------+--------------+-------------+----------------+--------+--------------------+------------+--------------+-------+
+|          3 |            3 | le retour de Poirot | axelrad | 2022-09-13   | NULL        |            159 |     69 | 2022-12-12         |          1 |            1 |  19.5 |
+|          4 |           19 | les femmes savantes | bedez   | 2022-09-21   | NULL        |            151 |     61 | 2022-12-20         |          1 |            1 |  15.5 |
++------------+--------------+---------------------+---------+--------------+-------------+----------------+--------+--------------------+------------+--------------+-------+</code></pre>
+<h3 id="application-python-flask-pour-gérer-la-bibliothèque-4">application python (flask) pour gérer la bibliothèque</h3>
+<p><br></p>
+<p>Recopier les requêtes ci-dessus <code>controllers/admin_emprunt.py</code> ; tester l’application pour afficher/ajouter/supprimer/modifier des enregistrements</p>
+<p><em>L’interface web (mini-projet) ci-dessous réutilise le résultat de ces requêtes</em></p>
+<figure>
+<img src="img/tp5_1_23_img7.png" style="width:14cm" alt="" /><figcaption>résultat dans l’application python le 25 avril <strong>synthèse sur les emprunts en cours</strong></figcaption>
+</figure>
+<p><br></p>
+<hr />
+<!--
+sur datagrip File/settings
+[editor][file types]   [text]  File name pattern (rechercher)
+-->
+<h1 id="annexe-2">ANNEXE</h1>
+<pre><code>INSERT INTO auteur (id_auteur, nom, prenom) VALUES
+(1, &#39;Christie&#39;, &#39;Agatha&#39;),
+(2, &#39;Chateaubriand&#39;, &#39;François-René&#39;),
+(3, &#39;Flaubert&#39;, &#39;Gustave&#39;),
+(4, &#39;Prévert&#39;, &#39;Jacques&#39;),
+(5, &#39;De La Fontaine&#39;, &#39;Jean&#39;),
+(6, &#39;Daudet&#39;, &#39;Alphonse&#39;),
+(7, &#39;Hugo&#39;, &#39;Victor&#39;),
+(8, &#39;Kessel&#39;, &#39;Joseph&#39;),
+(9, &#39;Duras&#39;, &#39;Marguerite&#39;),
+(10, &#39;Proust&#39;, &#39;Marcel&#39;),
+(11, &#39;Zola&#39;, &#39;Émile&#39;),
+(12, &#39;Highsmith&#39;, &#39;Patricia&#39;),
+(13, &#39;Kipling&#39;, &#39;Rudyard&#39;),
+(14, &#39;Azimov&#39;, &#39;Isaac&#39;),
+(15, &#39;Baudelaire&#39;, &#39;Charles&#39;);
+INSERT INTO auteur (id_auteur, nom, prenom) VALUE
+(16, &#39;Moliere&#39;, &#39;Jean-Baptiste Poquelin&#39;);
+
+/* 23 oeuvres */
+/* pas de 5*/
+INSERT INTO oeuvre (id_oeuvre, titre, date_parution, photo, auteur_id) VALUES
+(1, &#39;le retour de Poirot&#39;, &#39;1960-02-12&#39;, &#39;leRetourDePoirot.jpg&#39;, 1);
+INSERT INTO oeuvre (id_oeuvre, titre, date_parution, photo, auteur_id) VALUES
+(2, &#39;Poirot quitte la scène&#39;, &#39;1975-05-01&#39;, &#39;&#39;, 1);
+INSERT INTO oeuvre (id_oeuvre, titre, date_parution, photo, auteur_id) VALUES
+(3, &#39;dix brèves rencontres&#39;, &#39;1982-10-01&#39;, &#39;dixBrevesRencontres.jpg&#39;, 1),
+(4, &#39;le miroir de la mort&#39;, &#39;1961-01-01&#39;, &#39;leMiroirDuMort.jpeg&#39;, 1),
+(6, &#39;une créature de rêve&#39;, &#39;1992-02-01&#39;, &#39;&#39;, 12),
+(7, &quot;mémoire d\&#39;outre-tombe&quot;, &#39;1949-01-01&#39;, &#39;&#39;, 2),
+(8, &#39;Madame de Bovary&#39;, &#39;1956-12-15&#39;, &#39;&#39;, 3);
+INSERT INTO oeuvre (id_oeuvre, titre, date_parution, photo, auteur_id) VALUES
+(9, &#39;un amour de swam&#39;, &#39;2004-06-01&#39;, &#39;unAmourDeSwann.jpeg&#39;, 9),
+(10, &#39;les femmes savantes&#39;, &#39;1672-03-16&#39;, &#39;&#39;, 16),
+(11, &#39;le misanthrope&#39;, &#39;1666-01-01&#39;, &#39;&#39;, 16),
+(12, &#39;Les fleurs du mal&#39;, &#39;1957-06-25&#39;, &#39;lesFleursDuMal.jpg&#39;, 15),
+(13, &#39;petits poèmes en prose&#39;, &#39;1969-01-01&#39;, NULL, 15),
+(14, &#39;les mondes perdus&#39;, &#39;1980-05-06&#39;, &#39;lesMondesPerdus.jpg&#39;, 14),
+(15, &#39;La guerre des mondes&#39;, &#39;1970-03-15&#39;, &#39;&#39;, 14),
+(16, &#39;spectacles&#39;, &#39;1948-05-12&#39;, &#39;&#39;, 4),
+(17, &#39;Les fables&#39;, &#39;1694-01-01&#39;, &#39;&#39;, 5);
+INSERT INTO oeuvre (id_oeuvre, titre, date_parution, photo, auteur_id) VALUES
+(18, &quot;Le triomphe de l\&#39;amour&quot;, &#39;1980-05-06&#39;, &#39;&#39;, 5),
+(19, &#39;le livre de la jungle&#39;, &#39;1968-12-11&#39;, &#39;&#39;, 13),
+(20, &#39;kim&#39;, &#39;1901-07-01&#39;, &#39;&#39;, 13),
+(21, &#39;le marin de Gibraltar&#39;, &#39;1952-07-12&#39;, &#39;&#39;, 9),
+(22, &#39;l’assommoir&#39;, &#39;1976-01-01&#39;, &#39;&#39;, 11),
+(23, &quot;j\&#39;accuse&quot;, &#39;1898-01-13&#39;, &#39;&#39;, 11),
+(24, &#39;la terre&#39;, &#39;1887-01-01&#39;, &#39;&#39;, 11);
+
+
+INSERT INTO exemplaire (id_exemplaire, etat, date_achat, prix, oeuvre_id) VALUES
+(1, &#39;BON&#39;, &#39;2022-08-25&#39;, &#39;13.50&#39;, 1),
+(2, &#39;MOYEN&#39;, &#39;2015-09-28&#39;, &#39;12.50&#39;, 1),
+(3, &#39;MOYEN&#39;, &#39;2022-05-26&#39;, &#39;12.00&#39;, 1),
+(4, &#39;BON&#39;, &#39;2015-01-11&#39;, &#39;10.00&#39;, 1),
+(5, &#39;MAUVAIS&#39;, &#39;2021-10-29&#39;, &#39;13.00&#39;, 2),
+(6, &#39;NEUF&#39;, &#39;2022-10-29&#39;, &#39;20.00&#39;, 2),
+(7, &#39;BON&#39;, &#39;2021-12-27&#39;, &#39;7.00&#39;, 3),
+(8, &#39;MOYEN&#39;, &#39;2021-09-25&#39;, &#39;13.00&#39;, 3),
+(9, &#39;NEUF&#39;, &#39;2015-12-29&#39;, &#39;18.00&#39;, 4),
+(10, &#39;NEUF&#39;, &#39;2015-12-29&#39;, &#39;21.00&#39;, 4),
+(11, &#39;BON&#39;, &#39;2015-04-29&#39;, &#39;26.00&#39;, 4),
+(12, &#39;BON&#39;, &#39;2022-01-24&#39;, &#39;22.00&#39;, 6),
+(13, &#39;BON&#39;, &#39;2022-01-24&#39;, &#39;22.00&#39;, 6),
+(14, &#39;BON&#39;, &#39;2022-05-01&#39;, &#39;28.00&#39;, 7),
+(15, &#39;MAUVAIS&#39;, &#39;2022-01-26&#39;, &#39;28.00&#39;, 7),
+(16, &#39;BON&#39;, &#39;2022-01-24&#39;, &#39;30.00&#39;, 8),
+(17, &#39;BON&#39;, &#39;2022-01-23&#39;, &#39;32.00&#39;, 9),
+(18, &#39;MAUVAIS&#39;, &#39;2015-01-29&#39;, &#39;17.00&#39;, 10),
+(19, &#39;BON&#39;, &#39;2021-10-29&#39;, &#39;18.00&#39;, 10),
+(20, &#39;BON&#39;, &#39;2021-10-29&#39;, &#39;18.00&#39;, 10),
+(21, &#39;BON&#39;, &#39;2021-10-29&#39;, &#39;19.00&#39;, 10),
+(22, &#39;BON&#39;, &#39;2022-01-26&#39;, &#39;20.00&#39;, 11),
+(23, &#39;BON&#39;, &#39;2022-10-29&#39;, &#39;21.50&#39;, 12),
+(24, &#39;MAUVAIS&#39;, &#39;2022-01-24&#39;, &#39;22.00&#39;, 13),
+(25, &#39;BON&#39;, &#39;2015-01-28&#39;, &#39;22.00&#39;, 13),
+(26, &#39;MAUVAIS&#39;, &#39;2022-01-23&#39;, &#39;26.00&#39;, 14),
+(27, &#39;MOYEN&#39;, &#39;2015-12-26&#39;, &#39;13.00&#39;, 14),
+(28, &#39;BON&#39;, &#39;2022-02-23&#39;, &#39;12.00&#39;, 15),
+(29, &#39;BON&#39;, &#39;2022-10-29&#39;, &#39;15.00&#39;, 15),
+(30, &#39;MAUVAIS&#39;, &#39;2022-01-26&#39;, &#39;32.00&#39;, 16),
+(31, &#39;BON&#39;, &#39;2022-01-23&#39;, &#39;19.00&#39;, 17),
+(32, &#39;MAUVAIS&#39;, &#39;2017-10-29&#39;, &#39;19.00&#39;, 17),
+(33, &#39;BON&#39;, &#39;2021-01-23&#39;, &#39;20.00&#39;, 19),
+(34, &#39;BON&#39;, &#39;2022-01-25&#39;, &#39;11.00&#39;, 19),
+(35, &#39;MAUVAIS&#39;, &#39;2021-10-29&#39;, &#39;15.00&#39;, 19),
+(36, &#39;NEUF&#39;, &#39;2022-10-29&#39;, &#39;18.00&#39;, 19),
+(37, &#39;BON&#39;, &#39;2022-01-23&#39;, &#39;8.00&#39;, 19),
+(38, &#39;MAUVAIS&#39;, &#39;2021-09-28&#39;, &#39;18.00&#39;, 20),
+(39, &#39;BON&#39;, &#39;2021-12-26&#39;, &#39;18.00&#39;, 20),
+(40, &#39;BON&#39;, &#39;2022-01-23&#39;, &#39;11.00&#39;, 20);
+
+
+INSERT INTO adherent (id_adherent, nom, adresse, date_paiement) VALUES
+(1, &#39;billot&#39;, &#39;Montbeliard&#39;, &#39;2022-11-03&#39;),
+(2, &#39;lauvernay&#39;, &#39;sevenans&#39;, &#39;2022-06-13&#39;),
+(3, &#39;axelrad&#39;, &#39;sevenans&#39;, &#39;2022-01-12&#39;),
+(4, &#39;bedez&#39;, &#39;hericourt&#39;, &#39;2022-04-17&#39;),
+(5, &#39;berger&#39;, &#39;les glacis&#39;, &#39;2013-11-03&#39;),
+(6, &#39;cambot&#39;, &#39;sevenans&#39;, &#39;2022-12-15&#39;),
+(7, &#39;bonilla&#39;, &#39;sochaux&#39;, &#39;2022-02-17&#39;),
+(8, &#39;asproitis&#39;, &#39;grenoble&#39;, &#39;2022-12-04&#39;),
+(9, &#39;pereira&#39;, &#39;danjoutin&#39;, &#39;2022-11-03&#39;),
+(10, &#39;dupont&#39;, &#39;grenoble&#39;, &#39;2022-03-14&#39;),
+(11, &#39;durant&#39;, &#39;belfort&#39;, &#39;2022-12-16&#39;),
+(12, &#39;piton&#39;, &#39;belfort&#39;, &#39;2022-11-03&#39;);
+
+INSERT INTO emprunt (adherent_id, exemplaire_id, date_emprunt, date_retour) VALUES
+(6, 2, &#39;2022-09-21&#39;, &#39;2022-09-28&#39;),
+(7, 2, &#39;2022-10-21&#39;, &#39;2022-10-28&#39;),
+(8, 2, &#39;2022-11-21&#39;, &#39;2022-11-28&#39;),
+(3, 3, &#39;2022-09-13&#39;, NULL),
+(2, 4, &#39;2022-12-01&#39;, NULL),
+(2, 5, &#39;2022-08-23&#39;, &#39;2022-09-23&#39;),
+(2, 5, &#39;2022-12-15&#39;, NULL),
+(3, 5, &#39;2022-07-26&#39;, &#39;2022-08-23&#39;),
+(3, 5, &#39;2022-11-23&#39;, &#39;2022-12-24&#39;),
+(4, 6, &#39;2023-01-22&#39;, &#39;2023-01-23&#39;),
+(4, 6, &#39;2023-01-25&#39;, NULL),
+(3, 7, &#39;2023-02-22&#39;, &#39;2023-03-29&#39;),
+(2, 8, &#39;2022-12-30&#39;, NULL),
+(3, 9, &#39;2023-01-25&#39;, NULL),
+(8, 9, &#39;2022-07-26&#39;, &#39;2022-09-22&#39;),
+(3, 11, &#39;2023-01-26&#39;, &#39;2023-02-21&#39;),
+(3, 13, &#39;2023-01-04&#39;, NULL),
+(6, 15, &#39;2022-09-23&#39;, &#39;2022-09-26&#39;),
+(2, 18, &#39;2022-09-23&#39;, &#39;2022-10-28&#39;),
+(2, 19, &#39;2023-02-26&#39;, NULL),
+(4, 19, &#39;2022-09-21&#39;, &#39;2022-01-21&#39;),
+(4, 27, &#39;2023-02-22&#39;, NULL),
+(3, 33, &#39;2023-01-30&#39;, NULL),
+(4, 34, &#39;2023-01-23&#39;, &#39;2023-02-20&#39;),
+(2, 35, &#39;2022-07-13&#39;, &#39;2022-09-21&#39;),
+(2, 37, &#39;2023-02-11&#39;, NULL),
+(7, 38, &#39;2022-07-26&#39;, &#39;2022-10-22&#39;),
+(2, 40, &#39;2023-01-23&#39;, &#39;2023-02-23&#39;),
+(3, 40, &#39;2022-11-23&#39;, &#39;2022-12-24&#39;),
+(5, 40, &#39;2022-07-25&#39;, &#39;2022-09-22&#39;),
+(9, 15, &#39;2023-02-22&#39;, NULL),
+(9, 18, &#39;2023-01-30&#39;, NULL);</code></pre>
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
