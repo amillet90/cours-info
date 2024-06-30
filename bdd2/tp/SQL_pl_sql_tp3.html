@@ -80,365 +80,390 @@
   <title>BDD</title>
 </head>
 <body>
-<h1 id="présentation">présentation</h1>
-<p>Le problème ci-dessous s’inspire du problème sur Oracle du TP suivant : <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" target="_blanck">http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql</a> <br></p>
-<p>Nous travaillerons par la suite sur les trois tables suivantes qui permettent de décrire des employés, des projets, l’affectation des employés aux projets et les grilles de salaire pour différents profils de postes :</p>
-<p><strong>EMPLOYE(<span class="underline">NumSS</span>, NomE, PrenomE, VilleE, DateNaiss)</strong><br />
-<strong>PROJET(<span class="underline">NumProj</span>, NomProj, <em>#iRespProj</em>,, VilleP, Budget)</strong><br />
-<strong>EMBAUCHE(#<em><span class="underline">NumSS,#NumProj</span></em>, DateEmb, Profil)</strong><br />
-<strong>GRILLE_SAL(<span class="underline">Profil</span>, Salaire)</strong></p>
-<p>La clé primaire de chaque table est soulignée.</p>
-<ol type="1">
-<li><span class="orange">Déssiner le MCD sur Looping de ce MLD</span></li>
-</ol>
-<ul>
-<li>Rappels</li>
-</ul>
-<p>Pour exécuter une procédure dans SQL*PLUS (sur Oracle) utilisez la commande: <code>EXEC nom_procedure(liste_paramètres)</code>, <br></p>
-<ol start="2" type="1">
-<li><p><span class="orange">utilisez <a href="https://chat.openai.com/">ChatGPT</a> ou <a href="https://bard.google.com/">Bard</a> pour donner la commande equivalente sur MySQL.</span></p></li>
-<li><p><span class="orange">existe t’il un équivalent de <code>SHOW err</code></span></p></li>
-</ol>
-<h1 id="constitution-de-la-base-de-données">CONSTITUTION DE LA BASE DE DONNÉES</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">create</span> <span class="kw">table</span> Employe( </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a> NumSS <span class="dt">number</span>(<span class="dv">5</span>) , </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a> NomE <span class="dt">varchar2</span>(<span class="dv">20</span>) ,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a> PrenomE <span class="dt">varchar2</span>(<span class="dv">20</span>) , </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a> VilleE <span class="dt">varchar2</span>(<span class="dv">20</span>) , </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a> DateNaiss <span class="dt">date</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>); </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">create</span> <span class="kw">table</span> Projet( </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a> NumProj <span class="dt">Number</span>(<span class="dv">3</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a> NomProj <span class="dt">varchar2</span>(<span class="dv">20</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a> RespProj <span class="dt">number</span>, </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a> VilleP <span class="dt">varchar2</span>(<span class="dv">20</span>), </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a> Budget <span class="dt">number</span> </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>); </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">create</span> <span class="kw">table</span> Grille_sal( </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a> profil <span class="dt">varchar2</span>(<span class="dv">20</span>), </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a> salaire <span class="dt">number</span>(<span class="dv">7</span>,<span class="dv">2</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>); </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="kw">create</span> <span class="kw">table</span> Embauche( </span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a> NumSS <span class="dt">number</span> ,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a> NumProj <span class="dt">number</span> , </span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a> DateEmb <span class="dt">date</span> <span class="kw">default</span> <span class="fu">sysdate</span>, </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a> Profil <span class="dt">varchar2</span>(<span class="dv">20</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>);</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Employe (NumSS, NomE, PrenomE, VilleE, DateNaiss)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a><span class="kw">values</span> (</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>(<span class="dv">22334</span>, <span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;Funk&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;1-12-1982&#39;</span>  ),</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>(<span class="dv">45566</span>, <span class="st">&#39;Rachid&#39;</span>, <span class="st">&#39;Allaoui&#39;</span>, <span class="st">&#39;Lyon&#39;</span>,   <span class="st">&#39;13-4-1986&#39;</span>  ),</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>(<span class="dv">77889</span>, <span class="st">&#39;Florent&#39;</span>, <span class="st">&#39;Girac&#39;</span> , <span class="st">&#39;Marseille&#39;</span>,   <span class="st">&#39;4-11-1990&#39;</span>  ),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>(<span class="dv">90011</span>, <span class="st">&#39;Mayla&#39;</span>, <span class="st">&#39;Aoun&#39;</span>, <span class="st">&#39;Lyon&#39;</span>,   <span class="st">&#39;26-3-1987&#39;</span>  ),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>(<span class="dv">22233</span>, <span class="st">&#39;Christine&#39;</span>, <span class="st">&#39;Lara&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;9-8-1982&#39;</span>  ),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>(<span class="dv">34445</span>, <span class="st">&#39;Amel&#39;</span>, <span class="st">&#39;Orlando&#39;</span>, <span class="st">&#39;Lyon&#39;</span>,   <span class="st">&#39;14-2-1976&#39;</span>  ),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>(<span class="dv">55666</span>, <span class="st">&#39;Mohsen&#39;</span>, <span class="st">&#39;Charef&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;28-5-1991&#39;</span>  ),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>(<span class="dv">77788</span>, <span class="st">&#39;Tim&#39;</span>, <span class="st">&#39;Arabi&#39;</span>, <span class="st">&#39;Marseille&#39;</span>,   <span class="st">&#39;8-6-1984&#39;</span>  ),</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>(<span class="dv">89990</span>, <span class="st">&#39;Fernando&#39;</span>, <span class="st">&#39;Lopez&#39;</span>, <span class="st">&#39;Lyon&#39;</span>,   <span class="st">&#39;5-10-1993&#39;</span>  ),</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>(<span class="dv">11122</span>, <span class="st">&#39;Ada&#39;</span>,<span class="st">&#39;Tan Lee&#39;</span>, <span class="st">&#39;Marseille&#39;</span>,   <span class="st">&#39;21-3-1994&#39;</span>  ),</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>(<span class="dv">11123</span>, <span class="st">&#39;Franck&#39;</span>, <span class="st">&#39;Morel&#39;</span>, <span class="st">&#39;Lille&#39;</span>,   <span class="st">&#39;10-01-1945&#39;</span>  ),</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>);</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Projet <span class="kw">values</span> (<span class="dv">123</span>, <span class="st">&#39;ADOOP&#39;</span>, <span class="dv">22334</span>, <span class="st">&#39;Paris&#39;</span>, <span class="dv">120000</span>);</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Projet <span class="kw">values</span> (<span class="dv">757</span>, <span class="st">&#39;SKALA&#39;</span>, <span class="dv">45566</span>, <span class="st">&#39;Lyon&#39;</span>, <span class="dv">180000</span>);</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Projet <span class="kw">values</span> (<span class="dv">890</span>, <span class="st">&#39;BAJA&#39;</span>, <span class="dv">22334</span>, <span class="st">&#39;Paris&#39;</span>, <span class="dv">24000</span>);</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> grille_sal <span class="kw">values</span> (<span class="st">&#39;Admin&#39;</span>, <span class="dv">80000</span>);</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> grille_sal <span class="kw">values</span> (<span class="st">&#39;Deve&#39;</span>, <span class="dv">45000</span>);</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> grille_sal <span class="kw">values</span> (<span class="st">&#39;Tech&#39;</span>, <span class="dv">35000</span>);</span>
+<p>Avec la base de données suivantes :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> panier;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> ligne;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> commande;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> article;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> client;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> article (</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    id_article <span class="dt">INT</span> AUTO_INCREMENT</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    , designation <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    , prix <span class="dt">NUMERIC</span>(<span class="dv">19</span>,<span class="dv">4</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    , stock <span class="dt">INT</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    , <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_article)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>)<span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="st">&#39;utf8mb4&#39;</span> ;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> client (</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    id_client <span class="dt">INT</span> AUTO_INCREMENT</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    , nom <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    , ville <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    , <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_client)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>)<span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="st">&#39;utf8mb4&#39;</span>;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span>  commande (</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    id_commande <span class="dt">INT</span> AUTO_INCREMENT</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    , date_commande <span class="dt">DATE</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    , id_client <span class="dt">INT</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    , <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_commande)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    , <span class="kw">CONSTRAINT</span> fk_commande_client_exo3 <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_client) <span class="kw">REFERENCES</span> client(id_client)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>)<span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="st">&#39;utf8mb4&#39;</span>;</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> ligne (</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>    id_commande <span class="dt">INT</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    , id_article <span class="dt">INT</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    , quantite <span class="dt">INT</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    , <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_commande,id_article)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>    , <span class="kw">CONSTRAINT</span> fk_ligne_commande_exo3 <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_commande) <span class="kw">REFERENCES</span> commande(id_commande)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>    , <span class="kw">CONSTRAINT</span> fk_ligne_article_exo3 <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_article) <span class="kw">REFERENCES</span> article(id_article)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>);</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> panier (</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    id_client <span class="dt">INT</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    , id_article <span class="dt">INT</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    , quantite <span class="dt">INT</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    , <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_client,id_article)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>    , <span class="kw">CONSTRAINT</span> fk_panier_client_exo3 <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_client) <span class="kw">REFERENCES</span> client(id_client)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>    , <span class="kw">CONSTRAINT</span> fk_panier_article_exo3 <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (id_article) <span class="kw">REFERENCES</span> article(id_article)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>);</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> client <span class="kw">VALUES</span> </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;Mutz&#39;</span>,<span class="st">&#39;Ruelisheim&#39;</span>),(<span class="dv">2</span>,<span class="st">&#39;Rato&#39;</span>,<span class="st">&#39;Besancon&#39;</span>),(<span class="dv">3</span>,<span class="st">&#39;Goerig&#39;</span>,<span class="st">&#39;Walheim&#39;</span>),(<span class="dv">4</span>,<span class="st">&#39;Walter&#39;</span>,<span class="st">&#39;Bretten&#39;</span>),</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="st">&#39;PAUTOT&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">6</span>,<span class="st">&#39;PETIT&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">7</span>,<span class="st">&#39;SAINT DIZIER&#39;</span>,<span class="st">&#39;Sevenans&#39;</span>),(<span class="dv">8</span>,<span class="st">&#39;SALVI&#39;</span>,<span class="st">&#39;Offemont&#39;</span>),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>(<span class="dv">9</span>,<span class="st">&#39;TERRAT&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">10</span>,<span class="st">&#39;TYRODE&#39;</span>,<span class="st">&#39;Valdoie&#39;</span>),(<span class="dv">11</span>,<span class="st">&#39;ALANKAYA&#39;</span>,<span class="st">&#39;Bavilliers&#39;</span>),(<span class="dv">12</span>,<span class="st">&#39;DAROSEY&#39;</span>,<span class="st">&#39;Essert&#39;</span>),</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>(<span class="dv">13</span>,<span class="st">&#39;duguet&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">14</span>,<span class="st">&#39;ESSENBURGER&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">15</span>,<span class="st">&#39;JAOUEN&#39;</span>,<span class="st">&#39;Sevenans&#39;</span>),(<span class="dv">16</span>,<span class="st">&#39;molin&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>(<span class="dv">17</span>,<span class="st">&#39;AMGHAR&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">18</span>,<span class="st">&#39;BOUCHAUD&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">19</span>,<span class="st">&#39;COTTARD&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">20</span>,<span class="st">&#39;LAMOTTE&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>(<span class="dv">21</span>,<span class="st">&#39;METTEY&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">22</span>,<span class="st">&#39;WOLF&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">23</span>,<span class="st">&#39;BISMUTH&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">24</span>,<span class="st">&#39;chaillet&#39;</span>,<span class="st">&#39;Belfort&#39;</span>),(<span class="dv">25</span>,<span class="st">&#39;DECOCK&#39;</span>,<span class="st">&#39;Belfort&#39;</span>);</span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">77889</span>, <span class="dv">123</span>,   <span class="st">&#39;1-3-2014&#39;</span>  ,<span class="st">&#39;Deve&#39;</span>);</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">90011</span>, <span class="dv">123</span>,   <span class="st">&#39;1-5-2014&#39;</span>  ,<span class="st">&#39;Tech&#39;</span>);</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a><span class="kw">insert</span> <span class="kw">into</span> Embauche <span class="kw">values</span> (<span class="dv">22233</span>, <span class="dv">757</span>,   <span class="st">&#39;1-3-2014&#39;</span>  ,<span class="st">&#39;Deve&#39;</span>);</span></code></pre></div>
-<ol start="4" type="1">
-<li><span class="orange">Utiliser une IA générative (réaliser un prompt) pour modifier le script ci-dessus :</span></li>
-</ol>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> article <span class="kw">VALUES</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;Gâteaux chocolat ( pâtisserie)&#39;</span>,<span class="fl">5.25</span>,<span class="dv">10</span>),(<span class="dv">2</span>,<span class="st">&#39;gâteau fraise (pâtisserie) &#39;</span>,<span class="fl">5.25</span>,<span class="dv">10</span>),(<span class="dv">3</span>,<span class="st">&#39;Mouchoir ( hygiène)&#39;</span>,<span class="fl">2.54</span>,<span class="dv">10</span>),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;Coca cola ( boisson )&#39;</span>,<span class="fl">1.52</span>,<span class="dv">10</span>),(<span class="dv">5</span>,<span class="st">&#39;Salade ( légume ) &#39;</span>,<span class="fl">2.00</span>,<span class="dv">10</span>),(<span class="dv">6</span>,<span class="st">&#39;Choux ( légume ) &#39;</span>,<span class="fl">2.50</span>,<span class="dv">10</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>(<span class="dv">7</span>,<span class="st">&#39;Pomme de terre ( légume ) &#39;</span>,<span class="fl">1.50</span>,<span class="dv">10</span>),(<span class="dv">8</span>,<span class="st">&#39;Tomate ( légume ) &#39;</span>,<span class="fl">1.50</span>,<span class="dv">10</span>),(<span class="dv">9</span>,<span class="st">&#39;Haricot ( légume ) &#39;</span>,<span class="fl">6.50</span>,<span class="dv">10</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>(<span class="dv">10</span>,<span class="st">&#39;Potiron ( légume ) &#39;</span>,<span class="fl">3.00</span>,<span class="dv">10</span>),(<span class="dv">11</span>,<span class="st">&#39;Poireau ( légume ) &#39;</span>,<span class="fl">1.50</span>,<span class="dv">10</span>),(<span class="dv">12</span>,<span class="st">&#39;Fenouil ( légume ) &#39;</span>,<span class="fl">3.00</span>,<span class="dv">10</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>(<span class="dv">13</span>,<span class="st">&#39;Pissenlit ( légume ) &#39;</span>,<span class="fl">5.00</span>,<span class="dv">10</span>),(<span class="dv">14</span>,<span class="st">&#39;Petit pois ( légume ) &#39;</span>,<span class="fl">6.00</span>,<span class="dv">10</span>),(<span class="dv">15</span>,<span class="st">&#39;Poivron ( légume ) &#39;</span>,<span class="fl">3.00</span>,<span class="dv">10</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>(<span class="dv">16</span>,<span class="st">&#39;Radis ( légume ) &#39;</span>,<span class="fl">2.00</span>,<span class="dv">10</span>),(<span class="dv">17</span>,<span class="st">&#39;Pomme ( fruit ) &#39;</span>,<span class="fl">3.00</span>,<span class="dv">10</span>),(<span class="dv">18</span>,<span class="st">&#39;Perrier ( 1L eau ) &#39;</span>,<span class="fl">1.50</span>,<span class="dv">10</span>),</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>(<span class="dv">19</span>,<span class="st">&#39;Vittel ( 1L eau ) &#39;</span>,<span class="fl">1.00</span>,<span class="dv">10</span>);</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> commande <span class="kw">VALUES</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;2023-04-11&#39;</span>,<span class="dv">3</span>),</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;2023-12-11&#39;</span>,<span class="dv">2</span>),</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;2024-01-28&#39;</span>,<span class="dv">4</span>),</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="st">&#39;2023-09-19&#39;</span>,<span class="dv">1</span>),</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="st">&#39;2019-04-11&#39;</span>,<span class="dv">3</span>),</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="st">&#39;2023-12-11&#39;</span>,<span class="dv">2</span>),</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true"></a>(<span class="dv">7</span>,<span class="st">&#39;2023-03-28&#39;</span>,<span class="dv">4</span>),</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true"></a>(<span class="dv">8</span>,<span class="st">&#39;2023-12-09&#39;</span>,<span class="dv">1</span>);</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> ligne <span class="kw">VALUES</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">12</span>),(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">4</span>),(<span class="dv">1</span>,<span class="dv">12</span>,<span class="dv">4</span>),(<span class="dv">1</span>,<span class="dv">15</span>,<span class="dv">4</span>),</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>),(<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">6</span>),(<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">6</span>),(<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">6</span>),</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>),(<span class="dv">3</span>,<span class="dv">11</span>,<span class="dv">3</span>),(<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">3</span>),(<span class="dv">3</span>,<span class="dv">16</span>,<span class="dv">3</span>),</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">27</span>),(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">5</span>),(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">5</span>),(<span class="dv">4</span>,<span class="dv">17</span>,<span class="dv">5</span>),</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="dv">12</span>,<span class="dv">4</span>),</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="dv">11</span>,<span class="dv">3</span>),</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true"></a>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">5</span>),</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true"></a>(<span class="dv">8</span>,<span class="dv">14</span>,<span class="dv">6</span>);</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">4</span>),</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">2</span>,<span class="dv">19</span>,<span class="dv">4</span>),</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">3</span>,<span class="dv">17</span>,<span class="dv">4</span>),</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true"></a>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">4</span>,<span class="dv">17</span>,<span class="dv">4</span>),(<span class="dv">4</span>,<span class="dv">19</span>,<span class="dv">4</span>),</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true"></a>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">17</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">19</span>,<span class="dv">4</span>),</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true"></a>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">17</span>,<span class="dv">4</span>),(<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">4</span>);</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true"></a></span></code></pre></div>
+<h1 id="exercice-1">exercice 1</h1>
+<p>Créer une procédure sur le SGBDR MySQL en PL/SQL qui reçoit en paramètre un identifiant de client, cette procédure permet de :</p>
 <ul>
-<li>ajouter les clés primaires</li>
-<li>ajouter les clés étrangéres</li>
-<li>modifier le type des colonnes pour qu’il soit compatible sur MySQL</li>
-<li>ajouter la fonction <code>STR_TO_DATE</code>(‘1-01-2012’, ‘%d-%m-%Y’), utiliser rechercher/remplacer (CTRL R ou CTRL H)</li>
-</ul>
-<details>
-<summary>💡 exemple de solution proposer par l’IA générative </summary>
-<p>
-<pre><code>CREATE TABLE Employe (
-    NumSS INT(5) PRIMARY KEY,
-    NomE VARCHAR(20),
-    PrenomE VARCHAR(20),
-    VilleE VARCHAR(20),
-    DateNaiss DATE
-);
-
-CREATE TABLE Projet (
-    NumProj INT(3) PRIMARY KEY,
-    NomProj VARCHAR(20),
-    RespProj INT,
-    VilleP VARCHAR(20),
-    Budget DECIMAL(10,2),
-    FOREIGN KEY (RespProj) REFERENCES Employe(NumSS)
-);
-
-CREATE TABLE Grille_sal (
-    profil VARCHAR(20) PRIMARY KEY,
-    salaire DECIMAL(7,2)
-);
-
-CREATE TABLE Embauche (
-    NumSS INT,
-    NumProj INT,
-    DateEmb DATE DEFAULT CURRENT_DATE,
-    Profil VARCHAR(20),
-    PRIMARY KEY (NumSS, NumProj, DateEmb),
-    FOREIGN KEY (NumSS) REFERENCES Employe(NumSS),
-    FOREIGN KEY (NumProj) REFERENCES Projet(NumProj),
-    FOREIGN KEY (Profil) REFERENCES Grille_sal(profil)
-);
-
-INSERT INTO Employe (NumSS, NomE, PrenomE, VilleE, DateNaiss)
-VALUES
-(22334, &#39;Adam&#39;, &#39;Funk&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;01-12-1982&#39;, &#39;%d-%m-%Y&#39;)),
-(45566, &#39;Rachid&#39;, &#39;Allaoui&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;13-04-1986&#39;, &#39;%d-%m-%Y&#39;)),
-(77889, &#39;Florent&#39;, &#39;Girac&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;04-11-1990&#39;, &#39;%d-%m-%Y&#39;)),
-(90011, &#39;Mayla&#39;, &#39;Aoun&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;26-03-1987&#39;, &#39;%d-%m-%Y&#39;)),
-(22233, &#39;Christine&#39;, &#39;Lara&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;09-08-1982&#39;, &#39;%d-%m-%Y&#39;)),
-(34445, &#39;Amel&#39;, &#39;Orlando&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;14-02-1976&#39;, &#39;%d-%m-%Y&#39;)),
-(55666, &#39;Mohsen&#39;, &#39;Charef&#39;, &#39;Paris&#39;, STR_TO_DATE(&#39;28-05-1991&#39;, &#39;%d-%m-%Y&#39;)),
-(77788, &#39;Tim&#39;, &#39;Arabi&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;08-06-1984&#39;, &#39;%d-%m-%Y&#39;)),
-(89990, &#39;Fernando&#39;, &#39;Lopez&#39;, &#39;Lyon&#39;, STR_TO_DATE(&#39;05-10-1993&#39;, &#39;%d-%m-%Y&#39;)),
-(11122, &#39;Ada&#39;, &#39;Tan Lee&#39;, &#39;Marseille&#39;, STR_TO_DATE(&#39;21-03-1994&#39;, &#39;%d-%m-%Y&#39;)),
-(11123, &#39;Franck&#39;, &#39;Morel&#39;, &#39;Lille&#39;, STR_TO_DATE(&#39;10-01-1945&#39;, &#39;%d-%m-%Y&#39;));
-
-INSERT INTO Projet VALUES (123, &#39;ADOOP&#39;, 22334, &#39;Paris&#39;, 120000);
-INSERT INTO Projet VALUES (757, &#39;SKALA&#39;, 45566, &#39;Lyon&#39;, 180000);
-INSERT INTO Projet VALUES (890, &#39;BAJA&#39;, 22334, &#39;Paris&#39;, 24000);
-
-INSERT INTO Grille_sal VALUES (&#39;Admin&#39;, 80000);
-INSERT INTO Grille_sal VALUES (&#39;Deve&#39;, 45000);
-INSERT INTO Grille_sal VALUES (&#39;Tech&#39;, 35000);
-
-INSERT INTO Embauche VALUES (77889, 123, STR_TO_DATE(&#39;01-03-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Deve&#39;);
-INSERT INTO Embauche VALUES (90011, 123, STR_TO_DATE(&#39;01-05-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Tech&#39;);
-INSERT INTO Embauche VALUES (22233, 757, STR_TO_DATE(&#39;01-03-2014&#39;, &#39;%d-%m-%Y&#39;), &#39;Deve&#39;);
-</code></pre>
-<p>
-</details>
-<ol start="5" type="1">
-<li><span class="orange">Utiliser une IA générative (réaliser un prompt) pour modifier la procédure PL-SQL ci-dessus :</span></li>
-</ol>
-<pre><code>DECLARE 
-    trouve BOOLEAN;
-BEGIN
-   FOR  r  IN (SELECT numproj, nomproj, villep FROM Projet ORDER BY nomproj)
-    LOOP
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-             dbms_output.put_line(&#39;Projet: &#39;||r.nomproj||&#39; dans la ville  &#39;||r.villep);
-             dbms_output.put_line(&#39;-----------------------------------&#39;);
-                       trouve := FALSE;
-                       FOR r2 IN (SELECT nome, prenome FROM employe e, embauche b 
-                                      WHERE e.numss=b.numss AND b.numproj=r.numproj )
-                       LOOP
-                            dbms_output.put_line(&#39;Employé: &#39;|| r2.nome||&#39;, &#39;|| r2.prenome);
-                            trouve := TRUE;
-                      END LOOP;
-                      IF(trouve = FALSE) THEN
-                            dbms_output.put_line(&#39;Pas d&#39;&#39;employé&#39;);
-                       END IF;
-    END LOOP;
-END;</code></pre>
-<p>le résultat de l’instruction <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à MySQL avec le jeu de test donné est :</p>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
-+-------------------------------------+
-| Ligne                               |
-+-------------------------------------+
-| ----------------------------------- |
-| Projet: ADOOP dans la ville Paris   |
-| ----------------------------------- |
-| Employé: Florent, Girac             |
-| Employé: Mayla, Aoun                |
-| ----------------------------------- |
-| Projet: BAJA dans la ville Paris    |
-| ----------------------------------- |
-| ----------------------------------- |
-| Projet: SKALA dans la ville Lyon    |
-| ----------------------------------- |
-| Employé: Christine, Lara            |
-+-------------------------------------+
-12 rows in set (0,006 sec)
-
-Query OK, 12 rows affected (0,006 sec)
-</code></pre>
-<p><br> <br> <br></p>
-<ol start="2" type="1">
-<li><span class="orange">Exo 2 (Curseur Implicite). Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. Utilisez les attributs d’un curseur implicite.</span></li>
-</ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
-+-----------------------------+
-| Message                     |
-+-----------------------------+
-| 1 employé(s) supprimé(s).   |
-+-----------------------------+
-1 row in set (0,004 sec)</code></pre>
-<p>L’instruction <code>SELECT * FROM Employe;</code> permet de voir que franck a disparu</p>
-<ol start="3" type="1">
-<li><span class="orange">Exo3 (Curseur). Écrivez un bloc PL/SQL anonyme qui modifie tous les noms des profils dans la table grille_sal en ajoutant la lettre ‘P’ devant chaque nom de profil. Pour chaque profil modifié dans la table grille_sal les valeurs correspondantes dans la table embauche doivent également être modifiées. Utilisez un curseur.</span></li>
-</ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| Admin  | 80000.00 |
-| Deve   | 45000.00 |
-| Tech   | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; SHOW CREATE TABLE Embauche;
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Embauche | CREATE TABLE `Embauche` (
-  `NumSS` int(11) NOT NULL,
-  `NumProj` int(11) NOT NULL,
-  `DateEmb` date NOT NULL DEFAULT curdate(),
-  `Profil` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`NumSS`,`NumProj`,`DateEmb`),
-  KEY `NumProj` (`NumProj`),
-  KEY `Profil` (`Profil`),
-  CONSTRAINT `Embauche_ibfk_1` FOREIGN KEY (`NumSS`) REFERENCES `Employe` (`NumSS`),
-  CONSTRAINT `Embauche_ibfk_2` FOREIGN KEY (`NumProj`) REFERENCES `Projet` (`NumProj`),
-  CONSTRAINT `Embauche_ibfk_3` FOREIGN KEY (`Profil`) REFERENCES `Grille_sal` (`profil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-1 row in set (0,000 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL ModifierProfilsEtSalaire();
-+-----------------------------------------------+  
-| Message                                       |
-+-----------------------------------------------+
-| Les profils ont été modifiés avec succès.     |
-+-----------------------------------------------+
-1 row in set (0,568 sec)
-
-Query OK, 12 rows affected (0,568 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 80000.00 |
-| PDeve  | 45000.00 |
-| PTech  | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)</code></pre>
-<ol start="4" type="1">
-<li><span class="orange">(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. Utiliser un curseur avec des paramètres.</span></li>
-</ol>
-<p>voir question 1</p>
-<ol start="5" type="1">
-<li><span class="orange">(Utilisation CASE et Curseur)Écrire un bloc anonyme qui augmente tous les salaires dans la table Grille_Sal. Les salaires inférieurs à 40000 sont augmentés de 30%, les salaires compris entre 40000 et 60000 de 20% et les salaires supérieurs à 60000 sont augmentés de 10%. Utilisez un CASE pour tester les différentes valeurs possibles du salaire.</span></li>
-</ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 80000.00 |
-| PDeve  | 45000.00 |
-| PTech  | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL AugmenterSalaires();
-+-------------------------------------------------+
-| Message                                         |
-+-------------------------------------------------+
-| Les salaires ont été augmentés avec succès.     |
-+-------------------------------------------------+
-1 row in set (0,010 sec)
-
-Query OK, 3 rows affected (0,010 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 88000.00 |
-| PDeve  | 54000.00 |
-| PTech  | 45500.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; 
-</code></pre>
-<ol start="6" type="1">
-<li><span class="orange">(Exception prédéfinie) Écrire une procédure PL/SQL qui a 3 paramètres: le numSS, le nomE et prenomE d’un nouvel employé à insérer dans la table Employé. S’il existe déjà un autre employé avec le même numSS dans la table Employé elle doit afficher un message d’erreur sans insérer l’utilisateur. Dans le cas contraire la procédure doit insérer le nouvel employé et afficher un message de confirmation. Utilisez l’exception prédéfinie NO_DATA_FOUND.</span></li>
-</ol>
-<pre><code>SELECT profil, salaire  FROM Grille_sal;
-CALL AugmenterSalaires();
-SELECT profil, salaire  FROM Grille_sal;</code></pre>
-<ol start="7" type="1">
-<li><span class="orange">(Exception utilisateur) Écrire une procédure qui prend comme paramètre le numéro et le budget d’un projet et qui l’ajoute à la table projet seulement si la somme tous les budgets après l’ajout ne dépasse pas 400000. Dans le cas contraire le projet n’est pas ajouté et un message d’erreur est affiché à l’utilisateur. Utilisez une exception utilisateur.</span></li>
-</ol>
-<pre><code>CALL InsererNouvelEmploye(1234567, &#39;Alain&#39;, &#39;Paul&#39;);
-SELECT *  FROM Employe;
-CALL InsererNouvelEmploye(22334, &#39;Adam&#39;, &#39;Funk&#39;);</code></pre>
-<h1 id="utilisation-des-procédures-dans-un-script-python">utilisation des procédures dans un script python</h1>
-<p><span class="orange">Proposer une exemple de programme python qui utilise la dernière procédure</span></p>
-<pre><code>
-import pymysql
-
-# Connexion à la base de données MySQL
-conn = pymysql.connect(
-    host=&quot;votre_hôte&quot;,
-    user=&quot;votre_utilisateur&quot;,
-    password=&quot;votre_mot_de_passe&quot;,
-    database=&quot;votre_base_de_données&quot;,
-    port=3306  # Remplacez par le port MySQL utilisé dans votre configuration
-)
-
-try:
-    # Création d&#39;un curseur
-    cursor = conn.cursor()
-
-    # Exécution de la procédure stockée
-    num_ss = 123456789
-    nom_e = &quot;Doe&quot;
-    prenom_e = &quot;John&quot;
-    cursor.callproc(&quot;NomDeVotreProcedureMySQL&quot;, (num_ss, nom_e, prenom_e))
-
-    # Commit pour valider les modifications
-    conn.commit()
-
-    # Affichage du résultat ou de tout message renvoyé par la procédure
-    result = cursor.fetchall()
-    print(result)
-
-except pymysql.Error as e:
-    # Récupération du message d&#39;erreur
-    error_message = e.args[1]
-    print(f&quot;Erreur MySQL: {error_message}&quot;)
-
-finally:
-    # Fermeture du curseur et de la connexion
-    cursor.close()
-    conn.close()
-</code></pre>
+<li><p>Créer un enregistrement dans la table commande avec comme date la date d’aujourd’hui et comme identifiant de client le paramètre passé.</p></li>
+<li><p>Recopiez les enregistrements de la table “panier” ayant pour identifiant client l’identifiant client passé en paramètre dans la table ligne avec comme identifiant de commande celui de l’enregistrement créé précédemment.</p>
 <ul>
-<li><span class="orange">afficher le resultat de la requête ainsi que le message d’erreur</span></li>
-<li><span class="orange">essayer de modifier le message d’erreur</span></li>
+<li>Pour cette partie, il est demandé d’utiliser un curseur (qui sélectionne tous les enregistrements de la table “panier” ayant pour identifiant client l’identifiant client passé en paramètre) et une boucle qui crée un enregistrement pour chaque valeur de ce curseur. Dans votre boucle, utilisez l’instruction “WHILE” (pas de “LOOP”).</li>
+<li>Testez une autre solution sans curseur <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp" class="uri">https://www.w3schools.com/sql/sql_insert_into_select.asp</a></li>
+</ul></li>
 </ul>
-<p><a href="https://www.w3schools.com/python/python_try_except.asp" class="uri">https://www.w3schools.com/python/python_try_except.asp</a></p>
+<p>Pour tester cette procédure, utiliser la commande suivante :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">-- | id_client | id_article | quantite |</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">-- |         1 |          4 |        4 |</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">-- |         1 |          7 |        4 |</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">-- | id_commande | date_commande | id_client |</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    |         1 |</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">-- |           8 | 2023-12-09    |         1 |</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);       <span class="co">-- commande 1</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co">-- Empty set</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> commande <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="co">-- | id_commande | date_commande | id_client |</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    |         1 |</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="co">-- |           8 | 2023-12-09    |         1 |</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="co">-- |           9 | 2024-05-23    |         1 |</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(id_commande) <span class="kw">INTO</span> @id_commande</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  <span class="kw">FROM</span> commande;</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ligne <span class="kw">WHERE</span> id_commande<span class="op">=</span>@id_commande;</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="co">-- +-------------+------------+----------+</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="co">-- | id_commande | id_article | quantite |</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="co">-- +-------------+------------+----------+</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a><span class="co">-- |           9 |          4 |        4 |</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a><span class="co">-- |           9 |          7 |        4 |</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a><span class="co">-- +-------------+------------+----------+</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);    <span class="co">-- commande 2  : pas de commande vide</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a><span class="co">-- ERROR 1644 (45000): Le panier est vide.</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a><span class="kw">SELECT</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a>    c.id_commande, c.date_commande, cl.nom <span class="kw">AS</span> client_nom, cl.ville <span class="kw">AS</span> client_ville,</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>    a.id_article, a.designation, l.quantite, a.prix, a.stock</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a><span class="kw">FROM</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a>commande c <span class="kw">JOIN</span>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a><span class="kw">WHERE</span>     c.id_client <span class="op">=</span> @id_client</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>     c.date_commande, c.id_commande, l.id_article;</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a><span class="co">-- | id_commande | date_commande | client_nom | client_ville | id_article | designation                   | quantite | prix   | stock |</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |          2 | gâteau fraise (pâtisserie)    |       27 | 5.2500 |    10 |</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |          8 | Tomate ( légume )             |        5 | 1.5000 |    10 |</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |         10 | Potiron ( légume )            |        5 | 3.0000 |    10 |</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |         17 | Pomme ( fruit )               |        5 | 3.0000 |    10 |</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true"></a><span class="co">-- |           8 | 2023-12-09    | Mutz       | Ruelisheim   |         14 | Petit pois ( légume )         |        6 | 6.0000 |    10 |</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true"></a><span class="co">-- |           9 | 2024-05-23    | Mutz       | Ruelisheim   |          4 | Coca cola ( boisson )         |        4 | 1.5200 |     6 |</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true"></a><span class="co">-- |           9 | 2024-05-23    | Mutz       | Ruelisheim   |          7 | Pomme de terre ( légume )     |        4 | 1.5000 |     6 |</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true"></a>(@id_client,<span class="dv">7</span>,<span class="dv">14</span>),(@id_client,<span class="dv">17</span>,<span class="dv">4</span>);</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);  <span class="co">-- commande 3 : gestion du stock</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true"></a><span class="co">-- ERROR 1644 (45000): Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true"></a><span class="co">-- +-------------+---------------+-----------+</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true"></a>(@id_client,<span class="dv">7</span>,<span class="dv">2</span>),(@id_client,<span class="dv">17</span>,<span class="dv">3</span>);</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true"></a><span class="kw">CALL</span> creer_commande(@id_client);  <span class="co">-- commande 3 : gestion du stock</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true"></a><span class="kw">SELECT</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true"></a>    c.id_commande, c.date_commande, cl.nom <span class="kw">AS</span> client_nom, cl.ville <span class="kw">AS</span> client_ville,</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true"></a>    a.id_article, a.designation, l.quantite, a.prix, a.stock</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true"></a><span class="kw">FROM</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true"></a>commande c <span class="kw">JOIN</span>    client cl <span class="kw">ON</span> c.id_client <span class="op">=</span> cl.id_client</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     ligne l <span class="kw">ON</span> c.id_commande <span class="op">=</span> l.id_commande</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span>     article a <span class="kw">ON</span> l.id_article <span class="op">=</span> a.id_article</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true"></a><span class="kw">WHERE</span>     c.id_client <span class="op">=</span> @id_client</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span>     c.date_commande, c.id_commande, l.id_article;</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true"></a></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true"></a><span class="co">-- | id_commande | date_commande | client_nom | client_ville | id_article | designation                   | quantite | prix   | stock |</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |          2 | gâteau fraise (pâtisserie)    |       27 | 5.2500 |    10 |</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |          8 | Tomate ( légume )             |        5 | 1.5000 |    10 |</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |         10 | Potiron ( légume )            |        5 | 3.0000 |    10 |</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true"></a><span class="co">-- |           4 | 2023-09-19    | Mutz       | Ruelisheim   |         17 | Pomme ( fruit )               |        5 | 3.0000 |     7 |</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true"></a><span class="co">-- |           8 | 2023-12-09    | Mutz       | Ruelisheim   |         14 | Petit pois ( légume )         |        6 | 6.0000 |    10 |</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true"></a><span class="co">-- |           9 | 2024-05-23    | Mutz       | Ruelisheim   |          4 | Coca cola ( boisson )         |        4 | 1.5200 |     6 |</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true"></a><span class="co">-- |           9 | 2024-05-23    | Mutz       | Ruelisheim   |          7 | Pomme de terre ( légume )     |        4 | 1.5000 |     4 |</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true"></a><span class="co">-- |          10 | 2024-05-23    | Mutz       | Ruelisheim   |          7 | Pomme de terre ( légume )     |        2 | 1.5000 |     4 |</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true"></a><span class="co">-- |          10 | 2024-05-23    | Mutz       | Ruelisheim   |         17 | Pomme ( fruit )               |        3 | 3.0000 |     7 |</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true"></a><span class="co">-- +-------------+---------------+------------+--------------+------------+-------------------------------+----------+--------+-------+</span></span></code></pre></div>
+<h1 id="exercice-2">exercice 2</h1>
+<p>En testant, le SQL ci-dessus, on peut voir que la procédure PL/SQL autorise des commandes sans articles et que le stock n’est pas géré ; modifier votre script pour éviter ce problème.</p>
+<p>Dans votre script, il faut prendre en compte est les opérations suivantes :</p>
+<ul>
+<li>Ajouter une transaction.</li>
+<li>Vérifiez si le curseur sur la table “panier” retourne des lignes et générez une erreur si ce n’est pas le cas.</li>
+<li>Si le stock de produit n’est pas suffisant,
+<ul>
+<li>faire une levée d’exception et retourner un message d’erreur. Toutes les opérations sont annulées (rollback).</li>
+</ul></li>
+<li>Sinon
+<ul>
+<li>décrémentez le stock de produit.</li>
+</ul></li>
+</ul>
+<h1 id="exercice-3">exercice 3</h1>
+<ul>
+<li>Faire un script python qui teste cette procédure PL/SQL. Le script python affiche que tout s’est bien passé ou l’erreur et son code.</li>
+</ul>
+<p>Il suffit de modifier la connexion (les paramètres), l’appel de la procédure et supprimer 3 lignes qui ne servent à rien.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="im">import</span> pymysql</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="im">import</span> sys</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"># Vérifier que le script a reçu le bon nombre d&#39;arguments</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">!=</span> <span class="dv">2</span>:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Usage: python script.py &lt;num_client&gt;&quot;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    sys.exit(<span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co"># Connexion à la base de données MySQL</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>conn <span class="op">=</span> pymysql.<span class="ex">connect</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    host<span class="op">=</span><span class="st">&quot;votre_hôte&quot;</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    user<span class="op">=</span><span class="st">&quot;votre_utilisateur&quot;</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    password<span class="op">=</span><span class="st">&quot;votre_mot_de_passe&quot;</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    database<span class="op">=</span><span class="st">&quot;votre_base_de_données&quot;</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    port<span class="op">=</span><span class="dv">3306</span>  <span class="co"># Remplacez par le port MySQL utilisé dans votre configuration</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="cf">try</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    <span class="co"># Création d un curseur</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>    <span class="co"># Exécution de la procédure stockée</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>    num_client <span class="op">=</span> <span class="bu">int</span>(sys.argv[<span class="dv">1</span>])</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>    num_ss <span class="op">=</span> <span class="dv">123456789</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    nom_e <span class="op">=</span> <span class="st">&quot;Doe&quot;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>    prenom_e <span class="op">=</span> <span class="st">&quot;John&quot;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    cursor.callproc(<span class="st">&quot;NomDeVotreProcedureMySQL&quot;</span>, (num_ss, nom_e, prenom_e))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>    <span class="co"># Commit pour valider les modifications</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>    conn.commit()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>    <span class="co"># Affichage du résultat ou de tout message renvoyé par la procédure</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>    result <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a>    <span class="bu">print</span>(result)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="cf">except</span> pymysql.Error <span class="im">as</span> e:</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>    <span class="co"># Récupération du message d erreur</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>    <span class="bu">print</span>(e)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>    error_message <span class="op">=</span> e.args[<span class="dv">1</span>]</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Erreur MySQL: </span><span class="sc">{</span>error_message<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a><span class="cf">finally</span>:</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>    <span class="co"># Fermeture du curseur et de la connexion</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>    cursor.close()</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>    conn.close()</span></code></pre></div>
+<p>Exemple de résultat dans un terminal :</p>
+<pre><code>$ python script_python_exo3.py 3
+(1644, &quot;Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6&quot;)
+Erreur MySQL: Stock insuffisant pour l&#39;article avec id 7 avec comme stock 6</code></pre>
+<h1 id="exercice-4">exercice 4</h1>
+<p>Créez des triggers (déclencheurs) sur la table panier. Ces triggers, lorsque l’on crée/supprime/modifie un enregistrement dans la table panier, mettent à jour le stock dans la table article. (le stock ne peut pas être négatif).</p>
+<p>Dans ce cas, la mise à jour du stock dans la procédure PL/SQL précédente n’a plus de sens (il faut la retirer).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">SET</span> @id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">-- | id_client | id_article | quantite |</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">-- |         1 |          7 |       14 |</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">-- |         1 |         17 |        4 |</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> article <span class="kw">WHERE</span> id_article <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">17</span>);</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">-- | id_article | designation                 | prix   | stock |</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">-- |          3 | Mouchoir ( hygiène)         | 2.5400 |    10 |</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">-- |          4 | Coca cola ( boisson )       | 1.5200 |     6 |</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="co">-- |          7 | Pomme de terre ( légume )   | 1.5000 |     6 |</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">-- |         17 | Pomme ( fruit )             | 3.0000 |    10 |</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>(@id_client,<span class="dv">7</span>,<span class="dv">14</span>),(@id_client,<span class="dv">17</span>,<span class="dv">4</span>),(@id_client,<span class="dv">3</span>,<span class="dv">3</span>),(@id_client,<span class="dv">4</span>,<span class="dv">3</span>);</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a><span class="co">-- INSERT INTO panier(id_client, id_article, quantite) VALUES</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a><span class="co">-- (@id_client,3,3),(@id_client,4,3);</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a><span class="co">-- | id_client | id_article | quantite |</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a><span class="co">-- |         1 |          3 |        3 |</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a><span class="co">-- |         1 |          4 |        3 |</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a><span class="co">-- |         1 |          7 |       14 |</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a><span class="co">-- |         1 |         17 |        4 |</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> article <span class="kw">WHERE</span> id_article <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">17</span>);</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a><span class="co">-- | id_article | designation                 | prix   | stock |</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a><span class="co">-- |          3 | Mouchoir ( hygiène)         | 2.5400 |    10 |</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a><span class="co">-- |          4 | Coca cola ( boisson )       | 1.5200 |     6 |</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a><span class="co">-- |          7 | Pomme de terre ( légume )   | 1.5000 |     4 |</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a><span class="co">-- |         17 | Pomme ( fruit )             | 3.0000 |     7 |</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> panier(id_client, id_article, quantite) <span class="kw">VALUES</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a>(@id_client,<span class="dv">8</span>,<span class="dv">23</span>);</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a><span class="co">-- ERROR 1644 (45000): Stock insuffisant pour l article.</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client <span class="kw">AND</span> id_article<span class="op">=</span><span class="dv">4</span>;</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a><span class="kw">UPDATE</span> panier <span class="kw">SET</span> quantite<span class="op">=</span>quantite<span class="op">+</span><span class="dv">2</span> <span class="kw">WHERE</span>  id_client<span class="op">=</span>@id_client <span class="kw">AND</span> id_article<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> panier <span class="kw">WHERE</span> id_client<span class="op">=</span>@id_client;</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true"></a><span class="co">-- | id_client | id_article | quantite |</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true"></a><span class="co">-- |         1 |          3 |        5 |</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true"></a><span class="co">-- |         1 |          7 |       14 |</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true"></a><span class="co">-- |         1 |         17 |        4 |</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true"></a><span class="co">-- +-----------+------------+----------+</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> article <span class="kw">WHERE</span> id_article <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">17</span>);</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true"></a><span class="co">-- | id_article | designation                 | prix   | stock |</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true"></a><span class="co">-- |          3 | Mouchoir ( hygiène)         | 2.5400 |     8 |</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true"></a><span class="co">-- |          4 | Coca cola ( boisson )       | 1.5200 |     9 |</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true"></a><span class="co">-- |          7 | Pomme de terre ( légume )   | 1.5000 |     4 |</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true"></a><span class="co">-- |         17 | Pomme ( fruit )             | 3.0000 |     7 |</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true"></a><span class="kw">UPDATE</span> panier <span class="kw">SET</span> quantite<span class="op">=</span>quantite<span class="op">+</span><span class="dv">12</span> <span class="kw">WHERE</span>  id_client<span class="op">=</span>@id_client <span class="kw">AND</span> id_article<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true"></a><span class="co">-- ERROR 1644 (45000): Stock insuffisant pour l article.</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true"></a><span class="co">-- +------------+-----------------------------+--------+-------+</span></span></code></pre></div>
 </body>
 </html>
