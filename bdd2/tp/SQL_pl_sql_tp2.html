@@ -238,9 +238,9 @@
 <p>
 </details>
 <p><br></p>
+<p>La question 1 du TP sur oracle sera traitée à la question 4 (c’est la même chose mais c’est bien plus compliqué sur MySQL)</p>
 <ol type="1">
-<li><p>la question 1 du TP sur oracle sera traitée à la question 4 (c’est la même chose mais c’est bien plus compliqué sur MySQL)</p></li>
-<li><p><span class="orange">Exo 1 . Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. <strong>Faire une démonstration (validation) dans un terminal.</strong>.</span></p></li>
+<li><span class="orange">Exo 1 . Écrivez un bloc PL/SQL anonyme qui supprime tous les employés de la table EMPLOYE qui ont 70 ans ou plus et qui affiche le nombre de lignes qui ont été supprimées ou le message ‘Aucun employé supprimé’ si aucun employé n’a plus de 70 ans. <strong>Faire une démonstration (validation) dans un terminal.</strong>.</span></li>
 </ol>
 <pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
 +-----------------------------+
@@ -259,8 +259,8 @@ MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
 +---------------------------+
 </code></pre>
 <p>L’instruction <code>SELECT * FROM Employe;</code> permet de voir que franck a disparu</p>
-<ol start="3" type="1">
-<li><span class="orange">Exo3. Écrivez un bloc PL/SQL anonyme qui modifie tous les noms des profils dans la table grille_sal en ajoutant la lettre ‘P’ devant chaque nom de profil. Pour chaque profil modifié dans la table grille_sal les valeurs correspondantes dans la table embauche doivent également être modifiées. <strong>Attention à la clé étrangére : il faut dans votre script la supprimer puis la re-créer .</strong></span></li>
+<ol start="2" type="1">
+<li><span class="orange">Exo2. Écrivez un bloc PL/SQL anonyme qui modifie tous les noms des profils dans la table grille_sal en ajoutant la lettre ‘P’ devant chaque nom de profil. Pour chaque profil modifié dans la table grille_sal les valeurs correspondantes dans la table embauche doivent également être modifiées. <strong>Attention à la clé étrangère : il faut dans votre script la supprime puis la re-crée .</strong></span></li>
 </ol>
 <pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
     -&gt;         FROM Grille_sal;
@@ -315,7 +315,7 @@ MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
 
 SELECT * FROM Embauche;</code></pre>
 <ol start="4" type="1">
-<li><span class="orange">(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. <strong>Utiliser un curseur, utiliser une boucle avec l’intruction WHILE .</strong></span></li>
+<li><span class="orange">(Curseur avec des paramètres) Écrivez un bloc PL/SQL anonyme qui affiche tous les noms de projet, pour chaque nom de projet on affiche les noms des employés affectés à ce projet. <strong>Utiliser un curseur, utiliser une boucle avec l’instruction WHILE .</strong></span></li>
 </ol>
 <p><br></p>
 <p>voir question 1 dans le <a href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql" target="_blanck">tp sur oracle</a></p>
