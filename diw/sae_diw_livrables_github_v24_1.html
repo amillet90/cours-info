@@ -49,13 +49,13 @@ SAE 05-06 : partie “Développement d’Interfaces Web”
 </ul>
 <p><br> <br></p>
 <ul>
-<li><p><strong>Créer un compte “GitHub”</strong> et un <strong>projet ou “repository”</strong> : Remarque, faire attention au choix du <strong>username</strong> et du nom du <strong>projet</strong> sur GitHub, comme il compose l’URL, les URL sont évaluées :</p>
+<li><strong>Créer un compte “GitHub”</strong> et un <strong>projet ou “repository”</strong> : Remarque, faire attention au choix du <strong>username</strong> et du nom du <strong>projet</strong> sur GitHub, comme il compose l’URL, les URL sont évaluées :
 <ul>
 <li>L’URL du site <strong>GitHub Pages</strong> sera de la forme <a href="https://username.github.io/nomProjet/" target="_blanck" rel="noopener">https://username.github.io/nomProjet/</a></li>
 <li>L’URL du projet <strong>GitHub</strong> permettra d’accéder au fichier README.md et sera de la forme : <a href="https://github.com/username/nomProjet" target="_blanck" rel="noopener">https://github.com/username/nomProjet</a></li>
-<li><strong>Le “repository” doit être “public”</strong>. Attention sans être connecté à “github”, dans un terminal la commande <code>git clone https://github.com/username/nomProjet</code> en remplaçant <em>username</em> et <em>nomProjet</em> par les vôtres doit fonctionner sinon les URLs ne sont pas considérées correctes. <br> <br></li>
+<li><strong>Le “repository” doit être “public”</strong>. Attention sans être connecté à “github”, dans un terminal la commande <code>git clone https://github.com/username/nomProjet</code> en remplaçant <em>username</em> et <em>nomProjet</em> par les vôtres doit fonctionner sinon les URLs ne sont pas considérées correctes et une pénalité importante est appliquée. <br> <br></li>
 </ul></li>
-<li><p>Travail à déposer sur Moodle : <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/livrable1_sae_56_site_web.ods">un fichier tableur “livrable1_sae_56_site_web.ods”</a></p>
+<li>Travail à déposer sur Moodle : <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/livrable1_sae_56_site_web.ods">un fichier tableur “livrable1_sae_56_site_web.ods”</a>
 <ul>
 <li>Le contenu des cellules jaunes du fichier joint est un exemple de résultat attendu. Testez les liens puis supprimez le contenu de toutes les cellules jaunes du fichier “tableur”. Par la suite aucune autre cellule que celles en jaune ne doit être complétée.</li>
 <li>Complétez ensuite dans le fichier Excel toutes les cellules jaunes du livrable 1 (vos noms, groupes et liens sur GitHub). (supprimer et ne rien mettre dans celles du livrable 2).</li>
@@ -64,29 +64,31 @@ SAE 05-06 : partie “Développement d’Interfaces Web”
 <li>Le fichier “tableur” doit être déposé sur Moodle par le référent.</li>
 <li>Si ces consignes ne sont pas respectées, une pénalité importante est appliquée. <br><br></li>
 </ul></li>
-<li><p>Travail à déposer sur GitHub :</p></li>
-<li><p>Fichier du projet (“<em>repository</em>”) : <strong>README.md</strong></p>
+<li>Travail à déposer sur GitHub :
+<ul>
+<li>Fichier du projet (“<em>repository</em>”) : <strong>README.md</strong>
 <ul>
 <li>Dans le fichier <strong>README.md</strong>, indiquez le nom de votre groupe et les personnes qui le composent (ajoutez l’e-mail du référent).</li>
 <li>Dans ce fichier, créez au minimum 3 parties : “sujet” avec un lien sur le site web , “Membres du groupe” et “Présentation du projet”.</li>
 <li>Ne pas mettre dans ce fichier un contenu qui n’a pas de sens (liens morts ou sans rapport avec votre sujet, texte sans rapport avec votre sujet ….).</li>
 <li>Il doit y avoir à côté du fichier <strong>README.md</strong> un fichier <strong>index.html</strong> qui correspond à la page d’accueil.</li>
-<li><strong>Toutes les personnes du projet doivent apparaître de façon claire comme contributeurs (je dois être en mesure de reconnaître facilement leurs noms ou prénoms). Les personnes qui ne contribuent pas du tout seront pénalisées. S’il n’est pas possible d’identifier de façon claire tous les contributeurs, tous seront pénalisés</strong> ; Remarque la quantité de contribution n’est pas prise en compte.</li>
+</ul></li>
+<li><strong>Toutes les personnes du projet doivent apparaître de façon claire comme contributeurs (je dois être en mesure de reconnaître facilement leurs noms ou prénoms). Les personnes qui ne contribuent pas du tout seront pénalisées. S’il n’est pas possible d’identifier de façon claire tous les contributeurs, tous seront pénalisés</strong>.</li>
 </ul></li>
 </ul>
 <figure>
-<img src="img_github/sae1_livrable1_contributors_1.png" style="width:15cm" alt="" /><figcaption><em>Figure 1 : sur le projet GitHub devrait apparaître tous les auteurs (“Contributors”) avec le nom ou prénom de tous les étudiants du groupe</em></figcaption>
+<img src="img_github/sae1_livrable1_contributors_1.png" style="width:15cm" alt="" /><figcaption><em>Figure 1 : sur le projet GitHub devraient apparaître tous les auteurs (“Contributors”) avec le nom ou prénom de tous les étudiants du groupe</em></figcaption>
 </figure>
 <ul>
 <li><p><strong>Site web</strong> : page d’accueil + menu</p>
 <ul>
 <li>Créer une simple page <strong>index.html</strong> avec un menu et les liens sur toutes les autres pages (cette page sera chargée par défaut sur l’URL <a href="https://username.github.io/nomProjet/" target="_blanck">https://username.github.io/nomProjet/</a>)</li>
 <li>Assurez-vous de la présence d’un fichier “favicon.ico” et d’un titre (balise TITLE) sur chaque page.</li>
-<li><strong>Les liens du menu doit avoir des intitulés qui ont du sens et doivent permettre d’ouvrir toutes les pages</strong>.</li>
-<li>Le menu est commun à toutes ou les pages sauf éventuellement la page d’accueil.</li>
+<li><strong>Les liens du menu doivent avoir des intitulés qui ont du sens et doivent permettre d’ouvrir toutes les pages</strong>.</li>
+<li>Le menu est commun à toutes les pages sauf éventuellement la page d’accueil.</li>
 <li>Créez toutes les pages (au moins une par étudiant). Toutes les pages doivent indiquer, en pied de page, l’auteur (le futur auteur) de la page.</li>
 <li>Toutes les pages doivent contenir un minimum de contenu qui a du sens (éviter le “Lorem Ipsum”).</li>
-<li>Le contenu et la mise en forme est très peu évalués. Ce livrable est surtout l’occasion de vérifier que les tâches sont distribuées au sain du groupe. <br></li>
+<li>Le contenu et la mise en forme sont très peu évalués. Ce livrable est surtout l’occasion de vérifier que les tâches sont distribuées au sein du groupe. <br></li>
 </ul></li>
 </ul>
 <p>Si vous rencontrez des problèmes, posez vos questions en TP de BDD à Alain Millet</p>
@@ -99,7 +101,7 @@ SAE 05-06 : partie “Développement d’Interfaces Web”
 <li>Ajoutez une balise “TITLE” avec un titre approprié.</li>
 <li>Créez un fichier “favicon.ico” (image), vous pouvez utiliser un site comme <a href="https://www.favicon-generator.org/" target="_blanck" rel="noopener">https://www.favicon-generator.org/</a> pour convertir une image en icône.</li>
 <li>Dans la page d’accueil, ajoutez le menu et les liens vers toutes les autres pages. Ajoutez également un peu de texte pour expliquer votre projet dans cette page.</li>
-<li>Créez toutes les pages de votre site Web avec un minimum de contenu, et indiquez l’auteur de chaque page en pied de page.</li>
+<li>Créez toutes les pages de votre site Web avec suffisamment de contenu, et indiquez l’auteur de chaque page en pied de page.</li>
 </ul>
 <figure>
 <img src="img_github/sae1_favicon_title.png" alt="" /><figcaption><em>Figure 2 : “favicon” et “title”</em></figcaption>
@@ -132,7 +134,7 @@ Etudiant 5 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)
 ...... (5/6 lignes)
 
 </code></pre>
-<p><strong>ATTENTION dans le code ci-dessus les caractères <code>![]()</code> sont obligatoires lorsqu’ils sont présents dans l’exemple. Ce code est transformé automatiquement en HTML par <em>GitHub</em>)</strong></p>
+<p><strong>ATTENTION dans le code ci-dessus les caractères <code>![]()</code> sont obligatoires lorsqu’ils sont présents dans l’exemple. Ce code est transformé automatiquement en HTML par <em>GitHub</em>.</strong></p>
 <p><br></p>
 <ul>
 <li>Ensuite, ajoutez une présentation du projet dans le fichier <strong>README.md</strong> : Utilisez un titre de niveau 1 suivi de quelques lignes pour présenter votre projet.</li>
