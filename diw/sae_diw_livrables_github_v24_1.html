@@ -396,7 +396,7 @@ git commit -m &quot;modif projet ...&quot;
 git push</code></pre>
 <h2 id="récupérer-tirer-les-modifications-des-autres-leur-code">“Récupérer” (“tirer”) les modifications des autres (leur code)</h2>
 <pre><code>git pull</code></pre>
-<p>commande pour revenir en arrière dans son code si on a oublier de faire un “pull”</p>
+<p>Commande pour revenir en arrière dans son code si on a oublié de faire un “pull”</p>
 <pre><code>git reset --hard HEAD^</code></pre>
 <h2 id="pour-lister-les-commits">Pour lister les “commits”</h2>
 <pre><code>git log</code></pre>
@@ -406,8 +406,13 @@ git push</code></pre>
 </ul>
 <p><strong>Démonstration en TP (DIW ou BDD)</strong></p>
 <ul>
-<li>En TP, chaque étudiant fera une modification de sa page HTML (ou d’une de ses pages HTML) en utilisant les commandes <em>git</em>. Si un étudiant n’est pas capable d’utiliser les commandes git sur une machine de l’iut connectée à son compte (ou sa machine perso.) un malus est appliqué à la note finale.</li>
+<li>En TP, chaque étudiant fera une modification de sa page HTML (ou d’une de ses pages HTML) en utilisant les commandes <em>git</em>. Si un étudiant n’est pas capable d’utiliser les commandes <em>git</em> sur une machine de l’iut connectée à son compte (ou sa machine perso.) un malus est appliqué à la note finale.</li>
 </ul>
+<p>Vous pourrez utiliser les commandes ci-dessous lors de votre démonstration :</p>
+<pre><code>git log --oneline
+git log --oneline --author=votreUsername
+git shortlog -s -n
+git shortlog</code></pre>
 <h2 id="procédure-conseillée">procédure conseillée :</h2>
 <p>se déplacer depuis le terminal dans le dossier du projet (dépôt local)</p>
 <pre><code>git pull
@@ -462,7 +467,7 @@ git push</code></pre>
 </ul></li>
 <li>Solution 2 : dans la gestion du projet (fin de de la barre de menu latéral)
 <ul>
-<li>Selectionner Access Token (token (clé) pour ce projet)</li>
+<li>Sélectionner Access Token (token (clé) pour ce projet)</li>
 <li>puis c’est identique à la solution 1</li>
 </ul></li>
 </ul></li>
@@ -509,7 +514,7 @@ git push</code></pre>
 <ul>
 <li>l’utilisation d’un mot de passe généré est obligatoire dans le terminal
 <ul>
-<li>Dans l’interface du profile “⚙️ Personnal BitBucket Settings” <a href="https://bitbucket.org/USERNAME/workspace/overview/" class="uri">https://bitbucket.org/USERNAME/workspace/overview/</a></li>
+<li>Dans l’interface du profil “⚙️ Personnal BitBucket Settings” <a href="https://bitbucket.org/USERNAME/workspace/overview/" class="uri">https://bitbucket.org/USERNAME/workspace/overview/</a></li>
 <li>“Mot de passe de l’application” &gt; “Créer un mot de passe pour l’application”</li>
 <li><strong>Bien recopier le mot de passe qui apparaît</strong> au dessus</li>
 </ul></li>
@@ -524,7 +529,7 @@ git push</code></pre>
 https://USERNAME:glpat-1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@gitlab.com
 https://USERNAME:1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@bitbucket.org
 https://USERNAME:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
-<p>attention à 🤖 ChatGPT : Comment créer et utiliser le fichier <code>.git-credentials</code> sur windows</p>
+<p>Attention à 🤖 ChatGPT : Comment créer et utiliser le fichier <code>.git-credentials</code> sur <em>Windows</em></p>
 <p>Il est recommandé d’utiliser des méthodes plus sécurisées comme les clés SSH pour l’authentification avec Git.</p>
 <h1 id="évaluation">Évaluation</h1>
 <figure>
@@ -534,7 +539,7 @@ https://USERNAME:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre
 <p><br></p>
 <p>vidéos : <a href="https://www.youtube.com/watch?v=hNRxn5sKOdE" target="_blanck">git enzo 12 mn</a> - <a href="https://www.youtube.com/watch?v=eXF0epLeCgo" target="_blanck">git (moins rapide)</a> - <a href="https://grafikart.fr/formations/git" target="_blanck">grafikart cours</a> <br> <br></p>
 <p>attention à 🤖 ChatGPT : attention à l’utilisation et aux solutions proposées pour les commandes GitHUB</p>
-<p><br> Pensez à utiliser des exemples : HTML : codepen <a href="https://codepen.io/alvarotrigo/pen/MWEgejK" target="_blanck">exemple</a> <a href="https://codepen.io/NilsWe/pen/Axdozd" target="_blanck">exemple 2</a> <br> <br></p>
+<p><br> Pensez à utiliser des exemples : HTML : codepen <a href="https://codepen.io/alvarotrigo/pen/MWEgejK" target="_blanck">exemple 1</a> <a href="https://codepen.io/NilsWe/pen/Axdozd" target="_blanck">exemple 2</a> <br> <br></p>
 <p><br></p>
 <p><br></p>
 <p><br> <br> <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blanck">résumé commandes git (github)</a> - <a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf" target="_blanck">résumé commandes git (gitlab)</a> <br> <!-- <br>
