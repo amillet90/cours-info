@@ -272,34 +272,55 @@ free -mt
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">User</span>, Host, plugin,authentication_string <span class="kw">FROM</span> mysql.<span class="fu">user</span>;</span></code></pre></div>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-fr" target="_BLANCK">doc ubuntu</a></p>
 <h1 id="annexes-windows-installation-sur-windows">annexes Windows : installation sur windows</h1>
+<p>Attention à la configuration de MySQL via le fichier my.ini =&gt;</p>
+<ul>
+<li>modification impossible</li>
+<li>configuration différente =&gt; https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7152681-installez-le-sgbd-mysql</li>
+</ul>
+<p>Je conseille l’installation de <strong>mariadb</strong></p>
+<p>voir la <a href="https://grafikart.fr/tutoriels/mysql-windows-2001#autoplay" target="_BLANCK">vidéo</a> sur grafikart</p>
+<p>Il est conseillé d’installer <strong>mariadb</strong> indépendamment de logiciel comme Xampp, Wamp…</p>
+<!--
 <br>
 <div style="text-align: center;">
 <embed src="https://www.youtube.com/embed/iNs1vMCWaYg" allowfullscreen="true" width="425" height="344">
 </div>
-<p><br></p>
-<ul>
-<li><a href="https://chocolatey.org/" target="_blanck">chocolatey</a></li>
-<li><a href="https://chocolatey.org/packages" target="_blanck">https://chocolatey.org/packages</a></li>
-<li><a href="https://chocolatey.org/packages/jdk8" target="_blanck">https://chocolatey.org/packages/jdk8</a></li>
-<li><a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/list" target="_blanck">winget</a></li>
-</ul>
-<p><br></p>
-<ul>
-<li>Installer chocolatey
-<ul>
-<li>Ouvrir un invité de commandes en tant que <strong>Administrateur</strong></li>
-<li>Recopier la commande de la documentation <a href="https://chocolatey.org/docs/installation#install-with-cmdexe" target="_blanck">https://chocolatey.org/docs/installation#install-with-cmdexe</a></li>
-<li>Recopier la commande dans l’invité de commandes</li>
-<li><strong>Fermer puis Ouvrir</strong> à nouveau un invité de commandes en tant que <strong>Administrateur</strong> <br></li>
-</ul></li>
-<li><a href="https://unicorn-utterances.com/posts/ultimate-windows-development-environment-guide/" target="_blanck">documentation pour installer sa machine sur windows</a></li>
-</ul>
-<p>On va suivre certains éléments du tutoriel du lien ci-dessus.</p>
-<p><br> Recopier les scripts ci-dessous dans un invité de commandes ouvert comme administrateur.<br />
-Fermer puis re-ouvrir le terminal en tant que administrateur</p>
-<pre><code>choco install git.install -y
-choco install micro bat gh -y</code></pre>
-<pre><code>choco install cmder -y
+<br>
+
+
+* [chocolatey](https://chocolatey.org/){target=_blanck}
+* <https://chocolatey.org/packages>{target=_blanck}
+* <https://chocolatey.org/packages/jdk8>{target=_blanck}
+* [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/list){target=_blanck}
+
+<br>
+
+* Installer chocolatey
+    * Ouvrir un invité de commandes en tant que **Administrateur**
+    * Recopier la commande de la documentation <https://chocolatey.org/docs/installation#install-with-cmdexe>{target=_blanck}
+    * Recopier la commande dans l’invité de commandes
+    * **Fermer puis Ouvrir** à nouveau un invité de commandes en tant que **Administrateur**
+<br>
+
+* [documentation pour installer sa machine sur windows](https://unicorn-utterances.com/posts/ultimate-windows-development-environment-guide/){target=_blanck}
+
+
+On va suivre certains éléments du tutoriel du lien ci-dessus.
+
+
+<br>
+Recopier les scripts ci-dessous dans un invité de commandes ouvert comme administrateur.\
+Fermer puis re-ouvrir le terminal en tant que administrateur 
+
+
+```
+choco install git.install -y
+choco install micro bat gh -y
+```
+
+
+```
+choco install cmder -y
 choco install mysql -y
 
 choco install vscode -y
@@ -308,25 +329,27 @@ choco install sublimetext3 atom jetbrainstoolbox -y
 choco install nodejs.install -y
 
 choco install openjdk8jre -y  
-</code></pre>
-<ul>
-<li>tester dans un terminal (invité de commandes) : <code>cmder</code>, <code>code</code></li>
-</ul>
+
+```
+
+* tester dans un terminal (invité de commandes) :  `cmder`, `code`
+
+-->
 <h1 id="configuration-de-mysql-1">configuration de mysql</h1>
 <p>de ce que j’ai pu tester sur mysql, ouvrir une console <strong>sans être administrateur</strong></p>
 <pre><code>mysql -u root               # pour se connecter à mysql</code></pre>
 <ul>
 <li>recopier le script ci-dessous dans vscode, et remplacer login par votre login de l’iut, motdepasse pas JJMM (votre jour mois de naissance) =&gt; <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code sur l’invité de commande mysql.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
 <li>tester dans un terminal (invité de commande) la commande : <code>mysql -u login -h localhost -pmotdepasse BDD_login</code></li>
 </ul>
