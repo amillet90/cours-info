@@ -275,7 +275,7 @@ free -mt
 <p>Attention à la configuration de MySQL via le fichier my.ini =&gt;</p>
 <ul>
 <li>modification impossible</li>
-<li>configuration différente =&gt; https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7152681-installez-le-sgbd-mysql</li>
+<li>configuration différente =&gt; <a href="https://www.rufusvision.org/installation-du-serveur-mysql-sous-windows.html" target="_BLANCK">https://www.rufusvision.org/installation-du-serveur-mysql-sous-windows.html</a> <br></li>
 </ul>
 <p>Je conseille l’installation de <strong>mariadb</strong></p>
 <p>voir la <a href="https://grafikart.fr/tutoriels/mysql-windows-2001#autoplay" target="_BLANCK">vidéo</a> sur grafikart</p>
@@ -339,7 +339,7 @@ choco install openjdk8jre -y
 <p>de ce que j’ai pu tester sur mysql, ouvrir une console <strong>sans être administrateur</strong></p>
 <pre><code>mysql -u root               # pour se connecter à mysql</code></pre>
 <ul>
-<li>recopier le script ci-dessous dans vscode, et remplacer login par votre login de l’iut, motdepasse pas JJMM (votre jour mois de naissance) =&gt; <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code sur l’invité de commande mysql.</li>
+<li>recopier le script ci-dessous dans vscode, et remplacer login par votre login de l’iut, motdepasse par mdp (ou un autre mot de passe simple et différent de celui pour se connecter à votre machine) =&gt; <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code sur l’invité de commande mysql.</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
@@ -351,7 +351,7 @@ choco install openjdk8jre -y
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
-<li>tester dans un terminal (invité de commande) la commande : <code>mysql -u login -h localhost -pmotdepasse BDD_login</code></li>
+<li>tester dans un terminal (invité de commande) la commande : <code>mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile</code></li>
 </ul>
 <p><br><br></p>
 <p><br><br><br><br><br><br><br></p>
