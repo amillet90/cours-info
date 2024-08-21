@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<h1 id="introduction-objectif-du-module-développement-interfaces-web">Introduction : objectif du module “Développement Interfaces Web”</h1>
+<p><strong>TD</strong> : 1H * 8 semaines : (<a href="https://www.benjamin-robert.com/" target="_blanck">Benjamin Robert : Ingénieur informatique</a>)</p>
+<ul>
+<li>Objectif :
+<ul>
+<li>présentation HTML CSS</li>
+<li>utilisation du HTML et du CSS pour disposer correctement des contenus dans un navigateur (css, flexbox, grille) , réalisation d’un menu dans une page,</li>
+<li>contenus “Responsive” (adaptés aux différents supports)) ….</li>
+<li>Bootstrap</li>
+</ul></li>
+<li>Utilisation : SAE 5 (projet) : réalisation d’un site Web</li>
+</ul>
+<p><br></p>
+<p><strong>TP</strong> : 1H30 * 8 semaines : (Millet Alain)</p>
+<ul>
+<li>Objectif :
+<ul>
+<li>présentation des éléments HTML (+ CSS) : formulaire, tableau, barre de navigation.</li>
+<li>Présentation d’un serveur web et des outils pour faire du web en python.</li>
+<li>Utilisation de Flask pour faire un serveur web.</li>
+<li>Présentation des vues sur FLASK (notion de gabarit).</li>
+<li>Passage de paramètres dans un formulaire ou un lien, récupération des données dans le script Python. (Flask est utilisé pour la deuxième SAE en BDD pour faire des états et des formulaires)</li>
+</ul></li>
+<li>Utilisation : SAE 3 et 4 (projet) : réalisation d’une base de données + système</li>
+</ul>
+<p><br></p>
+<p><strong>Évaluation</strong> :</p>
+<ul>
+<li>aspects esthétiques et techniques du site Web réalisé lors de la SAE 5</li>
+<li>un exercice en TD à renvoyer</li>
+<li>un exercice en TP à renvoyer (évalué lors de la dernière séance ?), cet exercice sera réutilisé en Base de données pour une autre évaluation</li>
+</ul>
+<h1 id="tp1-présentation-de-lhtml---le-langage-les-bases-liens-..">TP1: présentation de l’HTML - le langage : les bases, liens …..</h1>
+<!--https://www.plpeeters.com/blog/fr/post/73-le-markdown-un-formidable-outil-->
+<ul>
+<li>Utiliser la norme HTML5, pour les exercices ci-dessous.</li>
+</ul>
+<p><br></p>
+<div class="cours">
+
+<p>Le <a href="https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Getting_started" target="_blanck">site web <em>Mozilla</em> présente les bases de l’<strong>HTML</strong></a>. Avant de commencer lire rapidement le contenu de ce lien.</p>
+<ul>
+<li>Une page <em>HTML</em> se compose d’une structure de base :</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="kw">&lt;title&gt;</span>Titre du site<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&lt;!-- commentaire  : description de la page--&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&lt;!--....à compléter (liens (fichiers CSS,javascript), balises META ...--&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&lt;!-- commentaire  : contenu de la page--&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>............................à compléter.............</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<ul>
+<li><p>Créez un répertoire dans votre répertoire personnel <strong>S1/web/tp1</strong>, créez vos fichiers HTML sur ce répertoire.</p></li>
+<li><p>Créez un fichier <strong>test1.html</strong></p></li>
+<li><p>Éditez ce fichier avec VSCode</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>mkdir -p S1/web/tp1</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>cd S1/web</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>touch tp1/test.html</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>code .</span></code></pre></div>
+<p><br></p>
+<p><a href="https://html5-editor.net/" target="_blanck">éditeur html en ligne</a></p>
+<p><br></p>
+<p>L’objectif est d’utiliser les balises les plus connues :</p>
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/indices.html#elements-3" target="_blanck">liste des balises sur whatwg</a> ,</li>
+<li><a href="https://dev.w3.org/html5/html-author/" target="_blanck">liste des balises sur W3C</a>,</li>
+<li><a href="https://www.w3schools.com/tags/" target="_blanck">liste des balises sur W3SCHOOL</a>,</li>
+<li><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element" target="_blanck">liste des balises sur la doc Mozilla</a>,</li>
+</ul>
+<h4 id="une-balise">Une balise</h4>
+<p><img src="img_diw/tp1_balise_1.png" style="width:10cm" /></p>
+<h4 id="éléments-bloc-vsou-en-ligne">Éléments bloc vs(ou) en ligne</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;em&gt;</span>premier<span class="kw">&lt;/em&gt;&lt;em&gt;</span>deuxième<span class="kw">&lt;/em&gt;&lt;em&gt;</span>troisième<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;p&gt;</span>quatrième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>cinquième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>sixième<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<h4 id="éléments-vides">Éléments vides</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+<h4 id="attributs">Attributs</h4>
+<p><img src="img_diw/tp1_balise_2.png" style="width:10cm" /></p>
+<h4 id="exemple-de-balises-que-lon-utilisera-beaucoup">Exemple de balises que l’on utilisera beaucoup :</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">&lt;span&gt;</span>balise &quot;inline&quot; générique<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">&lt;div&gt;</span>balise &quot;bloc&quot; générique<span class="kw">&lt;/div&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">&lt;hr&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span> lien <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;&quot;</span><span class="ot"> method=</span><span class="st">&quot;get&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    formulaire : ATTENTION aux attributs &quot;action&quot;, &quot;method&quot; dans la balise &quot;form&quot; et</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    &quot;name&quot;, &quot;value&quot; dans les balises &quot;input&quot;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;valider&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">&lt;/form&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="kw">&lt;table&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>        <span class="kw">&lt;td&gt;</span>C1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>C2<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<ul>
+<li>Attention aux attributs obligatoires</li>
+<li>Recopiez le code dans votre page <strong>test1.html</strong></li>
+<li>Complètez les attributs du lien et du formulaire (attributs <code>href</code> et <code>action</code>)</li>
+</ul>
+<h4 id="validation-dune-page">Validation d’une page</h4>
+<ul>
+<li><p>Sur le site <a href="https://validator.w3.org/#validate_by_upload" target="_blanck">W3C</a></p></li>
+<li><p>Modifiez votre page pour qu’elle passe le test du validateur W3C avec succès</p></li>
+</ul>
+<br>
+<details>
+<summary>💡 Exemple de modifications pour les erreurs détectées par le validateur W3C </summary>
+<p>
+<p><img src="img_diw/diw_tp1_11.png" style="width:24cm" /></p>
+<ul>
+<li>Warning 1 : dans la balise <code>&lt;html&gt;</code> il est souhaitable d’ajouter l’attribut <code>lang="fr"</code></li>
+<li>Error 1 : dans la balise <code>&lt;img src="</code> il est obligatoire d’ajouter l’attribut <code>alt="description de l'image"</code> (pour les non voyants)</li>
+<li>Warning 2 : dans la balise <code>&lt;img src="</code> il n’est plus obligatoire voire souhaitable de ne plus terminer la balise par <code>/&gt;</code> mais par <code>&gt;</code>, bien que ce soit un élément vide ( les éléments vides n’ont pas de tag de fermeture)</li>
+<li>Error 2 : dans la balise <code>&lt;form action="" method=""&gt;</code> l’attribut <code>action=""</code> est obligatoire et ne doit pas être vide<br />
+
+<p>
+</details></li>
+</ul>
+<h4 id="exemple-sur-codepen">Exemple sur codepen</h4>
+<ul>
+<li><a href="https://codepen.io/michelmichaud/pen/NPKwqo" target="_blanck">Exemple de tableau</a></li>
+<li><a href="https://codepen.io/alyssaa_i/pen/wvmOVar" target="_blanck">Exemple 2 de tableau</a></li>
+</ul>
+</div>
+<h2 id="exercice-1-page-1">Exercice 1 : Page 1</h2>
+<p><br></p>
+<ul>
+<li><strong>Téléchargez</strong> <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1.zip" target="_blanck"><strong>le fichier ressources suivant</strong></a> du site de l’<a href="https://cours-info.iut-bm.univ-fcomte.fr/index.php/menu-cours-s1/r1-02-developpement-d-interfaces-web/2228-dev-interfaces-web-2021" target="_blanck">iut “cours-info”</a> puis <strong>désarchivez</strong> ce fichier dans le dossier créé précédemment.</li>
+</ul>
+<p><br></p>
+<ul>
+<li><p>Utilisez <strong>Studio Code</strong> ou un autre éditeur pour créer une page <strong>page1.html</strong> (attention aux extensions, seules les extensions <strong>.html</strong> sont prises en compte par le serveur Web comme apache)</p></li>
+<li><p>Utilisez les snippets de <em>Studio Code</em> pour créer la structure <em>HTML</em> de base. Taper <code>html:5</code> puis [tabulation]. Remplacez le code par le code ci dessus (structure de base) dans le fichier <strong>page1.html</strong></p></li>
+<li><p>Rajoutez si ce n’est pas fait l’encodage <strong>utf8</strong> (ceci permet d’afficher correctement les caractères éèùà … du langage français): <code>&lt;meta charset="utf-8"&gt;</code> dans la balise <code>&lt;head&gt;</code></p></li>
+<li><p>Modifiez le titre dans les attributs de la page : <code>&lt;title&gt;TP1 programmation Web&lt;/title&gt;</code>, donnez le rôle de la balise <code>&lt;title&gt;</code><br />
+</p></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Premier Test : Ouvrir le fichier avec le navigateur</strong></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Par la suite toutes les modifications se font dans le corps de la page Web ( <strong>body</strong> ), insérez :
+<ul>
+<li>une image servant de lien vers <strong>page2.html</strong>. (balise img) avec le texte alternatif “mon image devrait apparaître” de largeur 250 pixels et de hauteur 200 pixels et un titre au choix (balise <code>&lt;img src="linux.jpg" alt="mon image devrait apparaitre" title="sympa linux!" &gt;</code>). Utiliser les attributs CSS <code>width</code> et <code>height</code> pour définir les dimensions de l’image : ajouter l’attribut <code>style="width: 250px;height: 200px"</code> dans la balise image. Cette balise image est placée à l’intérieur d’une balise lien (<code>&lt;a href="nomFichier.html"&gt; &lt;img src="nomfichierImage.jpg" alt="texte alternatif" &gt;&lt;/a&gt;</code>)</li>
+<li>une ligne horizontale. (balise <code>&lt;hr&gt;</code>)</li>
+<li>un lien (interne) intitulé “lien vers page 3” vers <strong>page3.html</strong> (balise <code>&lt;a href="nomFichier.html"&gt; texte du lien &lt;/a&gt;</code>)</li>
+<li>un lien (externe) <code>&lt;a href="http://cours-info.iut-bm.univ-fcomte.fr" title="liens sur les cours TDs Tps du département informatique"&gt; Cours – TD – TP &lt;/a&gt;</code>, l’attribut : <strong>title</strong> ajoute une information lorsque la souris est sur le lien.</li>
+</ul></li>
+<li>Rajoutez une icône dans la partie <code>head</code> : ajoutez l’intruction <code>&lt;link rel="icon" type="image/x-icon" href="iconeweb.ico"&gt;</code>. Pour plus d’information sur les favicon, voir cette <a href="https://fr.wikipedia.org/wiki/Favicon" target="_blanck">documentation</a>, voir de la <a href="https://html.spec.whatwg.org/multipage/links.html#rel-icon" target="_blanck">documentation de W3C</a>.</li>
+</ul>
+<figure>
+<img src="img_diw/diw_tp1_1.png" alt="" /><figcaption>aperçu écran de la page “page1.html”</figcaption>
+</figure>
+<div class="validation">
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a><br />
+Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affiche en rouge les erreurs détectées par le “parseur” du navigateur</p>
+</div>
+<p>Remarque : Certaines erreurs peuvent être liées au fait que l’on ne peut pas mettre certaines balises dans d’autres balises. Vous pouvez vous aider des sites présentés lors de la configuration de votre bureau pour connaître les balises parents/enfants.</p>
+<h2 id="page-2">Page 2</h2>
+<ul>
+<li>Créez une page de nom <strong>page2.html</strong> qui contient :
+<ul>
+<li>un lien avec le texte suivant: «retour» pour retourner sur la page 1</li>
+<li>une ligne horizontale (balise <code>&lt;hr&gt;</code>)</li>
+<li>une image du G de Google qui est un lien sur le site <a href="http://www.google.fr" target="_blanck">http://www.google.fr</a> en utilisant l’attribut <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a" target="_blanck"><em>target</em></a> pour ouvrir un nouvel onglet dans le navigateur (attribut <code>target="_blank"</code>). <br> Remarque importante sur les liens : les liens utilisent des URL, voici une page avec quelques exemples d’URL: <a href="http://defeo.lu/aws/lessons/url" target="_blanck">http://defeo.lu/aws/lessons/url</a> , une erreur classique est d’oublier le <code>http://</code> devant une URL absolue. <br></li>
+</ul></li>
+</ul>
+<figure>
+<img src="img_diw/diw_tp1_2.png" alt="" /><figcaption>aperçu écran de la page “page2.html”</figcaption>
+</figure>
+<div class="validation">
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+</div>
+<p><br></p>
+<!--
+
+* Utiliser le [lien suivant](https://developer.mozilla.org/fr/docs/Web/HTML/Element/div){target=_blanck}  pour ajouter du style au contenu, on utilisera pas la propriété css "width:100%;"
+* présentation du CSS, utiliser le [lien suivant](https://developer.mozilla.org/fr/docs/Learn/CSS/First_steps/How_CSS_is_structured){target=_blanck}
+* Pour expliquer la propriété flex, utiliser le [lien suivant](https://developer.mozilla.org/fr/docs/Web/CSS/flex-direction){target=_blanck}
+
+
+ * **Test pour les plus rapides :** (utilisation du serveur web apache de l'iut): 
+    * Créer un répertoire   **/nfs1/web/votreLogin/public_html/S1/tp1**, copier vos fichiers HTML sur ce répertoire. (remplacer votreLogin par votre login de l'iut)
+    * Consulter les pages avec un navigateur sur l'URL du serveur Web : <http://www-etu.iut-bm.univ-fcomte.fr/~votreLogin/S1/tp1/>{target=_blanck} -->
+<section id="le-css-présentation-utilisation-les-classes" class="cours">
+<h2>Le CSS : présentation, utilisation, les classes</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank">documentation mozilla</a> <a href="https://edutechwiki.unige.ch/fr/Tutoriel_CSS" target="_blank">documentation</a></p>
+<p>Les CSS (Cascading Style Sheets en anglais, ou « feuilles de style en cascade ») sont le code utilisé pour mettre en forme une page web</p>
+<p>Il est possible d’<a href="https://en.wikipedia.org/w/index.php?title=CSS#Use" target="_blank">utiliser des styles</a> en les définissant :</p>
+<ul>
+<li>dans un fichier CSS (la norme et le plus utilisé)</li>
+<li>dans la page HTML, dans la balise <code>&lt;head&gt;</code> suivie de la valise <code>&lt;style&gt;</code> (rare, utilisation essentiellement pédagogique car dans le même fichier que l’HTML)</li>
+<li>de façon exceptionnelle dans une balise pour forcer le style grâce à l’attribut <code>style</code></li>
+</ul>
+<figure>
+<img src="img_diw/tp1_balise_3.png" style="width:8cm" alt="" /><figcaption>Cette structure s’appelle un ensemble de règles (ou seulement “une règle”)</figcaption>
+</figure>
+<p>Exemple de fichier CSS</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">.titre1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>h1 {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Utilisation du CSS</p>
+<p><a href="https://en.wikipedia.org/w/index.php?title=CSS#Specificity" target="_blank">Le poids d’un sélecteur CSS</a></p>
+<figure>
+<img src="img_diw/tp1_css_1.png" alt="" /><figcaption>Exemple poids des sélecteurs CSS</figcaption>
+</figure>
+<p>Propriété CSS</p>
+<p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_color" target="_blank">Exemple d’utilisation de classes</a></p>
+<p><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/button" target="_blank">Éléments HTML</a> -</p>
+<p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">Éléments CSS</a></p>
+<p><b></p>
+<ul>
+<li>Navigateur : mode développement CTRL MAJ i <!--    sommaire       --></li>
+</ul>
+<br>
+<details>
+<summary>🤖 Exemple sur le poids des sélecteurs </summary>
+<p>
+<p>Créez un fichier <strong>exemple1.css</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>p {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>p {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">color</span>: <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>p em {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">green</span><span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="fu">.maclasse1</span> {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>    <span class="kw">color</span>: <span class="cn">red</span><span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="pp">#monid1</span> {</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a> <span class="kw">color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>}  </span></code></pre></div>
+<p>Créez un fichier <strong>tp1_exemple1.html</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>    <span class="kw">&lt;head&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;exemple1.css&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    <span class="kw">&lt;body&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>        <span class="kw">&lt;p&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>            &quot;texte dans p&quot;</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>            &quot;texte dans p.maclasse1&quot;</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>            <span class="kw">&lt;em</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="kw">&gt;</span>&quot;texte dans p.maclasse1 em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot">  class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>            &quot;texte dans p#monid1.maclasse1&quot;</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>            <span class="kw">&lt;em&gt;</span>&quot;texte dans p#monid1.maclasse1  em&quot;<span class="kw">&lt;/em&gt;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a>        <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;maclasse1&quot;</span><span class="ot"> id=</span><span class="st">&quot;monid1&quot;</span><span class="ot"> style=</span><span class="st">&quot;color: brown;&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a>            &quot;texte dans dans p#monid1.maclasse1&quot;</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a>        <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a>    <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span>  </span></code></pre></div>
+<p>Testez le code ci-dessus</p>
+<ul>
+<li>enlevez la classe “maclasse1” dans la balise “em”</li>
+<li>ajoutez <code>!important</code> dans le premier style de la balise “p”</li>
+</ul>
+</p>
+</details>
+<!--    fin details       -->
+<p><br></p>
+<p><strong>Attention à l’ordre des balises : <code>&lt;link href="xxxxxx.css" rel="stylesheet" type="text/css"&gt;</code></strong></p>
+</section>
+<h2 id="page-3-pour-les-plus-rapides">Page 3 (pour les plus rapides)</h2>
+<p>Créez une page de nom <strong>page3.html</strong> qui contient (de haut en bas) :</p>
+<ul>
+<li>le texte noir suivant en utilisant les méta caractères pour les caractères : û é €:<br />
+“le produit coûte éventuellement 200 €”</li>
+<li>IUT (en utilisant la balise <code>&lt;abbr&gt;</code> pour afficher «Institut Universitaire de Technologie» si la souris est dessus)</li>
+<li>e-1/x * i5 (voir aperçu écran en utilisant les balises <strong>SUB</strong> et <strong>SUP</strong>)</li>
+<li>un texte gras puis gras, italique puis gras, italique, gros (en utilisant les balises <code>&lt;i&gt;&lt;b&gt;&lt;strong&gt;</code>)</li>
+</ul>
+<p><br></p>
+<p>Aidez vous de cet exemple :</p>
+<!-- <iframe height="220" width="650" src="http://jsfiddle.net/amillet/dyp4vaj8/embedded/result,html/"></iframe> -->
+<!-- <script async src="http://jsfiddle.net/amillet/dyp4vaj8/5/embed/"></script> -->
+<!-- <iframe width="100%" height="650" src="//jsfiddle.net/amillet/dyp4vaj8/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe> -->
+<!-- <script async src="//jsfiddle.net/amillet/dyp4vaj8/5/embed/result,html/dark/"></script> -->
+<iframe width="100%" height="350" src="//jsfiddle.net/amillet/dyp4vaj8/5/embedded/html,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0">
+</iframe>
+<figure>
+<img src="img_diw/diw_tp1_4.png" alt="" /><figcaption>aperçu écran du début de la page “page3.html”</figcaption>
+</figure>
+<p>REMARQUE : la lettre b de la balise <code>&lt;b&gt;</code> signifie <em>bold</em> (gras) alors que <code>&lt;strong&gt;</code> signifie important (de même <code>&lt;em&gt;</code> signifie emphase : mise en valeur). <a href="https://www.alsacreations.com/article/lire/552-strong-b-em-i-quelle-balise-utiliser-et-pourquoi.html" target="_blanck">Exemple de site web</a> qui parle de l’intérêt sémantique de ces balises.</p>
+<p><br></p>
+<p>Complétez la page HTML avec :</p>
+<ul>
+<li><p>Une ligne horizontale.</p></li>
+<li><p>2 listes à puces imbriquées dans une autre liste numérotée. Laissez les formes des puces par défaut, en HTML les mises en forme se font avec du CSS) :</p></li>
+</ul>
+<table class="bicol">
+<tr>
+<td>
+<img src="img_diw/diw_tp1_6.png" alt="image cours tp1">
+</td>
+<td class="o">
+<img src="img_diw/diw_tp1_7.png" alt="image cours tp1">
+</td>
+</tr>
+</table>
+<!--<div class="g"><pre><code></code></pre></div><div class="do"></div>-->
+<p><br><br><br></p>
+<p>REMARQUE : En langage HTML pour imbriquer une liste dans une autre liste, celle ci doit être imbriquée dans une balise <code>&lt;li&gt;</code>. La signification de <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/ol" target="_blanck"><strong>ol</strong></a> ou <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/ul" target="_blanck"><strong>ul</strong></a> ne définit pas forcément une liste à puces ou numérotée mais juste une liste d’éléments ordonnés ou non ordonnés (<em>ul:unordered list, ol: ordered list</em>).</p>
+<ul>
+<li>Une ligne horizontale.</li>
+<li>Un lien interne sur la page 1 (page1.html)</li>
+</ul>
+<div class="validation">
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+</div>
+<figure>
+<img src="img_diw/diw_tp1_3.png" alt="" /><figcaption>aperçu écran de la page “page3.html”</figcaption>
+</figure>
+<div class="validation">
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+</div>
+<p><br><br><br><br><br><br><br><br><br><br><br> <strong>Pour les plus rapides :</strong></p>
+<ul>
+<li><p>Recherchez sur internet à quoi sert une ancre dans un lien.</p></li>
+<li><p>lire la documentation sur <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Cat%C3%A9gorie_de_contenu" target="_blanck">les catégories de balises</a></p></li>
+</ul>
+<p>REMARQUE: Évitez de nommer votre page “index.html” , le serveur web (apache) ouvre cette page par défaut. Pas vraiment utile lors du développement.</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+<hr />
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+<p>ANNEXES : exemple de solutions</p>
+<ul>
+<li>page1.html</li>
+</ul>
+<figure>
+<img src="img_diw/diw_tp1_8.png" alt="" /><figcaption>exemple : code source de la page “page1.html”</figcaption>
+</figure>
+<ul>
+<li>page2.html</li>
+</ul>
+<figure>
+<img src="img_diw/diw_tp1_9.png" alt="" /><figcaption>exemple : code source de la page “page2.html”</figcaption>
+</figure>
+<ul>
+<li>page3.html</li>
+</ul>
+<figure>
+<img src="img_diw/diw_tp1_10.png" alt="" /><figcaption>exemple : code source de la page “page3.html”</figcaption>
+</figure>
+<!--<script async src="http://jsfiddle.net/amillet/kbqxu52b/embed/result,html/"></script>-->
+<!--<iframe height="220" width="650" src="http://jsfiddle.net/amillet/kbqxu52b/embedded/result,html/"></iframe></p>-->
+<!--iframe height="220" width="650" src="http://jsfiddle.net/amillet/zd4es1tL/embedded/"></iframe></p-->
+<p><i class="fa fa-angry"></i></p>
+<!--
+
+    https://fonts.google.com/knowledge/choosing_type/emotive_considerations_for_choosing_typefaces
+
+
+https://fonts.google.com/
+
+    <style>
+        @font-face {
+        font-family: "mapolice1";
+        src: url("assets/Satisfy-Regular.ttf") format("truetype");
+        }
+        .mapolice1 {
+        font-family: mapolice1;
+        }
+    </style>
+
+    https://stackoverflow.com/questions/2436749/how-to-add-multiple-font-files-for-the-same-font
+
+    -->
+</body>
+</html>

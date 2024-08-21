@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<div class="titre">
+SAE 05-06 : partie “Développement d’Interfaces Web”
+</div>
+<p><br></p>
+<ul>
+<li><strong>SAE</strong> (Situations d’Apprentissage et d’Évaluation) :
+<ul>
+<li>compétence n°5 (<strong>Conduire un projet</strong>)</li>
+<li>compétence n°6 (<strong>Collaborer au sein d’une équipe informatique</strong>)</li>
+</ul></li>
+</ul>
+<p><br><br></p>
+<ul>
+<li><strong>Objectif</strong> de cette partie :
+<ul>
+<li>Réalisez des pages HTML+CSS normalisées pour présenter un projet.</li>
+<li>Utilisez du markdown pour présenter les auteurs et la façon dont a été réalisé le projet.</li>
+<li>Utilisez <a href="https://fr.wikipedia.org/wiki/Forge_(informatique)" target="_blanck">plusieurs forges</a> pour héberger en ligne vos pages HTML+CSS.</li>
+<li>Testez vos pages HTML et ajoutez des liens dans le markdown qui attestent que vos pages sont valides (W3C).</li>
+</ul></li>
+</ul>
+<p><br> (<a href="https://easypartner.fr/blog/pourquoi-faut-il-utiliser-github-en-tant-que-developpeur/" target="_blanck">article portfolio</a> - <a href="https://github.com/topics/portfolio" target="_blanck">github portfolio</a>- <a href="https://github.com/features/preview/copilot-x" target="_blanck">copilot</a>)</p>
+<h1 id="livrable-1-partie-dev.-interfaces-web-le-vendredi-27-septembre-avant-18h---semaine-de-cours-4">Livrable 1 (Partie Dev. Interfaces Web) : <span class="modif">le vendredi 27 septembre (avant 18H) - semaine de cours 4</span></h1>
+<ul>
+<li>Déposez sur Moodle, dans le lien <a href="https://moodle.univ-fcomte.fr/mod/assign/view.php?id=637354" target="_blanck" rel="noopener">“Moodle Dev. Interfaces Web - Livrable”</a> le fichier “ods” à compléter portant le nom <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/livrable1_sae_56_site_web.ods" target="_blanck" rel="noopener">“livrable1_sae_56_site_web.ods”</a>
+<ul>
+<li>Dans le fichier excel, supprimez le contenu des cellules jaunes et modifiez le avec vos informations. Le contenu des cellules jaunes est un exemple du résultat attendu.</li>
+<li>Pour le livrable 2 (URL Gitlab et Bitbucket), supprimez le contenu des cellules.</li>
+</ul></li>
+</ul>
+<p><br> <br></p>
+<ul>
+<li><strong>Créer un compte “GitHub”</strong> et un <strong>projet ou “repository”</strong> : Remarque, faire attention au choix du <strong>username</strong> et du nom du <strong>projet</strong> sur GitHub, comme il compose l’URL, les URL sont évaluées :
+<ul>
+<li>L’URL du site <strong>GitHub Pages</strong> sera de la forme <a href="https://username.github.io/nomProjet/" target="_blanck" rel="noopener">https://username.github.io/nomProjet/</a></li>
+<li>L’URL du projet <strong>GitHub</strong> permettra d’accéder au fichier README.md et sera de la forme : <a href="https://github.com/username/nomProjet" target="_blanck" rel="noopener">https://github.com/username/nomProjet</a></li>
+<li><strong>Le “repository” doit être “public”</strong>. Attention sans être connecté à “github”, dans un terminal la commande <code>git clone https://github.com/username/nomProjet</code> en remplaçant <em>username</em> et <em>nomProjet</em> par les vôtres doit fonctionner sinon les URLs ne sont pas considérées correctes et une pénalité importante est appliquée. <br> <br></li>
+</ul></li>
+<li>Travail à déposer sur Moodle : <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/livrable1_sae_56_site_web.ods">un fichier tableur “livrable1_sae_56_site_web.ods”</a>
+<ul>
+<li>Le contenu des cellules jaunes du fichier joint est un exemple de résultat attendu. Testez les liens puis supprimez le contenu de toutes les cellules jaunes du fichier “tableur”. Par la suite aucune autre cellule que celles en jaune ne doit être complétée.</li>
+<li>Complétez ensuite dans le fichier Excel toutes les cellules jaunes du livrable 1 (vos noms, groupes et liens sur GitHub). (supprimer et ne rien mettre dans celles du livrable 2).</li>
+<li>Les URLs doivent être des liens dans les cellules pour <em>GitHub</em>. Vérifiez que les URLs fonctionnent dans les cellules du tableur y compris en étant déconnecté de <em>GitHub</em> (le projet doit être “public”).</li>
+<li>Pour la partie du livrable 2 (URLs “GitLab” et “BitBucket”), les cellules devraient être vides.</li>
+<li>Le fichier “tableur” doit être déposé sur Moodle par le référent.</li>
+<li>Si ces consignes ne sont pas respectées, une pénalité importante est appliquée. <br><br></li>
+</ul></li>
+<li>Travail à déposer sur GitHub :
+<ul>
+<li>Fichier du projet (“<em>repository</em>”) : <strong>README.md</strong>
+<ul>
+<li>Dans le fichier <strong>README.md</strong>, indiquez le nom de votre groupe et les personnes qui le composent (ajoutez l’e-mail du référent).</li>
+<li>Dans ce fichier, créez au minimum 3 parties : “sujet” avec un lien sur le site web , “Membres du groupe” et “Présentation du projet”.</li>
+<li>Ne pas mettre dans ce fichier un contenu qui n’a pas de sens (liens morts ou sans rapport avec votre sujet, texte sans rapport avec votre sujet ….).</li>
+<li>Il doit y avoir à côté du fichier <strong>README.md</strong> un fichier <strong>index.html</strong> qui correspond à la page d’accueil.</li>
+</ul></li>
+<li><strong>Toutes les personnes du projet doivent apparaître de façon claire comme contributeurs (je dois être en mesure de reconnaître facilement leurs noms ou prénoms). Les personnes qui ne contribuent pas du tout seront pénalisées. S’il n’est pas possible d’identifier de façon claire tous les contributeurs, tous seront pénalisés</strong>.</li>
+</ul></li>
+</ul>
+<figure>
+<img src="img_github/sae1_livrable1_contributors_1.png" style="width:15cm" alt="" /><figcaption><em>Figure 1 : sur le projet GitHub devraient apparaître tous les auteurs (“Contributors”) avec le nom ou prénom de tous les étudiants du groupe</em></figcaption>
+</figure>
+<ul>
+<li><p><strong>Site web</strong> : page d’accueil + menu</p>
+<ul>
+<li>Créer une simple page <strong>index.html</strong> avec un menu et les liens sur toutes les autres pages (cette page sera chargée par défaut sur l’URL <a href="https://username.github.io/nomProjet/" target="_blanck">https://username.github.io/nomProjet/</a>)</li>
+<li>Assurez-vous de la présence d’un fichier “favicon.ico” et d’un titre (balise TITLE) sur chaque page.</li>
+<li><strong>Les liens du menu doivent avoir des intitulés qui ont du sens et doivent permettre d’ouvrir toutes les pages</strong>.</li>
+<li>Le menu est commun à toutes les pages sauf éventuellement la page d’accueil.</li>
+<li>Créez toutes les pages (au moins une par étudiant). Toutes les pages doivent indiquer, en pied de page, l’auteur (le futur auteur) de la page.</li>
+<li>Toutes les pages doivent contenir un minimum de contenu qui a du sens (éviter le “Lorem Ipsum”).</li>
+<li>Le contenu et la mise en forme sont très peu évalués. Ce livrable est surtout l’occasion de vérifier que les tâches sont distribuées au sein du groupe. <br></li>
+</ul></li>
+</ul>
+<p>Si vous rencontrez des problèmes, posez vos questions en TP de BDD à Alain Millet</p>
+<p><br> <br></p>
+<p><br><br></p>
+<h2 id="consignes-pour-le-livrable-1">Consignes pour le livrable 1 :</h2>
+<ul>
+<li>Créez un compte GitHub pour votre projet : réfléchissez à un nom d’identifiant “<strong>username</strong>” et un nom de projet “<strong>repository</strong>” appropriés. L’URL aura ensuite la forme suivante : <a href="https://username.github.io/repository/" class="uri">https://username.github.io/repository/</a></li>
+<li>Créez la première page <strong>“index.html”</strong> de votre projet avec comme contenu le titre de votre projet de SAE. <strong>Il est obligatoire d’avoir un fichier “index.html”</strong>, à la racine du projet qui servira de page d’accueil. Ne pas respecter cette consigne entraînera une pénalité.</li>
+<li>Ajoutez une balise “TITLE” avec un titre approprié.</li>
+<li>Créez un fichier “favicon.ico” (image), vous pouvez utiliser un site comme <a href="https://www.favicon-generator.org/" target="_blanck" rel="noopener">https://www.favicon-generator.org/</a> pour convertir une image en icône.</li>
+<li>Dans la page d’accueil, ajoutez le menu et les liens vers toutes les autres pages. Ajoutez également un peu de texte pour expliquer votre projet dans cette page.</li>
+<li>Créez toutes les pages de votre site Web avec suffisamment de contenu, et indiquez l’auteur de chaque page en pied de page.</li>
+</ul>
+<figure>
+<img src="img_github/sae1_favicon_title.png" alt="" /><figcaption><em>Figure 2 : “favicon” et “title”</em></figcaption>
+</figure>
+<ul>
+<li><p>Consultez l’<a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/github_pages/sae_diw_TP1_github_v21_1.html" target="_blanck">article suivant et la vidéo intégrée</a> pour créer votre compte GitHub et déposer vos pages HTML et fichiers CSS.</p></li>
+<li><p>Dans le code “Markdown” ci-dessous, pour les e-mails, remplacez “login” par votre login de connexion à l’IUT.</p></li>
+</ul>
+<pre><code>[Nom du référent du groupe](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06) </code></pre>
+<p><br></p>
+<p><strong>Exemple de <a href="https://markdowntohtml.com/" target="_blanck">convertisseur “markdown”</a></strong>.</p>
+<p><br></p>
+<p>Voici un exemple de fichier <strong>README.md</strong>, ce fichier est un fichier <a href="https://fr.wikipedia.org/wiki/Markdown" target="_blanck">Markdown</a>.</p>
+<pre><code># Titre sujet   
+
+## Sujet    
+
+[Nom du projet](https://login.github.io/projet/)
+
+## Membres du groupe :
+
+Etudiant 1 (référent du groupe) :  [Nom du référent du groupe](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)  
+Etudiant 2 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)   
+Etudiant 3 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)  
+Etudiant 4 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06)  
+Etudiant 5 : [Nom](mailto:login@edu.univ-fcomte.fr?subject=SAE_1_05_06) 
+
+# Présentation du projet
+
+...... (5/6 lignes)
+
+</code></pre>
+<p><strong>ATTENTION dans le code ci-dessus les caractères <code>![]()</code> sont obligatoires lorsqu’ils sont présents dans l’exemple. Ce code est transformé automatiquement en HTML par <em>GitHub</em>.</strong></p>
+<p><br></p>
+<ul>
+<li>Ensuite, ajoutez une présentation du projet dans le fichier <strong>README.md</strong> : Utilisez un titre de niveau 1 suivi de quelques lignes pour présenter votre projet.</li>
+</ul>
+<p><br></p>
+<!--
+
+<br>  ["livrable 1 ou 2?"]{.modif}
+
+* Ajouter dans le dossier **doc** le fichier pdf qui correspond au livrable de la partie "Économie et Documents numérique"
+* Code à placer au début du fichier  **README.md**
+
+```
+# Livrable parties Économie et Documents numérique
+
+[livrable de la partie "Économie et Documents numérique"](doc/groupe_nom1_nom2_nom3_nom4.pdf)
+```
+
+
+Évaluation :
+-->
+<h1 id="livrable-2-partie-dev.-interfaces-web-le-vendredi-18-octobre-avant-18h---semaine-de-cours-7">Livrable 2 (Partie Dev. Interfaces Web) : <span class="modif">le vendredi 18 octobre (avant 18H) - semaine de cours 7</span></h1>
+<p><br></p>
+<ul>
+<li>Déposez sur Moodle, dans le lien <a href="https://moodle.univ-fcomte.fr/mod/assign/view.php?id=679321" target="_blanck" rel="noopener">“Moodle Dev. Interfaces Web - Livrable”</a> le fichier “ods” à modifier portant le nom <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/github_pages/livrable1_sae_56_site_web.ods" target="_blanck" rel="noopener">“livrable1_sae_56_site_web.ods”</a> (pour GitLab)
+<ul>
+<li>Dans le fichier excel, supprimez le contenu des cellules jaunes et modifiez le avec vos informations. Le contenu des cellules jaunes est un exemple du résultat attendu.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<p><strong>Site Web terminé :</strong></p>
+<ul>
+<li>Ensemble de pages homogènes, ergonomiques … (voir les critères d’évaluation).</li>
+<li>Indiquez le(s) auteur(s) de chaque page en pied de page.</li>
+<li>Dans le fichier README.md de votre dépôt de projet, modifiez si nécessaire le titre du sujet, le lien vers le site, les membres du groupe et le texte de présentation.</li>
+<li>Dans le fichier README.md, ajoutez tous les éléments (images, liens, etc.) qui attestent que les pages ont été validées sur W3C. Indiquez clairement les auteurs de chaque page.</li>
+<li>Dans le fichier README.md, ajoutez un court texte résumant les choix de conception ainsi que la répartition du travail dans le groupe.</li>
+<li>Dans le fichier README.md, ajoutez une capture d’écran illustrant le calcul effectué par GitHub avec chacun des contributeurs. Les noms des contributeurs doivent être présentés de manière claire afin de pouvoir identifier facilement chaque membre du groupe (consultez la capture d’écran).</li>
+<li>L’hébergement sur <strong>GitHub Pages</strong> est réalisé.</li>
+<li>L’hébergement sur <strong>GitLab Pages</strong> est à réaliser par les groupes de 4 personnes et plus.</li>
+<li>L’hébergement sur <strong>Bitbucket Pages</strong> est à réaliser par les groupes de 4 personnes et plus.</li>
+</ul>
+<!--
+
+## Livrable partie "Économie et Documents numérique"
+
+*  Rédiger un bref rapport comportant entre 4 et 10 pages de texte (hors illustrations, page de couverture, sommaire, table des illustrations…) et le mettre en forme en respectant les règles vues lors des cours concernant le traitement de texte. Il faudra le rendre sur Moodle le vendredi **14/10 avant 11h** aux formats `.odt` et `.pdf` en le nommant d'après ce modèle : **NomDuRéférent_SAES156_groupeTP_NomEntreprise** .
+(Vous aurez plus d’informations avec ces deux enseignants et sur Moodle "[SAÉ S1.56]( https://moodle.univ-fcomte.fr/course/view.php?id=20777#section-0)".)
+-->
+<h2 id="consignes-et-critères-dévaluation-du-livrable-2">Consignes et critères d’évaluation du livrable 2</h2>
+<h3 id="critères-dévaluation-du-site-web">Critères d’évaluation du site Web</h3>
+<ul>
+<li><strong>Mise en forme de l’interface</strong>
+<ul>
+<li>Présence de plusieurs niveaux hiérarchiques de l’information.</li>
+<li>Lisibilité de l’information.</li>
+<li>Présence d’images pour illustrer les propos.</li>
+<li>Contenus en quantité satisfaisante.</li>
+<li>Arborescence compréhensible.</li>
+<li>Site homogène.</li>
+</ul></li>
+<li>Ergonomie (accessibilité, menu, navigation).</li>
+<li>Esthétisme général et homogénéité entre les pages.</li>
+<li>Respect des normes HTML5 et CSS3.</li>
+<li>Simplicité pour connaître le(s) auteur(s) de chaque page.
+<ul>
+<li><strong>Indiquez clairement dans chaque page HTML l’auteur de la page en pied de page (sinon une pénalité sera appliquée)</strong></li>
+</ul></li>
+</ul>
+<h3 id="validation-sur-w3c">validation sur W3C</h3>
+<ul>
+<li>Effectuez une vérification sur <a href="https://validator.w3.org/nu/" target="_blanck">Nu Html Checker</a> (identique au <a href="http://validator.w3.org/" target="_blanck">validator de W3C</a> ) pour vous assurer que les normes HTML et CSS sont respectées. Joignez dans votre fichier <strong>README.md</strong> les éléments (captures d’écran, liens, etc.) attestant que vous avez effectué les tests de validité de votre site sur le site W3C. Créez un dossier “doc” et ajoutez-y les captures d’écran du résultat sur W3C. Indiquez aussi l’auteur de la page et la personne qui a fait le test de cette page (si ce n’est pas la même personne).
+<ul>
+<li>Ces informations doivent être facilement lisibles sur <em>GitHub</em> (redimensionner les tailles des captures d’écran si nécessaire).</li>
+<li>Ajoutez des liens sur <a href="https://validator.w3.org/nu/" target="_blanck">Nu Html Checker</a> qui testent la conformité <em>W3C</em> de chaque page ainsi que les captures d’écran de ces tests. <br></li>
+</ul></li>
+</ul>
+<!-- le test du CSS ne fonctionne pas
+    * Ajouter un lien pour valider la conformité du CSS utilisé sur le site valider le css  https://jigsaw.w3.org/css-validator/ 
+
+https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fs1-demo.gitlab.io%2Fprojet-sae-demo%2Fpage1_bootrap.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=fr
+
+bootstrap n'est pas valide sur W3C
+-->
+<figure>
+<img src="img_github/sae1_github_validation.png" style="width:15cm" alt="" /><figcaption><em>Figure 3 : exemple d’affichage (liens + images) sur GitHub en regardant le fichier README.md pour attester que toutes les pages HTML sont conformes aux standards W3C</em></figcaption>
+</figure>
+<p>exemple de lien :</p>
+<pre><code>https://validator.w3.org/nu/?showsource=yes&amp;showoutline=yes&amp;showimagereport=yes&amp;doc=https%3A%2F%2Fdemo-am90.github.io%2Fs1-demo%2Findex.html</code></pre>
+<p>Attention à l’<a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blanck">encodage</a> de l’URL <strong>: veillez à ne pas utiliser d’espaces, d’accents, etc., dans les noms de fichiers et de dossiers.</strong></p>
+<p><br></p>
+<p>En plus du lien, ajoutez une image (capture d’écran) attestant que votre page est valide sur W3C.</p>
+<p><br> Voici le code Markdown à ajouter dans votre fichier <strong>README.md</strong> pour afficher une image :</p>
+<pre><code>![écran qui vérifie si le document est valide sur W3C](doc/capture_1_W3C.png)</code></pre>
+<p><br></p>
+<p>Indiquez ensuite la répartition du travail dans le groupe.</p>
+<ul>
+<li>Voici un exemple de fichier <a href="https://fr.wikipedia.org/wiki/Markdown" target="_blanck">Markdown</a> <strong>README.md</strong> final</li>
+</ul>
+<pre><code>
+
+# Titre sujet   
+
+## Sujet    
+
+[Nom du projet](https://login.github.io/projet/)
+
+## Membres du groupe :
+
+- [Nom prenom (référent)](mailto:nom.prenom@edu.univ-fcomte.fr?subject=SAE_1_05_06)  
+- [Nom prenom](mailto:nom.prenom@edu.univ-fcomte.fr?subject=SAE_1_05_06)   
+- [Nom prenom](mailto:nom.prenom@edu.univ-fcomte.fr?subject=SAE_1_05_06)   
+
+
+## Présentation 
+
+Ce dépôt correspond à un site web créé en HTML/CSS/JS dans le cadre de la SAÉ 05-06 à l&#39;IUT de Belfort-Montbéliard. Ce site présente des informations concernant l&#39;entreprise ******** et sert de vitrine pour présenter l&#39;entreprise, ses activité, son organisation et son historique. Vous trouverez dans ce dépôt et sur le site un rapport économique analysant l&#39;aspect économique de ************. 
+
+## Choix de conception  
+
+Pour la conception du site, nous nous sommes grandement inspirés du site officiel de ******* (disponible [ici](https://www.entreprise.com/fr-fr/)), du site d&#39;un de ses principaux concurrents [xxxxxxxxxx](https://www.entreprise2.fr/) et nous avons pris comme référence la charte de ************** disponible [ici](doc/charte_graphique.pdf).    
+
+
+## Développement Site Web et Validation des pages
+
+### Page d&#39;accueil
+
+**Auteur : Nom Prénom**  
+
+Vérification W3C : [Détail ICI](https://validator.w3.org/nu/?showsource=yes&amp;showoutline=yes&amp;showimagereport=yes&amp;doc=https%3A%2F%2Fdemo-am90.github.io%2Fs1-demo%2Findex.html)
+
+
+![capture d&#39;écran de la conformité de la page ...](doc/capture_1_W3C.png)
+
+ou 
+
+&lt;img src=&quot;doc/capture_1_W3C.png&quot; style=&quot;width=400px&quot; alt=&quot;capture ecran sur w3c&quot;&gt;
+
+
+&lt;!--  style=&quot;width=400px&quot; ne fonctionne pas --&gt;
+
+### Présentation générale
+
+**Auteur : Nom Prénom**  
+
+Verification W3C : [Détail ICI](https://validator.w3.org/nu/?showsource=yes&amp;showoutline=yes&amp;showimagereport=yes&amp;doc=https%3A%2F%2Fdemo-am90.github.io%2Fs1-demo%2Findex.html)
+
+&lt;br&gt;
+&lt;img src=&quot;doc/capture_1_W3C.png&quot; width=&quot;400px&quot; alt=&quot;capture ecran sur w3c&quot;&gt;
+
+
+
+## Répartition du travail
+
+### Planification - Diagramme de GANTT
+
+- Nom Prénom
+
+### Recherches d&#39;informations
+
+- Nom Prénom
+- Nom Prénom
+
+
+### Rapport économique
+
+- Nom Prénom
+- Nom Prénom
+- Nom Prénom
+
+### Développement site
+
+- Nom Prénom
+  - Page d’accueil
+  - &quot;Template&quot; de page (Navbar/Footer)
+  - Page présentation
+- Nom Prénom
+  - Page histoire
+- Nom Prénom
+  - Page organisation
+
+
+## Contributeurs
+
+![capture d&#39;écran de sur la contribution des membres du projet](doc/livrable2_contributors.png)
+</code></pre>
+<figure>
+<img src="img_github/sae1_livrable1_contributors_3.png" style="width:10cm" alt="" /><figcaption><em>Figure 4 : Exemple de capture d’écran de sur la contribution des membres du projet</em></figcaption>
+</figure>
+<p>Voir exemple sur :</p>
+<ul>
+<li><a href="https://demo-am90.github.io/s1-demo/" target="_blanck">demo : URL du site « github page »</a><br />
+</li>
+<li><a href="https://github.com/demo-am90/s1-demo/" target="_blanck">compte: URL du projet « github »</a></li>
+</ul>
+<p>REMARQUES :</p>
+<ul>
+<li>Pour créer un dossier dans votre projet, créez un fichier avec le dossier en question</li>
+<li>Les 2 URLs de votre projet doivent être fonctionnelles et être de ce type : <code>https://USERNAME.github.io/REPO</code> et <code>https://github.com/USERNAME/REPO</code></li>
+</ul>
+<p><br></p>
+<p>Testez les commandes ci-dessous avec vos URL pour valider votre projet :</p>
+<pre><code>chromium  https://USERNAME.github.io/REPO
+chromium  https://github.com/USERNAME/REPO</code></pre>
+<p><br> Il est possible de remplacer chromium par mozilla.</p>
+<h1 id="utilisation-avancée-de-git-et-github">Utilisation avancée de Git et GitHub</h1>
+<h2 id="pour-cloner-votre-projet">Pour “cloner” votre projet</h2>
+<p>Voici la documentation de “GitHub Pages” : <strong><a href="https://pages.github.com/" target="_blanck">mise à jour avec git</a></strong></p>
+<p><br></p>
+<p>Sur votre terminal :</p>
+<ul>
+<li>Vérifiez que <em>git</em> fonctionne :</li>
+</ul>
+<pre><code>git --version</code></pre>
+<ul>
+<li>“Clonez” votre projet :</li>
+</ul>
+<pre><code>git clone https://github.com/login/mon_repository.git
+
+cd mon_repository
+git status
+git config -l
+</code></pre>
+<p>Le projet doit être <strong>public</strong>, la commande ci-dessus permet de récupérer les paramètres du dépôt.</p>
+<p>L’authentification est un peu compliquée sur GitHub :</p>
+<ul>
+<li><p>Veuillez noter qu’il n’est plus possible de modifier le projet sur GitHub avec l’utilisation de commandes dans un terminal du login/motdepasse, cela ne fonctionne plus. Il faut générer <strong>une clé : “un token” qui servira de mot de passe</strong> .</p></li>
+<li><p>Consultez les deux documentations suivantes :</p>
+<ul>
+<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blanck">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></li>
+<li><a href="https://github.com/GitCredentialManager/git-credential-manager/blob/main/README.md" target="_blanck">https://github.com/GitCredentialManager/git-credential-manager/blob/main/README.md</a> <br></li>
+</ul></li>
+<li><p>Pour générer un access token depuis l’interface web de GitHub, suivez ces étapes :</p>
+<ol type="1">
+<li>Cliquez sur le menu de votre profil sur GitHub.</li>
+<li>Cliquez sur l’icône en forme d’avatar d’utilisateur située tout à droite du menu (sur votre photo de profil) . Ensuite, sélectionnez “⚙️ Settings” dans le menu</li>
+<li>Dans le menu de gauche, faites défiler jusqu’en bas et cliquez sur “&lt;&gt; Developer settings”.</li>
+<li>Dans le menu de gauche, cliquez sur “Personal access tokens”, puis sur “Generate new token”</li>
+<li>Vous serez invité à fournir votre mot de passe GitHub pour confirmer votre identité (c’est le mot de passe du compte ).</li>
+<li>Saisissez un nom descriptif pour votre token et sélectionnez les autorisations appropriées en fonction des actions que vous souhaitez effectuer : sélectionnez toutes les autorisations nécessaires sur les dépôts (“repo”).</li>
+<li>GitHub générera un access token. <strong>Copiez ce token et gardez-le en lieu sûr : Recopiez le token de la forme ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX dans un fichier</strong>. Ce token servira de mot de passe, il faudra vous l’envoyer entre les membres du groupe si vous choisissez cette méthode.</li>
+</ol></li>
+<li><p><strong>IMPORTANT</strong> : enregistrez le login et mot de passe</p></li>
+</ul>
+<pre><code>git config credential.helper store</code></pre>
+<ul>
+<li>La commande ci-dessus copiera le login et le mot de passe dans le fichier <code>~/.git-credentials</code>
+<ul>
+<li>le login est le <em>username</em> du compte</li>
+<li>le mot de passe est le token de la forme <em>ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX</em></li>
+<li>Il est possible de vérifier ou modifier ces informations qui sont dans le fichier <code>~/.git-credentials</code></li>
+</ul></li>
+</ul>
+<h2 id="pousser-vos-modifications-votre-code">“Pousser” vos modifications (votre code)</h2>
+<p>Modifiez le contenu du projet HTML/CSS.</p>
+<p>Transférez vos modification dans le “repository gitHub”.</p>
+<pre><code>git add --all
+git commit -m &quot;modif projet ...&quot;
+git push</code></pre>
+<h2 id="récupérer-tirer-les-modifications-des-autres-leur-code">“Récupérer” (“tirer”) les modifications des autres (leur code)</h2>
+<pre><code>git pull</code></pre>
+<p>Commande pour revenir en arrière dans son code si on a oublié de faire un “pull”</p>
+<pre><code>git reset --hard HEAD^</code></pre>
+<h2 id="pour-lister-les-logs-des-commits">Pour lister les “logs” des “commits”</h2>
+<pre><code>git log</code></pre>
+<p><strong>Attention à la qualité des <em>logs</em></strong> : message que l’on ajoute dans la commande <code>git commit -m "message"</code>, il doit avoir du sens et indiquer clairement le travail effectué lors du <em>commit</em> (dépôt des modifications sur GitHub).</p>
+<ul>
+<li>Inspirer du contenu de l’<a href="https://celineung.github.io/blog/message-de-commit-git" target="_blanck">article suivant</a> pour écrire les “logs” ou de cet <a href="https://www.gitkraken.com/learn/git/best-practices/git-commit-message" target="_blanck">article</a>
+<ul>
+<li><strong>Contenu d’un log : « Si appliqué, mon “commit” va (INSÉRER LE TEXTE DU MESSAGE DE COMMIT) »</strong></li>
+</ul></li>
+<li>Si la qualité des <em>logs</em> n’est pas bonne, une pénalité est appliquée à chaque membre du groupe.</li>
+</ul>
+<p><strong>Démonstration en TP (DIW ou BDD)</strong></p>
+<ul>
+<li>En TP, chaque étudiant fera une modification de sa page HTML (ou d’une de ses pages HTML) en utilisant les commandes <em>git</em>. Si un étudiant n’est pas capable d’utiliser les commandes <em>git</em> sur une machine de l’iut connectée à son compte (ou sa machine perso.) un malus est appliqué à la note finale.</li>
+</ul>
+<p>Vous pourrez utiliser les commandes ci-dessous lors de votre démonstration :</p>
+<pre><code>git log --oneline
+git log --oneline --author=votreUsername
+git shortlog -s -n
+git shortlog</code></pre>
+<!-- git log --pretty=format:'%h : %s' --topo-order --graph  -->
+<h2 id="procédure-conseillée">procédure conseillée :</h2>
+<p>se déplacer depuis le terminal dans le dossier du projet (dépôt local)</p>
+<pre><code>git pull
+
+# modifiez le contenu du dossier
+
+git add --all
+git commit -m &quot;modif projet ...&quot;
+git push</code></pre>
+<p><img src="img_github/sae1_github_push_pull.png" alt="Figure 5 : présentation push/pull (source)" /> <br></p>
+<h1 id="gitlab-groupe-de-4-personnes-et-plus">GitLab : Groupe de 4 personnes et plus</h1>
+<p>Hébergement sur <strong>GitLab</strong></p>
+<ul>
+<li>Attention il faut un fichier <code>.gitlab-ci.yml</code></li>
+</ul>
+<p>Voir exemple sur :</p>
+<ul>
+<li><a href="https://s1-demo.gitlab.io/projet-sae-demo/" target="_blanck">demo : URL du site « gitlab page »</a><br />
+</li>
+<li><a href="https://gitlab.com/s1-demo/projet-sae-demo/" target="_blanck">compte: URL du projet « gitlab »</a><br />
+<br></li>
+</ul>
+<pre><code># la première fois
+git clone https://gitlab.com/************************.git
+cd *******************
+
+git status
+git config -l
+git config credential.helper store
+
+
+# récupérer les modification des autres
+git pull
+
+# modifiez le contenu du dossier
+git add --all
+git commit -m &quot;modif projet&quot;
+git push</code></pre>
+<figure>
+<img src="img_github/sae1_gitlab_menu_token.png" style="width:5cm" alt="" /><figcaption><em>Figure 6 : GitLab</em></figcaption>
+</figure>
+<ul>
+<li>l’utilisation d’un token est obligatoire dans le terminal
+<ul>
+<li>Solution 1 : Depuis l’interface du profil “Edit profile”
+<ul>
+<li>Dans l’interface du profil &gt; “Access Tokens” : bouton “Add new token” (pour tous les projets)</li>
+<li>Mettre un nom au token “Token name”</li>
+<li>date de 1 an maxi d’utilisation</li>
+<li>au minimum “read/write” dans le “repository”</li>
+<li><strong>Bien recopier le token qui apparaît</strong> au dessus dans un fichier texte</li>
+</ul></li>
+<li>Solution 2 : dans la gestion du projet (fin de de la barre de menu latéral)
+<ul>
+<li>Sélectionner Access Token (token (clé) pour ce projet)</li>
+<li>puis c’est identique à la solution 1</li>
+</ul></li>
+</ul></li>
+</ul>
+<figure>
+<img src="img_github/sae1_gitlab_token.png" style="width:7cm" alt="" /><figcaption><em>Figure 7 : Exemple de token GitLab</em></figcaption>
+</figure>
+<h1 id="bitbucket-groupe-de-4-personnes-et-plus">BitBucket : Groupe de 4 personnes et plus</h1>
+<p>Hébergement sur <strong>BitBucket</strong> : Une autre forge : <a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a> : <br></p>
+<ul>
+<li><a href="https://bitbucket.org/" target="_blanck">https://bitbucket.org/</a>
+<ul>
+<li><a href="https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/" target="_blanck">documentation bitbucket pages</a> <br></li>
+</ul></li>
+</ul>
+<p>Voir exemple sur :</p>
+<ul>
+<li><a href="https://amillet.bitbucket.io/" target="_blanck">demo : URL du site « bitbucket page »</a><br />
+</li>
+<li><a href="https://bitbucket.org/amillet/amillet.bitbucket.io/" target="_blanck">compte: URL du projet « bitbucket »</a></li>
+</ul>
+<p><br> Pour utiliser “Bitbucket Pages” : Il faut suivre la documentation : <a href="https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/" target="_blanck">https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/</a> <br></p>
+<p>😅 : Il faut créer un “repository” avec comme nom <strong>workspaceid.bitbucket.io</strong></p>
+<figure>
+<img src="img_github/sae1_bitbucket_workspace_1.png" style="width:12cm" alt="" /><figcaption><em>Figure 8 : ATTENTION au nom du repository</em></figcaption>
+</figure>
+<pre><code># la première fois
+git clone https://USERNAME@bitbucket.org/USERNAME/USERNAME.bitbucket.io.git
+cd *******************
+
+git status
+git config -l
+git config credential.helper store
+
+
+# récupérer les modification des autres
+git pull
+
+# modifiez le contenu du dossier
+git add --all
+git commit -m &quot;modif projet&quot;
+git push</code></pre>
+<p>Pour la connexion dans un terminal, la méthode la plus simple semble de générer un mot de passe et l’utiliser :</p>
+<ul>
+<li>l’utilisation d’un mot de passe généré est obligatoire dans le terminal
+<ul>
+<li>Dans l’interface du profil “⚙️ Personnal BitBucket Settings” <a href="https://bitbucket.org/USERNAME/workspace/overview/" class="uri">https://bitbucket.org/USERNAME/workspace/overview/</a></li>
+<li>“Mot de passe de l’application” &gt; “Créer un mot de passe pour l’application”</li>
+<li><strong>Bien recopier le mot de passe qui apparaît</strong> au dessus</li>
+</ul></li>
+</ul>
+<figure>
+<img src="img_github/sae1_bitbucket_menu_mdp_2.png" style="width:15cm" alt="" /><figcaption><em>Figure 9 : BitBucket</em></figcaption>
+</figure>
+<h1 id="fichier-de-connexion-.git-credentials">fichier de connexion <code>~/.git-credentials</code></h1>
+<p>La commande système <code>git config credential.helper store</code> permet de stocker le login et le mot de passe dans un fichier <code>.git-credentials</code> qui se trouve sur le répertoire <code>$HOME</code> (répertoire de connexion), c’est la façon la plus simple de s’authentifier automatiquement sur <em>Github</em>, <em>GitLab</em> et <em>BitBucket</em>.</p>
+<pre><code>cat ~/.git-credentials
+
+https://USERNAME:glpat-1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@gitlab.com
+https://USERNAME:1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@bitbucket.org
+https://USERNAME:ghp_1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX1xX@github.com</code></pre>
+<p>Attention à 🤖 ChatGPT : Comment créer et utiliser le fichier <code>.git-credentials</code> sur <em>Windows</em></p>
+<p>Il est recommandé d’utiliser des méthodes plus sécurisées comme les clés SSH pour l’authentification avec Git.</p>
+<h1 id="évaluation">Évaluation</h1>
+<figure>
+<img src="img_github/sae1_criteres.png" style="width:20cm" alt="" /><figcaption><em>Figure 10 : Exemple de critères d’évaluation (en 2023)</em></figcaption>
+</figure>
+<h1 id="annexes">Annexes</h1>
+<p><br></p>
+<p>vidéos : <a href="https://www.youtube.com/watch?v=hNRxn5sKOdE" target="_blanck">git enzo 12 mn</a> - <a href="https://www.youtube.com/watch?v=eXF0epLeCgo" target="_blanck">git (moins rapide)</a> - <a href="https://grafikart.fr/formations/git" target="_blanck">grafikart cours</a> <br> <br></p>
+<p>attention à 🤖 ChatGPT : attention à l’utilisation et aux solutions proposées pour les commandes GitHUB</p>
+<p><br> Pensez à utiliser des exemples : HTML : codepen <a href="https://codepen.io/alvarotrigo/pen/MWEgejK" target="_blanck">exemple 1</a> <a href="https://codepen.io/NilsWe/pen/Axdozd" target="_blanck">exemple 2</a> <br> <br></p>
+<p><br></p>
+<p><br></p>
+<p><br> <br> <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blanck">résumé commandes git (github)</a> - <a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf" target="_blanck">résumé commandes git (gitlab)</a> <br> <!-- <br>
+<https://librecours.net/module/sr/git02/index.xhtml>{target=_blanck} --> <!-- <br>
+<https://www.atlassian.com/fr/git/tutorials/setting-up-a-repository>{target=_blanck}
+<br>
+ --> <!--
+
+```
+git config -l
+git config --global user.name "USERNAME"
+git config --global user.email "email@email.com"
+git config -l
+
+
+# la branche par défaut est maintenant "main" (et non "master", petit changement depuis quelques années sur github)
+
+git branch
+git branch -M main
+
+
+git remote add origin https://github.com/amillet-iut90/cours-info.git
+git push -u origin main
+
+```
+
+--></p>
+<!--
+
+git remote add origin https://github.com/amillet-iut90/cours-info.git
+git config --global user.name "amillet-iut90"  # definir le username du compte github
+git config --global user.email "alain.millet@univ-fcomte.fr" # definir l email du compte github
+
+git remote set-url origin https://github.com/amillet-iut90/cours-info.git
+
+git remote set-url origin git@github.com:amillet-iut90/cours-info.git
+
+git config --global user.password "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"
+
+export GIT_TOKEN=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
+
+git clone https://github.com/amillet-iut90/cours-info.git
+
+
+-->
+<!--    sommaire       -->
+<!--
+<br>
+<details>
+
+<summary>🤖 ChatGPT : Erreur d’authentification sur GitHUB : comment utiliser un token ? </summary>
+<p>
+
+
+
+😃 vous  
+
+j'ai une erreur et je ne comprends pas 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+
+<br>  
+
+
+🤖 ChatGPT  
+
+L'erreur que vous rencontrez indique que l'authentification par mot de passe a été supprimée pour les dépôts GitHub via HTTPS depuis le 13 août 2021. GitHub recommande désormais d'utiliser des modes d'authentification alternatives.
+
+Pour résoudre cette erreur, vous pouvez utiliser l'authentification par clé SSH au lieu de l'authentification par mot de passe. Voici les étapes à suivre :
+
+Générez une paire de clés SSH : Si vous n'avez pas encore de paire de clés SSH, vous devez en générer une. Vous pouvez utiliser la commande suivante dans votre terminal pour générer une nouvelle paire de clés :
+
+```
+$ ssh-keygen -t rsa -b 4096 -C "votre@email.com"
+```
+Suivez les instructions à l'écran pour choisir un emplacement pour vos clés et définir une phrase de passe optionnelle.
+
+Ajoutez votre clé publique à votre compte GitHub : Copiez le contenu de votre clé publique en utilisant la commande suivante :
+
+```
+$ cat ~/.ssh/id_rsa.pub
+```
+
+Accédez à votre compte GitHub, cliquez sur votre profil en haut à droite, puis sélectionnez "Settings" (Paramètres). Dans le menu de gauche, cliquez sur "SSH and GPG keys" (Clés SSH et GPG) et cliquez sur "New SSH key" (Nouvelle clé SSH). Collez votre clé publique dans le champ approprié et enregistrez-la.
+
+Modifiez l'URL du dépôt distant : Maintenant, vous devez modifier l'URL du dépôt distant pour utiliser le protocole SSH. Utilisez la commande suivante pour le faire :
+
+```
+$ git remote set-url origin git@github.com:votre-utilisateur/votre-depot.git
+```
+
+Assurez-vous de remplacer "votre-utilisateur/votre-depot" par le chemin vers votre dépôt GitHub.
+
+Une fois que vous avez suivi ces étapes, Git utilisera l'authentification par clé SSH pour interagir avec le dépôt distant, et cela devrait résoudre l'erreur d'authentification par mot de passe.
+
+Si vous rencontrez toujours des problèmes, assurez-vous d'avoir correctement configuré vos clés SSH et que votre clé publique est associée à votre compte GitHub. Consultez également la documentation de GitHub pour plus d'informations sur l'authentification et l'utilisation des clés SSH.
+
+
+
+</p>
+</details>
+-->
+<!--    fin details       -->
+<!--
+</p>
+</details>
+
+<br>
+
+
+<details>
+<summary>🤖 ChatGPT : comment créer et utiliser plusieurs "Tokens" dans GitHub ? ; Questions à ChatGPT </summary>
+<p>
+
+
+Si vous avez plusieurs projets
+
+```
+#Pour Linux/macOS :
+export PROJET1_GIT_TOKEN=votre_access_token_projet1
+export PROJET2_GIT_TOKEN=votre_access_token_projet2
+#Pour Windows :
+set PROJET1_GIT_TOKEN=votre_access_token_projet1
+set PROJET2_GIT_TOKEN=votre_access_token_projet2
+```
+
+
+**Questions sur ChatGPT :**
+
+* Comment utiliser un "access token" généré sur GitHub dans un terminal ?
+* Comment exporter des GIT_TOKEN différents dans des projets différents ?
+* Quel serait le nom du GIT_TOKEN pour un projet nommé "cours-info" ?
+* Où placer cette variable dans un environnement utilisateur sur Linux ?
+* Où placer cette variable dans un environnement utilisateur sur Windows ?
+
+</p>
+</details>
+
+-->
+<!--
+
+<br>
+<details>
+<summary>🤖 ChatGPT : Configurer git pour travailler sur un dépot GitHUB </summary>
+<p>
+
+
+
+😃 vous  
+
+Comment configurer Git dans un dossier pour travailler avec un dépôt GitHub dont la branche principale s'appelle "main" ?
+
+<br>  
+
+
+🤖 ChatGPT  
+
+Étape 1: Installer Git  
+Si Git n'est pas déjà installé sur votre machine, vous devez l'installer. Vous pouvez le faire en utilisant le gestionnaire de paquets de votre système d'exploitation ou en téléchargeant Git à partir du site officiel (https://git-scm.com/).
+
+Étape 2: Créer un nouveau dépôt sur GitHub  
+Connectez-vous à GitHub (https://github.com/) et créez un nouveau dépôt vide. Assurez-vous que la branche par défaut est définie sur "main". Prenez note de l'URL du dépôt (par exemple, https://github.com/votre-utilisateur/votre-depot.git).
+
+Étape 3: Initialiser Git dans le dossier  
+Accédez au dossier dans lequel vous souhaitez configurer Git et exécutez la commande suivante pour initialiser un nouveau dépôt Git local :
+
+
+```bash
+$ git init
+```
+
+Étape 4: Configurer les informations utilisateur  
+Configurez les informations utilisateur pour Git en utilisant les commandes suivantes, en remplaçant les valeurs avec vos propres informations :
+
+
+```bash
+$ git config --global user.name "Votre Nom"
+$ git config --global user.email "votre@email.com"
+```
+
+Étape 5: Ajouter le dépôt distant  
+Ajoutez le dépôt distant GitHub à votre configuration Git avec la commande suivante, en remplaçant l'URL par celle de votre dépôt :
+
+
+```bash
+$ git remote add origin https://github.com/votre-utilisateur/votre-depot.git
+```
+
+
+Étape 6: Récupérer la branche principale
+Exécutez la commande suivante pour récupérer la branche principale (main) depuis le dépôt distant :
+
+
+```bash
+git remote add origin https://github.com/votre-utilisateur/votre-depot.git
+```
+
+Étape 7: Effectuer des modifications et les pousser
+Maintenant, vous pouvez effectuer des modifications dans le dossier, ajouter des fichiers, etc. Lorsque vous êtes prêt à pousser vos modifications vers le dépôt distant, utilisez les commandes suivantes :
+
+```bash
+$ git add .
+$ git commit -m "Message de commit"
+$ git push origin main
+```
+
+Ces étapes devraient vous permettre de configurer Git dans un dossier pour travailler avec un dépôt GitHub dont la branche principale s'appelle "main". N'hésitez pas à consulter la documentation Git pour des informations plus détaillées sur les commandes et les fonctionnalités.  
+
+</p>
+</details>
+-->
+<!--    fin details       -->
+<!--    sommaire       -->
+<!--
+<br>
+<details>
+
+<summary>🤖 ChatGPT : Comment configurer une branche ? </summary>
+<p>
+
+
+😃 vous  
+
+
+Comment configurer Git dans un dossier pour travailler avec un dépôt GitHub dont la branche principale s'appelle "main" ?
+
+
+<br>  
+
+
+🤖 ChatGPT  
+
+
+Pour fixer ces deux paramètres avec une seule commande, vous pouvez utiliser la commande git config avec l'option --global. Voici comment vous pouvez le faire :
+
+```bash
+$ git config --global branch.main.remote origin
+$ git config --global branch.main.merge refs/heads/main
+```
+
+Ces commandes définiront respectivement les valeurs origin pour le paramètre branch.main.remote et refs/heads/main pour le paramètre branch.main.merge dans la configuration globale de Git.  
+
+Assurez-vous d'exécuter ces commandes dans votre terminal, à partir du répertoire de votre projet Git ou n'importe quel autre répertoire où vous souhaitez appliquer ces paramètres. L'option --global permet de les définir globalement pour tous les projets Git sur votre machine.  
+
+</p>
+</details>
+-->
+<!--    fin details       -->
+<!-- solution chatGPT
+
+donnez un exemple de contenu pour le fichier `.git-credentials` avec un access token
+comment utiliser un access token généré github dans un terminal ?https://sae-s1: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@github.com
+-----
+LINUX
+export COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
+
+Pour Windows :
+set COURS_INFO_GIT_TOKEN=votre_access_token_cours_info
+---- 
+Pour placer une variable d'environnement utilisateur sur Linux, vous pouvez les ajouter au fichier ~/.bashrc ou ~/.bash_profile. Voici les étapes pour le faire :
+-->
+<!--
+git remote set-url origin https://git-repo/new-repository.git
+git remote -v
+git remote set-url origin git@github.com:user/repository.git
+-->
+</body>
+</html>
