@@ -80,19 +80,19 @@
 </head>
 <body>
 <h1 id="introduction-objectif-du-module-développement-interfaces-web">Introduction : objectif du module “Développement Interfaces Web”</h1>
-<p><strong>TD</strong> : 1H * 8 semaines : (<a href="https://www.benjamin-robert.com/" target="_blanck">Benjamin Robert : ingénieur informatique</a>)</p>
+<p><strong>TD</strong> : 1H * 8 semaines : (<a href="https://www.benjamin-robert.com/" target="_blanck">Benjamin Robert : Ingénieur informatique</a>)</p>
 <ul>
 <li>Objectif :
 <ul>
 <li>présentation HTML CSS</li>
-<li>utilisation de l’HTML et du CSS pour disposer correctement des contenus dans un navigateur (css, flexbox, grille) , réalisation d’un menu dans une page,</li>
-<li>contenus “responsives” (adaptés aux différents supports)) ….</li>
-<li>bootstrap</li>
+<li>utilisation du HTML et du CSS pour disposer correctement des contenus dans un navigateur (css, flexbox, grille) , réalisation d’un menu dans une page,</li>
+<li>contenus “Responsive” (adaptés aux différents supports)) ….</li>
+<li>Bootstrap</li>
 </ul></li>
 <li>Utilisation : SAE 5 (projet) : réalisation d’un site Web</li>
 </ul>
 <p><br></p>
-<p><strong>TP</strong> : 1H30 * 8 semaines : (Millet alain)</p>
+<p><strong>TP</strong> : 1H30 * 8 semaines : (Millet Alain)</p>
 <ul>
 <li>Objectif :
 <ul>
@@ -100,7 +100,7 @@
 <li>Présentation d’un serveur web et des outils pour faire du web en python.</li>
 <li>Utilisation de Flask pour faire un serveur web.</li>
 <li>Présentation des vues sur FLASK (notion de gabarit).</li>
-<li>Passage de paramètres dans un formulaire ou un lien, récupération des données dans le script python. (Flask est utilisé pour la deuxième SAE en BDD pour faire des états et des formulaires)</li>
+<li>Passage de paramètres dans un formulaire ou un lien, récupération des données dans le script Python. (Flask est utilisé pour la deuxième SAE en BDD pour faire des états et des formulaires)</li>
 </ul></li>
 <li>Utilisation : SAE 3 et 4 (projet) : réalisation d’une base de données + système</li>
 </ul>
@@ -114,14 +114,14 @@
 <h1 id="tp1-présentation-de-lhtml---le-langage-les-bases-liens-..">TP1: présentation de l’HTML - le langage : les bases, liens …..</h1>
 <!--https://www.plpeeters.com/blog/fr/post/73-le-markdown-un-formidable-outil-->
 <ul>
-<li>Utiliser la norme HTML5, pour les exercices ci dessous.</li>
+<li>Utiliser la norme HTML5, pour les exercices ci-dessous.</li>
 </ul>
 <p><br></p>
 <div class="cours">
 
 <p>Le <a href="https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Getting_started" target="_blanck">site web <em>Mozilla</em> présente les bases de l’<strong>HTML</strong></a>. Avant de commencer lire rapidement le contenu de ce lien.</p>
 <ul>
-<li>Une page en <em>HTML</em> se compose d’une structure de base :</li>
+<li>Une page <em>HTML</em> se compose d’une structure de base :</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
@@ -137,9 +137,9 @@
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
-<li><p>Créer un répertoire dans votre répertoire personnel <strong>S1/web/tp1</strong>, créer vos fichiers HTML sur ce répertoire.</p></li>
-<li><p>Créer un fichier <strong>test1.html</strong></p></li>
-<li><p>Éditez ce fichier avec VsCode</p></li>
+<li><p>Créez un répertoire dans votre répertoire personnel <strong>S1/web/tp1</strong>, créez vos fichiers HTML sur ce répertoire.</p></li>
+<li><p>Créez un fichier <strong>test1.html</strong></p></li>
+<li><p>Éditez ce fichier avec VSCode</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>mkdir -p S1/web/tp1</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>cd S1/web</span>
@@ -157,7 +157,7 @@
 </ul>
 <h4 id="une-balise">Une balise</h4>
 <p><img src="img_diw/tp1_balise_1.png" style="width:10cm" /></p>
-<h4 id="éléments-bloc-vs-en-ligne">Éléments bloc vs en ligne</h4>
+<h4 id="éléments-bloc-vsou-en-ligne">Éléments bloc vs(ou) en ligne</h4>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;em&gt;</span>premier<span class="kw">&lt;/em&gt;&lt;em&gt;</span>deuxième<span class="kw">&lt;/em&gt;&lt;em&gt;</span>troisième<span class="kw">&lt;/em&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;p&gt;</span>quatrième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>cinquième<span class="kw">&lt;/p&gt;&lt;p&gt;</span>sixième<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
@@ -188,18 +188,18 @@
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="kw">&lt;/tr&gt;</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ul>
-<li>attention au attribut obligatoire</li>
-<li>recopiez le code dans votre page <strong>test1.html</strong></li>
-<li>complètez les attributs du lien et du formulaire (attributs <code>href</code> et <code>action</code>)</li>
+<li>Attention aux attributs obligatoires</li>
+<li>Recopiez le code dans votre page <strong>test1.html</strong></li>
+<li>Complètez les attributs du lien et du formulaire (attributs <code>href</code> et <code>action</code>)</li>
 </ul>
 <h4 id="validation-dune-page">Validation d’une page</h4>
 <ul>
-<li><p>sur le site <a href="https://validator.w3.org/#validate_by_upload" target="_blanck">W3C</a></p></li>
-<li><p>modifier votre page pour qu’elle passe le test du validateur W3C avec succès</p></li>
+<li><p>Sur le site <a href="https://validator.w3.org/#validate_by_upload" target="_blanck">W3C</a></p></li>
+<li><p>Modifiez votre page pour qu’elle passe le test du validateur W3C avec succès</p></li>
 </ul>
 <br>
 <details>
-<summary>💡 exemple de modifications pour les erreurs détectées par le validateur W3C </summary>
+<summary>💡 Exemple de modifications pour les erreurs détectées par le validateur W3C </summary>
 <p>
 <p><img src="img_diw/diw_tp1_11.png" style="width:24cm" /></p>
 <ul>
@@ -211,23 +211,23 @@
 <p>
 </details></li>
 </ul>
-<h4 id="exemple-sur-codepen">exemple sur codepen</h4>
+<h4 id="exemple-sur-codepen">Exemple sur codepen</h4>
 <ul>
-<li><a href="https://codepen.io/michelmichaud/pen/NPKwqo" target="_blanck">exemple de tableau</a></li>
-<li><a href="https://codepen.io/alyssaa_i/pen/wvmOVar" target="_blanck">exemple 2 de tableau</a></li>
+<li><a href="https://codepen.io/michelmichaud/pen/NPKwqo" target="_blanck">Exemple de tableau</a></li>
+<li><a href="https://codepen.io/alyssaa_i/pen/wvmOVar" target="_blanck">Exemple 2 de tableau</a></li>
 </ul>
 </div>
 <h2 id="exercice-1-page-1">Exercice 1 : Page 1</h2>
 <p><br></p>
 <ul>
-<li><strong>Télécharger</strong> <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1.zip" target="_blanck"><strong>le fichier ressources suivant</strong></a> du site de l’<a href="https://cours-info.iut-bm.univ-fcomte.fr/index.php/menu-cours-s1/r1-02-developpement-d-interfaces-web/2228-dev-interfaces-web-2021" target="_blanck">iut “cours-info”</a> puis <strong>désarchiver</strong> ce fichier dans le dossier créé précédemment.</li>
+<li><strong>Téléchargez</strong> <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1.zip" target="_blanck"><strong>le fichier ressources suivant</strong></a> du site de l’<a href="https://cours-info.iut-bm.univ-fcomte.fr/index.php/menu-cours-s1/r1-02-developpement-d-interfaces-web/2228-dev-interfaces-web-2021" target="_blanck">iut “cours-info”</a> puis <strong>désarchivez</strong> ce fichier dans le dossier créé précédemment.</li>
 </ul>
 <p><br></p>
 <ul>
-<li><p>Utiliser <strong>Studio Code</strong> ou un autre éditeur pour créer une page <strong>page1.html</strong> (attention aux extensions, seules les extensions <strong>.html</strong> sont prises en compte par le serveur Web comme apache)</p></li>
-<li><p>Utiliser les snippets de <em>Studio Code</em> pour créer la structure <em>HTML</em> de base. Taper <code>html:5</code> puis [tabulation]. Remplacer le code par le code ci dessus (structure de base) dans le fichier <strong>page1.html</strong></p></li>
-<li><p>Rajouter si ce n’est pas fait l’encodage <strong>utf8</strong> (ceci permet d’afficher correctement les caractères éèùà … du langage français): <code>&lt;meta charset="utf-8"&gt;</code> dans la balise <code>&lt;head&gt;</code></p></li>
-<li><p>Modifier le titre dans les attributs de la page : <code>&lt;title&gt;TP1 programmation Web&lt;/title&gt;</code>, donner le rôle de la balise <code>&lt;title&gt;</code><br />
+<li><p>Utilisez <strong>Studio Code</strong> ou un autre éditeur pour créer une page <strong>page1.html</strong> (attention aux extensions, seules les extensions <strong>.html</strong> sont prises en compte par le serveur Web comme apache)</p></li>
+<li><p>Utilisez les snippets de <em>Studio Code</em> pour créer la structure <em>HTML</em> de base. Taper <code>html:5</code> puis [tabulation]. Remplacez le code par le code ci dessus (structure de base) dans le fichier <strong>page1.html</strong></p></li>
+<li><p>Rajoutez si ce n’est pas fait l’encodage <strong>utf8</strong> (ceci permet d’afficher correctement les caractères éèùà … du langage français): <code>&lt;meta charset="utf-8"&gt;</code> dans la balise <code>&lt;head&gt;</code></p></li>
+<li><p>Modifiez le titre dans les attributs de la page : <code>&lt;title&gt;TP1 programmation Web&lt;/title&gt;</code>, donnez le rôle de la balise <code>&lt;title&gt;</code><br />
 </p></li>
 </ul>
 <p><br></p>
@@ -236,37 +236,37 @@
 </ul>
 <p><br></p>
 <ul>
-<li>Par la suite toutes les modifications se font dans le corps de la page Web ( <strong>body</strong> ), insérer :
+<li>Par la suite toutes les modifications se font dans le corps de la page Web ( <strong>body</strong> ), insérez :
 <ul>
 <li>une image servant de lien vers <strong>page2.html</strong>. (balise img) avec le texte alternatif “mon image devrait apparaître” de largeur 250 pixels et de hauteur 200 pixels et un titre au choix (balise <code>&lt;img src="linux.jpg" alt="mon image devrait apparaitre" title="sympa linux!" &gt;</code>). Utiliser les attributs CSS <code>width</code> et <code>height</code> pour définir les dimensions de l’image : ajouter l’attribut <code>style="width: 250px;height: 200px"</code> dans la balise image. Cette balise image est placée à l’intérieur d’une balise lien (<code>&lt;a href="nomFichier.html"&gt; &lt;img src="nomfichierImage.jpg" alt="texte alternatif" &gt;&lt;/a&gt;</code>)</li>
 <li>une ligne horizontale. (balise <code>&lt;hr&gt;</code>)</li>
 <li>un lien (interne) intitulé “lien vers page 3” vers <strong>page3.html</strong> (balise <code>&lt;a href="nomFichier.html"&gt; texte du lien &lt;/a&gt;</code>)</li>
 <li>un lien (externe) <code>&lt;a href="http://cours-info.iut-bm.univ-fcomte.fr" title="liens sur les cours TDs Tps du département informatique"&gt; Cours – TD – TP &lt;/a&gt;</code>, l’attribut : <strong>title</strong> ajoute une information lorsque la souris est sur le lien.</li>
 </ul></li>
-<li>rajouter une icône dans la partie <code>head</code> : ajouter l’intruction <code>&lt;link rel="icon" type="image/x-icon" href="iconeweb.ico"&gt;</code>. Pour plus d’information sur les favicon, voir cette <a href="https://fr.wikipedia.org/wiki/Favicon" target="_blanck">documentation</a>, voir de la <a href="https://html.spec.whatwg.org/multipage/links.html#rel-icon" target="_blanck">documentation de W3C</a>.</li>
+<li>Rajoutez une icône dans la partie <code>head</code> : ajoutez l’intruction <code>&lt;link rel="icon" type="image/x-icon" href="iconeweb.ico"&gt;</code>. Pour plus d’information sur les favicon, voir cette <a href="https://fr.wikipedia.org/wiki/Favicon" target="_blanck">documentation</a>, voir de la <a href="https://html.spec.whatwg.org/multipage/links.html#rel-icon" target="_blanck">documentation de W3C</a>.</li>
 </ul>
 <figure>
 <img src="img_diw/diw_tp1_1.png" alt="" /><figcaption>aperçu écran de la page “page1.html”</figcaption>
 </figure>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a><br />
-Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affiche en Rouge les erreurs détectées par le “parseur” du navigateur</p>
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a><br />
+Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affiche en rouge les erreurs détectées par le “parseur” du navigateur</p>
 </div>
 <p>Remarque : Certaines erreurs peuvent être liées au fait que l’on ne peut pas mettre certaines balises dans d’autres balises. Vous pouvez vous aider des sites présentés lors de la configuration de votre bureau pour connaître les balises parents/enfants.</p>
 <h2 id="page-2">Page 2</h2>
 <ul>
-<li>Créer une page de nom <strong>page2.html</strong> qui contient :
+<li>Créez une page de nom <strong>page2.html</strong> qui contient :
 <ul>
 <li>un lien avec le texte suivant: «retour» pour retourner sur la page 1</li>
 <li>une ligne horizontale (balise <code>&lt;hr&gt;</code>)</li>
-<li>une image du G de Google qui est un lien sur le site <a href="http://www.google.fr" target="_blanck">http://www.google.fr</a> en utilisant l’attribut <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a" target="_blanck"><em>target</em></a> pour ouvrir un nouvel onglet dans le navigateur (attribut <code>target="_blank"</code>). <br> Remarque importante sur les liens: les liens utilisent des URLs, voici une page avec quelques exemples d’URLs: <a href="http://defeo.lu/aws/lessons/url" target="_blanck">http://defeo.lu/aws/lessons/url</a> , une erreur classique est d’oublier le <code>http://</code> devant une URL absolue. <br></li>
+<li>une image du G de Google qui est un lien sur le site <a href="http://www.google.fr" target="_blanck">http://www.google.fr</a> en utilisant l’attribut <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a" target="_blanck"><em>target</em></a> pour ouvrir un nouvel onglet dans le navigateur (attribut <code>target="_blank"</code>). <br> Remarque importante sur les liens : les liens utilisent des URL, voici une page avec quelques exemples d’URL: <a href="http://defeo.lu/aws/lessons/url" target="_blanck">http://defeo.lu/aws/lessons/url</a> , une erreur classique est d’oublier le <code>http://</code> devant une URL absolue. <br></li>
 </ul></li>
 </ul>
 <figure>
 <img src="img_diw/diw_tp1_2.png" alt="" /><figcaption>aperçu écran de la page “page2.html”</figcaption>
 </figure>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
 </div>
 <p><br></p>
 <!--
@@ -281,16 +281,16 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
     * Consulter les pages avec un navigateur sur l'URL du serveur Web : <http://www-etu.iut-bm.univ-fcomte.fr/~votreLogin/S1/tp1/>{target=_blanck} -->
 <section id="le-css-présentation-utilisation-les-classes" class="cours">
 <h2>Le CSS : présentation, utilisation, les classes</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank">doc mozilla</a> <a href="https://edutechwiki.unige.ch/fr/Tutoriel_CSS" target="_blank">doc</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank">documentation mozilla</a> <a href="https://edutechwiki.unige.ch/fr/Tutoriel_CSS" target="_blank">documentation</a></p>
 <p>Les CSS (Cascading Style Sheets en anglais, ou « feuilles de style en cascade ») sont le code utilisé pour mettre en forme une page web</p>
 <p>Il est possible d’<a href="https://en.wikipedia.org/w/index.php?title=CSS#Use" target="_blank">utiliser des styles</a> en les définissant :</p>
 <ul>
 <li>dans un fichier CSS (la norme et le plus utilisé)</li>
-<li>dans la page HTML, dans la balise <code>&lt;head&gt;</code> suivi de la valise <code>&lt;style&gt;</code> (rare, utilisation essentiellement pédagogique car dans le même fichier que l’HTML)</li>
+<li>dans la page HTML, dans la balise <code>&lt;head&gt;</code> suivie de la valise <code>&lt;style&gt;</code> (rare, utilisation essentiellement pédagogique car dans le même fichier que l’HTML)</li>
 <li>de façon exceptionnelle dans une balise pour forcer le style grâce à l’attribut <code>style</code></li>
 </ul>
 <figure>
-<img src="img_diw/tp1_balise_3.png" style="width:8cm" alt="" /><figcaption>Cette structure s’appelle un ensemble de règles (ou seulement « une règle »)</figcaption>
+<img src="img_diw/tp1_balise_3.png" style="width:8cm" alt="" /><figcaption>Cette structure s’appelle un ensemble de règles (ou seulement “une règle”)</figcaption>
 </figure>
 <p>Exemple de fichier CSS</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">.titre1</span></span>
@@ -304,12 +304,12 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 <p>Utilisation du CSS</p>
 <p><a href="https://en.wikipedia.org/w/index.php?title=CSS#Specificity" target="_blank">Le poids d’un sélecteur CSS</a></p>
 <figure>
-<img src="img_diw/tp1_css_1.png" alt="" /><figcaption>exemple poids des sélecteurs CSS</figcaption>
+<img src="img_diw/tp1_css_1.png" alt="" /><figcaption>Exemple poids des sélecteurs CSS</figcaption>
 </figure>
 <p>Propriété CSS</p>
 <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_color" target="_blank">Exemple d’utilisation de classes</a></p>
-<p><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/button" target="_blank">éléments HTML</a> -</p>
-<p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">éléments CSS</a></p>
+<p><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/button" target="_blank">Éléments HTML</a> -</p>
+<p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">Éléments CSS</a></p>
 <p><b></p>
 <ul>
 <li>Navigateur : mode développement CTRL MAJ i <!--    sommaire       --></li>
@@ -380,13 +380,13 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 <p><strong>Attention à l’ordre des balises : <code>&lt;link href="xxxxxx.css" rel="stylesheet" type="text/css"&gt;</code></strong></p>
 </section>
 <h2 id="page-3-pour-les-plus-rapides">Page 3 (pour les plus rapides)</h2>
-<p>Créer une page de nom <strong>page3.html</strong> qui contient (de haut en bas) :</p>
+<p>Créez une page de nom <strong>page3.html</strong> qui contient (de haut en bas) :</p>
 <ul>
 <li>le texte noir suivant en utilisant les méta caractères pour les caractères : û é €:<br />
 “le produit coûte éventuellement 200 €”</li>
 <li>IUT (en utilisant la balise <code>&lt;abbr&gt;</code> pour afficher «Institut Universitaire de Technologie» si la souris est dessus)</li>
 <li>e-1/x * i5 (voir aperçu écran en utilisant les balises <strong>SUB</strong> et <strong>SUP</strong>)</li>
-<li>un texte gras puis gras italique puis gras italique gros (en utilisant les balises <code>&lt;i&gt;&lt;b&gt;&lt;strong&gt;</code>)</li>
+<li>un texte gras puis gras, italique puis gras, italique, gros (en utilisant les balises <code>&lt;i&gt;&lt;b&gt;&lt;strong&gt;</code>)</li>
 </ul>
 <p><br></p>
 <p>Aidez vous de cet exemple :</p>
@@ -401,10 +401,10 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 </figure>
 <p>REMARQUE : la lettre b de la balise <code>&lt;b&gt;</code> signifie <em>bold</em> (gras) alors que <code>&lt;strong&gt;</code> signifie important (de même <code>&lt;em&gt;</code> signifie emphase : mise en valeur). <a href="https://www.alsacreations.com/article/lire/552-strong-b-em-i-quelle-balise-utiliser-et-pourquoi.html" target="_blanck">Exemple de site web</a> qui parle de l’intérêt sémantique de ces balises.</p>
 <p><br></p>
-<p>Compléter la page HTML avec :</p>
+<p>Complétez la page HTML avec :</p>
 <ul>
 <li><p>Une ligne horizontale.</p></li>
-<li><p>2 listes à puces imbriquées dans une autre liste numérotée. Laisser les formes des puces par défaut, en HTML les mises en forme se font avec du CSS) :</p></li>
+<li><p>2 listes à puces imbriquées dans une autre liste numérotée. Laissez les formes des puces par défaut, en HTML les mises en forme se font avec du CSS) :</p></li>
 </ul>
 <table class="bicol">
 <tr>
@@ -424,20 +424,20 @@ Remarque : [Outils/Développement Web/Code source de la page] ou [Ctrl u] affich
 <li>Un lien interne sur la page 1 (page1.html)</li>
 </ul>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
 </div>
 <figure>
 <img src="img_diw/diw_tp1_3.png" alt="" /><figcaption>aperçu écran de la page “page3.html”</figcaption>
 </figure>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
+<p>Validez votre page sur le site <a href="http://validator.w3.org/" target="_blanck">http://validator.w3.org/</a></p>
 </div>
 <p><br><br><br><br><br><br><br><br><br><br><br> <strong>Pour les plus rapides :</strong></p>
 <ul>
-<li><p>Rechercher sur internet à quoi sert une ancre dans un lien.</p></li>
+<li><p>Recherchez sur internet à quoi sert une ancre dans un lien.</p></li>
 <li><p>lire la documentation sur <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Cat%C3%A9gorie_de_contenu" target="_blanck">les catégories de balises</a></p></li>
 </ul>
-<p>REMARQUE: Éviter de nommer votre page “index.html” , le serveur web (apache) ouvre cette page par défaut. Pas vraiment utile lors du développement.</p>
+<p>REMARQUE: Évitez de nommer votre page “index.html” , le serveur web (apache) ouvre cette page par défaut. Pas vraiment utile lors du développement.</p>
 <p><br><br><br><br><br><br><br><br><br><br><br></p>
 <hr />
 <p><br><br><br><br><br><br><br><br><br><br><br></p>
@@ -484,15 +484,5 @@ https://fonts.google.com/
     https://stackoverflow.com/questions/2436749/how-to-add-multiple-font-files-for-the-same-font
 
     -->
-<script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
 </body>
 </html>
