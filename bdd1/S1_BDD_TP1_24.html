@@ -414,7 +414,7 @@ alt="script SQL : exemple de commentaires" />
 commentaires</figcaption>
 </figure>
 <p><br></p>
-<p>Ajouter dans le fichier <strong>tp1.sql</strong> les instructions
+<p>Ajoutez dans le fichier <strong>tp1.sql</strong> les instructions
 ci-dessous pour créer la table <strong>etudiant</strong> et exécuter ces
 instructions (<em>source tp1.sql</em>)</p>
 <p><br></p>
@@ -454,7 +454,7 @@ pour que le logiciel MySQL puisse l’interpréter.</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DESCRIBE etudiant;</span></code></pre></div>
 <ol start="3" type="1">
-<li>Insérer des enregistrements dans une table :</li>
+<li>Insérez des enregistrements dans une table :</li>
 </ol>
 <figure>
 <img src="img/S1_bdd_tp1_image2.png" alt="script SQL" />
@@ -474,40 +474,40 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#
 d’une table » et « afficher la structure d’une table » dans un énoncé de
 contrôle.</p>
 <ol start="5" type="1">
-<li>Supprimer la table <strong>en début de script</strong></li>
+<li>Supprimez la table <strong>en début de script</strong></li>
 </ol>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
-<p>Placer cette instruction en début de script pour que vos
+<p>Placez cette instruction en début de script pour que vos
 modifications sur la table soit prises en compte à chaque rechargement
 du script SQL.</p>
-<p><strong>Modifier votre script dans votre fichier à chaque
+<p><strong>Modifiez votre script dans votre fichier à chaque
 étape</strong>, l’objectif est de bien saisir les différences et les
 points communs entre « NOT NULL » « UNIQUE » et « PRIMARY KEY »</p>
 <p>Pour ne plus autoriser un enregistrement avec un identifiant de
-l’étudiant NULL :</p>
+l’étudiant avec comme valeur NULL :</p>
 <figure>
 <img src="img/S1_bdd_tp1_image3.png" alt="script SQL" />
 <figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
 <ol start="6" type="1">
-<li><p>Modifier la table en ajoutant la contrainte
+<li><p>Modifiez la table en ajoutant la contrainte
 <code>NOT NULL</code></p></li>
-<li><p>Insérer les enregistrements précédents dans la table</p></li>
+<li><p>Insérez les enregistrements précédents dans la table</p></li>
 </ol>
 <ul>
 <li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et
 pourquoi?</li>
 </ul>
 <ol start="8" type="1">
-<li>supprimer la table</li>
+<li>Supprimez la table</li>
 </ol>
 <p><br></p>
 <h3 id="clé-primaire-champ-unique-champ-non-null"><strong>Clé Primaire,
 champ unique, champ non “NULL”</strong></h3>
 <ol start="9" type="1">
-<li>Modifier la table en ajoutant la contrainte <code>UNIQUE</code>,
-puis insérer les champs précédents</li>
+<li>Modifiez la table en ajoutant la contrainte <code>UNIQUE</code>,
+puis insérez les champs précédents</li>
 </ol>
 <figure>
 <img src="img/S1_bdd_tp1_image4.png" alt="script SQL" />
@@ -519,7 +519,7 @@ pourquoi?</li>
 </ul>
 <p><img src="img/S1_bdd_tp1_image5.png" /></p>
 <ol start="10" type="1">
-<li>Modifier la table et insérer les champs précédents avec une clé
+<li>Modifiez la table et insérez les champs précédents avec une clé
 primaire sur l’identifiant</li>
 </ol>
 <ul>
@@ -546,14 +546,14 @@ alt="script SQL : solution à utilisée par la suite" />
 suite</figcaption>
 </figure>
 <ol start="12" type="1">
-<li>Afficher comment créer la table à l’aide de la commande
+<li>Affichez comment créer la table à l’aide de la commande
 ci-dessous</li>
 </ol>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
 <p><br></p>
 <ol start="13" type="1">
-<li>Terminer votre script en supprimant la table si elle existe.</li>
+<li>Terminez votre script en supprimant la table si elle existe.</li>
 </ol>
 <figure>
 <img src="img/S1_bdd_tp1_image7.png"
@@ -564,7 +564,7 @@ existe</figcaption>
 <p><br></p>
 <p><em>Pour les plus rapides :</em></p>
 <ol start="14" type="1">
-<li>ajouter un champ dans la table <em>etudiant</em> avec la date de
+<li>Ajoutez un champ dans la table <em>etudiant</em> avec la date de
 naissance de chaque étudiant (nom du champ : <em>date_naissance</em>) et
 insérer quelques valeurs en vous aidant d’internet.</li>
 </ol>
