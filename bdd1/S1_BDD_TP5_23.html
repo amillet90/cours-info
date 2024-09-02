@@ -15,6 +15,7 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -49,7 +50,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -62,7 +63,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -92,10 +93,13 @@ attention version : en début de script sql
 <div class="cours">
 <p>Objectif :</p>
 <ul>
-<li>Utiliser l’opérateur « SELECT » qui permet de rechercher (sélectionner) des informations dans une base de données avec des conditions avec une expression logique</li>
+<li>Utiliser l’opérateur « SELECT » qui permet de rechercher
+(sélectionner) des informations dans une base de données avec des
+conditions avec une expression logique</li>
 <li>Filtrer et trier le résultat de l’opérateur « SELECT »</li>
 </ul>
-<h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments abordés :</h2>
+<h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments
+abordés :</h2>
 <pre><code>SELECT  [nom_table.nom_champs, nom_table.nom_champs2.....] 
 FROM
 nom_table1, nom_table2 …. 
@@ -109,30 +113,47 @@ SELECT Client.NomClient FROM Client WHERE Client.PrivilegeClient=true
 ORDER by Client.NomClient;</code></pre>
 <p>[conditions]SQL</p>
 <ul>
-<li>Les opérateurs de comparaison <code>=   &lt;=   &lt;&gt;</code>…</li>
-<li>Les opérateurs logiques <code>AND   OR   NOT</code> (expressions)</li>
-<li>Un champ compris entre 2 valeurs <code>nom_champ BETWEEN 1 AND 30</code></li>
-<li>Une chaine de caractères comme …( comparaison ) <code>nom_champ LIKE '123%'</code></li>
-<li>Un champ est vide <code>nom_champ IS NULL</code> Utilisation de date “aaaa-mm-jj”</li>
+<li>Les opérateurs de comparaison
+<code>=   &lt;=   &lt;&gt;</code>…</li>
+<li>Les opérateurs logiques <code>AND   OR   NOT</code>
+(expressions)</li>
+<li>Un champ compris entre 2 valeurs
+<code>nom_champ BETWEEN 1 AND 30</code></li>
+<li>Une chaine de caractères comme …( comparaison )
+<code>nom_champ LIKE '123%'</code></li>
+<li>Un champ est vide <code>nom_champ IS NULL</code> Utilisation de date
+“aaaa-mm-jj”</li>
 <li>Pour trier les champs
 <ul>
 <li><code>ORDER BY ETU_Nom [ASC]</code> « CROISSANT »</li>
 <li><code>ORDER BY ETU_Nom DESC</code> « DECROISSANT »</li>
 </ul></li>
-<li>Sélectionner des résultats non redondants (distincts) <code>SELECT DISTINCT nom_champ …</code></li>
-<li>Quand un champ appartient à une liste de valeurs (…) <code>WHERE nom_champ IN ('valeur1', 'valeur2', ...)</code></li>
+<li>Sélectionner des résultats non redondants (distincts)
+<code>SELECT DISTINCT nom_champ …</code></li>
+<li>Quand un champ appartient à une liste de valeurs (…)
+<code>WHERE nom_champ IN ('valeur1', 'valeur2', ...)</code></li>
 </ul>
 <h2 id="remarque">remarque</h2>
 <p>lors de l’écriture des chaînes de texte :</p>
 <ul>
-<li><code>'</code> (apostrophe ou single quote, TOUCHE Alt Gr + 4) sert à entourer une valeur de format alphanumérique.</li>
-<li>` (accent grave ou backtick, TOUCHE Alt Gr + 7) sert à entourer les noms des objets de la BDD (base, table, colonne), surtout lorsque ces noms peuvent être mal interprétés par MySQL : Noms en plusieurs mots ; Mots réservés de MySQL.</li>
-<li><code>"</code> (guillemet ou double quote, TOUCHE Alt Gr + 3) est une alternative (propre à MySQL) ; elle est déconseillée, car seul <code>'</code> est normalisé.</li>
+<li><code>'</code> (apostrophe ou single quote, TOUCHE Alt Gr + 4) sert
+à entourer une valeur de format alphanumérique.</li>
+<li>` (accent grave ou backtick, TOUCHE Alt Gr + 7) sert à entourer les
+noms des objets de la BDD (base, table, colonne), surtout lorsque ces
+noms peuvent être mal interprétés par MySQL : Noms en plusieurs mots ;
+Mots réservés de MySQL.</li>
+<li><code>"</code> (guillemet ou double quote, TOUCHE Alt Gr + 3) est
+une alternative (propre à MySQL) ; elle est déconseillée, car seul
+<code>'</code> est normalisé.</li>
 </ul>
 </div>
-<h1 id="création-de-la-table-structure-et-insertion-des-enregistrements">création de la table (structure) et insertion des enregistrements</h1>
-<h2 id="création-de-la-table-etudiant">création de la table <strong>etudiant</strong></h2>
-<p>Créer une table pour gérer des étudiants , avec comme nom de la table <strong>Etudiant</strong> et comme colonnes (champs) dans la table :</p>
+<h1
+id="création-de-la-table-structure-et-insertion-des-enregistrements">création
+de la table (structure) et insertion des enregistrements</h1>
+<h2 id="création-de-la-table-etudiant">création de la table
+<strong>etudiant</strong></h2>
+<p>Créer une table pour gérer des étudiants , avec comme nom de la table
+<strong>Etudiant</strong> et comme colonnes (champs) dans la table :</p>
 <div style="width: 80px">
 <table>
 <colgroup>
@@ -145,63 +166,90 @@ ORDER by Client.NomClient;</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><u>idEtudiant</u> <br> nom <br> adresse <br>ville <br> code_postal <br> telephone <br> date_naisssance <br> sexe <br> boursier <br> groupe_id <br> semestre_id <br> note_ue1 <br> note_ue2</td>
+<td style="text-align: left;"><u>idEtudiant</u> <br> nom <br> adresse
+<br>ville <br> code_postal <br> telephone <br> date_naisssance <br> sexe
+<br> boursier <br> groupe_id <br> semestre_id <br> note_ue1 <br>
+note_ue2</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li><code>idEtudiant</code> : ce champ (attribut) est de type <strong>entier</strong> , c’est une clé primaire avec un compteur (champ qui utilise l’attribut «AUTO_INCREMENT»).</li>
-<li><code>nom</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 20 caractères maximum.</li>
-<li><code>adresse</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 40 caractères maximum.</li>
-<li><code>ville</code> : ce champ (attribut)est de type <strong>chaîne de caractères variable</strong> de taille 20 caractères maximum.</li>
-<li><code>code_postal</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 5 caractères (un numérique ne convient pas, car on pert le 0 devant si il y en a).</li>
-<li><code>telephone</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 10 caractère maximum</li>
-<li><code>date_naissance</code>: ce champ (attribut) est de <strong>date</strong></li>
-<li><code>sexe</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 1 caractère maximum.</li>
-<li><code>boursier</code> : ce champ (attribut) est de type <strong>chaîne de caractères variable</strong> de taille 1 caractère maximum.</li>
-<li><code>groupe_id</code> : ce champ (attribut) est de type <strong>entier</strong></li>
-<li><code>semestre_id</code> : ce champ (attribut) est de type <strong>entier</strong></li>
-<li><code>note_ue1</code> : ce champ (attribut) est de type <strong>numeric</strong> qui affiche un numérique avec 2 chiffres après la virgule, la valeur la plus grande est 99,99</li>
-<li><code>note_ue2</code> : ce champ (attribut) est de type <strong>numeric</strong> qui affiche un numérique avec 2 chiffres après la virgule, la valeur la plus grande est 99,99</li>
+<li><code>idEtudiant</code> : ce champ (attribut) est de type
+<strong>entier</strong> , c’est une clé primaire avec un compteur (champ
+qui utilise l’attribut «AUTO_INCREMENT»).</li>
+<li><code>nom</code> : ce champ (attribut) est de type <strong>chaîne de
+caractères variable</strong> de taille 20 caractères maximum.</li>
+<li><code>adresse</code> : ce champ (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 40 caractères
+maximum.</li>
+<li><code>ville</code> : ce champ (attribut)est de type <strong>chaîne
+de caractères variable</strong> de taille 20 caractères maximum.</li>
+<li><code>code_postal</code> : ce champ (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 5 caractères
+(un numérique ne convient pas, car on pert le 0 devant si il y en
+a).</li>
+<li><code>telephone</code> : ce champ (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 10 caractère
+maximum</li>
+<li><code>date_naissance</code>: ce champ (attribut) est de
+<strong>date</strong></li>
+<li><code>sexe</code> : ce champ (attribut) est de type <strong>chaîne
+de caractères variable</strong> de taille 1 caractère maximum.</li>
+<li><code>boursier</code> : ce champ (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 1 caractère
+maximum.</li>
+<li><code>groupe_id</code> : ce champ (attribut) est de type
+<strong>entier</strong></li>
+<li><code>semestre_id</code> : ce champ (attribut) est de type
+<strong>entier</strong></li>
+<li><code>note_ue1</code> : ce champ (attribut) est de type
+<strong>numeric</strong> qui affiche un numérique avec 2 chiffres après
+la virgule, la valeur la plus grande est 99,99</li>
+<li><code>note_ue2</code> : ce champ (attribut) est de type
+<strong>numeric</strong> qui affiche un numérique avec 2 chiffres après
+la virgule, la valeur la plus grande est 99,99</li>
 </ul>
 <p><br></p>
 <div class="important">
-<p><strong>Utiliser le script ci-dessous pour insérer des enregistrements</strong></p>
+<p><strong>Utiliser le script ci-dessous pour insérer des
+enregistrements</strong></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- version 2023</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Etudiant (idEtudiant, nom, adresse, ville, code_postal, telephone, date_naissance, sexe, boursier, groupe_id, semestre_id, note_ue1, note_ue2) <span class="kw">VALUES</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>(<span class="dv">1</span>, <span class="st">&#39;BERNARD&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545401&#39;</span>, <span class="st">&#39;2005-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>, <span class="st">&#39;10.50&#39;</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>(<span class="dv">19</span>, <span class="st">&#39;CHAVEAUX&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Strasbourg&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545419&#39;</span>, <span class="st">&#39;2005-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;10.50&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>(<span class="dv">20</span>, <span class="st">&#39;PRETTOT&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545420&#39;</span>, <span class="st">&#39;2005-07-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;12.50&#39;</span>, <span class="st">&#39;8.50&#39;</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>(<span class="dv">7</span>, <span class="st">&#39;RIOT&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Montbeliard&#39;</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545407&#39;</span>, <span class="st">&#39;2005-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;13.50&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>(<span class="dv">8</span>, <span class="st">&#39;BOISSENIN&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545408&#39;</span>, <span class="st">&#39;2005-08-09&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;15.5&#39;</span>, <span class="st">&#39;16.50&#39;</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>(<span class="dv">2</span>, <span class="st">&#39;PEQUIGNOT&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545402&#39;</span>, <span class="st">&#39;2004-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;17.50&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>(<span class="dv">3</span>, <span class="st">&#39;ZILLIOX&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545403&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>,<span class="st">&#39;9.25&#39;</span>),</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>(<span class="dv">4</span>, <span class="st">&#39;MONNIER&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;TAILLECOURT&#39;</span>, <span class="st">&#39;25400&#39;</span>, <span class="st">&#39;0384545404&#39;</span>, <span class="st">&#39;2004-02-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;9.50&#39;</span>, <span class="st">&#39;15.5&#39;</span>),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>(<span class="dv">5</span>, <span class="st">&#39;BRISCHOUX&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545405&#39;</span>, <span class="st">&#39;2004-05-25&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>(<span class="dv">6</span>, <span class="st">&#39;DUVAL&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545406&#39;</span>, <span class="st">&#39;2004-03-11&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;13.50&#39;</span>, <span class="st">&#39;8.50&#39;</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>   (<span class="dv">10</span>, <span class="st">&#39;FAIVRE&#39;</span>, <span class="st">&#39;7 rue des vergers  de rioz&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545410&#39;</span>, <span class="st">&#39;2004-01-05&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;8.50&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>(<span class="dv">17</span>, <span class="st">&#39;DELANOE&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545417&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;12.50&#39;</span>, <span class="st">&#39;14.50&#39;</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>(<span class="dv">18</span>, <span class="st">&#39;BONVALOT&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545418&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;11.50&#39;</span>),</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>(<span class="dv">21</span>, <span class="st">&#39;COULON&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545421&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;17&#39;</span>, <span class="st">&#39;6.5&#39;</span>),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>(<span class="dv">23</span>, <span class="st">&#39;KENDE&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545423&#39;</span>, <span class="st">&#39;2004-05-31&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;15&#39;</span>, <span class="st">&#39;7.5&#39;</span>),</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>(<span class="dv">24</span>, <span class="st">&#39;KLEIN&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Montbeliard&#39;</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545424&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;13&#39;</span>, <span class="st">&#39;15&#39;</span>),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>(<span class="dv">25</span>, <span class="st">&#39;VALZER&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545425&#39;</span>, <span class="st">&#39;2004-01-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;11&#39;</span>, <span class="st">&#39;10&#39;</span>),</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>(<span class="dv">26</span>, <span class="st">&#39;PY&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545426&#39;</span>, <span class="st">&#39;2004-01-10&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;12.20&#39;</span>, <span class="st">&#39;7.90&#39;</span>),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>(<span class="dv">27</span>, <span class="st">&#39;VERNET&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545427&#39;</span>, <span class="st">&#39;2004-02-02&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;10.30&#39;</span>, <span class="st">&#39;11.85&#39;</span>),</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>(<span class="dv">28</span>, <span class="st">&#39;BAILLIT&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545428&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;7.90&#39;</span>, <span class="st">&#39;15.90&#39;</span>),</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>(<span class="dv">16</span>, <span class="st">&#39;LUZET&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545416&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;10.25&#39;</span>, <span class="st">&#39;9.25&#39;</span>),</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>  (<span class="dv">22</span>, <span class="st">&#39;VALOT&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545422&#39;</span>, <span class="st">&#39;2003-12-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;9.20&#39;</span>),</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>(<span class="dv">29</span>, <span class="st">&#39;DUPONT&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545429&#39;</span>, <span class="st">&#39;2003-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;13.20&#39;</span>, <span class="st">&#39;15.50&#39;</span>),</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>   (<span class="dv">11</span>, <span class="st">&#39;FAIVRE&#39;</span>, <span class="st">&#39;3 rue des vergers&#39;</span>, <span class="st">&#39;Cernay&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545411&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;5.6&#39;</span>, <span class="st">&#39;12.05&#39;</span>),</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>(<span class="dv">12</span>, <span class="st">&#39;DUCHENNE&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545412&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;10.4&#39;</span>, <span class="st">&#39;11.3&#39;</span>),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>(<span class="dv">13</span>, <span class="st">&#39;BOULANGER&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545413&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;13&#39;</span>, <span class="st">&#39;9.20&#39;</span>),</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>   (<span class="dv">9</span>, <span class="st">&#39;FONTAINE-LEGIOT&#39;</span>, <span class="st">&#39;2 rue des vergers&#39;</span>, <span class="st">&#39;Mulhouse&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545409&#39;</span>, <span class="st">&#39;2002-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;11.25&#39;</span>, <span class="st">&#39;12&#39;</span>),</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>(<span class="dv">14</span>, <span class="st">&#39;MOREAU&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545414&#39;</span>, <span class="st">&#39;2002-06-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;9&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>(<span class="dv">15</span>, <span class="st">&#39;RIGOULOT&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545415&#39;</span>, <span class="st">&#39;2002-12-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;15&#39;</span>, <span class="st">&#39;10.50&#39;</span>);</span></code></pre></div>
-<h2 id="requête-1-expression-logique">Requête 1 (expression logique) :</h2>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- version 2023</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Etudiant (idEtudiant, nom, adresse, ville, code_postal, telephone, date_naissance, sexe, boursier, groupe_id, semestre_id, note_ue1, note_ue2) <span class="kw">VALUES</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">&#39;BERNARD&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545401&#39;</span>, <span class="st">&#39;2005-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>, <span class="st">&#39;10.50&#39;</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">19</span>, <span class="st">&#39;CHAVEAUX&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Strasbourg&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545419&#39;</span>, <span class="st">&#39;2005-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;10.50&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span>, <span class="st">&#39;PRETTOT&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545420&#39;</span>, <span class="st">&#39;2005-07-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;12.50&#39;</span>, <span class="st">&#39;8.50&#39;</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span>, <span class="st">&#39;RIOT&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Montbeliard&#39;</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545407&#39;</span>, <span class="st">&#39;2005-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;13.50&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span>, <span class="st">&#39;BOISSENIN&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545408&#39;</span>, <span class="st">&#39;2005-08-09&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;15.5&#39;</span>, <span class="st">&#39;16.50&#39;</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">&#39;PEQUIGNOT&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545402&#39;</span>, <span class="st">&#39;2004-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;17.50&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">&#39;ZILLIOX&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545403&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>,<span class="st">&#39;9.25&#39;</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span>, <span class="st">&#39;MONNIER&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;TAILLECOURT&#39;</span>, <span class="st">&#39;25400&#39;</span>, <span class="st">&#39;0384545404&#39;</span>, <span class="st">&#39;2004-02-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;9.50&#39;</span>, <span class="st">&#39;15.5&#39;</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span>, <span class="st">&#39;BRISCHOUX&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545405&#39;</span>, <span class="st">&#39;2004-05-25&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;9.50&#39;</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span>, <span class="st">&#39;DUVAL&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545406&#39;</span>, <span class="st">&#39;2004-03-11&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&#39;13.50&#39;</span>, <span class="st">&#39;8.50&#39;</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">10</span>, <span class="st">&#39;FAIVRE&#39;</span>, <span class="st">&#39;7 rue des vergers  de rioz&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545410&#39;</span>, <span class="st">&#39;2004-01-05&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;8.50&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">17</span>, <span class="st">&#39;DELANOE&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545417&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;12.50&#39;</span>, <span class="st">&#39;14.50&#39;</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>(<span class="dv">18</span>, <span class="st">&#39;BONVALOT&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545418&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;11.50&#39;</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>(<span class="dv">21</span>, <span class="st">&#39;COULON&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545421&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;17&#39;</span>, <span class="st">&#39;6.5&#39;</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>(<span class="dv">23</span>, <span class="st">&#39;KENDE&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Bavilliers&#39;</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545423&#39;</span>, <span class="st">&#39;2004-05-31&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;15&#39;</span>, <span class="st">&#39;7.5&#39;</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>(<span class="dv">24</span>, <span class="st">&#39;KLEIN&#39;</span>, <span class="st">&#39;7 rue du verger&#39;</span>, <span class="st">&#39;Montbeliard&#39;</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545424&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;13&#39;</span>, <span class="st">&#39;15&#39;</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>(<span class="dv">25</span>, <span class="st">&#39;VALZER&#39;</span>, <span class="st">&#39;3 rue du boulanger&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545425&#39;</span>, <span class="st">&#39;2004-01-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;11&#39;</span>, <span class="st">&#39;10&#39;</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>(<span class="dv">26</span>, <span class="st">&#39;PY&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545426&#39;</span>, <span class="st">&#39;2004-01-10&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">&#39;12.20&#39;</span>, <span class="st">&#39;7.90&#39;</span>),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>(<span class="dv">27</span>, <span class="st">&#39;VERNET&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;90120&#39;</span>, <span class="st">&#39;0384545427&#39;</span>, <span class="st">&#39;2004-02-02&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;10.30&#39;</span>, <span class="st">&#39;11.85&#39;</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>(<span class="dv">28</span>, <span class="st">&#39;BAILLIT&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="kw">NULL</span>, <span class="st">&#39;25200&#39;</span>, <span class="st">&#39;0384545428&#39;</span>, <span class="st">&#39;2004-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;7.90&#39;</span>, <span class="st">&#39;15.90&#39;</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>(<span class="dv">16</span>, <span class="st">&#39;LUZET&#39;</span>, <span class="st">&#39;2 rue de la liberation&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545416&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;10.25&#39;</span>, <span class="st">&#39;9.25&#39;</span>),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">22</span>, <span class="st">&#39;VALOT&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545422&#39;</span>, <span class="st">&#39;2003-12-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;9.20&#39;</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>(<span class="dv">29</span>, <span class="st">&#39;DUPONT&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545429&#39;</span>, <span class="st">&#39;2003-06-06&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="st">&#39;13.20&#39;</span>, <span class="st">&#39;15.50&#39;</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">11</span>, <span class="st">&#39;FAIVRE&#39;</span>, <span class="st">&#39;3 rue des vergers&#39;</span>, <span class="st">&#39;Cernay&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545411&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;5.6&#39;</span>, <span class="st">&#39;12.05&#39;</span>),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>(<span class="dv">12</span>, <span class="st">&#39;DUCHENNE&#39;</span>, <span class="st">&#39;5 rue du chasseur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545412&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;10.4&#39;</span>, <span class="st">&#39;11.3&#39;</span>),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>(<span class="dv">13</span>, <span class="st">&#39;BOULANGER&#39;</span>, <span class="st">&#39;8 rue vilapogo&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545413&#39;</span>, <span class="st">&#39;2003-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;13&#39;</span>, <span class="st">&#39;9.20&#39;</span>),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">9</span>, <span class="st">&#39;FONTAINE-LEGIOT&#39;</span>, <span class="st">&#39;2 rue des vergers&#39;</span>, <span class="st">&#39;Mulhouse&#39;</span>, <span class="st">&#39;68000&#39;</span>, <span class="st">&#39;0384545409&#39;</span>, <span class="st">&#39;2002-01-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">&#39;11.25&#39;</span>, <span class="st">&#39;12&#39;</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>(<span class="dv">14</span>, <span class="st">&#39;MOREAU&#39;</span>, <span class="st">&#39;67 rue pasteur&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545414&#39;</span>, <span class="st">&#39;2002-06-01&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;O&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;9&#39;</span>, <span class="st">&#39;12.50&#39;</span>),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>(<span class="dv">15</span>, <span class="st">&#39;RIGOULOT&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Valdoie&#39;</span>, <span class="st">&#39;90300&#39;</span>, <span class="st">&#39;0384545415&#39;</span>, <span class="st">&#39;2002-12-12&#39;</span>, <span class="st">&#39;H&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;15&#39;</span>, <span class="st">&#39;10.50&#39;</span>);</span></code></pre></div>
+<h2 id="requête-1-expression-logique">Requête 1 (expression logique)
+:</h2>
 <p>Tester la requête suivante :</p>
 <p><img src="img/img_tp5.jpg" /></p>
 <ul>
@@ -218,7 +266,9 @@ ORDER by Client.NomClient;</code></pre>
 +-----------+------------------------+-------------+</code></pre>
 <p>Sur le même principe :</p>
 <ul>
-<li><p>Écrire une requête pour sélectionner le nom, le groupe et le champ ‘boursier’ (si ils sont boursiers ou non) des étudiants du groupe 1, du semestre 1 quand ils sont boursiers.</p></li>
+<li><p>Écrire une requête pour sélectionner le nom, le groupe et le
+champ ‘boursier’ (si ils sont boursiers ou non) des étudiants du groupe
+1, du semestre 1 quand ils sont boursiers.</p></li>
 <li><p>Résultat :</p></li>
 </ul>
 <pre><code>+-----------+-----------+----------+
@@ -227,14 +277,25 @@ ORDER by Client.NomClient;</code></pre>
 | PEQUIGNOT |         1 | O        |
 | MONNIER   |         1 | O        |
 +-----------+-----------+----------+</code></pre>
-<h2 id="requête-2-expression-logique-et-tri-sur-plusieurs-champs">Requête 2 (expression logique et tri sur plusieurs champs ) :</h2>
+<h2
+id="requête-2-expression-logique-et-tri-sur-plusieurs-champs">Requête 2
+(expression logique et tri sur plusieurs champs ) :</h2>
 <div class="requete">
 <strong>Requête 2-1</strong> :
 </div>
-<p>Tester la requête suivante : Afficher tous les étudiants triés par semestre, puis par groupe, puis par nom dans l’ordre décroissant. Utiliser l’instruction <strong>ORDER BY champ1, champ2, champ3</strong> ; remplacer « champ » par le nom du champ suivi de <strong>ASC</strong> ou <strong>DESC</strong> (par défaut le tri est fait de façon ascendante)</p>
+<p>Tester la requête suivante : Afficher tous les étudiants triés par
+semestre, puis par groupe, puis par nom dans l’ordre décroissant.
+Utiliser l’instruction <strong>ORDER BY champ1, champ2, champ3</strong>
+; remplacer « champ » par le nom du champ suivi de <strong>ASC</strong>
+ou <strong>DESC</strong> (par défaut le tri est fait de façon
+ascendante)</p>
 <p><img src="img/img_tp5_3.jpg" /></p>
 <p><br></p>
-<p>Utiliser l’instruction ORDER BY « champ1 » après l’instruction WHERE « conditions ». Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_orderby.asp" target="_blanck">https://www.w3schools.com/SQL/sql_orderby.asp</a> <br></p>
+<p>Utiliser l’instruction ORDER BY « champ1 » après l’instruction WHERE
+« conditions ». Aidez vous des informations sur : <a
+href="https://www.w3schools.com/SQL/sql_orderby.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_orderby.asp</a>
+<br></p>
 <div class="requete">
 <strong>Requête 2-2</strong> :
 </div>
@@ -248,7 +309,11 @@ ORDER by Client.NomClient;</code></pre>
 <div class="requete">
 <strong>Requête 2-3</strong> :
 </div>
-<p>Écrire une requête pour sélectionner uniquement les étudiants (nom, groupe, ville, semestre ) du groupe 1 et du semestre 1 ou du semestre 2 et de la ville de « Belfort ». Ordonner la liste résultat par semestre croissant puis par groupe croissant puis par nom de ville croissante (par ordre alphabétique) puis par nom d’étudiant décroissant.</p>
+<p>Écrire une requête pour sélectionner uniquement les étudiants (nom,
+groupe, ville, semestre ) du groupe 1 et du semestre 1 ou du semestre 2
+et de la ville de « Belfort ». Ordonner la liste résultat par semestre
+croissant puis par groupe croissant puis par nom de ville croissante
+(par ordre alphabétique) puis par nom d’étudiant décroissant.</p>
 <p><br></p>
 <p>Résultat :</p>
 <pre><code>+-----------+-----------+-------------+-------------+
@@ -268,8 +333,17 @@ ORDER by Client.NomClient;</code></pre>
 <strong>Requête 2-4</strong> :
 </div>
 <div class="cours">
-<p><strong>Symboles de comparaison</strong> et <strong>opérateurs logiques</strong></p>
-<table>
+<p><strong>Symboles de comparaison</strong> et <strong>opérateurs
+logiques</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -284,45 +358,81 @@ ORDER by Client.NomClient;</code></pre>
 <tr class="odd">
 <td style="text-align: center;">!=</td>
 <td style="text-align: center;">&lt;&gt;</td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/comparison-operators.html" target="_blanck">&lt;&gt; !=</a></td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm" target="_blanck">&lt;&gt; !=</a></td>
-<td style="text-align: center;"><a href="https://www.postgresql.org/docs/9.2/functions-comparison.html" target="_blanck">&lt;&gt; !=</a></td>
-<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver16" target="_blanck">&lt;&gt; !=</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/comparison-operators.html"
+target="_blanck">&lt;&gt; !=</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm"
+target="_blanck">&lt;&gt; !=</a></td>
+<td style="text-align: center;"><a
+href="https://www.postgresql.org/docs/9.2/functions-comparison.html"
+target="_blanck">&lt;&gt; !=</a></td>
+<td><a
+href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver16"
+target="_blanck">&lt;&gt; !=</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">&amp;&amp;</td>
 <td style="text-align: center;">AND</td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html" target="_blanck">AND &amp;&amp;</a></td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871" target="_blanck">AND</a></td>
-<td style="text-align: center;"><a href="https://www.postgresql.org/docs/9.2/functions-logical.html" target="_blanck">AND</a></td>
-<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16" target="_blanck">AND</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html"
+target="_blanck">AND &amp;&amp;</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871"
+target="_blanck">AND</a></td>
+<td style="text-align: center;"><a
+href="https://www.postgresql.org/docs/9.2/functions-logical.html"
+target="_blanck">AND</a></td>
+<td><a
+href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16"
+target="_blanck">AND</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">||</td>
 <td style="text-align: center;">OR</td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html" target="_blanck">OR ||</a></td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871" target="_blanck">OR</a></td>
-<td style="text-align: center;"><a href="https://www.postgresql.org/docs/9.2/functions-logical.html" target="_blanck">OR</a></td>
-<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16" target="_blanck">OR</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html"
+target="_blanck">OR ||</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871"
+target="_blanck">OR</a></td>
+<td style="text-align: center;"><a
+href="https://www.postgresql.org/docs/9.2/functions-logical.html"
+target="_blanck">OR</a></td>
+<td><a
+href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16"
+target="_blanck">OR</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">!</td>
 <td style="text-align: center;">NOT</td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html" target="_blanck">NOT !</a></td>
-<td style="text-align: center;"><a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871" target="_blanck">NOT</a></td>
-<td style="text-align: center;"><a href="https://www.postgresql.org/docs/9.2/functions-logical.html" target="_blanck">NOT</a></td>
-<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16" target="_blanck">NOT</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/non-typed-operators.html"
+target="_blanck">NOT !</a></td>
+<td style="text-align: center;"><a
+href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/sqopr.htm#i1004871"
+target="_blanck">NOT</a></td>
+<td style="text-align: center;"><a
+href="https://www.postgresql.org/docs/9.2/functions-logical.html"
+target="_blanck">NOT</a></td>
+<td><a
+href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver16"
+target="_blanck">NOT</a></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Dans la requête ci-dessous, simplifier l’expression dans le WHERE:</p>
+<p>Dans la requête ci-dessous, simplifier l’expression dans le
+WHERE:</p>
 <p><img src="img/img_tp5_6.jpg" /></p>
 <p><img src="img/img_tp5_7.jpg" /></p>
 <div class="requete">
 <strong>Requête 2-5</strong> :
 </div>
-<p>Écrire une requête pour sélectionner uniquement les étudiants (nom, groupe, ville, semestre, boursier ) qui sont boursiers ou qui habitent la ville de belfort et qui sont tous du semestre 2 (trier les enregistrements par groupe puis ville puis nom de façon ascendante).</p>
+<p>Écrire une requête pour sélectionner uniquement les étudiants (nom,
+groupe, ville, semestre, boursier ) qui sont boursiers ou qui habitent
+la ville de belfort et qui sont tous du semestre 2 (trier les
+enregistrements par groupe puis ville puis nom de façon ascendante).</p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -337,18 +447,26 @@ ORDER by Client.NomClient;</code></pre>
 | PRETTOT   |         2 | Belfort |           2 | O        |
 | VALZER    |         3 | Valdoie |           2 | O        |
 +-----------+-----------+---------+-------------+----------+</code></pre>
-<h2 id="requête-3-utilisation-de-distinct">Requête 3 (utilisation de DISTINCT)</h2>
+<h2 id="requête-3-utilisation-de-distinct">Requête 3 (utilisation de
+DISTINCT)</h2>
 <div class="requete">
 <strong>Requête 3-1</strong> :
 </div>
-<p>Tester la requête suivante avec et sans le mot clé <code>distinct</code> :</p>
+<p>Tester la requête suivante avec et sans le mot clé
+<code>distinct</code> :</p>
 <p><img src="img/img_tp5_8.jpg" /></p>
 <div class="requete">
 <strong>Requête 3-2</strong> :
 </div>
-<p>Écrire la requête pour afficher les villes distinctes de tous les étudiants dont le code postal commence par 90 et dont le nom de ville n’est pas NULL et n’est pas une chaîne vide. Utiliser le mot clé <code>DISTINCT</code>.</p>
+<p>Écrire la requête pour afficher les villes distinctes de tous les
+étudiants dont le code postal commence par 90 et dont le nom de ville
+n’est pas NULL et n’est pas une chaîne vide. Utiliser le mot clé
+<code>DISTINCT</code>.</p>
 <ul>
-<li><p>Aidez vous des informations sur : <a href="https://www.w3schools.com/sql/sql_distinct.asp" target="_blanck">https://www.w3schools.com/sql/sql_distinct.asp</a> <br></p></li>
+<li><p>Aidez vous des informations sur : <a
+href="https://www.w3schools.com/sql/sql_distinct.asp"
+target="_blanck">https://www.w3schools.com/sql/sql_distinct.asp</a>
+<br></p></li>
 <li><p>Résultat :</p></li>
 </ul>
 <pre><code>+------------+
@@ -358,13 +476,19 @@ ORDER by Client.NomClient;</code></pre>
 | Valdoie    |
 | Bavilliers |
 +------------+</code></pre>
-<h2 id="requête-4-in-un-champ-appartient-à-une-liste-de-valeurs">Requête 4 ( IN : un champ appartient à une liste de valeurs )</h2>
+<h2 id="requête-4-in-un-champ-appartient-à-une-liste-de-valeurs">Requête
+4 ( IN : un champ appartient à une liste de valeurs )</h2>
 <div class="requete">
 <strong>Requête 4</strong> :
 </div>
-<p>Écrire une requête pour sélectionner les étudiants et les villes dont la ville appartient à cette liste (‘strasbourg’,‘mulhouse’,‘cernay’). Utiliser l’instruction <code>IN</code></p>
+<p>Écrire une requête pour sélectionner les étudiants et les villes dont
+la ville appartient à cette liste (‘strasbourg’,‘mulhouse’,‘cernay’).
+Utiliser l’instruction <code>IN</code></p>
 <ul>
-<li><p>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_in.asp" target="_blanck">https://www.w3schools.com/SQL/sql_in.asp</a> <br></p></li>
+<li><p>Aidez vous des informations sur : <a
+href="https://www.w3schools.com/SQL/sql_in.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_in.asp</a>
+<br></p></li>
 <li><p>Résultat :</p></li>
 </ul>
 <pre><code>+-----------------+------------+
@@ -374,15 +498,23 @@ ORDER by Client.NomClient;</code></pre>
 | FAIVRE          | Cernay     |
 | CHAVEAUX        | Strasbourg |
 +-----------------+------------+</code></pre>
-<h2 id="requête-5-utilisation-de-null">Requête 5 (utilisation de NULL)</h2>
+<h2 id="requête-5-utilisation-de-null">Requête 5 (utilisation de
+NULL)</h2>
 <div class="requete">
 <strong>Requête 5.1</strong> :
 </div>
-<p>Écrire la requête pour sélectionner le nom des étudiants dont le champ de la ville est vide (Utiliser l’instruction <code>IS NULL</code>) et dont le sexe est « H ».</p>
+<p>Écrire la requête pour sélectionner le nom des étudiants dont le
+champ de la ville est vide (Utiliser l’instruction <code>IS NULL</code>)
+et dont le sexe est « H ».</p>
 <ul>
-<li>Aidez vous des informations sur : <a href="https://www.w3schools.com/SQL/sql_null_values.asp" target="_blanck">https://www.w3schools.com/SQL/sql_null_values.asp</a> <br> Remarque : NULL est un cas particulier, on n’écrit jamais <strike>=NULL</strike> ou <strike>!=NULL</strike>
+<li>Aidez vous des informations sur : <a
+href="https://www.w3schools.com/SQL/sql_null_values.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_null_values.asp</a>
+<br> Remarque : NULL est un cas particulier, on n’écrit jamais
+<strike>=NULL</strike> ou <strike>!=NULL</strike>
 <div class="important">
-<p>Il faut utiliser <code>IS NULL</code> ou <code>IS NOT NULL</code> car c’est une logique 3 états (VRAI, FAUX, non renseigné (NULL))</p>
+<p>Il faut utiliser <code>IS NULL</code> ou <code>IS NOT NULL</code> car
+c’est une logique 3 états (VRAI, FAUX, non renseigné (NULL))</p>
 </div></li>
 </ul>
 <p><br></p>
@@ -398,7 +530,8 @@ ORDER by Client.NomClient;</code></pre>
 <div class="requete">
 <strong>Requête 5.2</strong> :
 </div>
-<p>Faire la même requête mais en rajoutant les étudiants dont le champ de la ville est une chaîne de caractères vide</p>
+<p>Faire la même requête mais en rajoutant les étudiants dont le champ
+de la ville est une chaîne de caractères vide</p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -410,14 +543,20 @@ ORDER by Client.NomClient;</code></pre>
 | BAILLIT | NULL  |
 | DUPONT  |       |
 +---------+-------+</code></pre>
-<h2 id="requête-6-utilisation-de-like">Requête 6 (utilisation de LIKE )</h2>
+<h2 id="requête-6-utilisation-de-like">Requête 6 (utilisation de LIKE
+)</h2>
 <div class="requete">
 <strong>Requête 6.1</strong> :
 </div>
-<p>Requête pour afficher le Nom des étudiants et leur ville. Le nom des étudiants commence par « B » ou « D » et ils habitent une ville qui possède la lettre « o » (triés par nom).</p>
+<p>Requête pour afficher le Nom des étudiants et leur ville. Le nom des
+étudiants commence par « B » ou « D » et ils habitent une ville qui
+possède la lettre « o » (triés par nom).</p>
 <p><img src="img/img_tp5_12.jpg" /></p>
 <ul>
-<li><p>Aidez vous des informations sur : <a href="https://www.w3schools.com/sql/sql_like.asp" target="_blanck">https://www.w3schools.com/sql/sql_like.asp</a> <br></p></li>
+<li><p>Aidez vous des informations sur : <a
+href="https://www.w3schools.com/sql/sql_like.asp"
+target="_blanck">https://www.w3schools.com/sql/sql_like.asp</a>
+<br></p></li>
 <li><p>Résultat :</p></li>
 </ul>
 <pre><code>+-----------+---------+
@@ -434,7 +573,10 @@ ORDER by Client.NomClient;</code></pre>
 <div class="requete">
 <strong>Requête 6.2</strong> :
 </div>
-<p>Écrire une requête pour afficher le nom la ville et l’adresse des étudiants dont l’adresse est composée du mot « verger » et dont la ville est composée des lettres « er » ou des lettres « a » suivies de « l ».</p>
+<p>Écrire une requête pour afficher le nom la ville et l’adresse des
+étudiants dont l’adresse est composée du mot « verger » et dont la ville
+est composée des lettres « er » ou des lettres « a » suivies de « l
+».</p>
 <p><br></p>
 <ul>
 <li>Résultat :</li>
@@ -447,12 +589,21 @@ ORDER by Client.NomClient;</code></pre>
 | FAIVRE  | Valdoie    | 7 rue des vergers  de rioz |
 | ZILLIOX | Bavilliers | 7 rue du verger            |
 +---------+------------+----------------------------+</code></pre>
-<h2 id="requête-7-requête-avec-des-dates-fonctions-now-day-month-year">Requête 7 (requête avec des dates, fonctions <code>now()</code>, <code>day()</code>, <code>month()</code>, <code>year()</code>)</h2>
+<h2
+id="requête-7-requête-avec-des-dates-fonctions-now-day-month-year">Requête
+7 (requête avec des dates, fonctions <code>now()</code>,
+<code>day()</code>, <code>month()</code>, <code>year()</code>)</h2>
 <div class="requete">
 <strong>Requête 7</strong> :
 </div>
 <!-- remplacer 2002 par 2003 -->
-<p>Écrire une requête pour afficher le nom et la date de naissance des étudiants dont la date de naissance est comprise entre le <code>"2003-1-1"</code> And <code>"2003-12-31"</code>, qui sont des hommes et qui habitent Belfort ou Montbéliard (utiliser le code postal 90000 (Belfort) et 25200(Montbéliard)). Proposer une deuxième solution avec comme condition (dans le « WHERE ») : l’année est égale à <code>"2003"</code>. (trier l’affichage par date de naissance)</p>
+<p>Écrire une requête pour afficher le nom et la date de naissance des
+étudiants dont la date de naissance est comprise entre le
+<code>"2003-1-1"</code> And <code>"2003-12-31"</code>, qui sont des
+hommes et qui habitent Belfort ou Montbéliard (utiliser le code postal
+90000 (Belfort) et 25200(Montbéliard)). Proposer une deuxième solution
+avec comme condition (dans le « WHERE ») : l’année est égale à
+<code>"2003"</code>. (trier l’affichage par date de naissance)</p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -463,25 +614,38 @@ ORDER by Client.NomClient;</code></pre>
 | VALOT | 2003-12-12     |
 +-------+----------------+
 * selon les mises à jour, votre résultat peut être différent</code></pre>
-Aidez vous des informations sur <a href="https://www.w3schools.com/sql/sql_ref_mysql.asp" target="_blanck">https://www.w3schools.com/sql/sql_ref_mysql.asp</a>. Rechercher la fonction « YEAR ». <br><br><br><br>
+Aidez vous des informations sur <a
+href="https://www.w3schools.com/sql/sql_ref_mysql.asp"
+target="_blanck">https://www.w3schools.com/sql/sql_ref_mysql.asp</a>.
+Rechercher la fonction « YEAR ». <br><br><br><br>
 <div class="important">
 <p>Pour les plus rapides</p>
 </div>
 <div class="rapide">
-<h2 id="requête-8-utilisation-de-limit">Requête 8 (utilisation de LIMIT )</h2>
+<h2 id="requête-8-utilisation-de-limit">Requête 8 (utilisation de LIMIT
+)</h2>
 <div class="requete">
 <strong>Requête 8.1</strong> :
 </div>
-<p>La requête ci-dessous retourne les 10 enregistrements de la position 6 à 15</p>
+<p>La requête ci-dessous retourne les 10 enregistrements de la position
+6 à 15</p>
 <pre><code>SELECT nom 
 FROM Etudiant 
 ORDER BY nom
 LIMIT 5,10 ;</code></pre>
-<p>(<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html" target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/select.html</a>) Tester et utiliser la lien ci-dessous pour <a href="https://www.w3schools.com/SQL/sql_top.asp" target="_blanck">https://www.w3schools.com/SQL/sql_top.asp</a> <br></p>
+<p>(<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"
+target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/select.html</a>)
+Tester et utiliser la lien ci-dessous pour <a
+href="https://www.w3schools.com/SQL/sql_top.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_top.asp</a> <br></p>
 <div class="requete">
 <strong>Requête 8.2</strong> :
 </div>
-<p>Dans une page Web, on désire sélectionner les 6 premiers étudiants triés par Groupe (descendant : plus grand au plus petit) puis par Nom (pour ordre alphabétique). Écrire la requête, utiliser l’instruction <code>LIMIT</code> pour limiter le nombre d’enregistrements sélectionnés.</p>
+<p>Dans une page Web, on désire sélectionner les 6 premiers étudiants
+triés par Groupe (descendant : plus grand au plus petit) puis par Nom
+(pour ordre alphabétique). Écrire la requête, utiliser l’instruction
+<code>LIMIT</code> pour limiter le nombre d’enregistrements
+sélectionnés.</p>
 <p><br></p>
 <ul>
 <li>Résultat :</li>
@@ -513,26 +677,45 @@ LIMIT 5,10 ;</code></pre>
 +-----------------+-----------+ </code></pre>
 <p>Le mot clé <code>LIMIT</code> n’est pas standard</p>
 <!--[oracle](https://www.oracletutorial.com/oracle-basics/oracle-fetch/)-->
-<h2 id="requête-9-expressions-régulières">Requête 9 (expressions régulières)</h2>
-<p>Aidez vous des informations la documentation en annexe (suivre le lien) pour les expressions régulières ou sur : <a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html" target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a> et <a href="https://www.w3schools.com/SQL/sql_like.asp" target="_blanck">https://www.w3schools.com/SQL/sql_like.asp</a> Avec la documentation ci dessus (cas de LIKE puis de REGEXP): <br></p>
+<h2 id="requête-9-expressions-régulières">Requête 9 (expressions
+régulières)</h2>
+<p>Aidez vous des informations la documentation en annexe (suivre le
+lien) pour les expressions régulières ou sur : <a
+href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html"
+target="_blanck">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a>
+et <a href="https://www.w3schools.com/SQL/sql_like.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_like.asp</a> Avec la
+documentation ci dessus (cas de LIKE puis de REGEXP): <br></p>
 <ul>
-<li>Rechercher une expression régulière qui commence par un chiffre, suivi du chiffre “5”, et de 3 chiffres (format D5DDD, D appartient à [0-9]).</li>
-<li>Rechercher une expression régulière qui commence par un caractère, suivi du caractère “a” ou “e” puis de n’importe quel caractère.</li>
+<li>Rechercher une expression régulière qui commence par un chiffre,
+suivi du chiffre “5”, et de 3 chiffres (format D5DDD, D appartient à
+[0-9]).</li>
+<li>Rechercher une expression régulière qui commence par un caractère,
+suivi du caractère “a” ou “e” puis de n’importe quel caractère.</li>
 </ul>
 <p><br></p>
 <div class="requete">
 <strong>Requête 9.1</strong> :
 </div>
 <ul>
-<li>Écrire une requête pour sélectionner le nom des étudiants dont le nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme 2eme chiffre “5” en utilisant LIKE (champ LIKE « expression en remplaçant _ pour un caractère et % pour une chaîne de caractères»)</li>
+<li>Écrire une requête pour sélectionner le nom des étudiants dont le
+nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme
+2eme chiffre “5” en utilisant LIKE (champ LIKE « expression en
+remplaçant _ pour un caractère et % pour une chaîne de caractères»)</li>
 </ul>
 <div class="requete">
 <strong>Requête 9.2</strong> :
 </div>
 <ul>
-<li>Écrire une requête pour sélectionner le nom des étudiants dont le nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme 2eme chiffre “5” en utilisant REGEXP (champ REGEXP « expression régulière »), (LIKER idem).</li>
+<li>Écrire une requête pour sélectionner le nom des étudiants dont le
+nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme
+2eme chiffre “5” en utilisant REGEXP (champ REGEXP « expression
+régulière »), (LIKER idem).</li>
 </ul>
-<p>Remarque : LIKE est plus rapide que REGEXP, voir article <a href="http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/" target="_blanck">http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/</a> <br></p>
+<p>Remarque : LIKE est plus rapide que REGEXP, voir article <a
+href="http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/"
+target="_blanck">http://billauer.co.il/blog/2020/12/mysql-index-pattern-matching-performance/</a>
+<br></p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -542,17 +725,24 @@ LIMIT 5,10 ;</code></pre>
 | BAILLIT |       25200 |
 +---------+-------------+</code></pre>
 <p><br></p>
-<p>Pour comprendre les expressions régulières, voici 1 site web intéressant : <a href="https://regex101.com/" target="_blanck">regex101</a></p>
+<p>Pour comprendre les expressions régulières, voici 1 site web
+intéressant : <a href="https://regex101.com/"
+target="_blanck">regex101</a></p>
 <h2 id="requête-10">Requête 10</h2>
 <div class="requete">
 <strong>Requête 10</strong> :
 </div>
-<p>Écrire une requête pour sélectionner les étudiants qui ont plus de 20 ans après le 30 septembre de la fin de l’année universitaire (mois de naissance inférieur à 10 si c’est l’année de leur 20 ans). Ces étudiants devaient payer une sécurité sociale si ils n’étaient pas boursiers . Ordonner les étudiants du plus jeune au plus vieux. <br></p>
+<p>Écrire une requête pour sélectionner les étudiants qui ont plus de 20
+ans après le 30 septembre de la fin de l’année universitaire (mois de
+naissance inférieur à 10 si c’est l’année de leur 20 ans). Ces étudiants
+devaient payer une sécurité sociale si ils n’étaient pas boursiers .
+Ordonner les étudiants du plus jeune au plus vieux. <br></p>
 <p>commencer par tester :</p>
 <pre><code>SELECT day(now()); 
 SELECT month(now()); 
 SELECT year(now());</code></pre>
-<p>idée : plus de 20 ans entre aujourd’hui et leur date de naissance ou 20 ans et …..</p>
+<p>idée : plus de 20 ans entre aujourd’hui et leur date de naissance ou
+20 ans et …..</p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -567,9 +757,15 @@ SELECT year(now());</code></pre>
 +-----------------+----------------+
 
 * selon les mises à jour, votre résultat peut être différent</code></pre>
-<p>Si les dates ne sont pas correctes, utiliser l’instruction SQL suivante pour les mettre à jour <code>UPDATE Etudiant SET date_naissance=DATE_ADD(date_naissance,INTERVAL 1 YEAR);</code></p>
+<p>Si les dates ne sont pas correctes, utiliser l’instruction SQL
+suivante pour les mettre à jour
+<code>UPDATE Etudiant SET date_naissance=DATE_ADD(date_naissance,INTERVAL 1 YEAR);</code></p>
 <p><br></p>
-<p><a href="https://www.gouvernement.fr/actualite/securite-sociale-etudiante-une-reforme-au-benefice-des-etudiants" target="_blanck">info 1</a> - <a href="https://fr.wikipedia.org/wiki/Mutualisme_%C3%A9tudiant_en_France#Cotisation" target="_blanck">info 2</a></p>
+<p><a
+href="https://www.gouvernement.fr/actualite/securite-sociale-etudiante-une-reforme-au-benefice-des-etudiants"
+target="_blanck">info 1</a> - <a
+href="https://fr.wikipedia.org/wiki/Mutualisme_%C3%A9tudiant_en_France#Cotisation"
+target="_blanck">info 2</a></p>
 </div>
 </body>
 </html>

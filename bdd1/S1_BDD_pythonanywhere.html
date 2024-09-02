@@ -15,6 +15,7 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -49,7 +50,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -62,7 +63,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -81,78 +82,130 @@
 </head>
 <body>
 <h1 id="créer-un-compte">créer un compte</h1>
-<p>aller sur le lien <a href="https://www.pythonanywhere.com/" target="_blanck">https://www.pythonanywhere.com/</a> <br> et créer un compte</p>
+<p>aller sur le lien <a href="https://www.pythonanywhere.com/"
+target="_blanck">https://www.pythonanywhere.com/</a> <br> et créer un
+compte</p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_1.png" style="width:22cm" alt="" /><figcaption>pythonAnyWhere : le tableau de bord : “dashboard”</figcaption>
+<img src="img_flask/pythonAnyWhere2_1.png" style="width:22cm"
+alt="pythonAnyWhere : le tableau de bord : “dashboard”" />
+<figcaption aria-hidden="true">pythonAnyWhere : le tableau de bord :
+“dashboard”</figcaption>
 </figure>
-<p>il faudra chercher dans vos “emails” et confirmer la création de votre compte</p>
+<p>il faudra chercher dans vos “emails” et confirmer la création de
+votre compte</p>
 <h1 id="créer-la-base-de-données">créer la base de données</h1>
 <p>aller sur le lien “database”</p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_2.png" style="width:15cm"
+alt="pythonAnyWhere : init BDD" />
+<figcaption aria-hidden="true">pythonAnyWhere : init BDD</figcaption>
 </figure>
-<p>“initialize mysql” : mettre un autre mot de passe que celui du compte car le mot de passe est en clair dans le code de l’application</p>
+<p>“initialize mysql” : mettre un autre mot de passe que celui du compte
+car le mot de passe est en clair dans le code de l’application</p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_3.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_3.png" style="width:15cm"
+alt="pythonAnyWhere : init BDD" />
+<figcaption aria-hidden="true">pythonAnyWhere : init BDD</figcaption>
 </figure>
-<p>une fois le compte créé, recopier dans un fichier (voir exemple ci-dessus) : le nom du “host”, le nom du “Username”, le nom de la base de données “database” et le mot de passe “password”</p>
+<p>une fois le compte créé, recopier dans un fichier (voir exemple
+ci-dessus) : le nom du “host”, le nom du “Username”, le nom de la base
+de données “database” et le mot de passe “password”</p>
 <p><br></p>
-<p>cliquer sur la base de données (<em>amillet2$default</em> dans l’exemple)</p>
+<p>cliquer sur la base de données (<em>amillet2$default</em> dans
+l’exemple)</p>
 <p><br> Un terminal connecté à mysql s’ouvre</p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_4.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : init BDD</figcaption>
+<img src="img_flask/pythonAnyWhere2_4.png" style="width:15cm"
+alt="pythonAnyWhere : init BDD" />
+<figcaption aria-hidden="true">pythonAnyWhere : init BDD</figcaption>
 </figure>
-<p>recopier le SQL pour supprimer/créer les tables puis insérer les enregistrements de votre jeu de test</p>
+<p>recopier le SQL pour supprimer/créer les tables puis insérer les
+enregistrements de votre jeu de test</p>
 <p><br></p>
-<p>revenir sur le tableau de bord (dashboard) , en cliquant dans le terminal sur le lien en haut à gauche</p>
+<p>revenir sur le tableau de bord (dashboard) , en cliquant dans le
+terminal sur le lien en haut à gauche</p>
 <h1 id="télécharger-son-application">télécharger son application</h1>
-<p>télécharger l’application ; dans le <strong>DashBoard</strong> sélectionner <strong>Browse Files</strong></p>
+<p>télécharger l’application ; dans le <strong>DashBoard</strong>
+sélectionner <strong>Browse Files</strong></p>
 <p><br></p>
 <p>faire une archive “.zip” de votre application</p>
 <p><br></p>
-<p>télécharger ce fichier sur le serveur <strong>pythonAnyWhere</strong></p>
+<p>télécharger ce fichier sur le serveur
+<strong>pythonAnyWhere</strong></p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_5_2.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : télécharger un fichier zip avec votre application</figcaption>
+<img src="img_flask/pythonAnyWhere2_5_2.png" style="width:15cm"
+alt="pythonAnyWhere : télécharger un fichier zip avec votre application" />
+<figcaption aria-hidden="true">pythonAnyWhere : télécharger un fichier
+zip avec votre application</figcaption>
 </figure>
 <p><br></p>
-<p>Ouvrir une console (terminal) sur le serveur <strong>pythonAnyWhere</strong></p>
-<p>Dans la console, extraire l’application (votre fichier “.zip”), exemple :</p>
+<p>Ouvrir une console (terminal) sur le serveur
+<strong>pythonAnyWhere</strong></p>
+<p>Dans la console, extraire l’application (votre fichier “.zip”),
+exemple :</p>
 <pre><code>unzip S1_pymysql_flask_pythonanywhere.zip</code></pre>
 <figure>
-<img src="img_flask/pythonAnyWhere2_6.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : désarchiver votre fichier zip avec votre application</figcaption>
+<img src="img_flask/pythonAnyWhere2_6.png" style="width:15cm"
+alt="pythonAnyWhere : désarchiver votre fichier zip avec votre application" />
+<figcaption aria-hidden="true">pythonAnyWhere : désarchiver votre
+fichier zip avec votre application</figcaption>
 </figure>
-<p>puis revenir au “dashboard”, toujours avec le lien en haut à gauche</p>
+<p>puis revenir au “dashboard”, toujours avec le lien en haut à
+gauche</p>
 <h1 id="lancer-lapplication">lancer l’application</h1>
-<p>Remarque : vos 2 terminaux sont accessibles depuis le “dashboard” : un connecté à votre base de données mysql, l’autre terminal “bash” à la racine de l’application</p>
+<p>Remarque : vos 2 terminaux sont accessibles depuis le “dashboard” :
+un connecté à votre base de données mysql, l’autre terminal “bash” à la
+racine de l’application</p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_7.png" style="width:15cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+<img src="img_flask/pythonAnyWhere2_7.png" style="width:15cm"
+alt="pythonAnyWhere : préparer et lancer l’application" />
+<figcaption aria-hidden="true">pythonAnyWhere : préparer et lancer
+l’application</figcaption>
 </figure>
-<p>dans le <strong>DashBoard</strong> sélectionner (cliquer) <strong>open web app</strong></p>
+<p>dans le <strong>DashBoard</strong> sélectionner (cliquer)
+<strong>open web app</strong></p>
 <p>puis</p>
 <ul>
 <li>ajouter une nouvelle application</li>
 </ul>
 <figure>
-<img src="img_flask/pythonanywhere_install.png" style="width:18cm" alt="" /><figcaption>pythonAnyWhere : préparer et lancer l’application</figcaption>
+<img src="img_flask/pythonanywhere_install.png" style="width:18cm"
+alt="pythonAnyWhere : préparer et lancer l’application" />
+<figcaption aria-hidden="true">pythonAnyWhere : préparer et lancer
+l’application</figcaption>
 </figure>
 <ul>
-<li>dans la version gratuite, le nom de domaine est imposé : <a href="http://login.pythonanywhere.com" class="uri">http://login.pythonanywhere.com</a></li>
+<li>dans la version gratuite, le nom de domaine est imposé : <a
+href="http://login.pythonanywhere.com"
+class="uri">http://login.pythonanywhere.com</a></li>
 <li>sélectionner le framework <strong>flask</strong></li>
 <li>sélectionner une version de python</li>
-<li>vous pouvez renommer le fichier de l’application (par défaut <strong>flask_app.py</strong>), mettre <strong>app.py</strong>, et mettre le projet à la racine</li>
+<li>vous pouvez renommer le fichier de l’application (par défaut
+<strong>flask_app.py</strong>), mettre <strong>app.py</strong>, et
+mettre le projet à la racine</li>
 </ul>
 <p><br></p>
-<h2 id="vérification-du-fichier-de-configuration">Vérification du fichier de configuration</h2>
+<h2 id="vérification-du-fichier-de-configuration">Vérification du
+fichier de configuration</h2>
 <p>Depuis le “DashBoard”, sélectionner le lien “web” dans le menu</p>
 <p><br></p>
 <p>Dans : le Configuration for &lt;login.pythonanywhere.com&gt;</p>
 <p>Rechercher :</p>
-<p>WSGI configuration <a href="file:/var/www/login_pythonanywhere_com_wsgi.py" class="uri">file:/var/www/login_pythonanywhere_com_wsgi.py</a></p>
+<p>WSGI configuration <a
+href="file:/var/www/login_pythonanywhere_com_wsgi.py"
+class="uri">file:/var/www/login_pythonanywhere_com_wsgi.py</a></p>
 <figure>
-<img src="img_flask/pythonAnyWhere_4.png" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée</figcaption>
+<img src="img_flask/pythonAnyWhere_4.png"
+alt="pythonAnyWhere : fichier de configuration du point d’entrée" />
+<figcaption aria-hidden="true">pythonAnyWhere : fichier de configuration
+du point d’entrée</figcaption>
 </figure>
 <p>éditer le fichier en cliquant dessus</p>
-<p>un code qui ressemble à celui ci-dessous doit être dans ce fichier (on y trouve : où se trouve le fichier “app.py” , si le fichier pour lancer l’application ne s’appelle pas app.py et que l’instance de l’objet Flask ne s’appelle pas app, il faut modifier la dernière ligne)</p>
+<p>un code qui ressemble à celui ci-dessous doit être dans ce fichier
+(on y trouve : où se trouve le fichier “app.py” , si le fichier pour
+lancer l’application ne s’appelle pas app.py et que l’instance de
+l’objet Flask ne s’appelle pas app, il faut modifier la dernière
+ligne)</p>
 <pre><code>import sys
 path = &#39;/home/amillet&#39;
 if path not in sys.path:
@@ -160,13 +213,20 @@ if path not in sys.path:
 
 from app import app as application</code></pre>
 <p><br></p>
-<p>Dans la dernière version testée, il faut remplacer le code dans le fichier par celui ci-dessus.</p>
+<p>Dans la dernière version testée, il faut remplacer le code dans le
+fichier par celui ci-dessus.</p>
 <figure>
-<img src="img_flask/pythonAnyWhere_6.png" style="width:10cm" alt="" /><figcaption>derniere test fait sur pythonanywhere</figcaption>
+<img src="img_flask/pythonAnyWhere_6.png" style="width:10cm"
+alt="derniere test fait sur pythonanywhere" />
+<figcaption aria-hidden="true">derniere test fait sur
+pythonanywhere</figcaption>
 </figure>
 <p><br></p>
 <figure>
-<img src="img_flask/pythonAnyWhere2_13.png" style="width:10cm" alt="" /><figcaption>pythonAnyWhere : fichier de configuration du point d’entrée (ancienne version)</figcaption>
+<img src="img_flask/pythonAnyWhere2_13.png" style="width:10cm"
+alt="pythonAnyWhere : fichier de configuration du point d’entrée (ancienne version)" />
+<figcaption aria-hidden="true">pythonAnyWhere : fichier de configuration
+du point d’entrée (ancienne version)</figcaption>
 </figure>
 <ul>
 <li>tester</li>
@@ -178,9 +238,13 @@ from app import app as application</code></pre>
 <li>Il devrait y avoir une erreur si vous rechargez l’application</li>
 </ul>
 <p><br></p>
-<h1 id="utilisation-de-la-base-de-données">utilisation de la base de données</h1>
-<p>Votre application doit absolument <strong>ouvrir et fermer la connexion</strong> à chaque requête HTTP pour éviter les fuites de mémoires.</p>
-<p>L’hébergeur pythonAnyWhere stoppe les connexions après un petit moment.</p>
+<h1 id="utilisation-de-la-base-de-données">utilisation de la base de
+données</h1>
+<p>Votre application doit absolument <strong>ouvrir et fermer la
+connexion</strong> à chaque requête HTTP pour éviter les fuites de
+mémoires.</p>
+<p>L’hébergeur pythonAnyWhere stoppe les connexions après un petit
+moment.</p>
 <p>Exemple de code dans votre application (voir les TPs)</p>
 <pre><code>@app.teardown_appcontext
 def close_connection(exception):
@@ -210,23 +274,33 @@ def get_db():
 </ul>
 <p>“open web app”</p>
 <figure>
-<img src="img_flask/pythonAnyWhere_5.png" alt="" /><figcaption>pythonAnyWhere : relancer l’application</figcaption>
+<img src="img_flask/pythonAnyWhere_5.png"
+alt="pythonAnyWhere : relancer l’application" />
+<figcaption aria-hidden="true">pythonAnyWhere : relancer
+l’application</figcaption>
 </figure>
 <p><br></p>
-<p>Si vous voulez utiliser <strong>dotenv</strong> (voir en annexe à la fin du document)</p>
+<p>Si vous voulez utiliser <strong>dotenv</strong> (voir en annexe à la
+fin du document)</p>
 <p><br></p>
 <p>Si vous avez une erreur :</p>
 <h1 id="gestion-des-erreurs">gestion des erreurs</h1>
-<p>Depuis le “dashboard”, cliquer sur le lien “open web app” ou “web” dans le menu</p>
+<p>Depuis le “dashboard”, cliquer sur le lien “open web app” ou “web”
+dans le menu</p>
 <p><br></p>
 <ul>
 <li>si ça ne fonctionne pas, rechercher les fichiers de “logs”</li>
 </ul>
 <figure>
-<img src="img_flask/pythonAnyWhere_5_1.png" alt="" /><figcaption>pythonAnyWhere : fichierd de log</figcaption>
+<img src="img_flask/pythonAnyWhere_5_1.png"
+alt="pythonAnyWhere : fichierd de log" />
+<figcaption aria-hidden="true">pythonAnyWhere : fichierd de
+log</figcaption>
 </figure>
 <ul>
-<li><p>cliquer sur le fichier “pythonanaywhere.com.error.log” pour voir le fichier de log avec les erreurs (équivalent aux erreurs dans une console)</p></li>
+<li><p>cliquer sur le fichier “pythonanaywhere.com.error.log” pour voir
+le fichier de log avec les erreurs (équivalent aux erreurs dans une
+console)</p></li>
 <li><p>exemple de message d’erreurs</p></li>
 </ul>
 <pre><code>2021-12-05 10:14:12,020: Error running WSGI application
@@ -251,7 +325,8 @@ echo sauvegarde_$(date +%Y-%m-%d-%H.%M.%S).sql
 sudo chown $(whoami):$(whoami) /var/www_backups
 crontab https://devanswers.co/backup-mysql-databases-linux-command-line/
 -->
-<h1 id="annexes-les-erreurs-classiques">ANNEXES : les erreurs classiques</h1>
+<h1 id="annexes-les-erreurs-classiques">ANNEXES : les erreurs
+classiques</h1>
 <ul>
 <li>installer <strong>pymysql</strong></li>
 <li>bien configurer la connexion à la base de données</li>
@@ -265,7 +340,8 @@ crontab https://devanswers.co/backup-mysql-databases-linux-command-line/
 echo &#39;&#39; &gt; /var/log/amillet3.pythonanywhere.com.server.log
 rm -rf ~/.cache</code></pre>
 <ul>
-<li>message d’erreur pour une connexion à la base de données mauvaise</li>
+<li>message d’erreur pour une connexion à la base de données
+mauvaise</li>
 </ul>
 <pre><code>2022-01-29 15:55:55,477: Error running WSGI application
 2022-01-29 15:55:55,477: ModuleNotFoundError: No module named &#39;pymysql&#39;
@@ -286,7 +362,8 @@ rm -rf ~/.cache</code></pre>
 2022-01-29 15:55:55,482: https://help.pythonanywhere.com/pages/DebuggingImportError/
 2022-01-29 15:55:55,482: ***************************************************</code></pre>
 <hr />
-<p>bien configurer le fichier <code>/var/www/login_pythonanywhere_com_wsgi.py</code></p>
+<p>bien configurer le fichier
+<code>/var/www/login_pythonanywhere_com_wsgi.py</code></p>
 <p><br> exemple :</p>
 <pre><code>
 ~ $ tree -d                                                                                                                                                                             
@@ -317,70 +394,79 @@ rm -rf ~/.cache</code></pre>
     │       └── commandes
     └──file_app.py
     └──connexion_db.py </code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co"># This file contains the WSGI configuration required to serve up your</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co"># web application at http://&lt;your-username&gt;.pythonanywhere.com/</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co"># It works by setting the variable &#39;application&#39; to a WSGI handler of some</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co"># description.</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co"># The below has been auto-generated for your Flask project</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="im">import</span> sys</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co"># add your project directory to the sys.path</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a>project_home <span class="op">=</span> <span class="st">&#39;/home/amillet3/projet_biblio&#39;</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="cf">if</span> project_home <span class="kw">not</span> <span class="kw">in</span> sys.path:</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>    sys.path <span class="op">=</span> [project_home] <span class="op">+</span> sys.path</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co"># import flask app but need to call it &quot;application&quot; for WSGI to work</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="im">from</span> file_app <span class="im">import</span> app <span class="im">as</span> application  <span class="co"># noqa</span></span></code></pre></div>
-<h1 id="annexe-utilisation-de-dotenv">ANNEXE : Utilisation de <strong>dotenv</strong></h1>
-<p>Documentation de <a href="https://pypi.org/project/python-dotenv/" target="_blank">dotenv</a><br />
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This file contains the WSGI configuration required to serve up your</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># web application at http://&lt;your-username&gt;.pythonanywhere.com/</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># It works by setting the variable &#39;application&#39; to a WSGI handler of some</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># description.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The below has been auto-generated for your Flask project</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add your project directory to the sys.path</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>project_home <span class="op">=</span> <span class="st">&#39;/home/amillet3/projet_biblio&#39;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> project_home <span class="kw">not</span> <span class="kw">in</span> sys.path:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    sys.path <span class="op">=</span> [project_home] <span class="op">+</span> sys.path</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># import flask app but need to call it &quot;application&quot; for WSGI to work</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> file_app <span class="im">import</span> app <span class="im">as</span> application  <span class="co"># noqa</span></span></code></pre></div>
+<h1 id="annexe-utilisation-de-dotenv">ANNEXE : Utilisation de
+<strong>dotenv</strong></h1>
+<p>Documentation de <a href="https://pypi.org/project/python-dotenv/"
+target="_blank">dotenv</a><br />
 </p>
 <p>Commencer par installer le paquet :</p>
 <pre><code>pip install python-dotenv</code></pre>
 <p>Modifier un peu le début du fichier <code>app.py</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true"></a>        )</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true"></a>        db.close()</span></code></pre></div>
-<p>Créez un fichier <code>.env</code> à la racine du projet (au même niveau que <code>app.py</code>)</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_db():</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        db.close()</span></code></pre></div>
+<p>Créez un fichier <code>.env</code> à la racine du projet (au même
+niveau que <code>app.py</code>)</p>
 <pre><code>HOST=&quot;localhost&quot;,  
 PASSWORD=&quot;secret&quot;
 LOGIN=&quot;login&quot;
 DATABASE=&quot;BDD_login&quot;</code></pre>
 <p><br></p>
 <p>Sur <em>pythonanywhere</em>, remplacer :</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>load_dotenv()</span></code></pre></div>
-<p>par 2 lignes comme celles ci-dessous (<a href="https://stackoverflow.com/questions/61832997/reading-environment-variables-from-env-file-in-pythonanywhere-com" target="_blank">voir stackoverflow</a>) :</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>project_folder <span class="op">=</span> os.path.expanduser(<span class="st">&#39;~/sae_s2_2024&#39;</span>)  <span class="co"># adjust as appropriate (avec le dossier où se trouve le fichier .env et app.py)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>load_dotenv(os.path.join(project_folder, <span class="st">&#39;.env&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code></pre></div>
+<p>par 2 lignes comme celles ci-dessous (<a
+href="https://stackoverflow.com/questions/61832997/reading-environment-variables-from-env-file-in-pythonanywhere-com"
+target="_blank">voir stackoverflow</a>) :</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>project_folder <span class="op">=</span> os.path.expanduser(<span class="st">&#39;~/sae_s2_2024&#39;</span>)  <span class="co"># adjust as appropriate (avec le dossier où se trouve le fichier .env et app.py)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>load_dotenv(os.path.join(project_folder, <span class="st">&#39;.env&#39;</span>))</span></code></pre></div>
 </body>
 </html>

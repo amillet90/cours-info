@@ -18,94 +18,148 @@
   <title>BDD</title>
 </head>
 <body>
-<h1 id="installation-à-liut-de-datagrip">Installation à l’IUT de datagrip</h1>
+<h1 id="installation-à-liut-de-datagrip">Installation à l’IUT de
+datagrip</h1>
 <h2 id="créer-la-raccourci">créer la raccourci :</h2>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_1.png" style="width:10cm" alt="" /><figcaption>ajouter au tableau de bord</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_1.png"
+style="width:10cm" alt="ajouter au tableau de bord" />
+<figcaption aria-hidden="true">ajouter au tableau de bord</figcaption>
 </figure>
 <ul>
 <li><strong>Créer un lanceur personnalisé</strong></li>
 </ul>
-<p>L’icône de “datagrip” se trouve sur le même dossier <code>/opt/datagrip/bin</code></p>
+<p>L’icône de “datagrip” se trouve sur le même dossier
+<code>/opt/datagrip/bin</code></p>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_2.png" style="width:17cm" alt="" /><figcaption>propriété du lanceur(raccourci)</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_2.png"
+style="width:17cm" alt="propriété du lanceur(raccourci)" />
+<figcaption aria-hidden="true">propriété du
+lanceur(raccourci)</figcaption>
 </figure>
 <p>Commande : <code>/opt/DataGrip/bin/datagrip.sh</code></p>
 <h2 id="configuration-de-datagrip">configuration de datagrip</h2>
 <div class="cours gros">
 <ul>
-<li>à l’<strong>IUT</strong>, utiliser <strong>la licence serveur (activer)</strong></li>
+<li>à l’<strong>IUT</strong>, utiliser <strong>la licence serveur
+(activer)</strong></li>
 </ul>
 <p><br></p>
 <ul>
-<li>Sur votre <strong>machine personnelle</strong> (c’est la même licence que <strong>pycharm</strong> ou <strong>idea</strong>), bien faire ces opérations dans l’ordre :</li>
+<li>Sur votre <strong>machine personnelle</strong> (c’est la même
+licence que <strong>pycharm</strong> ou <strong>idea</strong>), bien
+faire ces opérations dans l’ordre :</li>
 </ul>
 <ol type="1">
-<li>Créer un compte sur le <a href="https://account.jetbrains.com/login" target="_blanck">site <strong>jetbrains</strong></a> avec <strong>votre email de l’IUT</strong> comme login</li>
-<li>Valider votre compte en cliquant sur le lien dans votre boite mail.</li>
-<li><a href="https://www.jetbrains.com/shop/eform/students" target="_blanck">Compléter un formulaire</a> avec vos références d’étudiant.</li>
-<li><span class="modif">Activer l’autorisation d’utiliser des licences en cliquant sur le lien dans votre boite mail.</span></li>
+<li>Créer un compte sur le <a href="https://account.jetbrains.com/login"
+target="_blanck">site <strong>jetbrains</strong></a> avec <strong>votre
+email de l’IUT</strong> comme login</li>
+<li>Valider votre compte en cliquant sur le lien dans votre boite
+mail.</li>
+<li><a href="https://www.jetbrains.com/shop/eform/students"
+target="_blanck">Compléter un formulaire</a> avec vos références
+d’étudiant.</li>
+<li><span class="modif">Activer l’autorisation d’utiliser des licences
+en cliquant sur le lien dans votre boite mail.</span></li>
 </ol>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_3.png" style="width:12cm" alt="" /><figcaption>licence jetbrain</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_3.png"
+style="width:12cm" alt="licence jetbrain" />
+<figcaption aria-hidden="true">licence jetbrain</figcaption>
 </figure>
 </div>
 <!-- ![base de données par défaut](img_jetbrains_iut/install_datagrip_iut_4.png){width=10cm} -->
-<h2 id="connexion-à-la-base-de-données">connexion à la base de données</h2>
+<h2 id="connexion-à-la-base-de-données">connexion à la base de
+données</h2>
 <p>Sur le menu de droite, créer une connexion</p>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_5.png" style="width:10cm" alt="" /><figcaption>nouvelle connexion</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_5.png"
+style="width:10cm" alt="nouvelle connexion" />
+<figcaption aria-hidden="true">nouvelle connexion</figcaption>
 </figure>
 <p>Utiliser MySQL (<strong>Oracle</strong>)</p>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_6.png" style="width:10cm" alt="" /><figcaption>type de connexion : MySql</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_6.png"
+style="width:10cm" alt="type de connexion : MySql" />
+<figcaption aria-hidden="true">type de connexion : MySql</figcaption>
 </figure>
 <ul>
-<li>Utiliser <code>MySQL</code> : la machine <code>serveurmysql</code> est un serveur MySQL (<strong>Oracle</strong>)</li>
+<li>Utiliser <code>MySQL</code> : la machine <code>serveurmysql</code>
+est un serveur MySQL (<strong>Oracle</strong>)</li>
 </ul>
 <p>Configuration de la connexion :</p>
 <p>Comme pour vous connecter dans un terminal :</p>
 <pre><code>mysql --user=votreLogin --password=votreMotDePasse  --host=serveurmysql --database=BDD_votreLogin</code></pre>
-<p>Il faut configurer, <strong>votre “login”</strong>, votre <strong>mot de passe (JJMM</strong> jour mois de naissance), et le nom de la machine “<strong>host</strong>” où le SGBDR MySql est installé : <strong>serveurmysql</strong> (à l’iut, <em>localhost</em> sur votre machine)</p>
+<p>Il faut configurer, <strong>votre “login”</strong>, votre <strong>mot
+de passe (JJMM</strong> jour mois de naissance), et le nom de la machine
+“<strong>host</strong>” où le SGBDR MySql est installé :
+<strong>serveurmysql</strong> (à l’iut, <em>localhost</em> sur votre
+machine)</p>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_7.png" style="width:14cm" alt="" /><figcaption>paramètre de connexion</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_7.png"
+style="width:14cm" alt="paramètre de connexion" />
+<figcaption aria-hidden="true">paramètre de connexion</figcaption>
 </figure>
 <p>Tester la connexion :</p>
 <ul>
 <li>Le logiciel installe le driver avant (le plus souvent)</li>
 </ul>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_8.png" style="width:12cm" alt="" /><figcaption>test de la connexion et installation du driver</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_8.png"
+style="width:12cm"
+alt="test de la connexion et installation du driver" />
+<figcaption aria-hidden="true">test de la connexion et installation du
+driver</figcaption>
 </figure>
 <ul>
 <li>rafraîchir si besoins</li>
 </ul>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_9.png" style="width:14cm" alt="" /><figcaption>rafraîchir pour afficher le contenu des BDDs : schémas</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_9.png"
+style="width:14cm"
+alt="rafraîchir pour afficher le contenu des BDDs : schémas" />
+<figcaption aria-hidden="true">rafraîchir pour afficher le contenu des
+BDDs : schémas</figcaption>
 </figure>
 <ul>
-<li>vous pouvez basculer d’<strong>une base de données</strong> à l’autre : sélection du <strong>schéma</strong></li>
+<li>vous pouvez basculer d’<strong>une base de données</strong> à
+l’autre : sélection du <strong>schéma</strong></li>
 </ul>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_10.png" style="width:12cm" alt="" /><figcaption>sélection d’une BDD : d’un schéma</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_10.png"
+style="width:12cm" alt="sélection d’une BDD : d’un schéma" />
+<figcaption aria-hidden="true">sélection d’une BDD : d’un
+schéma</figcaption>
 </figure>
 <ul>
 <li>la liste des bases de données accessibles depuis une connexion</li>
 </ul>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_12.png" style="width:12cm" alt="" /><figcaption>sélection des schémas (BDD) accessibles depuis une connexion</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_12.png"
+style="width:12cm"
+alt="sélection des schémas (BDD) accessibles depuis une connexion" />
+<figcaption aria-hidden="true">sélection des schémas (BDD) accessibles
+depuis une connexion</figcaption>
 </figure>
 <h1 id="intérêt-de-datagrip">intérêt de “datagrip”</h1>
 <ul>
 <li>détection des erreurs dans la structure du code SQL</li>
 <li>nom de colonne, table … inconnu dans la base de données</li>
 <li>aide pour les fonctions SQL</li>
-<li>auto-complétion des fonctions (qui peuvent être parfois différentes d’un SGBDR à l’autre)</li>
+<li>auto-complétion des fonctions (qui peuvent être parfois différentes
+d’un SGBDR à l’autre)</li>
 </ul>
 <figure>
-<img src="img_jetbrains_iut/install_datagrip_iut_11.png" style="width:14cm" alt="" /><figcaption>détections des erreurs dans Datagrip</figcaption>
+<img src="img_jetbrains_iut/install_datagrip_iut_11.png"
+style="width:14cm" alt="détections des erreurs dans Datagrip" />
+<figcaption aria-hidden="true">détections des erreurs dans
+Datagrip</figcaption>
 </figure>
 <h1 id="problème-possible">problème possible</h1>
-<p>pb avec configuration “<a href="https://stackoverflow.com/questions/55857889/how-to-fix-server-time-zone-causing-exception-when-trying-to-connect-to-mysql-in" target="__blanck">server time zone</a>” avec <strong>serverTimeZone</strong> et comme valeur par exemple <strong>UTC</strong></p>
+<p>pb avec configuration “<a
+href="https://stackoverflow.com/questions/55857889/how-to-fix-server-time-zone-causing-exception-when-trying-to-connect-to-mysql-in"
+target="__blanck">server time zone</a>” avec
+<strong>serverTimeZone</strong> et comme valeur par exemple
+<strong>UTC</strong></p>
 </body>
 </html>

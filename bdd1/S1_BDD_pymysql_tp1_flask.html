@@ -15,6 +15,7 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -49,7 +50,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -62,7 +63,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -81,10 +82,20 @@
 </head>
 <body>
 <h1 id="choix-du-driver">choix du driver</h1>
-<p>Il existe plusieurs bibliothèques différentes pour exécuter du SQL à l’aide du langage python (au travers d’un connecteur). On procède de la même manière en <em>php</em>, en <em>javascript</em>, ou dans d’autres langages. La tendance est de passer par des <strong>ORMs</strong> mais c’est plus compliqué de première abord.</p>
-<h2 id="recherche-en-fonction-du-sgbdr">recherche en fonction du SGBDR</h2>
-<p><br> Le choix de la bibliothèque (driver) pour exécuter du SQL va dépendre du SGBDR</p>
+<p>Il existe plusieurs bibliothèques différentes pour exécuter du SQL à
+l’aide du langage python (au travers d’un connecteur). On procède de la
+même manière en <em>php</em>, en <em>javascript</em>, ou dans d’autres
+langages. La tendance est de passer par des <strong>ORMs</strong> mais
+c’est plus compliqué de première abord.</p>
+<h2 id="recherche-en-fonction-du-sgbdr">recherche en fonction du
+SGBDR</h2>
+<p><br> Le choix de la bibliothèque (driver) pour exécuter du SQL va
+dépendre du SGBDR</p>
 <table>
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 46%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>id_produit</strong></th>
@@ -98,36 +109,69 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">postgreSQL</td>
-<td><a href="https://www.postgresqltutorial.com/postgresql-python/connect/" target="_blanck">psycopg2</a></td>
+<td><a
+href="https://www.postgresqltutorial.com/postgresql-python/connect/"
+target="_blanck">psycopg2</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Oracle</td>
-<td><a href="https://www.oracletutorial.com/python-oracle/connecting-to-oracle-database-in-python/" target="_blanck">cx_Oracle</a></td>
+<td><a
+href="https://www.oracletutorial.com/python-oracle/connecting-to-oracle-database-in-python/"
+target="_blanck">cx_Oracle</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SQL server (microsoft)</td>
-<td><a href="https://docs.microsoft.com/fr-fr/sql/connect/python/python-driver-for-sql-server?view=sql-server-ver15" target="_blanck">pyodbc</a></td>
+<td><a
+href="https://docs.microsoft.com/fr-fr/sql/connect/python/python-driver-for-sql-server?view=sql-server-ver15"
+target="_blanck">pyodbc</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">sqlite</td>
-<td><a href="https://docs.python.org/fr/3/library/sqlite3.html" target="_blanck">sqlite3</a></td>
+<td><a href="https://docs.python.org/fr/3/library/sqlite3.html"
+target="_blanck">sqlite3</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">mongodb</td>
-<td><a href="https://www.mongodb.com/languages/python" target="_blanck">pymongo</a></td>
+<td><a href="https://www.mongodb.com/languages/python"
+target="_blanck">pymongo</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="choix-du-driver-pilote-bibliothèque">choix du driver (pilote, bibliothèque)</h2>
-<p><br> voici 2 liens : <a href="https://wiki.openstack.org/wiki/PyMySQL_evaluation#Drivers_Under_Consideration" target="_blanck">un comparatif des drivers</a>, <a href="https://stackoverflow.com/questions/43102442/whats-the-difference-between-mysqldb-mysqlclient-and-mysql-connector-python" target="_blanck">un petit article sur stackoverflow</a></p>
-<p><br> Afin de connecter Python avec une base de données via un Driver (le connecteur), il existe des bibliothèques qui servent à interagir avec la base de données. Avec le SGBDR MySQL vous avez principalement le choix entre 3 drivers :</p>
+<h2 id="choix-du-driver-pilote-bibliothèque">choix du driver (pilote,
+bibliothèque)</h2>
+<p><br> voici 2 liens : <a
+href="https://wiki.openstack.org/wiki/PyMySQL_evaluation#Drivers_Under_Consideration"
+target="_blanck">un comparatif des drivers</a>, <a
+href="https://stackoverflow.com/questions/43102442/whats-the-difference-between-mysqldb-mysqlclient-and-mysql-connector-python"
+target="_blanck">un petit article sur stackoverflow</a></p>
+<p><br> Afin de connecter Python avec une base de données via un Driver
+(le connecteur), il existe des bibliothèques qui servent à interagir
+avec la base de données. Avec le SGBDR MySQL vous avez principalement le
+choix entre 3 drivers :</p>
 <ul>
-<li><a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a> <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html" target="_blanck">doc sur mysql</a> <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html" target="_blanck">installation</a> : bibliothèque propriétaire (ORACLE) qui se connecte à MySQL/ODBC</li>
-<li><a href="https://mysqlclient.readthedocs.io/user_guide.html#introduction" target="_blanck">MySQLdb</a> : bibliothèque qui se connecte à MySQL à partir de Python, elle est écrite en langage C, elle est gratuite et le logiciel est “opensource”.</li>
-<li><a href="https://github.com/PyMySQL/PyMySQL" target="_blanck">PyMySQL</a> : bibliothèque qui se connecte à MySQL à partir de Python, c’est une bibliothèque écrite en Python. L’objectif de PyMySQL est de remplacer MySQLdb</li>
+<li><a href="https://www.w3schools.com/python/python_mysql_insert.asp"
+target="_blanck">MySQL/connector for Python</a> <a
+href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html"
+target="_blanck">doc sur mysql</a> <a
+href="https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html"
+target="_blanck">installation</a> : bibliothèque propriétaire (ORACLE)
+qui se connecte à MySQL/ODBC</li>
+<li><a
+href="https://mysqlclient.readthedocs.io/user_guide.html#introduction"
+target="_blanck">MySQLdb</a> : bibliothèque qui se connecte à MySQL à
+partir de Python, elle est écrite en langage C, elle est gratuite et le
+logiciel est “opensource”.</li>
+<li><a href="https://github.com/PyMySQL/PyMySQL"
+target="_blanck">PyMySQL</a> : bibliothèque qui se connecte à MySQL à
+partir de Python, c’est une bibliothèque écrite en Python. L’objectif de
+PyMySQL est de remplacer MySQLdb</li>
 </ul>
 <figure>
-<img src="img_flask/sql_python_img_1.png" style="width:23cm" alt="" /><figcaption>tableau du site <a href="https://wiki.openstack.org/" class="uri">https://wiki.openstack.org/</a></figcaption>
+<img src="img_flask/sql_python_img_1.png" style="width:23cm"
+alt="tableau du site https://wiki.openstack.org/" />
+<figcaption aria-hidden="true">tableau du site <a
+href="https://wiki.openstack.org/"
+class="uri">https://wiki.openstack.org/</a></figcaption>
 </figure>
 <p>Ces bibliothèques se ressemblent beaucoup :</p>
 <ul>
@@ -135,20 +179,32 @@
 <li>utilisation : nom des fonctions</li>
 </ul>
 <p><br></p>
-<p><code>PyMySql</code> semble un très bon choix. <code>MySQL/connector</code> est propriétaire. Pour la suite des TPs, on utilisera <code>PyMySql</code> mais on comparera avec <code>MySQL/connector</code> et <code>PyMySql</code>.</p>
+<p><code>PyMySql</code> semble un très bon choix.
+<code>MySQL/connector</code> est propriétaire. Pour la suite des TPs, on
+utilisera <code>PyMySql</code> mais on comparera avec
+<code>MySQL/connector</code> et <code>PyMySql</code>.</p>
 <p><br></p>
-<p>Installation de <a href="https://pymysql.readthedocs.io/en/latest/user/installation.html" target="_blanck">pymysql</a></p>
+<p>Installation de <a
+href="https://pymysql.readthedocs.io/en/latest/user/installation.html"
+target="_blanck">pymysql</a></p>
 <pre><code>pip  install PyMySQL
 
 # sur debian
 pip install pymysql --break-system-packages</code></pre>
-<p>PS : <a href="https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb" target="_blanck">mariadb possède aussi une bibliothèque</a> mais elle semble moins utilisée</p>
+<p>PS : <a
+href="https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb"
+target="_blanck">mariadb possède aussi une bibliothèque</a> mais elle
+semble moins utilisée</p>
 <h1 id="exemple-avec-pymysql">Exemple avec PyMySql</h1>
 <ul>
-<li><a href="https://pymysql.readthedocs.io/en/latest/user/examples.html" target="_blanck">exemple de la documentation</a></li>
+<li><a
+href="https://pymysql.readthedocs.io/en/latest/user/examples.html"
+target="_blanck">exemple de la documentation</a></li>
 </ul>
 <figure>
-<img src="img_flask/sql_python_flask_tp1_img_1.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+<img src="img_flask/sql_python_flask_tp1_img_1.png"
+alt="documentation de pymysql" />
+<figcaption aria-hidden="true">documentation de pymysql</figcaption>
 </figure>
 <!--
 ```{.python}
@@ -180,11 +236,16 @@ with connection:
         print(result)
 ```
 -->
-<p>exemple sur le site W3Schools : <a href="https://www.w3schools.com/python/python_mysql_insert.asp" target="_blanck">MySQL/connector for Python</a></p>
-<p>remarque : il faut ajouter <code>python -m pip install mysql-connector-python</code></p>
+<p>exemple sur le site W3Schools : <a
+href="https://www.w3schools.com/python/python_mysql_insert.asp"
+target="_blanck">MySQL/connector for Python</a></p>
+<p>remarque : il faut ajouter
+<code>python -m pip install mysql-connector-python</code></p>
 <p><br> copier/coller du site W3Schools</p>
 <figure>
-<img src="img_flask/sql_python_flask_tp1_img_2.png" alt="" /><figcaption>documentation de pymysql</figcaption>
+<img src="img_flask/sql_python_flask_tp1_img_2.png"
+alt="documentation de pymysql" />
+<figcaption aria-hidden="true">documentation de pymysql</figcaption>
 </figure>
 <!--
 ```
@@ -200,156 +261,202 @@ mydb = mysql.connector.connect(
 -->
 <p><br><br></p>
 <p><a href="#creation-projet">Créer un projet sur Pycharm</a></p>
-<p><br> Créer un fichier avec l’exemple ci-dessus , exemple de nom de fichier <strong>test1_pymysql.py</strong> <br> Remplacer la connexion avec celle de <em>pymysql</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co"># mysql --user=votreLogin  --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>,   <span class="co">#localhost sur les machines perso.</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,                      <span class="co"># 2 attributs à ajouter</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>mycursor <span class="op">=</span> mydb.cursor()</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co"># mycursor.execute(&quot;DROP TABLE IF EXISTS customers;&quot;)</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co"># mycursor.execute(&quot;CREATE TABLE IF NOT EXISTS customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;)</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>val <span class="op">=</span> (<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Highway 21&quot;</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>mycursor.execute(sql, val)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>mydb.commit()</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;record inserted.&quot;</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>val <span class="op">=</span> [</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>  (<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Lowstreet 4&#39;</span>),</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>  (<span class="st">&#39;Amy&#39;</span>, <span class="st">&#39;Apple st 652&#39;</span>),</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>  (<span class="st">&#39;Hannah&#39;</span>, <span class="st">&#39;Mountain 21&#39;</span>),</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  (<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Valley 345&#39;</span>),</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>  (<span class="st">&#39;Sandy&#39;</span>, <span class="st">&#39;Ocean blvd 2&#39;</span>),</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>  (<span class="st">&#39;Betty&#39;</span>, <span class="st">&#39;Green Grass 1&#39;</span>),</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>  (<span class="st">&#39;Richard&#39;</span>, <span class="st">&#39;Sky st 331&#39;</span>),</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>  (<span class="st">&#39;Susan&#39;</span>, <span class="st">&#39;One way 98&#39;</span>),</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>  (<span class="st">&#39;Vicky&#39;</span>, <span class="st">&#39;Yellow Garden 2&#39;</span>),</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>  (<span class="st">&#39;Ben&#39;</span>, <span class="st">&#39;Park Lane 38&#39;</span>),</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>  (<span class="st">&#39;William&#39;</span>, <span class="st">&#39;Central st 954&#39;</span>),</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>  (<span class="st">&#39;Chuck&#39;</span>, <span class="st">&#39;Main Road 989&#39;</span>),</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>  (<span class="st">&#39;Viola&#39;</span>, <span class="st">&#39;Sideway 1633&#39;</span>)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>]</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a>mycursor.executemany(sql, val)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>mydb.commit()</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;was inserted.&quot;</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a>mycursor.execute(<span class="st">&quot;SELECT * FROM customers&quot;</span>)</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>myresult <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a><span class="cf">for</span> x <span class="kw">in</span> myresult:</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>  <span class="bu">print</span>(x)</span></code></pre></div>
+<p><br> Créer un fichier avec l’exemple ci-dessus , exemple de nom de
+fichier <strong>test1_pymysql.py</strong> <br> Remplacer la connexion
+avec celle de <em>pymysql</em></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mysql --user=votreLogin  --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>,   <span class="co">#localhost sur les machines perso.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,                      <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>mycursor <span class="op">=</span> mydb.cursor()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># mycursor.execute(&quot;DROP TABLE IF EXISTS customers;&quot;)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># mycursor.execute(&quot;CREATE TABLE IF NOT EXISTS customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))&quot;)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> (<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Highway 21&quot;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql, val)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>mydb.commit()</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;record inserted.&quot;</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;INSERT INTO customers (name, address) VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> [</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Lowstreet 4&#39;</span>),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Amy&#39;</span>, <span class="st">&#39;Apple st 652&#39;</span>),</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Hannah&#39;</span>, <span class="st">&#39;Mountain 21&#39;</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Valley 345&#39;</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Sandy&#39;</span>, <span class="st">&#39;Ocean blvd 2&#39;</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Betty&#39;</span>, <span class="st">&#39;Green Grass 1&#39;</span>),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Richard&#39;</span>, <span class="st">&#39;Sky st 331&#39;</span>),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Susan&#39;</span>, <span class="st">&#39;One way 98&#39;</span>),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Vicky&#39;</span>, <span class="st">&#39;Yellow Garden 2&#39;</span>),</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Ben&#39;</span>, <span class="st">&#39;Park Lane 38&#39;</span>),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;William&#39;</span>, <span class="st">&#39;Central st 954&#39;</span>),</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Chuck&#39;</span>, <span class="st">&#39;Main Road 989&#39;</span>),</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  (<span class="st">&#39;Viola&#39;</span>, <span class="st">&#39;Sideway 1633&#39;</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>mycursor.executemany(sql, val)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>mydb.commit()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mycursor.rowcount, <span class="st">&quot;was inserted.&quot;</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;SELECT * FROM customers&quot;</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>myresult <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> myresult:</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x)</span></code></pre></div>
 <ul>
-<li>Tester l’exemple ci-dessus, exemple <code>python exercice1_pymysql.py</code></li>
+<li>Tester l’exemple ci-dessus, exemple
+<code>python exercice1_pymysql.py</code></li>
 </ul>
 <p><br><br><br></p>
 <h1 id="utilisation-dune-connexion">utilisation d’une connexion</h1>
-<h2 id="quatre-étapes-pour-exécuter-une-requête">Quatre étapes pour exécuter une requête</h2>
+<h2 id="quatre-étapes-pour-exécuter-une-requête">Quatre étapes pour
+exécuter une requête</h2>
 <ul>
 <li>Établir la connexion avec la base de données</li>
 <li>Créer et exécuter des requêtes SQL</li>
 <li>Récupérer le résultat</li>
 <li>Fermer la connexion</li>
 </ul>
-<p><br> Fermer la connexion : opération très simple avec un simple script python, c’est un peu plus compliqué sur un <a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/" target="_blanck">serveur web</a>, il faut fermer la connexion à chaque requête HTTP, sinon le serveur risque d’avoir <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">des problèmes de fuite de mémoire</a>. <br></p>
-<h3 id="se-connecter-à-la-base-de-données">Se connecter à la base de données</h3>
+<p><br> Fermer la connexion : opération très simple avec un simple
+script python, c’est un peu plus compliqué sur un <a
+href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/"
+target="_blanck">serveur web</a>, il faut fermer la connexion à chaque
+requête HTTP, sinon le serveur risque d’avoir <a
+href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire"
+target="_blanck">des problèmes de fuite de mémoire</a>. <br></p>
+<h3 id="se-connecter-à-la-base-de-données">Se connecter à la base de
+données</h3>
 <figure>
-<img src="img_flask/flask_sql_python_img_01.png" style="width:14cm" alt="" /><figcaption>principe et paramètres de connexion à un serveur MySQL</figcaption>
+<img src="img_flask/flask_sql_python_img_01.png" style="width:14cm"
+alt="principe et paramètres de connexion à un serveur MySQL" />
+<figcaption aria-hidden="true">principe et paramètres de connexion à un
+serveur MySQL</figcaption>
 </figure>
-<p>Il faut créer un objet <strong>objet-connexion</strong> à l’aide de la fonction-fabrique <code>connect()</code>.</p>
+<p>Il faut créer un objet <strong>objet-connexion</strong> à l’aide de
+la fonction-fabrique <code>connect()</code>.</p>
 <p><br></p>
-<p>Cet objet assure l’interface entre votre programme et la base de données.</p>
+<p>Cet objet assure l’interface entre votre programme et la base de
+données.</p>
 <p><br></p>
-<p>Après avoir importé une instance de l’objet bibliothèque (driver), il faut utiliser la méthode <code>.connect()</code> de la bibliothèque dans laquelle on passe plusieurs paramètres :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>   <span class="co">#localhost sur les machines perso.</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  , user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>  , password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  , database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="co">#, port=3306         # sur mamp(mac) le port peut être 8889 ...</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  , charset<span class="op">=</span><span class="st">&quot;utf8mb4&quot;</span>                       <span class="co"># 2 attributs à ajouter</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  , cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>)</span></code></pre></div>
+<p>Après avoir importé une instance de l’objet bibliothèque (driver), il
+faut utiliser la méthode <code>.connect()</code> de la bibliothèque dans
+laquelle on passe plusieurs paramètres :</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>   <span class="co">#localhost sur les machines perso.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  , user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  , password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  , database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#, port=3306         # sur mamp(mac) le port peut être 8889 ...</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  , charset<span class="op">=</span><span class="st">&quot;utf8mb4&quot;</span>                       <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  , cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><br></p>
 <ul>
-<li>le nom de l’hôte (machine) sur lequel le serveur MySQL est installé (<strong>serveurmysql</strong> sur la machine de l’IUT, <strong>localhost</strong> ou <strong>127.0.0.1</strong> sur une machine personnelle)</li>
-<li>le port TCP/IP utilisé par MySQL (par défaut <strong>3306</strong>). Attention avec un autre SGBDR, le port est différent.</li>
-<li>le nom de la base de données MySQL (<strong>BDD_votreLogin</strong> sur la machine de l’IUT)</li>
-<li>le nom d’utilisateur (<strong>votreLogin</strong> sur la machine de l’IUT)</li>
+<li>le nom de l’hôte (machine) sur lequel le serveur MySQL est installé
+(<strong>serveurmysql</strong> sur la machine de l’IUT,
+<strong>localhost</strong> ou <strong>127.0.0.1</strong> sur une machine
+personnelle)</li>
+<li>le port TCP/IP utilisé par MySQL (par défaut <strong>3306</strong>).
+Attention avec un autre SGBDR, le port est différent.</li>
+<li>le nom de la base de données MySQL (<strong>BDD_votreLogin</strong>
+sur la machine de l’IUT)</li>
+<li>le nom d’utilisateur (<strong>votreLogin</strong> sur la machine de
+l’IUT)</li>
 <li>le mot de passe (<strong>JJMM</strong> sur la machine de l’IUT)</li>
 </ul>
 <p><br></p>
-<h1 id="utilisation-de-pymysql-dans-le-framework-flask">Utilisation de “pymysql” dans le “framework” : “flask”</h1>
+<h1 id="utilisation-de-pymysql-dans-le-framework-flask">Utilisation de
+“pymysql” dans le “framework” : “flask”</h1>
 <ul>
 <li>fonction pour créer puis supprimer une connexion</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>                                    <span class="co">## à ajouter</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">def</span> get_db():</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>        )</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>        db.close()</span></code></pre></div>
-<p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler la fonction <code>close_connection</code> lorsque que le serveur a fini de renvoyer une réponse.</p>
-<p><br> Il faut recréer et fermer la connexion à chaque requête HTTP, sinon il y a un risque de <a href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire" target="_blanck">fuite de mémoire</a></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                    <span class="co">## à ajouter</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_db():</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>,                 <span class="co"># à modifier</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            user<span class="op">=</span><span class="st">&quot;login&quot;</span>,                     <span class="co"># à modifier</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,                <span class="co"># à modifier</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            database<span class="op">=</span><span class="st">&quot;BDD_votrelogin&quot;</span>,        <span class="co"># à modifier</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        db.close()</span></code></pre></div>
+<p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler
+la fonction <code>close_connection</code> lorsque que le serveur a fini
+de renvoyer une réponse.</p>
+<p><br> Il faut recréer et fermer la connexion à chaque requête HTTP,
+sinon il y a un risque de <a
+href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire"
+target="_blanck">fuite de mémoire</a></p>
 <p><img src="img_flask/memory_leak.jpg" /></p>
 <p><br></p>
 <ul>
-<li><a href="https://flask.palletsprojects.com/en/3.0.x/tutorial/database/" target="_blanck"><strong>doc flask database 3.0</strong></a> - <a href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/" target="_blanck">doc flask database 2.0</a> - <a href="https://flask.palletsprojects.com/en/3.0.x/appcontext/" target="_blanck"><strong>doc flask appcontext</strong></a></li>
-<li><a href="https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/" target="_blanck">ancienne documentation flask</a> -</li>
-<li><a href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/" target="_blanck">doc sqlachemny</a> <br></li>
+<li><a
+href="https://flask.palletsprojects.com/en/3.0.x/tutorial/database/"
+target="_blanck"><strong>doc flask database 3.0</strong></a> - <a
+href="https://flask.palletsprojects.com/en/2.0.x/tutorial/database/"
+target="_blanck">doc flask database 2.0</a> - <a
+href="https://flask.palletsprojects.com/en/3.0.x/appcontext/"
+target="_blanck"><strong>doc flask appcontext</strong></a></li>
+<li><a
+href="https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/"
+target="_blanck">ancienne documentation flask</a> -</li>
+<li><a
+href="https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/"
+target="_blanck">doc sqlachemny</a> <br></li>
 </ul>
 <h1 id="crud-etudiant">CRUD “etudiant”</h1>
-<p>Exemple de code pour ajouter/modifier/supprimer et afficher le contenu de la table “etudiant”</p>
+<p>Exemple de code pour ajouter/modifier/supprimer et afficher le
+contenu de la table “etudiant”</p>
 <ul>
-<li>Pour afficher, ajouter, supprimer, modifier les enregistrements de la table “etudiant”, récupérer l’interface FLASK</li>
+<li>Pour afficher, ajouter, supprimer, modifier les enregistrements de
+la table “etudiant”, récupérer l’interface FLASK</li>
 </ul>
 <div class="code">
-<p><a href="https://github.com/amillet-iut90/flask_demo1" target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
+<p><a href="https://github.com/amillet-iut90/flask_demo1"
+target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
 </div>
 <p>Cloner le projet avec la commande :</p>
 <pre><code>git clone https://github.com/amillet-iut90/flask_demo1.git
@@ -359,47 +466,59 @@ mydb = mysql.connector.connect(
 chmod u+x launcher.sh</code></pre>
 <h2 id="préparation-du-sql">préparation du sql</h2>
 <p>Voici la liste des étudiants :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>liste_etudiants <span class="op">=</span> [</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">3</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">4</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>]</span></code></pre></div>
-<p>si l’on dispose d’un code SQL comme celui ci-dessous, proposer l’instruction pour créer la table :</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant) </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">VALUES</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;B1&#39;</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">3</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">4</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p>si l’on dispose d’un code SQL comme celui ci-dessous, proposer
+l’instruction pour créer la table :</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant) </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;B1&#39;</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
 <p>Sans trop de problème, votre code SQL serait :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> etudiant;</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> etudiant (</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>id_etudiant <span class="dt">INT</span> AUTO_INCREMENT</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>, nom_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>, groupe_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_etudiant)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> etudiant;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> etudiant (</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>id_etudiant <span class="dt">INT</span> AUTO_INCREMENT</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>, nom_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>, groupe_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_etudiant)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p>Proposer le code SQL pour :</p>
 <ul>
 <li>afficher les étudiants avec les bons noms de colonnes</li>
 <li>ajouter un étudiant</li>
-<li>supprimer un étudiant avec son identifiant <code>id_etudiant</code></li>
-<li>modifier les attributs (colonnes) <code>nom_etudiant, groupe_etudiant</code> de l’étudiant avec son identifiant <code>id_etudiant</code></li>
+<li>supprimer un étudiant avec son identifiant
+<code>id_etudiant</code></li>
+<li>modifier les attributs (colonnes)
+<code>nom_etudiant, groupe_etudiant</code> de l’étudiant avec son
+identifiant <code>id_etudiant</code></li>
 </ul>
 <p>Modification du code :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">SELECT</span> id_etudiant <span class="kw">AS</span> <span class="kw">id</span>, nom_etudiant <span class="kw">AS</span> nom, groupe_etudiant <span class="kw">AS</span> groupe</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">FROM</span> etudiant</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nom_etudiant;</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant(id_etudiant, nom_etudiant, groupe_etudiant) <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;test1&#39;</span>, <span class="st">&#39;test1&#39;</span>);</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> etudiant <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">2</span>;</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="kw">UPDATE</span> etudiant <span class="kw">SET</span> nom_etudiant <span class="op">=</span> <span class="st">&#39;test2&#39;</span>, groupe_etudiant<span class="op">=</span> <span class="st">&#39;test3&#39;</span> <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> id_etudiant <span class="kw">AS</span> <span class="kw">id</span>, nom_etudiant <span class="kw">AS</span> nom, groupe_etudiant <span class="kw">AS</span> groupe</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> etudiant</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nom_etudiant;</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant(id_etudiant, nom_etudiant, groupe_etudiant) <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;test1&#39;</span>, <span class="st">&#39;test1&#39;</span>);</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> etudiant <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">2</span>;</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> etudiant <span class="kw">SET</span> nom_etudiant <span class="op">=</span> <span class="st">&#39;test2&#39;</span>, groupe_etudiant<span class="op">=</span> <span class="st">&#39;test3&#39;</span> <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
 <h2 id="préparation-de-la-connexion">préparation de la connexion</h2>
-<h2 id="exécution-des-instructions-sql-dans-chaque-fonction-pour-chacune-des-routes-quand-cest-nécessaire">exécution des instructions sql dans chaque fonction pour chacune des routes quand c’est nécessaire</h2>
-<h3 id="pour-chercher-des-informations-select">Pour chercher des informations (SELECT)</h3>
+<h2
+id="exécution-des-instructions-sql-dans-chaque-fonction-pour-chacune-des-routes-quand-cest-nécessaire">exécution
+des instructions sql dans chaque fonction pour chacune des routes quand
+c’est nécessaire</h2>
+<h3 id="pour-chercher-des-informations-select">Pour chercher des
+informations (SELECT)</h3>
 <pre><code>    mycursor = get_db().cursor()
     sql=&#39;&#39;&#39;   SELECT      &#39;&#39;&#39;
     mycursor.execute(sql)
@@ -408,10 +527,19 @@ chmod u+x launcher.sh</code></pre>
     un_enregistrement = mycursor.fetchone()</code></pre>
 <p>Pour <strong>SELECT</strong>, on récupère :</p>
 <ul>
-<li>une <a href="https://www.w3schools.com/python/python_lists.asp" target="_blanck">liste</a> avec à l’intérieur des <a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blanck">dictionnaires</a>. Ces listes peuvent s’apparenter à un tableau à 2 dimensions : un tableau d’enregistrements</li>
-<li>ou un enregistrement : <a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blanck">un dictionnaire</a></li>
+<li>une <a href="https://www.w3schools.com/python/python_lists.asp"
+target="_blanck">liste</a> avec à l’intérieur des <a
+href="https://www.w3schools.com/python/python_dictionaries.asp"
+target="_blanck">dictionnaires</a>. Ces listes peuvent s’apparenter à un
+tableau à 2 dimensions : un tableau d’enregistrements</li>
+<li>ou un enregistrement : <a
+href="https://www.w3schools.com/python/python_dictionaries.asp"
+target="_blanck">un dictionnaire</a></li>
 </ul>
-<h3 id="pour-ajouter-modifier-ou-supprimer-des-informations-insert-update-delete">Pour ajouter, modifier ou supprimer des informations (INSERT UPDATE DELETE)</h3>
+<h3
+id="pour-ajouter-modifier-ou-supprimer-des-informations-insert-update-delete">Pour
+ajouter, modifier ou supprimer des informations (INSERT UPDATE
+DELETE)</h3>
 <pre><code>    mycursor = get_db().cursor()
     sql=&quot;&quot;
     mycursor.execute(sql)
@@ -419,41 +547,85 @@ chmod u+x launcher.sh</code></pre>
     get_db().commit()</code></pre>
 <p>Résultat dans le curseur de l’instruction ci-dessus :<br />
 </p>
-<p>Pour <strong>INSERT</strong>, <strong>UPDATE</strong>, <strong>DELETE</strong>, on récupère le même résultat que sur un terminal : <strong>le nombre d’enregistrements affectés</strong> par la requête. La méthode <em>rowcount</em> d’un curseur permet de connaître <strong>le nombre d’enregistrements affectés</strong> (utilisation : <code>mycursor.rowcount</code>).</p>
+<p>Pour <strong>INSERT</strong>, <strong>UPDATE</strong>,
+<strong>DELETE</strong>, on récupère le même résultat que sur un
+terminal : <strong>le nombre d’enregistrements affectés</strong> par la
+requête. La méthode <em>rowcount</em> d’un curseur permet de connaître
+<strong>le nombre d’enregistrements affectés</strong> (utilisation :
+<code>mycursor.rowcount</code>).</p>
 <p><br></p>
 <h2 id="utilisation-de-paramètres">utilisation de paramètres</h2>
-<p>Pour faire des requêtes SQL avec des paramètres, il faut passer les paramètres dans un tuple ou un tableau à la fonction <code>mycursor.execute</code> et remplacer dans le code SQL les paramètres par des <code>%s</code>, il ne faut pas entourer les paramètres de simple ou double quotes ( guillemet<code>"</code> <a href="https://fr.wikipedia.org/wiki/Apostrophe_(typographie)">apostrophe</a> <code>'</code>)</p>
+<p>Pour faire des requêtes SQL avec des paramètres, il faut passer les
+paramètres dans un tuple ou un tableau à la fonction
+<code>mycursor.execute</code> et remplacer dans le code SQL les
+paramètres par des <code>%s</code>, il ne faut pas entourer les
+paramètres de simple ou double quotes ( guillemet<code>"</code> <a
+href="https://fr.wikipedia.org/wiki/Apostrophe_(typographie)">apostrophe</a>
+<code>'</code>)</p>
 <div class="cours">
-<p><a href="https://docs.djangoproject.com/fr/3.2/topics/db/sql/#passing-parameters-into-raw" target="_blanck">Lors du passage de paramètres</a>, if faut faire <a href="https://en.wikipedia.org/wiki/SQL_injection" target="_blanck">attention aux injections</a></p>
+<p><a
+href="https://docs.djangoproject.com/fr/3.2/topics/db/sql/#passing-parameters-into-raw"
+target="_blanck">Lors du passage de paramètres</a>, if faut faire <a
+href="https://en.wikipedia.org/wiki/SQL_injection"
+target="_blanck">attention aux injections</a></p>
 <p><br></p>
-<p>⚠️ =&gt; Ne jamais former une chaîne de texte avec la concaténation de texte (instruction SQL) et de paramètres de la requête HTTP (INPUT du formulaire par exemple)</p>
-<p><br> Le driver réalise une <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html" target="_blanck">requête préparée</a> - <a href="https://mariadb.com/kb/en/prepare-statement/" target="_blanck">doc mariadb</a> - <a href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts" target="_blanck">exemple de requête préparée</a></p>
+<p>⚠️ =&gt; Ne jamais former une chaîne de texte avec la concaténation
+de texte (instruction SQL) et de paramètres de la requête HTTP (INPUT du
+formulaire par exemple)</p>
+<p><br> Le driver réalise une <a
+href="https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html"
+target="_blanck">requête préparée</a> - <a
+href="https://mariadb.com/kb/en/prepare-statement/" target="_blanck">doc
+mariadb</a> - <a
+href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts"
+target="_blanck">exemple de requête préparée</a></p>
 </div>
 <p><br></p>
-<p>ATTENTION ne pas construire de code SQL en concaténant du code SQL et des valeurs issues de formulaires HTML =&gt; Injection SQL</p>
+<p>ATTENTION ne pas construire de code SQL en concaténant du code SQL et
+des valeurs issues de formulaires HTML =&gt; Injection SQL</p>
 <div class="cours">
 <ul>
-<li>Pour exécuter une requête de type <strong>INSERT/UPDATE/DELETE</strong>
+<li>Pour exécuter une requête de type
+<strong>INSERT/UPDATE/DELETE</strong>
 <ul>
-<li>utiliser un curseur : <code>mycursor = mydb.cursor()</code>. Sur FLASK, remplacer <code>mydb</code> par la fonction <code>get_db()</code>.</li>
-<li>créer une chaîne de texte avec commande SQL en remplacant chaque paramètre par <code>%s</code></li>
-<li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder le même nombre de paramètres que l’instruction SQL possède de <code>%s</code></strong></li>
+<li>utiliser un curseur : <code>mycursor = mydb.cursor()</code>. Sur
+FLASK, remplacer <code>mydb</code> par la fonction
+<code>get_db()</code>.</li>
+<li>créer une chaîne de texte avec commande SQL en remplacant chaque
+paramètre par <code>%s</code></li>
+<li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder
+le même nombre de paramètres que l’instruction SQL possède de
+<code>%s</code></strong></li>
 <li>exécuter <code>result=mycursor.execute(sql, tuple)</code></li>
-<li>pour les instructions <strong>INSERT/UPDATE/DELETE</strong>, le résultat retourné par la commande est le nombre d’enregistrements affectés par la commande. (nombre d’enregistrements ajoutés/modifiés/supprimés)</li>
-<li>Un tableau python <code>[]</code> peut remplacer un tuple python <code>()</code></li>
+<li>pour les instructions <strong>INSERT/UPDATE/DELETE</strong>, le
+résultat retourné par la commande est le nombre d’enregistrements
+affectés par la commande. (nombre d’enregistrements
+ajoutés/modifiés/supprimés)</li>
+<li>Un tableau python <code>[]</code> peut remplacer un tuple python
+<code>()</code></li>
 </ul></li>
-<li>Avec un curseur les instructions ne sont pas <strong>persister</strong> (exécuter sur le disque dur). Il est nécessaire de valider ces instructions : faire un <code>commit</code> avec la connexion, exemple de commande : <code>mydb.commit()</code> (ATTENTION <code>mydb</code> n’est pas un curseur mais la connexion. Sur FLASK, remplacer <code>mydb</code> par la fonction <code>get_db()</code>.)</li>
+<li>Avec un curseur les instructions ne sont pas
+<strong>persister</strong> (exécuter sur le disque dur). Il est
+nécessaire de valider ces instructions : faire un <code>commit</code>
+avec la connexion, exemple de commande : <code>mydb.commit()</code>
+(ATTENTION <code>mydb</code> n’est pas un curseur mais la connexion. Sur
+FLASK, remplacer <code>mydb</code> par la fonction
+<code>get_db()</code>.)</li>
 </ul>
 </div>
 <br><br>
 <div class="travail">
 <p><strong>Travail à réaliser :</strong><br />
 </p>
-<p>Modifier le projet ci dessus de façon à obtenir une interface minimale pour afficher/ajouter/modifier/supprimer des enregistrements dans la table “etudiant”.</p>
+<p>Modifier le projet ci dessus de façon à obtenir une interface
+minimale pour afficher/ajouter/modifier/supprimer des enregistrements
+dans la table “etudiant”.</p>
 </div>
 <p><br><br></p>
 <div class="code">
-<p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git" target="_blank">code branche final du TP1 en BDD avec Flask et PyMSQL</a></p>
+<p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git"
+target="_blank">code branche final du TP1 en BDD avec Flask et
+PyMSQL</a></p>
 </div>
 </body>
 </html>

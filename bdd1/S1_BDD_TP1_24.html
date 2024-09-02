@@ -15,6 +15,7 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -49,7 +50,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -62,7 +63,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -81,45 +82,74 @@
 </head>
 <body>
 <div class="titre">
-TP1 : Présentation B.D., S.G.B.D. …. . Construire des tables….
+TP1 : Présentation B.D. , S.G.B.D. …. . Construire des tables….
 </div>
-<h1 id="introduction-présentation-des-tps-bdd-objectifs">Introduction : présentation des TPs BDD (objectifs)</h1>
+<h1 id="introduction-présentation-des-tps-bdd-objectifs">Introduction :
+présentation des TPs BDD (objectifs)</h1>
 <ul>
 <li><strong>Partie 1 (8 premières semaines)</strong> :
 <ul>
-<li>SQL : Être capable de réaliser les structures de données conçues lors des TDs de BDD sur un logiciel =&gt; <strong>Créer des tables</strong> .</li>
-<li>SQL : <strong>Ajouter, modifier, supprimer des données dans ces tables</strong> .</li>
-<li>SQL : <strong>Afficher (calculs, agrégation…) des données issues de ces tables</strong> .</li>
-<li>Utiliser le logiciel “looping” pour <strong>modéliser</strong> (réaliser un MCD), présentation rapide pour la SAE.</li>
+<li>SQL : Être capable de réaliser les structures de données conçues
+lors des TDs de BDD sur un logiciel =&gt; <strong>Créer des
+tables</strong> .</li>
+<li>SQL : <strong>Ajouter, modifier, supprimer des données dans ces
+tables</strong> .</li>
+<li>SQL : <strong>Afficher (calculs, agrégations…) des données issues de
+ces tables</strong> .</li>
+<li>Utiliser le logiciel “Looping” pour <strong>modéliser</strong>
+(réaliser un MCD), présentation rapide pour la SAE.</li>
 <li>Introduction aux jointures</li>
 </ul></li>
 <li><strong>Partie 2 (6 dernières semaines)</strong> :
 <ul>
-<li>Réaliser des petits scripts en langage <strong>Python</strong> principalement pour afficher, modifier, supprimer ou ajouter des données dans une table.</li>
-<li><strong>Mini projet : CRUD sur une table avec une jointure et visualisation de données (fonctions d’agrégation)</strong></li>
-<li><strong>Examen SQL devant machine avec des jointures.</strong> ? (passage de 7 à 6 semaines)</li>
+<li>Réaliser des petits scripts en langage <strong>Python</strong>
+principalement pour afficher, modifier, supprimer ou ajouter des données
+dans une table.</li>
+<li><strong>Mini projet : CRUD sur une table avec une jointure et
+visualisation de données (fonctions d’agrégations)</strong>
+<!--* **Examen SQL devant machine avec des jointures.** ? (passage de 7 à 6 semaines)--></li>
 </ul></li>
 </ul>
-<h1 id="définitions-importantes-b.d.d.-et-s.g.b.d.">Définitions importantes : B.D.D. et S.G.B.D.</h1>
+<h1 id="définitions-importantes-b.d.d.-et-s.g.b.d.">Définitions
+importantes : B.D.D. et S.G.B.D.</h1>
 <div class="cours">
-<p><a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es#cite_note-0" target="_blanck"><strong>BDD</strong> : (ou BD) <strong>Base De Données</strong></a> : Stock d’informations organisé et structuré de manière à :</p>
+<p><a
+href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es#cite_note-0"
+target="_blanck"><strong>BDD</strong> : (ou BD) <strong>Base De
+Données</strong></a> : Stock d’informations organisé et structuré de
+manière à :</p>
 <ul>
 <li>pouvoir être facilement manipulé,</li>
 <li>stocker efficacement de très grandes quantités d’informations,</li>
-<li>conserver l’<a href="https://datafranca.org/wiki/Int%C3%A9grit%C3%A9_des_donn%C3%A9es" target="_blanck">intégrité des données</a>.</li>
+<li>conserver l’<a
+href="https://datafranca.org/wiki/Int%C3%A9grit%C3%A9_des_donn%C3%A9es"
+target="_blanck">intégrité des données</a>.</li>
 </ul>
 <p><br></p>
-<p><a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_gestion_de_base_de_donn%C3%A9es" target="_blanck"><strong>SGBD</strong> :Les SGBD (<strong>Système de Gestion de Base de Données</strong>)</a> permettent de naviguer dans les données et d’extraire (ou de mettre à jour) les informations souhaitées à l’aide de <a href="http://fr.wikipedia.org/wiki/Requête" target="_blanck"><em>requêtes</em></a>. C’est le logiciel qui gère les données.</p>
+<p><a
+href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_gestion_de_base_de_donn%C3%A9es"
+target="_blanck"><strong>SGBD</strong> :Les SGBD (<strong>Systèmes de
+Gestion de Bases de Données</strong>)</a> permettent de naviguer dans
+les données et d’extraire (ou de mettre à jour) les informations
+souhaitées à l’aide de <a href="http://fr.wikipedia.org/wiki/Requête"
+target="_blanck"><em>requêtes</em></a>. C’est le logiciel qui gère les
+données.</p>
 </div>
 <p><br></p>
-<p>Remarque : <strong>SGBDR</strong> : le R vient de <a href="http://fr.wikipedia.org/wiki/Base_de_données_relationnelle" target="_blanck"><em>relationnel</em></a>, notion difficile à comprendre en début de formation, mais l’idée est :</p>
+<p>Remarque : <strong>SGBDR</strong> : le R vient de <a
+href="http://fr.wikipedia.org/wiki/Base_de_données_relationnelle"
+target="_blanck"><em>relationnel</em></a>, notion difficile à comprendre
+en début de formation, mais l’idée est :</p>
 <ul>
-<li><strong>minimiser la redondance, et maximiser la cohérence,</strong></li>
+<li><strong>minimiser la redondance, et maximiser la
+cohérence,</strong></li>
 <li>la simplicité d’usage,</li>
-<li>les liens entre les données sont facilitées afin d’améliorer les temps d’accès.</li>
+<li>les liens entre les données sont facilités afin d’améliorer les
+temps d’accès.</li>
 </ul>
 <p><br></p>
-<p><a href="http://db-engines.com/en/ranking" target="_blanck"><strong>Un classement des différents SGBD</strong></a></p>
+<p><a href="http://db-engines.com/en/ranking" target="_blanck"><strong>Un
+classement des différents SGBD</strong></a></p>
 <!-- <iframe id="classement des différents SGBD"
     title="classement des différents SGBD"
     width="300"
@@ -127,153 +157,283 @@ TP1 : Présentation B.D., S.G.B.D. …. . Construire des tables….
     src="http://db-engines.com/en/ranking">
 </iframe> -->
 <p><img src="img/S1_bdd_tp1_image8.png" style="width:15cm" /></p>
-<h2 id="étapes-avant-de-commencer-à-travailler-sur-un-sgbd-comme-mysql">Étapes avant de commencer à travailler sur un SGBD comme MySql</h2>
+<h2
+id="étapes-avant-de-commencer-à-travailler-sur-un-sgbd-comme-mysql">Étapes
+avant de commencer à travailler sur un SGBD comme MySql</h2>
 <figure>
-<img src="img/S1_bdd_tp1_img1.png" style="width:21cm" alt="" /><figcaption>exemple de démarche pour étudier et réaliser une base de données</figcaption>
+<img src="img/S1_bdd_tp1_img1.png" style="width:21cm"
+alt="exemple de démarche pour étudier et réaliser une Base de Données" />
+<figcaption aria-hidden="true">exemple de démarche pour étudier et
+réaliser une Base de Données</figcaption>
 </figure>
-<p><a href="https://laurent-audibert.developpez.com/Cours-BD/" target="_blanck">Exemple de cours</a></p>
-<h1 id="modèle-relationnel-dans-une-base-de-données-création-des-tables">Modèle relationnel dans une base de données : Création des tables</h1>
-<p><a href="http://fr.wikipedia.org/wiki/Table_(base_de_données)"><strong><em>Une table</em></strong></a><a href="http://fr.wikipedia.org/wiki/Table_(base_de_données)" target="_blanck"></a><em>: </em> c’est un objet abstrait, qui regroupe des données qui ont un rapport très précis entre elles. <br> <a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_relationnel" target="_blanck"><strong>Terminologie dans les Bases De Données</strong></a></p>
-<p>Une <strong>table</strong> est composée d’<strong><em>un nom</em></strong>, et d’un ensemble de propriétés (que l’on appelle <strong><em>champs</em></strong>). Parmi ces champs, un ou plusieurs a le caractère d’<strong><em>identifiant : la clé primaire</em></strong>.</p>
+<p><a href="https://laurent-audibert.developpez.com/Cours-BD/"
+target="_blanck">Exemple de cours</a></p>
+<h1
+id="modèle-relationnel-dans-une-base-de-données-création-des-tables">Modèle
+relationnel dans une base de données : Création des tables</h1>
+<p><a
+href="http://fr.wikipedia.org/wiki/Table_(base_de_données)"><strong><em>Une
+table</em></strong></a><a
+href="http://fr.wikipedia.org/wiki/Table_(base_de_données)"
+target="_blanck"></a>* : * c’est un objet abstrait , qui regroupe des
+données qui ont un rapport très précis entre elles. <br> <a
+href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_relationnel"
+target="_blanck"><strong>Terminologie dans les Bases De
+Données</strong></a></p>
+<p>Une <strong>table</strong> est composée d’<strong><em>un
+nom</em></strong>, et d’un ensemble de propriétés (que l’on appelle
+<strong><em>champs</em></strong>). Parmi ces champs, un (ou plusieurs) a
+(ont) le caractère d’<strong><em>identifiant : la clé
+primaire</em></strong>.</p>
 <figure>
-<img src="img/S1_bdd_tp1_img2cc.png" style="width:21cm" alt="" /><figcaption>Table , Champs, Clé primaire, Enregistrements</figcaption>
+<img src="img/S1_bdd_tp1_img2cc.png" style="width:21cm"
+alt="Table , Champs, Clé primaire, Enregistrements" />
+<figcaption aria-hidden="true">Table , Champs, Clé primaire,
+Enregistrements</figcaption>
 </figure>
-<p>Note : Il est fortement conseillé d’écrire le <strong>nom des champs</strong> et de <strong>la table</strong> <strong>sans espace, sans caractère spécifique</strong> (lettres accentuées, espaces, virgules, ….). Le code SQL est ainsi plus facilement portable d’une base de données à une autre. (faire comme pour les noms de variables en programmation Java … ).</p>
-<p><a href="https://blog.developpez.com/elsuket/p8118/sql-general/quelle_difference_y_a_t_il_entre_une_col" target="_blanck">article : différence entre une colonne et un champ ? entre une ligne et un enregistrement ?</a></p>
-<p><img src="img/MCD_noms_1.png" style="width:10cm" alt="Modèle Entité-Association" /> <br> <a href="https://gilles-hunault.leria-info.univ-angers.fr/Pluripass/Db/seance2-ModeleEA.pdf" target="_blanck">cours Modèle Entité-Association</a></p>
+<p>Note : Il est fortement conseillé d’écrire le <strong>nom des
+champs</strong> et de <strong>la table</strong> <strong>sans espace,
+sans caractère spécifique</strong> (lettres accentuées, espaces,
+virgules, ….). Le code SQL est ainsi plus facilement portable d’une base
+de données à une autre. (faire comme pour les noms de variables en
+programmation Java … ).</p>
+<p><a
+href="https://blog.developpez.com/elsuket/p8118/sql-general/quelle_difference_y_a_t_il_entre_une_col"
+target="_blanck">article : différence entre une colonne et un champ ?
+entre une ligne et un enregistrement ?</a></p>
+<p><img src="img/MCD_noms_1.png" style="width:10cm"
+alt="Modèle Entité-Association" /> <br> <a
+href="https://gilles-hunault.leria-info.univ-angers.fr/Pluripass/Db/seance2-ModeleEA.pdf"
+target="_blanck">cours Modèle Entité-Association</a></p>
 <p><br></p>
 <div class="cours">
-<p>Dans une table, le premier champ (celui qui est souligné) est la <a href="http://fr.wikipedia.org/wiki/Clé_primaire" target="_blanck"><strong><em>clé primaire</em></strong></a> de la table :</p>
+<p>Dans une table, le premier champ (celui qui est souligné) est la <a
+href="http://fr.wikipedia.org/wiki/Clé_primaire"
+target="_blanck"><strong><em>clé primaire</em></strong></a> de la table
+:</p>
 <ul>
-<li><p><strong>elle permet d’identifier de façon unique chaque enregistrement</strong></p></li>
-<li><p><strong>les valeurs prises par la clé primaire sont uniques</strong></p></li>
-<li><p><strong>elle est composée d’un ou plusieurs champs</strong></p></li>
+<li><p><strong>elle permet d’identifier de façon unique chaque
+enregistrement</strong></p></li>
+<li><p><strong>les valeurs prises par la clé primaire sont
+uniques</strong></p></li>
+<li><p><strong>elle est composée d’un ou plusieurs
+champs</strong></p></li>
 </ul>
 </div>
-<h1 id="introduction-et-présentation-du-sql">introduction et présentation du SQL</h1>
+<h1 id="introduction-et-présentation-du-sql">introduction et
+présentation du SQL</h1>
 <h2 id="le-sql">Le SQL :</h2>
 <p>Définition :</p>
 <div class="cours">
-<p><strong>SQL (Structured Query Language) est un langage informatique normalisé qui permet de réaliser des opérations sur des bases de données.<br />
-La partie langage de manipulation de données de SQL permet de rechercher, d’ajouter, de modifier ou de supprimer des données dans les bases de données.</strong></p>
+<p><strong>SQL (Structured Query Language) est un langage informatique
+normalisé qui permet de réaliser des opérations sur des bases de
+données.<br />
+La partie langage de manipulation de données de SQL permet de
+rechercher, d’ajouter, de modifier ou de supprimer des données dans les
+bases de données.</strong></p>
 </div>
-<p>Voici quelques commandes SQL et aspects du langage , mais tous ces commandes ne seront pas abordées ce semestre :</p>
+<p>Voici quelques commandes SQL et aspects du langage , mais tous ces
+commandes ne seront pas abordées ce semestre :</p>
 <ul>
-<li><p>Définition des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es" target="_blanck">DDL - Data Definition Language</a> (data definition language)) : <strong>CREATE – ALTER – DROP - RENAME</strong> – TRUNCATE</p></li>
-<li><p>Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">DML - Data Manipulation Language</a>) : <strong>INSERT – UPDATE – DELETE</strong> - LOCK TABLE</p></li>
-<li><p>Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">DQL - Data Query Language)</a>) : <strong>SELECT</strong></p></li>
-<li><p>Contrôle des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_contr%C3%B4le_de_donn%C3%A9es" target="_blanck">DCL - Data Control Language</a>) : GRANT – REVOKE – COMMIT – ROLLBACK – SAVEPOINT - SET TRANSACTION</p></li>
+<li><p>Définition des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es"
+target="_blanck">DDL - Data Definition Language</a> (data definition
+language)) : <strong>CREATE – ALTER – DROP - RENAME</strong> –
+TRUNCATE</p></li>
+<li><p>Manipulation des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es"
+target="_blanck">DML - Data Manipulation Language</a>) : <strong>INSERT
+– UPDATE – DELETE</strong> - LOCK TABLE</p></li>
+<li><p>Interrogation des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte"
+target="_blanck">DQL - Data Query Language)</a>) :
+<strong>SELECT</strong></p></li>
+<li><p>Contrôle des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_contr%C3%B4le_de_donn%C3%A9es"
+target="_blanck">DCL - Data Control Language</a>) : GRANT – REVOKE –
+COMMIT – ROLLBACK – SAVEPOINT - SET TRANSACTION</p></li>
 </ul>
-<h1 id="installation-et-présentation-des-outils">Installation et présentation des outils</h1>
+<h1 id="installation-et-présentation-des-outils">Installation et
+présentation des outils</h1>
 <ul>
 <li>un terminal</li>
 <li>atom / gedit / vscode</li>
-<li><a href="https://www.looping-mcd.fr/" target="_blanck">Looping-mcd</a> (installer wine sur linux)</li>
-<li><a href="https://www.jetbrains.com/fr-fr/datagrip/" target="_blanck">DataGrip</a></li>
-<li><a href="https://www.jetbrains.com/fr-fr/pycharm/" target="_blanck">Pycharm</a></li>
+<li><a href="https://www.looping-mcd.fr/"
+target="_blanck">Looping-mcd</a> (installer wine sur linux)</li>
+<li><a href="https://www.jetbrains.com/fr-fr/datagrip/"
+target="_blanck">DataGrip</a></li>
+<li><a href="https://www.jetbrains.com/fr-fr/pycharm/"
+target="_blanck">Pycharm</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">cd</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">atom</span> .bashrc</span></code></pre></div>
-<p>Ajouter dans le fichier <code>.bashrc</code> de votre <em>HOME</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">alias</span> looping=<span class="st">&#39;wine /opt/looping-mcd/Looping.exe&#39;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">alias</span> datagrip=<span class="st">&#39;/opt/DataGrip/bin/datagrip.sh&#39;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="bu">alias</span> pycharm=<span class="st">&#39;/opt/pycharm/bin/pycharm.sh&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">atom</span> .bashrc</span></code></pre></div>
+<p>Ajouter dans le fichier <code>.bashrc</code> de votre
+<em>HOME</em></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> looping=<span class="st">&#39;wine /opt/looping-mcd/Looping.exe&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> datagrip=<span class="st">&#39;/opt/DataGrip/bin/datagrip.sh&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> pycharm=<span class="st">&#39;/opt/pycharm/bin/pycharm.sh&#39;</span></span></code></pre></div>
 <h1 id="découverte-du-sgbdr-mysql">Découverte du SGBDR MySQL</h1>
-<p><strong><em>Remarque : l’objectif n’est pas de connaître toutes les fonctionnalités et subtilités du logiciel MySQL, mais d’utiliser les fonctionnalités les plus courantes que l’on retrouve dans les logiciels du même type.</em></strong></p>
-<h2 id="votre-première-table-sur-mysql">Votre première Table sur MySQL :</h2>
+<p><strong><em>Remarque : l’objectif n’est pas de connaître toutes les
+fonctionnalités et subtilités du logiciel MySQL, mais d’utiliser les
+fonctionnalités les plus courantes que l’on retrouve dans les logiciels
+du même type.</em></strong></p>
+<h2 id="votre-première-table-sur-mysql">Votre première Table sur MySQL
+:</h2>
 <ul>
 <li>Ouvrir un terminal</li>
 <li>Créer un répertoire, par exemple “<em>s1bdd</em>”,</li>
 <li>Se déplacer dans ce répertoire</li>
-<li>Ouvrir l’éditeur <strong>atom</strong> ou <strong>vscode</strong> (ou tout autre éditeur de texte) et créer un fichier texte nommé “<strong>tp1.sql</strong>” <br></li>
+<li>Ouvrir l’éditeur <strong>atom</strong> ou <strong>vscode</strong>
+(ou tout autre éditeur de texte) et créer un fichier texte nommé
+“<strong>tp1.sql</strong>” <br></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">mkdir</span> S1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="bu">cd</span> S1</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="fu">mkdir</span> BDD</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="bu">cd</span> BDD</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="fu">touch</span> tp1.sql</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ex">code</span> tp1.sql <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> S1</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> S1</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> BDD</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BDD</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> tp1.sql</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> tp1.sql <span class="kw">&amp;</span></span></code></pre></div>
 <ul>
-<li>Depuis le terminal, vous pouvez vous connecter au serveur <strong>MySQL</strong> et utiliser votre base de données :</li>
+<li>Depuis le terminal, vous pouvez vous connecter au serveur
+<strong>MySQL</strong> et utiliser votre base de données :</li>
 </ul>
 <pre><code>mysql --user=login --password=mdp --host=serveurmysql --database=BDD_login
 ## mot de passe: mdp  et login à l&#39;IUT</code></pre>
 <ul>
-<li>Vous pouvez ajouter un commentaire au début de votre fichier <strong>tp1.sql</strong> pour indiquer comment se connecter au serveur MySQL :</li>
+<li>Vous pouvez ajouter un commentaire au début de votre fichier
+<strong>tp1.sql</strong> pour indiquer comment se connecter au serveur
+MySQL :</li>
 </ul>
-<p><a href="https://mariadb.com/kb/en/connecting-to-mariadb/" target="_blanck">documentation connexion à mariadb</a> - <a href="https://dev.mysql.com/doc/refman/8.0/en/connecting.html" target="_blanck">et sur MySQL</a></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">mysql</span> --version</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="ex">mysql</span> --help</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=mdp --host=serveurmysql  BDD_login</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="ex">mysql</span> --user=login --password=mdp  --host=serveurmysql.iut-bm.univ-fcomte.fr --database=BDD_login </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="ex">--</span> mysql -u login -h serveurmysql -p BDD_login</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="ex">--</span> mot de passe: mdp</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="ex">--</span> solution plus rapide</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="ex">mysql</span> -u login -h serveurmysql -pmotdepasse BDD_login</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="ex">mysql</span> --user=<span class="st">&quot;login&quot;</span> --password=<span class="st">&quot;mdp&quot;</span>  --host=<span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> --database=<span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
-<p>Utilisez la commande ci-dessous pour changer le mot de passe de votre compte sur le serveur MySQL <strong><em>serveurmysql</em></strong> ou <em>serveurmysql2</em></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- pour changer de mot de passe</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;  </span></code></pre></div>
+<p><a href="https://mariadb.com/kb/en/connecting-to-mariadb/"
+target="_blanck">documentation connexion à mariadb</a> - <a
+href="https://dev.mysql.com/doc/refman/8.0/en/connecting.html"
+target="_blanck">et sur MySQL</a></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--version</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--help</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>mdp <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>mdp  <span class="at">--host</span><span class="op">=</span>serveurmysql.iut-bm.univ-fcomte.fr <span class="at">--database</span><span class="op">=</span>BDD_login </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mysql <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-p</span> BDD_login</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mot de passe: mdp</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> solution plus rapide</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-pmotdepasse</span> BDD_login</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span><span class="st">&quot;login&quot;</span> <span class="at">--password</span><span class="op">=</span><span class="st">&quot;mdp&quot;</span>  <span class="at">--host</span><span class="op">=</span><span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> <span class="at">--database</span><span class="op">=</span><span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
+<p>Utilisez la commande ci-dessous pour changer le mot de passe de votre
+compte sur le serveur MySQL <strong><em>serveurmysql</em></strong> ou
+<em>serveurmysql2</em></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- pour changer de mot de passe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;  </span></code></pre></div>
 <div class="cours">
-<p>Il est <strong>conseillé de changer de mot de passe</strong>, mais <strong>attention, n’utilisez pas votre mot de passe pour vous connecter sur les machines de l’IUT</strong>. Utilisez un mot de passe simple comme votre jour et mois de naissance. Ce mot de passe sera écrit dans votre python dans quelques mois et parfois partagé avec d’autres camarades.</p>
+<p>Il est <strong>conseillé de changer de mot de passe</strong>, mais
+<strong>attention, n’utilisez pas votre mot de passe pour vous connecter
+sur les machines de l’IUT</strong>. Utilisez un mot de passe simple
+comme votre jour et mois de naissance. Ce mot de passe sera écrit dans
+votre python dans quelques mois et parfois partagé avec d’autres
+camarades.</p>
 </div>
 <p><br></p>
-<p>Les commentaires en SQL commencent par <code>--</code> <strong>suivi d’un espace</strong> qui est normalisé. L’utilisation du symbole “#” pour les commentaires est également couramment admise dans certains systèmes de gestion de bases de données. <strong>Penser à utiliser CTRL MAJ /</strong> sur les éditeurs.</p>
+<p>Les commentaires en SQL commencent par <code>--</code> <strong>suivi
+d’un espace</strong> qui est normalisé. L’utilisation du symbole “#”
+pour les commentaires est également couramment admise dans certains
+systèmes de gestion de bases de données. <strong>Penser à utiliser CTRL
+MAJ /</strong> sur les éditeurs.</p>
 <p><br></p>
-<p>Il est possible de mettre des <code>"</code> autour des valeurs des paramètres de la commande <code>mysql</code>.</p>
+<p>Il est possible de mettre des <code>"</code> autour des valeurs des
+paramètres de la commande <code>mysql</code>.</p>
 <p><br><br></p>
-<p>Prenez des Notes (en commentaires) dans vos fichiers SQL (<strong>tp1.sql)</strong> pour garder une trace des TP, vous pourrez utiliser ces TPs lors du contrôle devant machine.</p>
+<p>Prenez des Notes (en commentaires) dans vos fichiers SQL
+(<strong>tp1.sql)</strong> pour garder une trace des TP, vous pourrez
+utiliser ces TPs lors du contrôle devant machine.</p>
 <div class="cours">
-<p><strong>Commande pour utiliser (changer) la base de données utilisée par défaut</strong> : <code>USE uneBaseDeDonnees;</code></p>
+<p><strong>Commande pour utiliser (changer) la base de données utilisée
+par défaut</strong> : <code>USE uneBaseDeDonnees;</code></p>
 <p><br></p>
-<p>Testez la commande <code>SHOW DATABASES;</code> pour afficher les bases de données disponibles, puis utilisez la commande <code>USE</code> pour changer la base de données utilisée par défaut.</p>
+<p>Testez la commande <code>SHOW DATABASES;</code> pour afficher les
+bases de données disponibles, puis utilisez la commande <code>USE</code>
+pour changer la base de données utilisée par défaut.</p>
 <p><br></p>
 <ul>
 <li>Affichez vos bases de données disponibles</li>
 <li>Changez la base de données utilisée par défaut</li>
 </ul>
 </div>
-<h3 id="commandes-du-s.g.b.d.r.-mysql">Commandes du S.G.B.D.R. MYSQL</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>help</span></code></pre></div>
+<h3 id="commandes-du-s.g.b.d.r.-mysql">Commandes du S.G.B.D.R.
+MYSQL</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>help</span></code></pre></div>
 <ul>
-<li>La commande <code>help</code> permet d’obtenir de l’aide sur les commandes spécifiques à MySQL. Elle fournit des informations détaillées sur les commandes, les fonctions et les options de configuration propres à MySQL. (il n’y a pas d’aide pour le SQL).</li>
+<li>La commande <code>help</code> permet d’obtenir de l’aide sur les
+commandes spécifiques à MySQL. Elle fournit des informations détaillées
+sur les commandes, les fonctions et les options de configuration propres
+à MySQL. (il n’y a pas d’aide pour le SQL).</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
 <ul>
-<li>Si le fichier existe dans le répertoire courant lors de la connexion au serveur MySQL via le terminal, les instructions contenues dans ce fichier seront exécutées dans MySQL.</li>
+<li>Si le fichier existe dans le répertoire courant lors de la connexion
+au serveur MySQL via le terminal, les instructions contenues dans ce
+fichier seront exécutées dans MySQL.</li>
 </ul>
 <pre><code>exit</code></pre>
 <ul>
-<li>La commande <code>exit</code> permet de quitter MySQL (la connexion sur MySQL)</li>
+<li>La commande <code>exit</code> permet de quitter MySQL (la connexion
+sur MySQL)</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>show <span class="kw">tables</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>show <span class="kw">tables</span>; </span></code></pre></div>
 <ul>
-<li>Afficher les tables de votre base de données. Attention il ne faut pas oublier le caractère <code>;</code> en fin de ligne.<br />
-<strong>La commande « show » est une instruction SQL, elle doit se terminer par un <code>;</code> contrairement aux commandes spécifiques à MySQL(afficher avec la commande help)</strong></li>
+<li>Afficher les tables de votre base de données. Attention il ne faut
+pas oublier le caractère <code>;</code> en fin de ligne.<br />
+<strong>La commande « show » est une instruction SQL, elle doit se
+terminer par un <code>;</code> contrairement aux commandes spécifiques à
+MySQL(afficher avec la commande help)</strong></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">system</span> ls</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">system</span> ls</span></code></pre></div>
 <ul>
-<li><p>La commande <code>system ls</code> permet d’exécuter une commande système (shell) pour lister le contenu du dossier dans lequel la connexion sur MySQL est ouverte. Veuillez noter que cette commande peut varier en fonction du système d’exploitation utilisé. Par exemple, sur les systèmes Windows, la commande équivalente serait <code>!dir</code>.</p></li>
+<li><p>La commande <code>system ls</code> permet d’exécuter une commande
+système (shell) pour lister le contenu du dossier dans lequel la
+connexion sur MySQL est ouverte. Veuillez noter que cette commande peut
+varier en fonction du système d’exploitation utilisé. Par exemple, sur
+les systèmes Windows, la commande équivalente serait
+<code>!dir</code>.</p></li>
 <li><p>Mettre en commentaire ces instructions</p></li>
 </ul>
 <figure>
-<img src="img/S1_bdd_tp1_image1a_2.png" alt="" /><figcaption>script SQL : exemple de commentaires</figcaption>
+<img src="img/S1_bdd_tp1_image1a_2.png"
+alt="script SQL : exemple de commentaires" />
+<figcaption aria-hidden="true">script SQL : exemple de
+commentaires</figcaption>
 </figure>
 <p><br></p>
-<p>Ajouter dans le fichier <strong>tp1.sql</strong> les instructions ci-dessous pour créer la table <strong>etudiant</strong> et exécuter ces instructions (<em>source tp1.sql</em>)</p>
+<p>Ajouter dans le fichier <strong>tp1.sql</strong> les instructions
+ci-dessous pour créer la table <strong>etudiant</strong> et exécuter ces
+instructions (<em>source tp1.sql</em>)</p>
 <p><br></p>
-<h3 id="premières-commandes-sql"><strong>Premières commandes SQL</strong></h3>
+<h3 id="premières-commandes-sql"><strong>Premières commandes
+SQL</strong></h3>
 <div class="cours">
-<p><strong>Les commandes SQL se terminent par un point-virgule <code>;</code></strong>.</p>
+<p><strong>Les commandes SQL se terminent par un point-virgule
+<code>;</code></strong>.</p>
 <figure>
-<img src="img/S1_bdd_tp1_image1_2a.png" alt="" /><figcaption>Une erreur classique est d’oublier le point-virgule (<code>;</code>), ce qui entraîne l’attente de l’interpréteur SQL de MySQL pour la fin de l’instruction SQL.</figcaption>
+<img src="img/S1_bdd_tp1_image1_2a.png"
+alt="Une erreur classique est d’oublier le point-virgule (;), ce qui entraîne l’attente de l’interpréteur SQL de MySQL pour la fin de l’instruction SQL." />
+<figcaption aria-hidden="true">Une erreur classique est d’oublier le
+point-virgule (<code>;</code>), ce qui entraîne l’attente de
+l’interpréteur SQL de MySQL pour la fin de l’instruction
+SQL.</figcaption>
 </figure>
 <p><strong>Exercice :</strong><br />
-Tapez la commande : <code>systeme 'ls</code> puis terminez la commande pour que le logiciel MySQL puisse l’interpréter.</p>
+Tapez la commande : <code>systeme 'ls</code> puis terminez la commande
+pour que le logiciel MySQL puisse l’interpréter.</p>
 <p><img src="img/S1_bdd_tp1_image1_3a.png" /></p>
 </div>
 <p><br></p>
@@ -285,89 +445,128 @@ Tapez la commande : <code>systeme 'ls</code> puis terminez la commande pour que 
 <li>VARCHAR : chaîne de caractères variable</li>
 </ul>
 <figure>
-<img src="img/S1_bdd_tp1_image1.png" alt="" /><figcaption>script SQL</figcaption>
+<img src="img/S1_bdd_tp1_image1.png" alt="script SQL" />
+<figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
 <ol start="2" type="1">
 <li>Afficher la structure d’une table :</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>DESCRIBE etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DESCRIBE etudiant;</span></code></pre></div>
 <ol start="3" type="1">
 <li>Insérer des enregistrements dans une table :</li>
 </ol>
 <figure>
-<img src="img/S1_bdd_tp1_image2.png" alt="" /><figcaption>script SQL</figcaption>
+<img src="img/S1_bdd_tp1_image2.png" alt="script SQL" />
+<figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
-<p><strong>NULL</strong> : non renseigné (absence de valeur : NO VALUE , <a href="https://fr.wikipedia.org/wiki/N/a" target="_blanck">N/A</a>) (différent de espace, 0 ou la chaîne de caractères vide "") <br> Il est possible de définir les champs que l’on veut remplir (ligne 1 et 5), à défaut il faut donner une valeur à chaque champ.</p>
+<p><strong>NULL</strong> : non renseigné (absence de valeur : NO VALUE ,
+<a href="https://fr.wikipedia.org/wiki/N/a" target="_blanck">N/A</a>)
+(différent de espace, 0 ou la chaîne de caractères vide ““) <br> Il est
+possible de définir les champs que l’on veut remplir (ligne 1 et 5), à
+défaut il faut donner une valeur à chaque champ.</p>
 <ol start="4" type="1">
 <li>Afficher tous les enregistrements d’une table</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
-<p>Remarque : Faire la différence entre « afficher les enregistrements d’une table » et « afficher la structure d’une table » dans un énoncé de contrôle.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
+<p>Remarque : Faire la différence entre « afficher les enregistrements
+d’une table » et « afficher la structure d’une table » dans un énoncé de
+contrôle.</p>
 <ol start="5" type="1">
 <li>Supprimer la table <strong>en début de script</strong></li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
-<p>Placer cette instruction en début de script pour que vos modifications sur la table soit prises en compte à chaque rechargement du script SQL.</p>
-<p><strong>Modifier votre script dans votre fichier à chaque étape</strong>, l’objectif est de bien saisir les différences et les points communs entre « NOT NULL » « UNIQUE » et « PRIMARY KEY »</p>
-<p>Pour ne plus autoriser un enregistrement avec un identifiant de l’étudiant NULL :</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
+<p>Placer cette instruction en début de script pour que vos
+modifications sur la table soit prises en compte à chaque rechargement
+du script SQL.</p>
+<p><strong>Modifier votre script dans votre fichier à chaque
+étape</strong>, l’objectif est de bien saisir les différences et les
+points communs entre « NOT NULL » « UNIQUE » et « PRIMARY KEY »</p>
+<p>Pour ne plus autoriser un enregistrement avec un identifiant de
+l’étudiant NULL :</p>
 <figure>
-<img src="img/S1_bdd_tp1_image3.png" alt="" /><figcaption>script SQL</figcaption>
+<img src="img/S1_bdd_tp1_image3.png" alt="script SQL" />
+<figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
 <ol start="6" type="1">
-<li><p>Modifier la table en ajoutant la contrainte <code>NOT NULL</code></p></li>
+<li><p>Modifier la table en ajoutant la contrainte
+<code>NOT NULL</code></p></li>
 <li><p>Insérer les enregistrements précédents dans la table</p></li>
 </ol>
 <ul>
-<li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et pourquoi?</li>
+<li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et
+pourquoi?</li>
 </ul>
 <ol start="8" type="1">
 <li>supprimer la table</li>
 </ol>
 <p><br></p>
-<h3 id="clé-primaire-champ-unique-champ-non-null"><strong>Clé Primaire, champ unique, champ non “NULL”</strong></h3>
+<h3 id="clé-primaire-champ-unique-champ-non-null"><strong>Clé Primaire,
+champ unique, champ non “NULL”</strong></h3>
 <ol start="9" type="1">
-<li>Modifier la table en ajoutant la contrainte <code>UNIQUE</code>, puis insérer les champs précédents</li>
+<li>Modifier la table en ajoutant la contrainte <code>UNIQUE</code>,
+puis insérer les champs précédents</li>
 </ol>
 <figure>
-<img src="img/S1_bdd_tp1_image4.png" alt="" /><figcaption>script SQL</figcaption>
+<img src="img/S1_bdd_tp1_image4.png" alt="script SQL" />
+<figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
 <ul>
-<li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et pourquoi?</li>
+<li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et
+pourquoi?</li>
 </ul>
 <p><img src="img/S1_bdd_tp1_image5.png" /></p>
 <ol start="10" type="1">
-<li>Modifier la table et insérer les champs précédents avec une clé primaire sur l’identifiant</li>
+<li>Modifier la table et insérer les champs précédents avec une clé
+primaire sur l’identifiant</li>
 </ol>
 <ul>
-<li>Conclusion : Quelle différence existe t’il entre un champ qui a la propriété d’être une clé primaire et un champ qui a comme attribut « UNIQUE NOT NULL » ?</li>
+<li>Conclusion : Quelle différence existe t’il entre un champ qui a la
+propriété d’être une clé primaire et un champ qui a comme attribut «
+UNIQUE NOT NULL » ?</li>
 </ul>
 <p><br><br></p>
 <h3 id="clé-primaire-bonne-pratique">clé primaire : bonne pratique</h3>
-<p>Définir de préférence les clés primaires à l’aide d’une instruction séparée en fin de table car :</p>
+<p>Définir de préférence les clés primaires à l’aide d’une instruction
+séparée en fin de table car :</p>
 <div class="cours">
 <ul>
-<li>une <strong>Clé Primaire</strong> peut être composée de plusieurs champs,</li>
-<li>par convention : on définit la clé primaire et les clés étrangères (Semestre 2) en fin de table</li>
+<li>une <strong>Clé Primaire</strong> peut être composée de plusieurs
+champs,</li>
+<li>par convention : on définit la clé primaire et les clés étrangères
+(Semestre 2) en fin de table</li>
 </ul>
 </div>
 <figure>
-<img src="img/S1_bdd_tp1_image6.png" alt="" /><figcaption>script SQL : solution à utilisée par la suite</figcaption>
+<img src="img/S1_bdd_tp1_image6.png"
+alt="script SQL : solution à utilisée par la suite" />
+<figcaption aria-hidden="true">script SQL : solution à utilisée par la
+suite</figcaption>
 </figure>
 <ol start="12" type="1">
-<li>Afficher comment créer la table à l’aide de la commande ci-dessous</li>
+<li>Afficher comment créer la table à l’aide de la commande
+ci-dessous</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
 <p><br></p>
 <ol start="13" type="1">
 <li>Terminer votre script en supprimant la table si elle existe.</li>
 </ol>
 <figure>
-<img src="img/S1_bdd_tp1_image7.png" alt="" /><figcaption>script SQL : supprimer une table si elle existe</figcaption>
+<img src="img/S1_bdd_tp1_image7.png"
+alt="script SQL : supprimer une table si elle existe" />
+<figcaption aria-hidden="true">script SQL : supprimer une table si elle
+existe</figcaption>
 </figure>
 <p><br></p>
 <p><em>Pour les plus rapides :</em></p>
 <ol start="14" type="1">
-<li>ajouter un champ dans la table <em>etudiant</em> avec la date de naissance de chaque étudiant (nom du champ : <em>date_naissance</em>) et insérer quelques valeurs en vous aidant d’internet.</li>
+<li>ajouter un champ dans la table <em>etudiant</em> avec la date de
+naissance de chaque étudiant (nom du champ : <em>date_naissance</em>) et
+insérer quelques valeurs en vous aidant d’internet.</li>
 </ol>
 <br>
 <div style="text-align: center;">

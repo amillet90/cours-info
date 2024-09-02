@@ -19,42 +19,81 @@
 </head>
 <body>
 <p><strong>Mini-Projet sur flask</strong></p>
-<p>Utiliser votre mini-projet réalisé en tp de “Développement d’interfaces web” (pas avec les tableaux “articles/type_articles”). Vous avez tous un sujet différent.<br />
-Ce code contient toutes les interfaces pour ajouter/afficher/modifier/supprimer (CRUD) des enregistrements dans 2 tables : ces 2 tables sont affichées sous forme de tableau.</p>
-<p><a href="https://amillet.pythonanywhere.com/" target="_blanck">Version démonstration : Exemple</a></p>
+<p>Utiliser votre mini-projet réalisé en tp de “Développement
+d’interfaces web” (pas avec les tableaux “articles/type_articles”). Vous
+avez tous un sujet différent.<br />
+Ce code contient toutes les interfaces pour
+ajouter/afficher/modifier/supprimer (CRUD) des enregistrements dans 2
+tables : ces 2 tables sont affichées sous forme de tableau.</p>
+<p><a href="https://amillet.pythonanywhere.com/"
+target="_blanck">Version démonstration : Exemple</a></p>
 <h1 id="livrable">livrable</h1>
 <ul>
-<li>Mettre votre projet dans un dossier qui porte comme nom : <strong>GROUPE_nom</strong> (votre numéro de groupe suivi du nom du référent du groupe, exemple “A1_millet”)
+<li>Mettre votre projet dans un dossier qui porte comme nom :
+<strong>GROUPE_nom</strong> (votre numéro de groupe suivi du nom du
+référent du groupe, exemple “A1_millet”)
 <ul>
 <li>Attention : Pas d’archive dans une archive =&gt; pénalité</li>
 </ul></li>
-<li>Archiver votre projet (le nom de l’archive doit être le nom du projet) avec une extension .zip ou .tar.gz (pas de format microsoft)</li>
+<li>Archiver votre projet (le nom de l’archive doit être le nom du
+projet) avec une extension .zip ou .tar.gz (pas de format
+microsoft)</li>
 </ul>
-<p>Ce dossier doit contenir un fichier de nom “sql_projet.sql”, ce fichier est votre script sql à jour pour supprimer, créer toutes les tables dans l’ordre puis insérer dans le bon ordre des enregistrements (un jeu de test). Ce dossier doit contenir votre application : un fichier app.py, un dossier “templates” et “static”, éventuellement un script shell pour lancer l’application. (pas de dossier venv)<br />
+<p>Ce dossier doit contenir un fichier de nom “sql_projet.sql”, ce
+fichier est votre script sql à jour pour supprimer, créer toutes les
+tables dans l’ordre puis insérer dans le bon ordre des enregistrements
+(un jeu de test). Ce dossier doit contenir votre application : un
+fichier app.py, un dossier “templates” et “static”, éventuellement un
+script shell pour lancer l’application. (pas de dossier venv)<br />
 </p>
-<p>Votre application doit être fonctionnelle sur une machine de l’IUT avec la commande “python app.py” dans un environnement local où les paquets “pymysql” et “flask” sont installés.<br />
+<p>Votre application doit être fonctionnelle sur une machine de l’IUT
+avec la commande “python app.py” dans un environnement local où les
+paquets “pymysql” et “flask” sont installés.<br />
 </p>
-<p>En remplaçant le login et le motDePasse des instructions ci-dessous par votre login et mot de passe sur le serveur mysql de l’iut, les 2 commandes ci-dessous doivent fonctionner pour tester votre application (dans un terminal ouvert dans votre dossier de projet) :</p>
+<p>En remplaçant le login et le motDePasse des instructions ci-dessous
+par votre login et mot de passe sur le serveur mysql de l’iut, les 2
+commandes ci-dessous doivent fonctionner pour tester votre application
+(dans un terminal ouvert dans votre dossier de projet) :</p>
 <pre><code>mysql --user=login  --password=motDePasse --host=serveurmysql --database=BDD_login &lt; sql_projet.sql
 python app.py</code></pre>
-<p>Remarque : pour les travaux faits sur les machines personnelles, attention au mode par défaut <a href="https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql"><strong>only_full_group_by</strong> (post 182 )</a> sur les machines de l’IUT. <br></p>
-<p>Ajouter dans votre projet <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/eval_etudiant_mini_projet.xlsx">le petit fichier excel (utiliser ce lien)</a> en remplissant vos nom, prenom, groupe et en mettant des “1” si vous pensez que les parties sont pleinement réalisées.<br />
-Ne pas renommer ce fichier, et l’enregistrer dans le même dossier que le fichier “app.py” et que le fichier “sql_projet.sql”</p>
+<p>Remarque : pour les travaux faits sur les machines personnelles,
+attention au mode par défaut <a
+href="https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql"><strong>only_full_group_by</strong>
+(post 182 )</a> sur les machines de l’IUT. <br></p>
+<p>Ajouter dans votre projet <a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/eval_etudiant_mini_projet.xlsx">le
+petit fichier excel (utiliser ce lien)</a> en remplissant vos nom,
+prenom, groupe et en mettant des “1” si vous pensez que les parties sont
+pleinement réalisées.<br />
+Ne pas renommer ce fichier, et l’enregistrer dans le même dossier que le
+fichier “app.py” et que le fichier “sql_projet.sql”</p>
 <p><br></p>
 <h1 id="script-sql"><strong>script SQL :</strong></h1>
 <p><br></p>
-<p>Réaliser un script SQL de nom <strong>sql_projet.sql</strong> pour :</p>
+<p>Réaliser un script SQL de nom <strong>sql_projet.sql</strong> pour
+:</p>
 <ul>
 <li>supprimer les 2 tables</li>
-<li>créer les 2 tables (avec une <strong>contrainte d’intégrité référentielle</strong> sur la clé étrangère)</li>
-<li>ajouter les enregistrements (une instruction INSERT par enregistrement)</li>
-<li>supprimer la <strong>contrainte d’intégrité référentielle</strong> sur la clé étrangère</li>
+<li>créer les 2 tables (avec une <strong>contrainte d’intégrité
+référentielle</strong> sur la clé étrangère)</li>
+<li>ajouter les enregistrements (une instruction INSERT par
+enregistrement)</li>
+<li>supprimer la <strong>contrainte d’intégrité référentielle</strong>
+sur la clé étrangère</li>
 <li>re-créer la contrainte sur la clé étrangère</li>
-<li>réaliser une requête avec une/des fonction(s) d’agrégation et une jointure entre les 2 tables de type (LEFT ou RIGHT JOIN)</li>
-<li>proposer un exemple de requête préparée pour modifier un enregistrement - <a href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts" target="_blanck">exemple de requête préparée</a></li>
+<li>réaliser une requête avec une/des fonction(s) d’agrégation et une
+jointure entre les 2 tables de type (LEFT ou RIGHT JOIN)</li>
+<li>proposer un exemple de requête préparée pour modifier un
+enregistrement - <a
+href="https://fromdual.com/mariadb-prepared-statements-transactions-and-multi-row-inserts"
+target="_blanck">exemple de requête préparée</a></li>
 </ul>
 <p><br></p>
-<p>Vous pouvez modifier la composition des tables <strong>en ajoutant une date ou un attribut de type texte avec une image</strong>. Utiliser du <a href="https://fr.wikipedia.org/wiki/Snake_case" target="_blanck">snake_case</a> pour les noms des tables et des attributs.</p>
+<p>Vous pouvez modifier la composition des tables <strong>en ajoutant
+une date ou un attribut de type texte avec une image</strong>. Utiliser
+du <a href="https://fr.wikipedia.org/wiki/Snake_case"
+target="_blanck">snake_case</a> pour les noms des tables et des
+attributs.</p>
 <p><br></p>
 <h1 id="crud-sur-2-tables"><strong>CRUD sur 2 tables</strong></h1>
 <p><br></p>
@@ -63,73 +102,128 @@ Ne pas renommer ce fichier, et l’enregistrer dans le même dossier que le fich
 <p><br></p>
 <p>Lors de l’affichage de la plus “petite” des 2 tables :</p>
 <ul>
-<li><strong>afficher le nombre d’enregistrements ayant une dépendance fonctionnelle avec cette table (en rouge sur l’exemple)</strong></li>
-<li>afficher en première colonne celle qui définie le mieux l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
+<li><strong>afficher le nombre d’enregistrements ayant une dépendance
+fonctionnelle avec cette table (en rouge sur l’exemple)</strong></li>
+<li>afficher en première colonne celle qui définie le mieux
+l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
 </ul>
 <figure>
-<img src="img_flask/sql_flask_projet_img_1.png" style="width:18cm" alt="" /><figcaption>exemple pour les types d’article, le nombre d’articles ayant une dépendance fonctionnelle avec ce type</figcaption>
+<img src="img_flask/sql_flask_projet_img_1.png" style="width:18cm"
+alt="exemple pour les types d’article, le nombre d’articles ayant une dépendance fonctionnelle avec ce type" />
+<figcaption aria-hidden="true">exemple pour les types d’article, le
+nombre d’articles ayant une dépendance fonctionnelle avec ce
+type</figcaption>
 </figure>
 <p>Lors de l’affichage de la plus “grosse” des 2 tables :</p>
 <ul>
-<li><strong>afficher en plus de la clé étrangère, la valeur de la colonne de l’autre table qui définie le mieux cet enregistrement(en rouge sur l’exemple)</strong></li>
-<li>afficher en première colonne celle qui définie le mieux l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
+<li><strong>afficher en plus de la clé étrangère, la valeur de la
+colonne de l’autre table qui définie le mieux cet enregistrement(en
+rouge sur l’exemple)</strong></li>
+<li>afficher en première colonne celle qui définie le mieux
+l’enregistrement pour l’utilisateur et trier par cet enregistrement</li>
 </ul>
 <figure>
-<img src="img_flask/sql_flask_projet_img_2.png" style="width:18cm" alt="" /><figcaption>exemple pour les articles, le libellé du type d’article</figcaption>
+<img src="img_flask/sql_flask_projet_img_2.png" style="width:18cm"
+alt="exemple pour les articles, le libellé du type d’article" />
+<figcaption aria-hidden="true">exemple pour les articles, le libellé du
+type d’article</figcaption>
 </figure>
-<h2 id="ajouter-et-modifier-un-enregistrement">ajouter et modifier un enregistrement</h2>
-<p>Lors de l’ajout d’un enregistrement dans la plus grosse des tables</p>
+<h2 id="ajouter-et-modifier-un-enregistrement">ajouter et modifier un
+enregistrement</h2>
+<p>Lors de l’ajout d’un enregistrement dans la plus grosse des
+tables</p>
 <ul>
-<li>utiliser une liste déroulante pour renseigner la clé étrangère avec comme contenu les valeurs de la clé primaire pour respecter <strong>la contrainte d’intégrité référentielle</strong></li>
-<li>trier le champ qui vous parait le plus pertinent pour identifier la valeur de la clé étrangère pour l’utilisateur dans le contenu de la liste déroulante</li>
-<li>pas de valeur sélectionnée pour l’utilisateur lorsque l’on ajoute un enregistrement dans la liste déroulante</li>
+<li>utiliser une liste déroulante pour renseigner la clé étrangère avec
+comme contenu les valeurs de la clé primaire pour respecter <strong>la
+contrainte d’intégrité référentielle</strong></li>
+<li>trier le champ qui vous parait le plus pertinent pour identifier la
+valeur de la clé étrangère pour l’utilisateur dans le contenu de la
+liste déroulante</li>
+<li>pas de valeur sélectionnée pour l’utilisateur lorsque l’on ajoute un
+enregistrement dans la liste déroulante</li>
 </ul>
 <figure>
-<img src="img_flask/sql_flask_projet_img_3.png" style="width:10cm" alt="" /><figcaption>exemple de liste déroulante pour ajouter</figcaption>
+<img src="img_flask/sql_flask_projet_img_3.png" style="width:10cm"
+alt="exemple de liste déroulante pour ajouter" />
+<figcaption aria-hidden="true">exemple de liste déroulante pour
+ajouter</figcaption>
 </figure>
 <ul>
-<li>lors de la modification d’un enregistrement, les 2 formulaires contiennent les valeurs de l’enregistrement édité (pour les 2 tables)</li>
-<li>la liste déroulante qui correspond à la clé étrangère dans une des tables doit être fonctionnelle</li>
-<li>la bonne valeur de la clé est sélectionnée dans la liste déroulante</li>
+<li>lors de la modification d’un enregistrement, les 2 formulaires
+contiennent les valeurs de l’enregistrement édité (pour les 2
+tables)</li>
+<li>la liste déroulante qui correspond à la clé étrangère dans une des
+tables doit être fonctionnelle</li>
+<li>la bonne valeur de la clé est sélectionnée dans la liste
+déroulante</li>
 </ul>
 <p><br></p>
 <figure>
-<img src="img_flask/sql_flask_projet_img_4.png" style="width:10cm" alt="" /><figcaption>exemple de liste déroulante pour modifier</figcaption>
+<img src="img_flask/sql_flask_projet_img_4.png" style="width:10cm"
+alt="exemple de liste déroulante pour modifier" />
+<figcaption aria-hidden="true">exemple de liste déroulante pour
+modifier</figcaption>
 </figure>
 <h1 id="supprimer-un-enregistrement">supprimer un enregistrement</h1>
-<p>Lors de la suppression d’un enregistrement sur la plus petite des tables. Tester si aucune clé étrangère dans l’autre table utilise la clé primaire de l’enregistrement à supprimer. Si c’est le cas proposer des liens pour supprimer les enregistrements en cascade de l’autre table.</p>
+<p>Lors de la suppression d’un enregistrement sur la plus petite des
+tables. Tester si aucune clé étrangère dans l’autre table utilise la clé
+primaire de l’enregistrement à supprimer. Si c’est le cas proposer des
+liens pour supprimer les enregistrements en cascade de l’autre
+table.</p>
 <figure>
-<img src="img_flask/sql_flask_projet_img_7.png" style="width:10cm" alt="" /><figcaption>exemple de liens pour supprimer en cascade</figcaption>
+<img src="img_flask/sql_flask_projet_img_7.png" style="width:10cm"
+alt="exemple de liens pour supprimer en cascade" />
+<figcaption aria-hidden="true">exemple de liens pour supprimer en
+cascade</figcaption>
 </figure>
-<p><strong>Le plus compliqué est de conserver l’interface pour supprimer (voir sur l’exemple)</strong></p>
+<p><strong>Le plus compliqué est de conserver l’interface pour supprimer
+(voir sur l’exemple)</strong></p>
 <h1 id="état">État</h1>
 <ul>
-<li>un état ; utiliser une/des fonctions d’agrégation, éventuellement des jointures</li>
+<li>un état ; utiliser une/des fonctions d’agrégation, éventuellement
+des jointures</li>
 </ul>
 <figure>
-<img src="img_flask/sql_flask_projet_img_5.png" style="width:18cm" alt="" /><figcaption>exemple d’état</figcaption>
+<img src="img_flask/sql_flask_projet_img_5.png" style="width:18cm"
+alt="exemple d’état" />
+<figcaption aria-hidden="true">exemple d’état</figcaption>
 </figure>
 <p><strong>Faire au moins 2 requêtes pour l’état :</strong><br />
 </p>
 <ul>
-<li>une requête qui fait des calculs sur tous les enregistrements de la première table</li>
-<li>une requête qui fait des calculs sur chaque groupe d’enregistrements de la seconde table et qui affiche le résultat sous forme de tableau</li>
+<li>une requête qui fait des calculs sur tous les enregistrements de la
+première table</li>
+<li>une requête qui fait des calculs sur chaque groupe d’enregistrements
+de la seconde table et qui affiche le résultat sous forme de
+tableau</li>
 </ul>
 <p><br></p>
 <h1 id="interfaces-supplémentaires">Interfaces supplémentaires</h1>
 <ul>
-<li><strong>Interface supplémentaire avec un filtre</strong> : une des tables est affichée sous forme de checkBox, l’autre est affichée sous forme de “cards”, lorsque des éléments sont sélectionnés dans les “checkbox”, ils sont conservés en mémoire et seuls les éléments (cards) de l’autre table qui correspondent sont affichés (si on effectue d’autres opérations et que l’on revient sur cette interface, les éléments restent filtrés)</li>
+<li><strong>Interface supplémentaire avec un filtre</strong> : une des
+tables est affichée sous forme de checkBox, l’autre est affichée sous
+forme de “cards”, lorsque des éléments sont sélectionnés dans les
+“checkbox”, ils sont conservés en mémoire et seuls les éléments (cards)
+de l’autre table qui correspondent sont affichés (si on effectue
+d’autres opérations et que l’on revient sur cette interface, les
+éléments restent filtrés)</li>
 </ul>
 <figure>
-<img src="img_flask/sql_flask_projet_img_8.png" style="width:18cm" alt="" /><figcaption>exemple de filtre</figcaption>
+<img src="img_flask/sql_flask_projet_img_8.png" style="width:18cm"
+alt="exemple de filtre" />
+<figcaption aria-hidden="true">exemple de filtre</figcaption>
 </figure>
 <p><br></p>
-<h1 id="mette-en-ligne-votre-application.">Mette en ligne votre application.</h1>
+<h1 id="mette-en-ligne-votre-application.">Mette en ligne votre
+application.</h1>
 <p><br></p>
 <p>Pour mettre en ligne votre application :</p>
 <ul>
-<li>Utiliser <a href="https://www.pythonanywhere.com/" target="_blanck">https://www.pythonanywhere.com/</a>,</li>
-<li>voir le <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/S1_BDD_pythonanywhere.html" target="_blanck">tutoriel</a></li>
+<li>Utiliser <a href="https://www.pythonanywhere.com/"
+target="_blanck">https://www.pythonanywhere.com/</a>,</li>
+<li>voir le <a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/S1_BDD_pythonanywhere.html"
+target="_blanck">tutoriel</a></li>
 </ul>
 <!-- https://www.younup.fr/blog/heroku-pour-deployer-votre-application-python-flask-dans-le-cloud 
 https://stackabuse.com/deploying-a-flask-application-to-heroku/
@@ -137,39 +231,88 @@ https://realpython.com/flask-by-example-part-1-project-setup/
 https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask/4526644-deployez-efficacement-sur-le-cloud-avec-heroku
 -->
 <h1 id="annexes-erreurs-classiques">Annexes : erreurs classiques</h1>
-<h2 id="encodage-des-noms-de-fichiers-et-des-noms-de-dossiers">Encodage des noms de fichiers et des noms de dossiers</h2>
-<p>Attention, pour les développeurs travaillant sur des <strong>machines avec un système d’exploitation Windows</strong>, il est important de prendre en compte les erreurs potentielles liées à l’encodage des caractères.</p>
+<h2 id="encodage-des-noms-de-fichiers-et-des-noms-de-dossiers">Encodage
+des noms de fichiers et des noms de dossiers</h2>
+<p>Attention, pour les développeurs travaillant sur des <strong>machines
+avec un système d’exploitation Windows</strong>, il est important de
+prendre en compte les erreurs potentielles liées à l’encodage des
+caractères.</p>
 <p><br></p>
-<p>Lors du développement d’une application qui manipule des <strong>caractères spéciaux ou des langues non-anglaises</strong>, il est crucial de s’assurer que l’encodage des caractères est correctement géré pour éviter les problèmes d’affichage ou de traitement des données.</p>
+<p>Lors du développement d’une application qui manipule des
+<strong>caractères spéciaux ou des langues non-anglaises</strong>, il
+est crucial de s’assurer que l’encodage des caractères est correctement
+géré pour éviter les problèmes d’affichage ou de traitement des
+données.</p>
 <ul>
-<li>attention aux erreurs liées à l’encodage des caractères dans le nom des fichiers et des dossiers:</li>
+<li>attention aux erreurs liées à l’encodage des caractères dans le nom
+des fichiers et des dossiers:</li>
 </ul>
 <p><img src="img_flask/sae_err_1.png" /></p>
 <h2 id="configuration-de-mysql">Configuration de MySql</h2>
-<p>MySql est moins “strict” par défaut sur <strong>Windows</strong> et <strong>parfois</strong> sur <strong>Linux</strong>:</p>
-<p>Alors que MySQL est sensible par défaut à la casse (au niveau des noms de base et de table)dans la plupart des distributions Unix, il ne l’est pas pour Windows! En revanche, concernant les noms de colonnes, index, alias de colonnes, déclencheurs et procédures MySQL n’est pas sensible à la casse tous systèmes confondus. En fait, tous ces noms sont stockés en minuscules dans le dictionnaire de données.<br />
-La variable <strong>lower_case_table_names</strong> permet de forcer la sensibilité à la casse pour les noms des tables et des bases de données (si elle vaut 0, la sensibilité à la casse est active et les noms sont stockés en minuscules; 1, pas de sensibilité à la casse et les noms sont stockés en minuscules; 2, pas de sensibilité à la casse et les noms sont stockés en respectant la casse). Je vous invite à positionner cette variable à 0 de manière à homogénéiser le codage et à contrôler un peu plus l’écriture de vos instructions SQL. De plus, c’est l’option par défaut sur Linux.</p>
-<p><code>SELECT @@lower_case_table_names;</code> : Cette requête retournera la valeur actuelle de la variable <strong>lower_case_table_names</strong> qui doit être à <code>0</code></p>
+<p>MySql est moins “strict” par défaut sur <strong>Windows</strong> et
+<strong>parfois</strong> sur <strong>Linux</strong>:</p>
+<p>Alors que MySQL est sensible par défaut à la casse (au niveau des
+noms de base et de table)dans la plupart des distributions Unix, il ne
+l’est pas pour Windows! En revanche, concernant les noms de colonnes,
+index, alias de colonnes, déclencheurs et procédures MySQL n’est pas
+sensible à la casse tous systèmes confondus. En fait, tous ces noms sont
+stockés en minuscules dans le dictionnaire de données.<br />
+La variable <strong>lower_case_table_names</strong> permet de forcer la
+sensibilité à la casse pour les noms des tables et des bases de données
+(si elle vaut 0, la sensibilité à la casse est active et les noms sont
+stockés en minuscules; 1, pas de sensibilité à la casse et les noms sont
+stockés en minuscules; 2, pas de sensibilité à la casse et les noms sont
+stockés en respectant la casse). Je vous invite à positionner cette
+variable à 0 de manière à homogénéiser le codage et à contrôler un peu
+plus l’écriture de vos instructions SQL. De plus, c’est l’option par
+défaut sur Linux.</p>
+<p><code>SELECT @@lower_case_table_names;</code> : Cette requête
+retournera la valeur actuelle de la variable
+<strong>lower_case_table_names</strong> qui doit être à
+<code>0</code></p>
 <p><br></p>
 <ul>
-<li>Attention aussi au mode de fonctionnement de MySQL, qui peut être moins strict sur les machines individuelles par rapport aux machines de l’IUT.</li>
+<li>Attention aussi au mode de fonctionnement de MySQL, qui peut être
+moins strict sur les machines individuelles par rapport aux machines de
+l’IUT.</li>
 </ul>
-<p>Pour vérifier le mode SQL en cours d’utilisation dans votre serveur MySQL, vous pouvez exécuter la requête suivante : <code>SELECT @@sql_mode;</code>.<br />
-Cette requête renverra la valeur actuelle de la variable <strong>sql_mode</strong>, qui représente le mode SQL en cours d’utilisation.<br />
-Le résultat sera une chaîne de caractères contenant les différents modes SQL activés et leurs paramètres. Assurez-vous de trouver la valeur <code>ONLY_FULL_GROUP_BY</code> dans la chaîne de caractères renvoyée. Si ce mode n’est pas activé, cela signifie que MySQL peut être moins strict en ce qui concerne la clause <strong>GROUP BY</strong> dans vos requêtes, ce qui peut entraîner des résultats inattendus. Il est possible que votre application fonctionne correctement sur votre machine, mais rencontre des erreurs lorsqu’elle est exécutée sur une machine de l’IUT.</p>
+<p>Pour vérifier le mode SQL en cours d’utilisation dans votre serveur
+MySQL, vous pouvez exécuter la requête suivante :
+<code>SELECT @@sql_mode;</code>.<br />
+Cette requête renverra la valeur actuelle de la variable
+<strong>sql_mode</strong>, qui représente le mode SQL en cours
+d’utilisation.<br />
+Le résultat sera une chaîne de caractères contenant les différents modes
+SQL activés et leurs paramètres. Assurez-vous de trouver la valeur
+<code>ONLY_FULL_GROUP_BY</code> dans la chaîne de caractères renvoyée.
+Si ce mode n’est pas activé, cela signifie que MySQL peut être moins
+strict en ce qui concerne la clause <strong>GROUP BY</strong> dans vos
+requêtes, ce qui peut entraîner des résultats inattendus. Il est
+possible que votre application fonctionne correctement sur votre
+machine, mais rencontre des erreurs lorsqu’elle est exécutée sur une
+machine de l’IUT.</p>
 <p><br> En résumé, tester sur votre machine :</p>
 <pre><code>SELECT @@lower_case_table_names;
 -- la réponse devrait être 0
 
 SELECT @@sql_mode;
 -- la réponse devrait contenir le mot clé ONLY_FULL_GROUP_BY</code></pre>
-<p><br> <br> Si la configuration de <strong>MySQL</strong> n’est pas bonne :</p>
+<p><br> <br> Si la configuration de <strong>MySQL</strong> n’est pas
+bonne :</p>
 <ul>
-<li>sur <strong>Windows</strong> : rechercher le fichier <strong>my.ini</strong> qui se trouve à coté du fichier “mysql.exe”. Pour trouver ce fichier, utiliser la commande : <code>dir /s *my.ini*</code> depuis la racine <code>C:\</code></li>
-<li>sur <strong>Linux</strong> : rechercher le fichier <strong>my.cnf</strong>. Pour trouver ce fichier, utiliser la commande : <code>find / -name '*my.cnf' 2&gt;/dev/null</code><br />
+<li>sur <strong>Windows</strong> : rechercher le fichier
+<strong>my.ini</strong> qui se trouve à coté du fichier “mysql.exe”.
+Pour trouver ce fichier, utiliser la commande :
+<code>dir /s *my.ini*</code> depuis la racine <code>C:\</code></li>
+<li>sur <strong>Linux</strong> : rechercher le fichier
+<strong>my.cnf</strong>. Pour trouver ce fichier, utiliser la commande :
+<code>find / -name '*my.cnf' 2&gt;/dev/null</code><br />
 </li>
 </ul>
-<p>Éditer le fichier de configuration <code>my.ini</code> ou <code>my.cnf</code> en tant que root. Dans ce fichier, sous la section serveur identifiée par <code>[mysqld]</code> si elle existe, ajouter les lignes ci-dessous (créer la section si elle n’existe pas):</p>
+<p>Éditer le fichier de configuration <code>my.ini</code> ou
+<code>my.cnf</code> en tant que root. Dans ce fichier, sous la section
+serveur identifiée par <code>[mysqld]</code> si elle existe, ajouter les
+lignes ci-dessous (créer la section si elle n’existe pas):</p>
 <pre><code>[mysqld]
 lower_case_table_names=0
 local_infile=ON
@@ -177,9 +320,18 @@ sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_
 
 [mysql]
 local_infile=ON</code></pre>
-<p>Pour connaître le dossier du fichier <code>my.cnf</code> (Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande <code>mysql --help --verbose</code>. L’information est généralement affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en début de commande pour obtenir les privilèges de superutilisateur.</p>
+<p>Pour connaître le dossier du fichier <code>my.cnf</code>
+(Linux,MacOS) ou <code>my.ini</code> (Windows), exécutez la commande
+<code>mysql --help --verbose</code>. L’information est généralement
+affichée au début de la sortie. Sur Linux, utilisez <code>sudo</code> en
+début de commande pour obtenir les privilèges de superutilisateur.</p>
 <p><br><br></p>
-<p>Vous pouvez vérifier l’encodage du serveur MySQL par défaut avec la commande SQL <code>SHOW VARIABLES LIKE 'character_set_%';</code>. Cette requête renvoie les variables liées à l’encodage dans MySQL, y compris la variable <em>character_set_server</em> qui indique l’encodage du serveur MySQL. Les dernières versions de MySQL utilisent par défaut <strong>utf8mb4</strong> qui convient parfaitement.</p>
+<p>Vous pouvez vérifier l’encodage du serveur MySQL par défaut avec la
+commande SQL <code>SHOW VARIABLES LIKE 'character_set_%';</code>. Cette
+requête renvoie les variables liées à l’encodage dans MySQL, y compris
+la variable <em>character_set_server</em> qui indique l’encodage du
+serveur MySQL. Les dernières versions de MySQL utilisent par défaut
+<strong>utf8mb4</strong> qui convient parfaitement.</p>
 <!-- 
 
 
@@ -190,9 +342,15 @@ https://docs.microsoft.com/fr-fr/power-bi/guidance/relationships-many-to-many
 [documentation](https://support.cpanel.net/hc/en-us/articles/360050089274-How-to-change-the-SQL-mode-in-MySQL-or-MariaDB){target=_blanck}
 
 -->
-<h1 id="annexe-2-test-de-lapplication">annexe 2 : test de l’application</h1>
+<h1 id="annexe-2-test-de-lapplication">annexe 2 : test de
+l’application</h1>
 <p><span class="modif">script de test du projet :</span> <br></p>
-<p><span class="modif">Un premier script extrait les archives <code>.tar.gz</code> et <code>.zip</code>, ce script recherche un dossier et copie un autre script <code>test_projet.sh</code> dans le dossier. Le script <code>test_projet.sh</code> se trouve au même niveau que le fichier app.py (une erreur est signalée dans le cas contraire).</span></p>
+<p><span class="modif">Un premier script extrait les archives
+<code>.tar.gz</code> et <code>.zip</code>, ce script recherche un
+dossier et copie un autre script <code>test_projet.sh</code> dans le
+dossier. Le script <code>test_projet.sh</code> se trouve au même niveau
+que le fichier app.py (une erreur est signalée dans le cas
+contraire).</span></p>
 <p><br></p>
 <p>script de test <code>test_projet.sh</code>:</p>
 <pre><code>#!/bin/bash

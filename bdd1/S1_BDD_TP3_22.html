@@ -26,7 +26,8 @@ TP3 : créer une table, modifier la structure d’une table
 <ul>
 <li>Rappel : création d’une table</li>
 <li>Présentation de l’attribut <strong>AUTO_INCREMENT</strong></li>
-<li><strong>Modifier la structure d’une table</strong> : la renommer, ajouter un champ à une position précise dans la table</li>
+<li><strong>Modifier la structure d’une table</strong> : la renommer,
+ajouter un champ à une position précise dans la table</li>
 </ul>
 <h1 id="compteur-auto_increment">compteur : auto_increment</h1>
 <p><strong>type “Numérique” : entier</strong></p>
@@ -54,34 +55,77 @@ TP3 : créer une table, modifier la structure d’une table
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><a href="https://www.w3schools.com/sql/sql_autoincrement.asp" target="_blanck">AUTOINCREMENT</a></td>
-<td style="text-align: center;"><a href="https://www.w3schools.com/sql/sql_autoincrement.asp" target="_blanck">int AUTO_INCREMENT</a></td>
-<td style="text-align: center;"><a href="https://livesql.oracle.com/apex/livesql/file/content_GL1PAE2CYMKDK32A42NZIGJVR.html" target="_blanck">number(10) + trigger</a></td>
+<td style="text-align: center;"><a
+href="https://www.w3schools.com/sql/sql_autoincrement.asp"
+target="_blanck">AUTOINCREMENT</a></td>
+<td style="text-align: center;"><a
+href="https://www.w3schools.com/sql/sql_autoincrement.asp"
+target="_blanck">int AUTO_INCREMENT</a></td>
+<td style="text-align: center;"><a
+href="https://livesql.oracle.com/apex/livesql/file/content_GL1PAE2CYMKDK32A42NZIGJVR.html"
+target="_blanck">number(10) + trigger</a></td>
 <td style="text-align: center;">serial</td>
-<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15" target="_blanck">identity(seed,increment)</a></td>
-<td><a href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15" target="_blanck">int AUTOINCREMENT</a></td>
+<td><a
+href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15"
+target="_blanck">identity(seed,increment)</a></td>
+<td><a
+href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15"
+target="_blanck">int AUTOINCREMENT</a></td>
 </tr>
 </tbody>
 </table>
-<p><a href="https://mariadb.com/kb/en/auto_increment/" target="_blanck">documentation mariadb</a></p>
+<p><a href="https://mariadb.com/kb/en/auto_increment/"
+target="_blanck">documentation mariadb</a></p>
 <p><br></p>
-<p><a href="https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite" target="_blanck">sur SQLite c’est un peu spécial</a></p>
+<p><a
+href="https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite"
+target="_blanck">sur SQLite c’est un peu spécial</a></p>
 <h1 id="création-de-la-table">Création de la table</h1>
 <figure>
-<img src="img/S1_bdd_tp2_image1.png" alt="" /><figcaption>structure de la table (MLD)</figcaption>
+<img src="img/S1_bdd_tp2_image1.png"
+alt="structure de la table (MLD)" />
+<figcaption aria-hidden="true">structure de la table (MLD)</figcaption>
 </figure>
-<h2 id="créer-une-table-etudiant-avec-comme-champs">Créer une table etudiant avec comme champs :</h2>
+<h2 id="créer-une-table-etudiant-avec-comme-champs">Créer une table
+etudiant avec comme champs :</h2>
 <ul>
-<li><p>un champ <strong>id_etu</strong> de type entier non signé avec un attribut AUTO_INCREMENT pour générer un identifiant unique. Voir l’exemple avec le lien ci dessous : <a href="http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html" target="_blanck">http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html</a></p></li>
-<li><p>un champ <strong>nom</strong> de type <strong>chaîne de caractères variable</strong> de taille 20 caractères maximum.</p></li>
-<li><p>un champ <strong>adresse</strong> de type <strong>TEXT</strong>.</p></li>
-<li><p>un champ <strong>code_postal</strong> de type <strong>entier</strong> ou de type <strong>VARCHAR(5)</strong>. Le code postal doit toujours être affiché sur 5 caractères (digits) au maximum.</p></li>
-<li><p>un champ <strong>telephone</strong> de type <strong>Numérique(10)</strong> ou de type <strong>VARCHAR(10)</strong>. Le numéro de téléphone doit toujours être affiché dans sa totalité (sur 10 digits), c’est à dire sur 10 caractères y compris le premier 0.</p></li>
-<li><p>un champ <strong>date_naissance</strong> de type <strong>DATE</strong>.</p></li>
+<li><p>un champ <strong>id_etu</strong> de type entier non signé avec un
+attribut AUTO_INCREMENT pour générer un identifiant unique. Voir
+l’exemple avec le lien ci dessous : <a
+href="http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html"
+target="_blanck">http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html</a></p></li>
+<li><p>un champ <strong>nom</strong> de type <strong>chaîne de
+caractères variable</strong> de taille 20 caractères maximum.</p></li>
+<li><p>un champ <strong>adresse</strong> de type
+<strong>TEXT</strong>.</p></li>
+<li><p>un champ <strong>code_postal</strong> de type
+<strong>entier</strong> ou de type <strong>VARCHAR(5)</strong>. Le code
+postal doit toujours être affiché sur 5 caractères (digits) au
+maximum.</p></li>
+<li><p>un champ <strong>telephone</strong> de type
+<strong>Numérique(10)</strong> ou de type <strong>VARCHAR(10)</strong>.
+Le numéro de téléphone doit toujours être affiché dans sa totalité (sur
+10 digits), c’est à dire sur 10 caractères y compris le premier
+0.</p></li>
+<li><p>un champ <strong>date_naissance</strong> de type
+<strong>DATE</strong>.</p></li>
 </ul>
-<p><br> Remarque : <strong>Digit</strong> : Symbole utilisé pour représenter un des entiers non négatifs plus petit que la base, dans un système de numération. Dans notre cas en base 10 de 0 à 9 <br></p>
-<h2 id="insérer-4-ou-5-enregistrements">Insérer 4 ou 5 enregistrements</h2>
-<p>Remarque : dans la documentation de MySql, il est écrit qu’il ne faut pas assigner de valeur à un champ qui a comme attribut <strong>AUTO_INCREMENT</strong>, <a href="https://dev.mysql.com/doc/refman/8.0/en/example-auto-increment.html" target="_blanck">MySQL assigne automatiquement une séquence de nombres</a>. Il est possible d’assigner une valeur NULL qui est transformée automatiquement en un nombre de la séquence gérée par MySQL. Dans d’autre SGBDR comme <a href="https://blog.developpez.com/sqlpro/p6135/ms-sql-server/auto_increment_identity_avec_sql_server" target="_blanck">sql server</a>, ça ne fonctionne pas exactement de la même manière.</p>
+<p><br> Remarque : <strong>Digit</strong> : Symbole utilisé pour
+représenter un des entiers non négatifs plus petit que la base, dans un
+système de numération. Dans notre cas en base 10 de 0 à 9 <br></p>
+<h2 id="insérer-4-ou-5-enregistrements">Insérer 4 ou 5
+enregistrements</h2>
+<p>Remarque : dans la documentation de MySql, il est écrit qu’il ne faut
+pas assigner de valeur à un champ qui a comme attribut
+<strong>AUTO_INCREMENT</strong>, <a
+href="https://dev.mysql.com/doc/refman/8.0/en/example-auto-increment.html"
+target="_blanck">MySQL assigne automatiquement une séquence de
+nombres</a>. Il est possible d’assigner une valeur NULL qui est
+transformée automatiquement en un nombre de la séquence gérée par MySQL.
+Dans d’autre SGBDR comme <a
+href="https://blog.developpez.com/sqlpro/p6135/ms-sql-server/auto_increment_identity_avec_sql_server"
+target="_blanck">sql server</a>, ça ne fonctionne pas exactement de la
+même manière.</p>
 <p><br><br></p>
 <p>Voici 3 exemples :</p>
 <p><br></p>
@@ -92,37 +136,59 @@ TP3 : créer une table, modifier la structure d’une table
 <li>afficher la structure de la table</li>
 <li>afficher la commande pour créer la table</li>
 </ul>
-<h1 id="opération-sur-la-structure-dune-table">opération sur la structure d’une table</h1>
+<h1 id="opération-sur-la-structure-dune-table">opération sur la
+structure d’une table</h1>
 <h2 id="renommer-une-table">Renommer une table :</h2>
 <p>Ajouter un « s » au nom de la table</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image3.png" /></p>
 <p><br></p>
-<h2 id="ajouter-un-champ-en-fin-liste-dans-la-table">Ajouter un champ en fin liste dans la table</h2>
-<p>Ajouter un champde nom <strong>groupe</strong> et de type « chaîne de 20 caractères » (le champ est par défaut en dernière position). Afficher la structure de la table. Afficher le contenu de la table (les enregistrements).</p>
+<h2 id="ajouter-un-champ-en-fin-liste-dans-la-table">Ajouter un champ en
+fin liste dans la table</h2>
+<p>Ajouter un champde nom <strong>groupe</strong> et de type « chaîne de
+20 caractères » (le champ est par défaut en dernière position). Afficher
+la structure de la table. Afficher le contenu de la table (les
+enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image4.png" /></p>
 <p><br></p>
-<h2 id="ajouter-un-champ-à-une-position-précise-dans-la-table">Ajouter un champ à une position précise dans la table</h2>
-<p>Ajouter un champ en troisième position de nom <strong>prenom</strong> et de type « chaîne de 20 caractères ». Afficher la structure de la table. Afficher le contenu de la table (les enregistrements).</p>
+<h2 id="ajouter-un-champ-à-une-position-précise-dans-la-table">Ajouter
+un champ à une position précise dans la table</h2>
+<p>Ajouter un champ en troisième position de nom <strong>prenom</strong>
+et de type « chaîne de 20 caractères ». Afficher la structure de la
+table. Afficher le contenu de la table (les enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image5.png" /></p>
 <p><br></p>
-<h2 id="supprimer-un-champ-dans-la-table">Supprimer un champ dans la table</h2>
-<p>Supprimer le champ <strong>groupe</strong>. Afficher la structure de la table. Afficher le contenu de la table (les enregistrements).</p>
+<h2 id="supprimer-un-champ-dans-la-table">Supprimer un champ dans la
+table</h2>
+<p>Supprimer le champ <strong>groupe</strong>. Afficher la structure de
+la table. Afficher le contenu de la table (les enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image6.png" /></p>
 <p><br></p>
-<h2 id="modifier-un-champ-dans-la-table">Modifier un champ dans la table</h2>
-<p>Modifier le champ <strong>prenom</strong>, renommer le <strong>prenoms</strong> avec un nouveau type . Afficher la structure de la table. Afficher le contenu de la table (les enregistrements).</p>
+<h2 id="modifier-un-champ-dans-la-table">Modifier un champ dans la
+table</h2>
+<p>Modifier le champ <strong>prenom</strong>, renommer le
+<strong>prenoms</strong> avec un nouveau type . Afficher la structure de
+la table. Afficher le contenu de la table (les enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image7.png" /></p>
 <p><br></p>
-<p>exercice : sur le même principe, changer le type numéro de téléphone par une chaîne de caractères fixe sur 13 caractères</p>
-<p><br> conclusion : (<a href="https://www.developpez.net/forums/d1008389/bases-donnees/ms-sql-server/developpement/contrainte-telephone-varchar/" target="_blanck">la solution n’est pas évidente pour les numéros de téléphone</a>)</p>
-<p><br> Pour les étudiants les plus rapides, essayer d’ajouter une contrainte pour que le numéro de téléphone ne soit composé que de caractères de “0” à “9”, <a href="https://stackoverflow.com/questions/7522026/how-do-i-add-a-custom-check-constraint-on-a-mysql-table" target="_blanck">exemple</a></p>
+<p>exercice : sur le même principe, changer le type numéro de téléphone
+par une chaîne de caractères fixe sur 13 caractères</p>
+<p><br> conclusion : (<a
+href="https://www.developpez.net/forums/d1008389/bases-donnees/ms-sql-server/developpement/contrainte-telephone-varchar/"
+target="_blanck">la solution n’est pas évidente pour les numéros de
+téléphone</a>)</p>
+<p><br> Pour les étudiants les plus rapides, essayer d’ajouter une
+contrainte pour que le numéro de téléphone ne soit composé que de
+caractères de “0” à “9”, <a
+href="https://stackoverflow.com/questions/7522026/how-do-i-add-a-custom-check-constraint-on-a-mysql-table"
+target="_blanck">exemple</a></p>
 <h2 id="supprimer-une-table">Supprimer une table</h2>
-<p>Supprimer la table <strong>etudiant</strong> et la table <strong>etudiants</strong> si elles existent</p>
+<p>Supprimer la table <strong>etudiant</strong> et la table
+<strong>etudiants</strong> si elles existent</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image8.png" /></p>
 <h2 id="premier-essai-avec-looping">premier essai avec looping</h2>
