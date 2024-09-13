@@ -68,9 +68,8 @@ target="_blanck">number(10) + trigger</a></td>
 <td><a
 href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15"
 target="_blanck">identity(seed,increment)</a></td>
-<td><a
-href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15"
-target="_blanck">int AUTOINCREMENT</a></td>
+<td><a href="https://www.sqlite.org/autoinc.html"
+target="_blanck">INTEGER PRIMARY KEY is an alias for the ROWID</a></td>
 </tr>
 </tbody>
 </table>
@@ -80,13 +79,16 @@ target="_blanck">documentation mariadb</a></p>
 <p><a
 href="https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite"
 target="_blanck">sur SQLite c’est un peu spécial</a></p>
+<ul>
+<li>Créez un fichier <strong>tp3.sql</strong></li>
+</ul>
 <h1 id="création-de-la-table">Création de la table</h1>
 <figure>
 <img src="img/S1_bdd_tp2_image1.png"
 alt="structure de la table (MLD)" />
 <figcaption aria-hidden="true">structure de la table (MLD)</figcaption>
 </figure>
-<h2 id="créer-une-table-etudiant-avec-comme-champs">Créer une table
+<h2 id="créez-une-table-etudiant-avec-comme-champs">Créez une table
 etudiant avec comme champs :</h2>
 <ul>
 <li><p>un champ <strong>id_etu</strong> de type entier non signé avec un
