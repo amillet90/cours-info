@@ -20,7 +20,64 @@
 <body>
 <h1 id="installation-à-liut-de-datagrip">Installation à l’IUT de
 datagrip</h1>
-<h2 id="créer-la-raccourci">créer la raccourci :</h2>
+<h2 id="créer-un-raccourci-sur-lapplication">créer un raccourci sur
+l’application :</h2>
+<br>
+<details>
+<summary>
+🤖 Script pour créer des lanceurs sur les machines de l’IUT
+</summary>
+<p>
+<p>recopier le script ci-dessous dans un terminal</p>
+<pre><code>#!/bin/bash
+
+
+echo &quot;&quot;  &gt;&gt; ~/.bashrc
+echo &quot;alias looping=&#39;wine /opt/looping-mcd/Looping.exe&#39;&quot; &gt;&gt; ~/.bashrc
+echo &quot;alias datagrip=&#39;/opt/datagrip/bin/datagrip.sh&#39;&quot; &gt;&gt; ~/.bashrc
+echo &quot;alias pycharm=&#39;/opt/pycharm/bin/pycharm.sh&#39;&quot; &gt;&gt; ~/.bashrc 
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/datagrip.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Icon=/opt/DataGrip/bin/datagrip.png&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Exec=/opt/DataGrip/bin/datagrip.sh&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+echo &quot;Name=datagrip&quot; &gt;&gt; /home/$USER/Bureau/datagrip.desktop
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/pycharm.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Icon=/opt/pycharm/bin/pycharm.png&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Exec=/opt/pycharm/bin/pycharm.sh&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+echo &quot;Name=pycharm&quot; &gt;&gt; /home/$USER/Bureau/pycharm.desktop
+
+
+echo &quot;#!/usr/bin/env xdg-open&quot; &gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;[Desktop Entry]&quot; &gt;&gt; &quot;/home/$USER/Bureau/looping.desktop&quot;
+echo &quot;Version=1.0&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Type=Application&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Terminal=false&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Icon=/opt/looping-mcd/looping.png&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Exec=wine /opt/looping-mcd/Looping.exe&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+echo &quot;Name=Looping&quot; &gt;&gt; /home/$USER/Bureau/looping.desktop
+</code></pre>
+<p>Si le script ne fonctionne pas, recopiez le script dans un éditeur
+texte (VsCode) et remplacer partout (Ctrl H) <code>$USER</code> par
+votre login.</p>
+</p>
+</details>
+<br>
+<details>
+<summary>
+🤖 Ajouter un lanceur dans le panneau
+</summary>
+<p>
 <figure>
 <img src="img_jetbrains_iut/install_datagrip_iut_1.png"
 style="width:10cm" alt="ajouter au tableau de bord" />
@@ -38,27 +95,31 @@ style="width:17cm" alt="propriété du lanceur(raccourci)" />
 lanceur(raccourci)</figcaption>
 </figure>
 <p>Commande : <code>/opt/DataGrip/bin/datagrip.sh</code></p>
+</p>
+</details>
 <h2 id="configuration-de-datagrip">configuration de datagrip</h2>
 <div class="cours gros">
 <ul>
-<li>à l’IUT, utiliser <strong>la licence serveur (activer)</strong></li>
-<li>Sur votre machine personnelle, créer un compte sur le <a
-href="https://account.jetbrains.com/login" target="_blanck">site
-<strong>jetbrains</strong></a>. Il faut <a
-href="https://www.jetbrains.com/shop/eform/students"
-target="_blanck">compléter un formulaire</a> avec vos références
-d’étudiant.</li>
+<li>à l’<strong>IUT</strong>, utiliser <strong>la licence serveur
+(activer)</strong></li>
 </ul>
-<p>Bien faire ces opérations dans l’ordre sur vos machines :</p>
+<p><br></p>
+<ul>
+<li>Sur votre <strong>machine personnelle</strong> (c’est la même
+licence que <strong>pycharm</strong> ou <strong>idea</strong>), bien
+faire ces opérations dans l’ordre :</li>
+</ul>
 <ol type="1">
 <li>Créer un compte sur le <a href="https://account.jetbrains.com/login"
-target="_blanck">site <strong>jetbrains</strong></a> avec votre email de
-l’IUT</li>
+target="_blanck">site <strong>jetbrains</strong></a> avec <strong>votre
+email de l’IUT</strong> comme login</li>
 <li>Valider votre compte en cliquant sur le lien dans votre boite
-mail</li>
+mail.</li>
 <li><a href="https://www.jetbrains.com/shop/eform/students"
-target="_blanck">compléter un formulaire</a> avec vos références
-d’étudiant</li>
+target="_blanck">Compléter un formulaire</a> avec vos références
+d’étudiant.</li>
+<li><span class="modif">Activer l’autorisation d’utiliser des licences
+en cliquant sur le lien dans votre boite mail.</span></li>
 </ol>
 <figure>
 <img src="img_jetbrains_iut/install_datagrip_iut_3.png"
