@@ -233,17 +233,19 @@ target="_blank">code branche 1</a></p>
 <li>remplacer la ligne qui affiche chaque étudiant avec le code
 ci-dessous</li>
 </ol>
-<pre><code>&lt;table&gt;
+<pre><code>&lt;table class=&quot;table&quot;&gt;
+    &lt;thead class=&quot;thead-dark&quot;&gt;
     &lt;tr&gt;
         &lt;th&gt;id&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;groupe&lt;/th&gt;
     &lt;/tr&gt;
     {% for etudiant in etudiants %}
-        &lt;tr&gt;
-            {# commentaires : autre notation possible, on affiche un element du dictionnaire               
+    &lt;/thead&gt;
+    &lt;tr&gt;
+        {# commentaires : autre notation possible, on affiche un element du dictionnaire               
                 &lt;td&gt;{{ etudiant[&#39;id&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;nom&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;groupe&#39;] }}&lt;/td&gt;
-            #}
-                &lt;td&gt;{{ etudiant.id }}&lt;/td&gt;&lt;td&gt;{{ etudiant.nom }}&lt;/td&gt;&lt;td&gt;{{ etudiant.groupe }}&lt;/td&gt;
-        &lt;/tr&gt;
+        #}
+        &lt;td&gt;{{ etudiant.id }}&lt;/td&gt;&lt;td&gt;{{ etudiant.nom }}&lt;/td&gt;&lt;td&gt;{{ etudiant.groupe }}&lt;/td&gt;
+    &lt;/tr&gt;
     {% endfor %}
 &lt;/table&gt;
 </code></pre>
@@ -290,8 +292,8 @@ tableau</p></li>
 
 
 &lt;td&gt;
-    &lt;a href=&quot;/etudiant/edit?id={{ etudiant.id }}&quot;&gt;editer&lt;/a&gt;&amp;nbsp;
-    &lt;a href=&quot;/etudiant/delete?id={{ etudiant.id }}&quot; &gt;supprimer&lt;/a&gt;
+    &lt;a href=&quot;/etudiant/edit?id={{ etudiant.id }}&quot;   class=&quot;btn btn-success&quot;&gt;editer&lt;/a&gt;&amp;nbsp;
+    &lt;a href=&quot;/etudiant/delete?id={{ etudiant.id }}&quot;   class=&quot;btn btn-success&quot;&gt;supprimer&lt;/a&gt;
 &lt;/td&gt;
 
 </code></pre>
