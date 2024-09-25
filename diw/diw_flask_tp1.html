@@ -97,28 +97,30 @@ target="_blank">lien sur son code source</a></p>
 <ol type="1">
 <li>modifier la route</li>
 </ol>
-<pre><code>@app.route(&#39;/&#39;)
-@app.route(&#39;/hello&#39;)
-def hello_world():  # put application&#39;s code here
-    return &#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</code></pre>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</span></span></code></pre></div>
 <ol start="2" type="1">
 <li>ajouter une autre route qui appelle un template</li>
 </ol>
-<pre><code>@app.route(&#39;/heure&#39;)
-def heure():
-    date_heure = datetime.datetime.now()
-    h = date_heure.hour
-    m = date_heure.minute
-    s = date_heure.second
-    return render_template(&#39;index_demo.html&#39;, h=h,min=m,sec=s )
-</code></pre>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/heure&#39;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heure():</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    date_heure <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> date_heure.hour</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> date_heure.minute</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> date_heure.second</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;index_demo.html&#39;</span>, h<span class="op">=</span>h,<span class="bu">min</span><span class="op">=</span>m,sec<span class="op">=</span>s )</span></code></pre></div>
 <ol start="3" type="1">
 <li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction
 <code>from flask import Flask</code>. Importer plusieurs fonctions dans
 la bibliothèque <code>flask</code>.</li>
 </ol>
-<pre><code>from flask import Flask, request, render_template, redirect, url_for, abort  # application WSGI
-import datetime</code></pre>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, url_for, abort  <span class="co"># application WSGI</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span></code></pre></div>
 <ol start="4" type="1">
 <li>créer le <a href="https://fr.wikipedia.org/wiki/Template"
 target="_blank"><strong>template</strong></a> (fichier)
@@ -129,10 +131,11 @@ target="_blank"><strong>template</strong></a> (fichier)
 <li>utiliser le snippet <code>html:5</code> puis dans la balise
 <code>&lt;body&gt;</code></li>
 </ol>
-<pre><code>    &lt;p&gt; heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}&lt;/p&gt;
-
-    &lt;br&gt;
-    &lt;a href=&quot;/&quot;&gt;home&lt;/a&gt;</code></pre>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;br&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/&quot;</span><span class="kw">&gt;</span>home<span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p><strong>Il faut corriger le nom de la variable : remplacer m par
 min</strong></p>
 <div class="cours">
@@ -178,13 +181,14 @@ target="_blank">vidéo (niveau NSI) pour bien démarrer flask dont est
 inspiré cet exercice</a></strong></p>
 </div>
 <p>nous allons utiliser un tableau de dictionnaires de données</p>
-<pre><code>liste_etudiants = [
-    {&#39;id&#39;:1,&#39;nom&#39;:&#39;tom&#39;, &#39;groupe&#39;:&#39;A1&#39;},
-    {&#39;id&#39;:2,&#39;nom&#39;:&#39;enzo&#39;, &#39;groupe&#39;:&#39;A1&#39;},
-    {&#39;id&#39;:3,&#39;nom&#39;:&#39;laurence&#39;, &#39;groupe&#39;:&#39;A2&#39;},
-    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe&#39;:&#39;A2&#39;},
-    {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe&#39;:&#39;B1&#39;}
-]</code></pre>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">3</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">4</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ol start="6" type="1">
 <li><p>ajouter ce tableau au début du fichier d’application flask après
 avoir importé les bibliothèques</p></li>
@@ -199,11 +203,11 @@ la liste <code>liste_etudiants</code> avec comme nom
 <li><p>afficher la liste des étudiants dans le fichier
 <code>templates/etudiant/show_etudiant.html</code></p></li>
 </ol>
-<pre><code>&lt;h1&gt;listes des étudiants&lt;/h1&gt;
-
-{{ etudiants }}
-
-</code></pre>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>listes des étudiants<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>{{ etudiants }}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <ol start="11" type="1">
 <li>ajouter un lien sur la page d’accueil dans le fichier
 <code>templates/index_demo.html</code></li>
@@ -216,14 +220,14 @@ la liste <code>liste_etudiants</code> avec comme nom
 <li>afficher la liste des étudiants dans un tableau ; il faut utiliser
 une boucle</li>
 </ol>
-<pre><code>&lt;table&gt;
-    {% for etudiant in etudiants %}
-         &lt;tr&gt;
-                &lt;td&gt;{{ etudiant }}&lt;/td&gt;
-           &lt;/tr&gt;
-        {% endfor %}
-&lt;/table&gt;
-</code></pre>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    {% for etudiant in etudiants %}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;td&gt;</span>{{ etudiant }}<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        {% endfor %}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <div class="code">
 <p><a
 href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1"
@@ -233,22 +237,22 @@ target="_blank">code branche 1</a></p>
 <li>remplacer la ligne qui affiche chaque étudiant avec le code
 ci-dessous</li>
 </ol>
-<pre><code>&lt;table class=&quot;table&quot;&gt;
-    &lt;thead class=&quot;thead-dark&quot;&gt;
-    &lt;tr&gt;
-        &lt;th&gt;id&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;groupe&lt;/th&gt;
-    &lt;/tr&gt;
-    {% for etudiant in etudiants %}
-    &lt;/thead&gt;
-    &lt;tr&gt;
-        {# commentaires : autre notation possible, on affiche un element du dictionnaire               
-                &lt;td&gt;{{ etudiant[&#39;id&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;nom&#39;] }}&lt;/td&gt;&lt;td&gt;{{ etudiant[&#39;groupe&#39;] }}&lt;/td&gt;
-        #}
-        &lt;td&gt;{{ etudiant.id }}&lt;/td&gt;&lt;td&gt;{{ etudiant.nom }}&lt;/td&gt;&lt;td&gt;{{ etudiant.groupe }}&lt;/td&gt;
-    &lt;/tr&gt;
-    {% endfor %}
-&lt;/table&gt;
-</code></pre>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;table&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;thead</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;thead-dark&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>id<span class="kw">&lt;/th&gt;&lt;th&gt;</span>nom<span class="kw">&lt;/th&gt;&lt;th&gt;</span>groupe<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    {% for etudiant in etudiants %}</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/thead&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        {# commentaires : autre notation possible, on affiche un element du dictionnaire               </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;td&gt;</span>{{ etudiant[&#39;id&#39;] }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant[&#39;nom&#39;] }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant[&#39;groupe&#39;] }}<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        #}</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe }}<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ol start="14" type="1">
 <li><p>tester avec un tableau de dictionnaire d’étudiant vide dans le
 fichier <code>app.py</code></p></li>
@@ -256,12 +260,12 @@ fichier <code>app.py</code></p></li>
 intégrant le code ci-dessous dans le <em>template</em>
 <code>show_etudiant.html</code></p></li>
 </ol>
-<pre><code>    {% if etudiants | length &gt;= 1 %}
-       ...
-    {% else %}
-           &lt;h2&gt; la liste des étudiants est vide&lt;/h2&gt; 
-    {% endif %}
-</code></pre>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    {% if etudiants | length &gt;= 1 %}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       ...</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    {% else %}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;h2&gt;</span> la liste des étudiants est vide<span class="kw">&lt;/h2&gt;</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    {% endif %}</span></code></pre></div>
 <p>autre exemple : <a
 href="https://info-mounier.fr/terminale_nsi/base_de_donnees/flask_sqlite/flask-sqlite.php"
 target="_blank">cours NSI</a></p>
@@ -285,18 +289,18 @@ l’étudiant.</p></li>
 <li><p>ajouter un lien pour ajouter un étudiant avant l’affichage du
 tableau</p></li>
 </ol>
-<pre><code>&lt;a href=&quot;/etudiant/add&quot; &gt;ajouter un étudiant&lt;/a&gt;
-
-
-....
-
-
-&lt;td&gt;
-    &lt;a href=&quot;/etudiant/edit?id={{ etudiant.id }}&quot;   class=&quot;btn btn-success&quot;&gt;editer&lt;/a&gt;&amp;nbsp;
-    &lt;a href=&quot;/etudiant/delete?id={{ etudiant.id }}&quot;   class=&quot;btn btn-success&quot;&gt;supprimer&lt;/a&gt;
-&lt;/td&gt;
-
-</code></pre>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/add&quot;</span> <span class="kw">&gt;</span>ajouter un étudiant<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>....</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;td&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/edit?id={{ etudiant.id }}&quot;</span>   <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="kw">&gt;</span>editer<span class="kw">&lt;/a&gt;</span><span class="dv">&amp;nbsp;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/delete?id={{ etudiant.id }}&quot;</span>   <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="kw">&gt;</span>supprimer<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/td&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <h2 id="passage-de-paramètres">passage de paramètres</h2>
 <ol start="18" type="1">
 <li>créer 3 routes <code>/etudiant/add</code> ,
@@ -305,19 +309,20 @@ fichier de l’application flask associées à 3 fonctions
 <code>add_etudiant</code> , <code>delete_etudiant</code> et
 <code>edit_etudiant</code></li>
 </ol>
-<pre><code>@app.route(&#39;/etudiant/add&#39;)
-def add_etudiant():
-    print(&#39;&#39;&#39;affichage du formulaire pour saisir un étudiant&#39;&#39;&#39;)
-    return render_template(&#39;etudiant/add_etudiant.html&#39;)
-
-@app.route(&#39;/etudiant/delete&#39;)
-def delete_etudiant():
-    print(&#39;&#39;&#39;suppression d&#39;un étudiant&#39;&#39;&#39;)
-
-@app.route(&#39;/etudiant/edit&#39;)
-def edit_etudiant():
-    print(&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;)
-    return render_template(&#39;etudiant/edit_etudiant.html&#39;)</code></pre>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/add&#39;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_etudiant():</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;affichage du formulaire pour saisir un étudiant&#39;&#39;&#39;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/add_etudiant.html&#39;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/delete&#39;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> delete_etudiant():</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;suppression d&#39;un étudiant&#39;&#39;&#39;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/edit&#39;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> edit_etudiant():</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>)</span></code></pre></div>
 <h2 id="utilisation-de-paramètres-issus-de-liens">utilisation de
 paramètres issus de liens</h2>
 <p>voici le code HTML généré par ChatGPT pour saisir les informations
@@ -326,41 +331,41 @@ d’un étudiant :</p>
 <p>(code généré en saisissant le prompt : <em>donner le code HTML d’un
 formulaire en utilisant le framework bootstrap 5 pour saisir les
 informations du tableau python :</em> )</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;fr&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;Formulaire d&#39;Étudiant&lt;/title&gt;
-    &lt;!-- Inclure Bootstrap 5 CSS --&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css&quot;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class=&quot;container mt-4&quot;&gt;
-        &lt;h1&gt;Formulaire d&#39;Étudiant&lt;/h1&gt;
-        &lt;form&gt;
-            &lt;!-- Champs pour saisir les informations de l&#39;étudiant --&gt;
-            &lt;div class=&quot;mb-3&quot;&gt;
-                &lt;label for=&quot;nom&quot; class=&quot;form-label&quot;&gt;Nom de l&#39;étudiant :&lt;/label&gt;
-                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;nom&quot; placeholder=&quot;Entrez le nom de l&#39;étudiant&quot; required&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;mb-3&quot;&gt;
-                &lt;label for=&quot;groupe&quot; class=&quot;form-label&quot;&gt;Groupe de l&#39;étudiant :&lt;/label&gt;
-                &lt;select class=&quot;form-select&quot; id=&quot;groupe&quot; required&gt;
-                    &lt;option value=&quot;A1&quot;&gt;A1&lt;/option&gt;
-                    &lt;option value=&quot;A2&quot;&gt;A2&lt;/option&gt;
-                    &lt;option value=&quot;B1&quot;&gt;B1&lt;/option&gt;
-                &lt;/select&gt;
-            &lt;/div&gt;
-            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Enregistrer&lt;/button&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) --&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Formulaire d&#39;Étudiant<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Inclure Bootstrap 5 CSS --&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;container mt-4&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;h1&gt;</span>Formulaire d&#39;Étudiant<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;form&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            <span class="co">&lt;!-- Champs pour saisir les informations de l&#39;étudiant --&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Nom de l&#39;étudiant :<span class="kw">&lt;/label&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-control&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;Entrez le nom de l&#39;étudiant&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Groupe de l&#39;étudiant :<span class="kw">&lt;/label&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;select</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-select&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A1&quot;</span><span class="kw">&gt;</span>A1<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A2&quot;</span><span class="kw">&gt;</span>A2<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;B1&quot;</span><span class="kw">&gt;</span>B1<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;/select&gt;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Enregistrer<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) --&gt;</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ol start="19" type="1">
 <li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et
 <code>etudiant/edit_etudiant.html</code></p></li>
@@ -391,9 +396,10 @@ redirection sur la route <code>show_etudiants</code> avec l’instruction
     #print(request.args['id'])
     print(request.args.get('id',0))
 -->
-<pre><code>    id=request.args.get(&#39;id&#39;)
-    message=&#39;paramètre dans l URL : &#39;+id
-    print(message)</code></pre>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">&#39;paramètre dans l URL : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(message)</span></code></pre></div>
 <div class="cours">
 <p><span class="modif">* Pour récupérer les paramètres dans l’URL d’une
 page HTML (méthode <code>GET</code> ), utiliser la méthode de l’objet
@@ -404,12 +410,13 @@ du paramètre</span></p>
 <li>pour la fonction <code>edit_etudiant</code>, ajouter le code
 ci-dessous puis passer</li>
 </ol>
-<pre><code>    id=request.args.get(&#39;id&#39;)
-    if id != None and id.isnumeric():
-        indice = int(id)
-        etudiant=liste_etudiants[indice-1]
-    else:
-        etudiant=[]</code></pre>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">id</span> <span class="op">!=</span> <span class="va">None</span> <span class="kw">and</span> <span class="bu">id</span>.isnumeric():</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        indice <span class="op">=</span> <span class="bu">int</span>(<span class="bu">id</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>liste_etudiants[indice<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>[]</span></code></pre></div>
 <ol start="25" type="1">
 <li>Passer en paramètre l’étudiant sélectionné au template
 <code>edit_etudiant.html</code> . Afficher dans chaque champ
@@ -430,16 +437,16 @@ paramètres issus d’un formulaire</h2>
 associées à 2 fonctions <code>valid_add_etudiant</code> et
 <code>valid_edit_etudiant</code></li>
 </ol>
-<pre><code>@app.route(&#39;/etudiant/add&#39;, methods=[&#39;POST&#39;])
-def valid_add_etudiant():
-    print(&#39;&#39;&#39;ajout de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
-    return redirect(&#39;/etudiant/show&#39;)
-
-@app.route(&#39;/etudiant/edit&#39;, methods=[&#39;POST&#39;])
-def valid_edit_etudiant():
-    print(&#39;&#39;&#39;modification de l&#39;étudiant dans le tableau&#39;&#39;&#39;)
-    return redirect(&#39;/etudiant/show&#39;)
-</code></pre>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/add&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;POST&#39;</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_add_etudiant():</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;ajout de l&#39;étudiant dans le tableau&#39;&#39;&#39;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/etudiant/show&#39;</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/edit&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;POST&#39;</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_edit_etudiant():</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;modification de l&#39;étudiant dans le tableau&#39;&#39;&#39;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/etudiant/show&#39;</span>)</span></code></pre></div>
 <ol start="27" type="1">
 <li><p>ajouter dans les balises <code>&lt;form&gt;</code> des 2
 formulaires des templates les attributs
@@ -459,10 +466,11 @@ paramètres reçu de chaque formulaire
 <!--
 nom = request.form['nom']
 -->
-<pre><code>nom = request.form.get(&#39;nom&#39;)
-groupe = request.form.get(&#39;groupe&#39;)
-message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe    
-print(message)</code></pre>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe    </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <ol start="31" type="1">
 <li><p>tester et modifier l’erreur : ChatGPT a oublier l’attribut
 <code>name=</code> dans les balises <code>&lt;input&gt;</code> et
@@ -470,11 +478,12 @@ print(message)</code></pre>
 <li><p>créer un message avec les informations pour modifier un
 étudiant</p></li>
 </ol>
-<pre><code>id = request.form.get(&#39;id&#39;)
-nom = request.form.get(&#39;nom&#39;)
-groupe = request.form.get(&#39;groupe&#39;)
-message = &#39;nom :&#39;+nom+&#39; - groupe :&#39;+groupe+&#39; pour l etudiant d identifiant :&#39;+id   
-print(message)</code></pre>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l etudiant d identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <ol start="33" type="1">
 <li>dans le formulaire <span class="modif">pour modifier les données
 d’un étudiant</span> il faut un champ caché avec l’identifiant de
@@ -569,6 +578,100 @@ par l’application. <strong>L’application va passer des paramètres
 <img src="img_flask/S1_ciw_img2_router.png" alt="principe du MVC" />
 <figcaption aria-hidden="true">principe du MVC</figcaption>
 </figure>
+<h1 id="heritage-et-liste-déroulante">heritage et liste déroulante</h1>
+<ol start="35" type="1">
+<li>heritage</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    {% block title %}</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;title&gt;</span>layout<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;shortcut icon&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    {% block stylesheets %}</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        {#<span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span>#}</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>{% include(&#39;_nav.html&#39;) %}</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h2</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;color:blue&quot;</span><span class="kw">&gt;</span>layout.html<span class="kw">&lt;/h2&gt;</span>  </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>{% block javascripts %}</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    {#<span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>#}</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>{% with messages = get_flashed_messages(with_categories=true) %}</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>{% if messages %}</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    {% for categorie, message in messages %}</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">role</span><span class="ot">=</span><span class="st">&quot;alert&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;alert {{ categorie }}&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>           Information : <span class="kw">&lt;strong&gt;</span>{{ message }}<span class="kw">&lt;/strong&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>{% endif %}</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
+<pre><code>flash(message, &#39;alert-warning&#39;)
+flash(message, &#39;alert-success&#39;)</code></pre>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="kw">&gt;</span> etudiants <span class="kw">&lt;/a&gt;</span>  -</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="kw">&gt;</span> groupes <span class="kw">&lt;/a&gt;</span>  -</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>{% block title %}</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>gestion des étudiants<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
+<ol start="36" type="1">
+<li>liste déroulante</li>
+</ol>
+<pre><code>liste_etudiants = [
+    {&#39;id&#39;:1,&#39;nom&#39;:&#39;tom&#39;, &#39;groupe_id&#39;:&#39;1&#39;},
+    {&#39;id&#39;:2,&#39;nom&#39;:&#39;enzo&#39;, &#39;groupe_id&#39;:&#39;1&#39;},
+    {&#39;id&#39;:3,&#39;nom&#39;:&#39;laurence&#39;, &#39;groupe_id&#39;:&#39;2&#39;},
+    {&#39;id&#39;:4,&#39;nom&#39;:&#39;theo&#39;, &#39;groupe_id&#39;:&#39;2&#39;},
+    {&#39;id&#39;:5,&#39;nom&#39;:&#39;mehdi&#39;, &#39;groupe_id&#39;:&#39;3&#39;}
+]
+
+liste_groupes = [
+    {&#39;id&#39;: 1, &#39;libelle&#39;: &#39;A1&#39;},
+    {&#39;id&#39;: 2, &#39;libelle&#39;: &#39;A2&#39;},
+    {&#39;id&#39;: 3, &#39;libelle&#39;: &#39;B1&#39;},
+    {&#39;id&#39;: 4, &#39;libelle&#39;: &#39;B2&#39;}
+]</code></pre>
+<ul>
+<li>ajouter</li>
+</ul>
+<pre><code>&lt;select name=&quot;id_groupe&quot; required&gt;
+    &lt;option value=&quot;&quot;&gt;Sélectionner un groupe&lt;/option&gt;
+    {% for groupe in groupes %}
+         &lt;option value=&quot;{{ groupe.id }}&quot;&gt; {{ groupe.libelle }} &lt;/option&gt;
+    {% endfor %}
+&lt;/select&gt;</code></pre>
+<ul>
+<li>modifier</li>
+</ul>
+<pre><code>&lt;select name=&quot;id_groupe&quot; required&gt;
+    {% for groupe in groupes %}
+    &lt;option value=&quot;{{ groupe.id }}&quot;
+            {% if etudiant.groupe_id is defined and groupe.id ==  etudiant.groupe_id %}selected{% endif %}
+    &gt; {{ groupe.libelle }} &lt;/option&gt;
+    {% endfor %}
+&lt;/select&gt;</code></pre>
 <h1 id="annexe">annexe</h1>
 <p>en cas de problème avec pycharm (blocage) : supprimer le dossier
 <code>.cache/jetbrains/pycharm</code></p>
