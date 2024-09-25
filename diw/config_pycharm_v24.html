@@ -279,16 +279,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)    <span class="co"># instance de classe Flask (en paramètre le nom du module)</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#app.config[&quot;TEMPLATES_AUTO_RELOAD&quot;] = True </span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
 <ul>
 <li>tester l’application : ouvrir un terminal sur pycharm et lancer la
 commande ci-dessous</li>
