@@ -226,21 +226,6 @@ mais c’est bien plus compliqué ! <a
 href="https://www.w3schools.com/sql/func_mysql_date_add.asp"
 target="_blanck">https://www.w3schools.com/sql/func_mysql_date_add.asp</a></p></li>
 </ol>
-<h1 id="modifier-la-table-la-structure">Modifier la table (la
-structure)</h1>
-<ol type="1">
-<li>Ajouter un champ <strong>quantite</strong> qui est un “numérique” (5
-chiffres avant la virgule et 2 après) avant le champ
-<strong>prix</strong> (rechercher dans <a
-href="https://mariadb.com/kb/en/alter-table/" target="_blanck">la
-documentation</a>, mais “before” n’existe pas, il faut donc utiliser <a
-href="https://www.w3schools.com/sql/sql_alter.asp"
-target="_blanck">“after”</a>)</li>
-<li>Supprimer l’attribut (la colonne, le champ)
-<strong>code</strong></li>
-<li>Modifier le prix par un “numérique” (15 chiffres avant la virgule et
-4 après)</li>
-</ol>
 <h1
 id="réflexion-sur-les-types-des-attributs-colonnes-et-leurs-valeurs">Réflexion
 sur les types des attributs (colonnes) et leurs valeurs</h1>
@@ -331,6 +316,21 @@ type <strong>int</strong>, juste après la colonne
 |          9 | Salade verte    | legumes   |         NULL |        5 |  1.5000 | 2021-09-30 |
 |         10 | radis noir      | LEGUMES   |         NULL |      3.5 |  5.0000 | 2021-09-30 |
 +------------+-----------------+-----------+--------------+----------+---------+------------+``</code></pre>
+<h1 id="modifier-la-table-la-structure">Modifier la table (la
+structure)</h1>
+<ol type="1">
+<li>Ajouter un champ <strong>quantite</strong> qui est un “numérique” (5
+chiffres avant la virgule et 2 après) avant le champ
+<strong>prix</strong> (rechercher dans <a
+href="https://mariadb.com/kb/en/alter-table/" target="_blanck">la
+documentation</a>, mais “before” n’existe pas, il faut donc utiliser <a
+href="https://www.w3schools.com/sql/sql_alter.asp"
+target="_blanck">“after”</a>)</li>
+<li>Supprimer l’attribut (la colonne, le champ)
+<strong>code</strong></li>
+<li>Modifier le prix par un “numérique” (15 chiffres avant la virgule et
+4 après)</li>
+</ol>
 <h1 id="notion-de-clé-étrangère">Notion de clé étrangère</h1>
 <p>Pour faire référence à la catégorie de légumes, il est préférable
 d’utiliser une autre table pour éviter les ambiguïtés et éviter de
