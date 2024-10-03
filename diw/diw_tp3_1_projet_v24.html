@@ -184,19 +184,42 @@ contraire).</span></p>
 <p>script de test :</p>
 <pre><code>#!/bin/bash
 clear
-echo -e &quot;\033[0;32m \n**** listes des fichiers :&quot;
+echo -e &quot;\033[0;32m \n**** listes des fichiers (snake_case: add_table.html edit_table.html show_table.html)  : &quot;
 ls templates/*
 
-echo -e &quot;\033[0;31m \n***** liste des routes : \033[0m&quot;
+echo -e &quot;\033[0;31m \n***** listes des routes (spinal case : /table/show /table/edit /table/add ) \033[0m&quot;
 grep &quot;@app.route&quot;  app.py
 
-echo -e &quot;\033[0;32m \n**** listes des paramètres (clés des tableaux associatifs) :&quot;
+
+echo -e &quot;\033[0;32m \n**** listes des paramètres POST (CamelCase : clés des dictionnaires, sauf la clé étrangére) :&quot;
 grep &quot;request.form.get&quot;  app.py | uniq -c
+
 echo -e &quot; \033[0m&quot;
 
 code  app.py &amp;
 
 killall python3
-flask --debug  --app app  run   --host 0.0.0.0</code></pre>
+flask --debug  --app app  run   --host 0.0.0.0
+</code></pre>
+<!--
+```
+#!/bin/bash
+clear
+echo -e "\033[0;32m \n**** listes des fichiers :"
+ls templates/*
+
+echo -e "\033[0;31m \n***** liste des routes : \033[0m"
+grep "@app.route"  app.py
+
+echo -e "\033[0;32m \n**** listes des paramètres (clés des tableaux associatifs) :"
+grep "request.form.get"  app.py | uniq -c
+echo -e " \033[0m"
+
+code  app.py &
+
+killall python3
+flask --debug  --app app  run   --host 0.0.0.0
+```
+-->
 </body>
 </html>
