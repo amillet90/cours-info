@@ -46,12 +46,14 @@ target="_blank">typographique</a>) :</p>
 <li><p>les <strong>noms des fonctions</strong> (méthodes) dans
 l’application doivent porter le nom de la table (utilise du <a
 href="https://fr.wikipedia.org/wiki/Snake_case"
-target="_blank">snake_case</a>)</p></li>
+target="_blank">snake_case</a> : show_nom_table add_nom_table
+valid_add_nom_table delete_nom_table edit_nom_table valid_add_nom_table
+…)</p></li>
 <li><p>les <strong>routes</strong> doivent porter le nom de la table
 puis le nom de l’opération ( en kebab-case ou <a
 href="https://blog.octo.com/designer-une-api-rest/#case"
-target="_blank">spinal case</a>) : <code>/table/show</code>
-<code>/table/edit</code> <code>/table/add</code> …</p></li>
+target="_blank">spinal case</a>) : <code>/nom-table/show</code>
+<code>/nom-table/edit</code> <code>/nom-table/add</code> …</p></li>
 <li><p>créer dans le dossier <strong>template</strong> un dossier de vue
 qui porte le nom de la table (utilise du snake_case)</p></li>
 <li><p>mettre aux <strong>fichiers des vues</strong> des noms de la
@@ -184,12 +186,14 @@ contraire).</span></p>
 <p>script de test :</p>
 <pre><code>#!/bin/bash
 clear
+
+
+
 echo -e &quot;\033[0;32m \n**** listes des fichiers (snake_case: add_table.html edit_table.html show_table.html)  : &quot;
 ls templates/*
 
 echo -e &quot;\033[0;31m \n***** listes des routes (spinal case : /nom-table/show /nom-table/edit /nom-table/add ) \033[0m&quot;
 grep &quot;@app.route&quot;  app.py
-
 
 echo -e &quot;\033[0;32m \n**** listes des paramètres POST (CamelCase : clés des dictionnaires, sauf la clé étrangére) :&quot;
 grep &quot;request.form.get&quot;  app.py | uniq -c
