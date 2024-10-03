@@ -189,7 +189,8 @@ contraire).</span></p>
 <pre><code>#!/bin/bash
 clear
 
-
+echo -e &quot;\033[0;32m \n**** listes des fonctions(snake_case: show_nom_table add_nom_table valid_add_nom_table delete_nom_table edit_nom_table valid_add_nom_table) :&quot;
+grep &quot;def &quot;  app.py | uniq -c
 
 echo -e &quot;\033[0;32m \n**** listes des fichiers (snake_case: add_table.html edit_table.html show_table.html)  : &quot;
 ls templates/*
