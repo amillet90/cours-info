@@ -522,19 +522,18 @@ enregistrement dans une table.</li>
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/type-article/edit&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;GET&#39;</span>])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> edit_type_article():</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> request.args.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    libelle <span class="op">=</span> request.args.get(<span class="st">&#39;libelle&#39;</span>, <span class="st">&#39;&#39;</span>)     <span class="co"># comment passé plusieurs paramètres (clé primaire composés)</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span><span class="bu">int</span>(<span class="bu">id</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    type_article <span class="op">=</span> types_articles[<span class="bu">id</span><span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;type_article/edit_type_article.html&#39;</span>, type_article<span class="op">=</span>type_article)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/type-article/edit&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;POST&#39;</span>])</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_edit_type_article():</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    libelle <span class="op">=</span> request.form[<span class="st">&#39;libelle&#39;</span>]</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">u&#39;type article modifié, id: &#39;</span>,<span class="bu">id</span>, <span class="st">&quot; libelle :&quot;</span>, libelle)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">u&#39;type article modifié, id: &#39;</span> <span class="op">+</span> <span class="bu">id</span> <span class="op">+</span> <span class="st">&quot; libelle : &quot;</span> <span class="op">+</span> libelle</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    flash(message, <span class="st">&#39;alert-success&#39;</span>)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/type-article/show&#39;</span>)</span></code></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span><span class="bu">int</span>(<span class="bu">id</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    type_article <span class="op">=</span> types_articles[<span class="bu">id</span><span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;type_article/edit_type_article.html&#39;</span>, type_article<span class="op">=</span>type_article)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/type-article/edit&#39;</span>, methods<span class="op">=</span>[<span class="st">&#39;POST&#39;</span>])</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_edit_type_article():</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    libelle <span class="op">=</span> request.form.get(<span class="st">&#39;libelle&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">u&#39;type article modifié, id: &#39;</span>,<span class="bu">id</span>, <span class="st">&quot; libelle :&quot;</span>, libelle)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">u&#39;type article modifié, id: &#39;</span> <span class="op">+</span> <span class="bu">id</span> <span class="op">+</span> <span class="st">&quot; libelle : &quot;</span> <span class="op">+</span> libelle</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    flash(message, <span class="st">&#39;alert-success&#39;</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/type-article/show&#39;</span>)</span></code></pre></div>
 <ul>
 <li>ajouter dans la vue
 <strong>templates/type_article/edit_type_article.html</strong> le code
@@ -625,7 +624,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a h
 <span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_edit_article():</span>
 <span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
 <span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>    nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>    type_article_id <span class="op">=</span> request.form.get(<span class="st">&#39;type_article_id&#39;</span>)</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>    type_article_id <span class="op">=</span> request.form.get(<span class="st">&#39;type_article_id&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
 <span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>    prix <span class="op">=</span> request.form.get(<span class="st">&#39;prix&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
 <span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>    stock <span class="op">=</span> request.form.get(<span class="st">&#39;stock&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
 <span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>    description <span class="op">=</span> request.form.get(<span class="st">&#39;description&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
