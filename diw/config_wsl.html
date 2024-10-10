@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DIW</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<h1 id="wsl">WSL</h1>
+<figure>
+<img src="images_wsl/wsl_logo.png" alt="logo_wsl" />
+<figcaption aria-hidden="true">logo_wsl</figcaption>
+</figure>
+<h2 id="crédits">Crédits</h2>
+<p>Ce tutoriel a été réalisé par Nathan PONTHIEU, étudiant de deuxième
+année en B.U.T informatique.</p>
+<blockquote>
+<p>En cas de problème ou pour toute question concernant WSL ou une
+partie de ce tutoriel, <strong>n’hésitez pas</strong> à me contacter sur
+ma boite mail universitaire <a
+href="nathan.ponthieu@edu.univ-fcomte.fr">nathan.ponthieu@edu.univ-fcomte.fr</a></p>
+</blockquote>
+<h2 id="introduction">Introduction</h2>
+<p><strong>WSL</strong> pour <strong>W</strong>indows
+<strong>S</strong>ubsystem for <strong>L</strong>inux est une
+intégration Linux à Windows 10/11 développée par
+<strong>Microsoft</strong>, qui permet d’avoir une distribution Linux
+installée sur son système Windows.</p>
+<blockquote>
+<p>WSL s’adresse à toutes les personnes qui ne souhaitent pas avoir de
+dual-boot Linux/Windows sur son PC même si ça reste l’idéal.</p>
+</blockquote>
+<blockquote>
+<p><strong>WSL est parfaitement intégré à Windows car WSL est
+officiellement développé par Microsoft.</strong><br />
+WSL est la combinaison du “meilleur des deux mondes”. Vous profiterez de
+l’expérience utilisateur confortable de Windows ainsi que de la
+puissance de Linux pour le développement.</p>
+</blockquote>
+<p>WSL présente également de nombreux avantages : - Très rapide, se
+lance en quelques secondes - Pas besoin d’avoir de dual boot entre
+Windows et Linux - WSL est très simple à installer comparé à une
+installation en dual boot - WSL est fourni et maintenu par Microsoft, et
+est donc stable - Plus rapide et mieux intégré qu’une machine virtuelle
+VirtualBox - Pas de problème de compatibilité matérielle avec Linux -
+Accès aux fichiers Linux directement depuis l’explorateur de fichiers
+Windows - Pas de « pollution » du système Windows en lui-même (fichiers
+et installations dans WSL) - En cas de problème, une réinstallation de
+WSL sera simple et rapide</p>
+<h2 id="sommaire">Sommaire</h2>
+<ol type="1">
+<li><a href="#1-installation-de-wsl">Installation de WSL</a>
+<ol type="1">
+<li><a href="#11-installer-wsl">Installer WSL</a></li>
+<li><a href="#12-accéder-à-wsl">Accéder à WSL</a></li>
+<li><a href="#13-premier-lancement-de-wsl">Premier lancement de
+WSL</a></li>
+</ol></li>
+<li><a href="#2-installer-les-programmes-nécéssaires-sur-wsl">Installer
+les programmes nécéssaires sur WSL</a>
+<ol type="1">
+<li><a href="#21-python">Python</a></li>
+<li><a href="#22-base-de-données-sql">Base de données SQL</a></li>
+</ol></li>
+<li><a href="#3-utiliser-les-éditeurs-de-code-avec-wsl">Utiliser les
+éditeurs de code dans WSL</a>
+<ol type="1">
+<li><a
+href="#31-comment-installer-correctement-ses-éditeurs-de-code">Comment
+installer correctement ses éditeurs de code ?</a></li>
+<li><a href="#32-visual-studio-code">Visual Studio Code</a></li>
+<li><a href="#33-pycharm">Pycharm</a>
+<ol type="1">
+<li><a href="#331-créer-un-projet-avec-loption-par-défaut">Créer un
+projet avec l’option apr défaut</a></li>
+<li><a href="#332-créer-un-projet-avec-loption-wsl">Créer un projet avec
+l’option WSL (et pourquoi ne pas le faire)</a></li>
+</ol></li>
+<li><a href="#34-datagrip">DataGrip</a></li>
+</ol></li>
+</ol>
+<h3 id="installation-de-wsl">1 Installation de WSL</h3>
+<h4 id="installer-wsl">1.1 Installer WSL</h4>
+<p>WSL est très simple à installer, il suffit de taper la commande
+ci-dessous dans un <strong>terminal PowerShell en tant
+qu’administrateur</strong> (clic droit sur l’application ‘Terminal’ puis
+‘exécuter en tant qu’administrateur’).</p>
+<pre class="bat"><code>wsl --install</code></pre>
+<p>Windows installe alors WSL ainsi que <strong>Ubuntu</strong> en
+distribution par défaut.<br />
+&gt; <strong>Vous devrez ensuite impérativement redémarrer votre pc
+comme indiqué par le terminal</strong></p>
+<p>Si en tapant cette commande, on vous dis que wsl est déjà installé,
+alors il faudra taper :</p>
+<pre class="bat"><code>wsl --update</code></pre>
+<p>Puis dans ce cas, il faudra ensuite ouvrir le <strong>Microsoft
+Store</strong> et installer <strong>Ubuntu</strong> puis redémarrer.</p>
+<p>A la suite de l’installation, vous avez trois nouvelles applications
+sur votre PC: - WSL<br />
+<img src="images_wsl/wsl.png" alt="wsl" /><br />
+L’application lance WSL sur la distribution par défaut (Ubuntu). - WSL
+Settings<br />
+<img src="images_wsl/wsl_settings.png" alt="wsl_settings" /><br />
+Paramètres pour WSL - Ubuntu<br />
+<img src="images_wsl/ubuntu.png" alt="ubuntu" /><br />
+L’application lance l’instance d’Ubuntu installée par WSL (équivalent à
+l’application WSL)</p>
+<h4 id="accéder-à-wsl">1.2 Accéder à WSL</h4>
+<p>Pour accéder à WSL, il faut lancer soit l’application
+<strong>WSL</strong> ou bien <strong>Ubuntu</strong>. Le terminal Linux
+apparaitra alors. <img src="images_wsl/wsl_idle.png"
+alt="wsl_idle" /></p>
+<h4 id="premier-lancement-de-wsl">1.3 Premier lancement de WSL</h4>
+<blockquote>
+<p>Au premier lancement de WSL, on vous demandera un nom d’utilisateur
+et un mot de passe. <strong>Il faut ensuite impérativement mettre à jour
+le système</strong> avec les commandes :</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
+</blockquote>
+<p>Ensuite, vous êtes libre d’installer les programmes que vous
+souhaitez avec <code>apt</code> et de créer les fichiers et projets que
+vous souhaitez.</p>
+<p>Vous pouvez accéder à vos fichiers sur WSL depuis l’explorateur de
+fichiers Windows.</p>
+<figure>
+<img src="images_wsl/windows_file_explorer.png"
+alt="windows_file_explorer" />
+<figcaption aria-hidden="true">windows_file_explorer</figcaption>
+</figure>
+<blockquote>
+<p><strong>Vos dossiers personnels et projets doivent être crées dans
+votre espace utilisateur, soit
+<code>/home/votrelogin</code></strong></p>
+</blockquote>
+<h3 id="installer-les-programmes-nécéssaires-sur-wsl">2 Installer les
+programmes nécéssaires sur WSL</h3>
+<h4 id="python">2.1 Python</h4>
+<p>Python est installé par défaut sur WSL, pas besoin de l’installer,
+vous pouvez cependant installer <strong>pip</strong> pour créer des
+environnements virtuels Python avec:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3-pip</span></code></pre></div>
+<h4 id="base-de-données-sql">2.2 Base de données SQL</h4>
+<p>Pour installer la base de données MySQL sur WSL, on l’installe avec
+<code>apt</code> :</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mysql-server</span></code></pre></div>
+<p>Ensuite il faudra vous y connecter en tant que root :</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mysql <span class="at">-u</span> root</span></code></pre></div>
+<p>Une fois connecté en tant que root, il faudra ensuite créer un
+utilisateur et une base de données :</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login; <span class="co">-- créer votre base de données</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>; <span class="co">-- créer votre utilisateur</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">To</span> <span class="st">&#39;login&#39;</span>@<span class="st">&#39;%&#39;</span>; <span class="co">-- donner tous les droits à votre utilisateur</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>; <span class="co">-- mettre à jour les privilèges</span></span></code></pre></div>
+<p>Vous pouvez ensuite quitter mysql en tapant <code>exit</code>.</p>
+<p>Vous pourrez vous connecter à MySQL avec votre nouvel
+utilisateur:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> login <span class="at">-p</span></span></code></pre></div>
+<p>Il faut maintenant modifier la configuration de MySQL pour qu’elle
+corresponde à celle des PC de l’IUT en modifiant le fichier de
+configuration <code>/etc/mysql/my.cnf</code>.<br />
+Pour cela, on ouvre d’abord le fichier :</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/mysql/my.cnf</span></code></pre></div>
+<p>Ajouter le code suivant au fichier :</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[mysqld]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">lower_case_table_names</span><span class="op">=</span>0</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">local_infile</span><span class="op">=</span>ON</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sql_mode</span> = <span class="st">&quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[mysql]</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="va">local_infile</span><span class="op">=</span>ON</span></code></pre></div>
+<p>Puis redémarrer MySQL avec :</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart mysql</span></code></pre></div>
+<blockquote>
+<p>MySQL est à ce satde opérationnel mais il manque une dernière
+manipulation afin de pouvoir se connecter à MySQL depuis DataGrip.<br />
+Il va falloir modifier un autre fichier de configuration de MySQL pour
+autoriser les connexions depuis l’extérieur de WSL, pour cela :</p>
+</blockquote>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/mysql/mysql.conf.d/mysqld.cnf</span></code></pre></div>
+<p>Il faudra ensuite chercher la ligne <code>bind-address</code> puis
+remplacer l’IP existente sur cette ligne par = <code>0.0.0.0</code>, ce
+qui donne :</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-address</span> = 0.0.0.0</span></code></pre></div>
+<figure>
+<img src="images_wsl/mysql_bind_address.png" alt="mysql_bind_address" />
+<figcaption aria-hidden="true">mysql_bind_address</figcaption>
+</figure>
+<p>Il faudra ensuite redémarrer mysql :</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart mysql</span></code></pre></div>
+<blockquote>
+<p>MySQL est installé et opérationnel !</p>
+<p>NB : Consultez La section <a href="#34-datagrip">“Cas particulier de
+DataGrip”</a> pour savoir comment vous connecter à votre base de données
+avec DataGrip depuis Windows.</p>
+</blockquote>
+<h3 id="utiliser-les-éditeurs-de-code-avec-wsl">3 Utiliser les éditeurs
+de code avec WSL</h3>
+<h4 id="comment-installer-correctement-ses-éditeurs-de-code">3.1 Comment
+installer correctement ses éditeurs de code ?</h4>
+<blockquote>
+<p>Le plus simple pour gérer, maintenir et mettre à jour vos éditeurs de
+code est de les installer sur Windows de cette manière.</p>
+</blockquote>
+<p>Pour Visual Studio Code, installez le directement depuis le
+<strong>Microsoft Store</strong>, vous pourrez facilement le mettre à
+jour de cette manière. <img src="images_wsl/vs_code_install.png"
+alt="vs_code_install" /></p>
+<p>Pour les éditeurs JetBrains(Pycharm, DataGrip, …), le plus simple est
+d’installer leur <a
+href="https://www.jetbrains.com/fr-fr/lp/toolbox/">JetBrains
+Toolbox</a>. Vous pourrez alors facilement installer et mettre à jour
+leurs IDE. <img src="images_wsl/jetbrains_toolbox.png"
+alt="jetbrains_toolbox" /></p>
+<h4 id="visual-studio-code">3.2 Visual studio code</h4>
+<p>Pour utiliser Visual studio code sur WSL (après l’avoir installé au
+préalable sur Windows) :</p>
+<ol type="1">
+<li>Cliquez sur le petit carré bleu en bas à gauche <img
+src="images_wsl/vs_code_1.png" alt="vs_code_1" /></li>
+<li>Sélectionnez ‘<strong>Connect to WSL</strong>’ <img
+src="images_wsl/vs_code_2.png" alt="vs_code_2" /></li>
+<li>VsCode se connectera alors à WSL, et vous travaillerez sur WSL comme
+si vous y étiez en local. <img src="images_wsl/vs_code_3.png"
+alt="vs_code_3" /></li>
+</ol>
+<p>Pour fermer la connection de VsCode à WSL, réappuyez à nouveau sur le
+carré bleu et sélectionnez <strong>‘Close remote
+connection’</strong></p>
+<h4 id="pycharm">3.3 Pycharm</h4>
+<h5 id="créer-un-projet-avec-loption-par-défaut">3.3.1 Créer un projet
+avec l’option par défaut</h5>
+<p>Pour les IDE Jetbrains c’est un peu plus compliqué qu’avec VsCode. Je
+fais l’exemple sur Pycharm mais c’est à peu près équivalent sur les
+autres IDE Jetbrains.</p>
+<p>Vous pouvez simplement <strong>créer un projet dans l’arborescence de
+fichiers WSL</strong>.</p>
+<p>Exemple :</p>
+<figure>
+<img src="images_wsl/pycharm_create_project_normal.png"
+alt="pycharm_create_project_normal" />
+<figcaption
+aria-hidden="true">pycharm_create_project_normal</figcaption>
+</figure>
+<p>Pycharm devrait alors automatiquement détecter votre interpréteur
+Python présent sur WSL.</p>
+<p>Pour activer votre environnement virtuel Python dans le terminal une
+fois votre projet créer (si il ne l’est pas déjà) :</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span></code></pre></div>
+<figure>
+<img src="images_wsl/pycharm_venv_activate.png"
+alt="pycharm_venv_activate" />
+<figcaption aria-hidden="true">pycharm_venv_activate</figcaption>
+</figure>
+<p>On voit alors <code>(.venv)</code> appraitre devant le prompt du
+terminal ce qui signifie que l’environnement virtuel est activé.</p>
+<p>Vous pouvez ensuite installer vos paquets Python avec :</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="op">&lt;</span>nom_paquet<span class="op">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Par exemple : pip install flask</span></span></code></pre></div>
+<h5 id="créer-un-projet-avec-loption-wsl">3.3.2 Créer un projet avec
+l’option WSL</h5>
+<p>Vous pouvez utiliser l’option “WSL” dans le menu de Pycharm. Dans ce
+cas Pycharm se connectera à WSL comme montré sur VsCode, vous serez donc
+comme en local sur WSL.<br />
+&gt; <strong>Attention</strong>, L’IDE sera plus lent, et cette option
+“WSL” est moins pratique que de créer directement un projet dans
+l’arborescence Linux. &gt; &gt; En effet, <strong>Pycharm va se
+télécharger à nouveau dans WSL</strong>, puis se connecter sur son
+jumeau qu’il aura installé sur WSL. De plus, <strong>vous devrez créer
+au préalable le répertoire du projet</strong>, <strong>vous ne pourrez
+pas définir quel type de projet créer (par exemple flask)</strong> et
+<strong>vous devrez vous-même créer votre environnement
+virtuel</strong>. &gt; &gt; <strong>Je recommande de réserver cette
+méthode uniquement dans des cas particuliers</strong></p>
+<p>Pour utiliser cette méthode :</p>
+<p><img src="images_wsl/pycharm_wsl.png" alt="pycharm_wsl" /> <img
+src="images_wsl/pycharm_wsl_new_project.png"
+alt="pycharm_wsl_new_project" /> <img
+src="images_wsl/pycharm_wsl_new_project_launch.png"
+alt="pycharm_wsl_new_project" /></p>
+<p>Voici ensuite comment ajouter votre interpréteur</p>
+<p><img src="images_wsl/pycharm_wsl_interpreter.png"
+alt="pycharm_wsl_interpreter" /> <img
+src="images_wsl/pycharm_wsl_interpreter_add.png"
+alt="pycharm_wsl_interpreter_add" /> <img
+src="images_wsl/pycharm_wsl_interpreder_add_final.png"
+alt="pycharm_wsl_interpreter_add_final" /></p>
+<h4 id="datagrip">3.4 DataGrip</h4>
+<p>Pour créer un projet avec DataGrip, vous pouvez créer un projet
+normalement comme avec Pycharm, vous devez par contre toujours
+sélectionner un dossier dans WSL.</p>
+<p>Pour ajouter votre base de données à votre projet DataGrip, cela sera
+légèrement différent que sur les PC de l’IUT ou sur une distribution
+Linux directement.</p>
+<p>Chercher l’adresse IP de WSL :</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hostname</span> <span class="at">-I</span></span></code></pre></div>
+<figure>
+<img src="images_wsl/wsl_hostname.png" alt="wsl_hostname" />
+<figcaption aria-hidden="true">wsl_hostname</figcaption>
+</figure>
+<p>Dans DataGrip, lors de l’ajout de votre base de données, vous devrez
+alors spécifier cette adresse IP au lieu de ‘localhost’.</p>
+<p>Exemple : <img src="images_wsl/datagrip_connection.png"
+alt="datagrip_connection" /></p>
+</body>
+</html>
