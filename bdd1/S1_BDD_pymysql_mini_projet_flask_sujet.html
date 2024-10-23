@@ -433,10 +433,10 @@ echo &quot;mysql --user=${LOGIN} --password=${PASSWORD} --host=${HOST} ${DATABAS
 chmod a+x connect.sh
 gnome-terminal --tab -- ./connect.sh  &amp;
 
-xed sql_projet.sql app.py &amp;
+code sql_projet.sql app.py &amp;
 
 killall python3
 flask --debug  --app app  run   --host 0.0.0.0  &amp;
-chromium 127.0.0.1:5000</code></pre>
+mozilla 127.0.0.1:5000</code></pre>
 </body>
 </html>
