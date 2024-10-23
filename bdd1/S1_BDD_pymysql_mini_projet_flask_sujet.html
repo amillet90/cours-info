@@ -27,46 +27,6 @@ ajouter/afficher/modifier/supprimer (CRUD) des enregistrements dans 2
 tables : ces 2 tables sont affichées sous forme de tableau.</p>
 <p><a href="https://amillet.pythonanywhere.com/"
 target="_blanck">Version démonstration : Exemple</a></p>
-<h1 id="livrable">livrable</h1>
-<ul>
-<li>Mettre votre projet dans un dossier qui porte comme nom :
-<strong>GROUPE_nom</strong> (votre numéro de groupe suivi du nom du
-référent du groupe, exemple “A1_millet”)
-<ul>
-<li>Attention : Pas d’archive dans une archive =&gt; pénalité</li>
-</ul></li>
-<li>Archiver votre projet (le nom de l’archive doit être le nom du
-projet) avec une extension .zip ou .tar.gz (pas de format
-microsoft)</li>
-</ul>
-<p>Ce dossier doit contenir un fichier de nom “sql_projet.sql”, ce
-fichier est votre script sql à jour pour supprimer, créer toutes les
-tables dans l’ordre puis insérer dans le bon ordre des enregistrements
-(un jeu de test). Ce dossier doit contenir votre application : un
-fichier app.py, un dossier “templates” et “static”, éventuellement un
-script shell pour lancer l’application. (pas de dossier venv)<br />
-</p>
-<p>Votre application doit être fonctionnelle sur une machine de l’IUT
-avec la commande “python app.py” dans un environnement local où les
-paquets “pymysql” et “flask” sont installés.<br />
-</p>
-<p>En remplaçant le login et le motDePasse des instructions ci-dessous
-par votre login et mot de passe sur le serveur mysql de l’iut, les 2
-commandes ci-dessous doivent fonctionner pour tester votre application
-(dans un terminal ouvert dans votre dossier de projet) :</p>
-<pre><code>mysql --user=login  --password=motDePasse --host=serveurmysql --database=BDD_login &lt; sql_projet.sql
-python app.py</code></pre>
-<p>Remarque : pour les travaux faits sur les machines personnelles,
-attention au mode par défaut <a
-href="https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql"><strong>only_full_group_by</strong>
-(post 182 )</a> sur les machines de l’IUT. <br></p>
-<p>Ajoutez dans votre projet <a
-href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/eval_etudiant_mini_projet.xlsx">le
-petit fichier Excel (utiliser ce lien)</a> en remplissant vos nom,
-prenom, groupe et en mettant des “1” si vous pensez que les parties sont
-pleinement réalisées.<br />
-Ne pas renommer ce fichier, et l’enregistrer dans le même dossier que le
-fichier “app.py” et que le fichier “sql_projet.sql”</p>
 <div class="modif">
 <p><br></p>
 <p>Conserver le même projet que pour l’interface en “Développement
@@ -110,6 +70,46 @@ des variables n’est pas identique au nom des colonnes lors des requêtes
 INSERT UPDATE et DELETE.</p></li>
 </ul>
 </div>
+<h1 id="livrable">livrable</h1>
+<ul>
+<li>Mettre votre projet dans un dossier qui porte comme nom :
+<strong>GROUPE_nom</strong> (votre numéro de groupe suivi du nom du
+référent du groupe, exemple “A1_millet”)
+<ul>
+<li>Attention : Pas d’archive dans une archive =&gt; pénalité</li>
+</ul></li>
+<li>Archiver votre projet (le nom de l’archive doit être le nom du
+projet) avec une extension .zip ou .tar.gz (pas de format
+microsoft)</li>
+</ul>
+<p>Ce dossier doit contenir un fichier de nom “sql_projet.sql”, ce
+fichier est votre script sql à jour pour supprimer, créer toutes les
+tables dans l’ordre puis insérer dans le bon ordre des enregistrements
+(un jeu de test). Ce dossier doit contenir votre application : un
+fichier app.py, un dossier “templates” et “static”, éventuellement un
+script shell pour lancer l’application. (pas de dossier venv)<br />
+</p>
+<p>Votre application doit être fonctionnelle sur une machine de l’IUT
+avec la commande “python app.py” dans un environnement local où les
+paquets “pymysql” et “flask” sont installés.<br />
+</p>
+<p>En remplaçant le login et le motDePasse des instructions ci-dessous
+par votre login et mot de passe sur le serveur mysql de l’iut, les 2
+commandes ci-dessous doivent fonctionner pour tester votre application
+(dans un terminal ouvert dans votre dossier de projet) :</p>
+<pre><code>mysql --user=login  --password=motDePasse --host=serveurmysql --database=BDD_login &lt; sql_projet.sql
+python app.py</code></pre>
+<p>Remarque : pour les travaux faits sur les machines personnelles,
+attention au mode par défaut <a
+href="https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql"><strong>only_full_group_by</strong>
+(post 182 )</a> sur les machines de l’IUT. <br></p>
+<p>Ajoutez dans votre projet <a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/eval_etudiant_mini_projet.xlsx">le
+petit fichier Excel (utiliser ce lien)</a> en remplissant vos nom,
+prenom, groupe et en mettant des “1” si vous pensez que les parties sont
+pleinement réalisées.<br />
+Ne pas renommer ce fichier, et l’enregistrer dans le même dossier que le
+fichier “app.py” et que le fichier “sql_projet.sql”</p>
 <h1 id="script-sql"><strong>script SQL :</strong></h1>
 <p><br></p>
 <p>Réaliser un script SQL de nom <strong>sql_projet.sql</strong> pour
@@ -119,7 +119,8 @@ INSERT UPDATE et DELETE.</p></li>
 <li>créer les 2 tables (avec une <strong>contrainte d’intégrité
 référentielle</strong> sur la clé étrangère)</li>
 <li>ajouter les enregistrements (une instruction INSERT par
-enregistrement)</li>
+enregistrement) ; <strong>ATTENTION, ne pas renommer les instructions
+INSERT de votre sujet</strong></li>
 <li>supprimer la <strong>contrainte d’intégrité référentielle</strong>
 sur la clé étrangère</li>
 <li>re-créer la contrainte sur la clé étrangère</li>
