@@ -125,22 +125,24 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <!-- ![](img/img_jointure_tp1_1.png) -->
 <!--{width="468" height="144"}-->
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">1</span>,<span class="st">&#39;S2A1&#39;</span>);    <span class="co">-- il id 1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">2</span>,<span class="st">&#39;S2A2&#39;</span>);    <span class="co">-- id 2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">3</span>,<span class="st">&#39;S2bisA1&#39;</span>); <span class="co">-- id 3</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">1</span>,<span class="st">&#39;paul&#39;</span>,<span class="dv">1</span>);</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">2</span>,<span class="st">&#39;pierre&#39;</span>,<span class="dv">2</span>);</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">3</span>,<span class="st">&#39;toto&#39;</span>,<span class="dv">17</span>);</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">1</span>,<span class="st">&#39;S1A1&#39;</span>);    <span class="co">-- il faudrait mettre NULL pour </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">2</span>,<span class="st">&#39;S1A2&#39;</span>);    <span class="co">-- les valeurs des identifiants</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">3</span>,<span class="st">&#39;S1B1&#39;</span>);    <span class="co">-- (on force les valeurs des identifiants)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> groupe <span class="kw">VALUES</span>(<span class="dv">4</span>,<span class="st">&#39;S3&#39;</span>);   </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">1</span>,<span class="st">&#39;paul&#39;</span>,<span class="dv">1</span>);</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">2</span>,<span class="st">&#39;pierre&#39;</span>,<span class="dv">2</span>);</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">3</span>,<span class="st">&#39;toto&#39;</span>,<span class="dv">17</span>);  <span class="co">-- si erreur mettre le groupe à 2 ou 3</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">4</span>,<span class="st">&#39;tutu&#39;</span>,<span class="kw">NULL</span>);</span></code></pre></div>
 <p>Remarque : les valeurs des clés primaires sont imposées mais il est
 souhaitable de remplacer par la valeur “NULL” par la suite</p>
 <p><br></p>
 <div class="cours">
 <ul>
-<li>On peut créer un étudiant “toto” avec un groupe qui n’existe pas. Il
-n’y a pas de <a
+<li><strong>On ne doit pas pouvoir créer un étudiant “toto” avec un
+groupe qui n’existe pas</strong>. Il n’y a <strong>pas de <a
 href="https://fr.wikipedia.org/wiki/Contrainte_d%27int%C3%A9grit%C3%A9"
-target="_blank">contrainte d’intégrité</a>. Cette <a
+target="_blank">contrainte d’intégrité</a></strong>. Cette <a
 href="https://apcpedagogie.com/la-contrainte-dintegrite/"
 target="_blank">contrainte d’intégrité permet de garantir la cohérence
 des données</a>.</li>
