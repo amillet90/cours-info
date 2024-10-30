@@ -462,39 +462,52 @@ target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
 <p>Cloner le projet avec la commande :</p>
 <pre><code>git clone https://github.com/amillet-iut90/flask_demo1.git
 
-# ouvrir le dossier avec pycharm
-# dans un terminal
-chmod u+x launcher.sh</code></pre>
+cd flask_demo1/
+chmod u+x launcher.sh
+
+# ouvrir le dossier avec pycharm</code></pre>
+<p><strong>Ouvrir le projet</strong> (dossier) avec PyCharm (<strong>ne
+pas créer un nouveau projet</strong>)</p>
+<p><br></p>
+<p>Vérifier que les 2 librairies nécessaires sont installées</p>
+<pre><code># avec un environnement virtuel 
+pip install flask
+pip install pymysql
+
+# ou avec l&#39;environnement de votre machine 
+
+pip install flask --break-system-packages
+pip install pymysql --break-system-packages</code></pre>
 <h2 id="préparation-du-sql">préparation du sql</h2>
 <p>Voici la liste des étudiants :</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">3</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">4</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">3</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">4</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <p>si l’on dispose d’un code SQL comme celui ci-dessous, proposer
 l’instruction pour créer la table :</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant) </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;B1&#39;</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
-<p>Sans trop de problème, votre code SQL serait :</p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> etudiant;</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> etudiant (</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>id_etudiant <span class="dt">INT</span> AUTO_INCREMENT</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>, nom_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>, groupe_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_etudiant)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="st">&#39;A1&#39;</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;A2&#39;</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="st">&#39;B1&#39;</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
+<p>Sans trop de problème, votre code SQL serait :</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> etudiant;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> etudiant (</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>id_etudiant <span class="dt">INT</span> AUTO_INCREMENT</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>, nom_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>, groupe_etudiant <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_etudiant)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p>Proposer le code SQL pour :</p>
 <ul>
 <li>afficher les étudiants avec les bons noms de colonnes</li>
@@ -505,14 +518,22 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#c
 <code>nom_etudiant, groupe_etudiant</code> de l’étudiant avec son
 identifiant <code>id_etudiant</code></li>
 </ul>
+<p><br> Connectez vous à MySQL dans un terminal :</p>
+<p><code>mysql --user=login --host=serveurmysql.iut-bm.univ-fcomte.fr --password=mdp --database=BDD_login</code></p>
+<p>Créer un fichier SQL <code>sql_projet.sql</code></p>
+<p><br></p>
 <p>Modification du code :</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> id_etudiant <span class="kw">AS</span> <span class="kw">id</span>, nom_etudiant <span class="kw">AS</span> nom, groupe_etudiant <span class="kw">AS</span> groupe</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> etudiant</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nom_etudiant;</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant(id_etudiant, nom_etudiant, groupe_etudiant) <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;test1&#39;</span>, <span class="st">&#39;test1&#39;</span>);</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> etudiant <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">2</span>;</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> etudiant <span class="kw">SET</span> nom_etudiant <span class="op">=</span> <span class="st">&#39;test2&#39;</span>, groupe_etudiant<span class="op">=</span> <span class="st">&#39;test3&#39;</span> <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> id_etudiant <span class="kw">AS</span> <span class="kw">id</span>, nom_etudiant <span class="kw">AS</span> nom, groupe_etudiant <span class="kw">AS</span> groupe</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> etudiant</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nom;</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant(id_etudiant, nom_etudiant, groupe_etudiant) <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;test1&#39;</span>, <span class="st">&#39;test1&#39;</span>);</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> etudiant <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">2</span>;</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> etudiant <span class="kw">SET</span> nom_etudiant <span class="op">=</span> <span class="st">&#39;test2&#39;</span>, groupe_etudiant<span class="op">=</span> <span class="st">&#39;test3&#39;</span> <span class="kw">WHERE</span> id_etudiant<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
+<p>Tester ce fichier dans le terminal</p>
 <h2 id="préparation-de-la-connexion">préparation de la connexion</h2>
 <h2
 id="exécution-des-instructions-sql-dans-chaque-fonction-pour-chacune-des-routes-quand-cest-nécessaire">exécution
