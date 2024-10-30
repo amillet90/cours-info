@@ -214,7 +214,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8682</span>, <span class="st">&#39;Marie&#39;</span>, <span class="dv">11</span>, <span class="dv">1</span>),</span>
 <span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9153</span>, <span class="st">&#39;Fred&#39;</span>, <span class="dv">231</span>, <span class="dv">1</span>);</span></code></pre></div>
 <div class="requete">
-<strong>Exercice 3 : requete 3-1</strong> :
+<strong>Exercice 3 : requête 3-1</strong> :
 </div>
 <ol type="1">
 <li>Proposer une requête qui renvoie le nombre d’agrès prêts à
@@ -226,7 +226,7 @@ intervenir le 27 mars 2024</li>
 |                    2 |
 +----------------------+</code></pre>
 <div class="requete">
-<strong>Exercice 3 : requete 3-2</strong> :
+<strong>Exercice 3 : requête 3-2</strong> :
 </div>
 <ol start="2" type="1">
 <li>Proposer une requête qui renvoie le nombre d’agrès engagés en
@@ -238,11 +238,12 @@ intervention le 27 mars 2024.</li>
 |                               1 |
 +---------------------------------+</code></pre>
 <div class="requete">
-<strong>Exercice 3 : requete 3-3</strong> :
+<strong>Exercice 3 : requête 3-3</strong> :
 </div>
 <ol start="3" type="1">
 <li>Proposer une requête qui renvoie sans répétition tous les noms des
-chefs d’agrès prévus le 15 février 2024.</li>
+chefs d’agrès prévus le 15 février 2024 (afficher les noms dans un ordre
+lexicographique).</li>
 </ol>
 <pre><code>+-----------+
 | nom       |
@@ -252,12 +253,13 @@ chefs d’agrès prévus le 15 février 2024.</li>
 | Vaillante |
 +-----------+</code></pre>
 <div class="requete">
-<strong>Exercice 3 : requete 3-4</strong> :
+<strong>Exercice 3 : requête 3-4</strong> :
 </div>
 <ol start="4" type="1">
 <li>Proposer une requête qui renvoie sans répétition tous les noms des
 chefs d’agrès engagés en intervention le 11 juin 2024, ainsi que leur
-nombre d’intervention.</li>
+nombre d’intervention (afficher les noms dans un ordre
+lexicographique).</li>
 </ol>
 <pre><code>+-----------+-----------------+
 | nom       | nb_intervention |
@@ -266,12 +268,13 @@ nombre d’intervention.</li>
 | Vaillante |               1 |
 +-----------+-----------------+</code></pre>
 <div class="requete">
-<strong>Exercice 3 : requete 3-5</strong> :
+<strong>Exercice 3 : requête 3-5</strong> :
 </div>
 <ol start="5" type="1">
 <li>Proposer une requête qui renvoie les agrès le 27 mars 2024 (nom de
 chaque responsable de l’agrès et identifiant de l’agrès), ainsi que le
-nombre d’interventions de chacun de ces agrès.</li>
+nombre d’interventions de chacun de ces agrès (afficher les noms dans un
+ordre lexicographique).</li>
 </ol>
 <pre><code>+----------------+----------+-------+
 | nb_agres_inter | id_agres | nom   |
@@ -280,13 +283,14 @@ nombre d’interventions de chacun de ces agrès.</li>
 |              0 |       18 | Fred  |
 +----------------+----------+-------+</code></pre>
 <div class="requete">
-<strong>Exercice 3 : requete 3-6</strong> :
+<strong>Exercice 3 : requête 3-6</strong> :
 </div>
 <ol start="6" type="1">
 <li>Proposer une requête qui renvoie sans répétition tous les noms des
 chefs d’agrès engagés en intervention le 11 juin 2024, ainsi que leur
 nombre d’intervention si ils ont été engagés dans au moins 2
-interventions ce jour là.</li>
+interventions ce jour là (afficher les noms dans un ordre
+lexicographique).</li>
 </ol>
 <pre><code>+-------+-----------------+
 | nom   | nb_intervention |
