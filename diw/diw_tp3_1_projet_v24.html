@@ -94,6 +94,13 @@ clés des tableaux python<br />
 <p>Lors de la modification d’un enregistrement, afficher le contenu de
 l’enregistrement (la ligne sélectionnée) dans les champs INPUT du
 formulaire.</p>
+<p><br></p>
+<p>ATTENTION : utiliser le code vu en cours, l’utilisation d’une IA
+générative pour produire un code non conforme au TP vu en cours peut
+entraîner une grosse pénalité. * pas d’utilisation de boucle python
+(exemple avec le mot clé <code>next</code>) * pas d’utilisation de la
+gestion des exceptions * pas de route avec un format non utilisé en
+cours (exemple <code>/nom-table/add/&lt;id&gt;</code>)</p>
 </div>
 <p><br></p>
 <h2 id="consignes-css-et-bootstrap">consignes CSS et BootStrap</h2>
@@ -105,7 +112,7 @@ formulaire.</p>
 <li><p>le menu doit être un menu Bootstrap standard avec 3 boutons : de
 gauche à droite le menu permet d’accéder</p>
 <ul>
-<li>mettre une icone qui est un lien qui redirige sur la page d’accueil
+<li>mettre une icône qui est un lien qui redirige sur la page d’accueil
 (layout)</li>
 <li>indiquer le numéro du sujet</li>
 <li>un bouton pour ajouter/modifier supprimer le contenu de la table
@@ -132,10 +139,15 @@ enregistrement dans la petite table</p></li>
 “numeric”</p></li>
 <li><p>laisser une marge à gauche et à droite de chaque
 formulaire</p></li>
-<li><p><strong>tableau de la grosse table</strong> : utiliser un tableau
-Bootstrap, utiliser une classe pour mettre une couleur plus claire en
-arrière plan pour faire apparaître l’identifiant qui fait référence à
-l’identifiant de l’autre table (cette valeur est un numérique)</p></li>
+<li><p>dans le formulaire</p>
+<ul>
+<li>les champs requis invalides ont un arrière plan gris</li>
+<li>les listes déroulantes ont un arrière plan jaune</li>
+</ul></li>
+<li><p><strong>affichage de la grosse table</strong> : utiliser un
+tableau Bootstrap, utiliser une classe pour mettre en rouge
+l’identifiant qui fait référence à l’identifiant de l’autre table (cette
+valeur est un numérique).</p></li>
 <li><p>l’interface supplémentaire (interface pour le filtre) doit
 utiliser la classe “cards” de Bootstrap</p></li>
 </ul>
