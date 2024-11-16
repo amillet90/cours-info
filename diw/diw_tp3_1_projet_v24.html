@@ -167,19 +167,23 @@ dictionnaires</strong></li>
 arrière-plan de la liste déroulante une couleur
 <ul>
 <li>Définir <strong>uniquement</strong> le champ INPUT principal et la
-liste déroulante comme <strong>requis</strong> dans le formulaire pour
-ajouter un enregistrement dans la grosse table</li>
+liste déroulante comme <strong>requis</strong> dans le formulaire de la
+grosse table</li>
 <li>Définir <strong>uniquement</strong> le champ INPUT principal comme
-<strong>requis</strong> dans le formulaire pour ajouter un
-enregistrement dans la petite table</li>
+<strong>requis</strong> dans le formulaire de la petite table</li>
 <li>Définir le champ INPUT avec une date de type “date”</li>
-<li>Définir le champ INPUT avec des numériques de type “numeric”</li>
+<li>Définir le champ INPUT avec des numériques de type numérique
+(“number”)</li>
+<li>Définir le champ INPUT pour l’image avec un INPUT type texte (éviter
+d’utiliser “file”)</li>
 <li>laisser une marge à gauche et à droite de chaque formulaire</li>
 </ul></li>
 <li>dans le formulaire
 <ul>
-<li>les champs requis invalides ont un arrière plan gris</li>
-<li>les listes déroulantes ont un arrière plan jaune</li>
+<li><strong>les champs requis invalides ont un arrière plan
+gris</strong></li>
+<li><strong>les listes déroulantes ont un arrière plan
+jaune</strong></li>
 </ul></li>
 <li>ergonomie :
 <ul>
@@ -189,11 +193,14 @@ enregistrement dans la petite table</li>
 </ul></li>
 <li>utiliser une route et une variable (l’identifiant) passé en méthode
 GET pour afficher le formulaire pour modifier une ligne du tableau
-(sinon pénalité)</li>
+(sinon pénalité, pas de route du type <code>/table/add/&lt;id&gt;</code>
+souvent proposée par les IA générative)</li>
 <li>utiliser pour valider le formulaire la méthode POST et une route
 (attribut “action” du formulaire) de nom <code>/table/add</code> ou
 <code>/table/edit</code> selon l’opération</li>
 </ul>
+<p><img src="mini_projet/S1_diw_projet_formulaire_v2.png"
+style="width:20cm" /></p>
 <p><img src="img_flask/S1_diw_projet7.png" style="width:13cm" /></p>
 <ul>
 <li>après une opération comme “ajouter”, “modifier” ou “supprimer”,
