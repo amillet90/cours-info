@@ -163,17 +163,19 @@ numérique).</li>
 <h4 id="formulaires">formulaires</h4>
 <ul>
 <li>créer 2 formulaires (un pour ajouter un enregistrement sur la route
-<code>/table/add</code> et un pour pour modifier un enregistrement sur
-la route <code>/table/edit</code>) pour chaque table</li>
+<code>/table/add</code> et un pour modifier un enregistrement sur la
+route <code>/table/edit</code>). Créer ces 2 formulaires pour chacune
+des 2 tables.</li>
 <li><strong>attention : les noms des champs INPUT (attribut NAME)
 doivent porter le nom des clés (attribut) des
 dictionnaires</strong></li>
 </ul>
 <p><br> Consignes CSS (styles) :</p>
 <ul>
-<li>les formulaires doivent utiliser les classes Bootstrap, mettre en
-arrière-plan de la liste déroulante une couleur
+<li>les formulaires doivent respecter les consignes suivantes :
 <ul>
+<li>utiliser les classes Bootstrap,</li>
+<li>mettre l’arrière-plan de la liste déroulante de couleur “jaune”</li>
 <li>Définir <strong>uniquement</strong> le champ INPUT principal et la
 liste déroulante comme <strong>requis</strong> dans le formulaire de la
 grosse table</li>
@@ -184,7 +186,7 @@ grosse table</li>
 (“number”)</li>
 <li>Définir le champ INPUT pour l’image avec un INPUT type texte (éviter
 d’utiliser “file”)</li>
-<li>laisser une marge à gauche et à droite de chaque formulaire</li>
+<li>laisser une marge à gauche et à droite pour chaque formulaire</li>
 </ul></li>
 <li>dans le formulaire
 <ul>
@@ -196,14 +198,16 @@ jaune</strong></li>
 <li>ergonomie :
 <ul>
 <li>imposer de sélectionner une valeur dans la liste déroulante,</li>
-<li>imposer de saisir un contenu du principal des principaux champs
-(attributs) du dictionnaire</li>
+<li>imposer de saisir un contenu du champ principal (attribut) du
+dictionnaire (c’est le premier mot après <code>Filtre : texte</code>
+dans votre sujet )</li>
 </ul></li>
-<li>utiliser une route et une variable (l’identifiant) passé en méthode
-GET pour afficher le formulaire pour modifier une ligne du tableau
-(sinon pénalité, pas de route du type <code>/table/add/&lt;id&gt;</code>
-souvent proposée par les IA générative)</li>
-<li>utiliser pour valider le formulaire la méthode POST et une route
+<li>utiliser une route et une variable (identifiant passé en méthode
+GET) pour effectuer une opération (ajouter/modifier/supprimer) sur une
+ligne du tableau (sinon pénalité, pas de route du type
+<code>/table/add/&lt;id&gt;</code> souvent proposée par les IA
+génératives)</li>
+<li>utiliser la méthode POST pour valider un formulaire et une route
 (attribut “action” du formulaire) de nom <code>/table/add</code> ou
 <code>/table/edit</code> selon l’opération</li>
 </ul>
@@ -216,12 +220,13 @@ style="width:20cm" /></p>
 afficher un message dit “flash” avec les informations du formulaire lors
 d’une création, d’une modification ou d’une suppression d’un
 article</li>
-<li>afficher dans l’ordre : l’opération effectuée, le nom principale de
+<li>afficher dans l’ordre : l’opération effectuée, le nom principal de
 la table, l’identifiant de la clé étrangère (qui fait référence à
 l’identifiant de l’autre table (clé primaire)), les autres valeurs des
 champs (INPUT) et en dernier si l’opération est ‘modifier’ ou
 ‘supprimer’ l’identifiant de la ligne (dictionnaire du tableau)</li>
 </ul>
+<p>!!! principale dans l’image</p>
 <figure>
 <img src="mini_projet/S1_diw_projet_message_v2.png" style="width:20cm"
 alt="exemple" />
@@ -232,14 +237,17 @@ supplémentaires (interface d’un filtre)</h2>
 <ul>
 <li>l’interface supplémentaire (interface pour le filtre) doit utiliser
 la classe “cards” de Bootstrap et le plus possible les classes Bootstrap
-pour le formulaire</li>
+( pour les formulaires etc ….)</li>
 </ul>
-<p>afficher les 2 contenus des 2 tables dans la même vue :</p>
+<p><br></p>
+<ul>
+<li>Afficher les 2 contenus des 2 tables dans la même vue :
 <ul>
 <li>afficher la seconde table dans le formulaire (cases à cocher)</li>
 <li>afficher les éléments de la première table sous forme de <a
 href="https://getbootstrap.com/docs/5.0/components/card/"
 target="_blank">cards</a> sur 3 colonnes (3 cards par ligne)</li>
+</ul></li>
 </ul>
 <h4 id="formulaire">Formulaire :</h4>
 <ul>
