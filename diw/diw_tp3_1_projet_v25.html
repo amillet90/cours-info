@@ -55,8 +55,9 @@ href="https://blog.octo.com/designer-une-api-rest/#case"
 target="_blank">spinal case</a>) : <code>/nom-table/show</code>
 <code>/nom-table/edit</code> <code>/nom-table/add</code> …</p></li>
 <li><p>créer dans le dossier <strong>templates</strong> un dossier de
-vue qui porte le nom de la table (utilise du snake_case) : les noms sont
-indiqués dans chaque sujet</p></li>
+vue qui porte le nom de la table (utiliser du
+<strong>snake_case</strong>) : les noms sont indiqués dans chaque
+sujet</p></li>
 <li><p>mettre aux <strong>fichiers des vues</strong> des noms de la
 forme (<code>add_table.html</code> <code>edit_table.html</code>
 <code>show_table.html</code>)</p></li>
@@ -68,10 +69,11 @@ sont en <a href="https://fr.wikipedia.org/wiki/Camel_case"
 target="_blank">CamelCase</a>, il faut respecter cette notation.</li>
 <li>la seule clé en snake_case est la clé étrangère</li>
 </ul></li>
-<li><p>le contenu des dictionnaires n’est pas modifié</p></li>
-<li><p><span class="modif">toutes les valeurs du formulaire des champs
-INPUT doivent être affichées dans le messages “flash” lors de la
-soumission du formulaire</span></p></li>
+<li><p>Le contenu des dictionnaires n’est pas modifié (pénalité
+importante dans le cas contraire).</p></li>
+<li><p>Toutes les valeurs du formulaire des champs INPUT doivent être
+affichées dans le messages “flash” lors de la soumission du
+formulaire.</p></li>
 </ul>
 <p><br></p>
 <div class="important">
@@ -88,23 +90,25 @@ tableaux</strong> pour afficher/ajouter/supprimer/modifier (CRUD
 back-office)<br />
 <br> <strong>Les 2 tableaux python ne sont jamais
 modifiés</strong><br />
-Les noms des champs INPUT dans les formulaires doivent porter le nom des
-clés des tableaux python<br />
+</p>
+<p>Les noms des champs INPUT dans les formulaires doivent porter le nom
+des clés des tableaux python<br />
 </p>
 <p>Lors de la modification d’un enregistrement, afficher le contenu de
 l’enregistrement (la ligne sélectionnée) dans les champs INPUT du
 formulaire.</p>
 <p><br></p>
 <p>ATTENTION : utiliser le code vu en cours, l’utilisation d’une IA
-générative pour produire un code non conforme au TP vu en cours peut
-entraîner une grosse pénalité.</p>
+générative pour produire un code non conforme au TP vu en cours entraîne
+une grosse pénalité.</p>
 <ul>
 <li>pas d’utilisation de boucle python (exemple avec le mot clé
 <code>next</code>)</li>
 <li>pas d’utilisation de la gestion des exceptions (exemple avec le mot
 clé <code>try</code> ou <code>with</code>)</li>
-<li>pas de route avec un format non utilisé en cours (exemple
-<code>/nom-table/add/&lt;id&gt;</code>)</li>
+<li>pas de route avec un format non utilisé en cours (pas de routes
+paramétrées <code>/route/&lt;id&gt;</code> au lieu des routes avec
+paramètres GET <code>/route?id=</code> (paramètres de requête))</li>
 </ul>
 </div>
 <p><br></p>
@@ -127,7 +131,8 @@ style="width:20cm" /></p>
 <ul>
 <li>utiliser <strong>Bootstrap</strong> pour créer le
 <strong>menu</strong></li>
-<li>c’est le même menu pour toutes les routes (URL)</li>
+<li>c’est le même menu pour toutes les routes (URL) : c’est le même menu
+dans toutes les pages</li>
 <li>le menu doit être un menu Bootstrap standard avec 3 boutons : de
 gauche à droite le menu est composé :
 <ul>
