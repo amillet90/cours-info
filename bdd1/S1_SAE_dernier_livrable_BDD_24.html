@@ -98,16 +98,19 @@ déroulante.</li>
 d’<strong>utilisabilité</strong>)</li>
 </ul>
 <p><br> <br> Utilisation des IA génératives : une pénalité importante
-sera appliquée si il y a :</p>
+sera appliquée si les règles suivantes ne sont pas respectées :</p>
 <ul>
-<li>Utilisation de la fonction <code>url_for</code> pour gérer une
+<li>par d’utilisation de la fonction <code>url_for</code> pour gérer une
 route.</li>
-<li>Utilisation de routes paramétrées <code>/route/&lt;id&gt;</code> au
-lieu des routes avec paramètres GET <code>/route?id=</code> (paramètres
-de requête)</li>
-<li>Calcul en python (somme moyenne …) au lieu d’une utilisation de SQL
-pour faire des calculs.</li>
-<li><strong>Utilisation de code que vous ne maîtrisez pas</strong></li>
+<li>pas d’utilisation de routes paramétrées
+<code>/route/&lt;id&gt;</code> au lieu des routes avec paramètres GET
+<code>/route?id=</code> (paramètres de requête)</li>
+<li>pas de calcul en python (somme moyenne …) au lieu d’une utilisation
+de SQL pour faire des calculs.</li>
+<li>pas d’utilisation le mot clé “WITH” ou “TRY” en python (gestion des
+exceptions).</li>
+<li><strong>pas d’utilisation de code que vous ne maîtrisez
+pas</strong></li>
 </ul>
 <h1 id="schéma-et-définition-du-travail-de-chacun-code-sql">schéma et
 définition du travail de chacun ; code SQL</h1>
