@@ -15,6 +15,7 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -49,7 +50,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -62,7 +63,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -82,22 +83,31 @@
 <body>
 <h1 id="authentification">authentification</h1>
 <p>principe</p>
-<p><img src="img/sae4_lms-ldap-authentification-normale.png" style="width:10cm" /></p>
-<p><a href="https://fr.wikipedia.org/wiki/Authentification_forte" target="_blanck">https://fr.wikipedia.org/wiki/Authentification_forte</a> <br></p>
+<p><img src="img/sae4_lms-ldap-authentification-normale.png"
+style="width:10cm" /></p>
+<p><a href="https://fr.wikipedia.org/wiki/Authentification_forte"
+target="_blanck">https://fr.wikipedia.org/wiki/Authentification_forte</a>
+<br></p>
 <p>rêgle de sécurité</p>
 <p><img src="img/sae4_Pyramide-auth.png" style="width:10cm" /></p>
 <p><strong>Authentifieur</strong></p>
 <ul>
 <li>base de données</li>
 <li>système d’exploitation (ldap, active directory), stratégie SSO</li>
-<li><a href="https://fr.wikipedia.org/wiki/Authentification_unique" target="_blanck">SSO single sign-on</a> externe: google, facebook, azure, <a href="https://www.toptal.com/flask/flask-login-tutorial-sso" target="_blanck">github</a></li>
+<li><a href="https://fr.wikipedia.org/wiki/Authentification_unique"
+target="_blanck">SSO single sign-on</a> externe: google, facebook,
+azure, <a href="https://www.toptal.com/flask/flask-login-tutorial-sso"
+target="_blanck">github</a></li>
 </ul>
 <p><strong>Autorisation</strong></p>
 <ul>
-<li>faire attention : un client ne peut pas consulter les informations des autres clients</li>
+<li>faire attention : un client ne peut pas consulter les informations
+des autres clients</li>
 </ul>
 <p><br><br></p>
-<p>local : LocalStrategy (nodeJs et passport) , <a href="https://blog.miguelgrinberg.com/post/restful-authentication-with-flask" target="_blanck">exemple flask</a></p>
+<p>local : LocalStrategy (nodeJs et passport) , <a
+href="https://blog.miguelgrinberg.com/post/restful-authentication-with-flask"
+target="_blanck">exemple flask</a></p>
 <h2 id="authentifieur-local">authentifieur local</h2>
 <h3 id="étape-1">étape 1</h3>
 <ul>
@@ -105,29 +115,54 @@
 </ul>
 <pre><code>utilisateur (id_utilisateur,login, password, role,  est_actif, nom, email)      </code></pre>
 <ul>
-<li>insérer quelques enregistrements</li>
+<li><p>insérer quelques enregistrements</p></li>
+<li><p>ligne 65 <strong>auth_security.py</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateur(id_utilisateur,login,email,<span class="kw">password</span>,<span class="kw">role</span>,nom,est_actif) <span class="kw">VALUES</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>(<span class="dv">1</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;admin@admin.fr&#39;</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="st">&#39;sha256$dPL3oH9ug1wjJqva$2b341da75a4257607c841eb0dbbacb76e780f4015f0499bb1a164de2a893fdbf&#39;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="st">&#39;ROLE_admin&#39;</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>(<span class="dv">2</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;client@client.fr&#39;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="st">&#39;sha256$1GAmexw1DkXqlTKK$31d359e9adeea1154f24491edaa55000ee248f290b49b7420ced542c1bf4cf7d&#39;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>(<span class="dv">3</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;client2@client2.fr&#39;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="st">&#39;sha256$MjhdGuDELhI82lKY$2161be4a68a9f236a27781a7f981a531d11fdc50e4112d912a7754de2dfa0422&#39;</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;1&#39;</span>);</span></code></pre></div>
+<pre><code>    password = generate_password_hash(password, method=&#39;pbkdf2:sha256&#39;)</code></pre>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateur(id_utilisateur,login,email,<span class="kw">password</span>,<span class="kw">role</span>,nom,est_actif) <span class="kw">VALUES</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;admin@admin.fr&#39;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;pbkdf2:sha256:1000000$eQDrpqICHZ9eaRTn$446552ca50b5b3c248db2dde6deac950711c03c5d4863fe2bd9cef31d5f11988&#39;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_admin&#39;</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;client@client.fr&#39;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;pbkdf2:sha256:1000000$jTcSUnFLWqDqGBJz$bf570532ed29dc8e3836245f37553be6bfea24d19dfb13145d33ab667c09b349&#39;</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;client2@client2.fr&#39;</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080&#39;</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;1&#39;</span>);</span></code></pre></div>
 <ul>
-<li>pour les authentifications par d’autres SSO : il faut ajouter souvent 2 champs par SSO</li>
+<li>ligne 65 <strong>auth_security.py</strong></li>
 </ul>
-<p><a href="https://www.geeksforgeeks.org/oauth-authentication-with-flask-connect-to-google-twitter-and-facebook/" target="_blanck">auth google</a></p>
+<pre><code>    password = generate_password_hash(password, method=&#39;scrypt&#39;)</code></pre>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateur(id_utilisateur,login,email,<span class="kw">password</span>,<span class="kw">role</span>,nom,est_actif) <span class="kw">VALUES</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;admin@admin.fr&#39;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;scrypt:32768:8:1$irSP6dJEjy1yXof2$56295be51bb989f467598b63ba6022405139656d6609df8a71768d42738995a21605c9acbac42058790d30fd3adaaec56df272d24bed8385e66229c81e71a4f4&#39;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_admin&#39;</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;client@client.fr&#39;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;scrypt:32768:8:1$iFP1d8bdBmhW6Sgc$7950bf6d2336d6c9387fb610ddaec958469d42003fdff6f8cf5a39cf37301195d2e5cad195e6f588b3644d2a9116fa1636eb400b0cb5537603035d9016c15910&#39;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client&#39;</span>,<span class="st">&#39;1&#39;</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;client2@client2.fr&#39;</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;scrypt:32768:8:1$l3UTNxiLZGuBKGkg$ae3af0d19f0d16d4a495aa633a1cd31ac5ae18f98a06ace037c0f4fb228ed86a2b6abc64262316d0dac936eb72a67ae82cd4d4e4847ee0fb0b19686ee31194b3&#39;</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;1&#39;</span>);</span></code></pre></div>
+<ul>
+<li>pour les authentifications par d’autres SSO : il faut ajouter
+souvent 2 champs par SSO</li>
+</ul>
+<p><a
+href="https://www.geeksforgeeks.org/oauth-authentication-with-flask-connect-to-google-twitter-and-facebook/"
+target="_blanck">auth google</a></p>
 <p><br></p>
-<p><a href="https://www.udemy.com/?" target="_blanck">exemple udemy</a></p>
-<h3 id="présentation-du-squelette-du-projet">présentation du squelette du projet</h3>
+<p><a href="https://www.udemy.com/?" target="_blanck">exemple
+udemy</a></p>
+<h3 id="présentation-du-squelette-du-projet">présentation du squelette
+du projet</h3>
 <ul>
 <li><p>dé-archiver le code (squelette du projet)</p></li>
 <li><p>présentation de <code>app.py</code></p></li>
-<li><p>configurer l’accès à la base de données : <strong>connexion_db.py</strong> (il est possible d’ajouter ce fichier dans <strong>.gitignore</strong>)</p></li>
+<li><p>configurer l’accès à la base de données :
+<strong>connexion_db.py</strong> (il est possible d’ajouter ce fichier
+dans <strong>.gitignore</strong>)</p></li>
 </ul>
 <hr />
 <ul>
@@ -135,37 +170,67 @@
 </ul>
 <p>contrôleur <strong>auth_security</strong></p>
 <ul>
-<li>méthode : <strong>auth_login_post</strong> : ajouter la requête pour sélectionner l’utilisateur avec comme condition <strong>username</strong> égal au paramètre saisi dans le champ <strong>username</strong> du formulaire : <strong>requete1</strong></li>
+<li>méthode : <strong>auth_login_post</strong> : ajouter la requête pour
+sélectionner l’utilisateur avec comme condition
+<strong>username</strong> égal au paramètre saisi dans le champ
+<strong>username</strong> du formulaire : <strong>requete1</strong></li>
 </ul>
 <p><br></p>
 <ul>
-<li>méthode : <strong>auth_signup_post</strong> : ajouter la requête pour vérifier que le <strong>username</strong> ou l’<strong>email</strong> n’est pas déjà utilisé par un autre utilisateur</li>
-<li>créer un tuple avec les paramètres : username, email, password(crypté) et un rôle pour le nouveau client : ‘ROLE_client’</li>
-<li>insérer un enregistrement dans la table <strong>user</strong> avec tous les paramètres de ce tuple</li>
-<li>tester la requête : <code>SELECT last_insert_id() AS last_insert_id;</code> qui permet de vérifier quelle est la dernière valeur du compteur (identifiant) après une commande <code>INSERT</code></li>
+<li>méthode : <strong>auth_signup_post</strong> : ajouter la requête
+pour vérifier que le <strong>username</strong> ou
+l’<strong>email</strong> n’est pas déjà utilisé par un autre
+utilisateur</li>
+<li>créer un tuple avec les paramètres : username, email,
+password(crypté) et un rôle pour le nouveau client : ‘ROLE_client’</li>
+<li>insérer un enregistrement dans la table <strong>user</strong> avec
+tous les paramètres de ce tuple</li>
+<li>tester la requête :
+<code>SELECT last_insert_id() AS last_insert_id;</code> qui permet de
+vérifier quelle est la dernière valeur du compteur (identifiant) après
+une commande <code>INSERT</code></li>
 </ul>
 <p><br><br><br></p>
-<h3 id="système-dauthentification-modélisation">système d’authentification : modélisation</h3>
-<p>Utiliser le fichier <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S2_BDD/sae204/Looping_authentification_gestion_stage_etu.loo">looping suivant</a></p>
+<h3 id="système-dauthentification-modélisation">système
+d’authentification : modélisation</h3>
+<p>Utiliser le fichier <a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S2_BDD/sae204/Looping_authentification_gestion_stage_etu.loo">looping
+suivant</a></p>
 <figure>
-<img src="img/sae_looping_1.png" alt="" /><figcaption>mcd : authentification avec plusieurs rôles</figcaption>
+<img src="img/sae_looping_1.png"
+alt="mcd : authentification avec plusieurs rôles" />
+<figcaption aria-hidden="true">mcd : authentification avec plusieurs
+rôles</figcaption>
 </figure>
 <p>Tester avec différentes jointures</p>
 <figure>
-<img src="img/sae_looping_2.png" alt="" /><figcaption>association classique</figcaption>
+<img src="img/sae_looping_2.png" alt="association classique" />
+<figcaption aria-hidden="true">association classique</figcaption>
 </figure>
 <figure>
-<img src="img/sae_looping_3.png" alt="" /><figcaption>association : héritage</figcaption>
+<img src="img/sae_looping_3.png" alt="association : héritage" />
+<figcaption aria-hidden="true">association : héritage</figcaption>
 </figure>
 <figure>
-<img src="img/sae_looping_4.png" alt="" /><figcaption>association : héritage</figcaption>
+<img src="img/sae_looping_4.png" alt="association : héritage" />
+<figcaption aria-hidden="true">association : héritage</figcaption>
 </figure>
 <p><br></p>
-<p>On appellera <strong>“entité”</strong> une <a href="https://celene.univ-orleans.fr/pluginfile.php/543483/mod_resource/content/11/cours-1-EA.pdf" target="_blanck"><strong>instance</strong> d’<strong>“une classe d’entité”</strong></a> comme P. Bergougnoux (bref identique à un enregistrement).<br />
-Il est possible de trouver une autre interprétation d’une <a href="https://sqlpro.developpez.com/cours/modelisation/merise/?page=element-de-base-du-modele-entite-association" target="_blanck">“entité”</a></p>
+<p>On appellera <strong>“entité”</strong> une <a
+href="https://celene.univ-orleans.fr/pluginfile.php/543483/mod_resource/content/11/cours-1-EA.pdf"
+target="_blanck"><strong>instance</strong> d’<strong>“une classe
+d’entité”</strong></a> comme P. Bergougnoux (bref identique à un
+enregistrement).<br />
+Il est possible de trouver une autre interprétation d’une <a
+href="https://sqlpro.developpez.com/cours/modelisation/merise/?page=element-de-base-du-modele-entite-association"
+target="_blanck">“entité”</a></p>
 <p><br></p>
-<p><code>X</code> : “exclusivité” ou “exclusion mutuelle” : une entité du sur-type concernée par une entité du sous-type ne peut pas être concernée par une entité d’un autre sous-type</p>
+<p><code>X</code> : “exclusivité” ou “exclusion mutuelle” : une entité
+du sur-type concernée par une entité du sous-type ne peut pas être
+concernée par une entité d’un autre sous-type</p>
 <p><br></p>
-<p><code>T</code> : “totalité” : toutes les entités du sur-type sont concernées par au moins une entité d’un sous-type, il y a <strong>“totalité”</strong></p>
+<p><code>T</code> : “totalité” : toutes les entités du sur-type sont
+concernées par au moins une entité d’un sous-type, il y a
+<strong>“totalité”</strong></p>
 </body>
 </html>
