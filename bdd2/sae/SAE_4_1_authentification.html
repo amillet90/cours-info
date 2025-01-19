@@ -114,11 +114,21 @@ target="_blanck">exemple flask</a></p>
 <li>créer la table :</li>
 </ul>
 <pre><code>utilisateur (id_utilisateur,login, password, role,  est_actif, nom, email)      </code></pre>
+<p>rêgle pour un <a
+href="https://codingnomads.com/python-flask-what-are-hashed-passwords"
+target="_blanck">mot de passe</a> <a
+href="https://nitratine.net/blog/post/how-to-hash-passwords-in-python/#google_vignette"
+target="_blanck">code</a></p>
+<!--https://tedboy.github.io/flask/generated/werkzeug.generate_password_hash.html   https://teclado.com/full-stack-web-development-with-django-5/overview-of-the-course-project/-->
 <ul>
-<li><p>insérer quelques enregistrements</p></li>
-<li><p>ligne 65 <strong>auth_security.py</strong></p></li>
+<li><p>insérer quelques enregistrements avec un encryptage</p></li>
+<li><p>fichier<strong>auth_security.py</strong>, ligne 65</p></li>
 </ul>
 <pre><code>    password = generate_password_hash(password, method=&#39;pbkdf2:sha256&#39;)</code></pre>
+<ul>
+<li>quelques utilisateurs (mot de passe de admin : admin, de client :
+client, de client2 : client2 )</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateur(id_utilisateur,login,email,<span class="kw">password</span>,<span class="kw">role</span>,nom,est_actif) <span class="kw">VALUES</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;admin@admin.fr&#39;</span>,</span>
@@ -131,9 +141,13 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080&#39;</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROLE_client&#39;</span>,<span class="st">&#39;client2&#39;</span>,<span class="st">&#39;1&#39;</span>);</span></code></pre></div>
 <ul>
-<li>ligne 65 <strong>auth_security.py</strong></li>
+<li>fichier<strong>auth_security.py</strong>, ligne 65</li>
 </ul>
 <pre><code>    password = generate_password_hash(password, method=&#39;scrypt&#39;)</code></pre>
+<ul>
+<li>quelques utilisateurs (mot de passe de admin : admin, de client :
+client, de client2 : client2 )</li>
+</ul>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> utilisateur(id_utilisateur,login,email,<span class="kw">password</span>,<span class="kw">role</span>,nom,est_actif) <span class="kw">VALUES</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;admin&#39;</span>,<span class="st">&#39;admin@admin.fr&#39;</span>,</span>
