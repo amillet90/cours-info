@@ -22,58 +22,89 @@
 TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </div>
 <p><br></p>
-<p>On désire dans cet exercice, modéliser de façon simplifiée le système d’information des réservations de clients dans des stations de ski.</p>
+<p>On désire dans cet exercice, modéliser de façon simplifiée le système
+d’information des réservations de clients dans des stations de ski.</p>
 <p>Soit le modèle relationnel suivant :</p>
 <p><br></p>
-<p><strong>STATION(<span class="underline"><strong>idStation</strong></span>,nomStation,altitude,region)</strong><br />
+<p><strong>STATION(<u><strong>idStation</strong></u>,nomStation,altitude,region)</strong><br />
 </p>
-<p><strong>HOTEL(<span class="underline"><strong>idHotel</strong></span>,nomHotel,#idStation, categorie)</strong><br />
+<p><strong>HOTEL(<u><strong>idHotel</strong></u>,nomHotel,#idStation,
+categorie)</strong><br />
 </p>
-<p><strong>CHAMBRE(<span class="underline">#idHotel, numChambre</span>, nbLits, prixLocation)</strong><br />
+<p><strong>CHAMBRE(<u>#idHotel, numChambre</u>, nbLits,
+prixLocation)</strong><br />
 </p>
-<p><strong>CLIENT(<span class="underline"><strong>idClient</strong></span> ,nomClient, adresseClient, telClient</strong>)</p>
-<p><strong>RESERVATION(<span class="underline"><strong>#idClient,#idHotel,#numChambre,dateDebut</strong></span>, dateFin, nbPersonne)</strong><br />
+<p><strong>CLIENT(<u><strong>idClient</strong></u> ,nomClient,
+adresseClient, telClient</strong>)</p>
+<p><strong>RESERVATION(<u><strong>#idClient,#idHotel,#numChambre,dateDebut</strong></u>,
+dateFin, nbPersonne)</strong><br />
 </p>
 <p><br></p>
-<p>Les clients réservent des chambres dans des hôtels en station. On note que pour une réservation de plusieurs personnes (couple ou famille) un seul client est enregistré. De plus une réservation porte sur une seule chambre (pour une famille dans deux chambres il faudra deux tuples dans réservation).</p>
-<p>Une réservation est une période continue dans le planning des réservations.</p>
-<p>catégorie : champs texte ayant pour valeur « une étoile », « deux étoiles » ou « trois étoiles »</p>
-<p>region : champs texte ayant pour valeur «Savoie», «Haute-Savoie», «Massif-Central» ….</p>
+<p>Les clients réservent des chambres dans des hôtels en station. On
+note que pour une réservation de plusieurs personnes (couple ou famille)
+un seul client est enregistré. De plus une réservation porte sur une
+seule chambre (pour une famille dans deux chambres il faudra deux tuples
+dans réservation).</p>
+<p>Une réservation est une période continue dans le planning des
+réservations.</p>
+<p>catégorie : champs texte ayant pour valeur « une étoile », « deux
+étoiles » ou « trois étoiles »</p>
+<p>region : champs texte ayant pour valeur «Savoie», «Haute-Savoie»,
+«Massif-Central» ….</p>
 <p>nomStation : champs texte ayant pour valeur «Courchevel», ….</p>
-<p>Les dates sont au format <a href="https://fr.wikipedia.org/wiki/ISO_8601" target="_blanck">ISO</a> : AAAA-MM-JJ .</p>
+<p>Les dates sont au format <a
+href="https://fr.wikipedia.org/wiki/ISO_8601" target="_blanck">ISO</a> :
+AAAA-MM-JJ .</p>
 <p><br></p>
-<h1 id="sql-création-des-tables-et-importation-des-données">SQL, création des tables et importation des données</h1>
-<p>Écrire dans un fichier <em>script_tp3.sql</em> le script de création des tables correspondant au modèle ci dessus.</p>
+<h1 id="sql-création-des-tables-et-importation-des-données">SQL,
+création des tables et importation des données</h1>
+<p>Écrire dans un fichier <em>script_tp3.sql</em> le script de création
+des tables correspondant au modèle ci dessus.</p>
 <p><br />
 </p>
 <ul>
 <li><p>Supprimer toutes les tables si elles existent.</p></li>
 <li><p>Créer toutes les tables si elles n'existent pas.</p></li>
 </ul>
-<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
+<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la
+suppression de la table et <strong>IF NOT EXISTS</strong> lors de la
+création des tables.)</p>
 <ul>
 <li>Insérer les données en annexe</li>
 </ul>
 <p><br></p>
 <h1 id="question-1">Question 1</h1>
-<p>Proposez un modèle conceptuel des données associé au modèle relationnel précédent : modèle relationnel complet.</p>
-<h1 id="question-2-déjà-fait-dans-la-partie-1">Question 2 (déjà fait dans la partie 1)</h1>
+<p>Proposez un modèle conceptuel des données associé au modèle
+relationnel précédent : modèle relationnel complet.</p>
+<h1 id="question-2-déjà-fait-dans-la-partie-1">Question 2 (déjà fait
+dans la partie 1)</h1>
 <ul>
-<li>Proposez le script de création de la table « RESERVATION » dans un SGBD respectant strictement la norme SQL avec des contraintes d’intégrité référentielle sur les autres Tables.</li>
-<li>Quelles hypothèses préalables doivent être vérifiées avant de lancer l’exécution de ce script ? (Quelles sont les tables à créer avant au minimum, indiquer l’ordre de création )</li>
+<li>Proposez le script de création de la table « RESERVATION » dans un
+SGBD respectant strictement la norme SQL avec des contraintes
+d’intégrité référentielle sur les autres Tables.</li>
+<li>Quelles hypothèses préalables doivent être vérifiées avant de lancer
+l’exécution de ce script ? (Quelles sont les tables à créer avant au
+minimum, indiquer l’ordre de création )</li>
 </ul>
-<h1 id="question-3-sql-traitement-de-linformation">Question 3 (SQL, traitement de l’information)</h1>
+<h1 id="question-3-sql-traitement-de-linformation">Question 3 (SQL,
+traitement de l’information)</h1>
 <p>Écrire les requêtes SQL suivantes (bien numéroter vos requêtes) :</p>
 <p><strong>ATTENTION</strong> :</p>
 <ul>
-<li><strong>faire des sauts de ligne au minimum avant les mots clés « SELECT », « FROM », « INNER JOIN » , « WHERE », « GROUP BY », « ORDER BY » (sinon pénalité)</strong></li>
-<li><strong>souligner les mots clés ci-dessus (sinon pénalité)</strong></li>
-<li><strong>écrire le code complet de chaque requête (sinon pénalité importante)</strong></li>
+<li><strong>faire des sauts de ligne au minimum avant les mots clés
+« SELECT », « FROM », « INNER JOIN » , « WHERE », « GROUP BY », « ORDER
+BY » (sinon pénalité)</strong></li>
+<li><strong>souligner les mots clés ci-dessus (sinon
+pénalité)</strong></li>
+<li><strong>écrire le code complet de chaque requête (sinon pénalité
+importante)</strong></li>
 <li><strong>utiliser uniquement les tables nécessaires</strong></li>
 </ul>
 <p><br></p>
 <ol type="1">
-<li>Dans l’hôtel d’identifiant 22, afficher le numéro des chambres réservées et le nombre de personnes qui occupent ces chambre le 14 janvier 2017.</li>
+<li>Dans l’hôtel d’identifiant 22, afficher le numéro des chambres
+réservées et le nombre de personnes qui occupent ces chambre le 14
+janvier 2017.</li>
 </ol>
 <pre><code>+------------+------------+
 | numChambre | nbPersonne |
@@ -83,7 +114,10 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </code></pre>
 <p>(exemple avec les données jointes)</p>
 <ol start="2" type="1">
-<li>Afficher toutes les chambres (numéro), leur nombre de lits et leur prix dans l’hôtel de nom « les marmottes». On affichera uniquement les chambres dont le nombre de lits est supérieur ou égal à 2 et on ordonnera l’affichage par prix de location.</li>
+<li>Afficher toutes les chambres (numéro), leur nombre de lits et leur
+prix dans l’hôtel de nom « les marmottes». On affichera uniquement les
+chambres dont le nombre de lits est supérieur ou égal à 2 et on
+ordonnera l’affichage par prix de location.</li>
 </ol>
 <pre><code>+------------+--------+--------------+
 | numChambre | nbLits | prixLocation |
@@ -94,7 +128,8 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </code></pre>
 <p>(exemple avec les données jointes)</p>
 <ol start="3" type="1">
-<li>Afficher le nom des clients pour les réservations de l’hôtel “Bellevue” à la station “Courchevel”.</li>
+<li>Afficher le nom des clients pour les réservations de l’hôtel
+“Bellevue” à la station “Courchevel”.</li>
 </ol>
 <pre><code>+----------------+------------+
 | nomClient      | nbPersonne |
@@ -105,7 +140,8 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </code></pre>
 <p>(exemple avec les données jointes)</p>
 <ol start="4" type="1">
-<li>Pour chaque station de Haute-Savoie, afficher le nom de la station et le nombre de lits en catégorie “trois étoiles”.</li>
+<li>Pour chaque station de Haute-Savoie, afficher le nom de la station
+et le nombre de lits en catégorie “trois étoiles”.</li>
 </ol>
 <pre><code>+------------+---------+
 | nomStation | Nb_lits |
@@ -115,7 +151,8 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </code></pre>
 <p>(exemple avec les données jointes)</p>
 <ol start="5" type="1">
-<li>Pour chaque station de Haute-Savoie, afficher le nombre de chambres réservées le samedi 11/02/17.</li>
+<li>Pour chaque station de Haute-Savoie, afficher le nombre de chambres
+réservées le samedi 11/02/17.</li>
 </ol>
 <pre><code>+-----------------------+
 | Nb_Chambres_Reservees |
@@ -126,7 +163,8 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 <p>(exemple avec les données jointes)</p>
 <p><br><br></p>
 <ol start="6" type="1">
-<li>Quelles sont les régions dont toutes les stations sont à plus de 1500m d’altitude ?</li>
+<li>Quelles sont les régions dont toutes les stations sont à plus de
+1500m d’altitude ?</li>
 </ol>
 <pre><code>+--------------+
 | region       |
@@ -135,9 +173,11 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 +--------------+
 </code></pre>
 <p>(exemple avec les données jointes)</p>
-<h1 id="requêtes-avancées-pour-les-plus-rapides">requêtes avancées : pour les plus rapides</h1>
+<h1 id="requêtes-avancées-pour-les-plus-rapides">requêtes avancées :
+pour les plus rapides</h1>
 <ol start="7" type="1">
-<li>Quels sont les noms des hôtels de catégorie deux étoiles de Méribel qui sont complets la semaine du 12/02/17 au 18/02/17 ?</li>
+<li>Quels sont les noms des hôtels de catégorie deux étoiles de Méribel
+qui sont complets la semaine du 12/02/17 au 18/02/17 ?</li>
 </ol>
 <pre><code>+-------------+
 | nomHotel    |
@@ -147,7 +187,8 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 </code></pre>
 <p>(exemple avec les données jointes)</p>
 <ol start="8" type="1">
-<li>Quels sont les clients qui sont allés dans toutes les stations du Jura ?</li>
+<li>Quels sont les clients qui sont allés dans toutes les stations du
+Jura ?</li>
 </ol>
 <pre><code>+----------+--------------+
 | idClient | nomClient    |
@@ -158,7 +199,10 @@ TP 4 SQL : ancien PARTIEL DE BASE DE DONNEES
 <p>(exemple avec les données jointes)</p>
 <p><br></p>
 <ol start="9" type="1">
-<li>Sans modifier le contenu de la table “RESERVATION”, ajouter une colonne <strong>totalPaiement</strong> qui correspond au paiement de la réservation. Quelle modification au modèle faudrait il apporter pour prendre en compte plusieurs paiement pour une chambre.</li>
+<li>Sans modifier le contenu de la table “RESERVATION”, ajouter une
+colonne <strong>totalPaiement</strong> qui correspond au paiement de la
+réservation. Quelle modification au modèle faudrait il apporter pour
+prendre en compte plusieurs paiement pour une chambre.</li>
 </ol>
 <h1 id="annexes">ANNEXES</h1>
 <pre><code>

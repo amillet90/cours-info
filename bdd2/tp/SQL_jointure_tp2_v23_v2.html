@@ -23,33 +23,44 @@ TP 2 SQL : compétitions de ski interne
 </div>
 <p>Soit le modèle relationnel suivant :</p>
 <p><br></p>
-<p><strong>station(<span class="underline"><strong>idStation</strong></span>,nomStation,altitude,pays)</strong><br />
+<p><strong>station(<u><strong>idStation</strong></u>,nomStation,altitude,pays)</strong><br />
 </p>
-<p><strong>competition(<span class="underline"><strong>idCompetition</strong></span>,libelleCompet,dateComp,#station_id)</strong><br />
+<p><strong>competition(<u><strong>idCompetition</strong></u>,libelleCompet,dateComp,#station_id)</strong><br />
 </p>
 <p><strong>classement(#skieur_id,#competition_id,classement)</strong><br />
 </p>
-<p><strong>comporte(<span class="underline">#competition_id, #specialite_id</span>)</strong><br />
+<p><strong>comporte(<u>#competition_id,
+#specialite_id</u>)</strong><br />
 </p>
-<p><strong>skieur(<span class="underline"><strong>idSkieur</strong></span> ,nomSkieur,<em>#specialite_id,#station_id</em>)</strong><br />
+<p><strong>skieur(<u><strong>idSkieur</strong></u>
+,nomSkieur,<em>#specialite_id,#station_id</em>)</strong><br />
 </p>
-<p><strong>specialite(<span class="underline"><strong>idSpecialite</strong></span>,libelleSpecialite)</strong><br />
+<p><strong>specialite(<u><strong>idSpecialite</strong></u>,libelleSpecialite)</strong><br />
 </p>
 <p><br></p>
-<h1 id="sql-création-des-tables-et-importation-des-données">SQL, création des tables et importation des données</h1>
-<p>Écrire dans un fichier <em>script_tp2.sql</em> le script de création des tables correspondant au modèle ci dessus.</p>
+<h1 id="sql-création-des-tables-et-importation-des-données">SQL,
+création des tables et importation des données</h1>
+<p>Écrire dans un fichier <em>script_tp2.sql</em> le script de création
+des tables correspondant au modèle ci dessus.</p>
 <p><br />
 </p>
 <ul>
 <li><p>Supprimer toutes les tables si elles existent.</p></li>
 <li><p>Créer toutes les tables si elles n'existent pas.</p></li>
 </ul>
-<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
+<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la
+suppression de la table et <strong>IF NOT EXISTS</strong> lors de la
+création des tables.)</p>
 <ul>
-<li>Insérer les données des fichiers <strong>csv</strong> joints : utiliser les fichiers <em>CLASSEMENT.csv SKIEUR.csv COMPETITION.csv SPECIALITE.csv STATION.csv COMPORTE.csv</em> (les fichiers COMPORTEv2.csv CLASSEMENTv2.csv COMPETITIONv2.csv sont prévus pour la fin du TP)</li>
+<li>Insérer les données des fichiers <strong>csv</strong> joints :
+utiliser les fichiers <em>CLASSEMENT.csv SKIEUR.csv COMPETITION.csv
+SPECIALITE.csv STATION.csv COMPORTE.csv</em> (les fichiers
+COMPORTEv2.csv CLASSEMENTv2.csv COMPETITIONv2.csv sont prévus pour la
+fin du TP)</li>
 </ul>
 <p><br></p>
-<h1 id="sql-traitement-de-linformation">SQL, traitement de l’information</h1>
+<h1 id="sql-traitement-de-linformation">SQL, traitement de
+l’information</h1>
 <p>Écrire les requêtes SQL suivantes :</p>
 <p><br />
 </p>
@@ -65,7 +76,8 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ol start="2" type="1">
-<li>Nom de la station de chaque skieur (affichage : nom skieur + nom station)</li>
+<li>Nom de la station de chaque skieur (affichage : nom skieur + nom
+station)</li>
 </ol>
 <pre><code>+-----------+--------------------+
 | nomSkieur | nomStation         |
@@ -83,7 +95,8 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ol start="3" type="1">
-<li>Classement de la compétition de libellé ‘compet’ (affichage : nom skieur + classement)</li>
+<li>Classement de la compétition de libellé ‘compet’ (affichage : nom
+skieur + classement)</li>
 </ol>
 <pre><code>+-----------+------------+---------------------------+
 | nomSkieur | classement | libelleCompet             |
@@ -112,7 +125,9 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ol start="4" type="1">
-<li>Liste des compétitions s’étant déroulées à ‘Tignes’ (nom de station) avec leur vainqueur (affichage : libellé Compétition, nom skieur vainqueur)</li>
+<li>Liste des compétitions s’étant déroulées à ‘Tignes’ (nom de station)
+avec leur vainqueur (affichage : libellé Compétition, nom skieur
+vainqueur)</li>
 </ol>
 <pre><code>+--------------------------+-----------+
 | libelleCompet            | nomSkieur |
@@ -125,7 +140,9 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ol start="5" type="1">
-<li><span lang="es-ES">Nombre de comp</span>étitions se déroulant dans chaque station (affichage : id station + nom station + nb de compétition)</li>
+<li><span lang="es-ES">Nombre de comp</span>étitions se déroulant dans
+chaque station (affichage : id station + nom station + nb de
+compétition)</li>
 </ol>
 <pre><code>+-----------+------------+-------------+
 | idStation | nomStation | nbrDeCompet |
@@ -138,7 +155,8 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ol start="6" type="1">
-<li>Nombre de victoires à ‘Tignes’ pour chaque skieur (affichage : id skieur + nom skieur + nb victoires)</li>
+<li>Nombre de victoires à ‘Tignes’ pour chaque skieur (affichage : id
+skieur + nom skieur + nb victoires)</li>
 </ol>
 <pre><code>+----------+-----------+-----------------+
 | idSkieur | nomSkieur | NbreDeVictoires |
@@ -160,7 +178,8 @@ TP 2 SQL : compétitions de ski interne
 <p>(exemple avec les données jointes)</p>
 <p><br />
 </p>
-<h1 id="question-3-analyse-du-mcd"><strong>Question 3</strong> : analyse du MCD</h1>
+<h1 id="question-3-analyse-du-mcd"><strong>Question 3</strong> : analyse
+du MCD</h1>
 <p><br />
 </p>
 <p>Utiliser un des 2 logiciels suivants :</p>
@@ -169,22 +188,35 @@ TP 2 SQL : compétitions de ski interne
 <li><a href="http://www.jfreesoft.com/JMerise/">JMerise</a></li>
 </ul>
 <p><strong>Utiliser de préférence looping</strong></p>
-<p><strong>Établir le modèle conceptuel des données associé à ce modèle relationnel.</strong></p>
+<p><strong>Établir le modèle conceptuel des données associé à ce modèle
+relationnel.</strong></p>
 <p><br><br></p>
 <h1 id="requêtes-avancées">requêtes avancées</h1>
 <p>Commencer par ajouter des enregistrements :</p>
 <ul>
-<li>supprimer le contenu des tables <strong>comporte classement</strong> et <strong>competition</strong> avec l’instruction <code>DELETE</code></li>
-<li>insérer des enregistrements avec les fichiers <em>COMPORTEv2.csv CLASSEMENTv2.csv COMPETITIONv2.csv</em>, il devrait y avoir des erreurs car les valeurs des clés primaires continues de s’incrémenter pour compétition</li>
-<li>pour la table <em>competition</em>, utiliser l’instruction <code>TRUNCATE</code> pour supprimer les enregistrements. Il faudra peut être autoriser l’instruction <code>TRUNCATE</code>, avec mettant la variable d’environement <em>FOREIGN_KEY_CHECKS</em> à 0 puis à 1 : <code>SET FOREIGN_KEY_CHECKS = 0;  ... SET FOREIGN_KEY_CHECKS = 1;</code></li>
+<li>supprimer le contenu des tables <strong>comporte classement</strong>
+et <strong>competition</strong> avec l’instruction
+<code>DELETE</code></li>
+<li>insérer des enregistrements avec les fichiers <em>COMPORTEv2.csv
+CLASSEMENTv2.csv COMPETITIONv2.csv</em>, il devrait y avoir des erreurs
+car les valeurs des clés primaires continues de s’incrémenter pour
+compétition</li>
+<li>pour la table <em>competition</em>, utiliser l’instruction
+<code>TRUNCATE</code> pour supprimer les enregistrements. Il faudra peut
+être autoriser l’instruction <code>TRUNCATE</code>, avec mettant la
+variable d’environement <em>FOREIGN_KEY_CHECKS</em> à 0 puis à 1 :
+<code>SET FOREIGN_KEY_CHECKS = 0;  ... SET FOREIGN_KEY_CHECKS = 1;</code></li>
 </ul>
 <p><br />
 </p>
-<p>Vérifier les requêtes ci-dessous avec les nouveaux enregistrements</p>
+<p>Vérifier les requêtes ci-dessous avec les nouveaux
+enregistrements</p>
 <p><br />
 </p>
 <ul>
-<li>R8 : Noms des skieurs et leurs classements ayant toujours terminé dans les 3 premiers à “Tigne”, afficher aussi le club(la station) du skieur</li>
+<li>R8 : Noms des skieurs et leurs classements ayant toujours terminé
+dans les 3 premiers à “Tigne”, afficher aussi le club(la station) du
+skieur</li>
 </ul>
 <pre><code>+-----------+------------+-------------+----------+
 | nomSkieur | classement | lieu_compet | club     |
@@ -195,7 +227,8 @@ TP 2 SQL : compétitions de ski interne
 | alberto   |          1 | Tignes      | Metabief |
 +-----------+------------+-------------+----------+</code></pre>
 <ul>
-<li>R9 : Noms des skieurs ayant toujours terminé dans les 3 premiers “à la maison” (dans leur station)</li>
+<li>R9 : Noms des skieurs ayant toujours terminé dans les 3 premiers “à
+la maison” (dans leur station)</li>
 </ul>
 <pre><code>+-----------+
 | nomSkieur |
@@ -207,17 +240,26 @@ TP 2 SQL : compétitions de ski interne
 <ul>
 <li>En vous aidant du document :</li>
 </ul>
-<p><a href="http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf">[http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf]</a></p>
-<p><span class="underline">(<a href="http://perso.modulonet.fr/placurie/Alsi1.htm" class="uri">http://perso.modulonet.fr/placurie/Alsi1.htm</a>)</span></p>
+<p><a
+href="http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf">[http://perso.modulonet.fr/placurie/Ressources/BTS1-ALSI/Evaluation-5%20(correction).pdf]</a></p>
+<p><u>(<a href="http://perso.modulonet.fr/placurie/Alsi1.htm"
+class="uri">http://perso.modulonet.fr/placurie/Alsi1.htm</a>)</u></p>
 <p><br />
 </p>
 <ul>
-<li>R10 : Modifier le MLD : sans supprimer la table, ajouter une colonne dans la table « classement » de nom « spécialite_id », créer une clé primaire sur cette table, ajouter une colonne « temps ». Un skieur ne peut pas se classer plusieurs fois dans la même spécialité. Mais si on supposait que un skieur peut se classer plusieurs fois dans la même spécialité lors de la même compétition, il faudrait ajouter une colonne « passage » ou « heureDepart ». (2.3)</li>
+<li>R10 : Modifier le MLD : sans supprimer la table, ajouter une colonne
+dans la table « classement » de nom « spécialite_id », créer une clé
+primaire sur cette table, ajouter une colonne « temps ». Un skieur ne
+peut pas se classer plusieurs fois dans la même spécialité. Mais si on
+supposait que un skieur peut se classer plusieurs fois dans la même
+spécialité lors de la même compétition, il faudrait ajouter une colonne
+« passage » ou « heureDepart ». (2.3)</li>
 </ul>
 <p><br />
 </p>
 <ul>
-<li>R11 : Donner la liste des stations dont sont originaires au moins 2 skieurs</li>
+<li>R11 : Donner la liste des stations dont sont originaires au moins 2
+skieurs</li>
 </ul>
 <pre><code>+------------+
 | nomStation |
@@ -227,7 +269,8 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ul>
-<li>R12 : Donner la liste des skieurs qui pratiquent la même spécialité que le skieur « paul »</li>
+<li>R12 : Donner la liste des skieurs qui pratiquent la même spécialité
+que le skieur « paul »</li>
 </ul>
 <pre><code>+-----------+
 | nomSkieur |
@@ -239,7 +282,9 @@ TP 2 SQL : compétitions de ski interne
 <p><br />
 </p>
 <ul>
-<li>R13 : Insérer dans la table SKIEUR le skieur «alphand» qui a la même spécialité que le skieur «paul» et la même station que le skieur «pierre» (4.2)</li>
+<li>R13 : Insérer dans la table SKIEUR le skieur «alphand» qui a la même
+spécialité que le skieur «paul» et la même station que le skieur
+«pierre» (4.2)</li>
 </ul>
 <p><br />
 </p>
@@ -265,7 +310,8 @@ TP 2 SQL : compétitions de ski interne
 +-----------+
 </code></pre>
 <ul>
-<li>R16 : Afficher les skieurs avec un classement égal ou meilleur que celui de “tom”</li>
+<li>R16 : Afficher les skieurs avec un classement égal ou meilleur que
+celui de “tom”</li>
 </ul>
 <pre><code>+-----------+
 | nomSkieur |
@@ -278,7 +324,8 @@ TP 2 SQL : compétitions de ski interne
 +-----------+
 </code></pre>
 <ul>
-<li>R17 : Afficher les skieurs qui ont plus ou au moins autant de victoires que “pierre”</li>
+<li>R17 : Afficher les skieurs qui ont plus ou au moins autant de
+victoires que “pierre”</li>
 </ul>
 <pre><code>+-----------+
 | nomSkieur |
@@ -288,7 +335,8 @@ TP 2 SQL : compétitions de ski interne
 +-----------+
 </code></pre>
 <ul>
-<li>R18 : Créer une transaction qui supprime la station «chambery» et déplace toutes les compétions dans la station «valoire» (4.4)</li>
+<li>R18 : Créer une transaction qui supprime la station «chambery» et
+déplace toutes les compétions dans la station «valoire» (4.4)</li>
 </ul>
 </body>
 </html>

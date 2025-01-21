@@ -19,60 +19,97 @@
 </head>
 <body>
 <div class="titre">
-<p>TP3 : Partiel Bases de Données 2022 <br> Durée : 2h Une feuille A4 <strong>manuscrite</strong> avec des notes de cours/TD/TP autorisée, calculatrice interdite</p>
+<p>TP3 : Partiel Bases de Données 2022 <br> Durée : 2h Une feuille A4
+<strong>manuscrite</strong> avec des notes de cours/TD/TP autorisée,
+calculatrice interdite</p>
 </div>
 <p><br></p>
 <h1>
 Exercice 1
 </h1>
-<p>Dans cet exercice, on désire modéliser de façon très simplifiée le système d’une base de données pour gérer le travail des pâtissiers dans des boulangeries.<br />
-Les clés primaires sont soulignées et les clés étrangères sont précédées par un caractère ”#”.<br />
-Dans ce sujet, le mot « <strong>Patisserie</strong> » fait référence à la « préparation pour réaliser des gâteaux » et non à la « boutique ». Le pâtissier est une personne. L’attribut « <strong>idPersonne</strong> » de la table « realisation » est le <strong>patissier</strong> qui a réalisé la (les) pâtisserie (s) avec une déclinaison de recette.</p>
+<p>Dans cet exercice, on désire modéliser de façon très simplifiée le
+système d’une base de données pour gérer le travail des pâtissiers dans
+des boulangeries.<br />
+Les clés primaires sont soulignées et les clés étrangères sont précédées
+par un caractère ”#”.<br />
+Dans ce sujet, le mot « <strong>Patisserie</strong> » fait référence à
+la « préparation pour réaliser des gâteaux » et non à la « boutique ».
+Le pâtissier est une personne. L’attribut « <strong>idPersonne</strong>
+» de la table « realisation » est le <strong>patissier</strong> qui a
+réalisé la (les) pâtisserie (s) avec une déclinaison de recette.</p>
 <p><br></p>
 <p><img src="img/tp3_img_gateaux.png" style="width:7cm" /></p>
 <p><br></p>
 <p>Soit le modèle relationnel suivant : <br></p>
-<p><strong>boutique(<span class="underline"><strong>idBoutique</strong></span>,nom,adresse,codePostal,ville)</strong><br />
+<p><strong>boutique(<u><strong>idBoutique</strong></u>,nom,adresse,codePostal,ville)</strong><br />
 <br />
-<strong>estRattache(<span class="underline"><strong>#idPersonne,#idBoutique,dateEmbauche</strong></span>)</strong><br />
+<strong>estRattache(<u><strong>#idPersonne,#idBoutique,dateEmbauche</strong></u>)</strong><br />
 <br />
-<strong>realisation(<span class="underline"><strong>#idPersonne,#idPatisserie,#numDeclinaison,dateRealisation</strong></span>, nbRealisation)</strong><br />
+<strong>realisation(<u><strong>#idPersonne,#idPatisserie,#numDeclinaison,dateRealisation</strong></u>,
+nbRealisation)</strong><br />
 <br />
-<strong>patisserie(<span class="underline"><strong>idPatisserie</strong></span>,nom, categorie, prixUnitaire)</strong><br />
+<strong>patisserie(<u><strong>idPatisserie</strong></u>,nom, categorie,
+prixUnitaire)</strong><br />
 <br />
-<strong>recette(<span class="underline">#idPatisserie, numDeclinaison</span>, ingredients, description, auteur , annee)</strong><br />
+<strong>recette(<u>#idPatisserie, numDeclinaison</u>, ingredients,
+description, auteur , annee)</strong><br />
 <br />
-<strong>personne(<span class="underline"><strong>idPersonne</strong></span> ,nomPersonne, prenom, anneeNaissance</strong>)</p>
+<strong>personne(<u><strong>idPersonne</strong></u> ,nomPersonne,
+prenom, anneeNaissance</strong>)</p>
 <p><br></p>
 <p><br></p>
 <ul>
-<li><strong>numDeclinaison</strong> est un entier qui identifie de manière relative la déclinaison de la recette. L’attribut vaut 0 pour indiquer qu’il s’agit de la recette initiale. Une recette dispose d’une déclinaison du moment : un ingrédient est changé ou le procédé est modifié.</li>
-<li><strong>nbRealisation</strong> désigne le nombre de pâtisseries qui ont été réalisées dans une journée.</li>
-<li><strong>categorie</strong> est une chaîne de caractères avec comme valeur « gâteau » …. .</li>
-<li><strong>ingredients</strong> est une chaîne de caractères avec comme valeur « sucre, farine, marrons, pommes » …. .</li>
+<li><strong>numDeclinaison</strong> est un entier qui identifie de
+manière relative la déclinaison de la recette. L’attribut vaut 0 pour
+indiquer qu’il s’agit de la recette initiale. Une recette dispose d’une
+déclinaison du moment : un ingrédient est changé ou le procédé est
+modifié.</li>
+<li><strong>nbRealisation</strong> désigne le nombre de pâtisseries qui
+ont été réalisées dans une journée.</li>
+<li><strong>categorie</strong> est une chaîne de caractères avec comme
+valeur « gâteau » …. .</li>
+<li><strong>ingredients</strong> est une chaîne de caractères avec comme
+valeur « sucre, farine, marrons, pommes » …. .</li>
 </ul>
-<h1 id="définition-des-données-ldd">Définition des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es" target="_blanck">LDD</a>)</h1>
+<h1 id="définition-des-données-ldd">Définition des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es"
+target="_blanck">LDD</a>)</h1>
 <h2 id="question-2">Question 2</h2>
 <ul>
-<li>Proposer le script SQL de création de la table « realisation » dans un SGBD respectant strictement la norme SQL avec des contraintes d’<strong>intégrité référentielle</strong> sur les autres Tables.</li>
-<li>Quelles hypothèses préalables doivent être vérifiées avant de lancer l’exécution de ce script ? (Quelles sont les tables à créer <strong>avant au <span class="underline">minimum</span>, indiquer l’ordre de création</strong> )</li>
+<li>Proposer le script SQL de création de la table « realisation » dans
+un SGBD respectant strictement la norme SQL avec des contraintes
+d’<strong>intégrité référentielle</strong> sur les autres Tables.</li>
+<li>Quelles hypothèses préalables doivent être vérifiées avant de lancer
+l’exécution de ce script ? (Quelles sont les tables à créer
+<strong>avant au <u>minimum</u>, indiquer l’ordre de création</strong>
+)</li>
 </ul>
 <h2 id="question-1-mcd">Question 1 : MCD</h2>
-<p>Proposer un modèle conceptuel des données (<strong>MCD</strong>) associé au modèle relationnel précédent : modèle relationnel complet.</p>
-<p><strong>Ne pas utiliser d’identifiant relatif sauf si il n’y a pas d’autre solution dans une relation binaire.</strong></p>
+<p>Proposer un modèle conceptuel des données (<strong>MCD</strong>)
+associé au modèle relationnel précédent : modèle relationnel
+complet.</p>
+<p><strong>Ne pas utiliser d’identifiant relatif sauf si il n’y a pas
+d’autre solution dans une relation binaire.</strong></p>
 <p>Utiliser le logiciel Looping.</p>
-<h2 id="création-des-tables-et-importation-des-données-cette-question-nétait-pas-dans-le-partiel">création des tables et importation des données (cette question n’était pas dans le partiel)</h2>
+<h2
+id="création-des-tables-et-importation-des-données-cette-question-nétait-pas-dans-le-partiel">création
+des tables et importation des données (cette question n’était pas dans
+le partiel)</h2>
 <p>En utilisant le script généré par looping :</p>
-<p>Écrire dans un fichier <em>script_patissier.sql</em> le script de création des tables correspondant au modèle ci dessus.</p>
+<p>Écrire dans un fichier <em>script_patissier.sql</em> le script de
+création des tables correspondant au modèle ci dessus.</p>
 <p><br />
 </p>
 <ul>
 <li><p>Supprimer toutes les tables si elles existent.</p></li>
 <li><p>Créer toutes les tables si elles n'existent pas.</p></li>
 </ul>
-<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la suppression de la table et <strong>IF NOT EXISTS</strong> lors de la création des tables.)</p>
+<p>(Utiliser les mots clés <strong>IF EXISTS</strong> lors de la
+suppression de la table et <strong>IF NOT EXISTS</strong> lors de la
+création des tables.)</p>
 <ul>
-<li>Utilisez les données du <a href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S2_BDD/tp/ressources/script_patissier_etu_23.sql">fichier</a></li>
+<li>Utilisez les données du <a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S2_BDD/tp/ressources/script_patissier_etu_23.sql">fichier</a></li>
 </ul>
 <!--  (il est parfois préférable de mettre le flag [`autocommit`](https://mariadb.com/kb/en/mysql_autocommit/){target="_blanck"} à 0 puis de le remettre à 1 , après avoir utiliser la commande `source` : voir sur internet ) -->
 <!-- https://learntutorials.net/fr/mysql/topic/5771/transaction -->
@@ -85,19 +122,26 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 * Si vous rencontrez des problèmes d’encodage, vous pouvez tester la commande suivante :
 ![](img/tp5_img1_2.jpg){width=10cm}
 -->
-<h1 id="interrogation-des-données-lid-select">Interrogation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte" target="_blanck">LID</a>) : <strong>SELECT</strong></h1>
+<h1 id="interrogation-des-données-lid-select">Interrogation des données
+(<a href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte"
+target="_blanck">LID</a>) : <strong>SELECT</strong></h1>
 <h2 id="question-3">Question 3</h2>
 <p>Écrire les requêtes SQL suivantes (bien numéroter vos requêtes) :</p>
 <p>ATTENTION :</p>
 <ul>
-<li>faire des sauts de ligne au minimum avant les mots clés « SELECT », « FROM », « INNER JOIN » , « WHERE », « GROUP BY », « ORDER BY » (sinon pénalité)</li>
-<li><strong>souligner</strong> les mots clés ci-dessus (sinon pénalité)</li>
-<li>écrire le code complet de chaque requête (sinon pénalité importante)</li>
+<li>faire des sauts de ligne au minimum avant les mots clés « SELECT »,
+« FROM », « INNER JOIN » , « WHERE », « GROUP BY », « ORDER BY » (sinon
+pénalité)</li>
+<li><strong>souligner</strong> les mots clés ci-dessus (sinon
+pénalité)</li>
+<li>écrire le code complet de chaque requête (sinon pénalité
+importante)</li>
 <li>utiliser uniquement les tables nécessaires</li>
 </ul>
 <p><br></p>
 <ol type="1">
-<li>Donner le nombre de catégories différentes de pâtisseries. (affichage : un numérique uniquement). Utiliser 1 seule table.</li>
+<li>Donner le nombre de catégories différentes de pâtisseries.
+(affichage : un numérique uniquement). Utiliser 1 seule table.</li>
 </ol>
 <div class="vert">
 <pre><code>+--------------+
@@ -108,7 +152,10 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="2" type="1">
-<li>Donner le nom des pâtisseries de catégorie « gâteau » ayant des « marrons » parmi ses ingrédients. ( affichage : nom des pâtisseries, le résultat sera trié selon l’ordre lexicographique inverse sur le nom de la pâtisserie, supprimer les doublons ).</li>
+<li>Donner le nom des pâtisseries de catégorie « gâteau » ayant des «
+marrons » parmi ses ingrédients. ( affichage : nom des pâtisseries, le
+résultat sera trié selon l’ordre lexicographique inverse sur le nom de
+la pâtisserie, supprimer les doublons ).</li>
 </ol>
 <div class="vert">
 <pre><code>+-----------------------------------+
@@ -120,7 +167,12 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="3" type="1">
-<li>Donner le nom et le prénom des pâtissiers ayant réalisé plus de 100 « macarons » dans une journée entre le 1 septembre 2021 et le 31 décembre 2021. On précisera également la date de réalisation. « macarons » est le nom la catégorie de la pâtisserie. (Le résultat sera trié selon l’ordre lexicographique du nom et du prénom du pâtissier puis l’ordre décroissant de date de réalisation).</li>
+<li>Donner le nom et le prénom des pâtissiers ayant réalisé plus de 100
+« macarons » dans une journée entre le 1 septembre 2021 et le 31
+décembre 2021. On précisera également la date de réalisation. « macarons
+» est le nom la catégorie de la pâtisserie. (Le résultat sera trié selon
+l’ordre lexicographique du nom et du prénom du pâtissier puis l’ordre
+décroissant de date de réalisation).</li>
 </ol>
 <div class="vert">
 <pre><code>+-------------+--------+-----------------+
@@ -131,7 +183,10 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="4" type="1">
-<li>Donner le nombre de recettes différentes pour réaliser un macaron avec le nom de la pâtisserie. Le résultat sera renommé en ’nbMacaronsDifférents’. (Le résultat sera trié selon l’ordre lexicographique du nom de la pâtisserie).</li>
+<li>Donner le nombre de recettes différentes pour réaliser un macaron
+avec le nom de la pâtisserie. Le résultat sera renommé en
+’nbMacaronsDifférents’. (Le résultat sera trié selon l’ordre
+lexicographique du nom de la pâtisserie).</li>
 </ol>
 <div class="vert">
 <pre><code>+----------------------+------------------+
@@ -143,7 +198,8 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="5" type="1">
-<li>Donner le nom et le prix unitaire de la pâtisserie la plus chère.</li>
+<li>Donner le nom et le prix unitaire de la pâtisserie la plus
+chère.</li>
 </ol>
 <div class="vert">
 <pre><code>+-----------------------------------+--------------+
@@ -154,7 +210,11 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="6" type="1">
-<li>Donner les pâtissiers qui n’ont jamais réalisé de ‘Baba au Rhum’ en 2021. (Le résultat sera trié selon l’ordre lexicographique du nom du pâtissier). (Commencer par afficher les pâtissiers qui ont réalisé des ‘Baba au Rhum’ en 2021, ‘Baba au Rhum’ est le nom de la pâtisserie).</li>
+<li>Donner les pâtissiers qui n’ont jamais réalisé de ‘Baba au Rhum’ en
+2021. (Le résultat sera trié selon l’ordre lexicographique du nom du
+pâtissier). (Commencer par afficher les pâtissiers qui ont réalisé des
+‘Baba au Rhum’ en 2021, ‘Baba au Rhum’ est le nom de la
+pâtisserie).</li>
 </ol>
 <div class="vert">
 <pre><code>+------------+-------------+----------+----------------+
@@ -167,7 +227,11 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="7" type="1">
-<li>Pour chaque boutique de la ville valdoie, donner le montant en euros des pâtisseries réalisées dans le mois de décembre 2021. Le résultat sera renommé en ’prod12-2021-euros’, afficher le montant et le nom des boutiques. (Le résultat sera trié de façon à afficher les plus gros chiffres d’affaires en premier).</li>
+<li>Pour chaque boutique de la ville valdoie, donner le montant en euros
+des pâtisseries réalisées dans le mois de décembre 2021. Le résultat
+sera renommé en ’prod12-2021-euros’, afficher le montant et le nom des
+boutiques. (Le résultat sera trié de façon à afficher les plus gros
+chiffres d’affaires en premier).</li>
 </ol>
 <div class="vert">
 <pre><code>+-----------------+-----------------------+
@@ -181,7 +245,10 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 <p>—— requêtes plus difficiles</p>
 <p><br></p>
 <ol start="8" type="1">
-<li>Donner le nom et le prix unitaire de la pâtisserie la plus chère pour chaque catégorie de pâtisserie. (Si il y a des doublons : 2 pâtisseries de même prix et même catégorie avec un prix maximum, les 2 sont affichées, cette requête nécessite une sous interrogation)</li>
+<li>Donner le nom et le prix unitaire de la pâtisserie la plus chère
+pour chaque catégorie de pâtisserie. (Si il y a des doublons : 2
+pâtisseries de même prix et même catégorie avec un prix maximum, les 2
+sont affichées, cette requête nécessite une sous interrogation)</li>
 </ol>
 <div class="vert">
 <pre><code>+--------------+-----------------------------------+--------------+
@@ -196,7 +263,8 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <ol start="9" type="1">
-<li>Donner les pâtisseries réalisées par plus de 2 pâtissiers différents en 2021</li>
+<li>Donner les pâtisseries réalisées par plus de 2 pâtissiers différents
+en 2021</li>
 </ol>
 <div class="vert">
 <pre><code>+--------------+--------------+-----------+--------------+--------------+
@@ -208,24 +276,52 @@ La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables so
 </div>
 <p><br></p>
 <p><br></p>
-<h1 id="question-4-modification-du-mcd">Question 4 : modification du MCD</h1>
-<p><strong>Dessiner un nouveau schéma MCD</strong> avec les entités/associations. Réutiliser le dernier MCD (question 1). Dans les entités, vous pouvez faire apparaître uniquement les clés et des petits points pour indiquer qu’il y a d’autres attributs si ça ne nuit pas à la compréhension. Si vous supprimez des attributs, faites les apparaître et rayez les.<br />
-Utiliser de préférence une autre couleur pour faire apparaître les modifications.<br />
+<h1 id="question-4-modification-du-mcd">Question 4 : modification du
+MCD</h1>
+<p><strong>Dessiner un nouveau schéma MCD</strong> avec les
+entités/associations. Réutiliser le dernier MCD (question 1). Dans les
+entités, vous pouvez faire apparaître uniquement les clés et des petits
+points pour indiquer qu’il y a d’autres attributs si ça ne nuit pas à la
+compréhension. Si vous supprimez des attributs, faites les apparaître et
+rayez les.<br />
+Utiliser de préférence une autre couleur pour faire apparaître les
+modifications.<br />
 Tenir compte des informations ci-dessous.</p>
 <p><br></p>
-<p>On désire ajouter dans le MCD, la quantité d’ingrédients utilisés pour réaliser une recette ainsi que le nombre de gâteaux réalisés avec une recette. Les ingrédients utilisent une seule unité de mesure (poids en Kg, litre, nombre de pièces).<br />
-Proposer une solution qui fait apparaître les ingrédients (leurs noms et leur unité), leurs quantités pour réaliser une recette pour produire un certain nombre de gâteaux.<br />
-Dans le champ auteur (table « recette »), il y a le nom et le prénom (séparé par un espace) de l’auteur(e) de la recette. « Normaliser » ce champ en modifiant le MCD. Une recette n’a pas forcément un auteur.</p>
+<p>On désire ajouter dans le MCD, la quantité d’ingrédients utilisés
+pour réaliser une recette ainsi que le nombre de gâteaux réalisés avec
+une recette. Les ingrédients utilisent une seule unité de mesure (poids
+en Kg, litre, nombre de pièces).<br />
+Proposer une solution qui fait apparaître les ingrédients (leurs noms et
+leur unité), leurs quantités pour réaliser une recette pour produire un
+certain nombre de gâteaux.<br />
+Dans le champ auteur (table « recette »), il y a le nom et le prénom
+(séparé par un espace) de l’auteur(e) de la recette. « Normaliser » ce
+champ en modifiant le MCD. Une recette n’a pas forcément un auteur.</p>
 <div class="vert">
 <p><br><br></p>
-<h1 id="manipulation-des-données-lmd-insert-update-delete">Manipulation des données (<a href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es" target="_blanck">LMD</a>) : <strong>INSERT – UPDATE – DELETE</strong></h1>
-<p><a href="https://fr.wikibooks.org/wiki/MySQL/Variables_utilisateurs" target="_blanck">utilisation des variables dans MYSQL (wiki)</a> <br></p>
-<p><strong>Tester le script ci-dessous. Ouvrir 2 terminaux (deux sessions différentes), tester le code jusqu’à l’étape 1 et comparer les variables</strong></p>
+<h1 id="manipulation-des-données-lmd-insert-update-delete">Manipulation
+des données (<a
+href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es"
+target="_blanck">LMD</a>) : <strong>INSERT – UPDATE –
+DELETE</strong></h1>
+<p><a href="https://fr.wikibooks.org/wiki/MySQL/Variables_utilisateurs"
+target="_blanck">utilisation des variables dans MYSQL (wiki)</a>
+<br></p>
+<p><strong>Tester le script ci-dessous. Ouvrir 2 terminaux (deux
+sessions différentes), tester le code jusqu’à l’étape 1 et comparer les
+variables</strong></p>
 <figure>
-<img src="img/tp3_img1_1v2.png" style="width:13cm" alt="" /><figcaption>exemple de script</figcaption>
+<img src="img/tp3_img1_1v2.png" style="width:13cm"
+alt="exemple de script" />
+<figcaption aria-hidden="true">exemple de script</figcaption>
 </figure>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blanck">doc SET</a> - <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blanck">doc type-conversion</a></p>
-<h1 id="requêtes-pour-les-plus-rapides">requêtes pour les plus rapides :</h1>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html"
+target="_blanck">doc SET</a> - <a
+href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html"
+target="_blanck">doc type-conversion</a></p>
+<h1 id="requêtes-pour-les-plus-rapides">requêtes pour les plus rapides
+:</h1>
 <p><br></p>
 <!--
 
@@ -234,7 +330,10 @@ Dans le champ auteur (table « recette »), il y a le nom et le prénom (sépar�
 pas d'intérèt
 <br>
 -->
-<p>10 : Donner les boutiques de la ville de valdoie qui ont employé le pâtissier ’jean Mantey’. On précisera pour chaque boutique la date d’embauche et le résultat sera trié par rapport à cette date selon l’ordre chronologique inverse.</p>
+<p>10 : Donner les boutiques de la ville de valdoie qui ont employé le
+pâtissier ’jean Mantey’. On précisera pour chaque boutique la date
+d’embauche et le résultat sera trié par rapport à cette date selon
+l’ordre chronologique inverse.</p>
 <div class="vert">
 <pre><code>+------------+--------+-------------------+------------+---------+--------------+
 | idBoutique | nom    | adresse           | codePostal | ville   | dateEmbauche |
@@ -244,7 +343,8 @@ pas d'intérèt
 </code></pre>
 </div>
 <p><br></p>
-<p>11 : Donner les personnes de moins de 55 ans (cette année) qui sont auteurs d’au moins une recette.</p>
+<p>11 : Donner les personnes de moins de 55 ans (cette année) qui sont
+auteurs d’au moins une recette.</p>
 <div class="vert">
 <pre><code>+-------------+
 | auteur      |
@@ -253,7 +353,9 @@ pas d'intérèt
 +-------------+</code></pre>
 </div>
 <p><br></p>
-<p>12: Pour chaque nom de pâtisserie, donner le nombre total de réalisations durant l’année 2021. Le résultat sera renommé en ’total2021’.</p>
+<p>12: Pour chaque nom de pâtisserie, donner le nombre total de
+réalisations durant l’année 2021. Le résultat sera renommé en
+’total2021’.</p>
 <div class="vert">
 <pre><code>
 +-----------------------------------+-----------+
@@ -270,7 +372,8 @@ pas d'intérèt
 </code></pre>
 </div>
 <p><br></p>
-<p>13 : Donner les boutiques n’ayant jamais proposé de pâtisserie à base de Rhum.</p>
+<p>13 : Donner les boutiques n’ayant jamais proposé de pâtisserie à base
+de Rhum.</p>
 <div class="vert">
 <pre><code>
 +------------+-------------+------------------+------------+---------+
@@ -281,7 +384,8 @@ pas d'intérèt
 </code></pre>
 </div>
 <p><br></p>
-<p>Pour cette dernière requête, ajouter des enregistrements pour obtenir un résultat</p>
+<p>Pour cette dernière requête, ajouter des enregistrements pour obtenir
+un résultat</p>
 <div class="vert">
 <pre><code>INSERT INTO realisation(idPersonne, idPatisserie, numDeclinaison, dateRealisation, nbRealisation)
  VALUES (1, 3, 0, &#39;2020-10-02&#39;, 99);
@@ -290,7 +394,10 @@ INSERT INTO realisation(idPersonne, idPatisserie, numDeclinaison, dateRealisatio
 </code></pre>
 </div>
 <p><br></p>
-<p>14 : Donner les pâtissiers qui ont déjà réalisés au moins une recette de chacune des pâtisseries du catalogue. (indice : Pour ces pâtissiers, il n’existe aucune pâtisserie pour laquelle il n’existe aucune réalisation effectuée par le pâtissier)</p>
+<p>14 : Donner les pâtissiers qui ont déjà réalisés au moins une recette
+de chacune des pâtisseries du catalogue. (indice : Pour ces pâtissiers,
+il n’existe aucune pâtisserie pour laquelle il n’existe aucune
+réalisation effectuée par le pâtissier)</p>
 <div class="vert">
 <pre><code>+-------------+-------------------------+
 | nomPersonne | nb_patisseries_distinct |
