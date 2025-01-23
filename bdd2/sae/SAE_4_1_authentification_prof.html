@@ -96,23 +96,25 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>echo <span class="ot">&quot;DROP DATABASE  IF EXISTS ${DATABASE}; CREATE DATABASE ${DATABASE};&quot;</span> | mysql <span class="co">--user=${LOGIN} --password=${PASSWORD} --host=${HOST} ${DATABASE}</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> utilisateur(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   id_utilisateur <span class="dt">INT</span> AUTO_INCREMENT,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   email <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   nom <span class="dt">VARCHAR</span>(<span class="dv">255</span>),         <span class="co">-- ou pseudo</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   <span class="kw">role</span> <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   est_actif tinyint(<span class="dv">1</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- token_email VARCHAR(255),    -- validation et mdp oublié</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- token_email_date DATE(),</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- go_auth_token VARCHAR(255), </span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- go_username_token VARCHAR(255),  -idem facebook twitter</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>   <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_utilisateur)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)ENGINE<span class="op">=</span>InnoDB  <span class="kw">DEFAULT</span> CHARSET utf8mb4;  </span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> utilisateur;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> utilisateur(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   id_utilisateur <span class="dt">INT</span> AUTO_INCREMENT,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   email <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   nom <span class="dt">VARCHAR</span>(<span class="dv">255</span>),         <span class="co">-- ou pseudo</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   <span class="kw">role</span> <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   est_actif tinyint(<span class="dv">1</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- token_email VARCHAR(255),    -- validation et mdp oublié</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- token_email_date DATE(),</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- go_auth_token VARCHAR(255), </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>   <span class="co">-- go_username_token VARCHAR(255),  -idem facebook twitter</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>   <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(id_utilisateur)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)ENGINE<span class="op">=</span>InnoDB  <span class="kw">DEFAULT</span> CHARSET utf8mb4;  </span></code></pre></div>
 <p><br><br><br><br> Insérer les enregistrements <br><br><br><br></p>
 <h1 id="requête">requête</h1>
 <h2 id="requête-1">requête 1</h2>
