@@ -234,35 +234,33 @@ pour le client</h1>
 <code>client_article</code></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">        SELECT id_stylo AS id_article</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">               , nom_stylo AS nom</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">               , prix_stylo AS prix</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">               , stock AS stock</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">               -- , image AS image</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM stylo</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY nom_stylo;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>stylos <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>articles <span class="op">=</span> stylos</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">        SELECT id_marque  AS id_type_article</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">                ,libelle            </span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM marque</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY  libelle</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>marques <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>types_article <span class="op">=</span> marques</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * , 10 as prix , concat(&#39;nomarticle&#39;,stylo_id) as nom FROM ligne_panier&quot;</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>articles_panier <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>prix_total <span class="op">=</span> <span class="dv">123</span>  <span class="co"># requete à faire</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">        SELECT id_stylo AS id_article</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">               , nom_stylo AS nom</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">               , prix_stylo AS prix</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">               , stock AS stock</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">               -- , image AS image</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM stylo</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY nom_stylo;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>stylos <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>articles <span class="op">=</span> stylos</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">        SELECT id_marque  AS id_type_article</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">                ,libelle            </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM marque</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY  libelle</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>marques <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>types_article <span class="op">=</span> marques</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * , 10 as prix , concat(&#39;nomarticle&#39;,stylo_id) as nom FROM ligne_panier&quot;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>articles_panier <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>prix_total <span class="op">=</span> <span class="dv">123</span>  <span class="co"># requete à faire</span></span></code></pre></div>
 <h1 id="ajouter-un-article-dans-le-panier">ajouter un article dans le
 panier</h1>
 <ul>
@@ -297,93 +295,106 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recherche du stock de l&#39;article</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> article_stock[<span class="st">&#39;stock&#39;</span>] <span class="op">&gt;=</span> <span class="bu">int</span>(quantite):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code ci dessus</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    tuple_update <span class="op">=</span> (quantite, id_article)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;UPDATE stylo SET stock = stock-</span><span class="sc">%s</span><span class="st"> WHERE  id_stylo=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, tuple_update)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    flash(<span class="st">u&#39;Stock insuffisant&#39;</span>)</span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    flash(<span class="st">u&#39;Stock insuffisant&#39;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    tuple_update <span class="op">=</span> (quantite, id_article)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;UPDATE stylo SET stock = stock-</span><span class="sc">%s</span><span class="st"> WHERE  id_stylo=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, tuple_update)</span></code></pre></div>
 <h1 id="supprimer-un-article-dans-le-panier">supprimer un article dans
 le panier</h1>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>id_article <span class="op">=</span> request.form.get(<span class="st">&#39;id_article&#39;</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>quantite <span class="op">=</span> request.form.get(<span class="st">&#39;quantite&#39;</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;supprime client &#39;</span>,id_client, <span class="st">&#39;article&#39;</span>, id_article, <span class="st">&#39;quantite :&#39;</span>, quantite)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> and article_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql, (id_client, id_article))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>article_panier <span class="op">=</span> mycursor.fetchone()</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span>(article_panier <span class="kw">is</span> <span class="va">None</span>) <span class="kw">and</span> article_panier[<span class="st">&#39;quantite&#39;</span>] <span class="op">&gt;</span> <span class="dv">1</span>:</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;UPDATE ligne_panier SET quantite = quantite-</span><span class="sc">%s</span><span class="st">  WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND article_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, (quantite, id_client, id_article))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND article_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, (id_client, id_article))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>get_db().commit()</span></code></pre></div>
+<ul>
+<li>méthode <code>client_article_show</code> du contrôleur
+<code>client_article</code></li>
+</ul>
+<pre><code>    sql = &#39;&#39;&#39;
+      SELECT ligne_panier.stylo_id, ligne_panier.utilisateur_id, ligne_panier.date_ajout, ligne_panier.quantite
+      , stylo.prix_stylo AS prix, stylo.nom_stylo AS nom, stylo.stock, stylo.id_stylo AS id_article
+      , couleur.libelle AS libelle_couleur, couleur.id_couleur
+      FROM ligne_panier
+      INNER JOIN stylo ON stylo.id_stylo = ligne_panier.stylo_id
+      LEFT JOIN couleur ON couleur.id_couleur = stylo.couleur_id
+      WHERE ligne_panier.utilisateur_id=%s
+      ORDER BY stylo_id;
+      &#39;&#39;&#39;
+    mycursor.execute(sql,(id_client))</code></pre>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;UPDATE ***** SET stock = stock + </span><span class="sc">%s</span><span class="st"> WHERE id=</span><span class="sc">%s</span><span class="st">&quot;</span>, (quantite,id_article))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>id_article <span class="op">=</span> request.form.get(<span class="st">&#39;id_article&#39;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>quantite <span class="op">=</span> request.form.get(<span class="st">&#39;quantite&#39;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;supprime client &#39;</span>,id_client, <span class="st">&#39;article&#39;</span>, id_article, <span class="st">&#39;quantite :&#39;</span>, quantite)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> and stylo_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mycursor.execute(sql, (id_client, id_article))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>article_panier <span class="op">=</span> mycursor.fetchone()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span>(article_panier <span class="kw">is</span> <span class="va">None</span>) <span class="kw">and</span> article_panier[<span class="st">&#39;quantite&#39;</span>] <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;UPDATE ligne_panier SET quantite = quantite-</span><span class="sc">%s</span><span class="st">  WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND stylo_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, (quantite, id_client, id_article))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND stylo_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, (id_client, id_article))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>get_db().commit()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;UPDATE ***** SET stock = stock + </span><span class="sc">%s</span><span class="st"> WHERE id=</span><span class="sc">%s</span><span class="st">&quot;</span>, (quantite,id_article))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <h1 id="vider-le-panier">vider le panier</h1>
 <p>version 1</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>retour <span class="op">=</span> mycursor.execute(sql, (id_client))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>get_db().commit()</span></code></pre></div>
-<p>version 2</p>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE  utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>retour <span class="op">=</span> mycursor.execute(sql, (id_client))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>items_panier <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items_panier:</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  article_id = </span><span class="sc">%s</span><span class="st"> and utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remettre dans le stock les articles</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql,(item[<span class="st">&#39;article_id&#39;</span>], id_client))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    get_db().commit()</span></code></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>get_db().commit()</span></code></pre></div>
+<p>version 2</p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;UPDATE ***** SET stock = stock + </span><span class="sc">%s</span><span class="st"> WHERE id=</span><span class="sc">%s</span><span class="st">&quot;</span>, (item[<span class="st">&#39;quantite&#39;</span>], item[<span class="st">&#39;article_id&#39;</span>]))</span></code></pre></div>
-<h1 id="valider-la-commande">valider la commande</h1>
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE  utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>retour <span class="op">=</span> mycursor.execute(sql, (id_client))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>items_panier <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items_panier:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  article_id = </span><span class="sc">%s</span><span class="st"> and utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remettre dans le stock les articles</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql,(item[<span class="st">&#39;article_id&#39;</span>], id_client))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    get_db().commit()</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE utilisateur_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, id_client)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    items_panier <span class="op">=</span> mycursor.fetchall()</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> items_panier <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="bu">len</span>(items_panier) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        flash(<span class="st">u&#39;Pas d</span><span class="ch">\&#39;</span><span class="st">articles dans le panier&#39;</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> redirect(url_for(<span class="st">&#39;client_index&#39;</span>))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    date_commande <span class="op">=</span> datetime.now().strftime(<span class="st">&#39;%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S&#39;</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    tuple_insert <span class="op">=</span> (date_commande, id_client, <span class="st">&#39;1&#39;</span>)  <span class="co"># 1 : etat de commande</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;INSERT INTO commande(date_achat,utilisateur_id,etat_id) VALUES (</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, tuple_insert)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;SELECT last_insert_id() as last_insert_id&quot;</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    commande_id <span class="op">=</span> mycursor.fetchone()</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(commande_id, tuple_insert)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> items_panier:</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        tuple_insert <span class="op">=</span> (id_client, item[<span class="st">&#39;stylo_id&#39;</span>])</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND stylo_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql,tuple_insert)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;SELECT prix FROM stylo WHERE id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql, item[<span class="st">&#39;stylo_id&#39;</span>])</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        prix <span class="op">=</span> mycursor.fetchone()</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;INSERT INTO ligne_commande(commande_id,stylo_id, prix, quantite) VALUES (</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">)&quot;</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        tuple_insert <span class="op">=</span> (commande_id[<span class="st">&#39;last_insert_id&#39;</span>], item[<span class="st">&#39;stylo_id&#39;</span>], prix[<span class="st">&#39;prix&#39;</span>], item[<span class="st">&#39;quantite&#39;</span>])</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(tuple_insert)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql, tuple_insert)</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    get_db().commit()</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    flash(<span class="st">u&#39;Commande ajoutée&#39;</span>)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/client/article/show&#39;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;UPDATE ***** SET stock = stock + </span><span class="sc">%s</span><span class="st"> WHERE id=</span><span class="sc">%s</span><span class="st">&quot;</span>, (item[<span class="st">&#39;quantite&#39;</span>], item[<span class="st">&#39;article_id&#39;</span>]))</span></code></pre></div>
+<h1 id="valider-la-commande">valider la commande</h1>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;SELECT * FROM ligne_panier WHERE utilisateur_id=</span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, id_client)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    items_panier <span class="op">=</span> mycursor.fetchall()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> items_panier <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="bu">len</span>(items_panier) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        flash(<span class="st">u&#39;Pas d</span><span class="ch">\&#39;</span><span class="st">articles dans le panier&#39;</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> redirect(url_for(<span class="st">&#39;client_index&#39;</span>))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    date_commande <span class="op">=</span> datetime.now().strftime(<span class="st">&#39;%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S&#39;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    tuple_insert <span class="op">=</span> (date_commande, id_client, <span class="st">&#39;1&#39;</span>)  <span class="co"># 1 : etat de commande</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;INSERT INTO commande(date_achat,utilisateur_id,etat_id) VALUES (</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql, tuple_insert)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;SELECT last_insert_id() as last_insert_id&quot;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    commande_id <span class="op">=</span> mycursor.fetchone()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(commande_id, tuple_insert)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> items_panier:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        tuple_insert <span class="op">=</span> (id_client, item[<span class="st">&#39;stylo_id&#39;</span>])</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE utilisateur_id = </span><span class="sc">%s</span><span class="st"> AND stylo_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql,tuple_insert)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;SELECT prix_stylo as prix FROM stylo WHERE id_stylo = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql, item[<span class="st">&#39;stylo_id&#39;</span>])</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        prix <span class="op">=</span> mycursor.fetchone()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        sql <span class="op">=</span> <span class="st">&quot;INSERT INTO ligne_commande(commande_id,stylo_id, prix, quantite) VALUES (</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">,</span><span class="sc">%s</span><span class="st">)&quot;</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        tuple_insert <span class="op">=</span> (commande_id[<span class="st">&#39;last_insert_id&#39;</span>], item[<span class="st">&#39;stylo_id&#39;</span>], prix[<span class="st">&#39;prix&#39;</span>], item[<span class="st">&#39;quantite&#39;</span>])</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(tuple_insert)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        mycursor.execute(sql, tuple_insert)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    get_db().commit()</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    flash(<span class="st">u&#39;Commande ajoutée&#39;</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/client/article/show&#39;</span>)</span></code></pre></div>
 </body>
 </html>
