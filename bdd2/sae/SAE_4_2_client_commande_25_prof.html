@@ -319,10 +319,14 @@ le panier</h1>
       ORDER BY stylo_id;
       &#39;&#39;&#39;
     mycursor.execute(sql,(id_client))</code></pre>
+<ul>
+<li>méthode <code>client_panier_delete</code> du contrôleur
+<code>client_panier</code></li>
+</ul>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>id_client <span class="op">=</span> session[<span class="st">&#39;id_user&#39;</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>id_article <span class="op">=</span> request.form.get(<span class="st">&#39;id_article&#39;</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>quantite <span class="op">=</span> request.form.get(<span class="st">&#39;quantite&#39;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>quantite <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;supprime client &#39;</span>,id_client, <span class="st">&#39;article&#39;</span>, id_article, <span class="st">&#39;quantite :&#39;</span>, quantite)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -356,9 +360,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>retour <span class="op">=</span> mycursor.execute(sql, (id_client))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>items_panier <span class="op">=</span> mycursor.fetchall()</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items_panier:</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  article_id = </span><span class="sc">%s</span><span class="st"> and utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    sql <span class="op">=</span> <span class="st">&quot;DELETE FROM ligne_panier WHERE  stylo_id = </span><span class="sc">%s</span><span class="st"> and utilisateur_id = </span><span class="sc">%s</span><span class="st">&quot;</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remettre dans le stock les articles</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql,(item[<span class="st">&#39;article_id&#39;</span>], id_client))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    mycursor.execute(sql,(item[<span class="st">&#39;stylo_id&#39;</span>], id_client))</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    get_db().commit()</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mycursor.execute(<span class="st">&quot;UPDATE ***** SET stock = stock + </span><span class="sc">%s</span><span class="st"> WHERE id=</span><span class="sc">%s</span><span class="st">&quot;</span>, (item[<span class="st">&#39;quantite&#39;</span>], item[<span class="st">&#39;article_id&#39;</span>]))</span></code></pre></div>
@@ -371,7 +375,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    items_panier <span class="op">=</span> mycursor.fetchall()</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> items_panier <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="bu">len</span>(items_panier) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        flash(<span class="st">u&#39;Pas d</span><span class="ch">\&#39;</span><span class="st">articles dans le panier&#39;</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> redirect(url_for(<span class="st">&#39;client_index&#39;</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> redirect(<span class="st">&#39;/client/article/show&#39;</span>)</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    date_commande <span class="op">=</span> datetime.now().strftime(<span class="st">&#39;%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S&#39;</span>)</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    tuple_insert <span class="op">=</span> (date_commande, id_client, <span class="st">&#39;1&#39;</span>)  <span class="co"># 1 : etat de commande</span></span>
