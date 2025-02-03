@@ -70,7 +70,7 @@ INSERT INTO specialite VALUES
 
 
 -- ------------------------------------------------
--- version 2
+-- version 2 --
 -- ------------------------------------------------
 
 INSERT INTO comporte VALUES
