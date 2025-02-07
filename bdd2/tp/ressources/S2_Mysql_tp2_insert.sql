@@ -37,7 +37,7 @@ INSERT INTO station  VALUES
  (NULL,'Vallemenier',1800,'France'),
  (NULL,'La Roziere',1500,'France'),
  (NULL,'Metabief',1200,'France'),
- (NULL,'Le Ballon d\'alsace',1000,'France');
+ (NULL,'Le Ballon d alsace',1000,'France');
 
 INSERT INTO competition VALUES
 (NULL,'compet cadet france','2019-02-01',1),
@@ -125,22 +125,22 @@ INSERT INTO competition VALUES
 (NULL,'championnat junior france','2019-02-01',2),
 (NULL,'championnat cadet europe','2019-02-01',1),
 (NULL,'championnat junior europe','2019-02-01',3),
-(NULL, 'compet cadet france 2020' ,2020-02-01,1),
-(NULL, 'compet junior france 2020' ,2020-02-01,1),
-(NULL, 'competition cadet europe 2020' ,2020-02-01,1),
-(NULL, 'competition junior europe 2020' ,2020-02-01,3),
-(NULL, 'championnat cadet france 2020' ,2020-02-01,1),
-(NULL, 'championnat junior france 2020' ,2020-02-01,2),
-(NULL, 'championnat cadet europe 2020' ,2020-02-01,1),
-(NULL, 'championnat junior europe 2020' ,2020-02-01,3),
-(NULL, 'compet cadet france 2021' ,2021-02-01,1),
-(NULL, 'compet junior france 2021' ,2021-02-01,1),
-(NULL, 'competition cadet europe 2021' ,2021-02-01,1),
-(NULL, 'competition junior europe 2021' ,2021-02-01,3),
-(NULL, 'championnat cadet france 2021' ,2021-02-01,1),
-(NULL, 'championnat junior france 2021' ,2021-02-01,2),
-(NULL, 'championnat cadet europe 2021' ,2021-02-01,1),
-(NULL, 'championnat junior europe',2021-02-01,3);
+(NULL, 'compet cadet france 2020' ,'2020-02-01',1),
+(NULL, 'compet junior france 2020' ,'2020-02-01',1),
+(NULL, 'competition cadet europe 2020' ,'2020-02-01',1),
+(NULL, 'competition junior europe 2020' ,'2020-02-01',3),
+(NULL, 'championnat cadet france 2020' ,'2020-02-01',1),
+(NULL, 'championnat junior france 2020' ,'2020-02-01',2),
+(NULL, 'championnat cadet europe 2020' ,'2020-02-01',1),
+(NULL, 'championnat junior europe 2020' ,'2020-02-01',3),
+(NULL, 'compet cadet france 2021' ,'2021-02-01',1),
+(NULL, 'compet junior france 2021' ,'2021-02-01',1),
+(NULL, 'competition cadet europe 2021' ,'2021-02-01',1),
+(NULL, 'competition junior europe 2021' ,'2021-02-01',3),
+(NULL, 'championnat cadet france 2021' ,'2021-02-01',1),
+(NULL, 'championnat junior france 2021' ,'2021-02-01',2),
+(NULL, 'championnat cadet europe 2021' ,'2021-02-01',1),
+(NULL, 'championnat junior europe','2021-02-01',3);
 
 
 
