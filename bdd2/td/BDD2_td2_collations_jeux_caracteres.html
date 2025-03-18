@@ -227,17 +227,18 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#c
 <h1 id="choix-du-type-dencodage-et-du-type-de-collation">choix du type
 d’encodage et du type de collation</h1>
 <ul>
-<li>Afficher les types de collations et les types d’encodage sur
-MYSQL</li>
+<li>Afficher les types d’encodage (jeux de caractères) et les types de
+collations de ces jeux de caractères sur MYSQL</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SHOW COLLATION;</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span>;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;latin1&#39;</span>;</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8&#39;</span>;</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span>;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>SHOW COLLATION;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- les jeux de caractères utf8</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset <span class="kw">LIKE</span> <span class="st">&#39;utf8%&#39;</span>;</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>SHOW VARIABLES <span class="kw">WHERE</span> Variable_name <span class="kw">LIKE</span> <span class="st">&#39;%database%&#39;</span>;</span></code></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- le jeu de caractères par défaut d&#39;une base de données</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>SHOW VARIABLES <span class="kw">WHERE</span> Variable_name <span class="kw">LIKE</span> <span class="st">&#39;%database%&#39;</span>;</span></code></pre></div>
 <ul>
 <li>D’après la documentation ci dessous, qu’est ce qu’une collation ?
 <strong>documentation sur les “<a
@@ -249,49 +250,66 @@ href="http://blog.developpez.com/sqlpro/p10171/langage-sql-norme/mysql_et_ses_co
 target="_blanck">article sur le sujet et connaître les règles pour
 classer des mots</a></p>
 <h2
-id="comment-définir-ou-changer-le-type-dencodage-ou-de-collation">comment
-définir ou changer le type d’encodage ou de collation</h2>
+id="comment-définir-ou-changer-le-type-dencodage-ou-de-collation-par-défaut">comment
+définir ou changer le type d’encodage ou de collation par défaut</h2>
 <ul>
-<li>exemple sur une base de données</li>
+<li>exemple sur une base de données (<strong>remplacer login par votre
+login</strong>)</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login   <span class="kw">DEFAULT</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8   <span class="kw">DEFAULT</span> COLLATE utf8_general_ci;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> BDD_login_td;</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;   <span class="co">-- BDD_s2_td</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login_td   <span class="kw">DEFAULT</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8   <span class="kw">DEFAULT</span> COLLATE utf8_general_ci;</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">DATABASE</span> BDD_login <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8 COLLATE utf8_general_ci;</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login_td;</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">DATABASE</span> BDD_login_td <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8mb4 COLLATE utf8mb4_general_ci;</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">DATABASE</span> BDD_login <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8mb4 COLLATE utf8mb4_general_ci;</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span></code></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login_td;</span></code></pre></div>
 <p><strong>ATTENTION : la modification de l’encodage et de la collation
 d’une base de données n’est prise en compte que pour les nouveaux
-élèments (tables)</strong></p>
+éléments (tables)</strong></p>
 <ul>
 <li>exemple pour modifier une table</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> tbl_name <span class="fu">CONVERT</span> <span class="kw">TO</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8 COLLATE utf8_general_ci;</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> BDD_login_td;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> TD_v;</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> `TD_v` <span class="kw">CHANGE</span> `vdata` `vdata` <span class="dt">VARCHAR</span>(<span class="dv">200</span>) <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8mb4 COLLATE utf8mb4_general_ci <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="kw">NULL</span> ;</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLE</span> STATUS <span class="kw">WHERE</span> name <span class="kw">like</span> <span class="st">&#39;TD_v&#39;</span>;</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TD_v <span class="fu">CONVERT</span> <span class="kw">TO</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8 COLLATE utf8_general_ci;</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLE</span> STATUS <span class="kw">WHERE</span> name <span class="kw">like</span> <span class="st">&#39;TD_v&#39;</span>;</span></code></pre></div>
-<ul>
-<li>rajouter un champ à la table TD_v de nom vdata2 de type varchar(80)
-avec pour encodage <strong>utf8mb4</strong> et collation
-<strong>utf8mb4_general_ci</strong></li>
-</ul>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v (</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    vdata <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>); </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_v <span class="kw">VALUES</span> (<span class="st">&#39;à voir avec Bénédicte 1&#39;</span>);</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_v <span class="kw">VALUES</span> (_latin1<span class="st">&#39;à voir avec Bénédicte 2&#39;</span>);</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_v <span class="kw">VALUES</span> (_utf8mb4<span class="st">&#39;à voir avec Bénédicte 3&#39;</span>);</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_v <span class="kw">VALUES</span> (_cp850<span class="st">&#39;à voir avec Bénédicte 4&#39;</span>);</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TD_v <span class="fu">CONVERT</span> <span class="kw">TO</span> <span class="dt">CHARACTER</span> <span class="kw">SET</span> latin1;</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> TD_v <span class="kw">CHANGE</span> vdata vdata <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="dt">CHARACTER</span> <span class="kw">SET</span> utf8mb4 <span class="kw">DEFAULT</span> <span class="kw">NULL</span> ;</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_v;</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_v;</span></code></pre></div>
+<p>Le préfixe d’encodage dans MySQL est une manière d’indiquer
+explicitement l’encodage d’une chaîne de caractères. Cette technique
+permet de spécifier un encodage différent de celui défini par défaut
+pour la session ou la table. Exemple :</p>
+<p>_latin1’texte’ - Indique que la chaîne est encodée en Latin1
+(ISO-8859-1) _cp850’texte’ - Indique que la chaîne est encodée en UTF-8
+_utf8mb4’texte’ - Indique que la chaîne est encodée en UTF-8MB4 (UTF-8
+avec support complet des 4 octets) <!--
+SHOW TABLE STATUS WHERE name like 'TD_v';
+SHOW CREATE TABLE TD_v;
+
+ALTER TABLE TD_v CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+SHOW CREATE TABLE TD_v;
+SHOW TABLE STATUS WHERE name like 'TD_v';
+--></p>
 <p><strong>Pour une application web, il est fortement conseillé
-d’encoder les caractères en UTF-8mb4 et mettre en collation
-utf8mb4_general_ci</strong></p>
+d’encoder les caractères en utf8mb4</strong></p>
 <ul>
 <li>la commande ci-dessous nécessite parfois de préciser l’encodage car
 elle n’utilise pas l’encodage de la session mais celui de la base de
@@ -302,16 +320,13 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span>;</span></code></pre></div>
 <h1 id="le-problème-du-tri-collation">le problème du tri :
 collation</h1>
-<p>une collation peut s’appliquer juste à un champ, le but de cet
-exercice est de vous montrez les problèmes liés au tri</p>
+<p>le but de cet exercice est de vous montrez les problèmes liés au
+tri</p>
 <div class="sourceCode" id="cb11"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SHOW COLLATION;</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span>;</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>SHOW Collation <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>;</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SHOW Collation <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>SHOW <span class="dt">CHARACTER</span> <span class="kw">SET</span> <span class="kw">WHERE</span> Charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>;</span></code></pre></div>
 <ul>
-<li>ordre de la table ascci</li>
+<li>ordre de la table ASCII</li>
 </ul>
 <h2 id="les-collations-de-type-utf8">les collations de type “utf8”</h2>
 <ul>
@@ -337,50 +352,40 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_collation <span class="kw">VALUES</span> (<span class="st">&#39;ù&#39;</span>);</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> TD_collation <span class="kw">VALUES</span> (<span class="st">&#39;ü&#39;</span>);</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;Âatest&#39;);</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;Áatest&#39;);</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;Ăatest&#39;);</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;Äatest&#39;);</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;Aatest&#39;);</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;áatest&#39;);</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;ãatest&#39;);</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;åatest&#39;);</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;âatest&#39;);</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;ąatest&#39;);</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;āatest&#39;);</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;äatest&#39;);</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO TD_collation VALUES (&#39;aatest&#39;);</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte;</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte  <span class="kw">DESC</span>;</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_bin;</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_bin <span class="kw">DESC</span>;</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">-- sur mysql </span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> texte <span class="kw">LIKE</span> <span class="st">&#39;a%&#39;</span></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_0900_as_cs ;</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> texte <span class="kw">LIKE</span> <span class="st">&#39;a%&#39;</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_0900_as_cs <span class="kw">DESC</span>;</span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_collation;</span></code></pre></div>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte;</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_bin;</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- sur mysql </span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_collation </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> texte COLLATE utf8mb4_0900_as_cs ;</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> TD_collation;</span></code></pre></div>
+<!--
+-- INSERT INTO TD_collation VALUES ('Âatest');
+-- INSERT INTO TD_collation VALUES ('Áatest');
+-- INSERT INTO TD_collation VALUES ('Ăatest');
+-- INSERT INTO TD_collation VALUES ('Äatest');
+-- INSERT INTO TD_collation VALUES ('Aatest');
+-- INSERT INTO TD_collation VALUES ('áatest');
+-- INSERT INTO TD_collation VALUES ('ãatest');
+-- INSERT INTO TD_collation VALUES ('åatest');
+-- INSERT INTO TD_collation VALUES ('âatest');
+-- INSERT INTO TD_collation VALUES ('ąatest');
+-- INSERT INTO TD_collation VALUES ('āatest');
+-- INSERT INTO TD_collation VALUES ('äatest');
+-- INSERT INTO TD_collation VALUES ('aatest');
+-->
+<p>une collation peut s’appliquer juste à une colonne</p>
 <pre><code>SELECT * FROM TD_collation 
 WHERE texte  = &#39;Benedicte&#39;
 OR texte  = &#39;ZAPOTEV&#39;
@@ -390,9 +395,6 @@ SELECT * FROM TD_collation
 WHERE texte  = &#39;Benedicte&#39;
 OR texte  = &#39;ZAPOTEV&#39;
 ORDER BY texte COLLATE utf8mb4_bin;
-
-
-
 
 
 SELECT * FROM TD_collation 
