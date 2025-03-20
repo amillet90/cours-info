@@ -105,8 +105,8 @@ des OBJETS</h2>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> marq.libelle <span class="kw">AS</span> NomMarque</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>, tel.prix</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>, tel.proprietaire_id</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_marque_tel <span class="kw">AS</span> marq</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> TD_telephone <span class="kw">AS</span> tel</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> marque_tel <span class="kw">AS</span> marq</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> telephone <span class="kw">AS</span> tel</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> marq.idMarque <span class="op">=</span> tel.marque_id;</span></code></pre></div>
 <p><strong>Le mot clé AS n’est pas obligatoire sur <a
 href="http://dev.mysql.com/doc/refman/5.7/en/select.html">MYSQL</a></strong></p>
@@ -125,7 +125,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#c
 <p>REMARQUE : (à corriger)</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> type_id marque_id , <span class="fl">1.2</span><span class="op">*</span>prix <span class="kw">AS</span> Prix_TTC</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_telephone <span class="kw">AS</span> c;</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> telephone <span class="kw">AS</span> c;</span></code></pre></div>
 <p>marque_id est un alias, erreur classique !</p>
 <h1 id="null">NULL</h1>
 <h2 id="problématique">problématique</h2>
@@ -133,10 +133,10 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 <li>Tester les 2 requêtes ci-dessous :</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> TD_telephone;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> telephone;</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> TD_telephone </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> telephone </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>couleur <span class="op">=</span> <span class="st">&#39;ROUGE&#39;</span> <span class="kw">OR</span> couleur <span class="op">&lt;&gt;</span> <span class="st">&#39;ROUGE&#39;</span>;</span></code></pre></div>
 <ul>
@@ -164,7 +164,7 @@ class="uri">http://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html#ope
 id="concaténer-ou-faire-des-calculs-avec-des-valeurs-null">concaténer ou
 faire des calculs avec des valeurs ‘null’</h2>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(type_id,<span class="st">&#39; - &#39;</span>,couleur) <span class="kw">FROM</span> TD_telephone;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(type_id,<span class="st">&#39; - &#39;</span>,couleur) <span class="kw">FROM</span> telephone;</span></code></pre></div>
 <ul>
 <li>que se passe t’il si un des 2 champs est “NULL” ?</li>
 <li>NULL est considéré comme chaîne vide sur oracle ( l’opérateur pour

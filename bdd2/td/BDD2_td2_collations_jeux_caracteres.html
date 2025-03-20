@@ -297,10 +297,10 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#c
 explicitement l’encodage d’une chaîne de caractères. Cette technique
 permet de spécifier un encodage différent de celui défini par défaut
 pour la session ou la table. Exemple :</p>
-<p>_latin1’texte’ - Indique que la chaîne est encodée en Latin1
-(ISO-8859-1) _cp850’texte’ - Indique que la chaîne est encodée en UTF-8
-_utf8mb4’texte’ - Indique que la chaîne est encodée en UTF-8MB4 (UTF-8
-avec support complet des 4 octets) <!--
+<p>_latin1’texte’ : Indique que la chaîne est encodée en Latin1
+(ISO-8859-1) _utf8mb4’texte’ - Indique que la chaîne est encodée en
+UTF-8MB4 (UTF-8 avec support complet des 4 octets) _cp850’texte’ -
+Indique que la chaîne est encodée en CP850 (windows) <!--
 SHOW TABLE STATUS WHERE name like 'TD_v';
 SHOW CREATE TABLE TD_v;
 
@@ -395,7 +395,6 @@ SELECT * FROM TD_collation
 WHERE texte  = &#39;Benedicte&#39;
 OR texte  = &#39;ZAPOTEV&#39;
 ORDER BY texte COLLATE utf8mb4_bin;
-
 
 SELECT * FROM TD_collation 
 WHERE texte COLLATE utf8mb4_general_ci = &#39;Benedicte&#39;
