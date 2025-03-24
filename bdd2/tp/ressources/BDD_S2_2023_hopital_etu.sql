@@ -35,6 +35,7 @@ CREATE TABLE medecin(
 CREATE TABLE infirmier(
    id_infirmier INT AUTO_INCREMENT,
    nom VARCHAR(50),
+   adresse VARCHAR(255),
    telephone VARCHAR(50),
    id_service INT,
    PRIMARY KEY(id_infirmier),
@@ -73,14 +74,14 @@ CREATE TABLE acte(
 );
 
 
-
-INSERT INTO service VALUES
+INSERT INTO service (id_service, nom, batiment) VALUES
 (1,'ophtalmologie','batiment1'),
 (2,'cardiologie','batiment2'),
 (3,'gérontologie','batiment3')
 ;
 
-INSERT INTO medecin VALUES
+INSERT INTO medecin (id_medecin, nom , specialite, id_service, reponsable)
+VALUES
 (1,'medecin1','ophtalmologue', 1 , 0),
 (2,'medecin2','ophtalmologue', 1 , 1),
 (3,'medecin3','gérontologue',3,0),
@@ -91,7 +92,7 @@ INSERT INTO medecin VALUES
 
 
 
-INSERT INTO infirmier VALUES
+INSERT INTO infirmier (id_infirmier, nom, telephone, id_service) VALUES
 (1,'infirmier1','0605030301',1),
 (2,'infirmier2','0605030302',1),
 (3,'infirmier3','0605030303',2),
