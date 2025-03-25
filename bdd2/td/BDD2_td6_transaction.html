@@ -140,9 +140,9 @@ target="_blanck">doc postgreSQL</a>”</p>
 <li>Tester les instructions ci dessous :</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_Client;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> Client;</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Client (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Client (</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    id_client <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    nom <span class="dt">varchar</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    nb_places_reservees <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
@@ -150,36 +150,36 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_client)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>);</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Philippe&#39;</span>, <span class="dv">0</span>, <span class="dv">2000</span>);</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Julie&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;alex&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span></code></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Philippe&#39;</span>, <span class="dv">0</span>, <span class="dv">2000</span>);</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Julie&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;alex&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @@autocommit;</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;ALEXANDRE&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;ALEXANDRE&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> autocommit<span class="op">=</span><span class="dv">0</span>;  <span class="co">-- Les &quot;COMMIT&quot; ne sont plus automatiques</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ROLLBACK</span>;</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex2&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex2&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">-- se connecter depuis un autre terminal sur cette base de données (nouvelle session) ; qu&#39;elle est la valeur du champ nom ?</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">ROLLBACK</span>;</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
 <ul>
 <li>l’instruction “START TRANSACTION;” est elle obligatoire pour faire
 une transaction (revenir en arrière avant le COMMIT) ?</li>
@@ -195,9 +195,9 @@ valeur du <strong>nom</strong>.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @@autocommit;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex ***** 1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alex ***** 1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">3</span>;</span></code></pre></div>
 <ul>
 <li>terminer la première transaction, … conclusion</li>
 </ul>
@@ -225,10 +225,10 @@ target="_blanck">https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-d
 <br></p>
 <h1 id="exercice-transaction">exercice transaction</h1>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_Spectacle, td_Journal;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> Spectacle, Journal;</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Spectacle (</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Spectacle (</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    id_spectacle <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    titre <span class="dt">VARCHAR</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    nb_places_offertes <span class="dt">INTEGER</span>  <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">CHECK</span>(nb_places_offertes<span class="op">&gt;=</span><span class="dv">0</span>),</span>
@@ -237,7 +237,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_spectacle)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>);</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_Journal (</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Journal (</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span>  AUTO_INCREMENT,</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    libelle_transaction <span class="dt">VARCHAR</span>(<span class="dv">30</span>)  <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    client_id <span class="dt">INTEGER</span>,</span>
@@ -248,14 +248,14 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>);</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> td_Spectacle;</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Spectacle;</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Philippe&#39;</span>, <span class="dv">0</span>, <span class="dv">2000</span>);</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Julie&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Philippe&#39;</span>, <span class="dv">0</span>, <span class="dv">2000</span>);</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Julie&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Spectacle <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Ben hur&#39;</span>, <span class="dv">250</span>, <span class="dv">50</span>, <span class="dv">50</span>);</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Spectacle <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Tartuffe&#39;</span>, <span class="dv">120</span>, <span class="dv">30</span>, <span class="dv">30</span>);</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Spectacle <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Ben hur&#39;</span>, <span class="dv">250</span>, <span class="dv">50</span>, <span class="dv">50</span>);</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Spectacle <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Tartuffe&#39;</span>, <span class="dv">120</span>, <span class="dv">30</span>, <span class="dv">30</span>);</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span></code></pre></div>
 <ul>
@@ -263,12 +263,12 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 de ‘Ben hur’)
 <ul>
 <li>décrémenter le nombre de places libres de 20 dans la table
-“td_Spectacle”</li>
+“Spectacle”</li>
 <li>incrémenter de 20 la colonne “nb_places_reservees” dans la table
-“td_Client”</li>
+“Client”</li>
 <li>calculer le prix des places</li>
-<li>écrire dans la table “td_Journal” : ‘achat de place’, l’identifiant
-du client et du spectacle ainsi que les prix des places</li>
+<li>écrire dans la table “Journal” : ‘achat de place’, l’identifiant du
+client et du spectacle ainsi que les prix des places</li>
 </ul></li>
 </ul>
 <p>utiliser les variables en début de script (nb_place, spectacle_id et
@@ -291,15 +291,15 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#c
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- à compléter</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle;</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Journal;</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span></code></pre></div>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle;</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Journal;</span></code></pre></div>
 <p>REMARQUE : lors du COMMIT toutes les opérations valides sont
 exécutées =&gt; programme pour vérifier l’intégrité des données</p>
 <p><a href="http://sql.bdpedia.fr/transactions.html#s1-transactions"
@@ -325,18 +325,18 @@ accéder</strong>.</p></li>
 </ul>
 <p><strong>session 1 (terminal)</strong></p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">LOCK</span> <span class="kw">TABLES</span> td_Client   <span class="kw">READ</span>,              <span class="co">-- On pose un verrou de lecture sur td_Client</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            td_Spectacle  <span class="kw">WRITE</span>;           <span class="co">-- et un verrou d&#39;écriture sur td_Spectacle</span></span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">LOCK</span> <span class="kw">TABLES</span> Client   <span class="kw">READ</span>,              <span class="co">-- On pose un verrou de lecture sur Client</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            Spectacle  <span class="kw">WRITE</span>;           <span class="co">-- et un verrou d&#39;écriture sur Spectacle</span></span></code></pre></div>
 <p>exécuter les 3 requêtes ci-dessous dans 2 terminaux</p>
 <p><strong>session 1 et Session 2 (terminal)</strong></p>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Journal;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle;</span></code></pre></div>
 <p><strong>session 1 et Session 2 (terminal)</strong></p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> <span class="dv">1</span>  <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> <span class="dv">2</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nb_places_reservees <span class="op">=</span> <span class="dv">1</span>  <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Spectacle <span class="kw">SET</span> nb_places_libres <span class="op">=</span> <span class="dv">2</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>;</span></code></pre></div>
 <p><strong>session 1 (terminal)</strong></p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UNLOCK</span> <span class="kw">TABLES</span>  ;</span></code></pre></div>
@@ -376,9 +376,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="ot">&quot;P1&quot;</span>;</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alexandre 1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alexandre 1&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> titre<span class="op">=</span><span class="ot">&quot;Ben hur 1&quot;</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>; </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Spectacle <span class="kw">SET</span> titre<span class="op">=</span><span class="ot">&quot;Ben hur 1&quot;</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>; </span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- lancer l&#39;autre script dans un terminal</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="ot">&quot;P1&quot;</span>;</span>
@@ -387,43 +387,43 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> autocommit <span class="op">=</span> <span class="dv">0</span>;</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">START</span> <span class="kw">TRANSACTION</span>;</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="ot">&quot;P2&quot;</span>;</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> titre<span class="op">=</span><span class="ot">&quot;Ben hur 2&quot;</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Spectacle <span class="kw">SET</span> titre<span class="op">=</span><span class="ot">&quot;Ben hur 2&quot;</span> <span class="kw">WHERE</span> id_spectacle<span class="op">=</span><span class="dv">1</span>;</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> SLEEP(<span class="dv">15</span>);</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alexandre 2&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="ot">&quot;alexandre 2&quot;</span> <span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="ot">&quot;P2&quot;</span>;</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>; </span></code></pre></div>
 <!--
 ```sql
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 
 SET autocommit = 0;
 START TRANSACTION;
 SELECT SLEEP(15);
-UPDATE td_Client SET nom="alexandre" WHERE id_client=2;
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;  -- --
+UPDATE Client SET nom="alexandre" WHERE id_client=2;
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;  -- --
 SELECT SLEEP(15);
-UPDATE td_Client SET nom="alex" WHERE id_client=3;         -- --
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+UPDATE Client SET nom="alex" WHERE id_client=3;         -- --
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 
 -- lancer l'autre script dans un terminal
 COMMIT;
 
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 ```
 
 ```sql
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 
 SET autocommit = 0;
 START TRANSACTION;
-UPDATE td_Client SET nom="alex1" WHERE id_client=3;        -- --
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+UPDATE Client SET nom="alex1" WHERE id_client=3;        -- --
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 SELECT SLEEP(15);
-UPDATE td_Client SET nom="alexandre1" WHERE id_client=2;   -- --
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+UPDATE Client SET nom="alexandre1" WHERE id_client=2;   -- --
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 COMMIT;
 
-SELECT * FROM td_Client WHERE id_client=2 OR id_client=3 ;
+SELECT * FROM Client WHERE id_client=2 OR id_client=3 ;
 ```
 -->
 <p><code>SHOW VARIABLES  LIKE 'innodb_lock_wait_timeout';</code> <a
@@ -436,13 +436,13 @@ target="_blanck">interblocage (deadlocks)</a></p>
 <h1 id="autres-moyens-de-verrouillage">autres moyens de
 verrouillage</h1>
 <div class="sourceCode" id="cb14"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span> <span class="kw">LOCK</span> <span class="kw">IN</span> <span class="kw">SHARE</span> <span class="kw">MODE</span>;</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres<span class="op">=</span><span class="dv">5</span> <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span> <span class="kw">LOCK</span> <span class="kw">IN</span> <span class="kw">SHARE</span> <span class="kw">MODE</span>;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Spectacle <span class="kw">SET</span> nb_places_libres<span class="op">=</span><span class="dv">5</span> <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div>
 <p>: pose un verrou partagé sur la prochaine clé sur tous les index que
 la lecture rencontre.</p>
 <div class="sourceCode" id="cb15"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span> <span class="cf">FOR</span> <span class="kw">UPDATE</span>;</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Spectacle <span class="kw">SET</span> nb_places_libres<span class="op">=</span><span class="dv">10</span> <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span> <span class="cf">FOR</span> <span class="kw">UPDATE</span>;</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Spectacle <span class="kw">SET</span> nb_places_libres<span class="op">=</span><span class="dv">10</span> <span class="kw">WHERE</span> id_spectacle <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div>
 <p>: pose un verrou exclusif sur la prochaine clé sur tous les index que
 la lecture rencontre.</p>
 <p><a
@@ -521,13 +521,13 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#
 <span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>DELIMITER ;</span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle;</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Journal;</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> sp_commande_spectacle(<span class="dv">25</span>,<span class="dv">1</span>,<span class="dv">1</span>);</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Spectacle;</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Journal;</span></code></pre></div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Spectacle;</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Journal;</span></code></pre></div>
 <p><a
 href="https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached"
 target="_blanck">https://stackoverflow.com/questions/6121917/automatic-rollback-if-commit-transaction-is-not-reached</a>
@@ -608,7 +608,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="#
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> trigger_CLIENT_insert_before</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">BEFORE</span> <span class="kw">INSERT</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> td_Client</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> Client</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span> <span class="kw">NEW</span>.nom<span class="op">=</span><span class="st">&#39;&#39;</span> <span class="cf">THEN</span></span>
@@ -629,14 +629,14 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#
 <p>pour tester</p>
 <div class="sourceCode" id="cb26"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TRIGGERS</span>;</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;SEBastien&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> td_Client <span class="kw">VALUES</span> (<span class="dv">4</span>, <span class="st">&#39;&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;SEBastien&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">into</span> Client <span class="kw">VALUES</span> (<span class="dv">4</span>, <span class="st">&#39;&#39;</span>, <span class="dv">0</span>, <span class="dv">350</span>);</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TRIGGER</span> trigger_CLIENT_insert_before;</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> td_Client <span class="kw">WHERE</span> id_client<span class="op">&gt;</span><span class="dv">2</span>;</span></code></pre></div>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Client <span class="kw">WHERE</span> id_client<span class="op">&gt;</span><span class="dv">2</span>;</span></code></pre></div>
 <p><a
 href="https://stackoverflow.com/questions/5271997/trigger-syntax-and-if-else-then"
 target="_blanck">autre exemple</a></p>
@@ -645,8 +645,8 @@ target="_blanck">autre exemple</a></p>
 client mettre le nom en MAJUSCULE</li>
 </ul>
 <div class="sourceCode" id="cb27"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> td_log_client_update;</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> td_log_client_update (</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> log_client_update;</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> log_client_update (</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span>  AUTO_INCREMENT,</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    client_id <span class="dt">INTEGER</span>,</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    updated_date  DATETIME,</span>
@@ -654,12 +654,12 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="#
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TRIGGER</span> td_Client_after_update;</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TRIGGER</span> Client_after_update;</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>DELIMITER <span class="op">//</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> td_Client_after_update</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> Client_after_update</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">AFTER</span> <span class="kw">UPDATE</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>   <span class="kw">ON</span> td_Client <span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>   <span class="kw">ON</span> Client <span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span></span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -677,10 +677,10 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="#
 <span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>DELIMITER ;</span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> td_Client <span class="kw">SET</span> nom<span class="op">=</span><span class="st">&#39;SEBastien&#39;</span> , nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> <span class="dv">1</span></span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Client <span class="kw">SET</span> nom<span class="op">=</span><span class="st">&#39;SEBastien&#39;</span> , nb_places_reservees <span class="op">=</span> nb_places_reservees <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> id_client<span class="op">=</span><span class="dv">1</span>;</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_Client;</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> td_log_client_update;</span></code></pre></div>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Client;</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> log_client_update;</span></code></pre></div>
 <div class="sourceCode" id="cb30"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span> <span class="kw">NEW</span>.nom<span class="op">=</span><span class="st">&#39;&#39;</span> <span class="cf">THEN</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span></span>
@@ -706,27 +706,27 @@ target="_blanck">exemples</a> <br> <br><br><br> <br> <!--
 code de la transaction
 
 ```sql
-UPDATE td_Client SET nb_places_reservees = nb_places_reservees + @nb_place WHERE id_client=@client_id;
-UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - @nb_place WHERE id_spectacle=@spectacle_id;
+UPDATE Client SET nb_places_reservees = nb_places_reservees + @nb_place WHERE id_client=@client_id;
+UPDATE Spectacle SET nb_places_libres = nb_places_libres - @nb_place WHERE id_spectacle=@spectacle_id;
 
 SELECT @prix:=@nb_place*tarif
-FROM td_Spectacle 
+FROM Spectacle 
 WHERE  id_spectacle=@spectacle_id;
 
-INSERT td_Journal VALUES (NULL,'achat de place',@client_id,@nb_place,@spectacle_id,@prix);
+INSERT Journal VALUES (NULL,'achat de place',@client_id,@nb_place,@spectacle_id,@prix);
 ```
 
 code dans la procédure pour la transaction
 
 ```sql
-UPDATE td_Client SET nb_places_reservees = nb_places_reservees + s_nb_places WHERE id_client=s_client_id;
-UPDATE td_Spectacle SET nb_places_libres = nb_places_libres - s_nb_places WHERE id_spectacle=s_spectacle_id;
+UPDATE Client SET nb_places_reservees = nb_places_reservees + s_nb_places WHERE id_client=s_client_id;
+UPDATE Spectacle SET nb_places_libres = nb_places_libres - s_nb_places WHERE id_spectacle=s_spectacle_id;
 
 SELECT @prix:=s_nb_places*tarif
-FROM td_Spectacle 
+FROM Spectacle 
 WHERE  id_spectacle=s_spectacle_id;
 
-INSERT td_Journal VALUES (NULL,'achat de place',s_client_id,s_nb_places,s_spectacle_id,@prix);
+INSERT Journal VALUES (NULL,'achat de place',s_client_id,s_nb_places,s_spectacle_id,@prix);
 ```
 
 
@@ -739,7 +739,7 @@ INSERT td_Journal VALUES (NULL,'achat de place',s_client_id,s_nb_places,s_specta
 ```sql
 
    -- Insert record into audit table
-   INSERT INTO td_log_client_update
+   INSERT INTO log_client_update
    ( client_id,
      updated_date,
      updated_by)
