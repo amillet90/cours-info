@@ -274,7 +274,7 @@ INSERT INTO surveillance(id_piscine, id_surveillant, date_debut, date_fin, horai
 # +-----------------+
 # | nb_surveillants |
 # +-----------------+
-# |               9 |
+# |              10 |
 # +-----------------+
 
 -- R2 :  Donner le nombre de surveillants employés  le 21 décembre 2023 dans la ville de "Belfort".
@@ -330,7 +330,6 @@ INSERT INTO surveillance(id_piscine, id_surveillant, date_debut, date_fin, horai
 # | surveillant9    |
 # | surveillant8    |
 # | surveillant6    |
-# | surveillant12   |
 # | surveillant11   |
 # | surveillant10   |
 # +-----------------+
@@ -347,7 +346,6 @@ INSERT INTO surveillance(id_piscine, id_surveillant, date_debut, date_fin, horai
 # | nom_surveillant | round(emplois.salaire,2) |
 # +-----------------+--------------------------+
 # | surveillant8    |                  1850.00 |
-# | surveillant7    |                  1850.00 |
 # | surveillant6    |                  1850.00 |
 # | surveillant4    |                  1850.00 |
 # | surveillant2    |                  1900.00 |
