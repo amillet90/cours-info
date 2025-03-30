@@ -25,7 +25,7 @@ CREATE TABLE medecin(
    nom VARCHAR(50),
    specialite VARCHAR(50),
    id_service INT,
-   reponsable boolean,
+   responsable boolean,
    PRIMARY KEY(id_medecin),
    FOREIGN KEY (id_service) REFERENCES service(id_service)
 );
@@ -148,7 +148,7 @@ INSERT INTO hospitalisation(id_service, id_salle, id_patient, date_entree, date_
 
 INSERT INTO hospitalisation(id_service, id_salle, id_patient, date_entree, date_sortie)
  VALUES
-(1,1,2, '2022-10-15', '2022-10-01')
+(1,1,2, '2022-10-15', '2022-11-01')
 ;
 
 INSERT INTO type_acte(id_type_acte, libelle, cout)
@@ -242,7 +242,7 @@ VALUES
 -- |               3 |
 -- +-----------------+
 
---  remplacer 'durand' par 'medecin2' =
+--  remplacer 'durand' par 'medecin2'
 
 -- R7
 
