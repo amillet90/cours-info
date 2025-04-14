@@ -410,6 +410,33 @@ dans la procédure ci-dessus</span></p>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> AfficherUtilisateurs();</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<h1 id="exercice">Exercice :</h1>
+<p>Peut on utiliser ce code</p>
+<pre><code>DROP TRIGGER IF EXISTS after_insert_utilisateur2;
+DELIMITER //
+CREATE TRIGGER after_insert_utilisateur2
+AFTER INSERT ON utilisateurs
+FOR EACH ROW
+BEGIN
+    CALL VerifierAge(NEW.id, NEW.age);
+END //
+DELIMITER ;</code></pre>
+<p>On désire modifier le code des déclencheurs (triggers) :</p>
+<p>de celle façon :</p>
+<p>Laisse age et majeur à NULL si age est NULL à l’insertion Lève une
+erreur si age n’est pas numérique Définit majeur à 1 si age ≥ 18, sinon
+à 0</p>
+<pre><code>-- Test 1: Utilisateur majeur
+INSERT INTO utilisateurs (nom, prenom, age) VALUES (&#39;Dupond&#39;, &#39;Pierre&#39;, 28);
+-- Test 2: Utilisateur mineur
+INSERT INTO utilisateurs (nom, prenom, age) VALUES (&#39;Durant&#39;, &#39;Paul&#39;, 17);
+-- Test 3: Utilisateur sans âge spécifié
+INSERT INTO utilisateurs (nom, prenom) VALUES (&#39;Martin&#39;, &#39;Sophie&#39;);
+-- Test 4: Utilisateur avec âge non numérique (générera une erreur)
+INSERT INTO utilisateurs (nom, prenom, age) VALUES (&#39;Leroy&#39;, &#39;Jean&#39;, &#39;vingt&#39;);
+-- Vérification des résultats
+SELECT * FROM utilisateurs;
+SELECT * FROM historique_utilisateurs;</code></pre>
 <p>Exemple : utilisation de <a
 href="https://rpbouman.blogspot.com/2005/10/nesting-mysql-cursor-loops.html"
 target="_blanck">2 curseurs imbriqués</a>
