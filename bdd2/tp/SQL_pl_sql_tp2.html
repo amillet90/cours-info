@@ -87,7 +87,7 @@
 href="http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql"
 target="_blanck">http://www-bd.lip6.fr/wiki/site/enseignement/licence/2i009/documents-tme/tme-plsql</a>
 <br></p>
-<p>Nous travaillerons par la suite sur les trois tables suivantes qui
+<p>Nous travaillerons par la suite sur les tables suivantes qui
 permettent de décrire des employés, des projets, l’affectation des
 employés aux projets et les grilles de salaire pour différents profils
 de postes :</p>
@@ -453,6 +453,7 @@ MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
 
 MariaDB [BDD_s2_tp]&gt; 
 </code></pre>
+<p><br> <br></p>
 <ol start="6" type="1">
 <li><span class="orange">(Exception prédéfinie) Écrire une procédure
 PL/SQL qui a 3 paramètres: le numSS, le nomE et prenomE d’un nouvel
@@ -465,6 +466,7 @@ confirmation. Utilisez l’exception prédéfinie NO_DATA_FOUND.</span></li>
 <pre><code>SELECT profil, salaire  FROM Grille_sal;
 CALL AugmenterSalaires();
 SELECT profil, salaire  FROM Grille_sal;</code></pre>
+<p><br> <br></p>
 <ol start="7" type="1">
 <li><span class="orange">(Exception utilisateur) Écrire une procédure
 qui prend comme paramètre le numéro et le budget d’un projet et qui
@@ -475,6 +477,7 @@ exception utilisateur.</span></li>
 </ol>
 <pre><code>CALL InsererNouvelEmploye(1234567, &#39;Alain&#39;, &#39;Paul&#39;);
 SELECT *  FROM Employe;
-CALL InsererNouvelEmploye(22334, &#39;Adam&#39;, &#39;Funk&#39;);</code></pre>
+CALL InsererNouvelEmploye(22334, &#39;Adam&#39;, &#39;Funk&#39;);
+SELECT *  FROM Employe;</code></pre>
 </body>
 </html>
