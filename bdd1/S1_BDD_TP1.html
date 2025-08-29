@@ -300,8 +300,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <li>Depuis le terminal, vous pouvez vous connecter au serveur
 <strong>MySQL</strong> et utiliser votre base de données :</li>
 </ul>
-<pre><code>mysql --user=login --password=mdp --host=serveurmysql --database=BDD_login
-## mot de passe: mdp  et login à l&#39;IUT</code></pre>
+<pre><code>mysql --user=login --password=secret --host=serveurmysql --database=BDD_login
+## mot de passe: secret  et login à l&#39;IUT</code></pre>
 <ul>
 <li>Vous pouvez ajouter un commentaire au début de votre fichier
 <strong>tp1.sql</strong> pour indiquer comment se connecter au serveur
@@ -316,21 +316,21 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--help</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>mdp <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>mdp  <span class="at">--host</span><span class="op">=</span>serveurmysql.iut-bm.univ-fcomte.fr <span class="at">--database</span><span class="op">=</span>BDD_login </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret  <span class="at">--host</span><span class="op">=</span>serveurmysql.iut-bm.univ-fcomte.fr <span class="at">--database</span><span class="op">=</span>BDD_login </span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mysql <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-p</span> BDD_login</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mot de passe: mdp</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mot de passe: secret</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> solution plus rapide</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-pmotdepasse</span> BDD_login</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span><span class="st">&quot;login&quot;</span> <span class="at">--password</span><span class="op">=</span><span class="st">&quot;mdp&quot;</span>  <span class="at">--host</span><span class="op">=</span><span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> <span class="at">--database</span><span class="op">=</span><span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span><span class="st">&quot;login&quot;</span> <span class="at">--password</span><span class="op">=</span><span class="st">&quot;secret&quot;</span>  <span class="at">--host</span><span class="op">=</span><span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> <span class="at">--database</span><span class="op">=</span><span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
 <p>Il est possible d’utiliser la commande ci-dessous pour changer le mot
 de passe de votre compte sur le serveur MySQL
 <strong><em>serveurmysql</em></strong> ou <em>serveurmysql2</em></p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- pour changer de mot de passe</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;  </span></code></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret2&#39;</span>;  </span></code></pre></div>
 <div class="cours">
 <p>Vous pouvez <strong>changer de mot de passe</strong>, mais
 <strong>attention, n’utilisez pas votre mot de passe pour vous connecter
