@@ -81,52 +81,51 @@
 </head>
 <body>
 <h1
-id="tp2-présentation-de-lhtml---le-langage-tableaux-introduction-aux-formulaires">TP2:
-présentation de l’HTML - le langage : tableaux, introduction aux
-formulaires</h1>
+id="tp2-présentation-de-lhtml---le-langage-introduction-aux-formulaires">TP2:
+présentation de l’HTML - le langage : introduction aux formulaires</h1>
 <ul>
 <li>Créer un répertoire <strong>S1/web/tp2</strong>, créer vos fichiers
-HTML sur ce répertoire.</li>
-<li>Placer y <a
+HTML dans ce répertoire.</li>
+<li>Placez-y <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp2.zip"><strong>les
 fichiers ressources</strong></a> du site de l’<a
 href="https://cours-info.iut-bm.univ-fcomte.fr/index.php/menu-cours-s1/r1-02-developpement-d-interfaces-web/2228-dev-interfaces-web-2021"
-target="_blanck">iut “cours-info”</a>.</li>
+target="_blanck">IUT “cours-info”</a>.</li>
 </ul>
 <h2 id="exercice-1-15-min-maxi">Exercice 1 (15 min maxi):</h2>
-<p>Créer une page de nom <strong>page1.html</strong> normalisée qui
+<p>Créer une page nommée <strong>page1.html</strong> normalisée qui
 contient (de haut en bas) :</p>
 <ul>
 <li>Un formulaire avec la balise <code>&lt;form&gt;</code>.
 <ul>
 <li>Ajouter dans cette balise l’attribut «action» ayant pour valeur
-“page1.html” : <code>action="page1.html"</code>, la propriété «action»
-est obligatoire dans cette balise.</li>
-<li>Ajouter également comme propriété <code>method="get"</code>. Il y a
-2 valeurs possibles <strong>GET</strong> ou <strong>POST</strong>, le
-rôle est très important lors de la validation du formulaire : “envoi de
-la requête HTTP”)</li>
+“page1.html” : <code>action="page1.html"</code>, l’attribut «action» est
+obligatoire dans cette balise.</li>
+<li>Ajouter également comme attribut <code>method="get"</code>. Il y a 2
+valeurs possibles <strong>GET</strong> ou <strong>POST</strong>, le rôle
+est très important lors de la validation du formulaire : “envoi de la
+requête HTTP”)</li>
 </ul></li>
 <li><a href="https://developer.mozilla.org/fr/docs/Learn/Forms"
 target="_blanck">documentation mozilla</a></li>
 </ul>
 <p><br> REMARQUE IMPORTANTE : Lorsque vous soumettez le formulaire : le
 navigateur web envoie une <strong>requête HTTP</strong> au
-<strong>serveur web</strong> dont le nom est défini l’attribut
+<strong>serveur web</strong> dont le nom est défini par l’attribut
 «<strong>action</strong>» : dans notre cas la page “page1.html”. Le
 serveur passe en paramètres tous les champs «<strong>input</strong>».
-Chaque paramètre possède comme nom l’attribut «<strong>name</strong>» du
-champ «<strong>input</strong>» et comme valeur le contenu de champ ou sa
-valeur «<strong>value</strong>» (attribut non obligatoire). Avec la
-méthode “GET”, on peut voir ces paramètres dans l’URL. Avec la méthode
-“POST”, ils sont cachés. <br></p>
+Chaque paramètre possède comme nom l’attribut «<strong>name</strong>» de
+son champ «<strong>input</strong>» associé et comme valeur le contenu du
+champ ou sa valeur «<strong>value</strong>» (attribut non obligatoire).
+Avec la méthode “GET”, on peut voir ces paramètres dans l’URL. Avec la
+méthode “POST”, ils sont cachés. <br></p>
 <ul>
-<li>rajouter la balise <code>&lt;fieldset&gt;</code> <br> Ce formulaire
+<li>Ajoutez la balise <code>&lt;fieldset&gt;</code> <br> Ce formulaire
 contient :</li>
 <li>un champ de saisie texte avec comme label “nom :” et nommé “nom”
-(cf. propriété name).</li>
+(cf. attribut name).</li>
 <li>un champ de saisie texte avec comme label “pseudo (login) :” et
-nommé “pseudo” (cf. propriété name).</li>
+nommé “pseudo” (cf. attribut name).</li>
 </ul>
 <figure>
 <img src="img_diw/diw_tp2_6.png" alt="aperçu ecran du formulaire" />
@@ -148,7 +147,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/fieldset&gt;</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/form&gt;</span></span></code></pre></div>
 <p><br> Remarque : un formulaire se compose généralement de la balise
-<code>&lt;form&gt;</code>, avec eventuellement à l’intérieur la balise
+<code>&lt;form&gt;</code>, avec éventuellement à l’intérieur la balise
 <code>&lt;fieldset&gt;</code> . Chaque champ se compose ensuite de
 <code>&lt;label&gt;</code> pour le texte et <code>&lt;input&gt;</code>
 pour le champ de saisie.<br />
@@ -166,7 +165,7 @@ important.</p>
 </ul>
 </div>
 <p><br><br></p>
-<p>Ajouter dans ce formulaire :</p>
+<p>Ajoutez dans ce formulaire :</p>
 <ul>
 <li>Un champ “caché” (cf. doc HTML) nommé “cache” ayant pour valeur un
 chiffre quelconque.</li>
@@ -187,14 +186,16 @@ alt="aperçu écran du formulaire final" />
 final</figcaption>
 </figure>
 <p>Conclusion : visualiser le contenu de l’URL, son contenu sera très
-utile coté serveur (pour le python, php …) !</p>
+utile côté serveur (pour le Python, PHP …) ! <a
+href="https://pixees.fr/informatiquelycee/n_site/nsi_prem_flask.html"
+target="_blanck">Exemple</a></p>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/"
+<p>Validez votre page sur le site <a href="http://validator.w3.org/"
 target="_blanck">http://validator.w3.org/</a><br />
 </p>
 </div>
 <p><br><br><br><br> <strong>Pour les plus rapides :</strong></p>
-<p>Consulter la documentation sur le champ <a
+<p>Consultez la documentation sur le champ <a
 href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input"
 target="_blanck">input</a>. Tester d’autres types de champ d’entrée :
 “date”, “number”, “range” … pour ces nouveaux champs “input”.</p>
@@ -202,7 +203,7 @@ target="_blanck">input</a>. Tester d’autres types de champ d’entrée :
 <h2 id="exercice-2-test-dun-formulaire-5-mn"><strong>Exercice 2 : test
 d’un formulaire</strong> (5 mn)</h2>
 <ul>
-<li>Créer une page <strong>form_etudiant.html</strong></li>
+<li>Créez une page <strong>form_etudiant.html</strong></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
@@ -298,23 +299,23 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="
 <span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
-<li><p>Copier le code ci-dessus dans la page
+<li><p>Copiez le code ci-dessus dans la page
 <strong>form_etudiant.html</strong></p></li>
-<li><p>Tester le formulaire dans un navigateur</p></li>
+<li><p>Testez le formulaire dans un navigateur.</p></li>
 </ul>
 <p>Remarque sur la page :</p>
 <ul>
 <li>Pour l’ergonomie, l’ensemble des champs INPUT et LABEL est inséré
 dans une balise FIELDSET (trait qui délimite le formulaire). Le champ
 LEGEND avec le texte « Informations personnelles » est ajouté au
-“FIELSET” . Seul le dernier champ (bouton de soumission du formulaire)
-est rajouté en dehors de cette balise FIELDSET.</li>
+“FIELDSET” . Seul le dernier champ (bouton de soumission du formulaire)
+est ajouté en dehors de cette balise FIELDSET.</li>
 <li>Norme et Ergonomie d’un formulaire :
 <ul>
 <li>La balise LABEL <a
 href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input"
-target="_blanck">est conseillé si on lit la documentation concernant une
-balise INPUT</a>, voir aussi l’attribut <a
+target="_blanck">est conseillée si on lit la documentation concernant
+une balise INPUT</a>, voir aussi l’attribut <a
 href="https://developer.mozilla.org/fr/docs/Web/CSS/::placeholder"
 target="_blanck">“placeholder”</a>.</li>
 <li>La balise <strong>label</strong> définit le label du champ, il faut
@@ -330,7 +331,7 @@ l’attribut id”</em> puis dans la balise INPUT associée rajouter <em>id
 <ul>
 <li><code>display</code> permet de définir les balises
 <code>INPUT</code> en “block”</li>
-<li><code>input[type=checkbox] ,input[type=radio]</code> permet de
+<li><code>input[type=checkbox] ,input[type=radio]</code> permettent de
 sélectionner les balises <code>input</code> avec un attribut
 <code>type</code> égal à <code>checkbox</code> ou <code>radio</code> et
 de transformer cette balise en balise de type <code>inline</code></li>
@@ -343,11 +344,11 @@ avec un attribut défini</a>.</li>
 </ul>
 <p><br></p>
 <ul>
-<li><p>Tester les 2 méthodes : mettre comme valeur à l’attribut “method”
+<li><p>Testez les 2 méthodes : mettre comme valeur à l’attribut “method”
 de la balise FORM la valeur <strong>“get”</strong> puis
 <strong>“post”</strong>, et valider votre formulaire. Regarder l’URL
 dans les 2 cas.</p></li>
-<li><p>utiliser la <a
+<li><p>Utilisez la <a
 href="https://developer.mozilla.org/fr/docs/Web/CSS/:placeholder-shown"
 target="_blanck">documentation suivante</a> pour changer de couleur le
 texte contenu dans l’attribut <code>placeholder</code>.</p></li>
@@ -355,18 +356,19 @@ texte contenu dans l’attribut <code>placeholder</code>.</p></li>
 <p><br></p>
 <div class="validation">
 <ul>
-<li>Remplacer par le type “text” par “date” pour la date de naissance,
-supprimer les attributs inutiles</li>
+<li>Remplacez le type “text” par le type “date” pour la date de
+naissance, supprimez les attributs inutiles.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>Créer un fichier CSS <code>mesStyles.css</code>, placer le CSS
-(contenu dans la balise <code>&lt;Style&gt;</code>) dans ce fichier</li>
-<li>Ajouter dans le fichier HTML un lien sur ce fichier de style
-<code>&lt;link href="mesStyles.css" rel="stylesheet"&gt;</code></li>
-<li>Modifier le fichier CSS, ajouter un sélecteur sur la balise
+<li>Créez un fichier CSS <code>mesStyles.css</code>, placer le CSS
+(contenu dans la balise <code>&lt;Style&gt;</code>) dans ce
+fichier.</li>
+<li>Ajoutez dans le fichier HTML un lien sur ce fichier de style
+<code>&lt;link href="mesStyles.css" rel="stylesheet"&gt;</code>.</li>
+<li>Modifiez le fichier CSS, ajouter un sélecteur sur la balise
 <code>&lt;body&gt;</code> et les attributs pour mettre un arrière plan
-en jaune et et le texte d’une autre couleur.</li>
+en jaune et le texte d’une autre couleur.</li>
 </ul>
 </div>
 <h2
@@ -379,7 +381,7 @@ target="_blanck">listes</a>) avec à l’intérieur des <a
 href="https://www.w3schools.com/python/python_dictionaries.asp"
 target="_blanck">dictionnaires</a>. Ces listes peuvent s’apparenter à
 des tableaux à 2 dimensions. C’est le <strong>résultat de 2 requêtes
-SQL</strong>. Ne pas utiliser ce code source python pour le moment.</p>
+SQL</strong>. Ne pas utiliser ce code source Python pour le moment.</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>types_articles <span class="op">=</span> [</span>
@@ -425,8 +427,8 @@ caché) et de nom <code>id</code></li>
 <code>action</code> comme valeur le nom de la page html et dans
 l’attribut <code>method</code> la valeur <code>get</code> même si ce
 sont les 2 valeurs par défaut. Les valeurs de ces 2 attributs seront
-modifiées avec le micro-framework <em>python</em>
-<strong>flask</strong>.</li>
+modifiées avec le micro-framework <em>Python</em>
+<strong>Flask</strong>.</li>
 <li><span class="modif">Ergonomie : le champ d’entrée <em>libelle</em>
 doit obligatoirement être saisi. Ajouter un <em>label</em> pour indiquer
 le type de l’information.</span></li>
@@ -457,13 +459,13 @@ libellés associés aux identifiants des types d’articles</li>
 <code>action</code> comme valeur le nom de la page html et dans
 l’attribut <code>method</code> la valeur <code>get</code> même si ce
 sont les 2 valeurs par défaut. Les valeurs de ces 2 attributs seront
-modifiées avec le micro-framework <em>python</em>
-<strong>flask</strong>.</li>
+modifiées avec le micro-framework <em>Python</em>
+<strong>Flask</strong>.</li>
 <li><span class="modif">Ergonomie : le champ d’entrée <em>nom</em> et
-<em>type_article_id</em> doit obligatoirement être saisi ( une
+<em>type_article_id</em> doivent obligatoirement être saisi ( une
 information doit obligatoirement être saisie dans la liste déroulante
 par l’utilisateur). Ajouter des <em>labels</em> pour indiquer le type de
-l’information à saisir et eventuellement une information dans l’attribut
+l’information à saisir et éventuellement une information dans l’attribut
 <em>placeholder</em> des champs d’entrée.</span></li>
 </ul></li>
 </ul>
@@ -471,16 +473,19 @@ l’information à saisir et eventuellement une information dans l’attribut
 <p>Réaliser ces 2 formulaires</p>
 <p><br></p>
 <ul>
-<li>Placer les styles dans un fichier css et adapter ces styles à votre
+<li>Placez les styles dans un fichier css et adapter ces styles à votre
 convenance.</li>
-<li>Essayer d’utiliser les styles du <a
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Essayez d’utiliser les styles du <a
 href="https://getbootstrap.com/docs/5.0/forms/form-control/"
-target="_blanck">framework “bootstrap” dans vos formulaire</a> en plus
-des styles précédents</li>
+target="_blanck">framework “bootstrap” dans vos formulaires</a> en plus
+des styles précédents.</strong></li>
 </ul>
 <br>
 <div class="validation">
-<p>Valider votre page sur le site <a href="http://validator.w3.org/"
+<p>Validez votre page sur le site <a href="http://validator.w3.org/"
 target="_blanck">http://validator.w3.org/</a><br />
 </p>
 </div>
