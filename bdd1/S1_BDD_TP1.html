@@ -265,15 +265,25 @@ target="_blanck">DataGrip</a></li>
 <li><a href="https://www.jetbrains.com/fr-fr/pycharm/"
 target="_blanck">Pycharm</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .bashrc</span></code></pre></div>
-<p>Ajouter dans le fichier <code>.bashrc</code> de votre
-<em>HOME</em></p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> looping=<span class="st">&#39;wine /opt/looping-mcd/Looping.exe&#39;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> datagrip=<span class="st">&#39;/opt/DataGrip/bin/datagrip.sh&#39;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> pycharm=<span class="st">&#39;/opt/pycharm/bin/pycharm.sh&#39;</span></span></code></pre></div>
+<p><a
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/config_iut_etu.html"
+target="_blanck">Création des raccourcis sur les machines de
+l’IUT</a></p>
+<!--
+```bash
+cd
+code .bashrc
+```
+
+
+Ajouter dans le fichier `.bashrc` de votre *HOME*
+
+```bash
+alias looping='wine /opt/looping-mcd/Looping.exe'
+alias datagrip='/opt/DataGrip/bin/datagrip.sh'
+alias pycharm='/opt/pycharm/bin/pycharm.sh'
+```
+-->
 <h1 id="découverte-du-sgbdr-mysql">Découverte du SGBDR MySQL</h1>
 <p><strong><em>Remarque : l’objectif n’est pas de connaître toutes les
 fonctionnalités et subtilités du logiciel MySQL, mais d’utiliser les
@@ -289,13 +299,13 @@ du même type.</em></strong></p>
 texte) et créer un fichier texte nommé “<strong>tp1.sql</strong>”
 <br></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> S1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> S1</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> BDD</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BDD</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> tp1.sql</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> tp1.sql <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> S1</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> S1</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> BDD</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BDD</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> tp1.sql</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> tp1.sql <span class="kw">&amp;</span></span></code></pre></div>
 <ul>
 <li>Depuis le terminal, vous pouvez vous connecter au serveur
 <strong>MySQL</strong> et utiliser votre base de données :</li>
@@ -311,26 +321,26 @@ MySQL :</li>
 target="_blanck">documentation connexion à mariadb</a> - <a
 href="https://dev.mysql.com/doc/refman/8.0/en/connecting.html"
 target="_blanck">et sur MySQL</a></p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--version</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--help</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret  <span class="at">--host</span><span class="op">=</span>serveurmysql.iut-bm.univ-fcomte.fr <span class="at">--database</span><span class="op">=</span>BDD_login </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mysql <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-p</span> BDD_login</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mot de passe: secret</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> solution plus rapide</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-pmotdepasse</span> BDD_login</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span><span class="st">&quot;login&quot;</span> <span class="at">--password</span><span class="op">=</span><span class="st">&quot;secret&quot;</span>  <span class="at">--host</span><span class="op">=</span><span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> <span class="at">--database</span><span class="op">=</span><span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--version</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--help</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret  <span class="at">--host</span><span class="op">=</span>serveurmysql.iut-bm.univ-fcomte.fr <span class="at">--database</span><span class="op">=</span>BDD_login </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> autre solution  pour se connecter à mysql :</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mysql <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-p</span> BDD_login</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> mot de passe: secret</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> solution plus rapide</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> login <span class="at">-h</span> serveurmysql <span class="at">-pmotdepasse</span> BDD_login</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span><span class="st">&quot;login&quot;</span> <span class="at">--password</span><span class="op">=</span><span class="st">&quot;secret&quot;</span>  <span class="at">--host</span><span class="op">=</span><span class="st">&quot;serveurmysql.iut-bm.univ-fcomte.fr&quot;</span> <span class="at">--database</span><span class="op">=</span><span class="st">&quot;BDD_login&quot;</span> </span></code></pre></div>
 <p>Il est possible d’utiliser la commande ci-dessous pour changer le mot
 de passe de votre compte sur le serveur MySQL
 <strong><em>serveurmysql</em></strong> ou <em>serveurmysql2</em></p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- pour changer de mot de passe</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret2&#39;</span>;  </span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- pour changer de mot de passe</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret2&#39;</span>;  </span></code></pre></div>
 <div class="cours">
 <p>Vous pouvez <strong>changer de mot de passe</strong>, mais
 <strong>attention, n’utilisez pas votre mot de passe pour vous connecter
@@ -367,16 +377,16 @@ pour changer la base de données utilisée par défaut.</p>
 </div>
 <h3 id="commandes-du-s.g.b.d.r.-mysql">Commandes du S.G.B.D.R.
 MYSQL</h3>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>help</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>help</span></code></pre></div>
 <ul>
 <li>La commande <code>help</code> permet d’obtenir de l’aide sur les
 commandes spécifiques à MySQL. Elle fournit des informations détaillées
 sur les commandes, les fonctions et les options de configuration propres
 à MySQL. ( Il n’y a pas d’aide pour le SQL ).</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">source</span> tp1.sql</span></code></pre></div>
 <ul>
 <li>Si le fichier existe dans le répertoire courant lors de la connexion
 au serveur MySQL via le terminal, les instructions contenues dans ce
@@ -387,8 +397,8 @@ fichier seront exécutées dans MySQL.</li>
 <li>La commande <code>exit</code> permet de quitter MySQL ( la connexion
 à MySQL )</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>show <span class="kw">tables</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>show <span class="kw">tables</span>; </span></code></pre></div>
 <ul>
 <li>Afficher les tables de votre base de données. Attention il ne faut
 pas oublier le caractère <code>;</code> en fin de ligne.<br />
@@ -396,8 +406,8 @@ pas oublier le caractère <code>;</code> en fin de ligne.<br />
 terminer par un <code>;</code> contrairement aux commandes spécifiques à
 MySQL(afficher avec la commande help)</strong></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">system</span> ls</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">system</span> ls</span></code></pre></div>
 <ul>
 <li><p>La commande <code>system ls</code> permet d’exécuter une commande
 système (shell) pour lister le contenu du dossier dans lequel la
@@ -451,8 +461,8 @@ pour que le logiciel MySQL puisse l’interpréter.</p>
 <ol start="2" type="1">
 <li>Afficher la structure d’une table :</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DESCRIBE etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>DESCRIBE etudiant;</span></code></pre></div>
 <ol start="3" type="1">
 <li>Insérez des enregistrements dans une table :</li>
 </ol>
@@ -468,16 +478,16 @@ défaut il faut donner une valeur à chaque champ.</p>
 <ol start="4" type="1">
 <li>Afficher tous les enregistrements d’une table</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> etudiant;</span></code></pre></div>
 <p>Remarque : Faire la différence entre « afficher les enregistrements
 d’une table » et « afficher la structure d’une table » dans un énoncé de
 contrôle.</p>
 <ol start="5" type="1">
 <li>Supprimez la table <strong>en début de script</strong></li>
 </ol>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> etudiant;</span></code></pre></div>
 <p>Placez cette instruction en début de script pour que vos
 modifications sur la table soient prises en compte à chaque rechargement
 du script SQL.</p>
@@ -549,8 +559,8 @@ suite</figcaption>
 <li>Affichez comment créer la table à l’aide de la commande
 ci-dessous</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span>  etudiant;</span></code></pre></div>
 <p><br></p>
 <ol start="13" type="1">
 <li>Terminez votre script en supprimant la table si elle existe.</li>
