@@ -116,7 +116,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/config_iut_etu.html"
 target="_blanck">les raccourcis</a> si ce n’est pas fait</p></li>
 <li><p>Configurez <a
-href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/S1_BDD_TP4.html"
+href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/config_datagrip_iut_24_1.html"
 target="_blanck">Datagrip</a></p></li>
 </ul>
 <h1
@@ -151,14 +151,16 @@ une table <strong>produit</strong> avec comme attributs (colonne champ)
 <strong>entier,</strong> cet attribut est une clé primaire et utilise
 l”attribut « AUTO_INCREMENT ».</li>
 <li>un attribut <strong>nom</strong> de type <strong>chaîne de
-caractères variable</strong> de taille 20 caractères maximum.</li>
+caractères variable</strong> de taille <strong>20 caractères
+maximum</strong>.</li>
 <li>un attribut <strong>categorie</strong> de type <strong>chaîne de
-caractères variable</strong> de taille 20 caractères maximum.</li>
+caractères variable</strong> de taille <strong>20 caractères
+maximum</strong>.</li>
 <li>un attribut <strong>code</strong> dont le contenu est toujours un
 <strong>entier</strong> qui doit être affiché toujours avec une valeur
-sur 5 digits (quelque soit la valeur ). Le type entier est remplacé par
-<strong>une chaîne de caractères variable</strong> de taille 5
-caractères maximum pour conserver les 5 caractères.</li>
+sur 5 digits maximum. Le type entier est remplacé par <strong>un type
+numérique</strong> de taille 5 caractères maximum sans chiffre après la
+virgule.</li>
 <li>un attribut <strong>prix</strong> de type <strong>Numérique</strong>
 avec une précision de 5 digits avant la virgule et 2 après.</li>
 <li>un attribut <strong>date_achat</strong> de type
@@ -169,7 +171,8 @@ enregistrements (occurrences tuples)</h2>
 <p>Insérer les enregistrements (occurrences tuples) ci dessous (on ne
 distingue pas le conditionnement Kg ou à la pièce pour le Prix ), la
 valeur de l’attribut (colonne) <strong>id_produit</strong> peut être
-différent car on ne gère pas les valeurs (AUTO_INCREMENT).</p>
+différent car on ne gère pas les valeurs
+(<code>AUTO_INCREMENT</code>).</p>
 <table>
 <colgroup>
 <col style="width: 18%" />
@@ -240,13 +243,27 @@ différent car on ne gère pas les valeurs (AUTO_INCREMENT).</p>
 </tr>
 </tbody>
 </table>
-<p><br> <strong>Pour un attribut (une colonne, un champ) de type
-AUTO_INCREMENT, mettre la valeur <code>null</code> dans l’instruction
-<code>insert</code> pour créer un enregistrement (une occurrence, un
-tuple) . Ne jamais mettre de valeur entière, MySQL l’autorise, mais ce
-n’est pas le cas des autres SGBDR.</strong></p>
+<p><br></p>
+<ul>
+<li>Pour un attribut (une colonne, un champ) de type
+<code>AUTO_INCREMENT</code>, mettre la valeur <code>NULL</code> dans
+l’instruction <code>INSERT</code> pour créer un enregistrement (une
+occurrence, un tuple) . Ne jamais mettre de valeur entière, MySQL
+l’autorise, mais ce n’est pas le cas des autres SGBDR.**</li>
+</ul>
 <h1 id="opérations-sur-les-enregistrements">Opérations sur les
 enregistrements</h1>
+<ul>
+<li>Indiquez le numéro des requête dans un commentaire
+<code>-- R1 :</code> puis <code>-- R2 :</code> … pour le requête 1 puis
+2<br />
+</li>
+<li>Montrez que les requêtes fonctionnent sur
+<strong>DataGrip</strong></li>
+<li>Montrez que les requêtes fonctionnent dans <strong>un terminal
+connecté à MySql</strong> en exécutant la commande
+<code>source tp4.sql</code></li>
+</ul>
 <h2 id="afficher-des-enregistrements-de-la-table">Afficher des
 enregistrements de la table</h2>
 <ol type="1">
@@ -254,7 +271,8 @@ enregistrements de la table</h2>
 </ol>
 <pre><code>SELECT * FROM  produit ;</code></pre>
 <ol start="2" type="1">
-<li>Afficher le nom des produits dont le prix est inférieur à 10 €</li>
+<li>Requête 1 : Afficher le nom des produits dont le prix est inférieur
+à 10 €</li>
 </ol>
 <p>Aidez vous des informations sur : <a
 href="https://www.w3schools.com/SQL/sql_and_or.asp"
@@ -269,9 +287,9 @@ target="_blanck">https://www.w3schools.com/SQL/sql_and_or.asp</a></p>
 +---------+</code></pre>
 <p><br></p>
 <ol start="3" type="1">
-<li>Afficher le nom et le prix des produits dont le prix est compris
-entre 10 et 15 € (inférieur ou égal à 15 et supérieur ou égal à 10) ,
-proposer 2 solutions (avec AND ou avec BETWEEN)</li>
+<li>Requête 2 : Afficher le nom et le prix des produits dont le prix est
+compris entre 10 et 15 € (inférieur ou égal à 15 et supérieur ou égal à
+10) , proposer 2 solutions (avec AND ou avec BETWEEN)</li>
 </ol>
 <pre><code>+---------+-------+
 | nom     | prix  |
@@ -282,7 +300,7 @@ proposer 2 solutions (avec AND ou avec BETWEEN)</li>
 href="https://www.w3schools.com/SQL/sql_between.asp"
 target="_blanck">https://www.w3schools.com/SQL/sql_between.asp</a></p>
 <ol start="4" type="1">
-<li>Afficher uniquement les légumes</li>
+<li>Requête 3 : Afficher uniquement les légumes</li>
 </ol>
 <pre><code>+----------+
 | nom      |
@@ -294,7 +312,7 @@ target="_blanck">https://www.w3schools.com/SQL/sql_between.asp</a></p>
 </code></pre>
 <h2 id="supprimer-un-enregistrement">Supprimer un enregistrement</h2>
 <ul>
-<li>Supprimer le produit d’identifiant 2</li>
+<li>Requête 4 : Supprimer le produit d’identifiant 2</li>
 </ul>
 <p>Aidez vous des informations sur : <a
 href="https://www.w3schools.com/SQL/sql_delete.asp"
@@ -307,8 +325,8 @@ primaire qui utilise l’attribut auto_increment ) ?</li>
 </ul>
 <h2 id="modifier-un-enregistrement">Modifier un enregistrement</h2>
 <ol type="1">
-<li>Modifier le nom du produit d’identifiant 6 par « Pommes de Terre »
-ainsi que le prix par 3.5€</li>
+<li>Requête 5 : Modifier le nom du produit d’identifiant 6 par « Pommes
+de Terre » ainsi que le prix par 3.5€</li>
 </ol>
 <ul>
 <li>Aidez vous des informations sur : <a
@@ -318,16 +336,16 @@ target="_blanck">https://www.w3schools.com/SQL/sql_update.asp</a></li>
 <ol start="2" type="1">
 <li><p>Sur le même principe, modifier le produit d’identifiant 5,
 rajouter 1€ au prix</p></li>
-<li><p>Pour les plus rapides : Rajouter une semaine à la date d’achat,
-mais c’est bien plus compliqué ! <a
+<li><p>Requête 6 : Pour les plus rapides : Rajouter une semaine à la
+date d’achat, mais c’est bien plus compliqué ! <a
 href="https://www.w3schools.com/sql/func_mysql_date_add.asp"
 target="_blanck">https://www.w3schools.com/sql/func_mysql_date_add.asp</a></p></li>
 </ol>
 <h1 id="modifier-la-table-la-structure">Modifier la table (la
 structure)</h1>
 <ol type="1">
-<li>Ajouter un champ <strong>quantite</strong> qui est un “numérique” (5
-chiffres avant la virgule et 2 après) avant le champ
+<li>Requête 7 : Ajouter un champ <strong>quantite</strong> qui est un
+“numérique” (5 chiffres avant la virgule et 2 après) avant le champ
 <strong>prix</strong> (rechercher dans <a
 href="https://mariadb.com/kb/en/alter-table/" target="_blanck">la
 documentation</a>, mais “before” n’existe pas, il faut donc utiliser <a
@@ -335,8 +353,8 @@ href="https://www.w3schools.com/sql/sql_alter.asp"
 target="_blanck">“after”</a>)</li>
 <li>Supprimer l’attribut (la colonne, le champ)
 <strong>code</strong></li>
-<li>Modifier le prix par un “numérique” (15 chiffres avant la virgule et
-4 après)</li>
+<li>Requête 8 : Modifier le prix par un “numérique” (15 chiffres avant
+la virgule et 4 après)</li>
 </ol>
 <h1
 id="réflexion-sur-les-types-des-attributs-colonnes-et-leurs-valeurs">Réflexion
@@ -347,8 +365,9 @@ mot avec comme valeur : « fruits », « légumes »</p>
 <p>Que se passe t’il si le mot “légumes” n’est pas écrit correctement ?
 :</p>
 <ol type="1">
-<li>ajouter des enregistrements avec “légumes” écrit sans accent, avec
-une(des) majuscule(s), sans le “s” à la fin, sans accent sur le “é”</li>
+<li>Requête 9 : ajouter des enregistrements avec “légumes” écrit sans
+accent, avec une(des) majuscule(s), sans le “s” à la fin, sans accent
+sur le “é”</li>
 </ol>
 <p>ATTENTION : le nom des colonnes proposé par datagrip n’est pas bon,
 il est possible de déactiver l’affichage de cette aide : “File /
@@ -401,7 +420,7 @@ Names”</p>
 </tbody>
 </table>
 <ol start="2" type="1">
-<li>Afficher uniquement les légumes</li>
+<li>Requête 10 : Afficher uniquement les légumes</li>
 </ol>
 <p><br> Résultat possible :</p>
 <pre><code>+-----------------+-----------+
@@ -414,9 +433,9 @@ Names”</p>
 | radis noir      | LEGUMES   |
 +-----------------+-----------+</code></pre>
 <ol start="3" type="1">
-<li>Ajouter un attribut (une colonne) <strong>categorie_id</strong> de
-type <strong>int</strong>, juste après la colonne
-<strong>categorie</strong></li>
+<li>Requête 11 : Ajouter un attribut (une colonne)
+<strong>categorie_id</strong> de type <strong>int</strong>, juste après
+la colonne <strong>categorie</strong></li>
 </ol>
 <p>contenu de la table <strong>produit</strong></p>
 <pre><code>+------------+-----------------+-----------+--------------+----------+---------+------------+
