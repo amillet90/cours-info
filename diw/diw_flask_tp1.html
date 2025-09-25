@@ -125,7 +125,7 @@ la bibliothèque <code>flask</code> :
 fait.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, url_for, abort  <span class="co"># application WSGI</span></span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect,flash</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span></code></pre></div>
 <ol start="4" type="1">
 <li>Dans le dossier <code>templates</code>, créez le <a
@@ -203,7 +203,7 @@ bibliothèques</p></li>
 <li><p>Dans le fichier <code>app.py</code>, créez une route
 <code>/etudiant/show</code> qui appelle la fonction
 <code>show_etudiants</code></p></li>
-<li><p>à l’intérieur du dossier <em>templates</em>, créer un dossier
+<li><p>à l’intérieur du dossier <em>templates</em>, créez un dossier
 <code>etudiant</code> ; dans le dossier <code>templates/etudiant/</code>
 créez une vue (un fichier template)
 <code>show_etudiant.html</code></p></li>
@@ -270,8 +270,10 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ol start="14" type="1">
-<li><p>tester=z avec un tableau de dictionnaire d’étudiant vide dans le
-fichier <code>app.py</code></p></li>
+<li><p>testez l’affichage du fichier
+<code>templates/etudiant/show_etudiant.html</code> avec un tableau de
+dictionnaire d’étudiant vide dans le fichier
+<code>app.py</code></p></li>
 <li><p>Dans le fichier
 <code>templates/etudiant/show_etudiant.html</code>, affichez la liste
 des étudiants si le tableau n’est pas vide en intégrant le code
@@ -302,12 +304,15 @@ routes appelées seront <code>/etudiant/edit</code> et
 <code>/etudiant/delete</code> .</li>
 </ul>
 <ol start="16" type="1">
-<li><p>au bout des 2 routes ajouter un paramètre : l’identifiant de
-l’étudiant <code>?id=</code> suivi de la valeur de l’identifiant de
-l’étudiant.</p></li>
-<li><p>ajouter un lien pour ajouter un étudiant avant l’affichage du
+<li><p>Dans le fichier
+<code>templates/etudiant/show_etudiant.html</code>, au bout des 2 routes
+ajoutez un paramètre : l’identifiant de l’étudiant <code>?id=</code>
+suivi de la valeur de l’identifiant de l’étudiant :
+<code>{{ etudiant.id }}</code>.</p></li>
+<li><p>ajoutez un lien pour ajouter un étudiant avant l’affichage du
 tableau</p></li>
 </ol>
+<p>code pour l’étape 16 et 17 :</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/add&quot;</span> <span class="kw">&gt;</span>ajouter un étudiant<span class="kw">&lt;/a&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -322,12 +327,13 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href=
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <h2 id="passage-de-paramètres">passage de paramètres</h2>
 <ol start="18" type="1">
-<li>créer 3 routes <code>/etudiant/add</code> ,
-<code>/etudiant/delete</code> et <code>/etudiant/edit</code> dans le
-fichier de l’application flask associées à 3 fonctions
+<li>Dans le fichier <code>app.py</code> (application flask) , créez 3
+routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et
+<code>/etudiant/edit</code> associées à 3 fonctions
 <code>add_etudiant</code> , <code>delete_etudiant</code> et
 <code>edit_etudiant</code></li>
 </ol>
+<p>code pour l’étape 18 :</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/add&#39;</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_etudiant():</span>
@@ -344,54 +350,63 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>)</span></code></pre></div>
 <h2 id="utilisation-de-paramètres-issus-de-liens">utilisation de
 paramètres issus de liens</h2>
-<p>voici le code HTML généré par ChatGPT pour saisir les informations
-d’un étudiant :</p>
+<p>voici le code HTML généré par ChatGPT (2025) pour saisir les
+informations d’un étudiant :</p>
 <p><br></p>
 <p>(code généré en saisissant le prompt : <em>donner le code HTML d’un
 formulaire en utilisant le framework bootstrap 5 pour saisir les
 informations du tableau python :</em> )</p>
 <div class="sourceCode" id="cb13"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Formulaire d&#39;Étudiant<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Inclure Bootstrap 5 CSS --&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Formulaire Étudiant<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Bootstrap 5 --&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;link</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css&quot;</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;container mt-4&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;h1&gt;</span>Formulaire d&#39;Étudiant<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;form&gt;</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            <span class="co">&lt;!-- Champs pour saisir les informations de l&#39;étudiant --&gt;</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Nom de l&#39;étudiant :<span class="kw">&lt;/label&gt;</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-control&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;Entrez le nom de l&#39;étudiant&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Groupe de l&#39;étudiant :<span class="kw">&lt;/label&gt;</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;select</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-select&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A1&quot;</span><span class="kw">&gt;</span>A1<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A2&quot;</span><span class="kw">&gt;</span>A2<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;B1&quot;</span><span class="kw">&gt;</span>B1<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;/select&gt;</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Enregistrer<span class="kw">&lt;/button&gt;</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/form&gt;</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) --&gt;</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;bg-light&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;container py-4&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;h2</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-4&quot;</span><span class="kw">&gt;</span>Formulaire étudiant<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;form&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Champ caché ID --&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;hidden&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Nom --&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Nom<span class="kw">&lt;/label&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-control&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Groupe --&gt;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Groupe<span class="kw">&lt;/label&gt;</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;select</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-select&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A1&quot;</span> <span class="er">selected</span><span class="kw">&gt;</span>A1<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A2&quot;</span><span class="kw">&gt;</span>A2<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;B1&quot;</span><span class="kw">&gt;</span>B1<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;/select&gt;</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Boutons --&gt;</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Enregistrer<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;reset&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-secondary&quot;</span><span class="kw">&gt;</span>Réinitialiser<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ol start="19" type="1">
-<li><p>créer 2 templates <code>etudiant/add_etudiant.html</code> et
+<li><p>créez 2 templates <code>etudiant/add_etudiant.html</code> et
 <code>etudiant/edit_etudiant.html</code></p></li>
-<li><p>dans les 2 fonctions <code>delete_etudiant</code> et
-<code>edit_etudiant</code>, afficher à l’aide de l’instruction
-<code>print</code> dans le terminal le paramètre reçu de nom
-<code>id</code>. Utiliser la fonction
+<li><p>Dans le fichier <code>app.py</code>, dans les 2 fonctions
+<code>delete_etudiant</code> et <code>edit_etudiant</code>, affichez à
+l’aide de l’instruction <code>print</code> dans le terminal le paramètre
+reçu de nom <code>id</code>. Utiliser la fonction
 <code>print(request.args)</code>.</p></li>
 <li><p>pour<code>delete_etudiant</code> , une erreur est générée car il
 n’y a pas de réponse retournée au navigateur (pas de
@@ -490,12 +505,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a h
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe    </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
-<ol start="31" type="1">
-<li><p>tester et modifier l’erreur : ChatGPT a oublier l’attribut
-<code>name=</code> dans les balises <code>&lt;input&gt;</code> et
-<code>&lt;select&gt;</code></p></li>
-<li><p>créer un message avec les informations pour modifier un
-étudiant</p></li>
+<!--
+31. tester et modifier l'erreur : ChatGPT a oublier l'attribut `name=` dans les balises `<input>` et `<select>` 
+-->
+<ol start="32" type="1">
+<li>créer un message avec les informations pour modifier un
+étudiant</li>
 </ol>
 <div class="sourceCode" id="cb18"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
