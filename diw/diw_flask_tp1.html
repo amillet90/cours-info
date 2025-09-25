@@ -95,7 +95,8 @@ target="_blank">lien sur son code source</a></p>
 <h2 id="exercice-1-rôle-des-routes">exercice 1 : rôle des routes</h2>
 <p><br></p>
 <ol type="1">
-<li>modifier la route</li>
+<li>Dans le fichier <code>app.py</code>, modifiez la réponse de la route
+<code>/hello</code></li>
 </ol>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
@@ -103,7 +104,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():  <span class="co"># put application&#39;s code here</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;  &amp;nbsp; &lt;a href=&quot;/heure&quot;&gt; heure &lt;/a&gt;&#39;</span></span></code></pre></div>
 <ol start="2" type="1">
-<li>ajouter une autre route qui appelle un template</li>
+<li>Dans le fichier <code>app.py</code>, ajoutez une autre route
+<code>/heure</code> qui appelle un template
+<code>index_demo.html</code></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/heure&#39;</span>)</span>
@@ -114,22 +117,27 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> date_heure.second</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;index_demo.html&#39;</span>, h<span class="op">=</span>h,<span class="bu">min</span><span class="op">=</span>m,sec<span class="op">=</span>s )</span></code></pre></div>
 <ol start="3" type="1">
-<li>Ajouter la bibliothèque <strong>datetime</strong> sous l’instruction
+<li>Dans le fichier <code>app.py</code>, ajoutez la bibliothèque
+<strong>datetime</strong> sous l’instruction
 <code>from flask import Flask</code>. Importer plusieurs fonctions dans
-la bibliothèque <code>flask</code>.</li>
+la bibliothèque <code>flask</code> :
+<code>request, render_template, redirect, flash</code> si ce n’est pas
+fait.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, url_for, abort  <span class="co"># application WSGI</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span></code></pre></div>
 <ol start="4" type="1">
-<li>créer le <a href="https://fr.wikipedia.org/wiki/Template"
+<li>Dans le dossier <code>templates</code>, créez le <a
+href="https://fr.wikipedia.org/wiki/Template"
 target="_blank"><strong>template</strong></a> (fichier)
-<code>index_demo.html</code> dans le dossier <code>templates</code></li>
+<code>index_demo.html</code></li>
 </ol>
 <p><br></p>
 <ol start="5" type="1">
-<li>utiliser le snippet <code>html:5</code> puis dans la balise
-<code>&lt;body&gt;</code></li>
+<li>Dans le dossier <code>templates</code>, complétez le fichier
+<code>index_demo.html</code> : utiliser le snippet <code>html:5</code>
+puis dans la balise <code>&lt;body&gt;</code></li>
 </ol>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}<span class="kw">&lt;/p&gt;</span></span>
@@ -189,18 +197,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">5</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;B1&#39;</span>}</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ol start="6" type="1">
-<li><p>ajouter ce tableau au début du fichier d’application flask après
-avoir importé les bibliothèques</p></li>
-<li><p>créer une route <code>/etudiant/show</code> qui appelle la
-fonction <code>show_etudiants</code></p></li>
+<li><p>Dans le fichier <code>app.py</code>, ajoutez ce tableau au début
+du fichier d’application flask après avoir importé les
+bibliothèques</p></li>
+<li><p>Dans le fichier <code>app.py</code>, créez une route
+<code>/etudiant/show</code> qui appelle la fonction
+<code>show_etudiants</code></p></li>
 <li><p>à l’intérieur du dossier <em>templates</em>, créer un dossier
 <code>etudiant</code> ; dans le dossier <code>templates/etudiant/</code>
-créer une vue (un fichier) <code>show_etudiant.html</code></p></li>
-<li><p>dans la fonction <code>show_etudiants</code>, passer en paramètre
-la liste <code>liste_etudiants</code> avec comme nom
-<code>etudiants</code></p></li>
-<li><p>afficher la liste des étudiants dans le fichier
-<code>templates/etudiant/show_etudiant.html</code></p></li>
+créez une vue (un fichier template)
+<code>show_etudiant.html</code></p></li>
+<li><p>Dans le fichier <code>app.py</code>, dans la fonction
+<code>show_etudiants</code>, passez en paramètre la liste
+<code>liste_etudiants</code> avec comme nom <code>etudiants</code> dans
+la fonction <code>render_template</code></p></li>
+<li><p>Dans le fichier
+<code>templates/etudiant/show_etudiant.html</code>, affichez la liste
+des étudiants : ajoutez le code ci-dessous dans la balise
+<code>&lt;body&gt;</code></p></li>
 </ol>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>listes des étudiants<span class="kw">&lt;/h1&gt;</span></span>
@@ -208,8 +222,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>{{ etudiants }}</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <ol start="11" type="1">
-<li>ajouter un lien sur la page d’accueil dans le fichier
-<code>templates/index_demo.html</code></li>
+<li>Dans le fichier <code>templates/index_demo.html</code>, ajoutez un
+lien sur la page d’accueil</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;br&gt;</span></span>
@@ -217,8 +231,9 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="
 <!-- https://docs.github.com/fr/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests
 -->
 <ol start="12" type="1">
-<li>afficher la liste des étudiants dans un tableau ; il faut utiliser
-une boucle</li>
+<li>Dans le fichier <code>templates/etudiant/show_etudiant.html</code>,
+affichez la liste des étudiants dans un tableau ; il faut utiliser une
+boucle :</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table&gt;</span></span>
@@ -234,7 +249,8 @@ href="https://github.com/amillet-iut90/flask_demo1/tree/1-demo-etape1"
 target="_blank">code branche 1</a></p>
 </div>
 <ol start="13" type="1">
-<li>remplacer la ligne qui affiche chaque étudiant avec le code
+<li>Dans le fichier <code>templates/etudiant/show_etudiant.html</code>,
+remplacez la ligne qui affiche chaque étudiant avec le code
 ci-dessous</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre
@@ -254,10 +270,12 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ol start="14" type="1">
-<li><p>tester avec un tableau de dictionnaire d’étudiant vide dans le
+<li><p>tester=z avec un tableau de dictionnaire d’étudiant vide dans le
 fichier <code>app.py</code></p></li>
-<li><p>afficher la liste des étudiants si le tableau n’est pas vide en
-intégrant le code ci-dessous dans le <em>template</em>
+<li><p>Dans le fichier
+<code>templates/etudiant/show_etudiant.html</code>, affichez la liste
+des étudiants si le tableau n’est pas vide en intégrant le code
+ci-dessous dans le <em>template</em>
 <code>show_etudiant.html</code></p></li>
 </ol>
 <div class="sourceCode" id="cb10"><pre
@@ -276,6 +294,7 @@ target="_blank">cours NSI</a></p>
 <strong>Dans le contrôleur Ctrl+clic sur le nom d’un template dans le
 contrôleur (app)</strong></p>
 </div>
+<p>(<strong>Etape au bout de la première séance minimum</strong>)</p>
 <h2 id="utilisation-de-lien">utilisation de lien</h2>
 <ul>
 <li>ajouter des liens pour modifier ou supprimer chaque ligne, les
