@@ -136,7 +136,7 @@ target="_blank"><strong>template</strong></a> (fichier)
 <p><br></p>
 <ol start="5" type="1">
 <li>Dans le dossier <code>templates</code>, complétez le fichier
-<code>index_demo.html</code> : utiliser le snippet <code>html:5</code>
+<code>index_demo.html</code> : utilisez le snippet <code>html:5</code>
 puis dans la balise <code>&lt;body&gt;</code></li>
 </ol>
 <div class="sourceCode" id="cb4"><pre
@@ -309,7 +309,7 @@ routes appelées seront <code>/etudiant/edit</code> et
 ajoutez un paramètre : l’identifiant de l’étudiant <code>?id=</code>
 suivi de la valeur de l’identifiant de l’étudiant :
 <code>{{ etudiant.id }}</code>.</p></li>
-<li><p>ajoutez un lien pour ajouter un étudiant avant l’affichage du
+<li><p>Ajoutez un lien pour ajouter un étudiant avant l’affichage du
 tableau</p></li>
 </ol>
 <p>code pour l’étape 16 et 17 :</p>
@@ -423,8 +423,9 @@ redirection sur la route <code>show_etudiants</code> avec l’instruction
 <p><code>return redirect('/etudiant/show')</code></p>
 </div>
 <ol start="23" type="1">
-<li>ajouter le code ci-dessous dans la fonction
-<code>delete_etudiant</code> et <code>edit_etudiant</code></li>
+<li>Dans le fichier <code>app.py</code>, ajoutez le code ci-dessous dans
+la fonction <code>delete_etudiant</code> et
+<code>edit_etudiant</code></li>
 </ol>
 <!--
     #print(request.args['id'])
@@ -441,8 +442,8 @@ page HTML (méthode <code>GET</code> ), utiliser la méthode de l’objet
 du paramètre</span></p>
 </div>
 <ol start="24" type="1">
-<li>pour la fonction <code>edit_etudiant</code>, ajouter le code
-ci-dessous puis passer</li>
+<li>Dans le fichier <code>app.py</code>, dans la fonction
+<code>edit_etudiant</code>, ajoutez le code ci-dessous</li>
 </ol>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
@@ -452,10 +453,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a h
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>[]</span></code></pre></div>
 <ol start="25" type="1">
-<li>Passer en paramètre l’étudiant sélectionné au template
-<code>edit_etudiant.html</code> . Afficher dans chaque champ
+<li>Dans le fichier <code>app.py</code>, dans la fonction
+<code>edit_etudiant</code>, passez en paramètre l’étudiant sélectionné
+au template <code>edit_etudiant.html</code> . Affichez dans chaque champ
 <code>input</code> de ce template la valeur de l’information concernant
-l’étudiant (id, nom , groupe) .</li>
+l’étudiant (id, nom , groupe). ATTENTION, pour la liste déroulante,
+c’est plus difficile et ça sera abordé plus tard.</li>
 </ol>
 <div class="code">
 <p><a
