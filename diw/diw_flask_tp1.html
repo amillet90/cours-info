@@ -760,20 +760,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a h
 <li>modifier l’affichage (<strong>show</strong>)</li>
 </ul>
 <div class="sourceCode" id="cb31"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe }}<span class="kw">&lt;/td&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe_id }}<span class="kw">&lt;/td&gt;</span></span></code></pre></div>
 <p>et la récupération des données dans les fonctions appellées lors de
 la validation des formulaires</p>
 <div class="sourceCode" id="cb32"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe    </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d un etudiant de nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe    </span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe <span class="op">+</span> <span class="st">&#39; pour l etudiant d identifiant :&#39;</span> <span class="op">+</span> <span class="bu">id</span>   </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe <span class="op">+</span> <span class="st">&#39; pour l etudiant d identifiant :&#39;</span> <span class="op">+</span> <span class="bu">id</span>   </span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l etudiant d identifiant : : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <h1 id="annexe">annexe</h1>
 <p>en cas de problème avec pycharm (blocage) : supprimer le dossier
 <code>.cache/jetbrains/pycharm</code></p>
