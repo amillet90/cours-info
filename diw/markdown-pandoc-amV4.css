@@ -266,8 +266,9 @@ color:purple;
 .code2 {
     display: block;
     color : green;
-    background-color:olive;
+    background-color:HoneyDew;
     padding : 0.2em;
+    width : 40%;
 }
 
 /*table          { margin: auto; }    */              /* centre le tableau dans la page */
