@@ -426,18 +426,17 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <p><br></p>
 </div>
 <ol start="3" type="1">
-<li>Requêtes en langage SQL (On pourra s’aider de l’annexe 2)</li>
+<li><strong>Question 2 TP :</strong> Requêtes en langage SQL</li>
 </ol>
 <ul>
-<li><p>Ecrire une requête qui renvoie les prénoms des joueurs dont le
-nom est ‘Dupont’.</p></li>
-<li><p>Ecrire une requête qui modifie le mot de passe de Dorine Dupont,
-son nouveau mot de passe étant 1976.</p></li>
+<li><p>Requête 1 : Ecrire une requête qui renvoie les prénoms des
+joueurs dont le nom est ‘Dupont’.</p></li>
+<li><p>Requête 2 : Ecrire une requête qui modifie le mot de passe de
+Dorine Dupont, son nouveau mot de passe étant 1976.</p></li>
+<li><p>Requête 3 : Ecrire une requête permettant d’ajouter le nouveau
+membre « Zora MAGID » dont le login est « zora » et le mot de passe
+2021.</p></li>
 </ul>
-<ol start="4" type="1">
-<li>Ecrire une requête permettant d’ajouter le nouveau membre « Zora
-MAGID » dont le login est « zora » et le mot de passe 2021.</li>
-</ol>
 <div class="exercice">
 <p>Question en plus : Difficulté supplémentaire : on ne connait pas le
 prochain identifiant (<code>id_joueur</code>), notre script SQL doit
@@ -461,10 +460,10 @@ Assignment</a></p>
 </ol>
 <p>2.. Par lecture et analyse des relations de la base de donnée.</p>
 <ul>
-<li>Déterminer le jour et la plage horaire du match entre Durand Belina
-et Caron Camilia.</li>
-<li>Déterminer le nom des deux joueurs qui sont les seuls à avoir joué
-dans le “hangar”.</li>
+<li>Requête 4 : Déterminer le jour et la plage horaire du match entre
+Durand Belina et Caron Camilia.</li>
+<li>Requête 5 : Déterminer le nom des deux joueurs qui sont les seuls à
+avoir joué dans le “hangar”.</li>
 </ul>
 <div class="exercice">
 <p>Les élèves qui passaient le bac devaient répondre en recherchant les
@@ -472,16 +471,18 @@ informations dans les données des relations (tables) ci-dessus.<br />
 </p>
 <p>Question en plus : Ecrire les requêtes qui répondent aux questions
 ci-dessus</p>
-<p>Ajouter quelques enregistrements</p>
+<p><br></p>
+<p>Ajouter quelques enregistrements :</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">3</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">2</span>);</span></code></pre></div>
 <ul>
-<li>Résultat de la requête 1 : Déterminer le jour et la plage horaire du
-match entre Durand Belina et Caron Camilia.</li>
+<li>Requête 6 : Déterminer le jour et la plage horaire du match entre
+Durand Belina et Caron Camilia.</li>
 </ul>
+<p><br> Résultat :</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>| date_match | id_creneau | nom_joueur | nom_joueur |</span>
@@ -496,9 +497,11 @@ jointure un peu particulière avec la table (relation)
 INNER JOIN joueurs AS J2 ON J2.id_joueur=matchs.id_joueur2</code></pre>
 <p><br></p>
 <ul>
-<li>Résultat de la requête 2 : Déterminer le nom des deux joueurs qui
-sont les seuls à avoir joué dans le “hangar”.</li>
+<li>Requête 7 : Déterminer le nom des deux joueurs qui sont les seuls à
+avoir joué dans le “hangar”.</li>
 </ul>
+<p><br></p>
+<p>Résultat :</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>| prenom_joueur | nom_joueur |</span>
