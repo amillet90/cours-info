@@ -334,6 +334,7 @@ réservables.</li>
 </tbody>
 </table>
 <p><br></p>
+<p><strong> En rose/violet le TP, en noir le sujet de Bac </strong></p>
 <ol type="1">
 <li>Clés primaires/étrangères :<br />
 </li>
@@ -344,8 +345,9 @@ réservables.</li>
 quelles sont-elles ?</p></li>
 </ul>
 <div class="exercice">
-<p>Question en plus : Reprendre le script ci-dessous (<a
-href="#annexe1">ANNEXE 1</a>),</p>
+<p>Question 1 TP : Reprendre le script ci-dessous
+<!--([ANNEXE 1](#annexe1))--></p>
+<p><br></p>
 <ul>
 <li>complèter l’instruction pour supprimer les tables dans le bon
 ordre</li>
@@ -353,6 +355,75 @@ ordre</li>
 <li>ajouter les clés étrangéres (contraintes)</li>
 <li>créer les tables dans le bon ordre</li>
 </ul>
+<div style="width:50%">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> joueurs (</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>id_joueur <span class="dt">INT</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>nom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>prenom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mdp <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> joueurs <span class="kw">VALUES</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Alice&#39;</span>,<span class="st">&#39;alice&#39;</span>,<span class="st">&#39;1234&#39;</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;Durand&#39;</span>,<span class="st">&#39;Belina&#39;</span>,<span class="st">&#39;belina&#39;</span>,<span class="st">&#39;5694&#39;</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;Caron&#39;</span>,<span class="st">&#39;Camilia&#39;</span>,<span class="st">&#39;camilia&#39;</span>,<span class="st">&#39;9478&#39;</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Dorine&#39;</span>,<span class="st">&#39;dorine&#39;</span>,<span class="st">&#39;1347&#39;</span>);</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> matchs (</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>id_match <span class="dt">INT</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>date_match <span class="dt">DATE</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>id_creneau <span class="dt">INT</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>id_terrain <span class="dt">INT</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>id_joueur1 <span class="dt">INT</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>id_joueur2 <span class="dt">INT</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span> ,<span class="dv">3</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">1</span> ,<span class="dv">3</span>),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">4</span>),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">3</span> ,<span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span>),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">5</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">4</span>);</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> terrains (</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>id_terrain <span class="dt">INT</span>,  </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>nom_terrain <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>surface     <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> terrains <span class="kw">VALUES</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;stade&#39;</span>,<span class="st">&#39;terre battue&#39;</span>),</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;gymnase&#39;</span>,<span class="st">&#39;synthétique&#39;</span>),</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;hangar&#39;</span>,<span class="st">&#39;terre battue&#39;</span>);</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> creneaux (</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>id_creneau <span class="dt">INT</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plage_horaire <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> creneaux (id_creneau,plage_horaire) <span class="kw">values</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;8h-9h&#39;</span>),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;9h-10h&#39;</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;10h-11h&#39;</span>),</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span>,<span class="st">&#39;11h-12h&#39;</span>),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span>,<span class="st">&#39;12h-13h&#39;</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span>,<span class="st">&#39;13h-14h&#39;</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span>,<span class="st">&#39;14h-15h&#39;</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span>,<span class="st">&#39;15h-16h&#39;</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9</span>,<span class="st">&#39;16h-17h&#39;</span>),</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span>,<span class="st">&#39;17h-18h&#39;</span>),</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11</span>,<span class="st">&#39;18h-19h&#39;</span>),</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>(<span class="dv">12</span>,<span class="st">&#39;19h-20h&#39;</span>);</span></code></pre></div>
+</div>
+<p><br></p>
 </div>
 <ol start="3" type="1">
 <li>Requêtes en langage SQL (On pourra s’aider de l’annexe 2)</li>
@@ -376,10 +447,10 @@ calculer le prochain identifiant ; Rechercher le plus grand
 Modifier le script ci-dessous pour calculer l’identifiant suivant
 :<br />
 </p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @id_max <span class="op">=</span> (<span class="op">..</span>. requête qui recherche le plus grand id_joueur);</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @id_max;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> joueurs <span class="kw">VALUES</span> (@id_max<span class="op">+</span><span class="dv">1</span>,<span class="op">....</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @id_max <span class="op">=</span> (<span class="op">..</span>. requête qui recherche le plus grand id_joueur);</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @id_max;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> joueurs <span class="kw">VALUES</span> (@id_max<span class="op">+</span><span class="dv">1</span>,<span class="op">....</span></span></code></pre></div>
 <p>Utiliser cet identifiant pour ajouter le prochain joueur</p>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html"
 target="_blanck">Documentation : SET Syntax for Variable
@@ -402,22 +473,22 @@ informations dans les données des relations (tables) ci-dessus.<br />
 <p>Question en plus : Ecrire les requêtes qui répondent aux questions
 ci-dessus</p>
 <p>Ajouter quelques enregistrements</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">3</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">2</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">3</span> ,<span class="dv">2</span> ,<span class="dv">1</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">2</span>);</span></code></pre></div>
 <ul>
 <li>Résultat de la requête 1 : Déterminer le jour et la plage horaire du
 match entre Durand Belina et Caron Camilia.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>| date_match | id_creneau | nom_joueur | nom_joueur |</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">01</span> |          <span class="dv">3</span> | Durand     | Caron      |</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">08</span> |          <span class="dv">7</span> | Caron      | Durand     |</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>| date_match | id_creneau | nom_joueur | nom_joueur |</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">01</span> |          <span class="dv">3</span> | Durand     | Caron      |</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">08</span> |          <span class="dv">7</span> | Caron      | Durand     |</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span></code></pre></div>
 <p>aide : pour réaliser cette requête, il est possible de faire une
 jointure un peu particulière avec la table (relation)
 <em>matchs</em></p>
@@ -428,85 +499,19 @@ INNER JOIN joueurs AS J2 ON J2.id_joueur=matchs.id_joueur2</code></pre>
 <li>Résultat de la requête 2 : Déterminer le nom des deux joueurs qui
 sont les seuls à avoir joué dans le “hangar”.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>| prenom_joueur | nom_joueur |</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>| Alice         | Dupont     |</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>| Belina        | Durand     |</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>| prenom_joueur | nom_joueur |</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>| Alice         | Dupont     |</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>| Belina        | Durand     |</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------+------------+</span></span></code></pre></div>
 <p>aide : pour réaliser cette requête, il est possible de faire une
 jointure un peu particulière avec la table (relation)
 <em>matchs</em></p>
 <pre><code>INNER JOIN joueurs ON joueurs.id_joueur=matchs.id_joueur1 OR joueurs.id_joueur=matchs.id_joueur2</code></pre>
 </div>
-<h1 id="annexe-1"><span id="annexe1">Annexe 1</span></h1>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> joueurs (</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>id_joueur <span class="dt">INT</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>nom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>prenom_joueur <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>login <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>mdp <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> joueurs <span class="kw">VALUES</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Alice&#39;</span>,<span class="st">&#39;alice&#39;</span>,<span class="st">&#39;1234&#39;</span>),</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;Durand&#39;</span>,<span class="st">&#39;Belina&#39;</span>,<span class="st">&#39;belina&#39;</span>,<span class="st">&#39;5694&#39;</span>),</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;Caron&#39;</span>,<span class="st">&#39;Camilia&#39;</span>,<span class="st">&#39;camilia&#39;</span>,<span class="st">&#39;9478&#39;</span>),</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span>,<span class="st">&#39;Dupont&#39;</span>,<span class="st">&#39;Dorine&#39;</span>,<span class="st">&#39;dorine&#39;</span>,<span class="st">&#39;1347&#39;</span>);</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> matchs (</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>id_match <span class="dt">INT</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>date_match <span class="dt">DATE</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>id_creneau <span class="dt">INT</span>,</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>id_terrain <span class="dt">INT</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>id_joueur1 <span class="dt">INT</span>,</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>id_joueur2 <span class="dt">INT</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> matchs <span class="kw">VALUES</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> ,<span class="st">&#39;2020-08-01&#39;</span>, <span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span> ,<span class="dv">3</span>),</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">6</span> ,<span class="dv">2</span> ,<span class="dv">1</span> ,<span class="dv">3</span>),</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span> ,<span class="st">&#39;2020-08-02&#39;</span>, <span class="dv">7</span> ,<span class="dv">2</span> ,<span class="dv">2</span> ,<span class="dv">4</span>),</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">3</span> ,<span class="dv">3</span> ,<span class="dv">1</span> ,<span class="dv">2</span>),</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span> ,<span class="st">&#39;2020-08-08&#39;</span>, <span class="dv">5</span> ,<span class="dv">2</span> ,<span class="dv">3</span> ,<span class="dv">4</span>);</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> terrains (</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>id_terrain <span class="dt">INT</span>,  </span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>nom_terrain <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>surface     <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> terrains <span class="kw">VALUES</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;stade&#39;</span>,<span class="st">&#39;terre battue&#39;</span>),</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;gymnase&#39;</span>,<span class="st">&#39;synthétique&#39;</span>),</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;hangar&#39;</span>,<span class="st">&#39;terre battue&#39;</span>);</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> creneaux (</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>id_creneau <span class="dt">INT</span>,</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>plage_horaire <span class="dt">VARCHAR</span>(<span class="dv">255</span>)</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> creneaux (id_creneau,plage_horaire) <span class="kw">values</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>,<span class="st">&#39;8h-9h&#39;</span>),</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>,<span class="st">&#39;9h-10h&#39;</span>),</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>,<span class="st">&#39;10h-11h&#39;</span>),</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span>,<span class="st">&#39;11h-12h&#39;</span>),</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span>,<span class="st">&#39;12h-13h&#39;</span>),</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span>,<span class="st">&#39;13h-14h&#39;</span>),</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span>,<span class="st">&#39;14h-15h&#39;</span>),</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span>,<span class="st">&#39;15h-16h&#39;</span>),</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>(<span class="dv">9</span>,<span class="st">&#39;16h-17h&#39;</span>),</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span>,<span class="st">&#39;17h-18h&#39;</span>),</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11</span>,<span class="st">&#39;18h-19h&#39;</span>),</span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>(<span class="dv">12</span>,<span class="st">&#39;19h-20h&#39;</span>);</span></code></pre></div>
+<!--# [Annexe 1]{id=annexe1}-->
 <h1 id="réflexion-sur-le-schéma">Réflexion sur le schéma</h1>
 <p><img src="img/img_jointure_tp8_1.png" style="width:15cm" /><br />
 </p>
