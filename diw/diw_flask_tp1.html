@@ -459,10 +459,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a h
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">&#39;paramètre dans l URL : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(message)</span></code></pre></div>
 <div class="cours">
-<p><span class="modif">* Pour récupérer les paramètres dans l’URL d’une
-page HTML (méthode <code>GET</code> ), utiliser la méthode de l’objet
-<em>request</em> : <code>request.args.get</code> avec comme clé le nom
-du paramètre</span></p>
+<ul>
+<li>Pour récupérer les paramètres dans l’URL d’une page HTML (méthode
+<code>GET</code> ), utiliser la méthode de l’objet <em>request</em> :
+<code>request.args.get</code> avec comme clé le nom du paramètre.</li>
+</ul>
 </div>
 <ol start="24" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
@@ -567,14 +568,9 @@ d’un étudiant</span> il faut un champ caché avec l’identifiant de
 l’étudiant</li>
 </ol>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
-<p><span class="modif">Dans ce formulaire, il manque l’attribut
-<code>value={{etudiant.nom}}</code> dans la balise
-<code>&lt;input&gt;</code> pour que ce champ soit initialisé avec le nom
-de l’étudiant à éventuellement modifier.</span><br />
-</p>
-<p><span class="modif">Afficher la valeur du groupe
-<code>{{etudiant.groupe}}</code> ; pour la liste déroulante, c’est plus
-compliqué, le code est présenté dans le tp suivant.</span></p>
+<!--
+[Dans ce formulaire, il manque l'attribut `value={{etudiant.nom}}` dans la balise `<input>` pour que ce champ soit initialisé avec le nom de l'étudiant à éventuellement modifier.]{.modif}\-->
+<!--[Afficher la valeur du groupe `{{etudiant.groupe}}` ; pour la liste déroulante, c'est plus compliqué, le code est présenté dans le tp suivant.]{.modif}-->
 <p><br></p>
 <div class="cours">
 <ul>
@@ -624,11 +620,11 @@ templates il faut utiliser la fonction :
 <code>{{ url_for('static', filename='dossier_dans_static/nom_du_fichier') }}</code></p>
 </div>
 <p><br></p>
-<ol start="34" type="1">
-<li>modifier le fichier <strong>templates</strong>
-<code>show_etudiants.html</code> (gabarits) avec les liens
-ci-dessous</li>
-</ol>
+<!--
+34. modifier le fichier **templates** `show_etudiants.html` (gabarits)  avec les liens ci-dessous -->
+<p>Il est possible dans un template de d’utiliser le contenu de dossier
+<strong>static</strong> grâce à la fonction <code>url_for</code>,
+exemple :</p>
 <div class="sourceCode" id="cb22"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;icon&quot;</span>  <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -660,10 +656,14 @@ par l’application. <strong>L’application va passer des paramètres
 <img src="img_flask/S1_ciw_img2_router.png" alt="principe du MVC" />
 <figcaption aria-hidden="true">principe du MVC</figcaption>
 </figure>
-<h1 id="heritage-et-liste-déroulante">heritage et liste déroulante</h1>
+<h1 id="héritage-et-liste-déroulante">héritage et liste déroulante</h1>
 <ol start="35" type="1">
-<li>heritage</li>
+<li>héritage</li>
 </ol>
+<p>Créez 2 fichiers dans le dossier <strong>templates</strong>, un
+fichier <strong>layout.html</strong> et un fichier **_nav.html**.</p>
+<p><br></p>
+<p>Contenu (code) du fichier <strong>layout.html</strong> :</p>
 <div class="sourceCode" id="cb23"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
@@ -676,7 +676,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href=
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;shortcut icon&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    {% block stylesheets %}</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        {#<span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span>#}</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
@@ -686,16 +686,22 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href=
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h2</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;color:blue&quot;</span><span class="kw">&gt;</span>layout.html<span class="kw">&lt;/h2&gt;</span>  </span>
 <span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>{% block javascripts %}</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    {#<span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>#}</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
 <span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<p>Contenu (code) du fichier **_nav.html** :</p>
 <div class="sourceCode" id="cb24"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="kw">&gt;</span> etudiants <span class="kw">&lt;/a&gt;</span>  -</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="kw">&gt;</span> groupes <span class="kw">&lt;/a&gt;</span>  -</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
+<ul>
+<li>Modifiez les 3 templates (vues), add_etudiant.html,
+edit_etudiant.html et show_etudiant.html : en remplaçant l’entête de la
+page HTML (template) et le pied de chaque template.</li>
+</ul>
 <div class="sourceCode" id="cb25"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -707,14 +713,17 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href=
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <p><br><br></p>
-<p>Ajoutez la balise <code>&lt;div class="container" &gt;</code> sous
-l’instruction <code>{% include('_nav.html') %}</code> et terminez cette
-balise sous le bloc <code>body</code></p>
+<p>Dans le fichier <code>layout.html</code>, ajoutez la balise
+<code>&lt;div class="container" &gt;</code> sous l’instruction
+<code>{% include('_nav.html') %}</code> et terminez cette balise sous le
+bloc <code>body</code></p>
 <ol start="36" type="1">
 <li><a
 href="https://flask.palletsprojects.com/en/3.0.x/patterns/flashing/#flashing-with-categories"
 target="_blank">messages flash</a></li>
 </ol>
+<p>Dans le fichier <code>layout.html</code>, ajoutez le code ci-dessous
+juste avant le <em>block</em> <em>body</em></p>
 <div class="sourceCode" id="cb26"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>{% with messages = get_flashed_messages(with_categories=true) %}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>{% if messages %}</span>
@@ -725,6 +734,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href=
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>{% endif %}</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
+<p>Dans le fichier <code>app.py</code>, ajouter le code ci-dessous,
+juste après un print(message)</p>
 <pre><code>flash(message, &#39;alert-warning&#39;)
 flash(message, &#39;alert-success&#39;)</code></pre>
 <ol start="36" type="1">
@@ -769,23 +780,25 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href=
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
 <ul>
-<li>modifier l’appel des templates</li>
+<li>Dans le fichier <code>app.py</code>, modifiez l’appel des
+templates</li>
 </ul>
 <div class="sourceCode" id="cb31"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/add_etudiant.html&#39;</span>, groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>, etudiant<span class="op">=</span>etudiant , groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <ul>
-<li>modifier l’affichage (<strong>show</strong>)</li>
+<li>modifiez l’affichage (<strong>show</strong>) dans le template
+<code>show_etudiant.html</code></li>
 </ul>
 <div class="sourceCode" id="cb33"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe_id }}<span class="kw">&lt;/td&gt;</span></span></code></pre></div>
-<p>et la récupération des données dans les fonctions appelées lors de la
-validation des formulaires</p>
 <p><br></p>
-<p>Ajoutez des messages flash avec le code ci-dessous dans les fonctions
-<code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code>
-:</p>
+<p>Dans le fichier <code>app.py</code>, modifiez la récupération des
+données dans les fonctions appelées lors de la validation des
+formulaires ainsi que les messages flash avec le code ci-dessous dans
+les fonctions <code>valid_add_etudiant</code> et
+<code>valid_edit_etudiant</code> :</p>
 <div class="sourceCode" id="cb34"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
@@ -797,8 +810,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a h
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe <span class="op">+</span> <span class="st">&#39; pour l etudiant d identifiant :&#39;</span> <span class="op">+</span> <span class="bu">id</span>   </span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
-<p>Ajoutez le message flash avec le code ci-dessous dans la fonction
-<code>delete_etudiant</code> :</p>
+<p>Dans le fichier <code>app.py</code>, modifiez le message flash avec
+le code ci-dessous dans la fonction <code>delete_etudiant</code> :</p>
 <div class="sourceCode" id="cb36"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l etudiant d identifiant : : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
