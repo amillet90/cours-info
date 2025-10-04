@@ -269,6 +269,8 @@ color:purple;
     background-color:HoneyDew;
     padding : 0.2em;
     width : 40%;
+    border :1px solid green;
+    border-radius: 50% 20% / 10% 40%;
 }
 
 /*table          { margin: auto; }    */              /* centre le tableau dans la page */
