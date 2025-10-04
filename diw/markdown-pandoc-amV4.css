@@ -264,11 +264,12 @@ color:purple;
 }
 
 .code2 {
+    text-align: center;
     display: block;
     color : green;
     background-color:HoneyDew;
     padding : 0.2em;
-    width : 40%;
+    width : 20%;
     border :1px solid green;
     border-radius: 50% 20% / 10% 40%;
 }
