@@ -87,22 +87,24 @@ TP6 : SQL requête SELECT dans une table,
 <!-- faire des mise à jour rechercher "-- remplacer"   2005 PAR 2006-->
 <h1 id="objectif">objectif</h1>
 <div class="cours">
-<p><strong>Objectif :</strong> Champs calculés et utilisation de
+<p><strong>Objectif :</strong> Colonne calculées et utilisation de
 fonctions (agrégation, regroupement)</p>
 <h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments
 abordés :</h2>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_champs, nom_table.nom_champs2<span class="op">....</span>.] [champs calculés] [fonctions agrégation]</span>
+class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_champs, nom_table.nom_champs2<span class="op">....</span>.] [Colonne calculées] [fonctions agrégation]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>nom_table1, nom_table2 …. </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span>  [conditions, jointure … ]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span>]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[<span class="kw">HAVING</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> nom_table.nom_champs] [<span class="kw">DESC</span>];</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">LIMIT</span>]</span></code></pre></div>
-<p>Exemple champ calculé :
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>nom_table1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[ jointure: <span class="ot">&quot;JOIN&quot;</span> nom_table2 …. … ]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[conditions … ]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">HAVING</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> nom_table.nom_champs] [<span class="kw">DESC</span>];</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>[<span class="kw">LIMIT</span>]</span></code></pre></div>
+<p>Exemple colonne calculée (ou champ calculé) :
 <code>[ nom_table.nom_champs]*3  AS  nom_champ_calcule</code></p>
-<p>Faire une opération avec un champ : <code>SUM( )</code>
+<p>Faire une opération avec une colonne : <code>SUM( )</code>
 <code>COUNT( )</code> <code>AVG( )</code> <code>MIN( )</code>
 <code>MAX( )</code></p>
 <p>rajouter
@@ -140,9 +142,9 @@ style="width:6cm" /></td>
 </ul>
 <h1 id="requêtes">Requêtes</h1>
 <h2
-id="requête-1.1-et-1.2-requête-avec-undes-champs-calculés-utilisation-d-un-alias">requête
-1.1 et 1.2 : requête avec un/des champ(s) calculé(s), utilisation d’ un
-« ALIAS »</h2>
+id="requête-1.1-et-1.2-requête-avec-unedes-colonnes-calculées-utilisation-d-un-alias">requête
+1.1 et 1.2 : requête avec une/des colonne(s) calculée(s), utilisation d’
+un « ALIAS »</h2>
 <div class="requete">
 <strong>Requête 1-1</strong> :
 </div>
@@ -196,8 +198,9 @@ décroissante)</li>
 | DELANOE   |         1 |  13.500000 |
 | RIOT      |         2 |  13.000000 |
 +-----------+-----------+------------+</code></pre>
-<h2 id="requête-2-champs-calculés-ou-concaténation-déléments">Requête 2
-: champs calculés ou concaténation d’éléments</h2>
+<h2
+id="requête-2-colonnes-calculées-avec-concaténation-déléments-texte">Requête
+2 : colonnes calculées avec concaténation d’éléments “Texte”</h2>
 <p>Exemples :</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
@@ -392,13 +395,13 @@ UPDATE)</h3>
 <strong>Requête 7</strong> :
 </div>
 <ul>
-<li><p>Rajouter un champ de nom « resultat_semestre »dans la table pour
-y insérer le résultat du semestre : ce champ est de type chaîne de
-caractères pour y placer les chaînes de caractères suivantes :
+<li><p>Rajouter une colonne de nom « resultat_semestre »dans la table
+pour y insérer le résultat du semestre : cette colonne est de type
+chaîne de caractères pour y placer les chaînes de caractères suivantes :
 ‘ADM’,‘ADJ’,‘ADC’,‘ATT’,‘NV’,‘EXC’ .</p></li>
-<li><p>Écrire une requête qui modifie le champ à la valeur ‘ADM’ si les
-2 UEs ont une note supérieure ou égale à 8 et la moyenne est supérieure
-ou égale à 10</p></li>
+<li><p>Écrire une requête qui modifie la colonne précédente avec la
+valeur ‘ADM’ si les 2 UEs ont une note supérieure ou égale à 8 et la
+moyenne est supérieure ou égale à 10</p></li>
 <li><p>Compter le nombre d’étudiants qui ont validé le
 semestre.</p></li>
 </ul>
@@ -430,12 +433,12 @@ des conditions imbriqués)</h3>
 <strong>Requête 9</strong> :
 </div>
 <p>Créer une requête pour afficher le nom des étudiants, leurs notes, la
-moyenne de leurs notes et un champ calculé avec le résultat du semestre
-: « DECISION ». Ce champ vaut (‘ADM’,‘UE1 validé – Jury’,‘UE2 validé –
-Jury’,’Jury’).</p>
+moyenne de leurs notes et une colonne calculée avec le résultat du
+semestre : « DECISION ». Cette colonne vaut (‘ADM’,‘UE1 validé –
+Jury’,‘UE2 validé – Jury’,’Jury’).</p>
 <ul>
-<li>Ce champ a la valeur ‘ADM’ si les 2 UEs ont une note supérieure à 8
-et la moyenne vaut plus de 10.</li>
+<li>Ce champ (valeur de la colonne) a la valeur ‘ADM’ si les 2 UEs ont
+une note supérieure à 8 et la moyenne vaut plus de 10.</li>
 <li>Ce champ a la valeur ‘UE1 validé – Jury’ ou ‘UE2 validé – Jury’ si
 une note de 2 UEs est &gt;=10 mais la moyenne des 2 notes ne fait pas
 10.</li>
