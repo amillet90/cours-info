@@ -81,12 +81,12 @@
 </head>
 <body>
 <h1
-id="exercices-premier-template-première-route-premier-passage-de-paramètres-à-un-template">exercices:
-premier template, première route, premier passage de paramètres à un
+id="exercices-premier-template-première-route-premier-passage-de-paramètres-à-un-template">exercices
+: premier template, première route, premier passage de paramètres à un
 template</h1>
 <div class="cours">
 <p><strong>vidéo (niveau NSI) pour bien démarrer flask si on va trop
-vite et dont s’inspire ces exercices</strong> : <a
+vite et dont s’inspirent ces exercices</strong> : <a
 href="https://www.youtube.com/watch?v=Ihp_cG7c2Rk" target="_blank">FLASK
 (Un prof de NSI)</a></p>
 <p><a href="https://github.com/germainbecker/tuto-flask"
@@ -119,7 +119,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <ol start="3" type="1">
 <li>Dans le fichier <code>app.py</code>, ajoutez la bibliothèque
 <strong>datetime</strong> sous l’instruction
-<code>from flask import Flask</code>. Importer plusieurs fonctions dans
+<code>from flask import Flask</code>. Importez plusieurs fonctions dans
 la bibliothèque <code>flask</code> :
 <code>request, render_template, redirect, flash</code> si ce n’est pas
 fait.</li>
@@ -165,12 +165,12 @@ plusieurs routes est associée à cette(ces) route(s) : la fonction est
 lancée si la route est trouvée.</li>
 <li>Si plusieurs routes portent le même nom (utilisent le même chemin),
 c’est la première trouvée par le programme qui est utilisée (pas
-d’erreurs)</li>
+d’erreur).</li>
 <li>Si aucune route est trouvée, l’application affiche une erreur</li>
 </ul>
 <p><br></p>
 <ul>
-<li>le mot clé <code>return</code> devant <code>render_template</code>
+<li>le mot-clé <code>return</code> devant <code>render_template</code>
 est obligatoire</li>
 <li>sur <a
 href="https://fr.wikipedia.org/wiki/Jinja_(moteur_de_template)"
@@ -189,7 +189,7 @@ id="exercice-2-récupérer-les-paramètres-dans-un-lien-et-les-champs-input-dans
 formulaire</h2>
 <div class="cours">
 <p><strong><a href="https://www.youtube.com/watch?v=lvxqvNXniVc"
-target="_blank">vidéo (niveau NSI) pour bien démarrer flask dont est
+target="_blank">vidéo (niveau NSI) pour bien démarrer Flask dont est
 inspiré cet exercice</a></strong></p>
 </div>
 <p>nous allons utiliser un tableau de dictionnaires de données</p>
@@ -203,23 +203,23 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ol start="6" type="1">
 <li><p>Dans le fichier <code>app.py</code>, ajoutez ce tableau au début
-du fichier d’application flask après avoir importé les
-bibliothèques</p></li>
+du fichier d’application flask après avoir importé les bibliothèques.
+.</p></li>
 <li><p>Dans le fichier <code>app.py</code>, créez une route
 <code>/etudiant/show</code> qui appelle la fonction
 <code>show_etudiants</code></p></li>
-<li><p>à l’intérieur du dossier <em>templates</em>, créez un dossier
+<li><p>À l’intérieur du dossier <em>templates</em>, créez un dossier
 <code>etudiant</code> ; dans le dossier <code>templates/etudiant/</code>
 créez une vue (un fichier template)
-<code>show_etudiant.html</code></p></li>
+<code>show_etudiant.html</code>.</p></li>
 <li><p>Dans le fichier <code>app.py</code>, dans la fonction
 <code>show_etudiants</code>, passez en paramètre la liste
 <code>liste_etudiants</code> avec comme nom <code>etudiants</code> dans
-la fonction <code>render_template</code></p></li>
+la fonction <code>render_template</code>.</p></li>
 <li><p>Dans le fichier
 <code>templates/etudiant/show_etudiant.html</code>, affichez la liste
 des étudiants : ajoutez le code ci-dessous dans la balise
-<code>&lt;body&gt;</code></p></li>
+<code>&lt;body&gt;</code>.</p></li>
 </ol>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>listes des étudiants<span class="kw">&lt;/h1&gt;</span></span>
@@ -228,7 +228,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <ol start="11" type="1">
 <li>Dans le fichier <code>templates/index_demo.html</code>, ajoutez un
-lien sur la page des étudiants <code>show_etudiant.html</code></li>
+lien vers la page des étudiants <code>show_etudiant.html</code></li>
 </ol>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;br&gt;</span></span>
@@ -261,8 +261,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="
 -->
 <ol start="13" type="1">
 <li>Dans le fichier <code>templates/etudiant/show_etudiant.html</code>,
-remplacez la ligne qui affiche chaque étudiant avec le code
-ci-dessous</li>
+remplacez la ligne qui affiche chaque étudiant par le code ci-dessous
+:</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;table&quot;</span><span class="kw">&gt;</span></span>
@@ -281,9 +281,9 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
 <ol start="14" type="1">
-<li><p>testez l’affichage du fichier
+<li><p>Testez l’affichage du fichier
 <code>templates/etudiant/show_etudiant.html</code> avec un tableau de
-dictionnaire d’étudiant vide dans le fichier
+dictionnaires d’étudiants vide dans le fichier
 <code>app.py</code></p></li>
 <li><p>Dans le fichier
 <code>templates/etudiant/show_etudiant.html</code>, affichez la liste
@@ -302,7 +302,7 @@ href="https://info-mounier.fr/terminale_nsi/base_de_donnees/flask_sqlite/flask-s
 target="_blank">cours NSI</a></p>
 <div class="cours">
 <p>Sur les outils JetBrains<br />
-<strong>Remarque : Ctrl+alt+I =&gt; indentation</strong><br />
+<strong>Remarque : Ctrl+Alt+i =&gt; indentation</strong><br />
 <strong>Ctrl+r =&gt; rechercher/remplacer</strong><br />
 <strong>Dans le contrôleur Ctrl+clic sur le nom d’un template dans le
 contrôleur (app)</strong></p>
@@ -312,7 +312,7 @@ contrôleur (app)</strong></p>
 <p><a href="https://github.com/amillet90/s1-demo-v2/tree/etape-3"
 target="_blank">code branche 3</a></p>
 </div>
-<h2 id="utilisation-de-lien">utilisation de lien</h2>
+<h2 id="utilisation-de-liens">Utilisation de liens</h2>
 <ul>
 <li>ajouter des liens pour modifier ou supprimer chaque ligne, les
 routes appelées seront <code>/etudiant/edit</code> et
@@ -320,16 +320,16 @@ routes appelées seront <code>/etudiant/edit</code> et
 </ul>
 <ol start="16" type="1">
 <li><p>Dans le fichier
-<code>templates/etudiant/show_etudiant.html</code> : Ajoutez 2 dans
-chaque ligne, un lien pour modifier et un lien pour supprimer la ligne.
-Ajoutez dans chaque lien une route avec au bout de chaque route un
-paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi de la
-valeur de l’identifiant de l’étudiant :
+<code>templates/etudiant/show_etudiant.html</code> : Ajoutez, dans
+chaque ligne, 2 liens : un lien pour modifier et un lien pour supprimer
+la ligne. Ajoutez dans chaque lien une route avec au bout de chaque
+route un paramètre : l’identifiant de l’étudiant <code>?id=</code> suivi
+de la valeur de l’identifiant de l’étudiant :
 <code>{{ etudiant.id }}</code>.</p></li>
 <li><p>Ajoutez un lien pour ajouter un étudiant avant l’affichage du
 tableau</p></li>
 </ol>
-<p>code pour l’étape 16 et 17 :</p>
+<p>Code pour l’étape 16 et 17 :</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/add&quot;</span> <span class="kw">&gt;</span>ajouter un étudiant<span class="kw">&lt;/a&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -342,7 +342,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href=
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/delete?id={{ etudiant.id }}&quot;</span>   <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="kw">&gt;</span>supprimer<span class="kw">&lt;/a&gt;</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/td&gt;</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
-<h2 id="passage-de-paramètres">passage de paramètres</h2>
+<h2 id="passage-de-paramètres">Passage de paramètres</h2>
 <ol start="18" type="1">
 <li>Dans le fichier <code>app.py</code> (application flask) , créez 3
 routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et
@@ -350,7 +350,7 @@ routes <code>/etudiant/add</code> , <code>/etudiant/delete</code> et
 <code>add_etudiant</code> , <code>delete_etudiant</code> et
 <code>edit_etudiant</code></li>
 </ol>
-<p>code pour l’étape 18 :</p>
+<p>Code pour l’étape 18 :</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/etudiant/add&#39;</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_etudiant():</span>
@@ -365,14 +365,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> edit_etudiant():</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;affichage du formulaire pour modifier un étudiant&#39;&#39;&#39;</span>)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>)</span></code></pre></div>
-<h2 id="utilisation-de-paramètres-issus-de-liens">utilisation de
+<h2 id="utilisation-de-paramètres-issus-de-liens">Utilisation de
 paramètres issus de liens</h2>
 <p>voici le code HTML généré par ChatGPT (2025) pour saisir les
 informations d’un étudiant :</p>
 <p><br></p>
 <p>(code généré en saisissant le prompt : <em>donner le code HTML d’un
-formulaire en utilisant le framework bootstrap 5 pour saisir les
-informations du tableau python :</em> )</p>
+formulaire en utilisant le framework Bootstrap 5 pour saisir les
+informations du tableau Python :</em> )</p>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
@@ -420,7 +420,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href=
 <ol start="19" type="1">
 <li>créez 2 templates <code>etudiant/add_etudiant.html</code> et
 <code>etudiant/edit_etudiant.html</code> et copiez/adaptez le contenu du
-formulaire ci-dessus</li>
+formulaire ci-dessus :</li>
 </ol>
 <div class="code2">
 <p><a href="https://github.com/amillet90/s1-demo-v2/tree/etape-4"
@@ -430,16 +430,16 @@ target="_blank">code branche 4</a></p>
 <li>Dans le fichier <code>app.py</code>, dans les 2 fonctions
 <code>delete_etudiant</code> et <code>edit_etudiant</code>, affichez à
 l’aide de l’instruction <code>print</code> dans le terminal le paramètre
-reçu de nom <code>id</code>. Utiliser la fonction
+reçu de nom <code>id</code>. Utilisez la fonction
 <code>print(request.args)</code>.</li>
 </ol>
-<p>Pour<code>delete_etudiant</code> , une erreur est générée car il n’y
+<p>Pour <code>delete_etudiant</code> , une erreur est générée car il n’y
 a pas de réponse retournée au navigateur (pas de
 <code>return</code>)</p>
 <div class="cours">
 <p><strong>redirection</strong></p>
 <ol start="22" type="1">
-<li>à la fin de la fonction <code>delete_etudiant</code> faire une
+<li>À la fin de la fonction <code>delete_etudiant</code> faire une
 redirection sur la route <code>show_etudiants</code> avec l’instruction
 :</li>
 </ol>
@@ -461,13 +461,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a h
 <div class="cours">
 <ul>
 <li>Pour récupérer les paramètres dans l’URL d’une page HTML (méthode
-<code>GET</code> ), utiliser la méthode de l’objet <em>request</em> :
+<code>GET</code>), utiliser la méthode de l’objet <em>request</em> :
 <code>request.args.get</code> avec comme clé le nom du paramètre.</li>
 </ul>
 </div>
 <ol start="24" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
-<code>edit_etudiant</code>, ajoutez le code ci-dessous</li>
+<code>edit_etudiant</code>, ajoutez le code ci-dessous :</li>
 </ol>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
@@ -480,10 +480,10 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a h
 <ol start="25" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>edit_etudiant</code>, passez en paramètre l’étudiant sélectionné
-au template <code>edit_etudiant.html</code> . Affichez dans chaque champ
+au template <code>edit_etudiant.html</code>. Affichez dans chaque champ
 <code>input</code> de ce template la valeur de l’information concernant
-l’étudiant (id, nom , groupe). ATTENTION, pour la liste déroulante,
-c’est plus difficile et ça sera abordé plus tard.</li>
+l’étudiant (id, nom, groupe). ATTENTION, pour la liste déroulante, c’est
+plus difficile et ce sera abordé plus tard.</li>
 </ol>
 <p><br> Dans app.py</p>
 <div class="sourceCode" id="cb16"><pre
@@ -504,7 +504,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href=
 <p><a href="https://github.com/amillet90/s1-demo-v2/tree/etape-5"
 target="_blank">code branche 5</a></p>
 </div>
-<h2 id="utilisation-des-paramètres-issus-dun-formulaire">utilisation des
+<h2 id="utilisation-des-paramètres-issus-dun-formulaire">Utilisation des
 paramètres issus d’un formulaire</h2>
 <ol start="26" type="1">
 <li>Dans le fichier <code>app.py</code>, créez 2 routes
@@ -532,9 +532,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a h
 2 fonctions <code>add_etudiant</code> et <code>edit_etudiant</code> la
 méthode pour la route : il faut ajouter dans l’annotation
 <code>, methods=['GET']</code></p></li>
-<li><p>afficher dans le terminal dans les 2 fonctions
+<li><p>Affichez dans le terminal dans les 2 fonctions
 <code>valid_add_etudiant</code> et <code>valid_edit_etudiant</code> les
-paramètres reçu de chaque formulaire
+paramètres reçus de chaque formulaire
 <code>print(request.form)</code></p></li>
 <li><p>Dans le fichier app.py, dans la fonction
 <code>valid_add_etudiant</code> , créez un message avec les informations
@@ -552,7 +552,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a h
 31. tester et modifier l'erreur : ChatGPT a oublier l'attribut `name=` dans les balises `<input>` et `<select>` 
 -->
 <ol start="32" type="1">
-<li>Dans le fichier app.py, dans la fonction
+<li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>valid_edit_etudiant</code> ,créez un message avec les informations
 pour modifier un étudiant</li>
 </ol>
@@ -562,11 +562,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l etudiant d identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
-<ol start="33" type="1">
-<li>dans le formulaire <span class="modif">pour modifier les données
-d’un étudiant</span> il faut un champ caché avec l’identifiant de
-l’étudiant</li>
-</ol>
+<p>Remarque : Dans le formulaire pour modifier les données d’un
+étudiant, il faut un champ caché avec l’identifiant de l’étudiant. Ce
+champ INPUT est obligatoire.</p>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
 <!--
 [Dans ce formulaire, il manque l'attribut `value={{etudiant.nom}}` dans la balise `<input>` pour que ce champ soit initialisé avec le nom de l'étudiant à éventuellement modifier.]{.modif}\-->
@@ -576,26 +574,26 @@ l’étudiant</li>
 <ul>
 <li>Pour récupérer les paramètres d’une page HTML (formulaire ou lien)
 <ul>
-<li>avec la méthode <code>GET</code> , utiliser la méthode de l’objet
+<li>avec la méthode <code>GET</code>, utiliser la méthode de l’objet
 <em>request</em> : <code>request.args.get</code></li>
-<li>avec la méthode <code>POST</code> , utiliser la méthode de l’objet
+<li>avec la méthode <code>POST</code>, utiliser la méthode de l’objet
 <em>request</em> : <code>request.form.get</code></li>
 </ul></li>
 </ul>
 </div>
-<h2 id="fichiers-static">fichiers “static”</h2>
+<h2 id="fichiers-static">Fichiers “static”</h2>
 <p><br></p>
 <ol start="34" type="1">
-<li>Supprimer la route <code>/hello</code> et la fonction
-<code>hello_world</code> ; associer la route <code>/</code> à la
+<li>Supprimez la route <code>/hello</code> et la fonction
+<code>hello_world</code> ; associez la route <code>/</code> à la
 fonction <code>show_etudiants</code></li>
-<li>Supprimer la route <code>/heure</code> et la fonction
+<li>Supprimez la route <code>/heure</code> et la fonction
 <code>heure</code></li>
 </ol>
 <p>Il n’est pas possible dans le dossier <code>templates</code>
 d’utiliser des fichiers CSS des images ….</p>
 <ol start="33" type="1">
-<li>placer le contenu du <a
+<li>Placez le contenu du <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1_flask.zip">fichier
 ressources suivant</a> dans le fichier <code>static</code></li>
 </ol>
@@ -608,21 +606,21 @@ target="_blank">code branche 6</a></p>
 <div class="cours">
 <p><strong>Les fichiers <a
 href="https://docs.djangoproject.com/fr/3.2/howto/static-files/">STATIC</a>
-sont tous des fichiers dont le contenu ne changent jamais</strong> : les
+sont tous des fichiers dont le contenu ne change jamais</strong> : les
 fichiers CSS (vos styles, bootstrap), les images, les fichiers
-<em>javascript</em></p>
+<em>JavaScript</em></p>
 <p><br></p>
 <p>Ce dossier s’appelle aussi <strong>public</strong> dans d’autres
-framework(s) (symfony laravel …)</p>
+frameworks (Symfony Laravel …)</p>
 <p><br></p>
-<p>Dans flask pour utiliser le contenu de ces fichiers dans les
+<p>Dans Flask pour utiliser le contenu de ces fichiers dans les
 templates il faut utiliser la fonction :
 <code>{{ url_for('static', filename='dossier_dans_static/nom_du_fichier') }}</code></p>
 </div>
 <p><br></p>
 <!--
 34. modifier le fichier **templates** `show_etudiants.html` (gabarits)  avec les liens ci-dessous -->
-<p>Il est possible dans un template de d’utiliser le contenu de dossier
+<p>Il est possible dans un template d’utiliser le contenu de dossier
 <strong>static</strong> grâce à la fonction <code>url_for</code>,
 exemple :</p>
 <div class="sourceCode" id="cb22"><pre
@@ -656,7 +654,7 @@ par l’application. <strong>L’application va passer des paramètres
 <img src="img_flask/S1_ciw_img2_router.png" alt="principe du MVC" />
 <figcaption aria-hidden="true">principe du MVC</figcaption>
 </figure>
-<h1 id="héritage-et-liste-déroulante">héritage et liste déroulante</h1>
+<h1 id="héritage-et-liste-déroulante">Héritage et liste déroulante</h1>
 <ol start="35" type="1">
 <li>héritage</li>
 </ol>
@@ -699,7 +697,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href=
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
 <ul>
 <li>Modifiez les 3 templates (vues), add_etudiant.html,
-edit_etudiant.html et show_etudiant.html : en remplaçant l’entête de la
+edit_etudiant.html et show_etudiant.html : en remplaçant l’en-tête de la
 page HTML (template) et le pied de chaque template.</li>
 </ul>
 <div class="sourceCode" id="cb25"><pre
@@ -714,13 +712,13 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href=
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <p><br><br></p>
 <p>Dans le fichier <code>layout.html</code>, ajoutez la balise
-<code>&lt;div class="container" &gt;</code> sous l’instruction
-<code>{% include('_nav.html') %}</code> et terminez cette balise sous le
-bloc <code>body</code></p>
+<code>&lt;div class="container"&gt;</code> sous l’instruction
+<code>{% include('_nav.html') %}</code> et fermez cette balise après la
+fin du bloc <code>body</code></p>
 <ol start="36" type="1">
 <li><a
 href="https://flask.palletsprojects.com/en/3.0.x/patterns/flashing/#flashing-with-categories"
-target="_blank">messages flash</a></li>
+target="_blank">Messages flash</a></li>
 </ol>
 <p>Dans le fichier <code>layout.html</code>, ajoutez le code ci-dessous
 juste avant le <em>block</em> <em>body</em></p>
@@ -734,12 +732,12 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href=
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>{% endif %}</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
-<p>Dans le fichier <code>app.py</code>, ajouter le code ci-dessous,
+<p>Dans le fichier <code>app.py</code>, ajoutez le code ci-dessous,
 juste après un print(message)</p>
 <pre><code>flash(message, &#39;alert-warning&#39;)
 flash(message, &#39;alert-success&#39;)</code></pre>
 <ol start="36" type="1">
-<li>liste déroulante</li>
+<li>Liste déroulante</li>
 </ol>
 <div class="sourceCode" id="cb28"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
@@ -757,7 +755,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a h
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;4&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;B2&#39;</span>}</span>
 <span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ul>
-<li>ajouter la liste déroulante dans le formulaire pour ajouter un
+<li>Ajoutez la liste déroulante dans le formulaire pour ajouter un
 enregistrement</li>
 </ul>
 <div class="sourceCode" id="cb29"><pre
@@ -768,7 +766,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href=
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
 <ul>
-<li>ajouter la liste déroulante dans le formulaire pour modifier un
+<li>Ajoutez la liste déroulante dans le formulaire pour modifier un
 enregistrement</li>
 </ul>
 <div class="sourceCode" id="cb30"><pre
@@ -781,14 +779,14 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href=
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
 <ul>
 <li>Dans le fichier <code>app.py</code>, modifiez l’appel des
-templates</li>
+templates.</li>
 </ul>
 <div class="sourceCode" id="cb31"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/add_etudiant.html&#39;</span>, groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>, etudiant<span class="op">=</span>etudiant , groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <ul>
-<li>modifiez l’affichage (<strong>show</strong>) dans le template
+<li>Modifiez l’affichage (<strong>show</strong>) dans le template
 <code>show_etudiant.html</code></li>
 </ul>
 <div class="sourceCode" id="cb33"><pre
@@ -816,8 +814,8 @@ le code ci-dessous dans la fonction <code>delete_etudiant</code> :</p>
 class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l etudiant d identifiant : : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
-<h1 id="annexe">annexe</h1>
-<p>en cas de problème avec pycharm (blocage) : supprimer le dossier
+<h1 id="annexe">Annexe</h1>
+<p>En cas de problème avec pycharm (blocage) : supprimez le dossier
 <code>.cache/jetbrains/pycharm</code></p>
 <p><br> problème <a
 href="https://stackoverflow.com/questions/59916531/how-to-change-python3-to-default-in-linux-mint">version
