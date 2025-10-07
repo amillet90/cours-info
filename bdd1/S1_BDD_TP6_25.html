@@ -87,12 +87,12 @@ TP6 : SQL requête SELECT dans une table,
 <!-- faire des mise à jour rechercher "-- remplacer"   2005 PAR 2006-->
 <h1 id="objectif">objectif</h1>
 <div class="cours">
-<p><strong>Objectif :</strong> Colonne calculées et utilisation de
+<p><strong>Objectif :</strong> Colonnes calculées et utilisation de
 fonctions (agrégation, regroupement)</p>
 <h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments
 abordés :</h2>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_champs, nom_table.nom_champs2<span class="op">....</span>.] [Colonne calculées] [fonctions agrégation]</span>
+class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_champs, nom_table.nom_champs2<span class="op">....</span>.] [Colonnes calculées] [fonctions agrégation]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>nom_table1</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[ jointure: <span class="ot">&quot;JOIN&quot;</span> nom_table2 …. … ]</span>
@@ -102,14 +102,14 @@ class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">HAVING</span>]</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> nom_table.nom_champs] [<span class="kw">DESC</span>];</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>[<span class="kw">LIMIT</span>]</span></code></pre></div>
-<p>Exemple colonne calculée (ou champ calculé) :
+<p>Exemple de colonne calculée (ou champ calculé) :
 <code>[ nom_table.nom_champs]*3  AS  nom_champ_calcule</code></p>
-<p>Faire une opération avec une colonne : <code>SUM( )</code>
-<code>COUNT( )</code> <code>AVG( )</code> <code>MIN( )</code>
-<code>MAX( )</code></p>
-<p>rajouter
-<code>GROUP BY nom_du_champ_sur_lequel_on_fait_l_operation</code>
-[champs calculés]</p>
+<p>Faire une opération avec une colonne (fonctions d’aggrégation):
+<code>SUM( )</code> <code>COUNT( )</code> <code>AVG( )</code>
+<code>MIN( )</code> <code>MAX( )</code></p>
+<p>Ajoutez
+<code>GROUP BY nom_des_colonnes_sur_lequelles_on_fait_le_regroupement</code>
+[colonnes calculées]</p>
 <p><code>HAVING  nom_champ_calcule ...</code></p>
 <p><strong>ATTENTION à l’ordre des instructions</strong></p>
 <table>
@@ -138,17 +138,17 @@ style="width:6cm" /></td>
 </div>
 <p><br></p>
 <ul>
-<li>Utiliser la table du tp précédent</li>
+<li>Utilisez la table du tp précédent</li>
 </ul>
 <h1 id="requêtes">Requêtes</h1>
 <h2
-id="requête-1.1-et-1.2-requête-avec-unedes-colonnes-calculées-utilisation-d-un-alias">requête
-1.1 et 1.2 : requête avec une/des colonne(s) calculée(s), utilisation d’
-un « ALIAS »</h2>
+id="requête-1.1-et-1.2-requête-avec-unedes-colonnes-calculées-utilisation-dun-alias">requête
+1.1 et 1.2 : requête avec une/des colonne(s) calculée(s), utilisation
+d’un « ALIAS »</h2>
 <div class="requete">
 <strong>Requête 1-1</strong> :
 </div>
-<p>tester la requête suivante (le mot clé <code>AS</code> est
+<p>Testez la requête suivante (le mot clé <code>AS</code> est
 optionnel)</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> nom, note_ue1 , note_ue1<span class="op">*</span><span class="dv">2</span> <span class="kw">AS</span> note_ue1_sur_40 </span>
@@ -157,7 +157,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> note_ue1;</span></code></pre></div>
 <ul>
 <li>Écrire une requête pour calculer la moyenne des étudiants
-<code>((note ue1 + note ue2) /2 )</code> ; Afficher cette moyenne et la
+<code>((note ue1 + note ue2) /2 )</code> ; Affichez cette moyenne et la
 note de l’ue1 lorsque la note de l’ue1 est supérieure ou égale à 14.
 Trier le résultat par groupe décroissant puis par moyenne d’UE
 décroissante)</li>
@@ -233,16 +233,16 @@ le résultat par date de naissance de façon décroissante.</p>
 href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_cast"
 target="_blanck">CAST</a> ou <a
 href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_convert"
-target="_blanck">CONVERT</a> pour faire le <a
+target="_blanck">CONVERT</a> pour faire du <a
 href="https://fr.wikipedia.org/wiki/Conversion_de_type#:~:text=En%20informatique%20la%20conversion%20de,de%20coercition%20ou%20de%20cast."
 target="_blanck"><em>casting</em></a></p></li>
 <li><p>Les fonctions sur les dates sur <a
 href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html"
-target="_blanck">mysql</a> , <a
+target="_blanck">MySQL</a> , <a
 href="https://docs.oracle.com/cd/E41183_01/DR/Date_Functions.html"
 target="_blanck">ORACLE</a>, <a
 href="https://learn.microsoft.com/en-us/sql/t-sql/functions/date-and-time-data-types-and-functions-transact-sql?view=sql-server-ver16"
-target="_blanck">SQL server</a> et <a
+target="_blanck">SQL Server</a> et <a
 href="https://www.postgresql.org/docs/9.1/functions-datetime.html"
 target="_blanck">PostgreSQL</a></p></li>
 </ul>
@@ -252,14 +252,14 @@ id="requête-3-utilisation-de-fonctions-dagrégation-et-dun-regroupement"
 class="cours">
 <h2><strong>requête 3 : utilisation de fonctions « d’agrégation » et
 d’un regroupement</strong> :</h2>
-<p>L’instruction « <code>GROUP BY</code> » est souvent utilisé avec les
+<p>L’instruction « <code>GROUP BY</code> » est souvent utilisée avec les
 fonctions d’agrégation (<code>COUNT</code>, <code>MAX</code>,
 <code>MIN</code>, <code>SUM</code>, <code>AVG</code>) pour regrouper les
 résultats par une ou plusieurs colonnes. ( <a
 href="https://www.w3schools.com/SQL/sql_groupby.asp"
 target="_blanck">https://www.w3schools.com/SQL/sql_groupby.asp</a> )
 <br></p>
-<p>Tester la requête pour compter le nombre d’étudiants par groupe :</p>
+<p>Testez la requête pour compter le nombre d’étudiants par groupe :</p>
 <div class="requete">
 <strong>Requête 3.1</strong> :
 </div>
@@ -273,7 +273,7 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 </div>
 <p><img src="img/img_tp6_2.jpg" /></p>
 <ul>
-<li>les champs barrés, sont ils nécessaires ? Pourquoi ? Peut on mettre
+<li>les champs barrés, sont-ils nécessaires ? Pourquoi ? Peut-on mettre
 qu’un seul champ derrière le mot clé «GROUP BY » dans ce cas ?</li>
 </ul>
 <p>Modifier la requête et tester avec et sans le code barré :</p>
@@ -281,9 +281,9 @@ qu’un seul champ derrière le mot clé «GROUP BY » dans ce cas ?</li>
 <strong>Requête 3.3</strong> :
 </div>
 <p><img src="img/img_tp6_3.jpg" /></p>
-<p>les champs barrés, sont ils nécessaires ? Pourquoi ? Peut on mettre
+<p>Les champs barrés, sont-ils nécessaires ? Pourquoi ? Peut-on mettre
 qu’un seul champ derrière la fonction d’agrégation dans ce cas ?</p>
-<p>Autre exemple avec beaucoup de fonction d’agrégation :</p>
+<p>Autre exemple avec beaucoup de fonctions d’agrégation :</p>
 <div class="requete">
 <strong>Requête 3.4</strong> :
 </div>
@@ -307,8 +307,8 @@ regroupement</h3>
 </div>
 <ul>
 <li>Écrire la requête pour compter le nombre d’étudiants qui habitent le
-territoire de Belfort et qui sont des hommes, ordonné par codes postales
-puis par sexes. Résultats (faire 3 requêtes) :</li>
+territoire de Belfort et qui sont des hommes, ordonné par codes postaux
+puis par sexe. Résultats :</li>
 </ul>
 <pre><code>+----------------+-------------+------+
 | Nbre_etudiants | code_postal | sexe |
@@ -354,7 +354,7 @@ id="requête-5-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requê
 </div>
 <ul>
 <li>Écrire la requête pour compter le nombre d’étudiants qui habitent en
-Franche Comté. (département le 90 le 25 le 39 le 70)</li>
+Franche-Comté. (départements : 90, 25, 39, 70)</li>
 </ul>
 <p><br></p>
 <p>Résultat :</p>
@@ -370,7 +370,7 @@ id="requête-6-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requê
 <strong>Requête 6</strong> :
 </div>
 <p>Sur le même principe calculer la moyenne des UE ainsi que la moyenne
-des 2 UE : pour chaque groupe et chaque semestre différents (trier par
+des 2 UE : pour chaque groupe et chaque semestres différents (trier par
 semestre puis par groupe).</p>
 <ul>
 <li>Utiliser dans un deuxième temps, la fonction Format pour arrondir à
@@ -422,18 +422,18 @@ SQL :</p>
 <strong>Requête 8</strong> :
 </div>
 <p>Écrire une requête pour compter les étudiants qui sont majeurs.
-Commencer par tester la requête ci dessous :</p>
+Commencer par tester la requête ci-dessous :</p>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> date_naissance</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>,DATE_ADD(date_naissance,<span class="dt">INTERVAL</span> <span class="dv">18</span> <span class="dt">YEAR</span>) <span class="kw">AS</span> plus18</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>,DATEDIFF(curdate(),DATE_ADD(date_naissance,<span class="dt">INTERVAL</span> <span class="dv">18</span> <span class="dt">YEAR</span>)) <span class="kw">AS</span> diff_jours_majorite </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Etudiant ;</span></code></pre></div>
-<h3 id="requête-9-utiliser-des-conditions-imbriqués">requête 9 (Utiliser
-des conditions imbriqués)</h3>
+<h3 id="requête-9-utiliser-des-conditions-imbriquées">requête 9
+(Utiliser des conditions imbriquées)</h3>
 <div class="requete">
 <strong>Requête 9</strong> :
 </div>
-<p>Créer une requête pour afficher le nom des étudiants, leurs notes, la
+<p>Créez une requête pour afficher le nom des étudiants, leurs notes, la
 moyenne de leurs notes et une colonne calculée avec le résultat du
 semestre : « DECISION ». Cette colonne vaut (‘ADM’,‘UE1 validé –
 Jury’,‘UE2 validé – Jury’,’Jury’).</p>

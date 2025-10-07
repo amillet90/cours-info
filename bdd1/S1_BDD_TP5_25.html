@@ -167,7 +167,7 @@ de la table (structure) et insertion des enregistrements</h1>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><u>idEtudiant</u> <br> nom <br> adresse
-<br>ville <br> code_postal <br> telephone <br> date_naisssance <br> sexe
+<br>ville <br> code_postal <br> telephone <br> date_naissance <br> sexe
 <br> boursier <br> groupe_id <br> semestre_id <br> note_ue1 <br>
 note_ue2</td>
 </tr>
@@ -187,10 +187,10 @@ maximum.</li>
 de caractères variable</strong> de taille 20 caractères maximum.</li>
 <li><code>code_postal</code> : ce champ (attribut) est de type
 <strong>chaîne de caractères variable</strong> de taille 5 caractères
-(un numérique ne convient pas, car on pert le 0 devant si il y en
+(un numérique ne convient pas, car on perd le 0 devant s’il y en
 a).</li>
 <li><code>telephone</code> : ce champ (attribut) est de type
-<strong>chaîne de caractères variable</strong> de taille 10 caractère
+<strong>chaîne de caractères variable</strong> de taille 10 caractères
 maximum</li>
 <li><code>date_naissance</code>: ce champ (attribut) est de
 <strong>date</strong></li>
@@ -216,7 +216,7 @@ la virgule, la valeur la plus grande est 99,99</li>
 enregistrements</strong></p>
 </div>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- version 2025</span></span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- version 2026</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Etudiant (idEtudiant, nom, adresse, ville, code_postal, telephone, date_naissance, sexe, boursier, groupe_id, semestre_id, note_ue1, note_ue2) <span class="kw">VALUES</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">&#39;BERNARD&#39;</span>, <span class="st">&#39;1 rue sous bois&#39;</span>, <span class="st">&#39;Belfort&#39;</span>, <span class="st">&#39;90000&#39;</span>, <span class="st">&#39;0384545401&#39;</span>, <span class="st">&#39;2008-01-01&#39;</span>, <span class="st">&#39;F&#39;</span>, <span class="st">&#39;N&#39;</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">&#39;11.50&#39;</span>, <span class="st">&#39;10.50&#39;</span>),</span>
@@ -293,7 +293,7 @@ ascendante)</p>
 <p><img src="img/img_tp5_3.jpg" /></p>
 <p><br></p>
 <p>Utiliser l’instruction ORDER BY « champ1 » après l’instruction WHERE
-« conditions ». Aidez vous des informations sur : <a
+« conditions ». Aidez-vous des informations sur : <a
 href="https://www.w3schools.com/SQL/sql_orderby.asp"
 target="_blanck">https://www.w3schools.com/SQL/sql_orderby.asp</a>
 <br></p>
@@ -432,7 +432,7 @@ WHERE:</p>
 </div>
 <p>Écrire une requête pour sélectionner uniquement les étudiants (nom,
 groupe, ville, semestre, boursier ) qui sont boursiers ou qui habitent
-la ville de belfort et qui sont tous du semestre 2 (trier les
+la ville de Belfort et qui sont tous du semestre 2 (trier les
 enregistrements par groupe puis ville puis nom de façon ascendante).</p>
 <ul>
 <li>Résultat :</li>
@@ -483,7 +483,7 @@ target="_blanck">https://www.w3schools.com/sql/sql_distinct.asp</a>
 <strong>Requête 4</strong> :
 </div>
 <p>Écrire une requête pour sélectionner les étudiants et les villes dont
-la ville appartient à cette liste (‘strasbourg’,‘mulhouse’,‘cernay’).
+la ville appartient à cette liste (‘Strasbourg’,‘Mulhouse’,‘Cernay’).
 Utiliser l’instruction <code>IN</code></p>
 <ul>
 <li><p>Aidez vous des informations sur : <a
@@ -600,7 +600,7 @@ id="requête-7-requête-avec-des-dates-fonctions-now-day-month-year">Requête
 <!-- remplacer 2006 par 2007 en 2026 -->
 <p>Écrire une requête pour afficher le nom et la date de naissance des
 étudiants dont la date de naissance est comprise entre le
-<code>"2006-1-1"</code> And <code>"2006-12-31"</code>, qui sont des
+<code>'2006-1-1'</code> et <code>'2006-12-31'</code>, qui sont des
 hommes et qui habitent Belfort ou Montbéliard (utiliser le code postal
 90000 (Belfort) et 25200(Montbéliard)). Proposer une deuxième solution
 avec comme condition (dans le « WHERE ») : l’année est égale à
@@ -743,7 +743,7 @@ Ordonner les étudiants du plus jeune au plus vieux. <br></p>
 <pre><code>SELECT day(now()); 
 SELECT month(now()); 
 SELECT year(now());</code></pre>
-<p>idée : plus de 20 ans entre aujourd’hui et leur date de naissance ou
+<p>Idée : plus de 20 ans entre aujourd’hui et leur date de naissance ou
 20 ans et …..</p>
 <ul>
 <li>Résultat :</li>
