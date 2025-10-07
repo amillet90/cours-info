@@ -92,7 +92,7 @@ fonctions (agrégation, regroupement)</p>
 <h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments
 abordés :</h2>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_champs, nom_table.nom_champs2<span class="op">....</span>.] [Colonnes calculées] [fonctions agrégation]</span>
+class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  [<span class="kw">DISTINCT</span>] [nom_table.nom_colonne, nom_table.nom_colonne2<span class="op">....</span>.] [Colonnes calculées] [fonctions agrégation]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>nom_table1</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[ jointure: <span class="ot">&quot;JOIN&quot;</span> nom_table2 …. … ]</span>
@@ -100,17 +100,17 @@ class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[conditions … ]</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span>]</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">HAVING</span>]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> nom_table.nom_champs] [<span class="kw">DESC</span>];</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> nom_table.nom_colonne] [<span class="kw">DESC</span>];</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>[<span class="kw">LIMIT</span>]</span></code></pre></div>
-<p>Exemple de colonne calculée (ou champ calculé) :
-<code>[ nom_table.nom_champs]*3  AS  nom_champ_calcule</code></p>
+<p>Exemple de colonne calculée (ou colonne calculée) :
+<code>[ nom_table.nom_colonne]*3  AS  nom_colonne_calculee</code></p>
 <p>Faire une opération avec une colonne (fonctions d’aggrégation):
 <code>SUM( )</code> <code>COUNT( )</code> <code>AVG( )</code>
 <code>MIN( )</code> <code>MAX( )</code></p>
 <p>Ajoutez
 <code>GROUP BY nom_des_colonnes_sur_lequelles_on_fait_le_regroupement</code>
 [colonnes calculées]</p>
-<p><code>HAVING  nom_champ_calcule ...</code></p>
+<p><code>HAVING  nom_colonne_calculee ...</code></p>
 <p><strong>ATTENTION à l’ordre des instructions</strong></p>
 <table>
 <colgroup>
@@ -273,16 +273,19 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 </div>
 <p><img src="img/img_tp6_2.jpg" /></p>
 <ul>
-<li>les champs barrés, sont-ils nécessaires ? Pourquoi ? Peut-on mettre
-qu’un seul champ derrière le mot clé «GROUP BY » dans ce cas ?</li>
+<li>Dans la capture d’écran de la requête ci-dessus, le texte barré,
+est-il nécessaire ? Pourquoi ? Peut-on mettre qu’<strong>une seule
+colonne derrière le mot clé «GROUP BY»</strong> dans ce cas ?</li>
 </ul>
 <p>Modifier la requête et tester avec et sans le code barré :</p>
 <div class="requete">
 <strong>Requête 3.3</strong> :
 </div>
 <p><img src="img/img_tp6_3.jpg" /></p>
-<p>Les champs barrés, sont-ils nécessaires ? Pourquoi ? Peut-on mettre
-qu’un seul champ derrière la fonction d’agrégation dans ce cas ?</p>
+<p>Dans la capture d’écran de la requête ci-dessus, le texte barré,
+est-il nécessaire ? Pourquoi ? Peut-on mettre qu’<strong>une seule
+colonne à coté de la fonction d’agrégation</strong> derrière le mot clé
+«SELECT» dans ce cas ?</p>
 <p>Autre exemple avec beaucoup de fonctions d’agrégation :</p>
 <div class="requete">
 <strong>Requête 3.4</strong> :
@@ -438,12 +441,12 @@ moyenne de leurs notes et une colonne calculée avec le résultat du
 semestre : « DECISION ». Cette colonne vaut (‘ADM’,‘UE1 validé –
 Jury’,‘UE2 validé – Jury’,’Jury’).</p>
 <ul>
-<li>Ce champ (valeur de la colonne) a la valeur ‘ADM’ si les 2 UEs ont
-une note supérieure à 8 et la moyenne vaut plus de 10.</li>
-<li>Ce champ a la valeur ‘UE1 validé – Jury’ ou ‘UE2 validé – Jury’ si
-une note de 2 UEs est &gt;=10 mais la moyenne des 2 notes ne fait pas
+<li>Cette colonne (valeur de la colonne) a la valeur ‘ADM’ si les 2 UEs
+ont une note supérieure à 8 et la moyenne vaut plus de 10.</li>
+<li>Cette colonne a la valeur ‘UE1 validé – Jury’ ou ‘UE2 validé – Jury’
+si une note de 2 UEs est &gt;=10 mais la moyenne des 2 notes ne fait pas
 10.</li>
-<li>Sinon ce champ vaut ‘Jury’</li>
+<li>Sinon cette colonne vaut ‘Jury’</li>
 </ul>
 <p>Commencer par tester les 3 requêtes ci-dessous :</p>
 <div class="sourceCode" id="cb15"><pre
