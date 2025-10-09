@@ -86,21 +86,23 @@
 (table) de dictionnaires (python) ; Réaliser les interfaces minimum pour
 ajouter/modifier/supprimer les données d’une ligne des 2 tableaux.</p>
 <ul>
-<li><p>Le tp ci-dessous est à finir avant de commencer le
+<li><p>Le TP ci-dessous est à finir avant de commencer le
 projet</p></li>
-<li><p>Une fois l’application fonctionnelle, presenter votre projet à M.
-MILLET lors d’un tp de base de données, vous aurez ensuite un numéro de
-sujet pour le mini projet qui suit.</p></li>
-<li><p>Exemple d’application minimum : <a
-href="http://amillet1.pythonanywhere.com/"
-target="_blanck">http://amillet1.pythonanywhere.com/</a></p></li>
+<li><p>Une fois l’application fonctionnelle, présenter votre projet à M.
+MILLET lors d’un TP, vous aurez ensuite un numéro de sujet pour le mini
+projet qui suit.</p></li>
 </ul>
+<p><br></p>
+<p><strong><br />
+Exemple d’application minimum : <a
+href="http://amillet1.pythonanywhere.com/"
+target="_blanck">http://amillet1.pythonanywhere.com/</a> </strong></p>
 </div>
 <h1 id="utilisation-dun-moteur-de-templates">utilisation d’un moteur de
 templates</h1>
 <div class="cours">
 <ul>
-<li><p>Jinja est un moteur de template. Il permet d’écrire du code
+<li><p>Jinja est un moteur de templates. Il permet d’écrire du code
 Python dans un template (en plus du HTML)</p></li>
 <li><p>Pour indiquer à Jinja qu’on utilise des objets Python, il faut
 utiliser les syntaxes <code>{{ }}</code> , <code>{% %}</code> ou
@@ -117,14 +119,14 @@ Gabarits (templates)</h2>
 <h3 id="afficher-des-variables">afficher des variables</h3>
 <pre><code>{{ variable }}
 
-{{ MyDictionnary.key }}
+{{ MyDictionary.key }}
 </code></pre>
 <p>Les résultats des requêtes SQL sont le plus souvent un <a
 href="https://www.w3schools.com/python/python_dictionaries.asp"
 target="_blank">dictionnaire</a> (une seule colonne) ou une liste de
 dictionnaires (une liste de tuples (occurrences, enregistrements))</p>
 <h3 id="conditions-et-boucles">conditions et boucles</h3>
-<p>2 structures de contrôles</p>
+<p>2 structures de contrôle</p>
 <pre><code>{% for ... in ... %} 
      ... 
 {% endfor %}
@@ -135,21 +137,21 @@ dictionnaires (une liste de tuples (occurrences, enregistrements))</p>
 {% else %}
      ... 
 {% endif %}</code></pre>
-<h3 id="commentaire">commentaire</h3>
+<h3 id="commentaires">commentaires</h3>
 <pre><code>{# commentaires #}</code></pre>
 <p><img src="img_flask/flask_tp2_t1.png" style="width:10cm" /></p>
-<h2 id="heritage">heritage</h2>
+<h2 id="héritage">héritage</h2>
 <p>Pour éviter des répétitions entre templates, il est possible de
 recourir à un mécanisme d’héritage. Pour hériter de la structure d’un
 template base.html, il faut indiquer à la première ligne du template
 hérité :</p>
 <pre><code>{% extends &#39;base.html&#39; %}</code></pre>
-<p>Lors de l’héritage, certains blocs de codes peuvent être surchargés.
+<p>Lors de l’héritage, certains blocs de code peuvent être surchargés.
 Ces blocs sont définis via le tag <code>block</code> et
 <code>endblock</code></p>
 <pre><code>{% block mon_block %} ... {% endblock %}</code></pre>
 <ul>
-<li>pour récupérer le contenu d’un block</li>
+<li>pour récupérer le contenu d’un bloc</li>
 </ul>
 <pre><code>  {{ super() }}</code></pre>
 <p><img src="img_flask/flask_tp2_t2.png" style="width:10cm" /></p>
@@ -157,36 +159,38 @@ Ces blocs sont définis via le tag <code>block</code> et
 similaires</h2>
 <ul>
 <li><a href="https://palletsprojects.com/p/jinja/"
-target="_blanck">jinja</a> sur flask django</li>
-<li><a href="https://twig.symfony.com/" target="_blanck">twig</a> sur
-symfony (php)</li>
+target="_blanck">Jinja</a> sur Flask Django</li>
+<li><a href="https://twig.symfony.com/" target="_blanck">Twig</a> sur
+Symfony (Php)</li>
 <li><a href="https://mozilla.github.io/nunjucks/"
-target="_blanck">nunjucks</a> sur nodejs (javascript typescript)</li>
+target="_blanck">NunJucks</a> sur NodeJs (JavaScript TypeScript)</li>
 </ul>
 </div>
 <h1 id="application-1">application 1</h1>
 <h2 id="exemple-dhéritage-la-première-vue">exemple d’héritage : la
 première vue</h2>
-<p>créer un nouveau projet <strong>flask</strong> sur pycharm</p>
+<p>Créer un nouveau projet <strong>Flask</strong> sur PyCharm</p>
 <p><br></p>
-<p>ouvrir un terminal et créer les dossiers et les fichiers pour les
-vues</p>
-<pre><code>touch templates/layout.html  templates/_nav.html
+<p>Ouvrir un <strong>Terminal dans PyCharm</strong> et créer les
+dossiers et les fichiers pour les vues avec le script ci-dessous :</p>
+<pre><code>
+touch templates/layout.html  templates/_nav.html
 mkdir templates/article templates/type_article
 touch templates/article/show_article.html  templates/article/add_article.html templates/article/edit_article.html
 touch templates/type_article/show_type_article.html  templates/type_article/add_type_article.html templates/type_article/edit_type_article.html
 touch static/mes_styles.css
 touch launcher.sh
-chmod u+x launcher.sh</code></pre>
-<p>créer un lanceur comme dans tp précedent
-<strong>launcher.sh</strong></p>
+chmod a+x launcher.sh
+</code></pre>
+<p>Dans dans le lanceur comme dans tp précedent
+<strong>launcher.sh</strong>, copiez le code ci-dessous :</p>
 <pre><code>flask --debug  --app app  run  --host 0.0.0.0</code></pre>
 <p><br></p>
 <p>Copier <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip">les
 fichiers ressources</a> dans le dossier <strong>static</strong></p>
 <p>Pour ouvrir rapidement le dossier <strong>static</strong> et extraire
-l’archive avec <strong>pycharm</strong> : ouvrir le dossier
+l’archive avec <strong>PyCharm</strong> : ouvrir le dossier
 <strong>static</strong>
 <code>[clic droit sur le dossier static][open in][files] ou [directory path]</code>
 et glisser le contenu de l’archive dans le dossier
@@ -198,7 +202,7 @@ et glisser le contenu de l’archive dans le dossier
 alt="heritage dans les vues" />
 <figcaption aria-hidden="true">heritage dans les vues</figcaption>
 </figure>
-<p>remplacer le code du fichier <strong>app.py</strong></p>
+<p>Remplacer le code du fichier <strong>app.py</strong></p>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
@@ -242,7 +246,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    app.run()</span>
 <span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
-<p>ajouter au fichier <strong>templates/layout.html</strong> le contenu
+<p>Ajouter au fichier <strong>templates/layout.html</strong> le contenu
 ci-dessous :</p>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
@@ -270,7 +274,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href=
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<p>ajouter au fichier <strong><code>templates/_nav.html</code></strong>
+<p>Ajouter au fichier <strong><code>templates/_nav.html</code></strong>
 le contenu ci-dessous :</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></span>
@@ -289,7 +293,7 @@ target="_blank">nodejs</a> (express est utilisé en S3).</li>
 </ul>
 <p><br></p>
 <ul>
-<li>ajouter dans le fichier de style
+<li>Ajouter dans le fichier de style
 <strong>static/mes_styles.css</strong></li>
 </ul>
 <div class="sourceCode" id="cb12"><pre
@@ -333,22 +337,22 @@ class="sourceCode css"><code class="sourceCode css"><span id="cb12-1"><a href="#
 <p>⚠️ =&gt; Si les nouveaux styles ne sont pas prise en compte :
 ATTENTION au cache du navigateur, il faut parfois effacer ce cache</p>
 <ul>
-<li>chrome
+<li>Chrome
 <code>[paramètres][confidentialité][vider le cache]</code></li>
-<li>mozilla
+<li>Mozilla
 <code>[préférences][vie privée et sécurité][Effacer les données ...][contenu web en cache]</code></li>
 </ul>
 <p>Le plus simple est d’installer une extension sur <a
-href="https://chrome.google.com/webstore/detail/clear-cache/">chrome</a>
+href="https://chrome.google.com/webstore/detail/clear-cache/">Chrome</a>
 ou sur <a
-href="https://addons.mozilla.org/fr/firefox/addon/clearcache/">mozilla</a>
+href="https://addons.mozilla.org/fr/firefox/addon/clearcache/">Mozilla</a>
 pour supprimer le cache du navigateur</p>
 </div>
 <h2
 id="affichage-du-premier-tableau-de-données-les-types-darticles">affichage
 du premier tableau de données : les types d’articles</h2>
 <p><br></p>
-<p>ajouter au fichier
+<p>Ajouter au fichier
 <strong>templates/type_article/show_type_article.html</strong> le
 contenu ci-dessous :</p>
 <div class="sourceCode" id="cb13"><pre
@@ -359,7 +363,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href=
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Types d&#39;article<span class="kw">&lt;/h3&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Types d&#39;articles<span class="kw">&lt;/h3&gt;</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/type-article/add&quot;</span><span class="kw">&gt;</span>ajouter un type d&#39;article<span class="kw">&lt;/a&gt;</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br&gt;&lt;br&gt;</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -392,7 +396,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href=
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <ul>
-<li>ajouter une route dans le fichier <strong>app.py</strong> pour
+<li>Ajouter une route dans le fichier <strong>app.py</strong> pour
 charger cette vue</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre
@@ -401,13 +405,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a h
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(types_articles)</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;type_article/show_type_article.html&#39;</span>, types_articles<span class="op">=</span>types_articles)</span></code></pre></div>
 <ul>
-<li>lancer l’application et tester la route pour <strong>afficher les
-types d’article</strong></li>
+<li>Lancer l’application et tester la route pour <strong>afficher les
+types d’articles</strong></li>
 </ul>
 <h2 id="formulaire-pour-ajouter-un-type-darticle">formulaire pour
 ajouter un type d’article</h2>
 <ul>
-<li>ajouter dans la vue
+<li>Ajouter dans la vue
 <strong>templates/type_article/add_type_article.html</strong> le code
 pour ajouter un type d’article</li>
 </ul>
@@ -430,7 +434,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href=
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/form&gt;</span></span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <ul>
-<li>ajouter dans le fichier de l’application <strong>app.py</strong> la
+<li>Ajouter dans le fichier de l’application <strong>app.py</strong> la
 route et la fonction (méthode) pour charger cette vue</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre
@@ -438,15 +442,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a h
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_type_article():</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;type_article/add_type_article.html&#39;</span>)</span></code></pre></div>
 <ul>
-<li>lancer l’application et tester la route pour <strong>afficher le
+<li>Lancer l’application et tester la route pour <strong>afficher le
 formulaire pour créer un type d’article</strong></li>
 </ul>
 <h1
-id="passage-de-paramètres-dun-formulaire-à-lapplication-méthode-post-ajouter-des-données">passage
+id="passage-de-paramètres-dun-formulaire-à-lapplication-méthode-post-ajouter-des-données">Passage
 de paramètres d’un formulaire à l’application : Méthode POST : ajouter
 des données</h1>
 <ul>
-<li>ajouter dans le fichier de l’application <strong>app.py</strong> la
+<li>Ajouter dans le fichier de l’application <strong>app.py</strong> la
 route et la fonction (méthode) pour traiter les paramètres du
 formulaire</li>
 </ul>
@@ -458,7 +462,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a h
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    message <span class="op">=</span> <span class="st">u&#39;type ajouté , libellé :&#39;</span><span class="op">+</span>libelle</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    flash(message, <span class="st">&#39;alert-success&#39;</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/type-article/show&#39;</span>)</span></code></pre></div>
-<p>ajouter après l’instruction <code>{% include('_nav.html') %}</code>
+<p>Ajouter après l’instruction <code>{% include('_nav.html') %}</code>
 dans le fichier <strong>templates/layout.html</strong> les instructions
 suivantes pour afficher les messages “flash”</p>
 <div class="sourceCode" id="cb18"><pre
@@ -477,17 +481,17 @@ alt="passage de paramètres d’un formulaire à l’application" />
 <figcaption aria-hidden="true">passage de paramètres d’un formulaire à
 l’application</figcaption>
 </figure>
-<p>l’application <em>flask</em> récupère un objet
+<p>L’application <em>flask</em> récupère un objet
 <strong>request</strong>, cet objet possède tous les paramètres
 <code>INPUT [NAME avec pour valeur VALUE]</code> passés dans la requête
 HTTP</p>
 <p><br></p>
 <h1
-id="passage-de-paramètres-dun-lien-à-lapplication-méthode-get-supprimer-des-données">passage
+id="passage-de-paramètres-dun-lien-à-lapplication-méthode-get-supprimer-des-données">Passage
 de paramètres d’un lien à l’application : Méthode GET : supprimer des
 données</h1>
 <ul>
-<li>ajouter dans le fichier de l’application <strong>app.py</strong> la
+<li>Ajouter dans le fichier de l’application <strong>app.py</strong> la
 route et la fonction (méthode) pour traiter les paramètres du lien</li>
 </ul>
 <div class="sourceCode" id="cb19"><pre
@@ -507,12 +511,12 @@ l’application</figcaption>
 <p>PS : pour modifier ajouter ou supprimer, il faudrait toujours
 utiliser un formulaire pour des raisons de sécurité (faille CSRF)</p>
 <h1
-id="modifier-des-données-passage-de-paramètres-dun-lien-à-lapplication-méthode-get.-passage-de-paramètres-dun-formulaire-à-lapplication-méthode-post">modifier
+id="modifier-des-données-passage-de-paramètres-dun-lien-à-lapplication-méthode-get.-passage-de-paramètres-dun-formulaire-à-lapplication-méthode-post">Modifier
 des données : Passage de paramètres d’un lien à l’application : Méthode
 GET. Passage de paramètres d’un formulaire à l’application : Méthode
 POST</h1>
 <ul>
-<li>ajouter dans le fichier de l’application <strong>app.py</strong> la
+<li>Ajouter dans le fichier de l’application <strong>app.py</strong> la
 route et la fonction (méthode) pour traiter les paramètres du lien et
 afficher le formulaire avec les données de la ligne sélectionnée. La
 deuxième fonction traite les données du formulaire comme pour ajouter un
@@ -535,7 +539,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    flash(message, <span class="st">&#39;alert-success&#39;</span>)</span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/type-article/show&#39;</span>)</span></code></pre></div>
 <ul>
-<li>ajouter dans la vue
+<li>Ajouter dans la vue
 <strong>templates/type_article/edit_type_article.html</strong> le code
 pour ajouter un type d’article</li>
 </ul>
