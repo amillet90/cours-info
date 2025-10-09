@@ -145,15 +145,18 @@ dictionnaires (une liste de tuples (occurrences, enregistrements))</p>
 recourir à un mécanisme d’héritage. Pour hériter de la structure d’un
 template base.html, il faut indiquer à la première ligne du template
 hérité :</p>
-<pre><code>{% extends &#39;base.html&#39; %}</code></pre>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;base.html&#39; %}</span></code></pre></div>
 <p>Lors de l’héritage, certains blocs de code peuvent être surchargés.
 Ces blocs sont définis via le tag <code>block</code> et
 <code>endblock</code></p>
-<pre><code>{% block mon_block %} ... {% endblock %}</code></pre>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>{% block mon_block %} ... {% endblock %}</span></code></pre></div>
 <ul>
 <li>pour récupérer le contenu d’un bloc</li>
 </ul>
-<pre><code>  {{ super() }}</code></pre>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  {{ super() }}</span></code></pre></div>
 <p><img src="img_flask/flask_tp2_t2.png" style="width:10cm" /></p>
 <h2 id="moteurs-de-templates-similaires">moteurs de templates
 similaires</h2>
@@ -173,16 +176,16 @@ première vue</h2>
 <p><br></p>
 <p>Ouvrir un <strong>Terminal dans PyCharm</strong> et créer les
 dossiers et les fichiers pour les vues avec le script ci-dessous :</p>
-<pre><code>
-touch templates/layout.html  templates/_nav.html
-mkdir templates/article templates/type_article
-touch templates/article/show_article.html  templates/article/add_article.html templates/article/edit_article.html
-touch templates/type_article/show_type_article.html  templates/type_article/add_type_article.html templates/type_article/edit_type_article.html
-touch static/mes_styles.css
-touch launcher.sh
-chmod a+x launcher.sh
-</code></pre>
-<p>Dans dans le lanceur comme dans tp précedent
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> templates/layout.html  templates/_nav.html</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> templates/article templates/type_article</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> templates/article/show_article.html  templates/article/add_article.html templates/article/edit_article.html</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> templates/type_article/show_type_article.html  templates/type_article/add_type_article.html templates/type_article/edit_type_article.html</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> static/mes_styles.css</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> launcher.sh</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> a+x launcher.sh</span></code></pre></div>
+<p>Comme dans le TP précedent, dans le fichier (lanceur)
 <strong>launcher.sh</strong>, copiez le code ci-dessous :</p>
 <pre><code>flask --debug  --app app  run  --host 0.0.0.0</code></pre>
 <p><br></p>
@@ -286,10 +289,10 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href=
 <li>La forme des URL dans les templates n’est pas celle recommandée dans
 la <a
 href="https://flask.palletsprojects.com/en/2.0.x/quickstart/#url-building"
-target="_blank">documentation de flask</a>. Cependant ça fonctionne et
-ça ressemble plus à ce que l’on trouve sur <a
+target="_blank">documentation de Flask</a>. Cependant cela fonctionne et
+cela ressemble plus à ce que l’on trouve sur <a
 href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes"
-target="_blank">nodejs</a> (express est utilisé en S3).</li>
+target="_blank">NodeJs</a> (express est utilisé en S3).</li>
 </ul>
 <p><br></p>
 <ul>
@@ -334,7 +337,7 @@ class="sourceCode css"><code class="sourceCode css"><span id="cb12-1"><a href="#
 * utiliser [les fichiers de ressources](https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip) et dé-archiver ce fichier dans le dossier **static** de l'application
  -->
 <div class="cours">
-<p>⚠️ =&gt; Si les nouveaux styles ne sont pas prise en compte :
+<p>⚠️ =&gt; Si les nouveaux styles ne sont pas prises en compte :
 ATTENTION au cache du navigateur, il faut parfois effacer ce cache</p>
 <ul>
 <li>Chrome
@@ -504,11 +507,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a h
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/type-article/show&#39;</span>)</span></code></pre></div>
 <figure>
 <img src="img_flask/diw_flask_crud_3.png" style="width:27cm"
-alt="passage de paramètres d’un lien(url) à l’application" />
-<figcaption aria-hidden="true">passage de paramètres d’un lien(url) à
+alt="passage de paramètres d’un lien(URL) à l’application" />
+<figcaption aria-hidden="true">passage de paramètres d’un lien(URL) à
 l’application</figcaption>
 </figure>
-<p>PS : pour modifier ajouter ou supprimer, il faudrait toujours
+<p>PS : pour modifier, ajouter ou supprimer, il faudrait toujours
 utiliser un formulaire pour des raisons de sécurité (faille CSRF)</p>
 <h1
 id="modifier-des-données-passage-de-paramètres-dun-lien-à-lapplication-méthode-get.-passage-de-paramètres-dun-formulaire-à-lapplication-méthode-post">Modifier
@@ -572,7 +575,7 @@ alt="modifier les données" />
 forme les formulaires le menu et le tableau</h1>
 <p>améliorer le style de l’application</p>
 <ul>
-<li>utiliser le framework boostrap de préférence</li>
+<li>Utiliser le framework Boostrap</li>
 </ul>
 <br>
 <div class="validation">
@@ -638,39 +641,51 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a h
 <span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>    flash(message, <span class="st">&#39;alert-success&#39;</span>)</span>
 <span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/article/show&#39;</span>)</span></code></pre></div>
 <ul>
-<li>réaliser les interfaces pour afficher, ajouter, modifier, supprimer
-des articles</li>
+<li><strong>Réaliser les interfaces pour afficher, ajouter, modifier,
+supprimer des articles</strong></li>
 </ul>
 <h2 id="amélioration-la-liste-déroulante">amélioration : la liste
 déroulante</h2>
-<p>voici un exemple possible de code pour réaliser une liste déroulante
-à partir d’un tableau de données</p>
+<p>Voici un exemple possible de code pour réaliser <strong>une liste
+déroulante</strong> à partir d’un tableau de données</p>
 <p><br></p>
 <ul>
-<li>ajouter</li>
+<li>Code à ajouter dans le formulaire HTML pour <strong>ajouter un
+article</strong> :</li>
 </ul>
-<pre><code>&lt;select name=&quot;type_article_id&quot; required&gt;
-    &lt;option value=&quot;&quot;&gt;Sélectionner un type d&#39;article&lt;/option&gt;
-    {% for type in types_articles %}
-         &lt;option value=&quot;{{ type.id }}&quot;&gt; {{ type.libelle }} &lt;/option&gt;
-    {% endfor %}
-&lt;/select&gt;</code></pre>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>Sélectionner un type d&#39;article<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    {% for type in types_articles %}</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type.id }}&quot;</span><span class="kw">&gt;</span> {{ type.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
 <ul>
-<li>modifier</li>
+<li>Code à ajouter dans le formulaire HTML pour <strong>modifier un
+article</strong> :</li>
 </ul>
-<pre><code>&lt;select name=&quot;type_article_id&quot; required&gt;
-    {% for type in types_articles %}
-    &lt;option value=&quot;{{ type.id }}&quot;
-            {% if article.type_article_id is defined and type.id ==  article.type_article_id %}selected{% endif %}
-    &gt; {{ type.libelle }} &lt;/option&gt;
-    {% endfor %}
-&lt;/select&gt;</code></pre>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    {% for type in types_articles %}</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type.id }}&quot;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="er">{%</span> <span class="er">if</span> <span class="er">article.type_article_id</span> <span class="er">is</span> <span class="er">defined</span> <span class="er">and</span> <span class="er">type.id</span> <span class="ot">=</span><span class="st">=</span>  <span class="er">article.type_article_id</span> <span class="er">%}selected{%</span> <span class="er">endif</span> <span class="er">%}</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;</span> {{ type.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
 <h2 id="amélioration-afficher-une-image">amélioration : afficher une
 image</h2>
-<p>Les images sont dans le dossier static</p>
+<p>Les <strong>images sont dans le dossier static</strong>.</p>
+<ul>
+<li>le code ci-dessous n’est pas idéal</li>
+</ul>
 <div class="sourceCode" id="cb25"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;/static/images/{{ ligne.image }}&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span><span class="kw">&gt;</span></span></code></pre></div>
-<p>Afficher une image seulement si le nom existe</p>
+<p>Code pour afficher une image seulement si le nom existe et n’est pas
+vide.</p>
+<ul>
+<li>Code à ajouter dans le tableau HTML pour <strong>afficher les
+articles</strong> :</li>
+</ul>
 <div class="sourceCode" id="cb26"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>{%  if ligne.image is not none and ligne.image != &quot;&quot; %}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span>  <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename = &#39;images/&#39; + ligne[&#39;image&#39;]) }}&quot;</span>  <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span> <span class="kw">&gt;</span></span>
@@ -678,10 +693,6 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href=
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span>   <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;images/no_photo.jpeg&#39;)}}&quot;</span>  <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;no image&quot;</span> <span class="kw">&gt;</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>{% endif %} </span></code></pre></div>
 <h1 id="annexes-ressources">annexes ressources</h1>
-<p><br></p>
-<p>Pour aller plus loin, voici quelques exercices avec <a
-href="http://iamjmm.ovh/NSI/http_bottle_form/site/formulaires.html"
-target="_blank">bootle</a></p>
 <p><br></p>
 <ul>
 <li><p><a
@@ -698,13 +709,7 @@ href="http://sdz.tdct.org/sdz/creez-vos-applications-web-avec-flask.html"
 target="_blank">flask sur le sdz</a></li>
 </ul>
 <p><br></p>
-<p><a
-href="https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask/4526123-decoupez-votre-projet-en-templates"
-target="_blank">openclassroom</a></p>
-<p><br></p>
-<!-- exemple de cours : 
-
-[cours ENIB](https://www.enib.fr/~choqueuse/articles/flask/introduction-au-moteur-de-template-jinja-2.html){target=_blank} -->
+<!-- exemple de cours :  -->
 <!-- https://developer.mozilla.org/fr/docs/Learn/Server-side/First_steps/Website_security
 https://developer.mozilla.org/fr/docs/Learn/Forms/Sending_and_retrieving_form_data#exemple_python -->
 <!--
