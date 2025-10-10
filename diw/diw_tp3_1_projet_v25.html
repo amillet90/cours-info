@@ -18,15 +18,18 @@
 </head>
 <body>
 <h1 id="mini-projet">mini projet</h1>
-<p>Il faut terminer la version minimum du tp précédent avant de
+<p>Il faut terminer la version minimum du TP précédent avant de
 commencer le projet</p>
+<p><br> <strong>Voici une démonstration des fonctionnalités du travail
+attendu <a href="http://amillet1.pythonanywhere.com/"
+target="_blanck">http://amillet1.pythonanywhere.com/</a></strong><br></p>
 <h2
 id="consignes-pour-réaliser-toutes-les-interfaces-pour-ajoutermodifiersupprimer-et-afficher-les-données-des-2-tableaux-python-de-votre-sujet">Consignes
 pour Réaliser toutes les interfaces pour ajouter/modifier/supprimer et
-afficher les données des 2 tableaux python de votre sujet</h2>
+afficher les données des 2 tableaux Python de votre sujet</h2>
 <p><br></p>
-<p><strong>Faire les mêmes interfaces que lors des tps précédents mais
-en utilisant les 2 tableaux de données de votre sujet</strong></p>
+<p><strong>Faire les mêmes interfaces que lors des TPs précédents mais
+en utilisant les dux tableaux de données de votre sujet</strong></p>
 <br>
 <div class="important" style="font-size: 150%;">
 <p><strong>Le projet est à rendre sur <a
@@ -47,12 +50,12 @@ target="_blank">typographique</a>) :</p>
 l’application doivent porter le nom de l’opération puis le nom de la
 table ; utiliser du <a href="https://fr.wikipedia.org/wiki/Snake_case"
 target="_blank">snake_case</a> : show_nom_table add_nom_table
-valid_add_nom_table delete_nom_table edit_nom_table valid_add_nom_table
+valid_add_nom_table delete_nom_table edit_nom_table valid_edit_nom_table
 …</p></li>
 <li><p>les <strong>routes</strong> doivent porter le nom de la table
-puis le nom de l’opération ( en kebab-case ou <a
+puis le nom de l’opération ( en kebab-case (appellé aussi <a
 href="https://blog.octo.com/designer-une-api-rest/#case"
-target="_blank">spinal case</a>) : <code>/nom-table/show</code>
+target="_blank">spinal case</a>)) : <code>/nom-table/show</code>
 <code>/nom-table/edit</code> <code>/nom-table/add</code> …</p></li>
 <li><p>créer dans le dossier <strong>templates</strong> un dossier de
 vue qui porte le nom de la table (utiliser du
@@ -64,10 +67,10 @@ forme (<code>add_table.html</code> <code>edit_table.html</code>
 <li><p>les noms <strong>des champs input(name)</strong> doivent porter
 le nom des clés (attribut) des dictionnaires que vous utilisez</p>
 <ul>
-<li>ATTENTION : les clés dans tous les tableaux python de dictionnaires
+<li>ATTENTION : les clés dans tous les tableaux Python de dictionnaires
 sont en <a href="https://fr.wikipedia.org/wiki/Camel_case"
 target="_blank">CamelCase</a>, il faut respecter cette notation.</li>
-<li>la seule clé en snake_case est la clé étrangère</li>
+<li>La seule clé en snake_case est la clé étrangère</li>
 </ul></li>
 <li><p>Le contenu des dictionnaires n’est pas modifié (pénalité
 importante dans le cas contraire).</p></li>
@@ -76,23 +79,20 @@ affichées dans le messages “flash” lors de la soumission du
 formulaire.</p></li>
 <li><p>Utilisez uniquement les fonctions
 <code>request, render_template, redirect, flash</code> de l’objet
-<code>flask</code> dans le fichier <code>app.py</code></p></li>
-<li><p>Il faut utiliser le framework CSS Boostrap en local (dans le
+<code>Flask</code> dans le fichier <code>app.py</code></p></li>
+<li><p>Il faut utiliser le framework CSS Bootstrap en local (dans le
 dossier <code>static</code>) et non avec des CDN</p></li>
 </ul>
 <p><br></p>
 <div class="important">
 <p>Remplacer <strong>table</strong> par les 2 noms des tables de votre
 sujet</strong></p>
-<p><br> <strong>Voici une démonstration des fonctionnalités du travail
-attendu <a href="http://amillet1.pythonanywhere.com/"
-target="_blanck">http://amillet1.pythonanywhere.com/</a></strong><br></p>
 <p><strong>ATTENTION</strong> : on ne doit pas retrouver le mot
 <strong>article</strong> dans votre code</p>
-<p>L’affichage des 2 tableaux “python” doit être <strong>sous forme de
+<p>L’affichage des 2 tableaux “Python” doit être <strong>sous forme de
 tableaux</strong> pour afficher/ajouter/supprimer/modifier (CRUD
 back-office)<br />
-<br> <strong>Les 2 tableaux python ne sont jamais
+<br> <strong>Les 2 tableaux sources en Python ne sont jamais
 modifiés</strong><br />
 </p>
 <p>Les noms des champs INPUT dans les formulaires doivent porter le nom
@@ -110,15 +110,15 @@ sont pas respectées :</p>
 <ul>
 <li>pas de boucle python dans le fichier <em>app.py</em> (exemple avec
 le mot clé <code>next</code>)</li>
-<li>pas d’utilisation des mots clés “WITH” ou “TRY” en python (gestion
-des exceptions).</li>
+<li>pas d’utilisation des mots-clés <code>with</code> et
+<code>try</code> en python (gestion des exceptions).</li>
 <li>pas d’utilisation de la fonction <code>url_for</code> pour gérer une
 route.</li>
 <li>pas d’utilisation de route paramétrée <code>/route/&lt;id&gt;</code>
 au lieu des routes avec paramètres GET <code>/route?id=</code>
 (paramètres de requête)</li>
-<li>pas d’utilisation de javascript</li>
-<li>pas d’utilisation de module python non vu en tp</li>
+<li>pas d’utilisation de Javascript</li>
+<li>pas d’utilisation de module Python non vu en TP</li>
 <li><strong>pas d’utilisation de code que vous ne maîtrisez
 pas</strong></li>
 </ul>
@@ -128,7 +128,7 @@ pas</strong></li>
 id="étapes-et-exemples-de-vues-consignes-css-et-bootstrap"><strong>Étapes
 et exemples de vues</strong> (consignes CSS et BootStrap)</h2>
 <ul>
-<li><p>ajouter un “favicone” pour toutes les pages (layout)</p></li>
+<li><p>ajouter un “favicon” pour toutes les pages (layout)</p></li>
 <li><p>corps des pages :</p>
 <ul>
 <li>utiliser un “container” pour définir les marges de chaque page</li>
@@ -262,7 +262,7 @@ la classe “cards” de Bootstrap et le plus possible les classes Bootstrap
 <li>afficher la seconde table dans le formulaire (cases à cocher)</li>
 <li>afficher les éléments de la première table sous forme de <a
 href="https://getbootstrap.com/docs/5.0/components/card/"
-target="_blank">cards</a> sur 3 colonnes (3 cards par ligne)</li>
+target="_blank">card</a> sur 3 colonnes (3 “cards” par ligne)</li>
 </ul></li>
 </ul>
 <h4 id="formulaire">Formulaire :</h4>
@@ -318,7 +318,7 @@ contraire).</span></p>
 <pre><code>#!/bin/bash
 clear
 
-echo -e &quot;\033[0;32m \n**** listes des fonctions(snake_case: show_nom_table add_nom_table valid_add_nom_table delete_nom_table edit_nom_table valid_add_nom_table) :&quot;
+echo -e &quot;\033[0;32m \n**** listes des fonctions(snake_case: show_nom_table add_nom_table valid_add_nom_table delete_nom_table edit_nom_table valid_edit_nom_table) :&quot;
 grep &quot;def &quot;  app.py | uniq -c
 
 echo -e &quot;\033[0;32m \n**** listes des fichiers (snake_case: add_table.html edit_table.html show_table.html)  : &quot;
