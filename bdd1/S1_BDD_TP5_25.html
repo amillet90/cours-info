@@ -100,14 +100,16 @@ conditions avec une expression logique</li>
 </ul>
 <h2 id="synthèse-sur-des-éléments-abordés">synthèse sur des éléments
 abordés :</h2>
-<pre><code>SELECT  [nom_table.nom_champs, nom_table.nom_champs2.....] 
+<pre><code>SELECT   [DISTINCT] [[nom_table.]nom_colonne, nom_table.nom_colonne2.....] 
 FROM
-nom_table1, nom_table2 …. 
-WHERE  [conditions, jointure … ]
-ORDER BY [nom_table.nom_champs] [DESC]
+nom_table1
+[ jointure: &quot;JOIN&quot; nom_table2 …. … ]
+WHERE  
+[conditions … ]
+ORDER BY nom_table.nom_colonne, [nom_table.nom_colonne] [DESC]
 [LIMIT]  ;</code></pre>
 <p>● Par exemple :</p>
-<pre><code>SELECT * FROM catalogue WHERE ref=&quot;123abc&quot;;     (* : tous les champs)
+<pre><code>SELECT * FROM catalogue WHERE ref=&quot;123abc&quot;;     (* : toutes les colonnes)
 
 SELECT Client.NomClient FROM Client WHERE Client.PrivilegeClient=true
 ORDER by Client.NomClient;</code></pre>
@@ -117,21 +119,21 @@ ORDER by Client.NomClient;</code></pre>
 <code>=   &lt;=   &lt;&gt;</code>…</li>
 <li>Les opérateurs logiques <code>AND   OR   NOT</code>
 (expressions)</li>
-<li>Un champ compris entre 2 valeurs
-<code>nom_champ BETWEEN 1 AND 30</code></li>
+<li>Une colonne comprise entre 2 valeurs
+<code>nom_colonne BETWEEN 1 AND 30</code></li>
 <li>Une chaine de caractères comme …( comparaison )
-<code>nom_champ LIKE '123%'</code></li>
-<li>Un champ est vide <code>nom_champ IS NULL</code> Utilisation de date
-“aaaa-mm-jj”</li>
-<li>Pour trier les champs
+<code>nom_colonne LIKE '123%'</code></li>
+<li>Une colonne est vide <code>nom_colonne IS NULL</code> Utilisation de
+date “aaaa-mm-jj”</li>
+<li>Pour trier les colonnes
 <ul>
-<li><code>ORDER BY ETU_Nom [ASC]</code> « CROISSANT »</li>
-<li><code>ORDER BY ETU_Nom DESC</code> « DECROISSANT »</li>
+<li><code>ORDER BY nom_colonne [ASC]</code> « CROISSANT »</li>
+<li><code>ORDER BY nom_colonne DESC</code> « DECROISSANT »</li>
 </ul></li>
 <li>Sélectionner des résultats non redondants (distincts)
-<code>SELECT DISTINCT nom_champ …</code></li>
-<li>Quand un champ appartient à une liste de valeurs (…)
-<code>WHERE nom_champ IN ('valeur1', 'valeur2', ...)</code></li>
+<code>SELECT DISTINCT nom_colonne …</code></li>
+<li>Quand une colonne appartient à une liste de valeurs (…)
+<code>WHERE nom_colonne IN ('valeur1', 'valeur2', ...)</code></li>
 </ul>
 <h2 id="remarque">remarque</h2>
 <p>lors de l’écriture des chaînes de texte :</p>
@@ -175,38 +177,41 @@ note_ue2</td>
 </table>
 </div>
 <ul>
-<li><code>idEtudiant</code> : ce champ (attribut) est de type
-<strong>entier</strong> , c’est une clé primaire avec un compteur (champ
-qui utilise l’attribut «AUTO_INCREMENT»).</li>
-<li><code>nom</code> : ce champ (attribut) est de type <strong>chaîne de
-caractères variable</strong> de taille 20 caractères maximum.</li>
-<li><code>adresse</code> : ce champ (attribut) est de type
+<li><code>idEtudiant</code> : cette colonne (attribut) est de type
+<strong>entier</strong> , c’est une clé primaire avec un compteur
+(colonne qui utilise l’attribut «AUTO_INCREMENT»).</li>
+<li><code>nom</code> : cette colonne (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 20 caractères
+maximum.</li>
+<li><code>adresse</code> : cette colonne (attribut) est de type
 <strong>chaîne de caractères variable</strong> de taille 40 caractères
 maximum.</li>
-<li><code>ville</code> : ce champ (attribut)est de type <strong>chaîne
-de caractères variable</strong> de taille 20 caractères maximum.</li>
-<li><code>code_postal</code> : ce champ (attribut) est de type
+<li><code>ville</code> : cette colonne (attribut)est de type
+<strong>chaîne de caractères variable</strong> de taille 20 caractères
+maximum.</li>
+<li><code>code_postal</code> : cette colonne (attribut) est de type
 <strong>chaîne de caractères variable</strong> de taille 5 caractères
 (un numérique ne convient pas, car on perd le 0 devant s’il y en
 a).</li>
-<li><code>telephone</code> : ce champ (attribut) est de type
+<li><code>telephone</code> : cette colonne (attribut) est de type
 <strong>chaîne de caractères variable</strong> de taille 10 caractères
 maximum</li>
-<li><code>date_naissance</code>: ce champ (attribut) est de
+<li><code>date_naissance</code>: cette colonne (attribut) est de
 <strong>date</strong></li>
-<li><code>sexe</code> : ce champ (attribut) est de type <strong>chaîne
-de caractères variable</strong> de taille 1 caractère maximum.</li>
-<li><code>boursier</code> : ce champ (attribut) est de type
+<li><code>sexe</code> : cette colonne (attribut) est de type
 <strong>chaîne de caractères variable</strong> de taille 1 caractère
 maximum.</li>
-<li><code>groupe_id</code> : ce champ (attribut) est de type
+<li><code>boursier</code> : cette colonne (attribut) est de type
+<strong>chaîne de caractères variable</strong> de taille 1 caractère
+maximum.</li>
+<li><code>groupe_id</code> : cette colonne (attribut) est de type
 <strong>entier</strong></li>
-<li><code>semestre_id</code> : ce champ (attribut) est de type
+<li><code>semestre_id</code> : cette colonne (attribut) est de type
 <strong>entier</strong></li>
-<li><code>note_ue1</code> : ce champ (attribut) est de type
+<li><code>note_ue1</code> : cette colonne (attribut) est de type
 <strong>numeric</strong> qui affiche un numérique avec 2 chiffres après
 la virgule, la valeur la plus grande est 99,99</li>
-<li><code>note_ue2</code> : ce champ (attribut) est de type
+<li><code>note_ue2</code> : cette colonne (attribut) est de type
 <strong>numeric</strong> qui affiche un numérique avec 2 chiffres après
 la virgule, la valeur la plus grande est 99,99</li>
 </ul>
@@ -267,9 +272,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 +-----------+------------------------+-------------+</code></pre>
 <p>Sur le même principe :</p>
 <ul>
-<li><p>Écrire une requête pour sélectionner le nom, le groupe et le
-champ ‘boursier’ (si ils sont boursiers ou non) des étudiants du groupe
-1, du semestre 1 quand ils sont boursiers.</p></li>
+<li><p>Écrire une requête pour sélectionner le nom, le groupe et la
+colonne ‘boursier’ (si ils sont boursiers ou non) des étudiants du
+groupe 1, du semestre 1 quand ils sont boursiers.</p></li>
 <li><p>Résultat :</p></li>
 </ul>
 <pre><code>+-----------+-----------+----------+
@@ -279,21 +284,21 @@ champ ‘boursier’ (si ils sont boursiers ou non) des étudiants du groupe
 | MONNIER   |         1 | O        |
 +-----------+-----------+----------+</code></pre>
 <h2
-id="requête-2-expression-logique-et-tri-sur-plusieurs-champs">Requête 2
-(expression logique et tri sur plusieurs champs ) :</h2>
+id="requête-2-expression-logique-et-tri-sur-plusieurs-colonnes">Requête
+2 (expression logique et tri sur plusieurs colonnes ) :</h2>
 <div class="requete">
 <strong>Requête 2-1</strong> :
 </div>
 <p>Tester la requête suivante : Afficher tous les étudiants triés par
 semestre, puis par groupe, puis par nom dans l’ordre décroissant.
-Utiliser l’instruction <strong>ORDER BY champ1, champ2, champ3</strong>
-; remplacer « champ » par le nom du champ suivi de <strong>ASC</strong>
-ou <strong>DESC</strong> (par défaut le tri est fait de façon
-ascendante)</p>
+Utiliser l’instruction <strong>ORDER BY colonne1, colonne2,
+colonne3</strong> ; remplacer « colonne » par le nom de la colonne suivi
+de <strong>ASC</strong> ou <strong>DESC</strong> (par défaut le tri est
+fait de façon ascendante)</p>
 <p><img src="img/img_tp5_3.jpg" /></p>
 <p><br></p>
-<p>Utiliser l’instruction ORDER BY « champ1 » après l’instruction WHERE
-« conditions ». Aidez-vous des informations sur : <a
+<p>Utiliser l’instruction ORDER BY « colonne1 » après l’instruction
+WHERE « conditions ». Aidez-vous des informations sur : <a
 href="https://www.w3schools.com/SQL/sql_orderby.asp"
 target="_blanck">https://www.w3schools.com/SQL/sql_orderby.asp</a>
 <br></p>
@@ -477,8 +482,9 @@ target="_blanck">https://www.w3schools.com/sql/sql_distinct.asp</a>
 | Valdoie    |
 | Bavilliers |
 +------------+</code></pre>
-<h2 id="requête-4-in-un-champ-appartient-à-une-liste-de-valeurs">Requête
-4 ( IN : un champ appartient à une liste de valeurs )</h2>
+<h2
+id="requête-4-in-une-colonne-appartient-à-une-liste-de-valeurs">Requête
+4 ( IN : une colonne appartient à une liste de valeurs )</h2>
 <div class="requete">
 <strong>Requête 4</strong> :
 </div>
@@ -505,8 +511,8 @@ NULL)</h2>
 <strong>Requête 5.1</strong> :
 </div>
 <p>Écrire la requête pour sélectionner le nom des étudiants dont le
-champ de la ville est vide (Utiliser l’instruction <code>IS NULL</code>)
-et dont le sexe est « H ».</p>
+champ (colonne) de la ville est vide (Utiliser l’instruction
+<code>IS NULL</code>) et dont le sexe est « H ».</p>
 <ul>
 <li>Aidez vous des informations sur : <a
 href="https://www.w3schools.com/SQL/sql_null_values.asp"
@@ -532,7 +538,7 @@ c’est une logique 3 états (VRAI, FAUX, non renseigné (NULL))</p>
 <strong>Requête 5.2</strong> :
 </div>
 <p>Faire la même requête mais en rajoutant les étudiants dont le champ
-de la ville est une chaîne de caractères vide</p>
+(colonne) de la ville est une chaîne de caractères vide</p>
 <ul>
 <li>Résultat :</li>
 </ul>
@@ -702,7 +708,7 @@ suivi du caractère “a” ou “e” puis de n’importe quel caractère.</li>
 <ul>
 <li>Écrire une requête pour sélectionner le nom des étudiants dont le
 nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme
-2eme chiffre “5” en utilisant LIKE (champ LIKE « expression en
+2eme chiffre “5” en utilisant LIKE (colonne LIKE « expression en
 remplaçant _ pour un caractère et % pour une chaîne de caractères»)</li>
 </ul>
 <div class="requete">
@@ -711,7 +717,7 @@ remplaçant _ pour un caractère et % pour une chaîne de caractères»)</li>
 <ul>
 <li>Écrire une requête pour sélectionner le nom des étudiants dont le
 nom a comme 2eme caractère “a” ou “e” et dont le code postal a comme
-2eme chiffre “5” en utilisant REGEXP (champ REGEXP « expression
+2eme chiffre “5” en utilisant REGEXP (colonne REGEXP « expression
 régulière »), (LIKER idem).</li>
 </ul>
 <p>Remarque : LIKE est plus rapide que REGEXP, voir article <a
