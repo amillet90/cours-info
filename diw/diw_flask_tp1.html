@@ -770,7 +770,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href=
 enregistrement</li>
 </ul>
 <div class="sourceCode" id="cb30"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id_groupe&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id_groupe&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>            <span class="er">{%</span> <span class="er">if</span> <span class="er">etudiant.groupe_id</span> <span class="er">is</span> <span class="er">defined</span> <span class="er">and</span> <span class="er">groupe.id</span> <span class="ot">=</span><span class="st">=</span> <span class="er">etudiant.groupe_id</span> <span class="er">%}selected{%</span> <span class="er">endif</span> <span class="er">%}</span></span>

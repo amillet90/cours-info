@@ -666,7 +666,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href=
 article</strong> :</li>
 </ul>
 <div class="sourceCode" id="cb24"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    {% for type in types_articles %}</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type.id }}&quot;</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="er">{%</span> <span class="er">if</span> <span class="er">article.type_article_id</span> <span class="er">is</span> <span class="er">defined</span> <span class="er">and</span> <span class="er">type.id</span> <span class="ot">=</span><span class="st">=</span>  <span class="er">article.type_article_id</span> <span class="er">%}selected{%</span> <span class="er">endif</span> <span class="er">%}</span></span>
