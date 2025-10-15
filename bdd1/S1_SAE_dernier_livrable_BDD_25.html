@@ -309,19 +309,28 @@ target="_blanck_">Lien sur Moodle</a></p>
 “<strong>sql_projet.sql</strong>” qui permettra de tester votre
 application. Ce script SQL doit :</p>
 <ul>
-<li><p>Supprimer toutes les tables si elles existent (attention à
-l’ordre, c’est l’ordre inverse de création)</p></li>
-<li><p>Créer toutes les tables (utilisez le script de looping et
-modifiez, si nécessaire, les noms des colonnes).</p></li>
+<li><p>Supprimer toutes les tables si elles existent</p></li>
+<li><p>créer toutes les tables :</p>
+<ul>
+<li>récupérer le script du logiciel Looping</li>
+<li>renommer les colonnes de façon à avoir toutes les colonnes en
+<strong>snake-case</strong> et uniquement le caractère spécial
+“underscore”</li>
+<li>renommer les clés primaires de façon à avoir comme nom : “id_table”
+ou “table” et le nom de la table</li>
+<li>renommer les clés étrangères de façon à avoir comme nom : “table_id”
+ou “table” et le nom de la table</li>
+</ul></li>
 <li><p>Insérer des valeurs dans toutes les tables pour tester les
 interfaces que vous allez réaliser. Parfois quelques enregistrements
 (tuples) suffisent, mais parfois il en faudra plus.</p></li>
 <li><p>Écrire au moins 2 ou 3 requêtes avec une ou plusieurs fonctions
 d’agrégation et des jointures. Le jeu de test (les instructions “insert”
 mentionnées ci-dessus) doit permettre de vérifier que ces requêtes
-fonctionnent correctement. <!-- moodle  à modifier ou pas --> Si vous
-n’avez pas encore abordé les jointures, vous devriez être capables d’en
-écrire quelques-unes en vous documentant sur le web.</p></li>
+fonctionnent correctement. <!-- moodle  à modifier ou pas --> Nous avons
+peu abordé les jointures mais vous devriez être capables d’en écrire
+quelques-unes sans grosse difficulté en vous documentant sur le
+web.</p></li>
 </ul>
 <hr />
 <ul>
@@ -391,7 +400,8 @@ puis insérer les enregistrements dans le bon ordre (un jeu de test).
 <li>Votre application, comprenant un fichier “<strong>app.py</strong>”,
 un dossier “<strong>templates</strong>”, un dossier
 “<strong>static</strong>”, et éventuellement un script shell pour lancer
-l’application (ne pas inclure de dossier venv).</li>
+l’application (ne pas inclure de dossier venv ou des élèments
+inutiles(dossiers .idea, fichiers compilation python ….)).</li>
 </ul>
 <p>Votre application doit être fonctionnelle sur une machine de l’IUT
 avec la commande “python app.py” dans un environnement local où les
