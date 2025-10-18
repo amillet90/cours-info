@@ -253,7 +253,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="serveurmysql",
   user="votreLogin",
-  password="votreMotDePasse",
+  password="secret",
   database="BDD_votreLogin"
 )
 ```
@@ -271,12 +271,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mysql --user=votreLogin  --password=votreMotDePasse --host=serveurmysql --database=BDD_votreLogin</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mysql --user=votreLogin  --password=secret --host=serveurmysql --database=BDD_votreLogin</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>,   <span class="co">#localhost sur les machines perso.</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  password<span class="op">=</span><span class="st">&quot;secret&quot;</span>,</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span>,</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,                      <span class="co"># 2 attributs à ajouter</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  cursorclass<span class="op">=</span>pymysql.cursors.DictCursor  <span class="co"># 2 attributs à ajouter</span></span>
@@ -368,7 +368,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mydb <span class="op">=</span> pymysql.<span class="ex">connect</span>(    <span class="co">#pymysql.connect remplace mysql.connector</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  host<span class="op">=</span><span class="st">&quot;serveurmysql&quot;</span>   <span class="co">#localhost sur les machines perso.</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  , user<span class="op">=</span><span class="st">&quot;votreLogin&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  , password<span class="op">=</span><span class="st">&quot;votreMotDePasse&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  , password<span class="op">=</span><span class="st">&quot;secret&quot;</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  , database<span class="op">=</span><span class="st">&quot;BDD_votreLogin&quot;</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#, port=3306         # sur mamp(mac) le port peut être 8889 ...</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  , charset<span class="op">=</span><span class="st">&quot;utf8mb4&quot;</span>                       <span class="co"># 2 attributs à ajouter</span></span>
@@ -460,12 +460,20 @@ la table “etudiant”, récupérer l’interface FLASK</li>
 target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
 </div>
 <p>Cloner le projet avec la commande :</p>
-<pre><code>git clone https://github.com/amillet-iut90/flask_demo1.git
+<pre><code>
+git clone https://github.com/amillet-iut90/flask_demo1.git
 
-cd flask_demo1/
-chmod u+x launcher.sh
+chmod a+x flask_demo1/launcher.sh
 
-# ouvrir le dossier avec pycharm</code></pre>
+# renommer le dossier si besoin
+mv flask_demo1 flask_pymysql_demo1
+
+# cd flask_pymysql_demo1/
+
+# ouvrir le dossier (projet) avec pycharm
+
+pycharm  flask_pymysql_demo1
+</code></pre>
 <p><strong>Ouvrir le projet</strong> (dossier) avec PyCharm (<strong>ne
 pas créer un nouveau projet</strong>)</p>
 <p><br></p>
@@ -519,7 +527,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#c
 identifiant <code>id_etudiant</code></li>
 </ul>
 <p><br> Connectez vous à MySQL dans un terminal :</p>
-<p><code>mysql --user=login --host=serveurmysql.iut-bm.univ-fcomte.fr --password=mdp --database=BDD_login</code></p>
+<p><code>mysql --user=login --host=serveurmysql.iut-bm.univ-fcomte.fr --password=secret --database=BDD_login</code></p>
 <p>Créer un fichier SQL <code>sql_projet.sql</code></p>
 <p><br></p>
 <p>Modification du code :</p>
