@@ -388,6 +388,75 @@ href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-u
 target="_BLANCK">doc ubuntu</a></p>
 <h1 id="annexes-windows-installation-sur-windows">annexes Windows :
 installation sur windows</h1>
+<p><br></p>
+<p>Utilisation de <a href="https://scoop.sh/"
+target="_BLANCK"><strong>scoop</strong></a></p>
+<pre><code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+scoop install python
+scoop install git
+
+scoop bucket add main
+
+scoop install main/cmder-full
+
+scoop bucket add extras
+
+scoop install extras/vscode
+scoop install extras/sublime-text
+
+scoop install extras/pycharm-professional
+scoop install extras/datagrip</code></pre>
+<!--scoop install idea-ultimate -->
+<p><a href="https://cmder.app/" target="_BLANCK"><code>cmder</code></a>
+est une console (terminal) avec beaucoup de ressemblance avec un
+terminal linux</p>
+<p><br> <br> <br></p>
+<p>J’ai utilisé <strong>mysql</strong> pour faire mes tests</p>
+<pre><code>scoop install main/mysql</code></pre>
+<p>sur mysql</p>
+<pre><code>mysql --version : pas d&#39;erreur mais pas de retour
+en se déplaçant dans le dossier de mysql
+
+cd &quot;$HOME\scoop\apps\mysql\current\bin\&quot;
+mysql --version  =&gt; pas de retour
+
+
+scoop install vcredist2022</code></pre>
+<br>
+<details>
+<summary>
+🤖 PB install mysql
+</summary>
+<p>
+<p><br />
+</p>
+<p>C:&gt; mysql -u root -p</p>
+<p>Enter password: ERROR 2059 (HY000): Authentication plugin
+‘mysql_native_password’ cannot be loaded: Le module spécifié est
+introuvable.</p>
+<p>dans le dossier “$HOME.ini”</p>
+<pre><code>[client]
+plugin-dir=C:/Users/Login/scoop/apps/mysql/current/lib/plugin
+defaut-auth=mysql_native_password
+user=root
+local_infile=ON
+
+[mysqld]
+plugin-dir=C:/Users/Login/scoop/apps/mysql/current/lib/plugin
+datadir=C:/Users/Login/scoop/apps/mysql/current/data
+basedir=C:/Users/Login/scoop/apps/mysql/current
+local_infile=ON
+sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;</code></pre>
+<p>je ne sais pas si c’est utile cd “$HOME" ..exe –initialize
+–datadir=..–console ..exe –datadir=..</p>
+<p>PS C:&gt; mysql -u root -p Enter password: ERROR 2059 (HY000):
+Authentication plugin ‘mysql_native_password’ cannot be loaded: Le
+module spécifié est introuvable. PS C:&gt; dir “$HOME” Répertoire :
+C:</p>
+</p>
+</details>
 <p>Attention à la configuration de MySQL via le fichier my.ini =&gt;</p>
 <ul>
 <li>modification impossible sur windows 11</li>
@@ -400,31 +469,8 @@ target="_BLANCK">https://www.rufusvision.org/installation-du-serveur-mysql-sous-
 <p>voir la <a
 href="https://grafikart.fr/tutoriels/mysql-windows-2001#autoplay"
 target="_BLANCK">vidéo</a> sur grafikart</p>
-<p>Il est conseillé d’installer <strong>mariadb</strong> indépendamment
-de logiciel comme Xampp, Wamp…</p>
-<p><br></p>
-<p>Utilisation de <a href="https://scoop.sh/"
-target="_BLANCK"><strong>scoop</strong></a></p>
-<pre><code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-
-
-scoop bucket add main
-
-scoop install main/cmder-full
-scoop install python
-scoop install git
-scoop install vscode
-scoop install sublime-text
-
-scoop bucket add extras
-
-scoop install idea-ultimate
-scoop install pycharm-professional
-scoop install datagrip</code></pre>
-<p><a href="https://cmder.app/" target="_BLANCK"><code>cmder</code></a>
-est une console (terminal) avec beaucoup de ressemblance avec un
-terminal linux</p>
+<p>Il est conseillé d’installer <strong>mariadb</strong> ou
+<strong>mysql</strong> indépendamment de logiciel comme Xampp, Wamp…</p>
 <!--Pour installer des programmes sur le système d'exploitation windows 11, je désire utiliser scoop, je désire des explications sur ce gestionnaire de programmes.
 
 Comment utiliser mysql par l'intermédiaire de scoop ?
@@ -498,16 +544,16 @@ simple et différent de celui pour se connecter à votre machine) =&gt;
 <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code
 sur l’invité de commande mysql.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
 <li>tester dans un terminal (invité de commande) la commande :
 <code>mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile</code></li>
