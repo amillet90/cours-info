@@ -449,12 +449,17 @@ datadir=C:/Users/Login/scoop/apps/mysql/current/data
 basedir=C:/Users/Login/scoop/apps/mysql/current
 local_infile=ON
 sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;</code></pre>
-<p>je ne sais pas si c’est utile cd “$HOME" ..exe –initialize
-–datadir=..–console ..exe –datadir=..</p>
-<p>PS C:&gt; mysql -u root -p Enter password: ERROR 2059 (HY000):
-Authentication plugin ‘mysql_native_password’ cannot be loaded: Le
-module spécifié est introuvable. PS C:&gt; dir “$HOME” Répertoire :
-C:</p>
+<p>je ne sais pas si c’est utile</p>
+<pre><code>cd &quot;$HOME\scoop\apps\mysql\current\bin\&quot;
+
+.\mysqld.exe --initialize --datadir=..\data --console
+.\mysqld.exe --datadir=..\data
+
+PS C:\Users\Login\scoop\apps\mysql\current\bin&gt; mysql -u root -p
+Enter password:
+ERROR 2059 (HY000): Authentication plugin &#39;mysql_native_password&#39; cannot be loaded: Le module spécifié est introuvable.
+PS C:\Users\Login\scoop\apps\mysql\current\bin&gt; dir &quot;$HOME\scoop\apps\mysql\current\lib\plugin&quot;
+    Répertoire : C:\Users\Login\scoop\apps\mysql\current\lib\plugin</code></pre>
 </p>
 </details>
 <p>Attention à la configuration de MySQL via le fichier my.ini =&gt;</p>
@@ -544,16 +549,16 @@ simple et différent de celui pour se connecter à votre machine) =&gt;
 <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code
 sur l’invité de commande mysql.</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
 <li>tester dans un terminal (invité de commande) la commande :
 <code>mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile</code></li>
