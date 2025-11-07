@@ -83,10 +83,10 @@
 <body>
 <h1 id="choix-du-driver">choix du driver</h1>
 <p>Il existe plusieurs bibliothèques différentes pour exécuter du SQL à
-l’aide du langage python (au travers d’un connecteur). On procède de la
-même manière en <em>php</em>, en <em>javascript</em>, ou dans d’autres
-langages. La tendance est de passer par des <strong>ORMs</strong> mais
-c’est plus compliqué de première abord.</p>
+l’aide du langage Python (au travers d’un connecteur). On procède de la
+même manière en <em>PHP</em>, en <em>Javascript</em>, ou dans d’autres
+langages. La tendance est de passer par des <strong>ORMs</strong>, mais
+c’est plus compliqué de prime abord.</p>
 <h2 id="recherche-en-fonction-du-sgbdr">recherche en fonction du
 SGBDR</h2>
 <p><br> Le choix de la bibliothèque (driver) pour exécuter du SQL va
@@ -98,8 +98,8 @@ dépendre du SGBDR</p>
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"><strong>id_produit</strong></th>
-<th><strong>nom</strong></th>
+<th style="text-align: left;"><strong>SGBDR</strong></th>
+<th><strong>nom(s) Driver</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -160,7 +160,7 @@ qui se connecte à MySQL/ODBC</li>
 href="https://mysqlclient.readthedocs.io/user_guide.html#introduction"
 target="_blanck">MySQLdb</a> : bibliothèque qui se connecte à MySQL à
 partir de Python, elle est écrite en langage C, elle est gratuite et le
-logiciel est “opensource”.</li>
+logiciel est “open source”.</li>
 <li><a href="https://github.com/PyMySQL/PyMySQL"
 target="_blanck">PyMySQL</a> : bibliothèque qui se connecte à MySQL à
 partir de Python, c’est une bibliothèque écrite en Python. L’objectif de
@@ -180,8 +180,8 @@ class="uri">https://wiki.openstack.org/</a></figcaption>
 </ul>
 <p><br></p>
 <p><code>PyMySql</code> semble un très bon choix.
-<code>MySQL/connector</code> est propriétaire. Pour la suite des TPs, on
-utilisera <code>PyMySql</code> mais on comparera avec
+<code>MySQL/connector</code> est propriétaire. Pour la suite des TP, on
+utilisera <code>PyMySql</code> mais on comparera
 <code>MySQL/connector</code> et <code>PyMySql</code>.</p>
 <p><br></p>
 <p>Installation de <a
@@ -263,7 +263,7 @@ mydb = mysql.connector.connect(
 l’exemple ci-dessus , exemple de nom de fichier
 <strong>test1_pymysql.py</strong> <br> Cet exemple utilise les exemples
 de <a href="https://www.w3schools.com/python/python_mysql_insert.asp"
-target="_blanck">W3schools</a> ; la connexion a juste été remplacé avec
+target="_blanck">W3schools</a> ; la connexion a juste été remplacée par
 celle de <em>pymysql</em></p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
@@ -430,7 +430,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <p>L’instruction <code>@app.teardown_appcontext</code> permet d’appeler
 la fonction <code>close_connection</code> lorsque que le serveur a fini
 de renvoyer une réponse.</p>
-<p><br> Il faut recréer et fermer la connexion à chaque requête HTTP,
+<p><br> Il faut créer et fermer la connexion à chaque requête HTTP,
 sinon il y a un risque de <a
 href="https://fr.wikipedia.org/wiki/Fuite_de_m%C3%A9moire"
 target="_blanck">fuite de mémoire</a></p>
@@ -460,7 +460,8 @@ la table “etudiant”, récupérer l’interface FLASK</li>
 </ul>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_demo1"
-target="_blank">code branche final du TP1 en Dev. Interfaces Web</a></p>
+target="_blank">code branche finale du TP1 en Dev. Interfaces
+Web</a></p>
 </div>
 <p>Cloner le projet avec la commande :</p>
 <pre><code>
@@ -480,7 +481,7 @@ pycharm  flask_pymysql_demo1
 <p><strong>Ouvrir le projet</strong> (dossier) avec PyCharm (<strong>ne
 pas créer un nouveau projet</strong>)</p>
 <p><br></p>
-<p>Vérifier que les 2 librairies nécessaires sont installées</p>
+<p>Vérifier que les 2 bibliothèques nécessaires sont installées</p>
 <pre><code># avec un environnement virtuel 
 pip install flask
 pip install pymysql
@@ -624,10 +625,10 @@ des valeurs issues de formulaires HTML =&gt; Injection SQL</p>
 <li>utiliser un curseur : <code>mycursor = mydb.cursor()</code>. Sur
 FLASK, remplacer <code>mydb</code> par la fonction
 <code>get_db()</code>.</li>
-<li>créer une chaîne de texte avec commande SQL en remplacant chaque
+<li>créer une chaîne de texte avec commande SQL en remplacent chaque
 paramètre par <code>%s</code></li>
 <li>créer un tuple avec vos paramètres : <strong>ce tuple doit posséder
-le même nombre de paramètres que l’instruction SQL possède de
+le même nombre de paramètres que l’instruction SQL contient de
 <code>%s</code></strong></li>
 <li>exécuter <code>result=mycursor.execute(sql, tuple)</code></li>
 <li>pour les instructions <strong>INSERT/UPDATE/DELETE</strong>, le
@@ -638,7 +639,7 @@ ajoutés/modifiés/supprimés)</li>
 <code>()</code></li>
 </ul></li>
 <li>Avec un curseur les instructions ne sont pas
-<strong>persister</strong> (exécuter sur le disque dur). Il est
+<strong>persistées</strong> (enregistrées sur le disque dur). Il est
 nécessaire de valider ces instructions : faire un <code>commit</code>
 avec la connexion, exemple de commande : <code>mydb.commit()</code>
 (ATTENTION <code>mydb</code> n’est pas un curseur mais la connexion. Sur
@@ -657,7 +658,7 @@ dans la table “etudiant”.</p>
 <p><br><br></p>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git"
-target="_blank">code branche final du TP1 en BDD avec Flask et
+target="_blank">code branche finale du TP1 en BDD avec Flask et
 PyMSQL</a></p>
 </div>
 </body>
