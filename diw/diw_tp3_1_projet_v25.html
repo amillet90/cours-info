@@ -106,24 +106,32 @@ l’enregistrement (la ligne sélectionnée) dans les champs INPUT du
 formulaire.</p>
 <p><br></p>
 <p>ATTENTION : utiliser le code vu en cours, l’utilisation d’une IA
-générative pour produire un code non conforme au TP vu en cours entraîne
-une grosse pénalité.</p>
+générative pour produire un code non conforme au TP vu en cours
+entraînera une grosse pénalité.</p>
 <p>Une pénalité importante sera appliquée si les règles suivantes ne
 sont pas respectées :</p>
 <ul>
-<li>pas de boucle python dans le fichier <em>app.py</em> (exemple avec
-le mot clé <code>next</code>)</li>
-<li>pas d’utilisation des mots-clés <code>with</code> et
-<code>try</code> en python (gestion des exceptions).</li>
-<li>pas d’utilisation de la fonction <code>url_for</code> pour gérer une
+<li>Pas de boucle Python dans le fichier <em>app.py</em> (par exemple
+avec le mot-clé <code>next</code> ou <code>for</code>).</li>
+<li>Pas d’utilisation des mots-clés <code>with</code> et
+<code>try</code> en Python (gestion des exceptions).</li>
+<li>Pas d’utilisation de la fonction <code>url_for</code> pour gérer une
 route.</li>
-<li>pas d’utilisation de route paramétrée <code>/route/&lt;id&gt;</code>
-au lieu des routes avec paramètres GET <code>/route?id=</code>
-(paramètres de requête)</li>
-<li>pas d’utilisation de Javascript</li>
-<li>pas d’utilisation de module Python non vu en TP</li>
-<li><strong>pas d’utilisation de code que vous ne maîtrisez
+<li>Pas d’utilisation de route paramétrée <code>/route/&lt;id&gt;</code>
+à la place des routes avec paramètres GET <code>/route?id=</code>
+(paramètres de requête).</li>
+<li>Pas d’utilisation de JavaScript.</li>
+<li>Pas d’utilisation de module Python non vu en TP.</li>
+<li><strong>Pas d’utilisation de code que vous ne maîtrisez
 pas</strong></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Ne pas utiliser l’attribut “required” dans tous les champs INPUT.
+Utilisez le uniquement pour les clés étrangères et le champ “nom”(ou
+libellé) de l’enregistrement le plus important qui permet d’identifier
+l’enregistrement.</li>
+<li>Ne pas utiliser “request.method” dans le fichier app.py</li>
 </ul>
 </div>
 <p><br></p>

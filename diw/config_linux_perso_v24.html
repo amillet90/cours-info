@@ -414,68 +414,29 @@ est une console (terminal) avec beaucoup de ressemblance avec un
 terminal linux</p>
 <p><br> <br> <br></p>
 <p>J’ai utilisé <strong>mysql</strong> pour faire mes tests</p>
-<pre><code>scoop install main/mysql</code></pre>
-<p>sur mysql</p>
-<pre><code>mysql --version : pas d&#39;erreur mais pas de retour
-en se déplaçant dans le dossier de mysql
-
-cd &quot;$HOME\scoop\apps\mysql\current\bin\&quot;
-mysql --version  =&gt; pas de retour
-
-
-scoop install vcredist2022</code></pre>
-<br>
-<details>
-<summary>
-🤖 PB install mysql
-</summary>
-<p>
-<p><br />
-</p>
-<p>C:&gt; mysql -u root -p</p>
-<p>Enter password: ERROR 2059 (HY000): Authentication plugin
-‘mysql_native_password’ cannot be loaded: Le module spécifié est
-introuvable.</p>
-<p>dans le dossier “$HOME.ini”</p>
-<pre><code>[client]
-plugin-dir=C:/Users/Login/scoop/apps/mysql/current/lib/plugin
-defaut-auth=mysql_native_password
-user=root
-local_infile=ON
-
-[mysqld]
-plugin-dir=C:/Users/Login/scoop/apps/mysql/current/lib/plugin
-datadir=C:/Users/Login/scoop/apps/mysql/current/data
-basedir=C:/Users/Login/scoop/apps/mysql/current
-local_infile=ON
-sql_mode = &quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;</code></pre>
-<p>je ne sais pas si c’est utile</p>
-<pre><code>cd &quot;$HOME\scoop\apps\mysql\current\bin\&quot;
-
-.\mysqld.exe --initialize --datadir=..\data --console
-.\mysqld.exe --datadir=..\data
-
-PS C:\Users\Login\scoop\apps\mysql\current\bin&gt; mysql -u root -p
-Enter password:
-ERROR 2059 (HY000): Authentication plugin &#39;mysql_native_password&#39; cannot be loaded: Le module spécifié est introuvable.
-PS C:\Users\Login\scoop\apps\mysql\current\bin&gt; dir &quot;$HOME\scoop\apps\mysql\current\lib\plugin&quot;
-    Répertoire : C:\Users\Login\scoop\apps\mysql\current\lib\plugin</code></pre>
-</p>
-</details>
-<p>Attention à la configuration de MySQL via le fichier my.ini =&gt;</p>
 <ul>
-<li>modification impossible sur windows 11</li>
-<li>configuration différente =&gt; <a
-href="https://www.rufusvision.org/installation-du-serveur-mysql-sous-windows.html"
-target="_BLANCK">https://www.rufusvision.org/installation-du-serveur-mysql-sous-windows.html</a>
-<br></li>
+<li><em>scoop</em> semble inutilement compliqué pour installer
+mysql</li>
 </ul>
-<p>Je conseille l’installation de <strong>mariadb</strong></p>
-<p>voir la <a
-href="https://grafikart.fr/tutoriels/mysql-windows-2001#autoplay"
-target="_BLANCK">vidéo</a> sur grafikart</p>
-<p>Il est conseillé d’installer <strong>mariadb</strong> ou
-<strong>mysql</strong> indépendamment de logiciel comme Xampp, Wamp…</p>
+<p>Prompt pour chatGPT :</p>
+<p>Je souhaite installer MySQL sous Windows 11 de manière à pouvoir
+:</p>
+<ul>
+<li>me connecter depuis n’importe quel terminal (CMD ou
+PowerShell),</li>
+<li>l’utiliser avec DataGrip,</li>
+<li>et y accéder via Python (driver PyMySQL).</li>
+</ul>
+<p>Remarque : le travail de mon projet sera évalué sur une machine Linux
+où MySQL est configuré avec les valeurs suivantes pour les variables
+d’environnement : * @<span class="citation"
+data-cites="lower_case_table_names">@lower_case_table_names</span> est
+défini à 0 (ce qui n’est pas possible sous Windows à cause d’un problème
+d’encodage), * @<span class="citation"
+data-cites="sql_mode">@sql_mode</span> contient la propriété
+ONLY_FULL_GROUP_BY.</p>
+<p>Quelle est la méthode la plus simple et la plus fiable pour tout
+configurer correctement ?</p>
 <!--Pour installer des programmes sur le système d'exploitation windows 11, je désire utiliser scoop, je désire des explications sur ce gestionnaire de programmes.
 
 Comment utiliser mysql par l'intermédiaire de scoop ?
@@ -549,16 +510,16 @@ simple et différent de celui pour se connecter à votre machine) =&gt;
 <strong>ctrl H</strong> puis remplacer partout. Puis recopier ce code
 sur l’invité de commande mysql.</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- compte login  (remplacer login et motDePasse) dans tout le script</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> BDD_login;</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;motdepasse&#39;</span>;</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login&#39;</span>;</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <ul>
 <li>tester dans un terminal (invité de commande) la commande :
 <code>mysql --user=login --password=motdepasse --host=localhost  BDD_login  --local_infile</code></li>
