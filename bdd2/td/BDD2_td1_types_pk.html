@@ -832,30 +832,250 @@ de<code>WHERE id = 10</code></li>
 peut entraîner des problèmes de performances en raison de leur taille et
 de leur non-commande.</li>
 </ul>
-<p><br> REFLEXION :</p>
+<p><br> Un peu plus loin :</p>
 <ul>
 <li><strong>utilisation de 2 clés ?</strong> <a
 href="https://www.jdecool.fr/blog/2018/07/23/la-gestion-des-uuid-dans-mysql.html"
 target="_blanck">https://www.jdecool.fr/blog/2018/07/23/la-gestion-des-uuid-dans-mysql.html</a></li>
 <li><strong>passage des “uuid” en binaire ?</strong></li>
 </ul>
-<!-- https://learntutorials.net/fr/mysql/topic/5771/transaction -->
-<!--
-
-* Exécuter les commandes SQL suivantes pour supprimer les « warnings » : (dates qui ont prises comme valeur "0000-00-00")
-
-
-![](img/tp5_img1_1.jpg){width=14cm}
-
-<br>
-Remarque: 
-La commande  `SHOW VARIABLES LIKE 'sql_mode';` permet de voir que 2 variables sont mises par défaut `NO_ZERO_DATE` et `NO_ZERO_IN_DATE`, il est donc interdit sauf si l’on change ces variables d’utiliser des dates ayant pour valeur `’0000-00-00’`.
-
-* Si vous rencontrez des problèmes d’encodage, vous pouvez tester la commande suivante :
-
-
-![](img/tp5_img1_2.jpg){width=10cm}
-
--->
+<p><br><br><br><br><br><br> <br></p>
+<h1 id="uuid-vs-auto_increment-dans-mysql">UUID vs AUTO_INCREMENT dans
+MySQL</h1>
+<h2 id="le-problème-de-performance-des-uuid">Le problème de performance
+des UUID</h2>
+<p>Les UUID classiques (v4) sont <strong>aléatoires</strong>, ce qui
+pose un problème majeur avec les index B-Tree de MySQL (InnoDB) : chaque
+insertion se fait à une position aléatoire dans l’index, causant des
+<strong>page splits</strong> fréquents et une fragmentation importante.
+Les UUID stockés en <code>VARCHAR(36)</code> aggravent encore la
+situation (36 octets vs 4-8 octets pour un entier).</p>
+<p>MySQL 8.0 introduit <code>UUID_TO_BIN(uuid, 1)</code> qui
+<strong>réordonne les bits</strong> du timestamp pour rendre l’UUID
+ordonné (similaire à UUID v1), ce qui atténue fortement le problème de
+fragmentation.</p>
+<hr />
+<h2 id="tableau-comparatif">Tableau comparatif</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Critère</th>
+<th>AUTO_INCREMENT</th>
+<th>UUID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Taille de stockage</strong></td>
+<td>4 octets (INT) / 8 octets (BIGINT)</td>
+<td>16 octets (BIN) / 36 octets (VARCHAR)</td>
+</tr>
+<tr class="even">
+<td><strong>Performance INSERT</strong></td>
+<td>Excellente — insertion séquentielle en fin d’index</td>
+<td>Mauvaise (v4 aléatoire) / Bonne (v7 ou
+<code>UUID_TO_BIN(...,1)</code>)</td>
+</tr>
+<tr class="odd">
+<td><strong>Performance SELECT</strong></td>
+<td>Très bonne — index compact et dense</td>
+<td>Moins bonne — index plus lourd</td>
+</tr>
+<tr class="even">
+<td><strong>Fragmentation index</strong></td>
+<td>Quasi nulle</td>
+<td>Élevée (UUID v4) / Faible (UUID ordonné)</td>
+</tr>
+<tr class="odd">
+<td><strong>Unicité globale (multi-BDD)</strong></td>
+<td>Non — collision si merge de bases</td>
+<td>Oui — globalement unique</td>
+</tr>
+<tr class="even">
+<td><strong>Sécurité / prédictibilité</strong></td>
+<td>Prédictible (enumerable)</td>
+<td>Opaque — difficile à deviner</td>
+</tr>
+<tr class="odd">
+<td><strong>Scalabilité horizontale / sharding</strong></td>
+<td>Complexe — nécessite un mécanisme centralisé</td>
+<td>Natif — génération décentralisée sans coordination</td>
+</tr>
+<tr class="even">
+<td><strong>Portabilité applicative</strong></td>
+<td>Couplé à la BDD pour la génération</td>
+<td>Générable côté applicatif avant insertion</td>
+</tr>
+<tr class="odd">
+<td><strong>Lisibilité / debug</strong></td>
+<td>Facile (<code>id=42</code>)</td>
+<td>Peu lisible (<code>550e8400-e29b-41d4...</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>Taille des clés étrangères</strong></td>
+<td>Petite → jointures rapides</td>
+<td>Grande → jointures plus lentes</td>
+</tr>
+<tr class="odd">
+<td><strong>Réplication / merge</strong></td>
+<td>Risque de conflits</td>
+<td>Aucun risque</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="recommandations-pratiques">Recommandations pratiques</h2>
+<p><strong>Utiliser AUTO_INCREMENT si</strong> tu as une application
+monolithique, des volumes importants avec beaucoup d’écritures, et que
+la performance est prioritaire.</p>
+<p><strong>Utiliser UUID si</strong> tu fais du sharding, de la
+réplication multi-master, de la synchronisation offline, ou si tu veux
+éviter l’exposition d’IDs séquentiels dans les URLs.</p>
+<p><strong>Le meilleur des deux mondes</strong> : utiliser un
+<strong>UUID v7</strong> (ordonné par timestamp, disponible nativement
+depuis MySQL 8.4, ou via lib applicative) ou
+<code>UUID_TO_BIN(UUID(), 1)</code> stocké en <code>BINARY(16)</code> —
+tu gardes l’unicité globale tout en minimisant la fragmentation.</p>
+<h1
+id="uuid_to_bin-et-bin_to_uuid-guide-pratique"><code>UUID_TO_BIN</code>
+et <code>BIN_TO_UUID</code> — Guide pratique</h1>
+<h2 id="pourquoi-ces-fonctions">Pourquoi ces fonctions ?</h2>
+<p>Stocker un UUID en <code>VARCHAR(36)</code> est coûteux. Ces
+fonctions permettent de le convertir en <code>BINARY(16)</code> (16
+octets au lieu de 36), et le second paramètre <code>1</code>
+<strong>réordonne les bits</strong> pour rendre l’UUID séquentiel.</p>
+<hr />
+<h2 id="création-de-la-table">Création de la table</h2>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> users (</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span>        BINARY(<span class="dv">16</span>)   <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> (UUID_TO_BIN(UUID(), <span class="dv">1</span>)),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    username  <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    email     <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<hr />
+<h2 id="insert">INSERT</h2>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Laisser MySQL générer l&#39;UUID</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> users (username, email)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;jean_dupont&#39;</span>, <span class="st">&#39;jean@example.com&#39;</span>);</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Ou générer l&#39;UUID explicitement</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> users (<span class="kw">id</span>, username, email)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (UUID_TO_BIN(UUID(), <span class="dv">1</span>), <span class="st">&#39;marie_curie&#39;</span>, <span class="st">&#39;marie@example.com&#39;</span>);</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Ou depuis un UUID applicatif (ex: généré en PHP, Python, etc.)</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> users (<span class="kw">id</span>, username, email)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (UUID_TO_BIN(<span class="st">&#39;550e8400-e29b-41d4-a716-446655440000&#39;</span>, <span class="dv">1</span>), <span class="st">&#39;albert&#39;</span>, <span class="st">&#39;albert@example.com&#39;</span>);</span></code></pre></div>
+<hr />
+<h2 id="select-reconvertir-en-lisible">SELECT — reconvertir en
+lisible</h2>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Récupérer l&#39;UUID lisible</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> BIN_TO_UUID(<span class="kw">id</span>, <span class="dv">1</span>) <span class="kw">AS</span> <span class="kw">id</span>, username, email</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> users;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Résultat :</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------------------------------+-------------+--------------------+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- | id                                   | username    | email           |</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------------------------------+-------------+--------------------+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- | 550e8400-e29b-41d4-a716-446655440000 | albert      | albert@example.com |</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------------------------------+-------------+--------------------+</span></span></code></pre></div>
+<hr />
+<h2 id="where-rechercher-par-uuid">WHERE — rechercher par UUID</h2>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Toujours convertir l&#39;UUID dans le WHERE pour utiliser l&#39;index</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> BIN_TO_UUID(<span class="kw">id</span>, <span class="dv">1</span>) <span class="kw">AS</span> <span class="kw">id</span>, username</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> users</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> UUID_TO_BIN(<span class="st">&#39;550e8400-e29b-41d4-a716-446655440000&#39;</span>, <span class="dv">1</span>);</span></code></pre></div>
+<blockquote>
+<p>⚠️ Ne jamais faire <code>WHERE BIN_TO_UUID(id) = '...'</code> — cela
+empêche l’utilisation de l’index (full scan).</p>
+</blockquote>
+<hr />
+<h2 id="le-paramètre-swap_flag-le-1">Le paramètre <code>swap_flag</code>
+(le <code>1</code>)</h2>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>UUID_TO_BIN(uuid, <span class="dv">1</span>)  <span class="co">-- swap activé  : réordonne le timestamp → UUID séquentiel ✅</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>UUID_TO_BIN(uuid, <span class="dv">0</span>)  <span class="co">-- swap désactivé : stockage brut, reste aléatoire ❌</span></span></code></pre></div>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Sans swap (<code>0</code>)</th>
+<th>Avec swap (<code>1</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ordre en BDD</td>
+<td>Aléatoire</td>
+<td>Séquentiel (chronologique)</td>
+</tr>
+<tr class="even">
+<td>Fragmentation index</td>
+<td>Élevée</td>
+<td>Faible</td>
+</tr>
+<tr class="odd">
+<td>Compatible UUID v1</td>
+<td>Non</td>
+<td>Oui (optimisé pour v1)</td>
+</tr>
+<tr class="even">
+<td>Compatible UUID v4</td>
+<td>Stockage uniquement</td>
+<td>Stockage uniquement (pas de gain séquentiel)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Le swap n’a un <strong>vrai intérêt séquentiel</strong> qu’avec des
+<strong>UUID v1</strong> (basés sur le timestamp). Avec UUID v4
+(aléatoire), le swap ne change rien à l’ordre.</p>
+</blockquote>
+<hr />
+<h2 id="exemple-complet-avec-une-vue">Exemple complet avec une Vue</h2>
+<p>Pour éviter de jongler avec les conversions partout dans le code, on
+peut créer une vue :</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> v_users <span class="kw">AS</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    BIN_TO_UUID(<span class="kw">id</span>, <span class="dv">1</span>) <span class="kw">AS</span> <span class="kw">id</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    username,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    email</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> users;</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Utilisation transparente</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> v_users;</span></code></pre></div>
+<hr />
+<h2 id="côté-applicatif-exemple-python">Côté applicatif (exemple
+Python)</h2>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> uuid</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mysql.connector</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>new_uuid <span class="op">=</span> <span class="bu">str</span>(uuid.uuid1())  <span class="co"># UUID v1 pour profiter du swap</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>cursor.execute(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;INSERT INTO users (id, username) VALUES (UUID_TO_BIN(</span><span class="sc">%s</span><span class="st">, 1), </span><span class="sc">%s</span><span class="st">)&quot;</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    (new_uuid, <span class="st">&#39;jean&#39;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># En lecture</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT BIN_TO_UUID(id, 1), username FROM users&quot;</span>)</span></code></pre></div>
 </body>
 </html>
