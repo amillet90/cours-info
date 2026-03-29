@@ -1,6 +1,65 @@
 -- DROP TABLE IF EXISTS ;
 
+DROP TABLE IF EXISTS ... ;
+DROP TABLE IF EXISTS ... ;
+DROP TABLE IF EXISTS ... ;
+DROP TABLE IF EXISTS ... ;
+DROP TABLE IF EXISTS ... ;
+DROP TABLE IF EXISTS ... ;
+
 -- CREATE TABLE 
+
+CREATE TABLE patisserie(
+   idPatisserie INT AUTO_INCREMENT,
+   nom VARCHAR(255),
+   categorie VARCHAR(255),
+   prixUnitaire ....,           -- à compléter
+   PRIMARY KEY(idPatisserie)
+);
+
+CREATE TABLE recette(
+   numDeclinaison INT,
+   ingredients VARCHAR(255),
+   description TEXT,
+   auteur VARCHAR(255),
+   annee INT,
+   PRIMARY KEY(numDeclinaison)
+   FOREIGN KEY ... REFERENCES ...            -- à compléter
+);
+
+CREATE TABLE personne(
+   idPersonne INT AUTO_INCREMENT,
+   nomPersonne VARCHAR(255),
+   prenom VARCHAR(255),
+   anneeNaissance INT,
+   PRIMARY KEY(idPersonne)
+);
+
+CREATE TABLE boutique(
+   idBoutique INT AUTO_INCREMENT,
+   nom VARCHAR(255),
+   adresse VARCHAR(255),
+   codePostal DECIMAL(15,0),
+   ville VARCHAR(255),
+   PRIMARY KEY(idBoutique)
+);
+
+CREATE TABLE estRattache(
+   idPersonne INT,
+   idBoutique INT,
+   dateEmbauche DATE,
+   PRIMARY KEY(...),                          -- à compléter
+   FOREIGN KEY ... REFERENCES ... ,           -- à compléter
+   FOREIGN KEY ... REFERENCES ...             -- à compléter
+);
+
+CREATE TABLE realisation(
+   ... ,                                      -- à compléter
+   PRIMARY KEY(...),
+   FOREIGN KEY ... REFERENCES ... ,           -- à compléter
+   FOREIGN KEY ... REFERENCES ...             -- à compléter
+);
+
 
 
 
@@ -86,11 +145,6 @@ INSERT INTO realisation(idPersonne, idPatisserie, numDeclinaison, dateRealisatio
  VALUES (4, 6, 0, '2021-12-02', 400);
 
 
--- test avec des variables sur datagrip
-
-SELECT idPersonne, nomPersonne, prenom, anneeNaissance
-FROM personne
-WHERE idPersonne=:id1 or idPersonne=:id2;
 
 
 -- 1. Donner le nombre de catégorie différente de pâtisseries triée selon l’ordre lexicographique (les doublons devront
@@ -159,12 +213,12 @@ WHERE idPersonne=:id1 or idPersonne=:id2;
 -- 7 : Pour chaque boutique de la ville valdoie, donner le montant en euros des pâtisseries dans le mois de décembre 2021.
 -- Le résultat sera renommé en ’prod12-2021-euros’
 
--- +-----------------+-----------------------+-----------------+
--- | nom             | prod12−2021−euros     | nom             |
--- +-----------------+-----------------------+-----------------+
--- | MANTEY          |                  1485 | MANTEY          |
--- | La RoseMontoise |                 152.5 | La RoseMontoise |
--- +-----------------+-----------------------+-----------------+
+-- +-----------------+-----------------------+
+-- | nom             | prod12−2021−euros     | 
+-- +-----------------+-----------------------+
+-- | MANTEY          |                  1485 |
+-- | La RoseMontoise |                 152.5 |
+-- +-----------------+-----------------------+
 
 
 -- 8 : Donner le nom et le prix unitaire de la pâtisserie la plus chère pour chaque catégorie de pâtisserie.
