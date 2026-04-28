@@ -421,11 +421,13 @@ BEGIN
     CALL VerifierAge(NEW.id, NEW.age);
 END //
 DELIMITER ;</code></pre>
-<p>On désire modifier le code des déclencheurs (triggers) :</p>
+<p>On désire modifier le code des déclencheurs (triggers)</p>
 <p>de celle façon :</p>
-<p>Laisse age et majeur à NULL si age est NULL à l’insertion Lève une
-erreur si age n’est pas numérique Définit majeur à 1 si age ≥ 18, sinon
-à 0</p>
+<ul>
+<li>Laisse age et majeur à NULL si age est NULL à l’insertion</li>
+<li>Lève une erreur si age n’est pas numérique</li>
+<li>Définit majeur à 1 si age ≥ 18, sinon à 0</li>
+</ul>
 <pre><code>-- Test 1: Utilisateur majeur
 INSERT INTO utilisateurs (nom, prenom, age) VALUES (&#39;Dupond&#39;, &#39;Pierre&#39;, 28);
 -- Test 2: Utilisateur mineur
