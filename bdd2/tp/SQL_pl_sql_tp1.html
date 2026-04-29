@@ -152,8 +152,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Affichage de la variable</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @variable2 <span class="kw">AS</span> variable2;</span></code></pre></div>
-<h1 id="exercice-1-procédures-stockées">Exercice 1: Procédures
-Stockées</h1>
+<h1 id="exercice-découverte-1-procédures-stockées">Exercice découverte 1
+: Procédures Stockées</h1>
 <p>Créez une procédure stockée nommée ajouter_utilisateur qui prend en
 paramètres le nom et l’âge d’un utilisateur, et insère ces informations
 dans une table utilisateurs. Appelez la procédure avec quelques
@@ -188,7 +188,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 mettre en majuscule le nom et en minuscule le prénom. (il faut modifier
 l’appel de la procédure et passer dans 2 paramètres distincts le nom et
 le prénom)</span></p>
-<h1 id="exercice-2-fonctions">Exercice 2: Fonctions</h1>
+<h1 id="exercice-découverte-2-fonctions">Exercice découverte 2:
+Fonctions</h1>
 <p>Créez une fonction appelée <strong>calculer_moyenne</strong> qui
 prend en paramètre deux nombres et retourne leur moyenne. Utilisez la
 fonction pour calculer la moyenne de deux ensembles de nombres
@@ -224,8 +225,8 @@ variables pour calculer la moyenne de 2 monétaires</span></p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ROUTINE_NAME, ROUTINE_TYPE   </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> information_schema.routines;</span></code></pre></div>
-<h1 id="exercice-3-structures-de-contrôle">Exercice 3: Structures de
-Contrôle</h1>
+<h1 id="exercice-découverte-3-structures-de-contrôle">Exercice
+découverte 3: Structures de Contrôle</h1>
 <p>Créez une procédure qui prend un paramètre en entrée (par exemple,
 age_utilisateur) et affiche “Majeur” si l’âge est supérieur ou égal à
 18, sinon affiche “Mineur”. Testez la procédure en passant différentes
@@ -260,7 +261,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#c
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">1</span>,<span class="dv">20</span>);</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> MiseAJourAge(<span class="dv">2</span>,<span class="dv">15</span>);</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
-<h1 id="exercice-4-boucles">Exercice 4: Boucles</h1>
+<h1 id="exercice-découverte-4-boucles">Exercice découverte 4:
+Boucles</h1>
 <p>Créez une table nombres avec une colonne valeur. Utilisez une boucle
 pour insérer des valeurs de 1 à 10 dans la table. Affichez le contenu de
 la table nombres.</p>
@@ -289,8 +291,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#c
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Affichage du contenu de la table</span></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> nombres;</span></code></pre></div>
-<h1 id="exercice-5-déclencheurs-triggers">Exercice 5: Déclencheurs
-(Triggers)</h1>
+<h1 id="exercice-découverte-5-déclencheurs-triggers">Exercice découverte
+5: Déclencheurs (Triggers)</h1>
 <p>Créez une table historique_utilisateurs avec des colonnes telles que
 id_utilisateur, nom_utilisateur, action et date_action. Créez un
 déclencheur qui enregistre une nouvelle ligne dans
@@ -326,8 +328,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#c
 <p><span class="modif">Créer un nouveau “trigger” (déclencheur) pour
 mettre en majuscule le nom et en minuscule le prénom lors d’un
 INSERT</span></p>
-<h1 id="exercice-6-exemple-de-curseurs">Exercice 6: exemple de
-curseurs</h1>
+<h1 id="exercice-découverte-6-exemple-de-curseurs">Exercice découverte
+6: exemple de curseurs</h1>
 <p>Un curseur est une structure de contrôle qui permet d’itérer à
 travers un ensemble de lignes renvoyées par une requête SQL. Il agit
 comme un pointeur sur un ensemble de résultats et permet de traiter
@@ -410,7 +412,51 @@ dans la procédure ci-dessus</span></p>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> AfficherUtilisateurs();</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
-<h1 id="exercice">Exercice :</h1>
+<h1 id="exercice-1">Exercice 1</h1>
+<p>Contexte : On veut garder une trace des modifications apportées aux
+utilisateurs. Objectif : Créer un trigger AFTER UPDATE sur la table
+utilisateurs qui enregistre dans historique_utilisateurs l’ancienne
+valeur du nom, la nouvelle valeur, et l’action ‘Modification’.</p>
+<p>Étapes :</p>
+<p>Ajouter une colonne ancien_nom VARCHAR(50) à la table
+historique_utilisateurs pour stocker la valeur avant modification. Créer
+le trigger after_update_utilisateur. Tester avec :</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> utilisateurs <span class="kw">SET</span> nom <span class="op">=</span> <span class="st">&#39;LIONEL&#39;</span> <span class="kw">WHERE</span> nom <span class="op">=</span> <span class="st">&#39;lionel&#39;</span>;</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> historique_utilisateurs;</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p>Indice : Dans un trigger AFTER UPDATE, tu as accès à OLD.nom (valeur
+avant) et NEW.nom (valeur après).</p>
+<h1 id="exercice-2-curseur-avec-calcul-et-mise-à-jour">Exercice 2 :
+Curseur avec calcul et mise à jour</h1>
+<p>Contexte : On veut identifier les utilisateurs mineurs et leur
+attribuer une catégorie. Objectif : Créer une procédure
+ClasserUtilisateurs() qui parcourt tous les utilisateurs avec un curseur
+et :</p>
+<p>affiche pour chaque utilisateur une chaîne du type ‘Alice (17 ans)
+=&gt; Mineur’ ou ‘Bob (25 ans) =&gt; Majeur’ met à jour la colonne
+majeur à 1 ou 0 selon l’âge réel (utile si la colonne n’est pas à
+jour)</p>
+<p>Structure suggérée :</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">PROCEDURE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> ClasserUtilisateurs;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>DELIMITER <span class="op">//</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> ClasserUtilisateurs()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Déclarer les variables nécessaires</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Déclarer le curseur sur utilisateurs</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Déclarer le CONTINUE HANDLER</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Ouvrir le curseur, boucler avec WHILE, fermer le curseur</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="op">//</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>DELIMITER ;</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CALL</span> ClasserUtilisateurs();</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> utilisateurs;</span></code></pre></div>
+<p>Indice : Utilise IF v_age &gt;= 18 THEN … ELSE … END IF; à
+l’intérieur de la boucle, et un UPDATE utilisateurs SET majeur = … WHERE
+id = v_id; pour mettre à jour chaque ligne.</p>
+<h1 id="exercice-3">Exercice 3 :</h1>
 <p>Peut on utiliser ce code</p>
 <pre><code>DROP TRIGGER IF EXISTS after_insert_utilisateur2;
 DELIMITER //
