@@ -112,36 +112,68 @@ format de la date retournée.</p></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> telephone;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> telephone </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>idTelephone       <span class="dt">INTEGER</span> AUTO_INCREMENT  </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>, type_id         <span class="dt">CHAR</span>(<span class="dv">2</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>, marque_id       <span class="dt">INTEGER</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>, date_achat   <span class="dt">DATE</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>, prix         <span class="dt">DECIMAL</span> (<span class="dv">9</span>,<span class="dv">2</span>)       <span class="co">/* NUMBER(9,2) sur ORACLE */</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>, proprietaire_id <span class="dt">INTEGER</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>, couleur       <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idTelephone)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone (idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,STR_TO_DATE(<span class="st">&#39;15/01/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">139.99</span>,<span class="dv">190120</span>,<span class="st">&#39;ROUGE&#39;</span>);</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- il est déconseillé de mettre une valeur à une clé primaire =&gt; pour vérification</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone (idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id) <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">2</span>,STR_TO_DATE(<span class="st">&#39;14/03/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.99</span>,<span class="dv">190215</span>);</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CL&#39;</span> ,<span class="dv">3</span>,STR_TO_DATE(<span class="st">&#39;02/05/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">49.11</span>,<span class="dv">190001</span>,<span class="st">&#39;NOIR&#39;</span>);</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">4</span>,STR_TO_DATE(<span class="st">&#39;25/07/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">89.14</span>,<span class="dv">190222</span>,<span class="st">&#39;BLANC&#39;</span>);</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id)         <span class="kw">VALUES</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;IP&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;30/09/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">359.49</span>,<span class="dv">190561</span>);</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;01/01/2021&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.51</span>,<span class="dv">122120</span>,<span class="st">&#39;BLANC&#39;</span>),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">189</span>,<span class="dv">190622</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="kw">NULL</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">20</span>,<span class="dv">190623</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>);</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> type_tel;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> marque_tel;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> marque_tel</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>idMarque      <span class="dt">INTEGER</span>  AUTO_INCREMENT</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>, libelle   <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>, pays         <span class="dt">VARCHAR</span>(<span class="dv">30</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idMarque)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> type_tel</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>idType         <span class="dt">CHAR</span>(<span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>, libelle     <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idType)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> telephone</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>idTelephone       <span class="dt">INTEGER</span> AUTO_INCREMENT  </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>, type_id         <span class="dt">CHAR</span>(<span class="dv">2</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>, marque_id       <span class="dt">INTEGER</span> </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>, date_achat   <span class="dt">DATE</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>, prix         <span class="dt">DECIMAL</span> (<span class="dv">9</span>,<span class="dv">2</span>)       <span class="co">/* NUMBER(9,2) sur ORACLE */</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>, proprietaire_id <span class="dt">INTEGER</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>, couleur       <span class="dt">VARCHAR</span>(<span class="dv">25</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>, <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(idTelephone)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>, <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (type_id) <span class="kw">REFERENCES</span> type_tel(idType)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>, <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (marque_id) <span class="kw">REFERENCES</span> marque_tel(idMarque)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_tel <span class="kw">VALUES</span> (<span class="st">&#39;SP&#39;</span>,<span class="st">&#39;Smartphone&#39;</span>);</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_tel <span class="kw">VALUES</span> (<span class="st">&#39;CL&#39;</span>,<span class="st">&#39;clapet&#39;</span>);</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_tel <span class="kw">VALUES</span> (<span class="st">&#39;CO&#39;</span>,<span class="st">&#39;COULISSANT&#39;</span>);</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_tel <span class="kw">VALUES</span> (<span class="st">&#39;IP&#39;</span>,<span class="st">&#39;IPHONE&#39;</span>);</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> type_tel <span class="kw">VALUES</span> (<span class="st">&#39;AU&#39;</span>,<span class="st">&#39;AUTRE&#39;</span>);</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> marque_tel <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;société SAMSUNG&#39;</span>,<span class="st">&#39;COREE&#39;</span>);</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> marque_tel <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;entreprise SONY&#39;</span>,<span class="st">&#39;JAPON&#39;</span>);</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> marque_tel <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;groupe PHILIPS&#39;</span>,<span class="st">&#39;PAYS BAS&#39;</span>);</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> marque_tel <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;marque MOTOROLA&#39;</span>,<span class="st">&#39;USA&#39;</span>);</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> marque_tel <span class="kw">VALUES</span> (<span class="kw">NULL</span>, <span class="st">&#39;SOCIETE APPLE&#39;</span>,<span class="st">&#39;USA&#39;</span>);</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone (idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span> (<span class="dv">1</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,STR_TO_DATE(<span class="st">&#39;15/01/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">139.99</span>,<span class="dv">190120</span>,<span class="st">&#39;ROUGE&#39;</span>);</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co">-- il est déconseillé de mettre une valeur à une clé primaire =&gt; pour vérification</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone (idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id) <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">2</span>,STR_TO_DATE(<span class="st">&#39;14/03/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.99</span>,<span class="dv">190215</span>);</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CL&#39;</span> ,<span class="dv">3</span>,STR_TO_DATE(<span class="st">&#39;02/05/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">49.11</span>,<span class="dv">190001</span>,<span class="st">&#39;NOIR&#39;</span>);</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">4</span>,STR_TO_DATE(<span class="st">&#39;25/07/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">89.14</span>,<span class="dv">190222</span>,<span class="st">&#39;BLANC&#39;</span>);</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id)         <span class="kw">VALUES</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;IP&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;30/09/2020&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>),<span class="fl">359.49</span>,<span class="dv">190561</span>);</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> telephone</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>(idTelephone,type_id,marque_id,date_achat,prix,proprietaire_id,couleur) <span class="kw">VALUES</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;CO&#39;</span> ,<span class="dv">5</span>,STR_TO_DATE(<span class="st">&#39;01/01/2021&#39;</span>, <span class="st">&#39;%d/%m/%Y&#39;</span>), <span class="fl">99.51</span>,<span class="dv">122120</span>,<span class="st">&#39;BLANC&#39;</span>),</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="st">&#39;SP&#39;</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">189</span>,<span class="dv">190622</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="kw">NULL</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="dv">20</span>,<span class="dv">190623</span>,<span class="st">&#39;ROUGE&#39;</span>),</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>,<span class="kw">NULL</span> ,<span class="dv">1</span>,<span class="st">&#39;2013-01-15&#39;</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>,<span class="kw">NULL</span>);</span></code></pre></div>
 <p>exemple :</p>
 <ul>
 <li><a
@@ -571,12 +603,12 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="#
 href="https://dev.mysql.com/doc/refman/5.7/en/fulltext-query-expansion.html"
 target="_blanck">Full-Text Searches with Query Expansion</a></li>
 </ul>
-<pre><code>SELECT nom , description_courte
-FROM article 
-WHERE 
-MATCH (description_courte)
-AGAINST (&#39;info&#39; WITH QUERY EXPANSION);
-</code></pre>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> nom , description_courte</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> article </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>MATCH (description_courte)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>AGAINST (<span class="st">&#39;info&#39;</span> <span class="kw">WITH</span> <span class="kw">QUERY</span> EXPANSION);</span></code></pre></div>
 <p>expansion aveugle des requêtes : Cela fonctionne en effectuant la
 recherche deux fois, où la phrase de recherche pour la deuxième
 recherche est la phrase de recherche d’origine concaténée avec les
@@ -601,7 +633,49 @@ quelques documents les plus pertinents de la première recherche.</p>
 * <https://database.guide/how-match-against-works-in-mariadb/>{target=_blanck}
 <br>
 -->
-<h2 id="exo-3"><em>exo 3 :</em></h2>
+<h2 id="exo-3-bornes-de-recharge-électrique"><em>exo 3 : Bornes de
+recharge électrique 🔋🔋</em></h2>
+<p>Contexte : vous développez une application mobile pour aider les
+conducteurs de véhicules électriques à trouver une borne de recharge à
+proximité.</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> borne;</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> borne (</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  id_borne      <span class="dt">INT</span> AUTO_INCREMENT,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  nom_borne     <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  ville         <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  disponible    <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">TRUE</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  puissance_kw  <span class="dt">INT</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  location      POINT,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (id_borne)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne A1&#39;</span>, <span class="st">&#39;Belfort&#39;</span>,     <span class="kw">TRUE</span>,  <span class="dv">22</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.862100 47.638770)&#39;</span>));</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne B1&#39;</span>, <span class="st">&#39;Besançon&#39;</span>,    <span class="kw">TRUE</span>,  <span class="dv">50</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.025530 47.241268)&#39;</span>));</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne C1&#39;</span>, <span class="st">&#39;Dijon&#39;</span>,       <span class="kw">FALSE</span>, <span class="dv">150</span>, ST_GeomFromText(<span class="st">&#39;POINT(5.041480 47.322047)&#39;</span>));</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne C2&#39;</span>, <span class="st">&#39;Dijon&#39;</span>,       <span class="kw">TRUE</span>,  <span class="dv">22</span>,  ST_GeomFromText(<span class="st">&#39;POINT(5.039440 47.319580)&#39;</span>));</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne D1&#39;</span>, <span class="st">&#39;Mulhouse&#39;</span>,    <span class="kw">TRUE</span>,  <span class="dv">150</span>, ST_GeomFromText(<span class="st">&#39;POINT(7.339820 47.749500)&#39;</span>));</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne E1&#39;</span>, <span class="st">&#39;Épinal&#39;</span>,      <span class="kw">FALSE</span>, <span class="dv">50</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.451070 48.172310)&#39;</span>));</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne F1&#39;</span>, <span class="st">&#39;Vesoul&#39;</span>,      <span class="kw">TRUE</span>,  <span class="dv">22</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.157980 47.620780)&#39;</span>));</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne G1&#39;</span>, <span class="st">&#39;Montbéliard&#39;</span>, <span class="kw">TRUE</span>,  <span class="dv">50</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.798870 47.510390)&#39;</span>));</span></code></pre></div>
+<p>Q7. Le conducteur a besoin d’une charge rapide (≥ 50 kW). Affichez
+les bornes disponibles, rapides, dans un rayon de 150 km.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @ma_position  <span class="op">=</span> ST_GeomFromText(<span class="st">&#39;POINT(6.862100 47.638770)&#39;</span>);</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @rayon_km     <span class="op">=</span> <span class="dv">150</span>;</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @puissance_min <span class="op">=</span> <span class="dv">50</span>;</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  nom_borne,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ville,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  puissance_kw,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">..</span>.</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> borne</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> disponible <span class="op">=</span> <span class="kw">TRUE</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> puissance_kw <span class="op">&gt;=</span> @puissance_min</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> <span class="op">....</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> distance_km <span class="kw">ASC</span>;</span></code></pre></div>
+<h2 id="exo-5-1"><em>exo 5-1:</em></h2>
 <ul>
 <li>Afficher l’identifiant du téléphone, le libellé de la marque, le
 libellé du type, le prix , la date d’achat et la date limite de garantie
@@ -620,7 +694,7 @@ par date d’achat.</li>
 +-------------+-------------------+------------+--------+------------+-------------------+
 
 </code></pre>
-<h2 id="exo-4"><em>exo 4 :</em></h2>
+<h2 id="exo-5-2"><em>exo 5-2 :</em></h2>
 <ul>
 <li>Même requête que la précédente mais afficher la date de garantie des
 téléphones (1 an) sauf pour les téléphones de la marque “SAMSUNG” (2
@@ -635,7 +709,7 @@ ans) et “APPLE” (3 ans). Le résultat est ordonné par date d’achat.</li>
 |           5 | SOCIETE APPLE     | IPHONE     | 359.49 | 2020-09-30 | 2023-09-30        |
 +-------------+-------------------+------------+--------+------------+-------------------+
 </code></pre>
-<h2 id="exo-5"><em>exo 5:</em></h2>
+<h2 id="exo-5-3"><em>exo 5-3:</em></h2>
 <ul>
 <li><p>Remise : le magasin désire envoyer un bon de remise à toutes les
 personnes propriétaires d’un téléphone depuis moins de 5 ans (date
