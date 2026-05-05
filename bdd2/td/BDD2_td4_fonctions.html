@@ -658,8 +658,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#
 <span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne E1&#39;</span>, <span class="st">&#39;Épinal&#39;</span>,      <span class="kw">FALSE</span>, <span class="dv">50</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.451070 48.172310)&#39;</span>));</span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne F1&#39;</span>, <span class="st">&#39;Vesoul&#39;</span>,      <span class="kw">TRUE</span>,  <span class="dv">22</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.157980 47.620780)&#39;</span>));</span>
 <span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> borne <span class="kw">VALUES</span> (<span class="kw">null</span>, <span class="st">&#39;Borne G1&#39;</span>, <span class="st">&#39;Montbéliard&#39;</span>, <span class="kw">TRUE</span>,  <span class="dv">50</span>,  ST_GeomFromText(<span class="st">&#39;POINT(6.798870 47.510390)&#39;</span>));</span></code></pre></div>
-<p>Q7. Le conducteur a besoin d’une charge rapide (≥ 50 kW). Affichez
-les bornes disponibles, rapides, dans un rayon de 150 km.</p>
+<p>Complèter la Requête : Le conducteur a besoin d’une charge rapide (≥
+50 kW). Affichez les bornes disponibles, rapides, dans un rayon de 150
+km.</p>
 <div class="sourceCode" id="cb26"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @ma_position  <span class="op">=</span> ST_GeomFromText(<span class="st">&#39;POINT(6.862100 47.638770)&#39;</span>);</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> @rayon_km     <span class="op">=</span> <span class="dv">150</span>;</span>
@@ -675,6 +676,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> puissance_kw <span class="op">&gt;=</span> @puissance_min</span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> <span class="op">....</span></span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> distance_km <span class="kw">ASC</span>;</span></code></pre></div>
+<p>(r7)</p>
 <h2 id="exo-5-1"><em>exo 5-1:</em></h2>
 <ul>
 <li>Afficher l’identifiant du téléphone, le libellé de la marque, le
