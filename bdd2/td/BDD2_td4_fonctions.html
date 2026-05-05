@@ -81,7 +81,7 @@
   <title>BDD</title>
 </head>
 <body>
-<h1 id="fonctions-sql">Fonctions SQL</h1>
+<h1 id="fonctions-sql-introduction">Fonctions SQL : introduction</h1>
 <p>Sur les différents SGBD, il y a une multitude de fonctions :</p>
 <ul>
 <li><a href="http://sqlpro.developpez.com/cours/sqlaz/fonctions/"
@@ -94,7 +94,7 @@ phrase qui ne date pas d’hier puisqu’elle est de Montaigne …</p>
 <p>L’objectif n’est pas de les voir toutes mais d’en utiliser certaines
 (si possible les plus pertinentes), pour voir les différences entre SGBD
 et en retenir quelques une.</p>
-<h2 id="fonction-sur-les-dates">fonction sur les dates</h2>
+<h1 id="fonction-sur-les-dates">fonction sur les dates</h1>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> CURDATE();     <span class="co">--  fonction sur MYSQL (juste la date)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> GETDATE();     <span class="co">-- fonction transactSQL de SQLSERVER</span></span>
@@ -215,8 +215,8 @@ target="_blanck">FORMAT</a></p></li>
 <li><p><a href="https://mariadb.com/kb/en/date-and-time-units/"
 target="_blanck">unité avec INTERVAL</a></p></li>
 </ul>
-<h3 id="exemple-de-configuration-de-la-time_zone">exemple de
-configuration de la “time_zone”</h3>
+<h2 id="exemple-de-configuration-de-la-time_zone">exemple de
+configuration de la “time_zone”</h2>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html"
 target="_blanck">documentation datetime timestamp</a> - <a
 href="https://planetscale.com/blog/datetimes-vs-timestamps-in-mysql"
@@ -260,8 +260,11 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#c
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> posts(title, <span class="kw">online</span>) <span class="kw">VALUES</span>(<span class="st">&#39;titre post5&#39;</span>, <span class="dv">0</span>);</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> posts(title, <span class="kw">online</span>) <span class="kw">VALUES</span>(<span class="st">&#39;titre post6&#39;</span>, <span class="dv">1</span>);</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> posts;</span></code></pre></div>
-<p>timestamp nombre de seconde depuis 1970</p>
-<p>différence timezone timestamp(=&gt; sauvegarde au format UTC)</p>
+<ul>
+<li><p><strong>timestamp</strong> nombre de seconde depuis 1970</p></li>
+<li><p>différence timezone timestamp(=&gt; sauvegarde au format
+UTC)</p></li>
+</ul>
 <p><br></p>
 <p>date au format <strong>UTC (temps universel)</strong> :
 UTC_TIMESTAMP() n’est pas affecté par les fuseaux horaires locaux, ce
@@ -295,8 +298,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#
 <p>Il existe beaucoup de fonctions : <a
 href="https://zestedesavoir.com/tutoriels/730/administrez-vos-bases-de-donnees-avec-mysql/951_fonctions-manipuler-les-dates/3950_calculs-sur-les-donnees-temporelles/"
 target="_blanck">exemple de fonctions</a></p>
-<h2 id="fonction-sur-les-chaînes-de-caractères">fonction sur les chaînes
-de caractères</h2>
+<h1 id="fonctions-sur-les-chaînes-de-caractères">fonctions sur les
+chaînes de caractères</h1>
 <ul>
 <li>les fonctions sur les chaînes de caractères <a
 href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html">MySQL</a>
@@ -329,7 +332,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">SUBSTR</span>(libelle, <span class="fu">INSTR</span>(libelle, <span class="st">&#39; &#39;</span>)<span class="op">+</span> <span class="dv">1</span>, <span class="dv">100</span>),</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TRIM</span>(<span class="fu">SUBSTR</span>(libelle, <span class="fu">INSTR</span>(libelle, <span class="st">&#39; &#39;</span>), <span class="dv">100</span>))</span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> marque_tel;</span></code></pre></div>
-<h2 id="fonctions-sur-les-numériques">fonctions sur les numériques</h2>
+<h1 id="fonctions-sur-les-numériques">fonctions sur les numériques</h1>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- pour SQL Server et MySQL</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
@@ -345,7 +348,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#
 <li>La fonction <em>FORMAT</em> fonctionne comme <em>ROUND</em> mais
 retourne une chaîne de caractères (attention au tri)</li>
 </ul>
-<h1 id="select-avancé">SELECT avancé</h1>
+<h1 id="select-avancé-avec-des-conditions">SELECT avancé : avec des
+conditions</h1>
 <h2 id="efficacité-de-la-clause-where">efficacité de la clause
 WHERE</h2>
 <ul>
@@ -404,7 +408,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span>  marque_tel <span class="kw">AS</span> marq</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> tel.marque_id <span class="op">=</span> marq.idMarque;</span></code></pre></div>
 <hr />
-<h1 id="exercice"><strong>EXERCICE</strong></h1>
+<h1
+id="fonctions-avancées-données-géolocalisées-et-recherche-fulltext"><strong>Fonctions
+avancées : données géolocalisées et recherche FULLTEXT</strong></h1>
 <h2 id="exo-1-démonstration-données-géolocalisées"><em>exo 1
 démonstration :</em> données géolocalisées</h2>
 <p>– vente d’article (style le bon-coin)</p>
@@ -470,7 +476,7 @@ href="https://www.data.gouv.fr/fr/datasets/contours-des-departements-francais-is
 target="_blanck">https://www.data.gouv.fr/fr/datasets/contours-des-departements-francais-issus-d-openstreetmap/</a>
 <br></p>
 <h2 id="exo-2-démonstration-recherche-fulltext"><em>exo 2 démonstration
-:</em> Recherche fulltext</h2>
+:</em> <strong>Recherche fulltext</strong></h2>
 <p><a
 href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html"
 target="_blanck">https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html</a>
@@ -633,6 +639,7 @@ quelques documents les plus pertinents de la première recherche.</p>
 * <https://database.guide/how-match-against-works-in-mariadb/>{target=_blanck}
 <br>
 -->
+<h1 id="exercices">exercices</h1>
 <h2 id="exo-3-bornes-de-recharge-électrique"><em>exo 3 : Bornes de
 recharge électrique 🔋🔋</em></h2>
 <p>Contexte : vous développez une application mobile pour aider les
