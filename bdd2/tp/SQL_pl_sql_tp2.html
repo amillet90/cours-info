@@ -161,7 +161,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11123</span>, <span class="st">&#39;Franck&#39;</span>, <span class="st">&#39;Morel&#39;</span>, <span class="st">&#39;Lille&#39;</span>,   <span class="st">&#39;10-01-1945&#39;</span>  ),</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11124</span>, <span class="st">&#39;Albert&#39;</span>, <span class="st">&#39;Maure&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;10-01-1948&#39;</span>  ),</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11125</span>, <span class="st">&#39;Beatrice&#39;</span>, <span class="st">&#39;Malloire&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;10-01-1946&#39;</span>  ),</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11126</span>, <span class="st">&#39;Christian&#39;</span>, <span class="st">&#39;Millan&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;10-01-1947&#39;</span>  ),</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11126</span>, <span class="st">&#39;Christian&#39;</span>, <span class="st">&#39;Millan&#39;</span>, <span class="st">&#39;Paris&#39;</span>,   <span class="st">&#39;10-01-1947&#39;</span>  )</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>);</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
@@ -243,7 +243,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11123</span>, <span class="st">&#39;Franck&#39;</span>, <span class="st">&#39;Morel&#39;</span>, <span class="st">&#39;Lille&#39;</span>, STR_TO_DATE(<span class="st">&#39;10-01-1945&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11124</span>, <span class="st">&#39;Albert&#39;</span>, <span class="st">&#39;Maure&#39;</span>, <span class="st">&#39;Paris&#39;</span>,, STR_TO_DATE(<span class="st">&#39;10-01-1948&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11125</span>, <span class="st">&#39;Beatrice&#39;</span>, <span class="st">&#39;Malloire&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;10-01-1946&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11126</span>,<span class="st">&#39;Christian&#39;</span>, <span class="st">&#39;Millan&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;10-01-1947&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>)),</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11126</span>,<span class="st">&#39;Christian&#39;</span>, <span class="st">&#39;Millan&#39;</span>, <span class="st">&#39;Paris&#39;</span>, STR_TO_DATE(<span class="st">&#39;10-01-1947&#39;</span>, <span class="st">&#39;%d-%m-%Y&#39;</span>))</span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>;</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
@@ -296,7 +296,7 @@ modifie tous les noms des profils dans la table grille_sal en ajoutant
 la lettre ‘P’ devant chaque nom de profil. Pour chaque profil modifié
 dans la table grille_sal les valeurs correspondantes dans la table
 embauche doivent également être modifiées. <strong>Attention à la clé
-étrangère : il faut dans votre script la supprime puis la re-crée
+étrangère : il faut que votre script la supprime puis la re-crée
 .</strong></span></li>
 </ol>
 <pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
