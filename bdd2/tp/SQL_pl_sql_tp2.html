@@ -274,22 +274,22 @@ dans un terminal.</strong>.</span></li>
 </ol>
 <p><br></p>
 <p>Faire valider votre script en affichant dans un terminal :</p>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
-+-----------------------------+
-| Message                     |
-+-----------------------------+
-| 4 employé(s) supprimé(s).   |
-+-----------------------------+
-1 row in set (0,004 sec)
-...
-
-MariaDB [BDD_s2_tp]&gt; CALL SupprimerEmployes70ansOuPlus();
-+---------------------------+
-| Message                   |
-+---------------------------+
-| Aucun employé supprimé.   |
-+---------------------------+
-</code></pre>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> SupprimerEmployes70ansOuPlus();</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>| Message                     |</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">4</span> employé(s) supprimé(s).   |</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">004</span> sec)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> SupprimerEmployes70ansOuPlus();</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>| Message                   |</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>| Aucun employé supprimé.   |</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------+</span></span></code></pre></div>
 <p>L’instruction <code>SELECT * FROM Employe;</code> permet de voir que
 franck, albert … ont disparus</p>
 <p><br> <br></p>
@@ -303,63 +303,64 @@ modifiées. <strong>Attention à la clé étrangère : il faut que votre
 script la supprime puis la re-crée .</strong></span></li>
 </ol>
 <p><br></p>
-<p>Faire valider votre script en affichant dans un terminal :</p>
+<p>Faire valider votre script en affichant dans un terminal : <br></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> profil, salaire</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-&gt;</span>         <span class="kw">FROM</span> Grille_sal;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>| profil | salaire  |</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>| <span class="kw">Admin</span>  | <span class="fl">80000.00</span> |</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>| Deve   | <span class="fl">45000.00</span> |</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>| Tech   | <span class="fl">35000.00</span> |</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> SHOW <span class="kw">CREATE</span> <span class="kw">TABLE</span> Embauche;</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>| <span class="kw">Table</span>    | <span class="kw">Create</span> <span class="kw">Table</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>| Embauche | <span class="kw">CREATE</span> <span class="kw">TABLE</span> `Embauche` (</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  `NumSS` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  `NumProj` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  `DateEmb` <span class="dt">date</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> curdate(),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  `Profil` <span class="dt">varchar</span>(<span class="dv">20</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (`NumSS`,`NumProj`,`DateEmb`),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">KEY</span> `NumProj` (`NumProj`),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">KEY</span> `Profil` (`Profil`),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> `Embauche_ibfk_1` <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (`NumSS`) <span class="kw">REFERENCES</span> `Employe` (`NumSS`),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> `Embauche_ibfk_2` <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (`NumProj`) <span class="kw">REFERENCES</span> `Projet` (`NumProj`),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> `Embauche_ibfk_3` <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (`Profil`) <span class="kw">REFERENCES</span> `Grille_sal` (`profil`)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>InnoDB <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8mb4 COLLATE<span class="op">=</span>utf8mb4_general_ci |</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">000</span> sec)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> ModifierProfilsEtSalaire();</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------------------------+  </span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>| Message                                       |</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------------------------+</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>| Les profils ont été modifiés avec succès.     |</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-----------------------------------------------+</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">568</span> sec)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="kw">Query</span> OK, <span class="dv">12</span> <span class="kw">rows</span> affected (<span class="dv">0</span>,<span class="dv">568</span> sec)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> profil, salaire</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">-&gt;</span>         <span class="kw">FROM</span> Grille_sal;</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>| profil | salaire  |</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>| PAdmin | <span class="fl">80000.00</span> |</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>| PDeve  | <span class="fl">45000.00</span> |</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>| PTech  | <span class="fl">35000.00</span> |</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Embauche;</span></code></pre></div>
 <ul>
 <li>L’instruction “SHOW CREATE TABLE Embauche;” permet de voir le nom
 des clés étrangères</li>
 </ul>
-<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| Admin  | 80000.00 |
-| Deve   | 45000.00 |
-| Tech   | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; SHOW CREATE TABLE Embauche;
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Embauche | CREATE TABLE `Embauche` (
-  `NumSS` int(11) NOT NULL,
-  `NumProj` int(11) NOT NULL,
-  `DateEmb` date NOT NULL DEFAULT curdate(),
-  `Profil` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`NumSS`,`NumProj`,`DateEmb`),
-  KEY `NumProj` (`NumProj`),
-  KEY `Profil` (`Profil`),
-  CONSTRAINT `Embauche_ibfk_1` FOREIGN KEY (`NumSS`) REFERENCES `Employe` (`NumSS`),
-  CONSTRAINT `Embauche_ibfk_2` FOREIGN KEY (`NumProj`) REFERENCES `Projet` (`NumProj`),
-  CONSTRAINT `Embauche_ibfk_3` FOREIGN KEY (`Profil`) REFERENCES `Grille_sal` (`profil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
-+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-1 row in set (0,000 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL ModifierProfilsEtSalaire();
-+-----------------------------------------------+  
-| Message                                       |
-+-----------------------------------------------+
-| Les profils ont été modifiés avec succès.     |
-+-----------------------------------------------+
-1 row in set (0,568 sec)
-
-Query OK, 12 rows affected (0,568 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 80000.00 |
-| PDeve  | 45000.00 |
-| PTech  | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-SELECT * FROM Embauche;</code></pre>
 <p><br> <br></p>
 <ol start="3" type="1">
 <li><span class="orange">(Curseur avec des paramètres) Écrivez une
@@ -396,31 +397,34 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                       <span class="cf">END</span> <span class="cf">IF</span>;</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span></code></pre></div>
+<p><br></p>
+<p>Faire valider votre script en affichant dans un terminal (</p>
 <p>le résultat de l’instruction
 <code>CALL AfficherProjetsEmployes();</code> dans un terminal connecté à
 MySQL avec le jeu de test donné est :</p>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL AfficherProjetsEmployes2();
-+--------------------------------------+
-| Ligne                                |
-+--------------------------------------+
-| -----------------------------------  |
-| Projet: ADOOP dans la ville Paris    |
-| -----------------------------------  |
-| Nombre d&#39;employés: 2                 |
-| Employé(s): Florent, Girac           |
-| Employé(s): Mayla, Aoun              |
-| -----------------------------------  |
-| Projet: BAJA dans la ville Paris     |
-| -----------------------------------  |
-| Nombre d&#39;employés: 0                 |
-| *** personne affectée sur ce projet  |
-| -----------------------------------  |
-| Projet: SKALA dans la ville Lyon     |
-| -----------------------------------  |
-| Nombre d&#39;employés: 1                 |
-| Employé(s): Christine, Lara          |
-+--------------------------------------+
-16 rows in set (0,007 sec)</code></pre>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> AfficherProjetsEmployes();</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------------------------------+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>| Ligne                                |</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------------------------------+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>| <span class="co">-----------------------------------  |</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>| Projet: ADOOP dans la ville Paris    |</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>| <span class="co">-----------------------------------  |</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>| Nombre d<span class="st">&#39;employés: 2                 |</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">| Employé(s): Florent, Girac           |</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">| Employé(s): Mayla, Aoun              |</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">| -----------------------------------  |</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">| Projet: BAJA dans la ville Paris     |</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">| -----------------------------------  |</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">| Nombre d&#39;</span>employés: <span class="dv">0</span>                 |</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>| <span class="op">***</span> personne affectée sur ce projet  |</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>| <span class="co">-----------------------------------  |</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>| Projet: SKALA dans la ville Lyon     |</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>| <span class="co">-----------------------------------  |</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>| Nombre d<span class="st">&#39;employés: 1                 |</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">| Employé(s): Christine, Lara          |</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">+--------------------------------------+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">16 rows in set (0,007 sec)</span></span></code></pre></div>
 <p><br> <br></p>
 <ol start="4" type="1">
 <li><span class="orange">(Utilisation CASE et Curseur) Écrivez une
@@ -430,40 +434,42 @@ augmentés de 30%, les salaires compris entre 40000 et 60000 de 20% et
 les salaires supérieurs à 60000 sont augmentés de 10%. Utilisez un CASE
 pour tester les différentes valeurs possibles du salaire.</span></li>
 </ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 80000.00 |
-| PDeve  | 45000.00 |
-| PTech  | 35000.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL AugmenterSalaires();
-+-------------------------------------------------+
-| Message                                         |
-+-------------------------------------------------+
-| Les salaires ont été augmentés avec succès.     |
-+-------------------------------------------------+
-1 row in set (0,010 sec)
-
-Query OK, 3 rows affected (0,010 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT profil, salaire
-    -&gt;         FROM Grille_sal;
-+--------+----------+
-| profil | salaire  |
-+--------+----------+
-| PAdmin | 88000.00 |
-| PDeve  | 54000.00 |
-| PTech  | 45500.00 |
-+--------+----------+
-3 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; 
-</code></pre>
+<p><br></p>
+<p>Faire valider votre script en affichant dans un terminal : <br></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> profil, salaire</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-&gt;</span>         <span class="kw">FROM</span> Grille_sal;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>| profil | salaire  |</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>| PAdmin | <span class="fl">80000.00</span> |</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>| PDeve  | <span class="fl">45000.00</span> |</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>| PTech  | <span class="fl">35000.00</span> |</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> AugmenterSalaires();</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------------------------------------+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>| Message                                         |</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------------------------------------+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>| Les salaires ont été augmentés avec succès.     |</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------------------------------------+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">010</span> sec)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">Query</span> OK, <span class="dv">3</span> <span class="kw">rows</span> affected (<span class="dv">0</span>,<span class="dv">010</span> sec)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> profil, salaire</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">-&gt;</span>         <span class="kw">FROM</span> Grille_sal;</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>| profil | salaire  |</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>| PAdmin | <span class="fl">88000.00</span> |</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>| PDeve  | <span class="fl">54000.00</span> |</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>| PTech  | <span class="fl">45500.00</span> |</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+----------+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> </span></code></pre></div>
 <p><br> <br></p>
 <ol start="5" type="1">
 <li><span class="orange">(Exception prédéfinie) Écrire une procédure
@@ -476,26 +482,29 @@ message de confirmation. Utilisez le gestionnaire d’erreur MySQL DECLARE
 … HANDLER FOR SQLSTATE ‘23000’ à la place de l’exception Oracle
 NO_DATA_FOUND.</span></li>
 </ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; CALL InsererNouvelEmploye(1234567, &#39;Alain&#39;, &#39;Paul&#39;);
-+---------------------------------------+
-| Message                               |
-+---------------------------------------+
-| Employé inséré avec succès.           |
-+---------------------------------------+
-1 row in set (0,004 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT * FROM Employe;
-...
-
-MariaDB [BDD_s2_tp]&gt; CALL InsererNouvelEmploye(22334, &#39;Adam&#39;, &#39;Funk&#39;);
-+------------------------------------------------+
-| Message                                        |
-+------------------------------------------------+
-| Erreur : cet employé existe déjà.              |
-+------------------------------------------------+
-1 row in set (0,002 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT * FROM Employe;</code></pre>
+<p><br></p>
+<p>Faire valider votre script en affichant dans un terminal : <br></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> InsererNouvelEmploye(<span class="dv">1234567</span>, <span class="st">&#39;Alain&#39;</span>, <span class="st">&#39;Paul&#39;</span>);</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>| Message                               |</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>| Employé inséré avec succès.           |</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">004</span> sec)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Employe;</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> InsererNouvelEmploye(<span class="dv">22334</span>, <span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;Funk&#39;</span>);</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------------------------------------------+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>| Message                                        |</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------------------------------------------+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>| Erreur : cet employé existe déjà.              |</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------------------------------------------+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">002</span> sec)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Employe;</span></code></pre></div>
 <p><br> <br></p>
 <ol start="6" type="1">
 <li><span class="orange">(Exception utilisateur) Écrire une procédure
@@ -505,51 +514,55 @@ tous les budgets après l’ajout ne dépasse pas 400000. Dans le cas
 contraire le projet n’est pas ajouté et un message d’erreur est affiché
 à l’utilisateur. Utilisez une exception utilisateur.</span></li>
 </ol>
-<pre><code>MariaDB [BDD_s2_tp]&gt; SELECT SUM(Budget) FROM Projet;
-+-------------+
-| SUM(Budget) |
-+-------------+
-|      324000 |
-+-------------+
-1 row in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL InsererNouvelProjet(999, 50000);
-+---------------------------------------+
-| Message                               |
-+---------------------------------------+
-| Projet inséré avec succès.            |
-+---------------------------------------+
-1 row in set (0,004 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT * FROM Projet;
-+---------+---------+----------+--------+--------+
-| NumProj | NomProj | RespProj | VilleP | Budget |
-+---------+---------+----------+--------+--------+
-|     123 | ADOOP   |    22334 | Paris  | 120000 |
-|     757 | SKALA   |    45566 | Lyon   | 180000 |
-|     890 | BAJA    |    22334 | Paris  |  24000 |
-|     999 | TEST    |     NULL | NULL   |  50000 |
-+---------+---------+----------+--------+--------+
-4 rows in set (0,001 sec)
-
-MariaDB [BDD_s2_tp]&gt; CALL InsererNouvelProjet(998, 999999);
-+----------------------------------------------------------------+
-| Message                                                        |
-+----------------------------------------------------------------+
-| Erreur : le budget total dépasserait 400000. Projet non ajouté.|
-+----------------------------------------------------------------+
-1 row in set (0,002 sec)
-
-MariaDB [BDD_s2_tp]&gt; SELECT * FROM Projet;
-+---------+---------+----------+--------+--------+
-| NumProj | NomProj | RespProj | VilleP | Budget |
-+---------+---------+----------+--------+--------+
-|     123 | ADOOP   |    22334 | Paris  | 120000 |
-|     757 | SKALA   |    45566 | Lyon   | 180000 |
-|     890 | BAJA    |    22334 | Paris  |  24000 |
-|     999 | TEST    |     NULL | NULL   |  50000 |
-+---------+---------+----------+--------+--------+
-4 rows in set (0,001 sec)</code></pre>
+<p><br></p>
+<p>Faire valider votre script en affichant dans un terminal : <br></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="fu">SUM</span>(Budget) <span class="kw">FROM</span> Projet;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>| <span class="fu">SUM</span>(Budget) |</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>|      <span class="dv">324000</span> |</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> InsererNouvelProjet(<span class="dv">999</span>, <span class="dv">50000</span>);</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>| Message                               |</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>| Projet inséré avec succès.            |</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------------------------------------+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">004</span> sec)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Projet;</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>| NumProj | NomProj | RespProj | VilleP | Budget |</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">123</span> | ADOOP   |    <span class="dv">22334</span> | Paris  | <span class="dv">120000</span> |</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">757</span> | SKALA   |    <span class="dv">45566</span> | Lyon   | <span class="dv">180000</span> |</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">890</span> | BAJA    |    <span class="dv">22334</span> | Paris  |  <span class="dv">24000</span> |</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">999</span> | TEST    |     <span class="kw">NULL</span> | <span class="kw">NULL</span>   |  <span class="dv">50000</span> |</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">CALL</span> InsererNouvelProjet(<span class="dv">998</span>, <span class="dv">999999</span>);</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------------------------------------------------------+</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>| Message                                                        |</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------------------------------------------------------+</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>| Erreur : le budget total dépasserait <span class="fl">400000.</span> Projet non ajouté.|</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------------------------------------------------------+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">002</span> sec)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Projet;</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>| NumProj | NomProj | RespProj | VilleP | Budget |</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">123</span> | ADOOP   |    <span class="dv">22334</span> | Paris  | <span class="dv">120000</span> |</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">757</span> | SKALA   |    <span class="dv">45566</span> | Lyon   | <span class="dv">180000</span> |</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">890</span> | BAJA    |    <span class="dv">22334</span> | Paris  |  <span class="dv">24000</span> |</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>|     <span class="dv">999</span> | TEST    |     <span class="kw">NULL</span> | <span class="kw">NULL</span>   |  <span class="dv">50000</span> |</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+----------+--------+--------+</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="kw">rows</span> <span class="kw">in</span> <span class="kw">set</span> (<span class="dv">0</span>,<span class="dv">001</span> sec)</span></code></pre></div>
+<p><br></p>
 <ol start="7" type="1">
 <li><span class="orange">(Trigger) Écrire un trigger de nom
 “VerifierBudgetUpdate” qui se déclenche avant toute modification du
@@ -558,6 +571,8 @@ inférieur au budget actuel, la modification est annulée et un message
 d’erreur est affiché. Dans le cas contraire la modification est
 acceptée.</span></li>
 </ol>
+<p><br></p>
+<p>Faire valider votre script en affichant dans un terminal : <br></p>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>MariaDB [BDD_s2_tp]<span class="op">&gt;</span> <span class="kw">SELECT</span> NumProj, NomProj, Budget <span class="kw">FROM</span> Projet;</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">---------+---------+--------+</span></span>
