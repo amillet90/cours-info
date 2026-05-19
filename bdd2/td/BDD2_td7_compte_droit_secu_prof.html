@@ -898,6 +898,235 @@ rôle)</li>
 pas d’exclure un utilisateur d’un droit global. La réflexion sur cette
 limitation est l’objectif.</p>
 </blockquote>
+<h2 id="exercice-1-correction">Exercice 1 — Correction</h2>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_bibliotheque;</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_admin&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_invite&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. tous les droits pour admin</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> login_bibliotheque.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login_biblio_admin&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. lecture seule pour lecteur</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bibliotheque.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. vérification</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_biblio_admin&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_biblio_invite&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- 4. test connexion terminal</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login_biblio_admin --password=secret --host=serveurmysql2</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login_biblio_lecteur --password=secret --host=serveurmysql2</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- mysql --user=login_biblio_invite --host=serveurmysql2</span></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- 5. suppression des droits de lecteur</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bibliotheque.<span class="op">*</span> <span class="kw">FROM</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- 6. vérification</span></span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- nettoyage</span></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_bibliotheque;</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_admin&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_lecteur&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_biblio_invite&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
+<hr />
+<h2 id="exercice-2-correction">Exercice 2 — Correction</h2>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_mediatheque;</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_media_gestionnaire&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_media_caisse&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_mediatheque;</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_film    (<span class="kw">id</span> <span class="dt">INT</span>, titre <span class="dt">VARCHAR</span>(<span class="dv">50</span>), genre <span class="dt">VARCHAR</span>(<span class="dv">30</span>));</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_client  (<span class="kw">id</span> <span class="dt">INT</span>, nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>), email <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_emprunt (<span class="kw">id</span> <span class="dt">INT</span>, id_film <span class="dt">INT</span>, id_client <span class="dt">INT</span>, date_retour <span class="dt">DATE</span>);</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. gestionnaire : tous les droits</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> login_mediatheque.<span class="op">*</span> <span class="kw">TO</span> <span class="st">&#39;login_media_gestionnaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- employe : lecture + modification sur film et emprunt uniquement</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span> login_mediatheque.login_film    <span class="kw">TO</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span> login_mediatheque.login_emprunt <span class="kw">TO</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- caisse : lecture seule sur film</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_mediatheque.login_film <span class="kw">TO</span> <span class="st">&#39;login_media_caisse&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. vérification</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_media_gestionnaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_media_caisse&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> mysql.db <span class="kw">WHERE</span> Db <span class="op">=</span> <span class="st">&#39;login_mediatheque&#39;</span>;</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. suppression du droit DELETE sur emprunt pour employe</span></span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">DELETE</span> <span class="kw">ON</span> login_mediatheque.login_emprunt <span class="kw">FROM</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- 4. vérification</span></span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a><span class="co">-- nettoyage</span></span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_mediatheque;</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_media_gestionnaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_media_employe&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_media_caisse&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
+<hr />
+<h2 id="exercice-3-correction">Exercice 3 — Correction</h2>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_rh;</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_rh_manager&#39;</span>@<span class="st">&#39;%&#39;</span>    <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_rh_consultant&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_rh;</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_employe (</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span>      <span class="dt">INT</span>,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    nom     <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    prenom  <span class="dt">VARCHAR</span>(<span class="dv">50</span>),</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    salaire <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>),</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    adresse <span class="dt">VARCHAR</span>(<span class="dv">100</span>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. manager : toutes les colonnes</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_rh.login_employe <span class="kw">TO</span> <span class="st">&#39;login_rh_manager&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- consultant : uniquement nom et prenom</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> (nom, prenom) <span class="kw">ON</span> login_rh.login_employe <span class="kw">TO</span> <span class="st">&#39;login_rh_consultant&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. test refus (en tant que login_rh_consultant)</span></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- SELECT salaire FROM login_rh.login_employe;   -- doit retourner : Access denied</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. test succès (en tant que login_rh_consultant)</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- SELECT nom, prenom FROM login_rh.login_employe;  -- doit fonctionner</span></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- vérification</span></span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_rh_manager&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_rh_consultant&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- nettoyage</span></span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_rh;</span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_rh_manager&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_rh_consultant&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
+<hr />
+<h2 id="exercice-4-correction">Exercice 4 — Correction</h2>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_ecole;</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_ecole;</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_eleve (<span class="kw">id</span> <span class="dt">INT</span>, nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_cours  (<span class="kw">id</span> <span class="dt">INT</span>, intitule <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_note   (<span class="kw">id</span> <span class="dt">INT</span>, id_eleve <span class="dt">INT</span>, id_cours <span class="dt">INT</span>, valeur <span class="dt">DECIMAL</span>(<span class="dv">4</span>,<span class="dv">2</span>));</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_prof&#39;</span>@<span class="st">&#39;%&#39;</span>        <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_secretaire&#39;</span>@<span class="st">&#39;%&#39;</span>  <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_dba&#39;</span>@<span class="st">&#39;%&#39;</span>         <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- création des rôles</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> login_role_lecture;</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> login_role_saisie;</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">ROLE</span> login_role_admin;</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- droits sur les rôles</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_ecole.<span class="op">*</span>            <span class="kw">TO</span> login_role_lecture;</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">INSERT</span>, <span class="kw">UPDATE</span> <span class="kw">ON</span> login_ecole.login_note <span class="kw">TO</span> login_role_saisie;</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span> login_ecole.<span class="op">*</span>    <span class="kw">TO</span> login_role_admin;</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- attribution des rôles aux utilisateurs</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> login_role_lecture, login_role_saisie <span class="kw">TO</span> <span class="st">&#39;login_prof&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> login_role_lecture                    <span class="kw">TO</span> <span class="st">&#39;login_secretaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> login_role_admin                      <span class="kw">TO</span> <span class="st">&#39;login_dba&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. activation du rôle (en tant que login_prof)</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- SET ROLE login_role_lecture, login_role_saisie;</span></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. vérification (en tant que login_prof)</span></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- SELECT CURRENT_ROLE();</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- SHOW GRANTS;</span></span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. test INSERT sur login_note (doit fonctionner)</span></span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO login_ecole.login_note VALUES (1, 1, 1, 15.5);</span></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a><span class="co">-- test INSERT sur login_eleve (doit être refusé)</span></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSERT INTO login_ecole.login_eleve VALUES (1, &#39;Dupont&#39;);</span></span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a><span class="co">-- vérification</span></span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_prof&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_secretaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_dba&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a><span class="co">-- nettoyage</span></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_ecole;</span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_prof&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_secretaire&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_dba&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">ROLE</span> login_role_lecture;</span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">ROLE</span> login_role_saisie;</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">ROLE</span> login_role_admin;</span></code></pre></div>
+<hr />
+<h2 id="exercice-5-correction">Exercice 5 — Correction</h2>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>    <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>      <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;secret&#39;</span>;</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_bdd;</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TA1 (no_ta1 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TA2 (no_ta2 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TA3 (no_ta3 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TB1 (no_tb1 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TB2 (no_tb2 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_TC1 (AT1 <span class="dt">VARCHAR</span>(<span class="dv">50</span>), AT2 <span class="dt">VARCHAR</span>(<span class="dv">50</span>), AT3 <span class="dt">VARCHAR</span>(<span class="dv">50</span>), AT4 <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span>  login_VB1 <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> login_bdd.login_TB1;</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. droits pour les tables d&#39;Alice</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- TA1 : lecture pour Bob et Caroline, modification pour Bob uniquement</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span> login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="co">-- TA2 : privée, aucun droit accordé</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- TA3 : lecture pour tout le monde</span></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>, <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. droits pour les tables de Bob</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- TB1 : modification par Alice et Caroline</span></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span> <span class="kw">ON</span> login_bdd.login_TB1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>, <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- TB2 : lecture pour Caroline uniquement (voir point 4)</span></span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TB2 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- VB1 : lecture pour Caroline uniquement</span></span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_VB1 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. droits sur colonnes pour la table de Caroline</span></span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="co">-- AT1, AT2 : visibles par Bob et Alice</span></span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> (AT1, AT2) <span class="kw">ON</span> login_bdd.login_TC1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>, <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="co">-- AT3, AT4 : visibles par Bob uniquement</span></span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> (AT3, AT4) <span class="kw">ON</span> login_bdd.login_TC1 <span class="kw">TO</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="co">-- vérification</span></span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="co">-- 4. cas de TB2 accessible à tous sauf Alice</span></span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="co">-- MySQL/MariaDB ne permet pas d&#39;exclure un utilisateur d&#39;un droit global.</span></span>
+<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="co">-- On ne peut pas écrire DENY comme sur SQL Server.</span></span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="co">-- Solution : ne pas accorder le droit à Alice (comme ci-dessus),</span></span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="co">-- ce qui suppose de connaître et de lister explicitement tous les utilisateurs autorisés.</span></span>
+<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="co">-- Alternative propre : créer une vue qui filtre les données</span></span>
+<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="co">-- et n&#39;accorder SELECT que sur cette vue, pas sur la table directement.</span></span>
+<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> login_VB2 <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> login_bdd.login_TB2;</span>
+<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_VB2 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="co">-- Alice n&#39;a aucun droit ni sur login_TB2 ni sur login_VB2.</span></span>
+<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="co">-- nettoyage</span></span>
+<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>;</span></code></pre></div>
 <p>autre exo</p>
 <pre><code>Exercice 3 : Droits d’accès
 On considère trois utilisateurs Alice, Bob et Caroline ayant chacun respectivement un compte
@@ -917,89 +1146,89 @@ Bob souhaite que :
 — VB1 soit visible uniquement pour Caroline.
 Caroline souhaite que les attributs AT1 et AT2 soient visibles par tous les utilisateurs de la
 base et que les attributs AT3 et AT4 soient visibles uniquement par Bob.</code></pre>
-<div class="sourceCode" id="cb42"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_bdd;</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Alice;</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Bob;</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Caroline;</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_bdd;</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA1 (</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>no_ta1 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA2 (</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>no_ta2 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA3 (</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>no_ta3 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB1 (</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>no_tb1 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB2 (</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>no_tb2 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> VB1 </span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> login_bdd.login_TB1;</span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TC1 (</span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>AT1 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
-<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>AT2 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
-<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>AT3 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
-<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>AT4 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
-<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Alice</span></span>
-<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
-<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
-<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
-<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
-<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA2 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
-<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
-<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA1 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
-<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">FROM</span> login_Bob;</span>
-<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA3 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
-<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob;</span>
-<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
-<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
-<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Bob</span></span>
-<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
-<span id="cb42-58"><a href="#cb42-58" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
-<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
-<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB1 <span class="kw">TO</span> login_Bob;</span>
-<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB2 <span class="kw">TO</span> login_Bob;</span>
-<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
-<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
-<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
-<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Caroline</span></span>
-<span id="cb42-71"><a href="#cb42-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a><span class="co">-- GRANT SELECT (col1), INSERT (col1,col2) ON mydb.mytbl TO &#39;someuser&#39;@&#39;somehost&#39;;</span></span>
-<span id="cb42-73"><a href="#cb42-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-74"><a href="#cb42-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-75"><a href="#cb42-75" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
-<span id="cb42-76"><a href="#cb42-76" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
-<span id="cb42-77"><a href="#cb42-77" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline; </span>
-<span id="cb42-78"><a href="#cb42-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-79"><a href="#cb42-79" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_bdd;</span>
-<span id="cb42-80"><a href="#cb42-80" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Alice;</span>
-<span id="cb42-81"><a href="#cb42-81" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Bob;</span>
-<span id="cb42-82"><a href="#cb42-82" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Caroline;</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Alice;</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Bob;</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="fu">USER</span> login_Caroline;</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> login_bdd;</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA1 (</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>no_ta1 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA2 (</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>no_ta2 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TA3 (</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>no_ta3 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB1 (</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>no_tb1 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TB2 (</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>no_tb2 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> VB1 </span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span> <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> login_bdd.login_TB1;</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> login_bdd.login_TC1 (</span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>AT1 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>AT2 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>AT3 <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a>AT4 <span class="dt">varchar</span>(<span class="dv">50</span>)</span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Alice</span></span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA2 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> <span class="st">&#39;login_Alice&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA1 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">FROM</span> login_Bob;</span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span> <span class="kw">ON</span> login_bdd.login_TA3 <span class="kw">FROM</span> login_Caroline, login_Bob;</span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob;</span>
+<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
+<span id="cb47-53"><a href="#cb47-53" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb47-54"><a href="#cb47-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-55"><a href="#cb47-55" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Bob</span></span>
+<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>, <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA1 <span class="kw">TO</span> login_Caroline, login_Bob;</span>
+<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">SELECT</span>  <span class="kw">ON</span>  login_bdd.login_TA3 <span class="kw">TO</span> <span class="st">&#39;login_Caroline&#39;</span>@<span class="st">&#39;%&#39;</span>,<span class="st">&#39;login_Bob&#39;</span>@<span class="st">&#39;%&#39;</span>;</span>
+<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB1 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">ON</span>  login_bdd.login_TB2 <span class="kw">TO</span> login_Bob;</span>
+<span id="cb47-63"><a href="#cb47-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-64"><a href="#cb47-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-65"><a href="#cb47-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-66"><a href="#cb47-66" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline;</span>
+<span id="cb47-67"><a href="#cb47-67" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb47-68"><a href="#cb47-68" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
+<span id="cb47-69"><a href="#cb47-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-70"><a href="#cb47-70" aria-hidden="true" tabindex="-1"></a><span class="co">-- droit pour les tables de login_Caroline</span></span>
+<span id="cb47-71"><a href="#cb47-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-72"><a href="#cb47-72" aria-hidden="true" tabindex="-1"></a><span class="co">-- GRANT SELECT (col1), INSERT (col1,col2) ON mydb.mytbl TO &#39;someuser&#39;@&#39;somehost&#39;;</span></span>
+<span id="cb47-73"><a href="#cb47-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-74"><a href="#cb47-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-75"><a href="#cb47-75" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Alice;</span>
+<span id="cb47-76"><a href="#cb47-76" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Bob; </span>
+<span id="cb47-77"><a href="#cb47-77" aria-hidden="true" tabindex="-1"></a>SHOW GRANTS <span class="cf">FOR</span> login_Caroline; </span>
+<span id="cb47-78"><a href="#cb47-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-79"><a href="#cb47-79" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> login_bdd;</span>
+<span id="cb47-80"><a href="#cb47-80" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Alice;</span>
+<span id="cb47-81"><a href="#cb47-81" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Bob;</span>
+<span id="cb47-82"><a href="#cb47-82" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="fu">USER</span> login_Caroline;</span></code></pre></div>
 <p><a
 href="https://stackoverflow.com/questions/45596542/grant-permission-to-all-columns-individually-in-mysql"
 target="_blanck">https://stackoverflow.com/questions/45596542/grant-permission-to-all-columns-individually-in-mysql</a>
