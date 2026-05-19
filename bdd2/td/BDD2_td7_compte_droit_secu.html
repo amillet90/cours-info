@@ -789,12 +789,16 @@ suivantes :</p>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_film (<span class="kw">id</span> <span class="dt">INT</span>, titre <span class="dt">VARCHAR</span>(<span class="dv">50</span>), genre <span class="dt">VARCHAR</span>(<span class="dv">30</span>));</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_client (<span class="kw">id</span> <span class="dt">INT</span>, nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>), email <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_emprunt (<span class="kw">id</span> <span class="dt">INT</span>, id_film <span class="dt">INT</span>, id_client <span class="dt">INT</span>, date_retour <span class="dt">DATE</span>);</span></code></pre></div>
-<p>Créer trois utilisateurs : - <code>login_media_gestionnaire</code> :
-peut tout faire sur toutes les tables - <code>login_media_employe</code>
-: peut lire et modifier <code>login_film</code> et
-<code>login_emprunt</code>, mais pas <code>login_client</code> -
-<code>login_media_caisse</code> : peut uniquement lire
-<code>login_film</code></p>
+<p>Créer trois utilisateurs :</p>
+<ul>
+<li><code>login_media_gestionnaire</code> : peut tout faire sur toutes
+les tables</li>
+<li><code>login_media_employe</code> : peut lire et modifier
+<code>login_film</code> et <code>login_emprunt</code>, mais pas
+<code>login_client</code></li>
+<li><code>login_media_caisse</code> : peut uniquement lire
+<code>login_film</code></li>
+</ul>
 <p>Puis :</p>
 <ol type="1">
 <li>Écrire les <code>GRANT</code> correspondants</li>
@@ -816,10 +820,13 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="#
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    salaire <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>),</span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    adresse <span class="dt">VARCHAR</span>(<span class="dv">100</span>)</span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
-<p>Créer deux utilisateurs : - <code>login_rh_manager</code> : peut voir
-toutes les colonnes - <code>login_rh_consultant</code> : peut voir
-uniquement <code>nom</code> et <code>prenom</code> — pas le salaire ni
-l’adresse</p>
+<p>Créer deux utilisateurs :</p>
+<ul>
+<li><code>login_rh_manager</code> : peut voir toutes les colonnes</li>
+<li><code>login_rh_consultant</code> : peut voir uniquement
+<code>nom</code> et <code>prenom</code> — pas le salaire ni
+l’adresse</li>
+</ul>
 <ol type="1">
 <li>Écrire les <code>GRANT</code> avec restriction par colonne</li>
 <li>Se connecter en tant que <code>login_rh_consultant</code> et
@@ -838,17 +845,22 @@ avancé)</h2>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_eleve (<span class="kw">id</span> <span class="dt">INT</span>, nom <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_cours (<span class="kw">id</span> <span class="dt">INT</span>, intitule <span class="dt">VARCHAR</span>(<span class="dv">50</span>));</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> login_note (<span class="kw">id</span> <span class="dt">INT</span>, id_eleve <span class="dt">INT</span>, id_cours <span class="dt">INT</span>, valeur <span class="dt">DECIMAL</span>(<span class="dv">4</span>,<span class="dv">2</span>));</span></code></pre></div>
-<p>Créer les rôles suivants : - <code>login_role_lecture</code> : droit
-<code>SELECT</code> sur toutes les tables de <code>login_ecole</code> -
-<code>login_role_saisie</code> : droits <code>INSERT</code> et
-<code>UPDATE</code> sur <code>login_note</code> uniquement -
-<code>login_role_admin</code> : tous les droits sur
-<code>login_ecole</code></p>
-<p>Créer trois utilisateurs et leur attribuer les rôles : -
-<code>login_prof</code> → <code>login_role_lecture</code> +
-<code>login_role_saisie</code> - <code>login_secretaire</code> →
-<code>login_role_lecture</code> - <code>login_dba</code> →
-<code>login_role_admin</code></p>
+<p>Créer les rôles suivants :</p>
+<ul>
+<li><code>login_role_lecture</code> : droit <code>SELECT</code> sur
+toutes les tables de <code>login_ecole</code></li>
+<li><code>login_role_saisie</code> : droits <code>INSERT</code> et
+<code>UPDATE</code> sur <code>login_note</code> uniquement</li>
+<li><code>login_role_admin</code> : tous les droits sur
+<code>login_ecole</code></li>
+</ul>
+<p>Créer trois utilisateurs et leur attribuer les rôles :</p>
+<ul>
+<li><code>login_prof</code> → <code>login_role_lecture</code> +
+<code>login_role_saisie</code></li>
+<li><code>login_secretaire</code> → <code>login_role_lecture</code></li>
+<li><code>login_dba</code> → <code>login_role_admin</code></li>
+</ul>
 <p>Puis :</p>
 <ol type="1">
 <li>Se connecter en tant que <code>login_prof</code> et activer son rôle
