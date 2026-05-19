@@ -486,14 +486,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Mariadb</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @@tx_isolation;        <span class="co">-- session</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> @@global.tx_isolation; <span class="co">-- global</span></span></code></pre></div>
-<p><br> <br></p>
-<p><a href="https://mysql.developpez.com/faq/?page=Transactions"
-target="_blanck">https://mysql.developpez.com/faq/?page=Transactions</a>
-<br> <br></p>
-<p><a
-href="https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd"
-target="_blanck">https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd</a>
-<br></p>
+<p><br></p>
 <p>En SQL, une erreur dans une transaction <strong>ne déclenche pas
 automatiquement un rollback</strong>. C’est à toi de décider quoi
 faire.</p>
@@ -508,11 +501,19 @@ cas d’erreur, provoquant ainsi un rollback) est une <strong>politique du
 client</strong>, pas une règle SQL.</p>
 </blockquote>
 <h1 id="procédure-et-fonction">procédure et fonction</h1>
+<p><br> Pour aller plus loin</p>
+<p><a href="https://mysql.developpez.com/faq/?page=Transactions"
+target="_blanck">https://mysql.developpez.com/faq/?page=Transactions</a>
+<br> <br></p>
+<p><a
+href="https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd"
+target="_blanck">https://www.canal-u.tv/chaines/inria/transactions-et-concurrence/degres-d-isolation-dans-les-sgbd</a>
+<br></p>
+<h1 id="gestion-dune-erreur">gestion d’une erreur</h1>
 <p><a
 href="https://fr.wikibooks.org/wiki/MySQL/Proc%C3%A9dures_stock%C3%A9es"
 target="_blanck">https://fr.wikibooks.org/wiki/MySQL/Proc%C3%A9dures_stock%C3%A9es</a>
 <br></p>
-<h1 id="gestion-dune-erreur">gestion d’une erreur</h1>
 <div class="sourceCode" id="cb19"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SIGNAL SQLSTATE <span class="st">&#39;45000&#39;</span> <span class="kw">SET</span> MESSAGE_TEXT <span class="op">=</span> <span class="st">&#39;Problème: pas assez de places disponibles.&#39;</span>;</span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre
