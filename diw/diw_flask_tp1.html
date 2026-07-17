@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -24,7 +33,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -141,10 +150,10 @@ puis dans la balise <code>&lt;body&gt;</code> ajoutez le code ci-dessous
 :</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}<span class="kw">&lt;/p&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;br&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/&quot;</span><span class="kw">&gt;</span>home<span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/&quot;</span><span class="dt">&gt;</span>home<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div>
 <div class="code2">
 <p><a href="https://github.com/amillet90/s1-demo-v2/tree/etape-1"
 target="_blank">code branche 1</a></p>
@@ -222,7 +231,7 @@ des étudiants : ajoutez le code ci-dessous dans la balise
 <code>&lt;body&gt;</code>.</p></li>
 </ol>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>listes des étudiants<span class="kw">&lt;/h1&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>listes des étudiants<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>{{ etudiants }}</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
@@ -231,8 +240,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="
 lien vers la page des étudiants <code>show_etudiant.html</code></li>
 </ol>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;br&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="kw">&gt;</span>etudiants<span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="dt">&gt;</span>etudiants<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div>
 <!-- https://docs.github.com/fr/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests
 -->
 <div class="code2">
@@ -245,13 +254,13 @@ affichez la liste des étudiants dans un tableau ; il faut utiliser une
 boucle :</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="dt">&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    {% for etudiant in etudiants %}</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;td&gt;</span>{{ etudiant }}<span class="kw">&lt;/td&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        {% endfor %}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div>
 <!--
 <div class="code">
 
@@ -265,21 +274,21 @@ remplacez la ligne qui affiche chaque étudiant par le code ci-dessous
 :</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;table&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;thead</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;thead-dark&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>id<span class="kw">&lt;/th&gt;&lt;th&gt;</span>nom<span class="kw">&lt;/th&gt;&lt;th&gt;</span>groupe<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/thead&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;table&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;thead-dark&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>id<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>nom<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>groupe<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    {% for etudiant in etudiants %}</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        {# commentaires : autre notation possible, on affiche un element du dictionnaire               </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                <span class="kw">&lt;td&gt;</span>{{ etudiant[&#39;id&#39;] }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant[&#39;nom&#39;] }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant[&#39;groupe&#39;] }}<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant[&#39;id&#39;] }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant[&#39;nom&#39;] }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant[&#39;groupe&#39;] }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        #}</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe }}<span class="kw">&lt;/td&gt;</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.nom }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.groupe }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div>
 <ol start="14" type="1">
 <li><p>Testez l’affichage du fichier
 <code>templates/etudiant/show_etudiant.html</code> avec un tableau de
@@ -295,7 +304,7 @@ ci-dessous dans le <em>template</em>
 class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    {% if etudiants | length &gt;= 1 %}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       ...</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    {% else %}</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;h2&gt;</span> la liste des étudiants est vide<span class="kw">&lt;/h2&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span> la liste des étudiants est vide<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span> </span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    {% endif %}</span></code></pre></div>
 <p>autre exemple : <a
 href="https://info-mounier.fr/terminale_nsi/base_de_donnees/flask_sqlite/flask-sqlite.php"
@@ -331,16 +340,16 @@ tableau</p></li>
 </ol>
 <p>Code pour l’étape 16 et 17 :</p>
 <div class="sourceCode" id="cb11"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/add&quot;</span> <span class="kw">&gt;</span>ajouter un étudiant<span class="kw">&lt;/a&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/add&quot;</span><span class="ot"> </span><span class="dt">&gt;</span>ajouter un étudiant<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>....</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;td&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/edit?id={{ etudiant.id }}&quot;</span>   <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="kw">&gt;</span>editer<span class="kw">&lt;/a&gt;</span><span class="dv">&amp;nbsp;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/delete?id={{ etudiant.id }}&quot;</span>   <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="kw">&gt;</span>supprimer<span class="kw">&lt;/a&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/td&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/edit?id={{ etudiant.id }}&quot;</span><span class="ot">   class</span><span class="op">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="dt">&gt;</span>editer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span><span class="dv">&amp;nbsp;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/delete?id={{ etudiant.id }}&quot;</span><span class="ot">   class</span><span class="op">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="dt">&gt;</span>supprimer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <h2 id="passage-de-paramètres">Passage de paramètres</h2>
 <ol start="18" type="1">
@@ -374,49 +383,49 @@ informations d’un étudiant :</p>
 formulaire en utilisant le framework Bootstrap 5 pour saisir les
 informations du tableau Python :</em> )</p>
 <div class="sourceCode" id="cb13"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Formulaire Étudiant<span class="kw">&lt;/title&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;fr&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;utf-8&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Formulaire Étudiant<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Bootstrap 5 --&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;link</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css&quot;</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;bg-light&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css&quot;</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;bg-light&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;container py-4&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;h2</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-4&quot;</span><span class="kw">&gt;</span>Formulaire étudiant<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;container py-4&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;mb-4&quot;</span><span class="dt">&gt;</span>Formulaire étudiant<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;form&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">form</span><span class="dt">&gt;</span></span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Champ caché ID --&gt;</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;hidden&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;1&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Nom --&gt;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Nom<span class="kw">&lt;/label&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-control&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;mb-3&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">&quot;nom&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;form-label&quot;</span><span class="dt">&gt;</span>Nom<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;nom&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;nom&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Groupe --&gt;</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;mb-3&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-label&quot;</span><span class="kw">&gt;</span>Groupe<span class="kw">&lt;/label&gt;</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;select</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-select&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;groupe&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A1&quot;</span> <span class="er">selected</span><span class="kw">&gt;</span>A1<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;A2&quot;</span><span class="kw">&gt;</span>A2<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;B1&quot;</span><span class="kw">&gt;</span>B1<span class="kw">&lt;/option&gt;</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;/select&gt;</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;mb-3&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">&quot;groupe&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;form-label&quot;</span><span class="dt">&gt;</span>Groupe<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;form-select&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;groupe&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;groupe&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;A1&quot;</span><span class="ot"> selected</span><span class="dt">&gt;</span>A1<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;A2&quot;</span><span class="dt">&gt;</span>A2<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;B1&quot;</span><span class="dt">&gt;</span>B1<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Boutons --&gt;</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="kw">&gt;</span>Enregistrer<span class="kw">&lt;/button&gt;</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;reset&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-secondary&quot;</span><span class="kw">&gt;</span>Réinitialiser<span class="kw">&lt;/button&gt;</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/form&gt;</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;submit&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;btn btn-primary&quot;</span><span class="dt">&gt;</span>Enregistrer<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;reset&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;btn btn-secondary&quot;</span><span class="dt">&gt;</span>Réinitialiser<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
 <ol start="19" type="1">
 <li>créez 2 templates <code>etudiant/add_etudiant.html</code> et
 <code>etudiant/edit_etudiant.html</code> et copiez/adaptez le contenu du
@@ -491,9 +500,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a h
 <p>Dans <code>edit_etudiant.html</code></p>
 <div class="sourceCode" id="cb17"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;hidden&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ etudiant.id }}&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ etudiant.id }}&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;form-control&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;nom&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ etudiant.nom }}&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;form-control&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;nom&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;nom&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ etudiant.nom }}&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
 <!--
 <div class="code">
@@ -624,20 +633,20 @@ templates il faut utiliser la fonction :
 <strong>static</strong> grâce à la fonction <code>url_for</code>,
 exemple :</p>
 <div class="sourceCode" id="cb22"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;icon&quot;</span>  <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span> <span class="kw">/&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;icon&quot;</span><span class="ot">  href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;iconeweb.ico&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>....</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image iut&quot;</span>  <span class="kw">/&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;image_iut.jpeg&#39;) }}&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;image iut&quot;</span><span class="ot">  </span><span class="dt">/&gt;</span></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>....</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
 <!--
 <div class="code">
 [code branche final](https://github.com/amillet-iut90/flask_demo1){target=_blank}
@@ -663,38 +672,38 @@ fichier <strong>layout.html</strong> et un fichier **_nav.html** .</p>
 <p><br></p>
 <p>Contenu (code) du fichier <strong>layout.html</strong> :</p>
 <div class="sourceCode" id="cb23"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;fr&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;utf-8&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    {% block title %}</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;title&gt;</span>layout<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>layout<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;shortcut icon&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;shortcut icon&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    {% block stylesheets %}</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>{% include(&#39;_nav.html&#39;) %}</span>
 <span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h2</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;color:blue&quot;</span><span class="kw">&gt;</span>layout.html<span class="kw">&lt;/h2&gt;</span>  </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;color:blue&quot;</span><span class="dt">&gt;</span>layout.html<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span>  </span>
 <span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>{% block javascripts %}</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
 <span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>Contenu (code) du fichier <code>_nav.html</code> :</p>
 <div class="sourceCode" id="cb24"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="kw">&gt;</span> etudiants <span class="kw">&lt;/a&gt;</span>  -</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="kw">&gt;</span> groupes <span class="kw">&lt;/a&gt;</span>  -</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;menu&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="dt">&gt;</span> etudiants <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="dt">&gt;</span> groupes <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">hr</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Modifiez les 3 templates (vues), add_etudiant.html,
 edit_etudiant.html et show_etudiant.html : en remplaçant l’en-tête de la
@@ -704,7 +713,7 @@ page HTML (template) et le pied de chaque template.</li>
 class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>{% block title %}</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>gestion des étudiants<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>gestion des étudiants<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
@@ -726,9 +735,9 @@ juste avant le <em>block</em> <em>body</em></p>
 class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>{% with messages = get_flashed_messages(with_categories=true) %}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>{% if messages %}</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    {% for categorie, message in messages %}</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">role</span><span class="ot">=</span><span class="st">&quot;alert&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;alert {{ categorie }}&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>           Information : <span class="kw">&lt;strong&gt;</span>{{ message }}<span class="kw">&lt;/strong&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> role</span><span class="op">=</span><span class="st">&quot;alert&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;alert {{ categorie }}&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>           Information : <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>{{ message }}<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>{% endif %}</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
@@ -759,24 +768,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a h
 enregistrement</li>
 </ul>
 <div class="sourceCode" id="cb29"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id_groupe&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>Sélectionner un groupe<span class="kw">&lt;/option&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="ot"> required</span><span class="dt">&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span>Sélectionner un groupe<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span><span class="kw">&gt;</span> {{ groupe.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Ajoutez la liste déroulante dans le formulaire pour modifier un
 enregistrement</li>
 </ul>
 <div class="sourceCode" id="cb30"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id_groupe&quot;</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>            <span class="er">{%</span> <span class="er">if</span> <span class="er">etudiant.groupe_id</span> <span class="er">is</span> <span class="er">defined</span> <span class="er">and</span> <span class="er">groupe.id</span> <span class="ot">=</span><span class="st">=</span> <span class="er">etudiant.groupe_id</span> <span class="er">%}selected{%</span> <span class="er">endif</span> <span class="er">%}</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;</span> {{ groupe.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            </span><span class="er">{%</span><span class="ot"> if etudiant.groupe_id is defined and groupe.id </span><span class="op">=</span><span class="er">=</span><span class="ot"> etudiant.groupe_id </span><span class="er">%}</span><span class="ot">selected</span><span class="er">{%</span><span class="ot"> endif </span><span class="er">%}</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Dans le fichier <code>app.py</code>, modifiez l’appel des
 templates.</li>
@@ -790,7 +799,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a h
 <code>show_etudiant.html</code></li>
 </ul>
 <div class="sourceCode" id="cb33"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">&lt;td&gt;</span>{{ etudiant.id }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.nom }}<span class="kw">&lt;/td&gt;&lt;td&gt;</span>{{ etudiant.groupe_id }}<span class="kw">&lt;/td&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.nom }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.groupe_id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span></code></pre></div>
 <p><br></p>
 <p>Dans le fichier <code>app.py</code>, modifiez la récupération des
 données dans les fonctions appelées lors de la validation des

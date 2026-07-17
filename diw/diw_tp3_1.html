@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -24,7 +33,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -101,19 +110,19 @@ menu</strong></h2>
 <li><p>ajouter dans le <code>body</code></p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;navigation&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;http://cours-info.iut-bm.univ-fcomte.fr&quot;</span>  <span class="er">target</span><span class="ot">=</span><span class="st">&quot;_blank&quot;</span><span class="kw">&gt;</span> cours-info <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;http://www.iut-bm.univ-fcomte.fr&quot;</span>  <span class="er">target</span><span class="ot">=</span><span class="st">&quot;_blank&quot;</span><span class="kw">&gt;</span> l&#39;iut <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;form_article.html&quot;</span><span class="kw">&gt;</span> ajouter un article <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;form_type_article.html&quot;</span><span class="kw">&gt;</span> ajouter un type d&#39;article <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure&quot;</span> <span class="er">target</span><span class="ot">=</span><span class="st">&quot;_blank&quot;</span><span class="kw">&gt;</span> exemple de structure d&#39;une page <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;image_iut.jpeg&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;navigation&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;http://cours-info.iut-bm.univ-fcomte.fr&quot;</span><span class="ot">  target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> cours-info <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;http://www.iut-bm.univ-fcomte.fr&quot;</span><span class="ot">  target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> l&#39;iut <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;form_article.html&quot;</span><span class="dt">&gt;</span> ajouter un article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;form_type_article.html&quot;</span><span class="dt">&gt;</span> ajouter un type d&#39;article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure&quot;</span><span class="ot"> target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> exemple de structure d&#39;une page <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;image_iut.jpeg&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;image&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>ajouter dans le <code>head</code></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">media</span><span class="ot">=</span><span class="st">&quot;screen&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;mes_styles.css&quot;</span> <span class="kw">&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> media</span><span class="op">=</span><span class="st">&quot;screen&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;mes_styles.css&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li><p>Testez (affichez dans un navigateur) la page HTML</p></li>
 <li><p>Utilisez le fichier css <strong>mes_styles.css</strong> et
@@ -121,30 +130,30 @@ modifiez le avec le contenu ci-dessous :</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>body {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">yellowgreen</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">yellowgreen</span><span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nav<span class="fu">.navigation</span>{</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>:<span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">70</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span> : <span class="cn">khaki</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span><span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">70</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span> <span class="ch">:</span> <span class="cn">khaki</span><span class="op">;</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>a {</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>:<span class="dv">150</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">gold</span><span class="op">;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span>: <span class="dv">1</span><span class="dt">px</span> <span class="cn">green</span> <span class="dv">groove</span><span class="op">;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span>:<span class="dv">center</span><span class="op">;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span>: <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> : <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-radius</span>: <span class="dv">15</span><span class="dt">px</span> <span class="dv">50</span><span class="dt">px</span> <span class="dv">30</span><span class="dt">px</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span>:<span class="dv">block</span><span class="op">;</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">float</span>:<span class="dv">left</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span><span class="dv">150</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span><span class="cn">gold</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="cn">green</span> <span class="dv">groove</span><span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span><span class="dv">center</span><span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> <span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span> <span class="dv">50</span><span class="dt">px</span> <span class="dv">30</span><span class="dt">px</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span><span class="ch">:</span><span class="dv">block</span><span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">float</span><span class="ch">:</span><span class="dv">left</span><span class="op">;</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>a<span class="in">:hover</span> {</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">pink</span><span class="op">;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span><span class="cn">pink</span><span class="op">;</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li>améliorer le design du menu</li>
@@ -157,81 +166,81 @@ tableau</strong></h2>
 menu)</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;tableau2&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;tableau2&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;caption&gt;</span>Recapitulatifs des produits<span class="kw">&lt;/caption&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;tableau2&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;tableau2&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">caption</span><span class="dt">&gt;</span>Recapitulatifs des produits<span class="dt">&lt;/</span><span class="kw">caption</span><span class="dt">&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;thead&gt;</span> <span class="co">&lt;!-- En-tête du tableau --&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>id<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>type<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>nom<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>prix/kg<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>ref<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;action&quot;</span><span class="kw">&gt;</span>operations<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/thead&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span> <span class="co">&lt;!-- En-tête du tableau --&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>id<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>type<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>nom<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>prix/kg<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>ref<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;action&quot;</span><span class="dt">&gt;</span>operations<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tbody&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- ce bloc sera dans un prochain tp remplacé par une requete SQL exécuté par un script python --&gt;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;td&gt;</span>1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>fruit<span class="kw">&lt;/td&gt;&lt;td&gt;</span>banane<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2.00<span class="kw">&lt;/td&gt;&lt;td&gt;</span>131059<span class="kw">&lt;/td&gt;&lt;td</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;action&quot;</span><span class="kw">&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;list_produits.html?id=1&quot;</span><span class="kw">&gt;</span>Modifier<span class="kw">&lt;/a&gt;&lt;/td&gt;</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;td&gt;</span>2<span class="kw">&lt;/td&gt;&lt;td&gt;</span>fru<span class="kw">&lt;/td&gt;&lt;td&gt;</span>poire<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2.50<span class="kw">&lt;/td&gt;&lt;td&gt;</span>196435<span class="kw">&lt;/td&gt;&lt;td</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;action&quot;</span><span class="kw">&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;list_produits.html?id=2&quot;</span><span class="kw">&gt;</span>Modifier<span class="kw">&lt;/a&gt;&lt;/td&gt;</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tbody&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>1<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>fruit<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>banane<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>2.00<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>131059<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;action&quot;</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;list_produits.html?id=1&quot;</span><span class="dt">&gt;</span>Modifier<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>fru<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>poire<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>2.50<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>196435<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;action&quot;</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;list_produits.html?id=2&quot;</span><span class="dt">&gt;</span>Modifier<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tfoot&gt;</span> <span class="co">&lt;!-- Pied de tableau --&gt;</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>id<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>type<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>nom<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>prix/kg<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th&gt;</span>ref<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;th</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;action&quot;</span><span class="kw">&gt;</span>operations<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tfoot&gt;</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span></code></pre></div>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tfoot</span><span class="dt">&gt;</span> <span class="co">&lt;!-- Pied de tableau --&gt;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>id<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>type<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>nom<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>prix/kg<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>ref<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;action&quot;</span><span class="dt">&gt;</span>operations<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tfoot</span><span class="dt">&gt;</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>ajouter dans le fichier css <strong>mes_styles.css</strong> le code
 ci-dessous</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span>{</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>:<span class="dv">40</span><span class="dt">%</span><span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span>:<span class="dv">solid</span>  <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-color</span>: <span class="cn">blue</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-collapse</span>:<span class="dv">collapse</span><span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span>:<span class="dv">center</span><span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-left</span>:<span class="bu">auto</span><span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-right</span>:<span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span><span class="dv">40</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span><span class="ch">:</span><span class="dv">solid</span>  <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-color</span><span class="ch">:</span> <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-collapse</span><span class="ch">:</span><span class="dv">collapse</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span><span class="dv">center</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-left</span><span class="ch">:</span><span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-right</span><span class="ch">:</span><span class="bu">auto</span><span class="op">;</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span> td {</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span>:<span class="dv">solid</span> <span class="cn">green</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span><span class="ch">:</span><span class="dv">solid</span> <span class="cn">green</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span> caption{</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-left</span>:<span class="bu">auto</span><span class="op">;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-right</span>:<span class="bu">auto</span><span class="op">;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span>:<span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>:<span class="cn">olive</span><span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-left</span><span class="ch">:</span><span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-right</span><span class="ch">:</span><span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span><span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span><span class="cn">olive</span><span class="op">;</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span> thead{</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>:<span class="cn">purple</span><span class="op">;</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">LightBlue</span><span class="op">;</span> <span class="co">/*#ADD8E6*/</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span><span class="cn">purple</span><span class="op">;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span><span class="cn">LightBlue</span><span class="op">;</span> <span class="co">/*#ADD8E6*/</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span> thead th{</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span>:<span class="dv">solid</span> <span class="cn">red</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span><span class="ch">:</span><span class="dv">solid</span> <span class="cn">red</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>table<span class="fu">.tableau2</span> tfoot{</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>:<span class="cn">purple</span><span class="op">;</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">green</span><span class="op">;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span><span class="cn">purple</span><span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span><span class="cn">green</span><span class="op">;</span></span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <br>
 <div class="exercice">
@@ -279,12 +288,12 @@ chargement de page)</p>
 <li>Ajouter dans la balise <code>&lt;head&gt;</code></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;bootstrap/css/bootstrap.css&quot;</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;bootstrap/css/bootstrap.css&quot;</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Ajouter avant la fin balise <code>&lt;/body&gt;</code></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;bootstrap/css/bootstrap.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;bootstrap/css/bootstrap.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
 <h3 id="intégration-dans-une-page-html-1">intégration dans une page
 HTML</h3>
 <p>Système de classe</p>
@@ -293,8 +302,8 @@ HTML</h3>
 par exemple :</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;text-danger text-center&quot;</span><span class="kw">&gt;</span>classes utilisées : .text-danger .text-center<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;text-warning bg-dark text-center&quot;</span><span class="kw">&gt;</span>classes utilisées : .text-warning .bg-dark .text-center<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;text-danger text-center&quot;</span><span class="dt">&gt;</span>classes utilisées : .text-danger .text-center<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;text-warning bg-dark text-center&quot;</span><span class="dt">&gt;</span>classes utilisées : .text-warning .bg-dark .text-center<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div>
 <figure>
 <img src="img_diw/bootstrap_classe_exemple1.png"
 alt="exemple d’utilisation de classes bootstrap" />

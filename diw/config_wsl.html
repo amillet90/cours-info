@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -24,7 +33,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -159,14 +168,16 @@ l’option WSL (et pourquoi ne pas le faire)</a></li>
 ci-dessous dans un <strong>terminal PowerShell en tant
 qu’administrateur</strong> (clic droit sur l’application ‘Terminal’ puis
 ‘exécuter en tant qu’administrateur’).</p>
-<pre class="bat"><code>wsl --install</code></pre>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bat"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl -<span class="at">-install</span></span></code></pre></div>
 <p>Windows installe alors WSL ainsi que <strong>Ubuntu</strong> en
 distribution par défaut.<br />
 &gt; <strong>Vous devrez ensuite impérativement redémarrer votre pc
 comme indiqué par le terminal</strong></p>
 <p>Si en tapant cette commande, on vous dis que wsl est déjà installé,
 alors il faudra taper :</p>
-<pre class="bat"><code>wsl --update</code></pre>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bat"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wsl -<span class="at">-update</span></span></code></pre></div>
 <p>Puis dans ce cas, il faudra ensuite ouvrir le <strong>Microsoft
 Store</strong> et installer <strong>Ubuntu</strong> puis redémarrer.</p>
 <p>A la suite de l’installation, vous avez trois nouvelles applications

@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -24,7 +33,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -253,39 +262,39 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 <p>Ajouter au fichier <strong>templates/layout.html</strong> le contenu
 ci-dessous :</p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;fr&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;utf-8&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    {% block title %}</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;title&gt;</span>layout<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>layout<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;shortcut icon&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;shortcut icon&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    {% block stylesheets %}</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        {#<span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span> <span class="kw">&gt;</span>#}</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        {#<span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span>#}</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>{% include(&#39;_nav.html&#39;) %}</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h2</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;color:blue&quot;</span><span class="kw">&gt;</span>layout.html<span class="kw">&lt;/h2&gt;</span>  </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;color:blue&quot;</span><span class="dt">&gt;</span>layout.html<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span>  </span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>{% block javascripts %}</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    {#<span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>#}</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    {#<span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/js/bootstrap.js&#39;) }}&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span>#}</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>Ajouter au fichier <strong><code>templates/_nav.html</code></strong>
 le contenu ci-dessous :</p>
 <div class="sourceCode" id="cb11"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/article/show&quot;</span><span class="kw">&gt;</span> article <span class="kw">&lt;/a&gt;</span>  -</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/type-article/show&quot;</span><span class="kw">&gt;</span> type d&#39;article <span class="kw">&lt;/a&gt;</span>  -</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;hr&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;menu&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/article/show&quot;</span><span class="dt">&gt;</span> article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/type-article/show&quot;</span><span class="dt">&gt;</span> type d&#39;article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">hr</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>La forme des URL dans les templates n’est pas celle recommandée dans
 la <a
@@ -302,37 +311,37 @@ target="_blank">NodeJs</a> (express est utilisé en S3).</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">,</span>tr {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">table-layout</span>: <span class="dv">fixed</span><span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">width</span>: <span class="dv">80</span><span class="dt">%</span><span class="op">;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">40</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border-collapse</span>: <span class="dv">collapse</span><span class="op">;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span>: <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">purple</span><span class="op">;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span>: <span class="cn">yellow</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">table-layout</span><span class="ch">:</span> <span class="dv">fixed</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">80</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">40</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border-collapse</span><span class="ch">:</span> <span class="dv">collapse</span><span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">purple</span><span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">yellow</span><span class="op">;</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>a {</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>:<span class="dv">150</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">gold</span><span class="op">;</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span>: <span class="dv">1</span><span class="dt">px</span> <span class="cn">green</span> <span class="dv">groove</span> <span class="op">;</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span>:<span class="dv">center</span><span class="op">;</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">vertical-align</span>: <span class="dv">middle</span><span class="op">;</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span>: <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> : <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-radius</span>: <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span><span class="dv">150</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span><span class="cn">gold</span><span class="op">;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="cn">green</span> <span class="dv">groove</span> <span class="op">;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span><span class="dv">center</span><span class="op">;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">vertical-align</span><span class="ch">:</span> <span class="dv">middle</span><span class="op">;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> <span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">.flashes</span> {</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span>: <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> : <span class="dv">5</span><span class="dt">px</span><span class="op">;</span> </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span> <span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span> </span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="fu">.alert-warning</span> {</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="fu">rgba(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">197</span><span class="op">,</span> <span class="dv">197</span><span class="op">,</span> <span class="dv">1</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="fu">rgba(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">197</span><span class="op">,</span> <span class="dv">197</span><span class="op">,</span> <span class="dv">1</span><span class="fu">)</span><span class="op">;</span></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="fu">.alert-success</span> {</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">#bdfdbd</span><span class="op">;</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#bdfdbd</span><span class="op">;</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <!-- 
 * utiliser [les fichiers de ressources](https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip) et dé-archiver ce fichier dans le dossier **static** de l'application
@@ -363,41 +372,41 @@ contenu ci-dessous :</p>
 class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>{% block title %}</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>afficher les types d&#39;article<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>afficher les types d&#39;article<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Types d&#39;articles<span class="kw">&lt;/h3&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/type-article/add&quot;</span><span class="kw">&gt;</span>ajouter un type d&#39;article<span class="kw">&lt;/a&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br&gt;&lt;br&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>Types d&#39;articles<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/type-article/add&quot;</span><span class="dt">&gt;</span>ajouter un type d&#39;article<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;table&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;thead</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;thead-dark&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;th&gt;</span>id<span class="kw">&lt;/th&gt;&lt;th&gt;</span>designation<span class="kw">&lt;/th&gt;&lt;th&gt;</span>opération<span class="kw">&lt;/th&gt;</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/tr&gt;</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/thead&gt;</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;tbody&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;table&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;thead-dark&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>id<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>designation<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>opération<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    {% if types_articles | length &gt;= 1 %}</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        {% for ligne in types_articles %}</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;td&gt;</span>{{ ligne.id }}<span class="kw">&lt;/td&gt;</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;td&gt;</span>{{ ligne.libelle }}<span class="kw">&lt;/td&gt;</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;td&gt;</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                      <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/type-article/edit?id={{ ligne.id }}&quot;</span><span class="kw">&gt;</span>editer<span class="kw">&lt;/a&gt;</span><span class="dv">&amp;nbsp;</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                      <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;/type-article/delete?id={{ ligne.id }}&quot;</span> <span class="kw">&gt;</span>supprimer<span class="kw">&lt;/a&gt;</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;/td&gt;</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>           <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ ligne.id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ ligne.libelle }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/type-article/edit?id={{ ligne.id }}&quot;</span><span class="dt">&gt;</span>editer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span><span class="dv">&amp;nbsp;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/type-article/delete?id={{ ligne.id }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span>supprimer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>           <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        {% endfor %}</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    {% else %}</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;tr&gt;</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;td&gt;</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>                      pas de type d&#39;article</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">&lt;/td&gt;</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>           <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>           <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    {% endif %}</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/tbody&gt;</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/table&gt;</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <ul>
 <li>Ajouter une route dans le fichier <strong>app.py</strong> pour
@@ -423,19 +432,19 @@ pour ajouter un type d’article</li>
 class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>{% block title %}</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>ajouter un type d&#39;article<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>ajouter un type d&#39;article<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;h2&gt;</span>ajout d&#39;un type d&#39;article<span class="kw">&lt;/h2&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;form</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/type-article/add&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;fieldset&gt;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;legend&gt;</span> Créer un type d&#39;article<span class="kw">&lt;/legend&gt;</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span><span class="kw">&gt;</span>libelle<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span> <span class="er">size</span><span class="ot">=</span><span class="st">&quot;18&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;Saisir le libelle du type de l&#39;article&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;Creer&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;Valider&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/fieldset&gt;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>ajout d&#39;un type d&#39;article<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">&quot;post&quot;</span><span class="ot"> action</span><span class="op">=</span><span class="st">&quot;/type-article/add&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">fieldset</span><span class="dt">&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">legend</span><span class="dt">&gt;</span> Créer un type d&#39;article<span class="dt">&lt;/</span><span class="kw">legend</span><span class="dt">&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="dt">&gt;</span>libelle<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> size</span><span class="op">=</span><span class="st">&quot;18&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="ot"> placeholder</span><span class="op">=</span><span class="st">&quot;Saisir le libelle du type de l&#39;article&quot;</span><span class="dt">&gt;&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;Creer&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;Valider&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">fieldset</span><span class="dt">&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <ul>
 <li>Ajouter dans le fichier de l’application <strong>app.py</strong> la
@@ -473,9 +482,9 @@ suivantes pour afficher les messages “flash”</p>
 class="sourceCode html"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>{% with messages = get_flashed_messages(with_categories=true) %}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>{% if messages %}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    {% for categorie, message in messages %}</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">role</span><span class="ot">=</span><span class="st">&quot;alert&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;alert {{ categorie }}&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>           Information : <span class="kw">&lt;strong&gt;</span>{{ message }}<span class="kw">&lt;/strong&gt;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> role</span><span class="op">=</span><span class="st">&quot;alert&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;alert {{ categorie }}&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>           Information : <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>{{ message }}<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>{% endif %}</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
@@ -551,21 +560,21 @@ pour ajouter un type d’article</li>
 class="sourceCode html"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>{% block title %}</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>modifier un type d&#39;article<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>modifier un type d&#39;article<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>{% block body %}</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;h2&gt;</span>modifier un type d&#39;article<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>modifier un type d&#39;article<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;form</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/type-article/edit&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;fieldset&gt;</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;legend&gt;</span> Modifier un type d&#39;article<span class="kw">&lt;/legend&gt;</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;hidden&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;id&quot;</span> <span class="er">size</span><span class="ot">=</span><span class="st">&quot;18&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type_article.id }}&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;id&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span><span class="kw">&gt;</span>libelle<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span> <span class="er">size</span><span class="ot">=</span><span class="st">&quot;18&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type_article.libelle }}&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;libelle&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;Modifier&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;Modifier&quot;</span> <span class="kw">&gt;</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/fieldset&gt;</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">&quot;post&quot;</span><span class="ot"> action</span><span class="op">=</span><span class="st">&quot;/type-article/edit&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">fieldset</span><span class="dt">&gt;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">legend</span><span class="dt">&gt;</span> Modifier un type d&#39;article<span class="dt">&lt;/</span><span class="kw">legend</span><span class="dt">&gt;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id&quot;</span><span class="ot"> size</span><span class="op">=</span><span class="st">&quot;18&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ type_article.id }}&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;id&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="dt">&gt;</span>libelle<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="ot"> size</span><span class="op">=</span><span class="st">&quot;18&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ type_article.libelle }}&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;libelle&quot;</span><span class="dt">&gt;&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;Modifier&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;Modifier&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">fieldset</span><span class="dt">&gt;</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>{% endblock %}</span></code></pre></div>
 <figure>
 <img src="img_flask/diw_flask_crud_4.png" style="width:27cm"
@@ -661,24 +670,24 @@ déroulante</strong> à partir d’un tableau de données</p>
 article</strong> :</li>
 </ul>
 <div class="sourceCode" id="cb23"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span> <span class="er">required</span><span class="kw">&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;&quot;</span><span class="kw">&gt;</span>Sélectionner un type d&#39;article<span class="kw">&lt;/option&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;type_article_id&quot;</span><span class="ot"> required</span><span class="dt">&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span>Sélectionner un type d&#39;article<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    {% for type in types_articles %}</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type.id }}&quot;</span><span class="kw">&gt;</span> {{ type.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ type.id }}&quot;</span><span class="dt">&gt;</span> {{ type.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Code à ajouter dans le formulaire HTML pour <strong>modifier un
 article</strong> :</li>
 </ul>
 <div class="sourceCode" id="cb24"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;type_article_id&quot;</span><span class="kw">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;type_article_id&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    {% for type in types_articles %}</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">&quot;{{ type.id }}&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="er">{%</span> <span class="er">if</span> <span class="er">article.type_article_id</span> <span class="er">is</span> <span class="er">defined</span> <span class="er">and</span> <span class="er">type.id</span> <span class="ot">=</span><span class="st">=</span>  <span class="er">article.type_article_id</span> <span class="er">%}selected{%</span> <span class="er">endif</span> <span class="er">%}</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;</span> {{ type.libelle }} <span class="kw">&lt;/option&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ type.id }}&quot;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            </span><span class="er">{%</span><span class="ot"> if article.type_article_id is defined and type.id </span><span class="op">=</span><span class="er">=</span><span class="ot">  article.type_article_id </span><span class="er">%}</span><span class="ot">selected</span><span class="er">{%</span><span class="ot"> endif </span><span class="er">%}</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span> {{ type.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span></code></pre></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <h2 id="amélioration-afficher-une-image">amélioration : afficher une
 image</h2>
 <p>Les <strong>images sont dans le dossier static</strong>.</p>
@@ -686,7 +695,7 @@ image</h2>
 <li>le code ci-dessous n’est pas idéal</li>
 </ul>
 <div class="sourceCode" id="cb25"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;/static/images/{{ ligne.image }}&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span><span class="kw">&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;width:40px;height:40px&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/static/images/{{ ligne.image }}&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>Code pour afficher une image seulement si le nom existe et n’est pas
 vide.</p>
 <ul>
@@ -695,9 +704,9 @@ articles</strong> :</li>
 </ul>
 <div class="sourceCode" id="cb26"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>{%  if ligne.image is not none and ligne.image != &quot;&quot; %}</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span>  <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename = &#39;images/&#39; + ligne[&#39;image&#39;]) }}&quot;</span>  <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;width:40px;height:40px&quot;</span><span class="ot">  src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename = &#39;images/&#39; + ligne[&#39;image&#39;]) }}&quot;</span><span class="ot">  alt</span><span class="op">=</span><span class="st">&quot;image  de {{ ligne.nom }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>{% else %}</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;img</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width:40px;height:40px&quot;</span>   <span class="er">src</span><span class="ot">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;images/no_photo.jpeg&#39;)}}&quot;</span>  <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;no image&quot;</span> <span class="kw">&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;width:40px;height:40px&quot;</span><span class="ot">   src</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;images/no_photo.jpeg&#39;)}}&quot;</span><span class="ot">  alt</span><span class="op">=</span><span class="st">&quot;no image&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>{% endif %} </span></code></pre></div>
 <h1 id="annexes-ressources">annexes ressources</h1>
 <p><br></p>
