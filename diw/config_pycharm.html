@@ -91,7 +91,7 @@
 <body>
 <h1 id="python-doit-être-installé">Python doit être installé</h1>
 <ul>
-<li>tester si <code>python</code> est présent</li>
+<li>Tester si <code>python</code> est présent</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
@@ -116,16 +116,16 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install flask <span class="at">--break-system-packages</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pymysql <span class="at">--break-system-packages</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># les paquets sont installés sur à l&#39;IUT /usr/local/lib/python3.11/dist-packages</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># les paquets sont installés à l&#39;IUT /usr/local/lib/python3.11/dist-packages</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># les paquets sont installés sur ~/.local/lib/pythonxxxxx sur vos machines linux</span></span></code></pre></div>
 <ul>
-<li>sur linux (ubuntu mint debian), la commande pour installer
+<li>Sur Linux (Ubuntu, Mint, Debian), la commande pour installer
 <code>python</code> est :</li>
 </ul>
 <pre class="shell"><code>sudo apt install python3-pip
 python --version</code></pre>
 <ul>
-<li>Si la commande <code>python3 --version</code> affiche une version
+<li>Si la commande <code>python3 --version</code> affiche une version,
 mais pas la commande <code>python --version</code>, créer un lien
 symbolique de <code>python</code> à <code>python3</code></li>
 </ul>
@@ -189,7 +189,7 @@ votre login.</p>
 🤖 Ajouter un lanceur dans le panneau
 </summary>
 <p>
-<p>utiliser <strong>pycharm</strong> (à l’IUT
+<p>Utiliser <strong>PyCharm</strong> (à l’IUT
 <code>/opt/pycharm/bin/pycharm.sh</code> et
 <code>licence server</code>)</p>
 <p><img src="img_flask/lanceurs.png" /></p>
@@ -201,8 +201,9 @@ terminal</figcaption>
 </figure>
 </p>
 </details>
-<h2 id="lancement-ou-installation-sur-vos-machine-personnelle">lancement
-(ou installation sur vos machine personnelle)</h2>
+<h2
+id="lancement-ou-installation-sur-votre-machine-personnelle">lancement
+(ou installation sur votre machine personnelle)</h2>
 <h2 id="la-licence">la licence</h2>
 <div class="cours gros">
 <ul>
@@ -219,20 +220,20 @@ faire ces opérations dans l’ordre :</li>
 <li>Créer un compte sur le <a href="https://account.jetbrains.com/login"
 target="_blanck">site <strong>jetbrains</strong></a> avec <strong>votre
 email de l’IUT</strong> comme login</li>
-<li>Valider votre compte en cliquant sur le lien dans votre boite
+<li>Valider votre compte en cliquant sur le lien dans votre boîte
 mail.</li>
 <li><a href="https://www.jetbrains.com/shop/eform/students"
 target="_blanck">Compléter un formulaire</a> avec vos références
 d’étudiant.</li>
 <li>Activer l’autorisation d’utiliser des licences en cliquant sur le
-lien dans votre boite mail.</li>
+lien dans votre boîte mail.</li>
 </ol>
 <!-- ![licence jetbrain](img_jetbrains_iut/install_datagrip_iut_3.png){width=12cm} -->
 </div>
 <h2 id="configuration">Configuration</h2>
 <p><br></p>
 <h3 id="en-local">en local</h3>
-<p>créer une nouvelle application flask (attention : l’explorateur de
+<p>Créer une nouvelle application Flask (attention : l’explorateur de
 fichiers de pycharm a parfois du mal à scanner le contenu du dossier
 HOME monté en NFS)</p>
 <figure>
@@ -245,31 +246,31 @@ alt="projet de base sur pycharm" />
 utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwiki/969727){target=_blank}
 
 ![projet de base sur pycharm](img_flask/ihm_flask_tp1_2_installv2.png){width=13cm}-->
-<p>cette application se présente sous la forme suivante</p>
+<p>Cette application se présente sous la forme suivante</p>
 <figure>
 <img src="img_flask/ihm_flask_tp1_1v2.png" style="width:13cm"
-alt="projet de base sur pycharm" />
-<figcaption aria-hidden="true">projet de base sur pycharm</figcaption>
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
 <!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur pycharm). -->
 <ul>
 <li>le dossier <code>static</code> contient tous les éléments (contenus)
-dit <strong>“static”</strong> du site : <strong>images, fichiers CSS,
+dits <strong>“static”</strong> du site : <strong>images, fichiers CSS,
 fichiers javascript</strong> utilisé par les pages HTML ….)</li>
 <li>le dossier template contient les pages HTML, ces pages HTML sont
 appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)"
 target="_blank"><strong>gabarit</strong></a> ou <a
 href="https://fr.wikipedia.org/wiki/Template"
 target="_blank"><strong>template</strong></a></li>
-<li>attention : <span class="modif">pas de dossier entre parenthèse
-(<em>venv</em> ou autres), vous utilisez une environnement
+<li>attention : <span class="modif">pas de dossier entre parenthèses
+(<em>venv</em> ou autres), vous utilisez un environnement
 virtuel</span></li>
 </ul>
 <p><br> <br></p>
 <figure>
 <img src="img_flask/pycharm_2024_2.png" style="width:13cm"
-alt="projet de base sur pycharm" />
-<figcaption aria-hidden="true">projet de base sur pycharm</figcaption>
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
 <!-- <br>
 Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’environnement virtuel python 
@@ -280,7 +281,8 @@ Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’en
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
-<h3 id="dans-un-environement-virtuel">dans un environement virtuel</h3>
+<h3 id="dans-un-environnement-virtuel">dans un environnement
+virtuel</h3>
 <p>Depuis Debian 12/LMDE 6 (et donc aussi LMDE 7), pip refuse par défaut
 d’installer des paquets globalement à cause de la norme PEP 668
 (“externally-managed-environment”). C’est voulu : Debian gère lui-même
@@ -421,7 +423,7 @@ comme contenu :</p>
 <p>sur Linux : recherchez les numéros des processus qui utilisent le nom
 “flask” avec la commande ci-dessous :</p>
 <pre><code>ps aux | grep flask</code></pre>
-<p>puis avec xxxx ou xxxx est l’ID (première colonne du résultat de la
+<p>puis avec xxxx où xxxx est l’ID (première colonne du résultat de la
 commande précédente) du ou des processus flask à tuer (arrêter),
 faire</p>
 <pre><code>kill -9   xxxx</code></pre>
@@ -432,7 +434,7 @@ faire</p>
 <h3 id="problème-dinstallation-flask-non-reconnu">problème
 d’installation (flask non reconnu)</h3>
 <div class="cours">
-<p>message d’erreur : ” option –debug” non reconnue</p>
+<p>message d’erreur : “option –debug” non reconnue</p>
 <ul>
 <li>version de flask</li>
 </ul>
@@ -463,17 +465,17 @@ pip install pymysql --break-system-packages
 <p>problème avec un paquet (11/2025)</p>
 <pre><code>pip install Flask-Assets2 --break-system-packages</code></pre>
 </div>
-<p><br> Il est possible de déactiver l’affichage de conseils
+<p><br> Il est possible de désactiver l’affichage de conseils
 d’incrustation : “File / Settings / Editor ; Inlay Hints ; disable Code
 Vision”</p>
-<p><br> Texte souligné en vert : Dé-activer la typo : “File / Settings
+<p><br> Texte souligné en vert : Désactiver la typo : “File / Settings
 /” “Inspection” ; Proofreading” ; Typo”</p>
 <p><br><br><br></p>
 <h1 id="annexe-utiliser-github-ou-gitlab">annexe : utiliser GitHub ou
 GitLab</h1>
 <h2 id="mise-en-place-dun-projet">mise en place d’un projet</h2>
 <ul>
-<li>Créer un projet (repository) sur votre compte GiHub ou GitLab</li>
+<li>Créer un projet (repository) sur votre compte GitHub ou GitLab</li>
 <li>Cloner votre projet dans un dossier sur votre machine</li>
 </ul>
 <p>Dans un terminal :</p>
@@ -507,7 +509,7 @@ git commit -m &quot;modif projet&quot;
 git push
 
 
-# commande pour revenir en arrière  dans son code si on a oublier de faire un &quot;pull&quot; (dernière version avec un &quot;commit&quot;)
+# commande pour revenir en arrière  dans son code si on a oublié de faire un &quot;pull&quot; (dernière version avec un &quot;commit&quot;)
 
 git reset --hard HEAD^
 
