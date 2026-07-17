@@ -287,7 +287,7 @@ d’installer des paquets globalement à cause de la norme PEP 668
 certains paquets Python système, et un <code>pip install</code> sauvage
 en dehors d’un venv peut casser des outils du système.</p>
 <figure>
-<img src="img_flask/pycharm_2024_1.png" style="width:17cm"
+<img src="img_flask/pycharm_2026_1.png" style="width:17cm"
 alt="projet de base sur pycharm" />
 <figcaption aria-hidden="true">projet de base sur pycharm</figcaption>
 </figure>
@@ -297,8 +297,17 @@ deactivate
 which flask
 source .venv/bin/activate
 which flask</code></pre>
-<pre><code>source .venv/bin/activate
-flask --debug  --app app  run   --host 0.0.0.0</code></pre>
+<p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
+: recopier le contenu ci-dessous dans un terminal de pycharm</p>
+<pre><code>touch launcher.sh
+
+chmod a+x launcher.sh
+
+echo &quot;source .venv/bin/activate&quot; &gt; launcher.sh
+echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
+
+echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
+</code></pre>
 <h1 id="première-application">première application</h1>
 <ul>
 <li>modifier le fichier <strong>app.py</strong> avec comme contenu
