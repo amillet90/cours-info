@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -24,7 +33,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -115,7 +124,7 @@ importantes : B.D.D. et S.G.B.D.</h1>
 <div class="cours">
 <p><a
 href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es#cite_note-0"
-target="_blanck"><strong>BDD</strong> : (ou BD) <strong>Base De
+target="_blank"><strong>BDD</strong> : (ou BD) <strong>Base De
 Données</strong></a> : Stock d’informations organisé et structuré de
 manière à :</p>
 <ul>
@@ -123,22 +132,22 @@ manière à :</p>
 <li>stocker efficacement de très grandes quantités d’informations,</li>
 <li>conserver l’<a
 href="https://datafranca.org/wiki/Int%C3%A9grit%C3%A9_des_donn%C3%A9es"
-target="_blanck">intégrité des données</a>.</li>
+target="_blank">intégrité des données</a>.</li>
 </ul>
 <p><br></p>
 <p><a
 href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_gestion_de_base_de_donn%C3%A9es"
-target="_blanck"><strong>SGBD</strong> :Les SGBD (<strong>Systèmes de
+target="_blank"><strong>SGBD</strong> :Les SGBD (<strong>Systèmes de
 Gestion de Bases de Données</strong>)</a> permettent de naviguer dans
 les données et d’extraire (ou de mettre à jour) les informations
 souhaitées à l’aide de <a href="http://fr.wikipedia.org/wiki/Requête"
-target="_blanck"><em>requêtes</em></a>. C’est le logiciel qui gère les
+target="_blank"><em>requêtes</em></a>. C’est le logiciel qui gère les
 données.</p>
 </div>
 <p><br></p>
 <p>Remarque : <strong>SGBDR</strong> : le R vient de <a
 href="http://fr.wikipedia.org/wiki/Base_de_données_relationnelle"
-target="_blanck"><em>relationnel</em></a>, notion difficile à comprendre
+target="_blank"><em>relationnel</em></a>, notion difficile à comprendre
 en début de formation, mais l’idée est :</p>
 <ul>
 <li><strong>minimiser la redondance, et maximiser la
@@ -148,7 +157,7 @@ cohérence,</strong></li>
 temps d’accès.</li>
 </ul>
 <p><br></p>
-<p><a href="http://db-engines.com/en/ranking" target="_blanck"><strong>Un
+<p><a href="http://db-engines.com/en/ranking" target="_blank"><strong>Un
 classement des différents SGBD</strong></a></p>
 <!-- <iframe id="classement des différents SGBD"
     title="classement des différents SGBD"
@@ -159,7 +168,7 @@ classement des différents SGBD</strong></a></p>
 <p><img src="img/S1_bdd_tp1_image8.png" style="width:15cm" /></p>
 <h2
 id="étapes-avant-de-commencer-à-travailler-sur-un-sgbd-comme-mysql">Étapes
-avant de commencer à travailler sur un SGBD comme MySql</h2>
+avant de commencer à travailler sur un SGBD comme MySQL</h2>
 <figure>
 <img src="img/S1_bdd_tp1_img1.png" style="width:21cm"
 alt="exemple de démarche pour étudier et réaliser une Base de Données" />
@@ -167,7 +176,7 @@ alt="exemple de démarche pour étudier et réaliser une Base de Données" />
 réaliser une Base de Données</figcaption>
 </figure>
 <p><a href="https://laurent-audibert.developpez.com/Cours-BD/"
-target="_blanck">Exemple de cours</a></p>
+target="_blank">Exemple de cours</a></p>
 <h1
 id="modèle-relationnel-dans-une-base-de-données-création-des-tables">Modèle
 relationnel dans une base de données : Création des tables</h1>
@@ -175,10 +184,10 @@ relationnel dans une base de données : Création des tables</h1>
 href="http://fr.wikipedia.org/wiki/Table_(base_de_données)"><strong><em>Une
 table</em></strong></a><a
 href="http://fr.wikipedia.org/wiki/Table_(base_de_données)"
-target="_blanck"></a> : c’est un objet abstrait , qui regroupe des
-données qui ont un rapport très précis entre elles. <br> <a
+target="_blank"></a> : c’est un objet abstrait, qui regroupe des données
+qui ont un rapport très précis entre elles. <br> <a
 href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_relationnel"
-target="_blanck"><strong>Terminologie dans les Bases De
+target="_blank"><strong>Terminologie dans les Bases De
 Données</strong></a></p>
 <p>Une <strong>table</strong> est composée d’<strong><em>un
 nom</em></strong>, et d’un ensemble de propriétés (que l’on appelle
@@ -199,17 +208,17 @@ de données à une autre. (faire comme pour les noms de variables en
 programmation Java … ).</p>
 <p><a
 href="https://blog.developpez.com/elsuket/p8118/sql-general/quelle_difference_y_a_t_il_entre_une_col"
-target="_blanck">article : différence entre une colonne et un champ ?
+target="_blank">article : différence entre une colonne et un champ ?
 entre une ligne et un enregistrement ?</a></p>
 <p><img src="img/MCD_noms_1.png" style="width:10cm"
 alt="Modèle Entité-Association" /> <br> <a
 href="https://gilles-hunault.leria-info.univ-angers.fr/Pluripass/Db/seance2-ModeleEA.pdf"
-target="_blanck">cours Modèle Entité-Association</a></p>
+target="_blank">cours Modèle Entité-Association</a></p>
 <p><br></p>
 <div class="cours">
 <p>Dans une table, le premier champ (celui qui est souligné) est la <a
 href="http://fr.wikipedia.org/wiki/Clé_primaire"
-target="_blanck"><strong><em>clé primaire</em></strong></a> de la table
+target="_blank"><strong><em>clé primaire</em></strong></a> de la table
 :</p>
 <ul>
 <li><p><strong>elle permet d’identifier de façon unique chaque
@@ -237,20 +246,20 @@ commandes ne seront pas abordées ce semestre :</p>
 <ul>
 <li><p>Définition des données (<a
 href="https://fr.wikipedia.org/wiki/Langage_de_d%C3%A9finition_de_donn%C3%A9es"
-target="_blanck">DDL - Data Definition Language</a> (data definition
+target="_blank">DDL - Data Definition Language</a> (data definition
 language)) : <strong>CREATE – ALTER – DROP - RENAME</strong> –
 TRUNCATE</p></li>
 <li><p>Manipulation des données (<a
 href="https://fr.wikipedia.org/wiki/Langage_de_manipulation_de_donn%C3%A9es"
-target="_blanck">DML - Data Manipulation Language</a>) : <strong>INSERT
-– UPDATE – DELETE</strong> - LOCK TABLE</p></li>
+target="_blank">DML - Data Manipulation Language</a>) : <strong>INSERT –
+UPDATE – DELETE</strong> - LOCK TABLE</p></li>
 <li><p>Interrogation des données (<a
 href="https://fr.wikipedia.org/wiki/Langage_de_requ%C3%AAte"
-target="_blanck">DQL - Data Query Language)</a>) :
+target="_blank">DQL - Data Query Language)</a>) :
 <strong>SELECT</strong></p></li>
 <li><p>Contrôle des données (<a
 href="https://fr.wikipedia.org/wiki/Langage_de_contr%C3%B4le_de_donn%C3%A9es"
-target="_blanck">DCL - Data Control Language</a>) : GRANT – REVOKE –
+target="_blank">DCL - Data Control Language</a>) : GRANT – REVOKE –
 COMMIT – ROLLBACK – SAVEPOINT - SET TRANSACTION</p></li>
 </ul>
 <h1 id="installation-et-présentation-des-outils">Installation et
@@ -259,15 +268,15 @@ présentation des outils</h1>
 <li>un terminal</li>
 <li>vscode ou un autre éditeur texte (gedit …)</li>
 <li><a href="https://www.looping-mcd.fr/"
-target="_blanck">Looping-mcd</a> (installer wine sur linux)</li>
+target="_blank">Looping-mcd</a> (installer wine sur linux)</li>
 <li><a href="https://www.jetbrains.com/fr-fr/datagrip/"
-target="_blanck">DataGrip</a></li>
+target="_blank">DataGrip</a></li>
 <li><a href="https://www.jetbrains.com/fr-fr/pycharm/"
-target="_blanck">Pycharm</a></li>
+target="_blank">Pycharm</a></li>
 </ul>
 <p><a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/config_iut_etu.html"
-target="_blanck">Création des raccourcis sur les machines de
+target="_blank">Création des raccourcis sur les machines de
 l’IUT</a></p>
 <!--
 ```bash
@@ -318,13 +327,13 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="
 MySQL :</li>
 </ul>
 <p><a href="https://mariadb.com/kb/en/connecting-to-mariadb/"
-target="_blanck">documentation connexion à mariadb</a> - <a
+target="_blank">documentation connexion à mariadb</a> - <a
 href="https://dev.mysql.com/doc/refman/8.0/en/connecting.html"
-target="_blanck">et sur MySQL</a></p>
+target="_blank">et sur MySQL</a></p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--version</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--help</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql [OPTIONS] [database]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Usage: mysql <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">database</span><span class="pp">]</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> commande pour se connecter à mysql :</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">--user</span><span class="op">=</span>login <span class="at">--password</span><span class="op">=</span>secret <span class="at">--host</span><span class="op">=</span>serveurmysql  BDD_login</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -471,10 +480,10 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#
 <figcaption aria-hidden="true">script SQL</figcaption>
 </figure>
 <p><strong>NULL</strong> : non renseigné (absence de valeur : NO VALUE ,
-<a href="https://fr.wikipedia.org/wiki/N/a" target="_blanck">N/A</a>)
-(différent de espace, 0 ou la chaîne de caractères vide ““) <br> Il est
-possible de définir les champs que l’on veut remplir (ligne 1 et 5), à
-défaut il faut donner une valeur à chaque champ.</p>
+<a href="https://fr.wikipedia.org/wiki/N/a" target="_blank">N/A</a>)
+(différent d’un espace, 0 ou la chaîne de caractères vide ““) <br> Il
+est possible de définir les champs que l’on veut remplir (ligne 1 et 5),
+à défaut il faut donner une valeur à chaque champ.</p>
 <ol start="4" type="1">
 <li>Afficher tous les enregistrements d’une table</li>
 </ol>
@@ -525,7 +534,7 @@ puis insérez les champs précédents</li>
 </figure>
 <ul>
 <li>Conclusion : Quelles instructions « INSERT » ne fonctionnent pas et
-pourquoi?</li>
+pourquoi ?</li>
 </ul>
 <p><img src="img/S1_bdd_tp1_image5.png" /></p>
 <ol start="10" type="1">
@@ -533,7 +542,7 @@ pourquoi?</li>
 primaire sur l’identifiant</li>
 </ol>
 <ul>
-<li>Conclusion : Quelle différence existe t’il entre un champ qui a la
+<li>Conclusion : Quelle différence existe-t-il entre un champ qui a la
 propriété d’être une clé primaire et un champ qui a comme attribut «
 UNIQUE NOT NULL » ?</li>
 </ul>
