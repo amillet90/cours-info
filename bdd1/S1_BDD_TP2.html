@@ -143,11 +143,11 @@ id="présentation-des-différents-types-de-données-dans-mysql">Présentation
 des différents types de données dans MySQL</h1>
 <p>Les types standards (fondamentaux) sont :</p>
 <ul>
-<li><p><strong>INT</strong> ou(alias) <strong>INTEGER</strong>,
+<li><p><strong>INT</strong> ou (alias) <strong>INTEGER</strong>,
 SMALLINT, BIGINT, ….</p></li>
-<li><p><strong>DECIMAL(X,Y)</strong> ou(alias)
+<li><p><strong>DECIMAL(X,Y)</strong> ou (alias)
 <strong>NUMERIC(X,Y)</strong></p></li>
-<li><p>FLOAT(X) ou(alias) REAL</p></li>
+<li><p>FLOAT(X) ou (alias) REAL</p></li>
 <li><p>CHAR(X)</p></li>
 <li><p><strong>VARCHAR(X)</strong></p></li>
 <li><p><strong>DATE</strong> (AAAA-MM-JJ)</p></li>
@@ -220,8 +220,8 @@ target="_blank">BIGINT</a></td>
 </table>
 <p><br></p>
 <ul>
-<li>INT (alias INTEGER) : entier codé sur 4 octets (-2 147 438 648 à 2
-147 438 647)</li>
+<li>INT (alias INTEGER) : entier codé sur 4 octets (-2 147 483 648 à 2
+147 483 647)</li>
 <li>BYTE : entier codé sur 1 octet (0 à 255)</li>
 <li>SMALLINT : entier codé sur 2 octets (-32 768 à 32767)</li>
 </ul>
@@ -305,7 +305,7 @@ exemple : **telephone INT(10) ZEROFILL**, cependant **il vaut mieux enregistrer 
 <th style="text-align: center;">MySQL</th>
 <th style="text-align: center;">Oracle</th>
 <th style="text-align: center;">PostgreSQL</th>
-<th>SQL server</th>
+<th>SQLserver</th>
 </tr>
 </thead>
 <tbody>
@@ -419,7 +419,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 <th style="text-align: center;">MySQL</th>
 <th style="text-align: center;">Oracle</th>
 <th style="text-align: center;">PostgreSQL</th>
-<th>SQL server</th>
+<th>SQLserver</th>
 </tr>
 </thead>
 <tbody>
@@ -456,7 +456,7 @@ l’exposant et 52 bits pour la mantisse)</li>
 </ul>
 <p>REMARQUE : différence entre FLOAT et REAL sur <a
 href="https://docs.microsoft.com/fr-fr/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver15"
-target="_blank">‘SQL server’</a></p>
+target="_blank">‘SQLserver’</a></p>
 <p><br></p>
 <pre><code>
 CREATE TABLE test_float (
@@ -530,7 +530,7 @@ href="https://mariadb.com/kb/en/text/" target="_blank">TEXT</a></td>
 <li>VARCHAR(n) : Chaîne alphanumérique à longueur variable de 1 à 255
 caractères (n taille maxi)</li>
 <li>CHAR(n) : Chaîne alphanumérique à longueur fixe de 1 à 255
-caractères (complèter par des blancs si la taille est inférieur à la
+caractères (compléter par des blancs si la taille est inférieure à la
 taille maximale n)</li>
 <li>TEXT (blob) : zone de texte jusqu’à 65536 caractères</li>
 <li>MEDIUMTEXT (mediumBlob) : zone de texte jusqu’à 16 777 215
@@ -599,8 +599,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#c
 <ul>
 <li><p>date : Date codée sur 4 octets , <a
 href="https://learn.microsoft.com/fr-fr/sql/t-sql/data-types/date-transact-sql?view=sql-server-ver16"
-target="_blank">format ANSI</a> , <span target="_blank">format ANSI (doc
-mysql)</span> <br></p></li>
+target="_blank">format ANSI</a> , <a
+href="https://dev.mysql.com/doc/refman/9.7/en/date-and-time-type-syntax.html"
+target="_blank">format ANSI (doc mysql)</a> <br></p></li>
 <li><p>Test sur des dates, attention aux <strong>formats</strong> pour
 enregistrer un champ dans un enregistrement sur <strong>DATE</strong>
 <!--
@@ -710,7 +711,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#c
 recherchez des enregistrements compris entre 2 dates (exemple des vols),
 vous ne prenez pas en compte le dernier jour.</li>
 </ul>
-<h2 id="les-booleens">les booleens</h2>
+<h2 id="les-booléens">les booléens</h2>
 <p>valeur “vrai” ou “faux” codée sur un octet</p>
 <table>
 <colgroup>
@@ -726,7 +727,7 @@ vous ne prenez pas en compte le dernier jour.</li>
 <th style="text-align: center;">MySQL</th>
 <th style="text-align: center;">Oracle</th>
 <th style="text-align: center;">PostgreSQL</th>
-<th>SQL server</th>
+<th>SQLserver</th>
 </tr>
 </thead>
 <tbody>
@@ -779,7 +780,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#c
 <th style="text-align: center;">MySQL</th>
 <th style="text-align: center;">Oracle</th>
 <th style="text-align: center;">PostgreSQL</th>
-<th>SQL server</th>
+<th>SQLserver</th>
 </tr>
 </thead>
 <tbody>
@@ -848,7 +849,7 @@ DROP TABLE test_date3;
 constantes</strong>, sauf une exception uniquement sur le SGBDR MySql :
 pour un champ de type <strong>TIMESTAMP</strong> la valeur peut être par
 défaut <strong>CURRENT_TIMESTAMP</strong></p></li>
-<li><p>répondre aux questions ci dessous à l’aide de la documentation en
+<li><p>répondre aux questions ci-dessous à l’aide de la documentation en
 ligne.</p></li>
 <li><p>Dans un enregistrement, si un champ est de type <strong>date
 (DATE DATETIME TIMESTAMP TIME)</strong> :</p>
@@ -863,7 +864,7 @@ et <strong>TIMESTAMP</strong> ? (voir <a
 href="https://fr.wikipedia.org/wiki/Bug_de_l%27an_2038">bug de l’an
 2038</a>)</li>
 <li>Quel est l’intérêt de mettre la date courante lors de la création de
-l’enregistrement ? (voir remarque ci dessous)</li>
+l’enregistrement ? (voir remarque ci-dessous)</li>
 <li>Quelle est la date mini et maxi pour <strong>TIMESTAMP</strong>,
 consulter la documentation : <a
 href="http://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html"
