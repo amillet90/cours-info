@@ -65,24 +65,24 @@ ajouter un champ à une position précise dans la table</li>
 <tr class="odd">
 <td style="text-align: center;"><a
 href="https://www.w3schools.com/sql/sql_autoincrement.asp"
-target="_blanck">AUTOINCREMENT</a></td>
+target="_blank">AUTOINCREMENT</a></td>
 <td style="text-align: center;"><a
 href="https://www.w3schools.com/sql/sql_autoincrement.asp"
-target="_blanck">int AUTO_INCREMENT</a></td>
+target="_blank">int AUTO_INCREMENT</a></td>
 <td style="text-align: center;"><a
 href="https://livesql.oracle.com/apex/livesql/file/content_GL1PAE2CYMKDK32A42NZIGJVR.html"
-target="_blanck">number(10) + trigger</a></td>
+target="_blank">number(10) + trigger</a></td>
 <td style="text-align: center;">serial</td>
 <td><a
 href="https://docs.microsoft.com/fr-fr/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver15"
-target="_blanck">identity(seed,increment)</a></td>
+target="_blank">identity(seed,increment)</a></td>
 <td><a href="https://www.sqlite.org/autoinc.html"
-target="_blanck">INTEGER PRIMARY KEY is an alias for the ROWID</a></td>
+target="_blank">INTEGER PRIMARY KEY is an alias for the ROWID</a></td>
 </tr>
 </tbody>
 </table>
 <p><a href="https://mariadb.com/kb/en/auto_increment/"
-target="_blanck">documentation mariadb</a></p>
+target="_blank">documentation mariadb</a></p>
 <p><br></p>
 <ul>
 <li>Créez un fichier <strong>tp3.sql</strong></li>
@@ -98,9 +98,9 @@ etudiant avec comme champs :</h2>
 <ul>
 <li><p>un champ <strong>id_etu</strong> de type entier non signé avec un
 attribut AUTO_INCREMENT pour générer un identifiant unique. Voir
-l’exemple avec le lien ci dessous : <a
+l’exemple avec le lien ci-dessous : <a
 href="http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html"
-target="_blanck">http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html</a></p></li>
+target="_blank">http://dev.mysql.com/doc/refman/5.7/en/example-auto-increment.html</a></p></li>
 <li><p>un champ <strong>nom</strong> de type <strong>chaîne de
 caractères variable</strong> de taille 20 caractères maximum.</p></li>
 <li><p>un champ <strong>adresse</strong> de type
@@ -126,12 +126,12 @@ enregistrements</h2>
 pas assigner de valeur à un champ qui a comme attribut
 <strong>AUTO_INCREMENT</strong>, <a
 href="https://dev.mysql.com/doc/refman/8.0/en/example-auto-increment.html"
-target="_blanck">MySQL assigne automatiquement une séquence de
+target="_blank">MySQL assigne automatiquement une séquence de
 nombres</a>. Il est possible d’assigner une valeur NULL qui est
 transformée automatiquement en un nombre de la séquence gérée par MySQL.
-Dans d’autre SGBDR comme <a
+Dans d’autres SGBDR comme <a
 href="https://blog.developpez.com/sqlpro/p6135/ms-sql-server/auto_increment_identity_avec_sql_server"
-target="_blanck">sql server</a>, ça ne fonctionne pas exactement de la
+target="_blank">sql server</a>, ça ne fonctionne pas exactement de la
 même manière.</p>
 <p><br><br></p>
 <p>Voici 3 exemples :</p>
@@ -152,9 +152,9 @@ structure d’une table</h1>
 <p><br></p>
 <h2 id="ajouter-un-champ-en-fin-liste-dans-la-table">Ajouter un champ en
 fin liste dans la table</h2>
-<p>Ajouter un champde nom <strong>groupe</strong> et de type « chaîne de
-20 caractères » (le champ est par défaut en dernière position). Afficher
-la structure de la table. Afficher le contenu de la table (les
+<p>Ajouter un champ de nom <strong>groupe</strong> et de type « chaîne
+de 20 caractères » (le champ est par défaut en dernière position).
+Afficher la structure de la table. Afficher le contenu de la table (les
 enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image4.png" /></p>
@@ -176,8 +176,8 @@ la table. Afficher le contenu de la table (les enregistrements).</p>
 <p><br></p>
 <h2 id="modifier-un-champ-dans-la-table">Modifier un champ dans la
 table</h2>
-<p>Modifier le champ <strong>prenom</strong>, renommer le
-<strong>prenoms</strong> avec un nouveau type . Afficher la structure de
+<p>Modifier le champ <strong>prenom</strong>, renommer ce champs en
+<strong>prenoms</strong> avec un nouveau type. Afficher la structure de
 la table. Afficher le contenu de la table (les enregistrements).</p>
 <p><br></p>
 <p><img src="img/S1_bdd_tp2_image7.png" /></p>
@@ -186,13 +186,13 @@ la table. Afficher le contenu de la table (les enregistrements).</p>
 par une chaîne de caractères fixe sur 13 caractères</p>
 <p><br> conclusion : (<a
 href="https://www.developpez.net/forums/d1008389/bases-donnees/ms-sql-server/developpement/contrainte-telephone-varchar/"
-target="_blanck">la solution n’est pas évidente pour les numéros de
+target="_blank">la solution n’est pas évidente pour les numéros de
 téléphone</a>)</p>
 <p><br> Pour les étudiants les plus rapides, essayer d’ajouter une
 contrainte pour que le numéro de téléphone ne soit composé que de
 caractères de “0” à “9”, <a
 href="https://stackoverflow.com/questions/7522026/how-do-i-add-a-custom-check-constraint-on-a-mysql-table"
-target="_blanck">exemple</a></p>
+target="_blank">exemple</a></p>
 <h2 id="supprimer-une-table">Supprimer une table</h2>
 <p>Supprimer la table <strong>etudiant</strong> et la table
 <strong>etudiants</strong> si elles existent</p>
