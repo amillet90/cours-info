@@ -86,7 +86,7 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico" >
 </head>
 <body>
 <h1
@@ -94,12 +94,12 @@ id="tp3-html---le-langage-menu-et-tableau-découverte-de-bootstrap">TP3:
 HTML - le langage : menu et tableau, découverte de bootstrap</h1>
 <ul>
 <li>Créer un répertoire <strong>S1/web/tp3</strong>, créer vos fichiers
-HTML sur ce répertoire.</li>
-<li>Placer y <a
+HTML dans ce répertoire.</li>
+<li>Y placer <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp3.zip"><strong>les
 fichiers ressources</strong></a> du site de l’<a
 href="https://cours-info.iut-bm.univ-fcomte.fr/index.php/menu-cours-s1/r1-02-developpement-d-interfaces-web/2228-dev-interfaces-web-2021"
-target="_blanck">iut “cours-info”</a>.</li>
+target="_blank">iut “cours-info”</a>.</li>
 </ul>
 <p><br></p>
 <h2 id="exercice-partie-1-le-menu"><strong>Exercice : Partie 1 Le
@@ -112,7 +112,7 @@ menu</strong></h2>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;navigation&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;http://cours-info.iut-bm.univ-fcomte.fr&quot;</span><span class="ot">  target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> cours-info <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;http://www.iut-bm.univ-fcomte.fr&quot;</span><span class="ot">  target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> l&#39;iut <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;http://www.iut-bm.univ-fcomte.fr&quot;</span><span class="ot">  target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> l&#39;IUT <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;form_article.html&quot;</span><span class="dt">&gt;</span> ajouter un article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;form_type_article.html&quot;</span><span class="dt">&gt;</span> ajouter un type d&#39;article <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure&quot;</span><span class="ot"> target</span><span class="op">=</span><span class="st">&quot;_blank&quot;</span><span class="dt">&gt;</span> exemple de structure d&#39;une page <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
@@ -124,9 +124,9 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> media</span><span class="op">=</span><span class="st">&quot;screen&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;mes_styles.css&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
-<li><p>Testez (affichez dans un navigateur) la page HTML</p></li>
-<li><p>Utilisez le fichier css <strong>mes_styles.css</strong> et
-modifiez le avec le contenu ci-dessous :</p></li>
+<li><p>Tester (afficher dans un navigateur) la page HTML</p></li>
+<li><p>Utiliser le fichier css <strong>mes_styles.css</strong> et
+modifier le avec le contenu ci-dessous :</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>body {</span>
@@ -168,7 +168,7 @@ menu)</li>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;tableau2&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;tableau2&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">caption</span><span class="dt">&gt;</span>Recapitulatifs des produits<span class="dt">&lt;/</span><span class="kw">caption</span><span class="dt">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">caption</span><span class="dt">&gt;</span>Récapitulatif des produits<span class="dt">&lt;/</span><span class="kw">caption</span><span class="dt">&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span> <span class="co">&lt;!-- En-tête du tableau --&gt;</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
@@ -189,7 +189,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>fru<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>poire<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>2.50<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>196435<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;action&quot;</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;list_produits.html?id=2&quot;</span><span class="dt">&gt;</span>Modifier<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>   </span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">tfoot</span><span class="dt">&gt;</span> <span class="co">&lt;!-- Pied de tableau --&gt;</span></span>
@@ -268,21 +268,21 @@ href="https://themeselection.com/css-framework-comparison/"
 target="_blank">comparatif 2</a>, <a
 href="https://usablica.github.io/front-end-frameworks/compare.html"
 target="_blank"><strong>comparatif 3</strong></a></p></li>
-<li><p>Permet de réalisé des sites <strong>“responsives”</strong> de
-qualités</p></li>
+<li><p>Permet de réaliser des sites <strong>“responsives”</strong> de
+qualité</p></li>
 <li><p>Facile à prendre en main</p></li>
 <li><p>Réduit le CSS grâce à son système de classe</p></li>
 <li><p>Dans Bootstrap : Son <strong>système de grille</strong> est
 devenu une référence</p></li>
 <li><p>documentation <a
 href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"
-target="_blank">boostrap 5.3</a> <a
+target="_blank">Bootstrap 5.3</a> - <a
 href="https://tailwindcss.com/docs/background-color"
-target="_blank">tailwind</a></p></li>
+target="_blank">Tailwind</a></p></li>
 </ul>
 <h3 id="intégration-dans-une-page-html">intégration dans une page
 HTML</h3>
-<p>éviter d’utiliser un CDN (les fichiers sont recharger à chaque
+<p>éviter d’utiliser un CDN (les fichiers sont rechargés à chaque
 chargement de page)</p>
 <ul>
 <li>Ajouter dans la balise <code>&lt;head&gt;</code></li>
@@ -298,7 +298,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="
 HTML</h3>
 <p>Système de classe</p>
 <ul>
-<li>Bootstrap à un système de classe à incorporer dans les balises HTML,
+<li>Bootstrap a un système de classe à incorporer dans les balises HTML,
 par exemple :</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre
@@ -355,16 +355,16 @@ target="_blank">tuto 1</a>
 <p><!-- https://tailwindcomponents.com/component/tailwind-css-dropdown-navigation-bar -->
 <!--https://codepen.io/janheise/pen/JjdwXyz--></p>
 </section>
-<h2 id="utilisation-de-boostrap">Utilisation de boostrap</h2>
+<h2 id="utilisation-de-bootstrap">Utilisation de Bootstrap</h2>
 <ul>
-<li>créer un fichier <strong>test_boostrap.html</strong></li>
+<li>créer un fichier <strong>test_bootstrap.html</strong></li>
 </ul>
 <p><br> vérifier que dans le dossier du fichier html</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=utf-8 &gt;
-    &lt;title&gt;TP5 programmation Web&lt;/title&gt;
+    &lt;title&gt;TP3 programmation Web&lt;/title&gt;
     &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;iconeweb.ico&quot; &gt;
     &lt;link href=&quot;bootstrap/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
     &lt;/head&gt;
@@ -375,27 +375,27 @@ target="_blank">tuto 1</a>
 &lt;/html&gt;</code></pre>
 <p>recopier après la balise body</p>
 <ul>
-<li>le code de l’exemple de la documentation de bootstrap <a
+<li>le code de l’exemple de la documentation de Bootstrap <a
 href="https://getbootstrap.com/docs/5.3/components/navbar/#supported-content"
-target="_blanck">d’un menu (navbar)</a>.</li>
+target="_blank">d’un menu (navbar)</a>.</li>
 </ul>
 <p><br> Il faut créer un <a
 href="https://getbootstrap.com/docs/5.3/layout/containers/#default-container"
-target="_blanck"><em>container</em></a></p>
+target="_blank"><em>container</em></a></p>
 <p><br></p>
-<p>ajouter dans ce <em>container</em></p>
+<p>Ajouter dans ce <em>container</em></p>
 <ul>
 <li><p>un <a
 href="https://getbootstrap.com/docs/5.3/content/tables/#overview"
-target="_blanck">exemple de tableau</a></p></li>
+target="_blank">exemple de tableau</a></p></li>
 <li><p>un <a
 href="https://getbootstrap.com/docs/5.3/forms/overview/#overview"
-target="_blanck">exemple de formulaire</a></p></li>
+target="_blank">exemple de formulaire</a></p></li>
 </ul>
 <p><br></p>
-<p>ajouter un lien sur un fichier de style</p>
-<pre><code>    &lt;link rel=&quot;stylesheet&quot; href=&quot;mes_style.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</code></pre>
-<p>créer un fichier <strong>mes_style.css</strong> recopier les styles
+<p>Ajouter un lien sur un fichier de style</p>
+<pre><code>    &lt;link rel=&quot;stylesheet&quot; href=&quot;mes_styles.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</code></pre>
+<p>Créer un fichier <strong>mes_styles.css</strong> recopier les styles
 du tp dans ce fichier et utiliser les styles précédents</p>
 <p><br></p>
 <p>(voir exemple joint dans le fichier ressource)</p>
@@ -405,10 +405,10 @@ id="exercice-2-à-terminer-en-devoirs-à-la-maison-si-ce-tp-nest-pas-fini-en-tp"
 )</h2>
 <p>Voici 2 tableaux (<a
 href="https://www.w3schools.com/python/python_lists.asp"
-target="_blanck">listes</a>) avec à l’intérieur des <a
+target="_blank">listes</a>) avec à l’intérieur des <a
 href="https://www.w3schools.com/python/python_dictionaries.asp"
-target="_blanck">dictionnaires</a>. Ces listes peuvent s’apparenter à
-des tableaux à 2 dimensions. C’est le <strong>résultat de 2 requêtes
+target="_blank">dictionnaires</a>. Ces listes peuvent s’apparenter à des
+tableaux à 2 dimensions. C’est le <strong>résultat de 2 requêtes
 SQL</strong>.</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -460,16 +460,16 @@ les cellules (colonnes) du tableau HTML</p>
 convenance.</li>
 <li>Essayer d’utiliser le <a
 href="https://getbootstrap.com/docs/5.3/components/navbar/"
-target="_blanck">framework “bootstrap” dans votre menu</a> et dans <a
+target="_blank">framework “bootstrap” dans votre menu</a> et dans <a
 href="https://getbootstrap.com/docs/5.3/content/tables/"
-target="_blanck">vos tableaux</a> en plus des styles précédents</li>
+target="_blank">vos tableaux</a> en plus des styles précédents</li>
 </ul>
 <p><br> Réaliser un menu pour afficher les 2 formulaires (tp précédent)
 et les 2 tableaux (avec 4 liens)</p>
 <br>
 <div class="validation">
 <p>Valider votre page sur le site <a href="http://validator.w3.org/"
-target="_blanck">http://validator.w3.org/</a><br />
+target="_blank">http://validator.w3.org/</a><br />
 </p>
 </div>
 <br>
