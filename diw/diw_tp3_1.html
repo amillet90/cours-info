@@ -126,7 +126,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="
 <ul>
 <li><p>Tester (afficher dans un navigateur) la page HTML</p></li>
 <li><p>Utiliser le fichier css <strong>mes_styles.css</strong> et
-modifier le avec le contenu ci-dessous :</p></li>
+modifier avec le contenu ci-dessous :</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>body {</span>
@@ -257,9 +257,9 @@ signifie “table data”, “<code>th</code>” signifie “table header”</p>
 <h1 id="framework-css-bootstrap">FrameWork CSS : Bootstrap</h1>
 <section id="présentation-dun-framework-css-puis-de-bootstrap"
 class="cours">
-<h2>Présentation d’un framework CSS puis de BOOTSTRAP</h2>
+<h2>Présentation d’un framework CSS puis de Bootstrap</h2>
 <ul>
-<li><p>Un des “Framework”(s) CSS le plus utilisé : <a
+<li><p>Un des “Framework”(s) CSS les plus utilisés : <a
 href="https://2023.stateofcss.com/en-US/css-frameworks/"
 target="_blank"><strong>comparatif 2023</strong></a>, <a
 href="https://2022.stateofcss.com/en-US/css-frameworks/"
@@ -280,7 +280,7 @@ target="_blank">Bootstrap 5.3</a> - <a
 href="https://tailwindcss.com/docs/background-color"
 target="_blank">Tailwind</a></p></li>
 </ul>
-<h3 id="intégration-dans-une-page-html">intégration dans une page
+<h3 id="intégration-dans-une-page-html">Intégration dans une page
 HTML</h3>
 <p>éviter d’utiliser un CDN (les fichiers sont rechargés à chaque
 chargement de page)</p>
@@ -290,13 +290,12 @@ chargement de page)</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;bootstrap/css/bootstrap.css&quot;</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
-<li>Ajouter avant la fin balise <code>&lt;/body&gt;</code></li>
+<li>Ajouter avant la fin de la balise <code>&lt;/body&gt;</code></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;bootstrap/css/bootstrap.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
-<h3 id="intégration-dans-une-page-html-1">intégration dans une page
-HTML</h3>
-<p>Système de classe</p>
+class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;bootstrap/js/bootstrap.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="utilisation-dans-une-page-html-système-de-classe">Utilisation
+dans une page HTML : Système de classe</h3>
 <ul>
 <li>Bootstrap a un système de classe à incorporer dans les balises HTML,
 par exemple :</li>
@@ -333,7 +332,11 @@ bootstrap</a></li>
 <li>ajouter dans le lien sur <code>page3.html</code> les classes
 <code>class="btn btn-success text-info"</code></li>
 </ul>
-<p><img src="img_diw/margin_padding.png" /></p>
+<figure>
+<img src="img_diw/margin_padding.png"
+alt="attribut padding et margin" />
+<figcaption aria-hidden="true">attribut padding et margin</figcaption>
+</figure>
 <ul>
 <li><a
 href="https://getbootstrap.com/docs/5.2/utilities/spacing/#margin-and-padding"
@@ -359,7 +362,8 @@ target="_blank">tuto 1</a>
 <ul>
 <li>créer un fichier <strong>test_bootstrap.html</strong></li>
 </ul>
-<p><br> vérifier que dans le dossier du fichier html</p>
+<p><br> vérifier que dans le dossier du fichier html que le fichier
+contient au minimum ce code :</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -439,12 +443,16 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a h
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">14</span>, <span class="st">&#39;nom&#39;</span>: <span class="st">&#39;pince multiprise&#39;</span>, <span class="st">&#39;type_article_id&#39;</span>: <span class="dv">5</span>, <span class="st">&#39;prix&#39;</span>: <span class="dv">22</span>, <span class="st">&#39;stock&#39;</span>: <span class="dv">3</span>, <span class="st">&#39;description&#39;</span>: <span class="va">None</span>, <span class="st">&#39;image&#39;</span>: <span class="st">&#39;pinceMultiprise.jpg&#39;</span>}, </span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="dv">15</span>, <span class="st">&#39;nom&#39;</span>: <span class="st">&#39;perceuse&#39;</span>, <span class="st">&#39;type_article_id&#39;</span>: <span class="dv">5</span>, <span class="st">&#39;prix&#39;</span>: <span class="dv">150</span>, <span class="st">&#39;stock&#39;</span>: <span class="dv">3</span>, <span class="st">&#39;description&#39;</span>: <span class="va">None</span>, <span class="st">&#39;image&#39;</span>: <span class="st">&#39;perceuse.jpg&#39;</span>}    </span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p>Remarque : à ce stade, vous devez recopier ces données à la main dans
+vos tableaux HTML — 2 lignes suffisent, inutile de recopier toute la
+liste. La génération automatique de ces tableaux à partir des données
+Python sera vue au prochain TP avec Flask.</p>
 <p>Créer 2 fichiers <code>list_type_article.html</code> et
 <code>list_article.html</code></p>
 <ul>
 <li>Le fichier <code>list_type_article.html</code> contient un tableau
 HTML avec les 2 premiers types d’article du tableau python
-<em>types_articles</em> .</li>
+<em>types_articles</em>.</li>
 <li>Le fichier <code>list_article.html</code> contient un tableau HTML
 avec les 2 premiers articles du tableau python <em>articles</em>.</li>
 </ul>
@@ -460,7 +468,7 @@ les cellules (colonnes) du tableau HTML</p>
 convenance.</li>
 <li>Essayer d’utiliser le <a
 href="https://getbootstrap.com/docs/5.3/components/navbar/"
-target="_blank">framework “bootstrap” dans votre menu</a> et dans <a
+target="_blank">framework “Bootstrap” dans votre menu</a> et dans <a
 href="https://getbootstrap.com/docs/5.3/content/tables/"
 target="_blank">vos tableaux</a> en plus des styles précédents</li>
 </ul>
