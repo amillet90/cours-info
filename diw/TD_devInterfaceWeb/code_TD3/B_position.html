@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TD 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="window-container position">
+
+        <div class="window static">
+            <div class="title">
+                <h1>1. static</h1>
+                <div>
+                    <a class="btn minimize">v</a>
+                    <a class="btn close">x</a>
+                </div>
+            </div>
+            <div class="content">
+                <strong>static</strong> : C'est la valeur par défaut.
+                Les éléments sont positionnés en fonction de leur
+                ordre dans le flux du document.
+                Les propriétés <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, et <strong>left</strong> sont
+                généralement inopérantes pour les éléments en position static.
+            </div>
+        </div>
+
+
+        <div class="window relative">
+            <div class="title">
+                <h1>2. relative</h1>
+                <div>
+                    <a class="btn minimize">v</a>
+                    <a class="btn close">x</a>
+                </div>
+            </div>
+            <div class="content">
+                <strong>relative</strong> : Les éléments en position relative sont
+                déplacés par rapport à leur position normale.
+                Cependant, leur déplacement n'affecte
+                pas la disposition des autres éléments
+                autour d'eux. Les propriétés <strong>top</strong>, <strong>right</strong>,
+                <strong>bottom</strong>, et <strong>left</strong> sont utilisées pour déplacer
+                l'élément par rapport à sa position d'origine.
+            </div>
+        </div>
+
+
+        <div class="spacer"></div>
+
+        <div class="window sticky">
+            <div class="title">
+                <h1>5. sticky</h1>
+                <div>
+                    <a class="btn minimize">v</a>
+                    <a class="btn close">x</a>
+                </div>
+            </div>
+            <div class="content">
+                <strong>sticky</strong> : Les éléments en position 'collante' sont positionnés
+                comme un élément statique. Cependant, ils restent à l'écran
+                tant que leurs parents sont visibles. Les propriétés <strong>top</strong>,
+                <strong>right</strong>, <strong>bottom</strong>, et <strong>left</strong>
+                sont utilisées pour positionner l'élément par rapport à la fenêtre du navigateur.
+
+            </div>
+        </div>
+
+        <div class="window absolute">
+            <div class="title">
+                <h1>3. absolute</h1>
+                <div>
+                    <a class="btn minimize">v</a>
+                    <a class="btn close">x</a>
+                </div>
+            </div>
+            <div class="content">
+                <strong>absolute</strong> : Les éléments en position absolue sont positionnés
+                par rapport à leur premier parent positionné. Si aucun parent
+                n'a de position définie, l'élément est positionné par rapport
+                au document lui-même. Les propriétés <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, et <strong>left</strong>
+                sont utilisées pour positionner précisément l'élément par
+                rapport à son parent positionné.
+            </div>
+        </div>
+
+
+        <div class="window fixed">
+            <div class="title">
+                <h1>4. fixed</h1>
+                <div>
+                    <a class="btn minimize">v</a>
+                    <a class="btn close">x</a>
+                </div>
+            </div>
+            <div class="content">
+                <strong>fixed</strong> : Les éléments en position fixe sont positionnés
+                par rapport à la fenêtre du navigateur, ce qui signifie
+                qu'ils restent à la même position même lorsque la page est
+                défilée. Les propriétés <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, et <strong>left</strong> sont
+                utilisées pour positionner l'élément par rapport à
+                la fenêtre du navigateur.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

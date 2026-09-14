@@ -1,0 +1,227 @@
+
+
+
+
+
+/* ----------------------------------------------------------*/
+/* TUTO SELECTEURS (A_advenced-selector.html) */
+
+/* .A{
+    font-weight: bold;
+} */
+
+/* .A.B{
+    color: #e74c3c;
+} */
+
+/* div.window#a.A{
+    color: #1abc9c;
+} */
+
+/* .C:not(.D){
+    color: #9b59b6;
+} */
+
+/* .window:nth-child(3n){
+    background-color: #c47373;
+} */
+
+/* .window:nth-child(3){
+    background-color: #73c4b7;
+} */
+
+/* .window:hover{
+    background-color: #73c4b7;
+} */
+
+
+
+/* ----------------------------------------------------------*/
+/* TUTO POSITION (B_position) */
+
+.window.static{
+    position: static;
+}
+.window.relative{
+    position: relative;
+    left: 50px;
+    top:50px;
+}
+.window.absolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.window.fixed{
+    position: fixed;
+    top : 0;
+    left: 0;
+    z-index: 0;
+}
+.window.sticky{
+    position: sticky;
+    top : 0px;
+    left: 0;
+    z-index: 1;
+}
+
+
+
+/* ----------------------------------------------------------*/
+/* TUTO FLEXBOX (C_flex.html) */
+
+.window{
+    /* display: inline; */
+    display: block;
+    /* display: inline-block; */
+}
+
+.window-container.flex{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------*/
+/* ----------------------------------------------------------*/
+/* ---- STYLE DE LA PAGE  --------------- NE PAS TOUCHER ----*/
+/* ----------------------------------------------------------*/
+/* ----------------------------------------------------------*/
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 250vh;
+    width: 100vw;
+
+}
+
+.window-container{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+    width: 80vw;
+    height: 150vh;
+    margin: 100px auto 0 auto;
+    background-color: #f0f0f0;
+
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+
+.window{
+    width: 300px;
+
+
+    border-radius: 20px;
+    background-color: #ddd;
+
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
+}
+
+.window .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+    background-color: #333;
+    color: #fff;
+    padding: 5px 15px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.window .content{
+    padding: 10px;
+    overflow-y: auto;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+
+
+.window-container.flex{
+    height: unset;
+}
+
+.window-container.position{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spacer{
+    display: inline-block;
+    width: 20px;
+    height: 50px;
+}
+
+
+strong{
+    background-color: #fbfbfb;
+    padding: 3px;
+    color: #e74c3c;
+    border-radius: 2px;
+}
+
+
+
+.btn{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.162);
+    text-align: center;
+    font-weight: bold;
+}
+.btn.close{
+    background-color: #e74c3c;
+}
+.btn.minimize{
+    background-color: #f1c40f;
+}
+
+.btn.close:hover{
+    background-color: #ba3f32;
+}
+.btn.minimize:hover{
+    background-color: #a48610;
+}
+
+
+h1{
+    margin: 0;
+}
+

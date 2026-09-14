@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Développement d'interfaces Web</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f4f6fb;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        header.page-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        header.page-header h1 {
+            margin: 0 0 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .warning {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.9rem;
+            background-color: #fff3cd;
+            color: #7a5b00;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .td-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .td-card:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .td-card h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        .td-card ul {
+            margin: 0 0 0.75rem;
+            padding-left: 1.2rem;
+            color: var(--muted);
+        }
+
+        .td-card ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .resource-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-right: 0.2rem;
+        }
+
+        .resources a {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .resources a:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .resource-line {
+            margin: 0.3rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <h1>Développement d'interfaces Web</h1>
+        <span class="warning">IA interdite</span>
+    </header>
+
+    <main>
+        <section class="td-card">
+            <h2>TD1</h2>
+            <ul>
+                <li>Découverte de l'HTML.</li>
+            </ul>
+            <div class="resources">
+                <span class="resource-label">Exercice 1 :</span>
+                <a href="sujet_TD1exo1.html">Voir l'énoncé</a>
+                <span class="resource-label">Exercice 2 :</span>
+                <a href="sujet_TD1exo2.html">Voir l'énoncé</a>
+                <!-- <a href="sujet_TD1exo2_corr_7422.html">Correction</a> -->
+            </div>
+        </section>
+
+        <section class="td-card">
+            <h2>TD2</h2>
+            <ul>
+                <li>Découverte du CSS.</li>
+            </ul>
+            <div class="resources">
+                <span class="resource-label">Cours :</span>
+                <a href="sujet_TD2cours.html">Voir l'énoncé</a>
+                <!-- <a href="sujet_TD2cours_corr_2222.html">Correction</a> -->
+                <span class="resource-label">Exercice 1 :</span>
+                <a href="sujet_TD2exo1.html">Voir l'énoncé</a>
+                <!-- <a href="correction_TD2_7788/correction_td2.zip">Correction</a> -->
+            </div>
+        </section>
+
+        <section class="td-card">
+            <h2>TD3</h2>
+            <ul>
+                <li>Sélecteurs CSS avancés.</li>
+                <li>La propriété "position"</li>
+                <li>Les flexbox</li>
+            </ul>
+            <div class="resources">
+                <span class="resource-label">Cours :</span>
+                <a href="sujet_TD3cours.html">Voir l'énoncé</a>
+                <span class="resource-label">Exercice 1 :</span>
+                <a href="sujet_TD3exo1.html">Voir l'énoncé</a>
+                <a href="ressources_td3_td4.zip">ressource</a>
+            </div>
+        </section>
+
+        <section class="td-card">
+            <h2>TD4</h2>
+            <ul>
+                <li>Les unités CSS</li>
+                <li>Le responsive design grâce aux "media queries"</li>
+            </ul>
+            <div class="resources">
+                <span class="resource-label">Cours :</span>
+                <a href="code_TD4.zip">Télécharger le support</a>
+                <span class="resource-label">Exercice 1 :</span>
+                <a href="sujet_TD4exo1.html">Voir l'énoncé</a>
+
+                <!-- <a href="correction_TD4_1121.zip">Correction</a> -->
+            </div>
+        </section>
+
+        <section class="td-card">
+            <h2>TD5</h2>
+            <ul>
+                <li>Les polices avec "Google Fonts"</li>
+                <li>Des icônes avec "Google Material Symbols"</li>
+                <li>Le CSS pour les formulaires</li>
+            </ul>
+            <div class="resources">
+                <span class="resource-label">Cours :</span>
+                <a href="code_TD5.zip">Télécharger le support</a>
+                <span class="resource-label">Exercice 1 :</span>
+                <a href="sujet_TD5exo1.html">Voir l'énoncé</a>
+                <!-- <a href="correction_TD5_7745.css">Correction</a> -->
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+

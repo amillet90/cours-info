@@ -1,0 +1,124 @@
+
+
+body, html{
+    margin: 0; /* on annule la marge par défaut du body */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*--------------------------------*/
+/* HEADER                         */
+/*--------------------------------*/
+
+header, footer{
+    background-color: #485460;
+    /* width de 96% + padding 2% de chaque coté = 100% */
+    width: 96%;
+    padding: 1% 2%; /* [haut/bas] [gauche/droite] */
+
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+footer{ /* surcharge du style précédent (header, footer) */
+    height: 130px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+header *, footer *{
+    color: white;
+}
+
+header a{
+    margin-left: 20px;
+}
+
+
+header>h1{
+    float: left;
+    margin: 0; /* on annule la marge par défaut du h1 */
+}
+
+header>nav{
+    float: right;
+    margin-top: 8px;  /* centrage approximatif */
+}
+
+/*--------------------------------*/
+/* BODY                           */
+/*--------------------------------*/
+
+section{
+    background-color: #d2dae28e;
+    margin: 0 20px 20px 20px; /* [haut] [droite] [bas] [gauche] */
+    /* la marge haute est à 0 pour un espacement régulier avec les autres éléments */
+    padding: 10px;
+}
+
+
+/*--------------------------------*/
+/* SECTION 1                      */
+/*--------------------------------*/
+
+section>h1{
+    font-size: 50px;
+    margin: 20px 0 0 0;
+}
+
+img{
+    width: 250px; /* on réduit la taille de l'image */
+    float: right;
+}
+
+/*--------------------------------*/
+/* SECTION 2                      */
+/*--------------------------------*/
+
+table{
+    text-align: center;
+    /* centrage horizontal dans la section avec margin auto à droite et à gauche */
+    margin: 0 auto; 
+    border-spacing: 20px;
+}
+
+table tr>*{
+    width: 150px;
+    height: 80px;
+}
+
+td{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+#td1{background-color: #0fbcf9;}
+#td2{background-color: #0be881;}
+#td3{background-color: #ffc048;}
+#td4{background-color: #ff5e57;}
+#td5{background-color: #ef5777;}
+#td6{background-color: #575fcf;}
+
+/*--------------------------------*/
+/* SECTION 3                      */
+/*--------------------------------*/
+
+#div-section div, #div-section span{
+    /* Utilisation du display inline-block pour organiser les div et span sur une même ligne */
+    display: inline-block;
+
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+#div-section div{
+    background-color: #00000011;
+
+}
+
+#div-section span{
+    background-color: #1eff0031;
+    font-weight: bold;
+}
+

@@ -1,0 +1,89 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD3 - 1</title>
+    <!-- fav ico -->
+    <link rel="icon" type="image/png" href="./ico.png"/>
+	<link rel="stylesheet" href="https://dev.prismjs.com/themes/prism.css" />
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <span> Développement d'interfaces Web </span>
+            <span>TD3 - Exercice 1 </span>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h2> Objectif </h2>
+        <p>
+            Réalisez la page HTML et le style CSS de la fenêtre ci-dessous.
+        </p>
+
+        <div class="window dark">
+            <div class="header">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img src="./TD3Exo1.png">
+        </div>
+
+        <h2> Consignes : </h2>
+
+
+        <h3> Aide pour les icônes </h3>
+        <p>
+            Pour les icônes, vous pouvez utiliser des bibliothèques comme 
+            <a href="https://www.flaticon.com/fr/" target="_blank">Flaticon</a> ou,
+            <a href="https://fonts.google.com/icons" target="_blank">Material Symbols</a> de Google.
+        </p>
+
+        <h3> 1. Utilisez les Flexbox pour le contenu de la page </h3>
+        <p> 
+            Utilisez les <strong>Flexbox</strong> pour rendre le contenu de la page adaptable à sa largeur !<br/>
+            Par exemple : si la fenêtre est réduite, le contenu doit s'adapter comme ci-dessous : 
+        </p>
+        <div class="window small dark">
+            <div class="header">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img src="./TD3Flex.png">
+        </div>
+
+        <h3> 2. Hover dans le header </h3>
+        <p> Les boutons du header doivent changer de couleur au passage de la souris (hover) </p>
+        <img src="./TD3hover.gif">
+
+        <h3> 3. Hover sur les tuiles </h3>
+        <p> Au passage de la souris sur une tuile, une icône de téléchargement doit apparaître. </p>
+        <img src="./TD3_tiles.gif" class="small">
+        <ul>
+            <li>
+                Pour y parvenir, tentez d'abord d'afficher l'icône par-dessus la tuile en utilisant l'attribut <strong>position</strong> vu en cours.<br/>
+            </li>
+            <li>
+                Pour masquer l'icône vous pouvez utiliser <strong>opacity: 0;</strong>, puis, pour l'afficher lors du hover <strong>opacity: 1;</strong>
+            </li>
+            <li>
+                Pour l'animation, utilisez <strong>transition: opacity 0.3s;</strong> sur la div contenant l'icône.
+            </li>
+        </ul>
+
+    </div>
+    <script src="https://dev.prismjs.com/prism.js"></script>
+	<script src="/assets/theme-switcher.js" type="module"></script>
+	<script src="plugins/keep-markup/prism-keep-markup.js" ></script>
+	<script src="https://dev.prismjs.com/components/prism-bash.js" ></script>
+</body>
+
+</body>
+</html>
