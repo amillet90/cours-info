@@ -175,7 +175,7 @@ lancée si la route est trouvée.</li>
 <li>Si plusieurs routes portent le même nom (utilisent le même chemin),
 c’est la première trouvée par le programme qui est utilisée (pas
 d’erreur).</li>
-<li>Si aucune route est trouvée, l’application affiche une erreur</li>
+<li>Si aucune route n’est trouvée, l’application affiche une erreur</li>
 </ul>
 <p><br></p>
 <ul>
@@ -212,8 +212,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ol start="6" type="1">
 <li><p>Dans le fichier <code>app.py</code>, ajoutez ce tableau au début
-du fichier d’application flask après avoir importé les bibliothèques.
-.</p></li>
+du fichier d’application flask après avoir importé les
+bibliothèques.</p></li>
 <li><p>Dans le fichier <code>app.py</code>, créez une route
 <code>/etudiant/show</code> qui appelle la fonction
 <code>show_etudiants</code></p></li>
@@ -447,7 +447,7 @@ a pas de réponse retournée au navigateur (pas de
 <code>return</code>)</p>
 <div class="cours">
 <p><strong>redirection</strong></p>
-<ol start="22" type="1">
+<ol start="21" type="1">
 <li>À la fin de la fonction <code>delete_etudiant</code> faire une
 redirection sur la route <code>show_etudiants</code> avec l’instruction
 :</li>
@@ -455,7 +455,7 @@ redirection sur la route <code>show_etudiants</code> avec l’instruction
 <p><br></p>
 <p><code>return redirect('/etudiant/show')</code></p>
 </div>
-<ol start="23" type="1">
+<ol start="22" type="1">
 <li>Dans le fichier <code>app.py</code>, ajoutez le code ci-dessous dans
 la fonction <code>delete_etudiant</code></li>
 </ol>
@@ -465,7 +465,7 @@ la fonction <code>delete_etudiant</code></li>
 -->
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">&#39;paramètre dans l URL : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    message<span class="op">=</span><span class="st">&#39;paramètre dans l</span><span class="ch">\&#39;</span><span class="st">URL : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(message)</span></code></pre></div>
 <div class="cours">
 <ul>
@@ -474,7 +474,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a h
 <code>request.args.get</code> avec comme clé le nom du paramètre.</li>
 </ul>
 </div>
-<ol start="24" type="1">
+<ol start="23" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>edit_etudiant</code>, ajoutez le code ci-dessous :</li>
 </ol>
@@ -485,8 +485,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a h
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>liste_etudiants[indice<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>[]</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;etudiant&quot;</span><span class="op">+</span>etudiant)</span></code></pre></div>
-<ol start="25" type="1">
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;etudiant :&quot;</span>,etudiant)</span></code></pre></div>
+<ol start="24" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>edit_etudiant</code>, passez en paramètre l’étudiant sélectionné
 au template <code>edit_etudiant.html</code>. Affichez dans chaque champ
@@ -515,7 +515,7 @@ target="_blank">code branche 5</a></p>
 </div>
 <h2 id="utilisation-des-paramètres-issus-dun-formulaire">Utilisation des
 paramètres issus d’un formulaire</h2>
-<ol start="26" type="1">
+<ol start="25" type="1">
 <li>Dans le fichier <code>app.py</code>, créez 2 routes
 <code>/etudiant/add</code> et <code>/etudiant/edit</code> dans le
 fichier de l’application flask associées à 2 fonctions
@@ -531,7 +531,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a h
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valid_edit_etudiant():</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;&#39;&#39;modification de l&#39;étudiant dans le tableau&#39;&#39;&#39;</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> redirect(<span class="st">&#39;/etudiant/show&#39;</span>)</span></code></pre></div>
-<ol start="27" type="1">
+<ol start="26" type="1">
 <li><p>Dans les 2 templates <code>etudiant/add_etudiant.html</code> et
 <code>etudiant/edit_etudiant.html</code>, ajoutez dans les balises
 <code>&lt;form&gt;</code> des 2 formulaires des templates les attributs
@@ -560,7 +560,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a h
 <!--
 31. tester et modifier l'erreur : ChatGPT a oublier l'attribut `name=` dans les balises `<input>` et `<select>` 
 -->
-<ol start="32" type="1">
+<ol start="30" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>valid_edit_etudiant</code> ,créez un message avec les informations
 pour modifier un étudiant</li>
@@ -569,7 +569,7 @@ pour modifier un étudiant</li>
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l etudiant d identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">etudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <p>Remarque : Dans le formulaire pour modifier les données d’un
 étudiant, il faut un champ caché avec l’identifiant de l’étudiant. Ce
@@ -592,7 +592,7 @@ champ INPUT est obligatoire.</p>
 </div>
 <h2 id="fichiers-static">Fichiers “static”</h2>
 <p><br></p>
-<ol start="34" type="1">
+<ol start="31" type="1">
 <li>Supprimez la route <code>/hello</code> et la fonction
 <code>hello_world</code> ; associez la route <code>/</code> à la
 fonction <code>show_etudiants</code></li>
@@ -600,7 +600,7 @@ fonction <code>show_etudiants</code></li>
 <code>heure</code></li>
 </ol>
 <p>Il n’est pas possible dans le dossier <code>templates</code>
-d’utiliser des fichiers CSS des images ….</p>
+d’utiliser des fichiers CSS, des images ….</p>
 <ol start="33" type="1">
 <li>Placez le contenu du <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_DIW/diw/ressources/tp1_flask.zip">fichier
@@ -620,7 +620,7 @@ fichiers CSS (vos styles, bootstrap), les images, les fichiers
 <em>JavaScript</em></p>
 <p><br></p>
 <p>Ce dossier s’appelle aussi <strong>public</strong> dans d’autres
-frameworks (Symfony Laravel …)</p>
+frameworks (Symfony, Laravel …)</p>
 <p><br></p>
 <p>Dans Flask pour utiliser le contenu de ces fichiers dans les
 templates il faut utiliser la fonction :
@@ -664,7 +664,7 @@ par l’application. <strong>L’application va passer des paramètres
 <figcaption aria-hidden="true">principe du MVC</figcaption>
 </figure>
 <h1 id="héritage-et-liste-déroulante">Héritage et liste déroulante</h1>
-<ol start="35" type="1">
+<ol start="34" type="1">
 <li>héritage</li>
 </ol>
 <p>Créez 2 fichiers dans le dossier <strong>templates</strong>, un
@@ -724,7 +724,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href=
 <code>&lt;div class="container"&gt;</code> sous l’instruction
 <code>{% include('_nav.html') %}</code> et fermez cette balise après la
 fin du bloc <code>body</code></p>
-<ol start="36" type="1">
+<ol start="35" type="1">
 <li><a
 href="https://flask.palletsprojects.com/en/3.0.x/patterns/flashing/#flashing-with-categories"
 target="_blank">Messages flash</a></li>
@@ -809,19 +809,19 @@ les fonctions <code>valid_add_etudiant</code> et
 <div class="sourceCode" id="cb34"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d un etudiant de nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe    </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d</span><span class="ch">\&#39;</span><span class="st">un étudiant de nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe    </span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe <span class="op">+</span> <span class="st">&#39; pour l etudiant d identifiant :&#39;</span> <span class="op">+</span> <span class="bu">id</span>   </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> id_groupe <span class="op">+</span> <span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span> <span class="op">+</span> <span class="bu">id</span>   </span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <p>Dans le fichier <code>app.py</code>, modifiez le message flash avec
 le code ci-dessous dans la fonction <code>delete_etudiant</code> :</p>
 <div class="sourceCode" id="cb36"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l etudiant d identifiant : : &#39;</span><span class="op">+</span><span class="bu">id</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <h1 id="annexe">Annexe</h1>
 <p>En cas de problème avec pycharm (blocage) : supprimez le dossier
