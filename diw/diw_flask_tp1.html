@@ -100,6 +100,11 @@ href="https://www.youtube.com/watch?v=Ihp_cG7c2Rk" target="_blank">FLASK
 (Un prof de NSI)</a></p>
 <p><a href="https://github.com/germainbecker/tuto-flask"
 target="_blank">lien sur son code source</a></p>
+<p><strong>documentation et vidéo (niveau NSI) pour bien démarrer flask
+<a href="https://pixees.fr/informatiquelycee/n_site/nsi_prem_flask.html"
+target="_blank">Exemple2</a> - <a
+href="https://www.youtube.com/watch?v=zDkUIKedFsU&amp;list=PLPoGXNI6sXm6D0TKBC0dxp2f_LYfruoof"
+target="_blank">video</a></strong></p>
 </div>
 <h2 id="exercice-1-rôle-des-routes">exercice 1 : rôle des routes</h2>
 <p><br></p>
@@ -485,7 +490,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a h
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>liste_etudiants[indice<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        etudiant<span class="op">=</span>[]</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;etudiant :&quot;</span>,etudiant)</span></code></pre></div>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;étudiant :&quot;</span>,etudiant)</span></code></pre></div>
 <ol start="24" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
 <code>edit_etudiant</code>, passez en paramètre l’étudiant sélectionné
@@ -569,7 +574,7 @@ pour modifier un étudiant</li>
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">etudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span>nom<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span>groupe<span class="op">+</span><span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">id</span>   </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <p>Remarque : Dans le formulaire pour modifier les données d’un
 étudiant, il faut un champ caché avec l’identifiant de l’étudiant. Ce
