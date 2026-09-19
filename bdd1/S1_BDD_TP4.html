@@ -208,7 +208,7 @@ différent car on ne gère pas les valeurs
 <td>Fruits</td>
 <td>01002</td>
 <td>4,5</td>
-<td style="text-align: right;">2021-10-1</td>
+<td style="text-align: right;">2026-10-1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
@@ -216,7 +216,7 @@ différent car on ne gère pas les valeurs
 <td>Fruits</td>
 <td>01008</td>
 <td>4</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
@@ -224,7 +224,7 @@ différent car on ne gère pas les valeurs
 <td>Légumes</td>
 <td>02018</td>
 <td>3</td>
-<td style="text-align: right;">2021-09-21</td>
+<td style="text-align: right;">2026-09-21</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
@@ -232,7 +232,7 @@ différent car on ne gère pas les valeurs
 <td>Légumes</td>
 <td>02089</td>
 <td>18</td>
-<td style="text-align: right;">2021-10-2</td>
+<td style="text-align: right;">2026-10-2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">5</td>
@@ -240,7 +240,7 @@ différent car on ne gère pas les valeurs
 <td>Fruits</td>
 <td>01068</td>
 <td>15</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6</td>
@@ -248,7 +248,7 @@ différent car on ne gère pas les valeurs
 <td>Légumes</td>
 <td>02068</td>
 <td>3</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 </tbody>
 </table>
@@ -411,7 +411,7 @@ Names”</p>
 <td><strong>Légume</strong></td>
 <td>5</td>
 <td>4</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8</td>
@@ -419,7 +419,7 @@ Names”</p>
 <td><strong>legumes</strong></td>
 <td>5</td>
 <td>1,5</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">9</td>
@@ -427,7 +427,7 @@ Names”</p>
 <td><strong>LEGUMES</strong></td>
 <td>5</td>
 <td>3,5</td>
-<td style="text-align: right;">2021-09-30</td>
+<td style="text-align: right;">2026-09-30</td>
 </tr>
 </tbody>
 </table>
@@ -455,15 +455,15 @@ différer)</p>
 <pre><code>+------------+-----------------+-----------+--------------+----------+---------+------------+
 | id_produit | nom             | categorie | categorie_id | quantite | prix    | date_achat |
 +------------+-----------------+-----------+--------------+----------+---------+------------+
-|          1 | Pommes          | Fruits    |         NULL |     NULL |  4.5000 | 2021-10-01 |
-|          3 | Potiron         | Légumes   |         NULL |     NULL |  3.0000 | 2021-09-21 |
-|          4 | haricots        | Légumes   |         NULL |     NULL | 18.0000 | 2021-10-02 |
-|          5 | Cerises         | Fruits    |         NULL |     NULL | 16.0000 | 2021-09-30 |
-|          6 | Pommes de Terre | Légumes   |         NULL |     NULL |  3.5000 | 2021-09-30 |
-|          7 | Poires          | Fruits    |         NULL |     NULL |  4.0000 | 2021-09-30 |
-|          8 | tomate          | Légume    |         NULL |        5 |  4.0000 | 2021-09-30 |
-|          9 | Salade verte    | legumes   |         NULL |        5 |  1.5000 | 2021-09-30 |
-|         10 | radis noir      | LEGUMES   |         NULL |      3.5 |  5.0000 | 2021-09-30 |
+|          1 | Pommes          | Fruits    |         NULL |     NULL |  4.5000 | 2026-10-01 |
+|          3 | Potiron         | Légumes   |         NULL |     NULL |  3.0000 | 2026-09-21 |
+|          4 | haricots        | Légumes   |         NULL |     NULL | 18.0000 | 2026-10-02 |
+|          5 | Cerises         | Fruits    |         NULL |     NULL | 16.0000 | 2026-09-30 |
+|          6 | Pommes de Terre | Légumes   |         NULL |     NULL |  3.5000 | 2026-09-30 |
+|          7 | Poires          | Fruits    |         NULL |     NULL |  4.0000 | 2026-09-30 |
+|          8 | tomate          | Légume    |         NULL |        5 |  4.0000 | 2026-09-30 |
+|          9 | Salade verte    | legumes   |         NULL |        5 |  1.5000 | 2026-09-30 |
+|         10 | radis noir      | LEGUMES   |         NULL |        5 |  3.5000 | 2026-09-30 |
 +------------+-----------------+-----------+--------------+----------+---------+------------+</code></pre>
 </div>
 <h1 id="notion-de-clé-étrangère">Notion de clé étrangère</h1>
@@ -502,6 +502,9 @@ libelle_categorie)</p></li>
 la table produit et categorie, utiliser l’exemple <a
 href="https://www.w3schools.com/sql/sql_foreignkey.asp"
 target="_blank">“FOREIGN KEY on ALTER TABLE” sur W3SCHOOL</a></p></li>
+<li><p>Requête 15 : Modifier la colonne categorie_id avec la valeur
+id_categorie en fonction du contenu de categorie (2 requêtes devraient
+suffire)</p></li>
 </ol>
 </body>
 </html>
