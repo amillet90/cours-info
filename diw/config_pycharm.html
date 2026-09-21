@@ -136,7 +136,7 @@ mais pas la commande <code>python --version</code>, créer un lien
 symbolique de <code>python</code> à <code>python3</code></li>
 </ul>
 <pre><code>sudo ln -s /usr/bin/python3 /usr/bin/python</code></pre>
-<h1 id="utilisation-de-pycharm">Utilisation de pycharm</h1>
+<h1 id="utilisation-de-pycharm">Utilisation de PyCharm</h1>
 <br>
 <details>
 <summary>
@@ -151,7 +151,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;&quot;</span>  <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias looping=&#39;wine /opt/looping-mcd/Looping.exe&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias datagrip=&#39;/opt/datagrip/bin/datagrip.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias datagrip=&#39;/opt/Datagrip/bin/datagrip.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias pycharm=&#39;/opt/pycharm/bin/pycharm.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -185,7 +185,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Name=Looping&quot;</span> <span class="op">&gt;&gt;</span> /home/<span class="va">$USER</span>/Bureau/looping.desktop</span>
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <p>Si le script ne fonctionne pas, recopiez le script dans un éditeur
-texte (VsCode) et remplacez partout (Ctrl H) <code>$USER</code> par
+texte (VS Code) et remplacez partout (Ctrl H) <code>$USER</code> par
 votre login.</p>
 </p>
 </details>
@@ -210,7 +210,7 @@ terminal</figcaption>
 <h2
 id="lancement-ou-installation-sur-votre-machine-personnelle">lancement
 (ou installation sur votre machine personnelle)</h2>
-<h2 id="la-licence">la licence</h2>
+<h3 id="la-licence">la licence</h3>
 <div class="cours gros">
 <ul>
 <li>à l’<strong>IUT</strong>, utiliser <strong>la licence serveur
@@ -247,8 +247,8 @@ certains paquets Python système, et un <code>pip install</code> sauvage
 en dehors d’un venv peut casser des outils du système.</p>
 <figure>
 <img src="img_flask/pycharm_2026_1.png" style="width:17cm"
-alt="projet de base sur pycharm" />
-<figcaption aria-hidden="true">projet de base sur pycharm</figcaption>
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
 <pre><code>flask --debug  --app app  run   --host 0.0.0.0
 which flask
@@ -257,7 +257,7 @@ which flask
 source .venv/bin/activate
 which flask</code></pre>
 <p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
-: recopier le contenu ci-dessous dans un terminal de pycharm</p>
+: recopier le contenu ci-dessous dans un terminal de PyCharm</p>
 <pre><code>touch launcher.sh
 
 chmod a+x launcher.sh
@@ -267,20 +267,21 @@ echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launche
 
 echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
 </code></pre>
-<h3 id="en-local">en local</h3>
+<h3 id="en-local-méthode-que-jutilise-pour-corriger-vos-projets">en
+local (méthode que j’utilise pour corriger vos projets)</h3>
 <p>Créer une nouvelle application Flask (attention : l’explorateur de
-fichiers de pycharm a parfois du mal à scanner le contenu du dossier
+fichiers de PyCharm a parfois du mal à scanner le contenu du dossier
 HOME monté en NFS)</p>
 <figure>
 <img src="img_flask/pycharm_2024_1.png" style="width:17cm"
-alt="projet de base sur pycharm" />
-<figcaption aria-hidden="true">projet de base sur pycharm</figcaption>
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
 <!--![création d'un projet flask](img_flask/ihm_flask_tp1_1_installv2.png){width=15cm}
 
 utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwiki/969727){target=_blank}
 
-![projet de base sur pycharm](img_flask/ihm_flask_tp1_2_installv2.png){width=13cm}-->
+![projet de base sur PyCharm](img_flask/ihm_flask_tp1_2_installv2.png){width=13cm}-->
 <p>Cette application se présente sous la forme suivante</p>
 <figure>
 <img src="img_flask/ihm_flask_tp1_1v2.png" style="width:13cm"
@@ -298,8 +299,8 @@ target="_blank"><strong>gabarit</strong></a> ou <a
 href="https://fr.wikipedia.org/wiki/Template"
 target="_blank"><strong>template</strong></a></li>
 <li>attention : <span class="modif">pas de dossier entre parenthèses
-(<em>venv</em> ou autres), vous utilisez un environnement
-virtuel</span></li>
+(<em>venv</em> ou autres), <strong>sauf si</strong> vous utilisez un
+environnement virtuel</span></li>
 </ul>
 <p><br> <br></p>
 <figure>
@@ -312,7 +313,7 @@ Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’en
 ![terminal dans pycharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
 <p><br></p>
 <ul>
-<li>Ouvrir un terminal dans pycharm et tester l’application avec la
+<li>Ouvrir un terminal dans PyCharm et tester l’application avec la
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
@@ -365,7 +366,7 @@ ip addr
 -->
 <p><br></p>
 <p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
-: recopier le contenu ci-dessous dans un terminal de pycharm</p>
+: recopier le contenu ci-dessous dans un terminal de PyCharm</p>
 <pre><code>touch launcher.sh
 
 chmod a+x launcher.sh
@@ -474,8 +475,8 @@ pip install pymysql --break-system-packages
 <p><br> Il est possible de désactiver l’affichage de conseils
 d’incrustation : “File / Settings / Editor ; Inlay Hints ; disable Code
 Vision”</p>
-<p><br> Texte souligné en vert : Désactiver la typo : “File / Settings
-/” “Inspection” ; Proofreading” ; Typo”</p>
+<p><br> Texte souligné en vert : Désactiver la typo : “File / Settings /
+Inspection ; Proofreading ; Typo”</p>
 <p><br><br><br></p>
 <h1 id="annexe-utiliser-github-ou-gitlab">annexe : utiliser GitHub ou
 GitLab</h1>
@@ -524,7 +525,7 @@ git log
 </code></pre>
 <p><br></p>
 <ul>
-<li><p>Avec <strong>Pycharm</strong> : ouvrir un projet avec comme
+<li><p>Avec <strong>PyCharm</strong> : ouvrir un projet avec comme
 dossier principal celui où se trouve le fichier <code>app.py</code>
 (important)</p></li>
 <li><p>Créer un fichier <code>.gitignore</code> avec comme contenu (ça
