@@ -151,7 +151,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;&quot;</span>  <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias looping=&#39;wine /opt/looping-mcd/Looping.exe&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias datagrip=&#39;/opt/Datagrip/bin/datagrip.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias datagrip=&#39;/opt/DataGrip/bin/datagrip.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;alias pycharm=&#39;/opt/pycharm/bin/pycharm.sh&#39;&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -263,7 +263,7 @@ which flask</code></pre>
 chmod a+x launcher.sh
 
 echo &quot;#!/bin/bash&quot; &gt; launcher.sh
-echo &quot;source .venv/bin/activate&quot; &gt; launcher.sh
+echo &quot;source .venv/bin/activate&quot; &gt;&gt; launcher.sh
 echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
 
 echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
@@ -289,7 +289,7 @@ utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwik
 alt="projet de base sur PyCharm" />
 <figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
-<!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur pycharm). -->
+<!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur PyCharm). -->
 <ul>
 <li>le dossier <code>static</code> contient tous les éléments (contenus)
 dits <strong>“static”</strong> du site : <strong>images, fichiers CSS,
@@ -310,8 +310,8 @@ alt="projet de base sur PyCharm" />
 <figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
 <!-- <br>
-Attention : il faut utiliser un **terminal** dans pycharm pour être dans l’environnement virtuel python 
-![terminal dans pycharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
+Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’environnement virtuel python 
+![terminal dans PyCharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
 <p><br></p>
 <ul>
 <li>Ouvrir un terminal dans PyCharm et tester l’application avec la
@@ -373,8 +373,8 @@ ip addr
 chmod a+x launcher.sh
 
 echo &quot;#!/bin/bash&quot; &gt; launcher.sh
-echo &quot;source .venv/bin/activate&quot; &gt; launcher.sh                   # si vous utilisez un env. virtuel
-echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt; launcher.sh
+echo &quot;source .venv/bin/activate&quot; &gt;&gt; launcher.sh                   # si vous utilisez un env. virtuel
+echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
 
 echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
 </code></pre>
