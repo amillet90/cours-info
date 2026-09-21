@@ -262,6 +262,7 @@ which flask</code></pre>
 
 chmod a+x launcher.sh
 
+echo &quot;#!/bin/bash&quot; &gt; launcher.sh
 echo &quot;source .venv/bin/activate&quot; &gt; launcher.sh
 echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
 
@@ -371,6 +372,8 @@ ip addr
 
 chmod a+x launcher.sh
 
+echo &quot;#!/bin/bash&quot; &gt; launcher.sh
+echo &quot;source .venv/bin/activate&quot; &gt; launcher.sh                   # si vous utilisez un env. virtuel
 echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt; launcher.sh
 
 echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
@@ -438,6 +441,38 @@ faire</p>
 <p>autre solution : changez le port utilisé par le serveur web</p>
 <pre><code>flask --debug  --app app  run   --host 0.0.0.0  --port 5002</code></pre>
 </div>
+<h3 id="définir-lenvironnement-virtuel">définir l’environnement
+virtuel</h3>
+<ul>
+<li><strong>Créer le venv dans un terminal PyCharm</strong> Ouvrir un
+terminal PyCharm (en bas de l’écran) à la racine du projet et taper
+<code>python3 -m venv .venv</code>. Ça crée un dossier
+<code>.venv</code> avec un interpréteur Python isolé, sans rien
+installer globalement (indispensable sur les machines Debian/LMDE à
+cause du PEP 668).</li>
+<li><strong>Déclarer l’interpréteur dans PyCharm</strong> File /
+Settings (ou Preferences sur Mac) &gt; Project: <nom du projet> &gt;
+Python Interpreter &gt; Add Interpreter &gt; Add Local Interpreter &gt;
+Existing. Pointer vers <code>.venv/bin/python</code> dans le dossier du
+projet. PyCharm bascule alors tout le projet (terminal, exécution,
+autocomplétion) sur ce venv.</li>
+<li><strong>Vérifier que le venv soit bien détecté</strong> Dans
+l’explorateur de fichiers PyCharm, le dossier <code>.venv</code> doit
+apparaître grisé/entre parenthèses — c’est le signe que PyCharm l’a
+reconnu comme environnement virtuel du projet, et pas comme un dossier
+de code normal.</li>
+<li><strong>Installer les dépendances</strong> Rouvrir (ou ouvrir) un
+terminal PyCharm : il doit maintenant s’activer automatiquement dans le
+venv (le prompt affiche <code>(.venv)</code>). Lancer
+<code>pip install -r requirements.txt</code> si le fichier existe, sinon
+<code>pip install flask pymysql</code> directement.</li>
+<li><strong>Vérifier que tout pointe vers le venv</strong> Taper
+<code>which python</code> et <code>which flask</code> dans le terminal
+PyCharm : les chemins doivent contenir <code>.venv/bin/</code>, pas
+<code>/usr/bin</code> ni <code>~/.local/</code>. Si ce n’est pas le cas,
+le terminal n’utilise pas le bon interpréteur — relancer un nouveau
+terminal après l’étape 2.</li>
+</ul>
 <h3 id="problème-dinstallation-flask-non-reconnu">problème
 d’installation (flask non reconnu)</h3>
 <div class="cours">
