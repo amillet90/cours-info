@@ -93,7 +93,7 @@
 <div class="titre">
 TP6 : SQL requête SELECT dans une table,
 </div>
-<!-- faire des mise à jour rechercher "-- remplacer"   2005 PAR 2006-->
+<!-- faire des mises à jour rechercher "-- remplacer"   2005 PAR 2006-->
 <h1 id="objectif">objectif</h1>
 <div class="cours">
 <p><strong>Objectif :</strong> Colonnes calculées et utilisation de
@@ -113,11 +113,11 @@ class="sourceCode SQL"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>[<span class="kw">LIMIT</span>]</span></code></pre></div>
 <p>Exemple de colonne calculée (ou colonne calculée) :
 <code>[ nom_table.nom_colonne]*3  AS  nom_colonne_calculee</code></p>
-<p>Faire une opération avec une colonne (fonctions d’aggrégation):
+<p>Faire une opération avec une colonne (fonctions d’agrégation):
 <code>SUM( )</code> <code>COUNT( )</code> <code>AVG( )</code>
 <code>MIN( )</code> <code>MAX( )</code></p>
 <p>Ajoutez
-<code>GROUP BY nom_des_colonnes_sur_lequelles_on_fait_le_regroupement</code>
+<code>GROUP BY nom_des_colonnes_sur_lesquelles_on_fait_le_regroupement</code>
 [colonnes calculées]</p>
 <p><code>HAVING  nom_colonne_calculee ...</code></p>
 <p><strong>ATTENTION à l’ordre des instructions</strong></p>
@@ -169,7 +169,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <code>((note ue1 + note ue2) /2 )</code> ; Affichez cette moyenne et la
 note de l’ue1 lorsque la note de l’ue1 est supérieure ou égale à 14.
 Trier le résultat par groupe décroissant puis par moyenne d’UE
-décroissante)</li>
+décroissante.</li>
 </ul>
 <p><br></p>
 <ul>
@@ -245,7 +245,7 @@ href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_conve
 target="_blanck">CONVERT</a> pour faire du <a
 href="https://fr.wikipedia.org/wiki/Conversion_de_type#:~:text=En%20informatique%20la%20conversion%20de,de%20coercition%20ou%20de%20cast."
 target="_blanck"><em>casting</em></a></p></li>
-<li><p>Les fonctions sur les dates sur <a
+<li><p>Les fonctions sur les dates: <a
 href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html"
 target="_blanck">MySQL</a> , <a
 href="https://docs.oracle.com/cd/E41183_01/DR/Date_Functions.html"
@@ -283,7 +283,7 @@ GROUP BY Etudiant.groupe_id;</code></pre>
 <p><img src="img/img_tp6_2.jpg" /></p>
 <ul>
 <li>Dans la capture d’écran de la requête ci-dessus, le texte barré,
-est-il nécessaire ? Pourquoi ? Peut-on mettre qu’<strong>une seule
+est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
 colonne derrière le mot clé «GROUP BY»</strong> dans ce cas ?</li>
 </ul>
 <p>Modifier la requête et tester avec et sans le code barré :</p>
@@ -292,8 +292,8 @@ colonne derrière le mot clé «GROUP BY»</strong> dans ce cas ?</li>
 </div>
 <p><img src="img/img_tp6_3.jpg" /></p>
 <p>Dans la capture d’écran de la requête ci-dessus, le texte barré,
-est-il nécessaire ? Pourquoi ? Peut-on mettre qu’<strong>une seule
-colonne à coté de la fonction d’agrégation</strong> derrière le mot clé
+est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
+colonne à côté de la fonction d’agrégation</strong> derrière le mot clé
 «SELECT» dans ce cas ?</p>
 <p>Autre exemple avec beaucoup de fonctions d’agrégation :</p>
 <div class="requete">
