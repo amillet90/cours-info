@@ -250,49 +250,12 @@ en dehors d’un venv peut casser des outils du système.</p>
 alt="projet de base sur PyCharm" />
 <figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
-<pre><code>flask --debug  --app app  run   --host 0.0.0.0
-which flask
-deactivate
-which flask
-source .venv/bin/activate
-which flask</code></pre>
-<p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
-: recopier le contenu ci-dessous dans un terminal de PyCharm</p>
-<pre><code>touch launcher.sh
-chmod a+x launcher.sh
-
-echo &#39;#!/bin/bash&#39; &gt; launcher.sh
-echo &#39;source .venv/bin/activate&#39; &gt;&gt; launcher.sh             
-echo &#39;flask --debug  --app app  run   --host 0.0.0.0&#39; &gt;&gt; launcher.sh
-</code></pre>
-<h3 id="en-local-méthode-que-jutilise-pour-corriger-vos-projets">en
-local (méthode que j’utilise pour corriger vos projets)</h3>
-br&gt;
-<details>
-<summary>
-🤖 Installer Flask en local sur le dossier $HOME
-</summary>
-<p>
-<p>Créer une nouvelle application Flask (attention : l’explorateur de
-fichiers de PyCharm a parfois du mal à scanner le contenu du dossier
-HOME monté en NFS)</p>
-<figure>
-<img src="img_flask/pycharm_2024_1.png" style="width:17cm"
-alt="projet de base sur PyCharm" />
-<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
-</figure>
-<!--![création d'un projet flask](img_flask/ihm_flask_tp1_1_installv2.png){width=15cm}
-
-utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwiki/969727){target=_blank}
-
-![projet de base sur PyCharm](img_flask/ihm_flask_tp1_2_installv2.png){width=13cm}-->
 <p>Cette application se présente sous la forme suivante</p>
 <figure>
 <img src="img_flask/ihm_flask_tp1_1v2.png" style="width:13cm"
 alt="projet de base sur PyCharm" />
 <figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
-<!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur PyCharm). -->
 <ul>
 <li>le dossier <code>static</code> contient tous les éléments (contenus)
 dits <strong>“static”</strong> du site : <strong>images, fichiers CSS,
@@ -312,15 +275,53 @@ environnement virtuel</span></li>
 alt="projet de base sur PyCharm" />
 <figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
 </figure>
-<!-- <br>
-Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’environnement virtuel python 
-![terminal dans PyCharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
 <p><br></p>
 <ul>
 <li>Ouvrir un terminal dans PyCharm et tester l’application avec la
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
+<p>Utilisation d’un lanceur</p>
+<pre><code>flask --debug  --app app  run   --host 0.0.0.0
+which flask
+deactivate
+which flask
+source .venv/bin/activate
+which flask</code></pre>
+<p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
+: recopier le contenu ci-dessous dans un terminal de PyCharm</p>
+<pre><code>touch launcher.sh
+chmod a+x launcher.sh
+
+echo &#39;#!/bin/bash&#39; &gt; launcher.sh
+echo &#39;source .venv/bin/activate&#39; &gt;&gt; launcher.sh             
+echo &#39;flask --debug  --app app  run   --host 0.0.0.0&#39; &gt;&gt; launcher.sh
+</code></pre>
+<h3 id="en-local-méthode-que-jutilise-pour-corriger-vos-projets">en
+local (méthode que j’utilise pour corriger vos projets)</h3>
+<br>
+<details>
+<summary>
+🤖 Installer Flask en local sur le dossier $HOME
+</summary>
+<p>
+<p>Créer une nouvelle application Flask (attention : l’explorateur de
+fichiers de PyCharm a parfois du mal à scanner le contenu du dossier
+HOME monté en NFS)</p>
+<figure>
+<img src="img_flask/pycharm_2024_1.png" style="width:17cm"
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
+</figure>
+<!--![création d'un projet flask](img_flask/ihm_flask_tp1_1_installv2.png){width=15cm}
+
+utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwiki/969727){target=_blank}
+
+![projet de base sur PyCharm](img_flask/ihm_flask_tp1_2_installv2.png){width=13cm}-->
+<!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur PyCharm). -->
+<!-- <br>
+Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’environnement virtuel python 
+![terminal dans PyCharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
 </p>
 </details>
 <h1 id="première-application">première application</h1>
