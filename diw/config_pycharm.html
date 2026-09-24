@@ -337,7 +337,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
 <ul>
-<li>tester l’application : ouvrir un terminal sur pycharm et lancer la
+<li>tester l’application : ouvrir un terminal sur PyCharm et lancer la
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
@@ -418,15 +418,6 @@ href="https://flask.palletsprojects.com/en/3.0.x/config/#TEMPLATES_AUTO_RELOAD"
 target="_blank">documentation</a> - <a
 href="https://stackoverflow.com/questions/9508667/reload-flask-app-when-template-file-changes"
 target="_blank">documentation</a>)</p>
-<ul>
-<li>Utilisation d’un lanceur</li>
-</ul>
-<pre><code>flask --debug  --app app  run   --host 0.0.0.0
-which flask
-deactivate
-which flask
-source .venv/bin/activate
-which flask</code></pre>
 <h3 id="définir-et-utiliser-un-environnement-virtuel">définir et
 utiliser un environnement virtuel</h3>
 <ul>
@@ -617,38 +608,38 @@ target="_blank">dotenv</a><br />
 <p>Commencer par installer le paquet :</p>
 <pre><code>pip install python-dotenv</code></pre>
 <p>Modifier un peu le début du fichier <code>app.py</code></p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_db():</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g.db</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.teardown_appcontext</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> teardown_db(exception):</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>        db.close()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/python</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding:utf-8 -*-</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> session, g</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql.cursors</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os                                 <span class="co"># à ajouter</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv            <span class="co"># à ajouter</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>load_dotenv()                             <span class="co"># à ajouter</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_db():</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&#39;db&#39;</span> <span class="kw">not</span> <span class="kw">in</span> g:</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        g.db <span class="op">=</span>  pymysql.<span class="ex">connect</span>(</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>            host<span class="op">=</span>os.environ.get(<span class="st">&quot;HOST&quot;</span>),                <span class="co"># à modifier</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>            user<span class="op">=</span>os.environ.get(<span class="st">&quot;LOGIN&quot;</span>),               <span class="co"># à modifier</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>            password<span class="op">=</span>os.environ.get(<span class="st">&quot;PASSWORD&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>            database<span class="op">=</span>os.environ.get(<span class="st">&quot;DATABASE&quot;</span>),        <span class="co"># à modifier</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>            charset<span class="op">=</span><span class="st">&#39;utf8mb4&#39;</span>,</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>            cursorclass<span class="op">=</span>pymysql.cursors.DictCursor</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g.db</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.teardown_appcontext</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> teardown_db(exception):</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> g.pop(<span class="st">&#39;db&#39;</span>, <span class="va">None</span>)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>        db.close()</span></code></pre></div>
 <p>Créez un fichier <code>.env</code> à la racine du projet (au même
 niveau que <code>app.py</code>)</p>
 <pre><code>HOST=&quot;localhost&quot;
@@ -657,14 +648,14 @@ LOGIN=&quot;login&quot;
 DATABASE=&quot;BDD_login&quot;</code></pre>
 <p><br></p>
 <p>Sur <em>pythonanywhere</em>, remplacer :</p>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code></pre></div>
 <p>par 2 lignes comme celles ci-dessous (<a
 href="https://stackoverflow.com/questions/61832997/reading-environment-variables-from-env-file-in-pythonanywhere-com"
 target="_blank">voir stackoverflow</a>) :</p>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>project_folder <span class="op">=</span> os.path.expanduser(<span class="st">&#39;~/sae_s2_2024&#39;</span>)  <span class="co"># adjust as appropriate (avec le dossier où se trouve le fichier .env et app.py)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>load_dotenv(os.path.join(project_folder, <span class="st">&#39;.env&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>project_folder <span class="op">=</span> os.path.expanduser(<span class="st">&#39;~/sae_s2_2024&#39;</span>)  <span class="co"># adjust as appropriate (avec le dossier où se trouve le fichier .env et app.py)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>load_dotenv(os.path.join(project_folder, <span class="st">&#39;.env&#39;</span>))</span></code></pre></div>
 <h1 id="annexes">annexes</h1>
 <p>https://www.nicelydev.com/git</p>
 <p><br><br> <a
