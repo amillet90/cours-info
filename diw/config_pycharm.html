@@ -265,38 +265,14 @@ appelées <a href="https://fr.wikipedia.org/wiki/Gabarit_(mise_en_page)"
 target="_blank"><strong>gabarit</strong></a> ou <a
 href="https://fr.wikipedia.org/wiki/Template"
 target="_blank"><strong>template</strong></a></li>
-<li>attention : <span class="modif">pas de dossier entre parenthèses
-(<em>venv</em> ou autres), <strong>sauf si</strong> vous utilisez un
-environnement virtuel</span></li>
 </ul>
-<p><br> <br></p>
-<figure>
-<img src="img_flask/pycharm_2024_2.png" style="width:13cm"
-alt="projet de base sur PyCharm" />
-<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
-</figure>
+<p><br></p>
 <p><br></p>
 <ul>
 <li>Ouvrir un terminal dans PyCharm et tester l’application avec la
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
-<p>Utilisation d’un lanceur</p>
-<pre><code>flask --debug  --app app  run   --host 0.0.0.0
-which flask
-deactivate
-which flask
-source .venv/bin/activate
-which flask</code></pre>
-<p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
-: recopier le contenu ci-dessous dans un terminal de PyCharm</p>
-<pre><code>touch launcher.sh
-chmod a+x launcher.sh
-
-echo &#39;#!/bin/bash&#39; &gt; launcher.sh
-echo &#39;source .venv/bin/activate&#39; &gt;&gt; launcher.sh             
-echo &#39;flask --debug  --app app  run   --host 0.0.0.0&#39; &gt;&gt; launcher.sh
-</code></pre>
 <h3 id="en-local-méthode-que-jutilise-pour-corriger-vos-projets">en
 local (méthode que j’utilise pour corriger vos projets)</h3>
 <br>
@@ -321,7 +297,16 @@ utiliser **python3** comme [interpréteur](https://fr-academic.com/dic.nsf/frwik
 <!-- * le dossier **env** contient l'[environnement virtuel](https://python-guide-pt-br.readthedocs.io/fr/latest/dev/virtualenvs.html). Il est conseillé d'utiliser un environnent virtuel pour fixer les versions des paquets utilisés. Ce répertoire avec l’environnement existe sur linux comme sur [windows](https://docs.microsoft.com/fr-fr/windows/python/web-frameworks). Il faut activer cet environnement (c'est fait automatiquement sur PyCharm). -->
 <!-- <br>
 Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’environnement virtuel python 
-![terminal dans PyCharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} -->
+![terminal dans PyCharm](img_flask/ihm_flask_tp1_5_install.png){width=15cm} 
+
+* attention : [pas de dossier entre parenthèses (*venv* ou autres),  **sauf si** vous utilisez un environnement virtuel]{.modif}
+-->
+<p><br></p>
+<figure>
+<img src="img_flask/pycharm_2024_2.png" style="width:13cm"
+alt="projet de base sur PyCharm" />
+<figcaption aria-hidden="true">projet de base sur PyCharm</figcaption>
+</figure>
 </p>
 </details>
 <h1 id="première-application">première application</h1>
@@ -336,21 +321,21 @@ Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’en
 # comportements et méthodes d'un serveur web
 # instance de classe Flask (en paramètre le nom du module)
 -->
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash     </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template, redirect, flash     </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>app.secret_key <span class="op">=</span> <span class="st">&#39;une cle(token) : grain de sel(any random string)&#39;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>app.config[<span class="st">&quot;TEMPLATES_AUTO_RELOAD&quot;</span>] <span class="op">=</span> <span class="va">True</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/&#39;</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">&#39;/hello&#39;</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Hello World!&lt;a href=&quot;hello&quot;&gt;lien hello&lt;/a&gt;&#39;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>, port<span class="op">=</span><span class="dv">5000</span>)</span></code></pre></div>
 <ul>
 <li>tester l’application : ouvrir un terminal sur pycharm et lancer la
 commande ci-dessous</li>
@@ -429,28 +414,16 @@ target="_blank">documentation</a> - <a
 href="https://stackoverflow.com/questions/9508667/reload-flask-app-when-template-file-changes"
 target="_blank">documentation</a>)</p>
 <ul>
-<li>Sur <strong>Windows</strong> :</li>
+<li>Utilisation d’un lanceur</li>
 </ul>
-<p>Créer un fichier de nom <code>launcher.bat</code> par exemple avec
-comme contenu :</p>
-<pre><code>python -m flask --debug  --app app  run   --host 0.0.0.0</code></pre>
-<h2 id="problèmes-possibles">problèmes possibles</h2>
-<h3 id="adresseport-déjà-utilisée">adresse(port) déjà utilisée</h3>
-<div class="cours">
-<p><strong>message d’erreur : “Address already in use”</strong></p>
-<p>sur Linux : recherchez les numéros des processus qui utilisent le nom
-“flask” avec la commande ci-dessous :</p>
-<pre><code>ps aux | grep flask</code></pre>
-<p>puis avec xxxx où xxxx est l’ID (première colonne du résultat de la
-commande précédente) du ou des processus flask à tuer (arrêter),
-faire</p>
-<pre><code>kill -9   xxxx</code></pre>
-<p><br><br></p>
-<p>autre solution : changez le port utilisé par le serveur web</p>
-<pre><code>flask --debug  --app app  run   --host 0.0.0.0  --port 5002</code></pre>
-</div>
-<h3 id="définir-lenvironnement-virtuel">définir l’environnement
-virtuel</h3>
+<pre><code>flask --debug  --app app  run   --host 0.0.0.0
+which flask
+deactivate
+which flask
+source .venv/bin/activate
+which flask</code></pre>
+<h3 id="définir-et-utiliser-un-environnement-virtuel">définir et
+utiliser un environnement virtuel</h3>
 <ul>
 <li><strong>Créer le venv dans un terminal PyCharm</strong> Ouvrir un
 terminal PyCharm (en bas de l’écran) à la racine du projet et taper
@@ -481,8 +454,40 @@ PyCharm : les chemins doivent contenir <code>.venv/bin/</code>, pas
 le terminal n’utilise pas le bon interpréteur — relancer un nouveau
 terminal après l’étape 2.</li>
 </ul>
+<p><br></p>
+<ul>
+<li>comprendre l’environnement virtuel à l’aide des commandes
+ci-dessous</li>
+</ul>
+<pre><code>flask --debug  --app app  run   --host 0.0.0.0
+which flask
+deactivate
+which flask
+source .venv/bin/activate
+which flask</code></pre>
+<h2 id="problèmes-possibles">problèmes possibles</h2>
+<h3 id="adresseport-déjà-utilisée">adresse(port) déjà utilisée</h3>
+<div class="cours">
+<p><strong>message d’erreur : “Address already in use”</strong></p>
+<p>sur Linux : recherchez les numéros des processus qui utilisent le nom
+“flask” avec la commande ci-dessous :</p>
+<pre><code>ps aux | grep flask</code></pre>
+<p>puis avec xxxx où xxxx est l’ID (première colonne du résultat de la
+commande précédente) du ou des processus flask à tuer (arrêter),
+faire</p>
+<pre><code>kill -9   xxxx</code></pre>
+<p><br><br></p>
+<p>autre solution : changez le port utilisé par le serveur web</p>
+<pre><code>flask --debug  --app app  run   --host 0.0.0.0  --port 5002</code></pre>
+</div>
 <h3 id="problème-dinstallation-flask-non-reconnu">problème
 d’installation (flask non reconnu)</h3>
+<ul>
+<li>Sur <strong>Windows</strong> :</li>
+</ul>
+<p>Créer un fichier de nom <code>launcher.bat</code> par exemple avec
+comme contenu :</p>
+<pre><code>python -m flask --debug  --app app  run   --host 0.0.0.0</code></pre>
 <div class="cours">
 <p>message d’erreur : “option –debug” non reconnue</p>
 <ul>
