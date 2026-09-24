@@ -197,7 +197,9 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> a+x launcher.sh</span></code></pre></div>
 <p>Comme dans le TP précedent, dans le fichier (lanceur)
 <strong>launcher.sh</strong>, copiez le code ci-dessous :</p>
-<pre><code>flask --debug  --app app  run  --host 0.0.0.0</code></pre>
+<pre><code>#!/bin/bash
+source .venv/bin/activate
+flask --debug  --app app  run  --host 0.0.0.0</code></pre>
 <p><br></p>
 <p>Copier <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_IHM/source/tp5_static.zip">les

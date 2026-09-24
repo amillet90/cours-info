@@ -259,17 +259,20 @@ which flask</code></pre>
 <p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
 : recopier le contenu ci-dessous dans un terminal de PyCharm</p>
 <pre><code>touch launcher.sh
-
 chmod a+x launcher.sh
 
-echo &quot;#!/bin/bash&quot; &gt; launcher.sh
-echo &quot;source .venv/bin/activate&quot; &gt;&gt; launcher.sh
-echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
-
-echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
+echo &#39;#!/bin/bash&#39; &gt; launcher.sh
+echo &#39;source .venv/bin/activate&#39; &gt;&gt; launcher.sh             
+echo &#39;flask --debug  --app app  run   --host 0.0.0.0&#39; &gt;&gt; launcher.sh
 </code></pre>
 <h3 id="en-local-méthode-que-jutilise-pour-corriger-vos-projets">en
 local (méthode que j’utilise pour corriger vos projets)</h3>
+br&gt;
+<details>
+<summary>
+🤖 Installer Flask en local sur le dossier $HOME
+</summary>
+<p>
 <p>Créer une nouvelle application Flask (attention : l’explorateur de
 fichiers de PyCharm a parfois du mal à scanner le contenu du dossier
 HOME monté en NFS)</p>
@@ -318,6 +321,8 @@ Attention : il faut utiliser un **terminal** dans PyCharm pour être dans l’en
 commande ci-dessous</li>
 </ul>
 <pre><code>python app.py</code></pre>
+</p>
+</details>
 <h1 id="première-application">première application</h1>
 <ul>
 <li>modifier le fichier <strong>app.py</strong> avec comme contenu
@@ -369,15 +374,11 @@ ip addr
 <p>Créer un fichier <code>launcher.sh</code> avec les droits d’exécution
 : recopier le contenu ci-dessous dans un terminal de PyCharm</p>
 <pre><code>touch launcher.sh
-
 chmod a+x launcher.sh
 
-echo &quot;#!/bin/bash&quot; &gt; launcher.sh
-echo &quot;source .venv/bin/activate&quot; &gt;&gt; launcher.sh                   # si vous utilisez un env. virtuel
-echo &quot;flask --debug  --app app  run   --host 0.0.0.0&quot; &gt;&gt; launcher.sh
-
-echo &quot;ouvrir le fichier launcher.sh et cliquer sur bouton gauche&quot;
-</code></pre>
+echo &#39;#!/bin/bash&#39; &gt; launcher.sh
+echo &#39;source .venv/bin/activate&#39; &gt;&gt; launcher.sh             
+echo &#39;flask --debug  --app app  run   --host 0.0.0.0&#39; &gt;&gt; launcher.sh</code></pre>
 <!--
 recopier le contenu ci-dessous dans le fichier `launcher.sh` : voir ([documentation](https://flask.palletsprojects.com/en/2.2.x/tutorial/factory/#run-the-application){target=_blank})
 
@@ -412,6 +413,12 @@ Après avoir récupéré un projet sur GitHub, pensez à utiliser la commande :
 chmod u+x launcher.sh
 ```
 -->
+<figure>
+<img src="img_flask/ihm_flask_tp1_3_lanceur.png"
+alt="lancer ce fichier pour tester l’application (utiliser le bouton dans l’éditeur)" />
+<figcaption aria-hidden="true">lancer ce fichier pour <strong>tester
+l’application</strong> (utiliser le bouton dans l’éditeur)</figcaption>
+</figure>
 <p><br> Pour recharger automatiquement une application quand on modifie
 une vue (template), ajouter la ligne ci-dessous dans votre code:<br />
 <code>app.config["TEMPLATES_AUTO_RELOAD"] = True</code><br />
