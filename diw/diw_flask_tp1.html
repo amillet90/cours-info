@@ -576,6 +576,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="op">=</span> request.form.get(<span class="st">&#39;groupe&#39;</span>)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - groupe :&#39;</span><span class="op">+</span><span class="bu">str</span>(groupe)<span class="op">+</span><span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">id</span>)   </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+<ul>
+<li>“None” est retourné si la clé dans <code>request.form</code>
+n’existe pas<br />
+</li>
+</ul>
 <p>Remarque : Dans le formulaire pour modifier les données d’un
 étudiant, il faut un champ caché avec l’identifiant de l’étudiant. Ce
 champ INPUT est obligatoire.</p>
