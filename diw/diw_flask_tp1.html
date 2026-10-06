@@ -817,14 +817,14 @@ formulaires ainsi que les messages flash avec le code ci-dessous dans
 les fonctions <code>valid_add_etudiant</code> et
 <code>valid_edit_etudiant</code> :</p>
 <div class="sourceCode" id="cb34"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d</span><span class="ch">\&#39;</span><span class="st">un étudiant de nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe)    </span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>)</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;None id&#39;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe) <span class="op">+</span> <span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">id</span>)   </span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <p>Dans le fichier <code>app.py</code>, modifiez le message flash avec

@@ -77,5 +77,11 @@ de l’iut</h1>
 <h1 id="vider-la-corbeille-à-liut">vider la corbeille à l’iut</h1>
 <pre><code>cd .local/share/TRASH
 rm lesPlusGrosFichiers</code></pre>
+<h1 id="problème-de-barre-de-menu">problème de barre de menu</h1>
+<pre><code>killall -9 mate-panel
+rm -rf ~/.config/dconf/user 
+rm -rf ~/.config/mate
+pkill -u $USER
+#Sami BEN SLIMA </code></pre>
 </body>
 </html>
