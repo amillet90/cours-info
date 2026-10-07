@@ -130,6 +130,10 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> date_heure.minute</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> date_heure.second</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;index_demo.html&#39;</span>, h<span class="op">=</span>h,<span class="bu">min</span><span class="op">=</span>m,sec<span class="op">=</span>s )</span></code></pre></div>
+<ul>
+<li>Remarque : il y a une petite erreur à corriger pour la variable des
+minutes, 2 solutions sont possibles.</li>
+</ul>
 <ol start="3" type="1">
 <li>Dans le fichier <code>app.py</code>, ajoutez la bibliothèque
 <strong>datetime</strong> sous l’instruction
@@ -356,6 +360,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href=
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/delete?id={{ etudiant.id }}&quot;</span><span class="ot">   class</span><span class="op">=</span><span class="st">&quot;btn btn-success&quot;</span><span class="dt">&gt;</span>supprimer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Ajouter une colonne d’entête TH dans le tableau avec comme contenu
+“action”</p>
 <h2 id="passage-de-paramètres">Passage de paramètres</h2>
 <ol start="18" type="1">
 <li>Dans le fichier <code>app.py</code> (application flask) , créez 3
@@ -692,8 +698,8 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href=
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;shortcut icon&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;favicon.ico&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    {% block stylesheets %}</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;bootstrap/css/bootstrap.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;mes_styles.css&#39;) }}&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    {% endblock %}</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
@@ -710,14 +716,16 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb23-1"><a href=
 <p>Contenu (code) du fichier <code>_nav.html</code> :</p>
 <div class="sourceCode" id="cb24"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;menu&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="dt">&gt;</span> etudiants <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="dt">&gt;</span> groupes <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  -</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/show&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;btn btn-primary me-2&quot;</span><span class="dt">&gt;</span> etudiants <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>  </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/groupe/show&quot;</span><span class="ot">  class</span><span class="op">=</span><span class="st">&quot;btn btn-outline-secondary&quot;</span><span class="dt">&gt;</span> groupes <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">hr</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Modifiez les 3 templates (vues), add_etudiant.html,
 edit_etudiant.html et show_etudiant.html : en remplaçant l’en-tête de la
-page HTML (template) et le pied de chaque template.</li>
+page HTML (template) et le pied de chaque template. Le contenu qui se
+trouvait dans la balise <code>&lt;body&gt;</code> est à placer dans le
+bloc <code>body</code>, et le reste est supprimé :</li>
 </ul>
 <div class="sourceCode" id="cb25"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>{% extends &#39;layout.html&#39; %}</span>
@@ -753,86 +761,119 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href=
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>{% endwith %}</span></code></pre></div>
 <p>Dans le fichier <code>app.py</code>, ajoutez le code ci-dessous,
 juste après un print(message)</p>
-<pre><code>flash(message, &#39;alert-warning&#39;)
-flash(message, &#39;alert-success&#39;)</code></pre>
+<pre><code>flash(message, &#39;alert-warning&#39;)</code></pre>
+<p>ou</p>
+<pre><code>flash(message, &#39;alert-success&#39;)</code></pre>
+<ul>
+<li>Remarque 1 : <code>alert-success</code> est un arrière plan vert et
+<code>alert-warning</code> est un arrière plan orange dans le message
+flash (style Bootstrap)</li>
+<li>Remarque 2 : Dans un projet Flask, <code>flash</code> exige une clé
+secrète pour les sessions :
+<code>app.secret_key = 'une_cle_secrete'</code> après
+<code>app = Flask(__name__)</code> est obligatoire.</li>
+</ul>
 <ol start="36" type="1">
 <li>Liste déroulante</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;1&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;1&#39;</span>},</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;2&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;1&#39;</span>},</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;3&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;2&#39;</span>},</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;4&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;2&#39;</span>},</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;5&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;3&#39;</span>}</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>liste_groupes <span class="op">=</span> [</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;1&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;A1&#39;</span>},</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;2&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;A2&#39;</span>},</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;3&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;B1&#39;</span>},</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;4&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;B2&#39;</span>}</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;1&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;1&#39;</span>},</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;2&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;enzo&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;1&#39;</span>},</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;3&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;laurence&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;2&#39;</span>},</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;4&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;theo&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;2&#39;</span>},</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="st">&#39;5&#39;</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;mehdi&#39;</span>, <span class="st">&#39;groupe_id&#39;</span>:<span class="st">&#39;3&#39;</span>}</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>liste_groupes <span class="op">=</span> [</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;1&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;A1&#39;</span>},</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;2&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;A2&#39;</span>},</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;3&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;B1&#39;</span>},</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>: <span class="st">&#39;4&#39;</span>, <span class="st">&#39;libelle&#39;</span>: <span class="st">&#39;B2&#39;</span>}</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <ul>
 <li>Ajoutez la liste déroulante dans le formulaire pour ajouter un
 enregistrement</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="ot"> required</span><span class="dt">&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span>Sélectionner un groupe<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;groupe&quot;</span><span class="ot"> required</span><span class="dt">&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span>Sélectionner un groupe<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Ajoutez la liste déroulante dans le formulaire pour modifier un
 enregistrement</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            </span><span class="er">{%</span><span class="ot"> if etudiant.groupe_id is defined and groupe.id </span><span class="op">=</span><span class="er">=</span><span class="ot"> etudiant.groupe_id </span><span class="er">%}</span><span class="ot">selected</span><span class="er">{%</span><span class="ot"> endif </span><span class="er">%}</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id_groupe&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;groupe&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    {% for groupe in groupes %}</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ groupe.id }}&quot;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            </span><span class="er">{%</span><span class="ot"> if etudiant.groupe_id is defined and groupe.id </span><span class="op">=</span><span class="er">=</span><span class="ot"> etudiant.groupe_id </span><span class="er">%}</span><span class="ot">selected</span><span class="er">{%</span><span class="ot"> endif </span><span class="er">%}</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span> {{ groupe.libelle }} <span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    {% endfor %}</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span></code></pre></div>
 <ul>
 <li>Dans le fichier <code>app.py</code>, modifiez l’appel des
 templates.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/add_etudiant.html&#39;</span>, groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>, etudiant<span class="op">=</span>etudiant , groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/add_etudiant.html&#39;</span>, groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">&#39;etudiant/edit_etudiant.html&#39;</span>, etudiant<span class="op">=</span>etudiant , groupes<span class="op">=</span>liste_groupes)</span></code></pre></div>
 <ul>
 <li>Modifiez l’affichage (<strong>show</strong>) dans le template
 <code>show_etudiant.html</code></li>
 </ul>
-<div class="sourceCode" id="cb33"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.nom }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.groupe_id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a> <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.nom }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>{{ etudiant.groupe_id }}<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span></code></pre></div>
 <p><br></p>
 <p>Dans le fichier <code>app.py</code>, modifiez la récupération des
 données dans les fonctions appelées lors de la validation des
 formulaires ainsi que les messages flash avec le code ci-dessous dans
 les fonctions <code>valid_add_etudiant</code> et
 <code>valid_edit_etudiant</code> :</p>
-<div class="sourceCode" id="cb34"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d</span><span class="ch">\&#39;</span><span class="st">un étudiant de nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe)    </span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;None id&#39;</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe) <span class="op">+</span> <span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">id</span>)   </span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Ajout d</span><span class="ch">\&#39;</span><span class="st">un étudiant de nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> request.form.get(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;None id&#39;</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> request.form.get(<span class="st">&#39;nom&#39;</span>, <span class="st">&#39;None nom&#39;</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>id_groupe <span class="op">=</span> request.form.get(<span class="st">&#39;id_groupe&#39;</span>, <span class="st">&#39;None id_groupe&#39;</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">&#39;Modification du nom :&#39;</span><span class="op">+</span><span class="bu">str</span>(nom)<span class="op">+</span><span class="st">&#39; - id_groupe :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(id_groupe) <span class="op">+</span> <span class="st">&#39; pour l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">id</span>)   </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <p>Dans le fichier <code>app.py</code>, modifiez le message flash avec
 le code ci-dessous dans la fonction <code>delete_etudiant</code> :</p>
-<div class="sourceCode" id="cb36"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">id</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span><span class="op">=</span>request.args.get(<span class="st">&#39;id&#39;</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>message<span class="op">=</span><span class="st">&#39;Suppression de  l</span><span class="ch">\&#39;</span><span class="st">étudiant d</span><span class="ch">\&#39;</span><span class="st">identifiant :&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">id</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
+<br>
+<details>
+<summary>
+🤖 exemple avec les gabarits
+</summary>
+<p>
+<figure>
+<img src="img_flask/flask_etudiant_heritage_1.svg"
+alt="exemple avec les gabarits" />
+<figcaption aria-hidden="true">exemple avec les gabarits</figcaption>
+</figure>
+</p>
+</details>
+<ol start="37" type="1">
+<li>Si l’application fonctionne correctement, supprimer les instructions
+<code>print</code> dans <code>app.py</code>. Valider le rendu HTML dans
+le navigateur dans un <a
+href="https://validator.w3.org/#validate_by_input"
+target="_blank">validateur HTML</a> par entrée direct, en faisant un
+copier/coller du code HTML d’une page (CTRL+U (raccourci affichage code
+source d’une page) CTRL+A (tout selectionné) CTRL+C (copier) CTRL+V
+(coller)).</li>
+</ol>
 <h1 id="annexe">Annexe</h1>
 <p>En cas de problème avec pycharm (blocage) : supprimez le dossier
 <code>.cache/jetbrains/pycharm</code></p>
