@@ -94,13 +94,13 @@ id="exercices-premier-template-première-route-premier-passage-de-paramètres-à
 : premier template, première route, premier passage de paramètres à un
 template</h1>
 <div class="cours">
-<p><strong>vidéo (niveau NSI) pour bien démarrer flask si on va trop
+<p><strong>vidéo (niveau NSI) pour bien démarrer Flask si on va trop
 vite et dont s’inspirent ces exercices</strong> : <a
 href="https://www.youtube.com/watch?v=Ihp_cG7c2Rk" target="_blank">FLASK
 (Un prof de NSI)</a></p>
 <p><a href="https://github.com/germainbecker/tuto-flask"
 target="_blank">lien sur son code source</a></p>
-<p><strong>documentation et vidéo (niveau NSI) pour bien démarrer flask
+<p><strong>documentation et vidéo (niveau NSI) pour bien démarrer Flask
 <a href="https://pixees.fr/informatiquelycee/n_site/nsi_prem_flask.html"
 target="_blank">Exemple2</a> - <a
 href="https://www.youtube.com/watch?v=zDkUIKedFsU&amp;list=PLPoGXNI6sXm6D0TKBC0dxp2f_LYfruoof"
@@ -159,7 +159,7 @@ puis dans la balise <code>&lt;body&gt;</code> ajoutez le code ci-dessous
 :</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde  = {{ sec }}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> heure = {{ h }} , minute = {{ m }}, seconde = {{ sec }}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/&quot;</span><span class="dt">&gt;</span>home<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div>
@@ -210,7 +210,7 @@ formulaire</h2>
 target="_blank">vidéo (niveau NSI) pour bien démarrer Flask dont est
 inspiré cet exercice</a></strong></p>
 </div>
-<p>nous allons utiliser un tableau de dictionnaires de données</p>
+<p>nous allons utiliser un tableau de dictionnaires</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>liste_etudiants <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">1</span>,<span class="st">&#39;nom&#39;</span>:<span class="st">&#39;tom&#39;</span>, <span class="st">&#39;groupe&#39;</span>:<span class="st">&#39;A1&#39;</span>},</span>
@@ -240,13 +240,14 @@ des étudiants : ajoutez le code ci-dessous dans la balise
 <code>&lt;body&gt;</code>.</p></li>
 </ol>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>listes des étudiants<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>liste des étudiants<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>{{ etudiants }}</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <ol start="11" type="1">
 <li>Dans le fichier <code>templates/index_demo.html</code>, ajoutez un
-lien vers la page des étudiants <code>show_etudiant.html</code></li>
+lien vers la page des étudiants <code>show_etudiant.html</code> (route
+<code>/etudiant/show</code>)</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
@@ -279,8 +280,7 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="
 -->
 <ol start="13" type="1">
 <li>Dans le fichier <code>templates/etudiant/show_etudiant.html</code>,
-remplacez la ligne qui affiche chaque étudiant par le code ci-dessous
-:</li>
+remplacez le tableau précedent par le code ci-dessous :</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;table&quot;</span><span class="dt">&gt;</span></span>
@@ -322,10 +322,11 @@ target="_blank">cours NSI</a></p>
 <p>Sur les outils JetBrains<br />
 <strong>Remarque : Ctrl+Alt+i =&gt; indentation</strong><br />
 <strong>Ctrl+r =&gt; rechercher/remplacer</strong><br />
-<strong>Dans le contrôleur Ctrl+clic sur le nom d’un template dans le
-contrôleur (app)</strong></p>
+<strong>Dans le contrôleur Ctrl+clic sur le nom d’un template
+(app)</strong></p>
 </div>
-(<strong>Etape au bout de la première séance minimum</strong>)
+(<strong>Étape à atteindre au bout de la première séance au
+minimum</strong>)
 <div class="code2">
 <p><a href="https://github.com/amillet90/s1-demo-v2/tree/etape-3"
 target="_blank">code branche 3</a></p>
@@ -349,7 +350,7 @@ tableau</p></li>
 </ol>
 <p>Code pour l’étape 16 et 17 :</p>
 <div class="sourceCode" id="cb11"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/add&quot;</span><span class="ot"> </span><span class="dt">&gt;</span>ajouter un étudiant<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/etudiant/add&quot;</span><span class="dt">&gt;</span>ajouter un étudiant<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>....</span>
@@ -459,7 +460,7 @@ a pas de réponse retournée au navigateur (pas de
 <div class="cours">
 <p><strong>redirection</strong></p>
 <ol start="21" type="1">
-<li>À la fin de la fonction <code>delete_etudiant</code> faire une
+<li>À la fin de la fonction <code>delete_etudiant</code>, faire une
 redirection sur la route <code>show_etudiants</code> avec l’instruction
 :</li>
 </ol>
@@ -573,7 +574,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a h
 -->
 <ol start="30" type="1">
 <li>Dans le fichier <code>app.py</code>, dans la fonction
-<code>valid_edit_etudiant</code> ,créez un message avec les informations
+<code>valid_edit_etudiant</code>, créez un message avec les informations
 pour modifier un étudiant</li>
 </ol>
 <div class="sourceCode" id="cb20"><pre
@@ -584,13 +585,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message)</span></code></pre></div>
 <ul>
 <li>“None” est retourné si la clé dans <code>request.form</code>
-n’existe pas<br />
-</li>
+n’existe pas</li>
 </ul>
 <p>Remarque : Dans le formulaire pour modifier les données d’un
 étudiant, il faut un champ caché avec l’identifiant de l’étudiant. Ce
 champ INPUT est obligatoire.</p>
-<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;{{ etudiant.id }}&quot; &gt;</code></pre>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;id&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;{{ etudiant.id }}&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
 <!--
 [Dans ce formulaire, il manque l'attribut `value={{etudiant.nom}}` dans la balise `<input>` pour que ce champ soit initialisé avec le nom de l'étudiant à éventuellement modifier.]{.modif}\-->
 <!--[Afficher la valeur du groupe `{{etudiant.groupe}}` ; pour la liste déroulante, c'est plus compliqué, le code est présenté dans le tp suivant.]{.modif}-->
@@ -645,7 +646,7 @@ templates il faut utiliser la fonction :
 <p><br></p>
 <!--
 34. modifier le fichier **templates** `show_etudiants.html` (gabarits)  avec les liens ci-dessous -->
-<p>Il est possible dans un template d’utiliser le contenu de dossier
+<p>Il est possible dans un template d’utiliser le contenu du dossier
 <strong>static</strong> grâce à la fonction <code>url_for</code>,
 exemple :</p>
 <div class="sourceCode" id="cb22"><pre
