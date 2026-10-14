@@ -202,14 +202,14 @@ style="text-align: center;"><code>/departement-usine/show</code></td>
 <td>retourne la vue <code>show_departement_usine.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">add_departement</td>
+<td style="text-align: center;">add_departement_usine</td>
 <td style="text-align: center;"><code>/departement-usine/add</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour ajouter un département</td>
 <td>retourne la vue <code>add_departement_usine.html</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">valid_add_departement</td>
+<td style="text-align: center;">valid_add_departement_usine</td>
 <td style="text-align: center;"><code>/departement-usine/add</code></td>
 <td style="text-align: center;"><span
 class="rouge"><strong>POST</strong></span></td>
@@ -218,7 +218,7 @@ département</td>
 <td>redirection sur la route <code>/departement-usine/show</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">delete_departement</td>
+<td style="text-align: center;">delete_departement_usine</td>
 <td
 style="text-align: center;"><code>/departement-usine/delete</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
@@ -226,7 +226,7 @@ style="text-align: center;"><code>/departement-usine/delete</code></td>
 <td>redirection sur la route <code>/departement-usine/show</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">edit_departement</td>
+<td style="text-align: center;">edit_departement_usine</td>
 <td
 style="text-align: center;"><code>/departement-usine/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
@@ -234,7 +234,7 @@ style="text-align: center;"><code>/departement-usine/edit</code></td>
 <td>retourne la vue <code>edit_departement_usine.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">valid_edit_departement</td>
+<td style="text-align: center;">valid_departement_usine</td>
 <td
 style="text-align: center;"><code>/departement-usine/edit</code></td>
 <td style="text-align: center;"><span
@@ -665,14 +665,14 @@ Toussaint)</h4>
 <td>retourne la vue <code>show_club_foot.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">add_club</td>
+<td style="text-align: center;">add_club_foot</td>
 <td style="text-align: center;"><code>/club-foot/add</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour ajouter un club</td>
 <td>retourne la vue <code>add_club_foot.html</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">valid_add_club</td>
+<td style="text-align: center;">valid_add_club_foot</td>
 <td style="text-align: center;"><code>/club-foot/add</code></td>
 <td style="text-align: center;"><span
 class="rouge"><strong>POST</strong></span></td>
@@ -680,21 +680,21 @@ class="rouge"><strong>POST</strong></span></td>
 <td>redirection sur la route <code>/club-foot/show</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">delete_club</td>
+<td style="text-align: center;">delete_club_foot</td>
 <td style="text-align: center;"><code>/club-foot/delete</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>suppression d’un club</td>
 <td>redirection sur la route <code>/club-foot/show</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">edit_club</td>
+<td style="text-align: center;">edit_club_foot</td>
 <td style="text-align: center;"><code>/club-foot/edit</code></td>
 <td style="text-align: center;"><strong>GET</strong></td>
 <td>affiche le formulaire pour modifier un club</td>
 <td>retourne la vue <code>edit_club_foot.html</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">valid_edit_club</td>
+<td style="text-align: center;">valid_edit_club_foot</td>
 <td style="text-align: center;"><code>/club-foot/edit</code></td>
 <td style="text-align: center;"><span
 style="color:red"><strong>POST</strong></span></td>
@@ -1217,8 +1217,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a h
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">7</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade césar&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">5</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;10&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-04-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;légumes de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">1</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_cezar.jpg&#39;</span>},</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">8</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade salade de fruit&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">6</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;15&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-01-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;fruit de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">3</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_de_fruit.jpg&#39;</span>},</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">9</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade de pâte ensoleillée&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">15</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;15&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-02-02&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;légumes de saison et pâtes&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">4</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_de_pate_ensoleillee.jpg&#39;</span>},</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">10</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade orange miel&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">7</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;13&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-01-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;fruit de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">3</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_orange_miel.jpg&#39;</span>}</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">11</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade petit épeautre&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">7</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;12&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-01-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;petit épeautre local et légume de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">4</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_petit_epeautre.jpg&#39;</span>}</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">10</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade orange miel&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">7</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;13&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-01-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;fruit de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">3</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_orange_miel.jpg&#39;</span>},</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">11</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade petit épeautre&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">7</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;12&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-01-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;petit épeautre local et légume de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">4</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_petit_epeautre.jpg&#39;</span>},</span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;id&#39;</span>:<span class="dv">12</span>,<span class="st">&#39;nomPlat&#39;</span>:<span class="st">&#39;salade savoyarde&#39;</span> , <span class="st">&#39;prixPlat&#39;</span>:<span class="dv">5</span> , <span class="st">&#39;dureePreparation&#39;</span>:<span class="st">&#39;10&#39;</span> , <span class="st">&#39;dateCreation&#39;</span>:<span class="st">&#39;2023-04-08&#39;</span> , <span class="st">&#39;description&#39;</span>:<span class="st">&#39;légumes de saison&#39;</span> , <span class="st">&#39;typePlat_id&#39;</span>:<span class="dv">1</span>, <span class="st">&#39;photo&#39;</span>:<span class="st">&#39;salade_savoyarde.jpg&#39;</span>}</span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
@@ -6256,7 +6256,7 @@ jeu</td>
 <td>retourne la vue <code>add_jeu_plateau.html</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">valid_add_jeu</td>
+<td style="text-align: center;">valid_add_jeu_plateau</td>
 <td style="text-align: center;"><code>/jeu-plateau/add</code></td>
 <td style="text-align: center;"><span
 class="rouge"><strong>POST</strong></span></td>
