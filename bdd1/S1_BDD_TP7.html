@@ -93,9 +93,9 @@
 <div class="titre">
 TP7 : gestion des clés étrangères - Jointures
 </div>
-<p><br />
+<p><br></p>
 <!--Pour chaque question en couleur verte, rajouter un commentaire dans
-votre script--></p>
+votre script-->
 <h1 id="modèle-relationnel">Modèle relationnel</h1>
 <p>Implanter le Modèle Relationnel suivant :</p>
 <p><strong>etudiant(</strong><u><strong>noEtudiant</strong></u><strong>,
@@ -164,7 +164,7 @@ target="_blank">Article sur toutes les contraintes (plus
 compliqué)</a>.</p>
 <p><br></p>
 <ul>
-<li>Parmi les contraintes d’intégrités on peut citer :
+<li>Parmi les contraintes d’intégrité on peut citer :
 <ul>
 <li>les contraintes structurelles (Unicité de clé ; <strong>Contrainte
 référentielle</strong> ; Contrainte de domaine ; Contrainte de
@@ -178,7 +178,7 @@ target="_blank">une(des) clé(s) étrangère(s)</a></li>
 </ul>
 <p><br></p>
 <div class="rouge">
-C.I. référentielle : A chaque valeur d’une clé étrangère doit
+C.I. référentielle : À chaque valeur d’une clé étrangère doit
 correspondre une valeur de la clé primaire associée
 </div>
 </div>
@@ -209,7 +209,7 @@ quand il y a une contrainte.</p>
 « clé étrangère » d’une table et un champ d’une autre table qui n'est
 pas une clé primaire ?</p></li>
 <li><p>Supprimer les 2 mots : “<strong>CONSTRAINT
-fk_etudiant_groupe</strong>”, MYSQL donne-t-il un nom à cette contrainte
+fk_etudiant_groupe</strong>”, MySQL donne-t-il un nom à cette contrainte
 ? (vérifier avec la commande
 <code>SHOW CREATE TABLE etudiant;</code>)</p></li>
 </ul>
@@ -236,7 +236,7 @@ alt="exemple d’affichage pour l’instruction SHOW CREATE TABLE etudiant;" />
 l'ordre, on ne crée pas une table avec une contrainte sur une table qui
 n'existe pas.</li>
 <li>Si un champ utilise l'attribut « AUTO_INCREMENT », celui-ci doit
-être une clé primaire (clé indexée).</li>
+être indexée (en pratique c’est la clé primaire ).</li>
 <li><strong>Lors de la suppression des tables</strong> : faire attention
 à l'ordre, on ne supprime pas une table qui a sa clé primaire utilisée
 dans une contrainte d'une autre table (clé étrangère dans une autre
