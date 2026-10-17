@@ -100,7 +100,8 @@ votre script--></p>
 <p>Implanter le Modèle Relationnel suivant :</p>
 <p><strong>etudiant(</strong><u><strong>noEtudiant</strong></u><strong>,
 nomEtudiant, #idGroupe)</strong></p>
-<p><strong>groupe(</strong><u><strong>idGroupe,</strong></u><strong>libelleGroupe)</strong></p>
+<p><strong>groupe(</strong><u><strong>idGroupe</strong></u>,
+<strong>libelleGroupe)</strong></p>
 <div class="cours">
 <p>Une <strong>clé étrangère</strong> est une colonne d’une table
 (relation) qui fait référence à une clé primaire d’une autre table
@@ -144,7 +145,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">3</span>,<span class="st">&#39;toto&#39;</span>,<span class="dv">17</span>);  <span class="co">-- si erreur mettre le groupe à 2 ou 3</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant <span class="kw">VALUES</span>(<span class="dv">4</span>,<span class="st">&#39;jacques&#39;</span>,<span class="kw">NULL</span>);</span></code></pre></div>
 <p>Remarque : les valeurs des clés primaires sont imposées mais il est
-souhaitable de remplacer par la valeur “NULL” par la suite</p>
+souhaitable de les remplacer par la valeur “NULL” par la suite</p>
 <p><br></p>
 <div class="cours">
 <ul>
@@ -163,7 +164,7 @@ target="_blank">Article sur toutes les contraintes (plus
 compliqué)</a>.</p>
 <p><br></p>
 <ul>
-<li>Parmi les contraintes d’intégrités on peut citer ;
+<li>Parmi les contraintes d’intégrités on peut citer :
 <ul>
 <li>les contraintes structurelles (Unicité de clé ; <strong>Contrainte
 référentielle</strong> ; Contrainte de domaine ; Contrainte de
@@ -171,7 +172,7 @@ non-nullité)</li>
 <li>les contraintes non structurelles (dépendances fonctionnelles,
 …)</li>
 </ul></li>
-<li>Cette contrainte d’intégrité référentielle se définie par <a
+<li>Cette contrainte d’intégrité référentielle se définit par <a
 href="https://docs.microsoft.com/fr-fr/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver15#referential-integrity"
 target="_blank">une(des) clé(s) étrangère(s)</a></li>
 </ul>
@@ -194,7 +195,7 @@ Foreign Key » et recréer les 2 tables</li>
 <p>Faire ATTENTION à l'ordre de suppression et de création des tables
 quand il y a une contrainte.</p>
 <ul>
-<li><p><u><strong>Dans quel ordre faut il supprimer ou créer les tables
+<li><p><u><strong>Dans quel ordre faut-il supprimer ou créer les tables
 ?</strong></u></p></li>
 <li><p>Supprimer le groupe créé :
 <code>DELETE FROM groupe WHERE idGroupe=1;</code></p></li>
@@ -204,23 +205,23 @@ quand il y a une contrainte.</p>
 <p><br></p>
 <p>Conclusion :</p>
 <ul>
-<li><p>Peut on créer une contrainte de type référentielle entre un champ
+<li><p>Peut-on créer une contrainte de type référentielle entre un champ
 « clé étrangère » d’une table et un champ d’une autre table qui n'est
 pas une clé primaire ?</p></li>
 <li><p>Supprimer les 2 mots : “<strong>CONSTRAINT
-fk_etudiant_groupe</strong>”, MYSQL donne t'il un nom à cette contrainte
+fk_etudiant_groupe</strong>”, MYSQL donne-t-il un nom à cette contrainte
 ? (vérifier avec la commande
 <code>SHOW CREATE TABLE etudiant;</code>)</p></li>
 </ul>
 <p><br></p>
-<p>Utiliser les commandes ci dessous pour supprimer puis remettre la
+<p>Utiliser les commandes ci-dessous pour supprimer puis remettre la
 contrainte sur la clé étrangère de la table
 <strong>etudiant</strong><br />
 </p>
 <p><br></p>
 <p><img src="img/img_jointure_tp1_3.png" width="589" /><br />
 </p>
-<p>Tester instruction après instruction et <strong>cliquer dans datagrip
+<p>Tester instruction après instruction et <strong>cliquer dans DataGrip
 sur le contenu de la colonne</strong> pour afficher le résultat complet
 de l’instruction <code>SHOW CREATE TABLE etudiant;</code></p>
 <figure>
@@ -234,12 +235,12 @@ alt="exemple d’affichage pour l’instruction SHOW CREATE TABLE etudiant;" />
 <li><strong>Lors de la création des tables</strong> : faire attention à
 l'ordre, on ne crée pas une table avec une contrainte sur une table qui
 n'existe pas.</li>
-<li>Si un champ utilise l'attribut « auto_increment », celui-ci doit
-être une clé primaire.</li>
-<li><strong>Lors de la suppression des tables </strong> : faire
-attention à l'ordre, on ne supprime pas une table qui a sa clé primaire
-utilisée dans une contrainte d'une autre table (clé étrangère dans une
-autre table).</li>
+<li>Si un champ utilise l'attribut « AUTO_INCREMENT », celui-ci doit
+être une clé primaire (clé indexée).</li>
+<li><strong>Lors de la suppression des tables</strong> : faire attention
+à l'ordre, on ne supprime pas une table qui a sa clé primaire utilisée
+dans une contrainte d'une autre table (clé étrangère dans une autre
+table).</li>
 <li><strong>Lors de la création des contraintes</strong> :
 <ul>
 <li>la table sur laquelle on a une contrainte doit exister</li>
@@ -248,7 +249,7 @@ ne sont pas du même type).</li>
 </ul></li>
 </ul>
 <h1 id="présentation-des-jointures">Présentation des jointures</h1>
-<p>l’objectif est d’afficher les étudiants et leur groupe associé :</p>
+<p>L’objectif est d’afficher les étudiants et leur groupe associé :</p>
 <ul>
 <li>ajouter un groupe :</li>
 </ul>
@@ -282,7 +283,7 @@ Les opérateurs sont dans la liste suivante :
 sous la norme ANSI-89? -->
 <p><img src="img/img_jointure_tp1_8_m.png" width="383" /></p>
 <ul>
-<li><code>count(*)</code> : compte le nombre de ligne (pour le
+<li><code>count(*)</code> : compte le nombre de lignes (pour le
 regroupement de données)<br></li>
 <li><code>count(etudiant.noEtudiant)</code> : applique l’opération
 (COUNT SUM AVG …) sur la colonne passée en paramètre, les contenus des
@@ -296,16 +297,16 @@ l’éditeur</p>
 <p><strong>Faire valider votre travail</strong> <br><br></p>
 <h1 id="exercice">Exercice</h1>
 <p><br></p>
-<p><strong>Utiliser un autre fichier que le fichier précédent</strong>
-<br></p>
+<p><strong>Utiliser un autre fichier que le fichier précédent</strong> :
+tp7exo2.sql <br></p>
 <p>Modifier le script ci-dessous :</p>
 <ul>
 <li>Ajouter les clés étrangères :
 <ul>
 <li>la colonne <code>groupe_id</code> dans la table
 <code>Etudiant</code> est une clé étrangère (la colonne
-<code>groupe_id</code> a une dépendance fonctionnelle sur la clé
-primaire <code>id_groupe</code> de la table groupe).</li>
+<code>groupe_id</code> fait référence à la clé primaire
+<code>id_groupe</code> de la table groupe).</li>
 <li>les colonnes <code>etudiant_id</code>, <code>periode_id</code> et
 <code>semestre_id</code> dans la table <code>etudiant_periode</code>
 sont des clés étrangères.</li>
@@ -322,7 +323,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> xxxx;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Etudiant (</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  idEtudiant <span class="dt">INT</span> AUTO_INCREMENT</span>
@@ -409,10 +410,10 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 <span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Groupe <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;A1&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;A2&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;B1&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;B2&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;C1&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;C2&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;D1&#39;</span>);</span>
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Periode <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;2023-09-01&#39;</span>,<span class="st">&#39;2024-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2024-1-15&#39;</span>,<span class="st">&#39;2024-7-1&#39;</span>),</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2024-09-01&#39;</span>,<span class="st">&#39;2025-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2025-1-15&#39;</span>,<span class="st">&#39;2025-7-1&#39;</span>),</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2025-09-01&#39;</span>,<span class="st">&#39;2026-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2026-1-15&#39;</span>,<span class="st">&#39;2026-7-1&#39;</span>),</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2026-09-01&#39;</span>,<span class="st">&#39;2027-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2027-1-15&#39;</span>,<span class="st">&#39;2027-7-1&#39;</span>);</span></code></pre></div>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Periode <span class="kw">VALUES</span> (<span class="kw">NULL</span>,<span class="st">&#39;2023-09-01&#39;</span>,<span class="st">&#39;2024-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2024-01-15&#39;</span>,<span class="st">&#39;2024-07-01&#39;</span>),</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2024-09-01&#39;</span>,<span class="st">&#39;2025-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2025-01-15&#39;</span>,<span class="st">&#39;2025-07-01&#39;</span>),</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2025-09-01&#39;</span>,<span class="st">&#39;2026-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2026-01-15&#39;</span>,<span class="st">&#39;2026-07-01&#39;</span>),</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">NULL</span>,<span class="st">&#39;2026-09-01&#39;</span>,<span class="st">&#39;2027-01-15&#39;</span>),(<span class="kw">NULL</span>,<span class="st">&#39;2027-01-15&#39;</span>,<span class="st">&#39;2027-07-01&#39;</span>);</span></code></pre></div>
 <p><img src="img/img_jointure_tp1_11.png" style="width:14cm" /></p>
 <ul>
 <li>Réaliser la requête ci-dessous : afficher le nombre d’étudiants dans
@@ -445,7 +446,7 @@ l’éditeur</p>
 <h1 id="réflexion-sur-le-schéma">Réflexion sur le schéma</h1>
 <p>Utiliser le fichier <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/S1_BDD/looping/Looping_tp7_etudiant.loo">looping
-ci-joint</a> et modifier le pour obtenir le bon MCD (Modèle Conceptuel
+ci-joint</a> et le modifier pour obtenir le bon MCD (Modèle Conceptuel
 de Données)</p>
 <p><img src="img/img_jointure_tp1_10.png" width="583" /><br />
 </p>

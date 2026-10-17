@@ -241,6 +241,8 @@ style="text-decoration:underline;">id_match</span></strong></td>
 </tr>
 </tbody>
 </table>
+<p>Remarque : la colonne date dans le sujet sera renommée date_match car
+date est un mot réservé dans MySQL</p>
 <ul>
 <li>Relation <strong>terrains</strong> précisant les différents
 terrains.</li>
@@ -353,10 +355,10 @@ réservables.</li>
 <!--([ANNEXE 1](#annexe1))--></p>
 <p><br></p>
 <ul>
-<li>Complètez l’instruction pour supprimer les tables dans le bon
+<li>Complétez l’instruction pour supprimer les tables dans le bon
 ordre</li>
 <li>Ajoutez les clés primaires (contraintes)</li>
-<li>Ajoutez les clés étrangéres (contraintes)</li>
+<li>Ajoutez les clés étrangères (contraintes)</li>
 <li>Créez les tables dans le bon ordre</li>
 <li>Supprimez les tables dans le bon ordre avec 4 instructions</li>
 </ul>
@@ -434,18 +436,18 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <li><strong>Question 2 TP :</strong> Requêtes en langage SQL</li>
 </ol>
 <ul>
-<li><p>Requête 1 : Ecrire une requête qui renvoie les prénoms des
+<li><p>Requête 1 : Écrire une requête qui renvoie les prénoms des
 joueurs dont le nom est ‘Dupont’.</p></li>
-<li><p>Requête 2 : Ecrire une requête qui modifie le mot de passe de
+<li><p>Requête 2 : Écrire une requête qui modifie le mot de passe de
 Dorine Dupont, son nouveau mot de passe étant 1976.</p></li>
-<li><p>Requête 3 : Ecrire une requête permettant d’ajouter le nouveau
+<li><p>Requête 3 : Écrire une requête permettant d’ajouter le nouveau
 membre « Zora MAGID » dont le login est « zora » et le mot de passe
 2021.</p></li>
 </ul>
 <div class="exercice">
-<p>Question en plus : Difficulté supplémentaire : on ne connait pas le
+<p>Question en plus : Difficulté supplémentaire : on ne connaît pas le
 prochain identifiant (<code>id_joueur</code>), notre script SQL doit
-calculer le prochain identifiant ; Rechercher le plus grand
+calculer le prochain identifiant ; rechercher le plus grand
 <code>id_joueur</code> dans la table, et l’instruction
 <code>INSERT</code> utilisera l’identifiant suivant.<br />
 Modifier le script ci-dessous pour calculer l’identifiant suivant
@@ -457,13 +459,13 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> joueurs <span class="kw">VALUES</span> (@id_max<span class="op">+</span><span class="dv">1</span>,<span class="op">....</span></span></code></pre></div>
 <p>Utiliser cet identifiant pour ajouter le prochain joueur</p>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html"
-target="_blanck">Documentation : SET Syntax for Variable
+target="_blank">Documentation : SET Syntax for Variable
 Assignment</a></p>
 </div>
 <ol start="5" type="1">
-<li>Ecrire une requête qui renvoie les jours où Alice joue.</li>
+<li>Écrire une requête qui renvoie les jours où Alice joue.</li>
 </ol>
-<p>2.. Par lecture et analyse des relations de la base de donnée.</p>
+<p>2.. Par lecture et analyse des relations de la base de données.</p>
 <ul>
 <li>Requête 4 : Déterminer le jour et la plage horaire du match entre
 Durand Belina et Caron Camilia.</li>
@@ -474,7 +476,7 @@ avoir joué dans le “hangar”.</li>
 <p>Les élèves qui passaient le bac devaient répondre en recherchant les
 informations dans les données des relations (tables) ci-dessus.<br />
 </p>
-<p>Question en plus : Ecrire les requêtes qui répondent aux questions
+<p>Question en plus : Écrire les requêtes qui répondent aux questions
 ci-dessus</p>
 <p><br></p>
 <p>Ajouter quelques enregistrements :</p>
@@ -494,7 +496,15 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#c
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">01</span> |          <span class="dv">3</span> | Durand     | Caron      |</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">08</span> |          <span class="dv">7</span> | Caron      | Durand     |</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span></code></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+------------+------------+------------+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+---------------+------------+------------+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>| date_match | plage_horaire | nom_joueur | nom_joueur |</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+---------------+------------+------------+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">01</span> | <span class="dv">10</span>h<span class="op">-</span><span class="dv">11</span>h       | Durand     | Caron      |</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2020</span><span class="op">-</span><span class="dv">08</span><span class="op">-</span><span class="dv">08</span> | <span class="dv">14</span>h<span class="op">-</span><span class="dv">15</span>h       | Caron      | Durand     |</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">------------+---------------+------------+------------+</span></span></code></pre></div>
 <p>aide : pour réaliser cette requête, il est possible de faire une
 jointure un peu particulière avec la table (relation)
 <em>matchs</em></p>
@@ -503,7 +513,7 @@ INNER JOIN joueurs AS J2 ON J2.id_joueur=matchs.id_joueur2</code></pre>
 <p><br></p>
 <ul>
 <li>Requête 7 : Déterminer le nom des deux joueurs qui sont les seuls à
-avoir joué dans le “hangar”.</li>
+avoir joué dans le “hangar”. (sans répétition)</li>
 </ul>
 <p><br></p>
 <p>Résultat :</p>
@@ -519,19 +529,18 @@ jointure un peu particulière avec la table (relation)
 <em>matchs</em></p>
 <pre><code>INNER JOIN joueurs ON joueurs.id_joueur=matchs.id_joueur1 OR joueurs.id_joueur=matchs.id_joueur2</code></pre>
 </div>
-<!--# [Annexe 1]{id=annexe1}-->
 <h1 id="réflexion-sur-le-schéma">Réflexion sur le schéma</h1>
 <p><img src="img/img_jointure_tp8_1.png" style="width:15cm" /><br />
 </p>
 <p>Utiliser le fichier <a
 href="https://cours-info.iut-bm.univ-fcomte.fr/upload/perso/77/rs_S1_BDD/bdd1/source/Looping_tp8_etudiant.loo">looping
-ci-joint</a> et modifier le pour obtenir le bon MLD</p>
+ci-joint</a> et le modifier pour obtenir le bon MLD</p>
 <p><br></p>
 <ul>
 <li><span class="modif">Comment a été modifié le sujet de bac
 ?</span></li>
-<li><span class="modif">Que doit on ajouter dans le schéma pour que la
-solution proposée dans le sujet de bac présente les mémes qualités ?
+<li><span class="modif">Que doit-on ajouter dans le schéma pour que la
+solution proposée dans le sujet de bac présente les mêmes qualités ?
 (normalisation et dépendance fonctionnelle).</span></li>
 </ul>
 <p><br></p>
@@ -544,8 +553,8 @@ pour éviter la présence de doublons. :</li>
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CONSTRAINT</span> uk_table  <span class="kw">UNIQUE</span> (col1, col2, col);</span></code></pre></div>
 <p><a
 href="https://www.sqlservertutorial.net/sql-server-basics/sql-server-unique-constraint/"
-target="_blanck">doc unique key</a> - <a
-href="https://www.mysqltutorial.org/mysql-unique/" target="_blanck">doc
+target="_blank">doc unique key</a> - <a
+href="https://www.mysqltutorial.org/mysql-unique/" target="_blank">doc
 index key</a></p>
 <p><br><br><br></p>
 <p>ANNEXE :</p>
