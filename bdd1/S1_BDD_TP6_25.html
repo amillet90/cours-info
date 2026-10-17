@@ -207,16 +207,187 @@ décroissante.</li>
 | DELANOE   |         1 |  13.500000 |
 | RIOT      |         2 |  13.000000 |
 +-----------+-----------+------------+</code></pre>
-<h2
-id="requête-2-colonnes-calculées-avec-concaténation-déléments-texte">Requête
-2 : colonnes calculées avec concaténation d’éléments “Texte”</h2>
-<p>Exemples :</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;mois :&#39;</span>,<span class="dt">MONTH</span>(NOW()), <span class="st">&#39; - jour :&#39;</span>, <span class="dt">DAY</span>(NOW()))  <span class="kw">AS</span> TEST2;</span></code></pre></div>
+<p><br><br><br></p>
+<section
+id="requête-2-utilisation-de-fonctions-dagrégation-et-dun-regroupement"
+class="cours">
+<h2><strong>requête 2 : utilisation de fonctions « d’agrégation » et
+d’un regroupement</strong> :</h2>
+<p>L’instruction « <code>GROUP BY</code> » est souvent utilisée avec les
+fonctions d’agrégation (<code>COUNT</code>, <code>MAX</code>,
+<code>MIN</code>, <code>SUM</code>, <code>AVG</code>) pour regrouper les
+résultats par une ou plusieurs colonnes. ( <a
+href="https://www.w3schools.com/SQL/sql_groupby.asp"
+target="_blanck">https://www.w3schools.com/SQL/sql_groupby.asp</a> )
+<br></p>
+<p>Testez la requête pour compter le nombre d’étudiants par groupe :</p>
 <div class="requete">
-<strong>Requête 2</strong> :
+<strong>Requête 2.1</strong> :
+</div>
+<pre><code>SELECT COUNT(Etudiant.idEtudiant) AS Nbre_etudiants, Etudiant.groupe_id 
+FROM Etudiant 
+GROUP BY Etudiant.groupe_id;</code></pre>
+<p><img src="img/img_tp6_1.jpg" /></p>
+<p>Modifier la requête et tester avec et sans le code barré :</p>
+<div class="requete">
+<strong>Requête 2.2</strong> :
+</div>
+<p><img src="img/img_tp6_2.jpg" /></p>
+<ul>
+<li>Dans la capture d’écran de la requête ci-dessus, le texte barré,
+est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
+colonne derrière le mot clé «GROUP BY»</strong> dans ce cas ?</li>
+</ul>
+<p>Modifier la requête et tester avec et sans le code barré :</p>
+<div class="requete">
+<strong>Requête 2.3</strong> :
+</div>
+<p><img src="img/img_tp6_3.jpg" /></p>
+<p>Dans la capture d’écran de la requête ci-dessus, le texte barré,
+est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
+colonne à côté de la fonction d’agrégation</strong> derrière le mot clé
+«SELECT» dans ce cas ?</p>
+<p>Autre exemple avec beaucoup de fonctions d’agrégation :</p>
+<div class="requete">
+<strong>Requête 2.4</strong> :
+</div>
+<p><img src="img/img_tp6_4.jpg" /></p>
+<p><br></p>
+<p>La documentation sur internet ne manque pas :</p>
+<ul>
+<li><a
+href="http://www.sqlfacile.com/apprendre_bases_de_donnees/group_by_et_les_fonctions_d_agregation"
+target="_blanck">http://www.sqlfacile.com/apprendre_bases_de_donnees/group_by_et_les_fonctions_d_agregation</a></li>
+<li><a href="https://docs.postgresql.fr/7.4/functions-aggregate.html"
+target="_blanck">https://docs.postgresql.fr/7.4/functions-aggregate.html</a></li>
+</ul>
+</section>
+<h3
+id="requête-3.1-3.2-3.3-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
+3.1, 3.2, 3.3 : utilisation de fonctions « d’agrégation » et d’un
+regroupement</h3>
+<div class="requete">
+<strong>Requête 3.1</strong> :
+</div>
+<ul>
+<li>Écrire la requête pour compter le nombre d’étudiants qui habitent le
+territoire de Belfort et qui sont des hommes, ordonné par codes postaux
+puis par sexe. Résultats :</li>
+</ul>
+<pre><code>+----------------+-------------+------+
+| Nbre_etudiants | code_postal | sexe |
++----------------+-------------+------+
+|              7 |       90000 | H    |
+|              4 |       90120 | H    |
+|              7 |       90300 | H    |
++----------------+-------------+------+</code></pre>
+<div class="requete">
+<strong>Requête 3.2</strong> :
+</div>
+<ul>
+<li>afficher le nombre d’étudiants qui habitent le territoire de Belfort
+et leurs sexes</li>
+</ul>
+<p><br></p>
+<p>Résultat :</p>
+<pre><code>+----------------+------+
+| Nbre_etudiants | sexe |
++----------------+------+
+|              4 | F    |
+|             18 | H    |
++----------------+------+</code></pre>
+<div class="requete">
+<strong>Requête 3.3</strong> :
+</div>
+<ul>
+<li>afficher le nombre d’étudiants qui habitent le territoire de Belfort
+et qui sont des hommes</li>
+</ul>
+<p><br></p>
+<p>Résultat :</p>
+<pre><code>+----------------+
+| Nbre_etudiants |
++----------------+
+|             18 |
++----------------+</code></pre>
+<h3
+id="requête-4-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
+4 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
+<div class="requete">
+<strong>Requête 4</strong> :
+</div>
+<ul>
+<li>Écrire la requête pour compter le nombre d’étudiants qui habitent en
+Franche-Comté. (départements : 90, 25, 39, 70)</li>
+</ul>
+<p><br></p>
+<p>Résultat :</p>
+<pre><code>+---------------------------------+ 
+| Nbre_etudiants_de_franche_comte | 
++---------------------------------+ 
+|                              26 | 
++---------------------------------+ </code></pre>
+<h3
+id="requête-5-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
+5 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
+<div class="requete">
+<strong>Requête 5</strong> :
+</div>
+<p>Sur le même principe calculer la moyenne des UE ainsi que la moyenne
+des 2 UE : pour chaque groupe et chaque semestres différents (trier par
+semestre puis par groupe).</p>
+<ul>
+<li>Utiliser dans un deuxième temps, la fonction <code>ROUND</code> ou
+<code>FORMAT</code> pour arrondir à 2 chiffres après la virgule
+(laquelle des 2 fonction est le plus adaptée ?). (UE : unités
+d’enseignement : informatique et enseignement général, le plus
+souvent)</li>
+</ul>
+<p><br> Résultat :</p>
+<pre><code>+-------------+-------------+---------+-----------+-------------+
+| moyenne_ue1 | moyenne_ue2 | moyenne | groupe_id | semestre_id |
++-------------+-------------+---------+-----------+-------------+
+| 12.50       | 11.19       | 11.84   |         1 |           1 |
+| 13.13       | 11.75       | 12.44   |         2 |           1 |
+| 8.94        | 11.96       | 10.45   |         3 |           1 |
+| 11.63       | 11.24       | 11.43   |         1 |           2 |
+| 12.50       | 8.43        | 10.46   |         2 |           2 |
+| 12.80       | 10.10       | 11.45   |         3 |           2 |
+| 10.47       | 14.42       | 12.44   |         4 |           3 |
++-------------+-------------+---------+-----------+-------------+</code></pre>
+<h3 id="requête-6-alter-table-puis-update">requête 6 (ALTER TABLE puis
+UPDATE)</h3>
+<div class="requete">
+<strong>Requête 6</strong> :
+</div>
+<ul>
+<li><p>Ajouter une colonne de nom « resultat_semestre »dans la table
+pour y insérer le résultat du semestre : cette colonne est de type
+chaîne de caractères pour y placer les chaînes de caractères suivantes :
+‘ADM’,‘ADJ’,‘ADC’,‘ATT’,‘NV’,‘EXC’ .</p></li>
+<li><p>Écrire une requête qui modifie la colonne précédente avec la
+valeur ‘ADM’ si les 2 UEs ont une note supérieure ou égale à 8 et la
+moyenne est supérieure ou égale à 10</p></li>
+<li><p>Compter le nombre d’étudiants qui ont validé le
+semestre.</p></li>
+</ul>
+<p>Résultat :</p>
+<pre><code>+---------------------------------+
+| nombre_admis_hors_decision_jury |
++---------------------------------+
+|                              21 |
++---------------------------------+</code></pre>
+<p><br><br><br></p>
+<h2
+id="requête-7-colonnes-calculées-avec-concaténation-déléments-texte">Requête
+7 : colonnes calculées avec concaténation d’éléments “Texte”</h2>
+<p>Exemples :</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW())) ;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;année :&#39;</span>,<span class="dt">YEAR</span>(NOW()))  <span class="kw">AS</span> TEST;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CONCAT</span>(<span class="st">&#39;mois :&#39;</span>,<span class="dt">MONTH</span>(NOW()), <span class="st">&#39; - jour :&#39;</span>, <span class="dt">DAY</span>(NOW()))  <span class="kw">AS</span> TEST2;</span></code></pre></div>
+<div class="requete">
+<strong>Requête 7</strong> :
 </div>
 <p>Sur le même principe afficher le nom des étudiants et leur date de
 naissance au format JJ/MM/AAAA. Afficher uniquement les étudiants dont
@@ -255,175 +426,6 @@ target="_blanck">SQL Server</a> et <a
 href="https://www.postgresql.org/docs/9.1/functions-datetime.html"
 target="_blanck">PostgreSQL</a></p></li>
 </ul>
-<p><br><br><br></p>
-<section
-id="requête-3-utilisation-de-fonctions-dagrégation-et-dun-regroupement"
-class="cours">
-<h2><strong>requête 3 : utilisation de fonctions « d’agrégation » et
-d’un regroupement</strong> :</h2>
-<p>L’instruction « <code>GROUP BY</code> » est souvent utilisée avec les
-fonctions d’agrégation (<code>COUNT</code>, <code>MAX</code>,
-<code>MIN</code>, <code>SUM</code>, <code>AVG</code>) pour regrouper les
-résultats par une ou plusieurs colonnes. ( <a
-href="https://www.w3schools.com/SQL/sql_groupby.asp"
-target="_blanck">https://www.w3schools.com/SQL/sql_groupby.asp</a> )
-<br></p>
-<p>Testez la requête pour compter le nombre d’étudiants par groupe :</p>
-<div class="requete">
-<strong>Requête 3.1</strong> :
-</div>
-<pre><code>SELECT COUNT(Etudiant.idEtudiant) AS Nbre_etudiants, Etudiant.groupe_id 
-FROM Etudiant 
-GROUP BY Etudiant.groupe_id;</code></pre>
-<p><img src="img/img_tp6_1.jpg" /></p>
-<p>Modifier la requête et tester avec et sans le code barré :</p>
-<div class="requete">
-<strong>Requête 3.2</strong> :
-</div>
-<p><img src="img/img_tp6_2.jpg" /></p>
-<ul>
-<li>Dans la capture d’écran de la requête ci-dessus, le texte barré,
-est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
-colonne derrière le mot clé «GROUP BY»</strong> dans ce cas ?</li>
-</ul>
-<p>Modifier la requête et tester avec et sans le code barré :</p>
-<div class="requete">
-<strong>Requête 3.3</strong> :
-</div>
-<p><img src="img/img_tp6_3.jpg" /></p>
-<p>Dans la capture d’écran de la requête ci-dessus, le texte barré,
-est-il nécessaire ? Pourquoi ? Peut-on ne mettre qu’<strong>une seule
-colonne à côté de la fonction d’agrégation</strong> derrière le mot clé
-«SELECT» dans ce cas ?</p>
-<p>Autre exemple avec beaucoup de fonctions d’agrégation :</p>
-<div class="requete">
-<strong>Requête 3.4</strong> :
-</div>
-<p><img src="img/img_tp6_4.jpg" /></p>
-<p><br></p>
-<p>La documentation sur internet ne manque pas :</p>
-<ul>
-<li><a
-href="http://www.sqlfacile.com/apprendre_bases_de_donnees/group_by_et_les_fonctions_d_agregation"
-target="_blanck">http://www.sqlfacile.com/apprendre_bases_de_donnees/group_by_et_les_fonctions_d_agregation</a></li>
-<li><a href="https://docs.postgresql.fr/7.4/functions-aggregate.html"
-target="_blanck">https://docs.postgresql.fr/7.4/functions-aggregate.html</a></li>
-</ul>
-</section>
-<h3
-id="requête-4.1-4.2-4.3-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
-4.1, 4.2, 4.3 : utilisation de fonctions « d’agrégation » et d’un
-regroupement</h3>
-<div class="requete">
-<strong>Requête 4.1</strong> :
-</div>
-<ul>
-<li>Écrire la requête pour compter le nombre d’étudiants qui habitent le
-territoire de Belfort et qui sont des hommes, ordonné par codes postaux
-puis par sexe. Résultats :</li>
-</ul>
-<pre><code>+----------------+-------------+------+
-| Nbre_etudiants | code_postal | sexe |
-+----------------+-------------+------+
-|              7 |       90000 | H    |
-|              4 |       90120 | H    |
-|              7 |       90300 | H    |
-+----------------+-------------+------+</code></pre>
-<div class="requete">
-<strong>Requête 4.2</strong> :
-</div>
-<ul>
-<li>afficher le nombre d’étudiants qui habitent le territoire de Belfort
-et leurs sexes</li>
-</ul>
-<p><br></p>
-<p>Résultat :</p>
-<pre><code>+----------------+------+
-| Nbre_etudiants | sexe |
-+----------------+------+
-|              4 | F    |
-|             18 | H    |
-+----------------+------+</code></pre>
-<div class="requete">
-<strong>Requête 4.3</strong> :
-</div>
-<ul>
-<li>afficher le nombre d’étudiants qui habitent le territoire de Belfort
-et qui sont des hommes</li>
-</ul>
-<p><br></p>
-<p>Résultat :</p>
-<pre><code>+----------------+
-| Nbre_etudiants |
-+----------------+
-|             18 |
-+----------------+</code></pre>
-<h3
-id="requête-5-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
-5 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
-<div class="requete">
-<strong>Requête 5</strong> :
-</div>
-<ul>
-<li>Écrire la requête pour compter le nombre d’étudiants qui habitent en
-Franche-Comté. (départements : 90, 25, 39, 70)</li>
-</ul>
-<p><br></p>
-<p>Résultat :</p>
-<pre><code>+---------------------------------+ 
-| Nbre_etudiants_de_franche_comte | 
-+---------------------------------+ 
-|                              26 | 
-+---------------------------------+ </code></pre>
-<h3
-id="requête-6-utilisation-de-fonctions-dagrégation-et-dun-regroupement">requête
-6 : utilisation de fonctions « d’agrégation » et d’un regroupement</h3>
-<div class="requete">
-<strong>Requête 6</strong> :
-</div>
-<p>Sur le même principe calculer la moyenne des UE ainsi que la moyenne
-des 2 UE : pour chaque groupe et chaque semestres différents (trier par
-semestre puis par groupe).</p>
-<ul>
-<li>Utiliser dans un deuxième temps, la fonction Format pour arrondir à
-2 chiffres après la virgule. (unités d’enseignement : informatique et
-enseignement général, le plus souvent)</li>
-</ul>
-<p><br> Résultat :</p>
-<pre><code>+-------------+-------------+---------+-----------+-------------+
-| moyenne_ue1 | moyenne_ue2 | moyenne | groupe_id | semestre_id |
-+-------------+-------------+---------+-----------+-------------+
-| 12.50       | 11.19       | 11.84   |         1 |           1 |
-| 13.13       | 11.75       | 12.44   |         2 |           1 |
-| 8.94        | 11.96       | 10.45   |         3 |           1 |
-| 11.63       | 11.24       | 11.43   |         1 |           2 |
-| 12.50       | 8.43        | 10.46   |         2 |           2 |
-| 12.80       | 10.10       | 11.45   |         3 |           2 |
-| 10.47       | 14.42       | 12.44   |         4 |           3 |
-+-------------+-------------+---------+-----------+-------------+</code></pre>
-<h3 id="requête-7-alter-table-puis-update">requête 7 (ALTER TABLE puis
-UPDATE)</h3>
-<div class="requete">
-<strong>Requête 7</strong> :
-</div>
-<ul>
-<li><p>Ajouter une colonne de nom « resultat_semestre »dans la table
-pour y insérer le résultat du semestre : cette colonne est de type
-chaîne de caractères pour y placer les chaînes de caractères suivantes :
-‘ADM’,‘ADJ’,‘ADC’,‘ATT’,‘NV’,‘EXC’ .</p></li>
-<li><p>Écrire une requête qui modifie la colonne précédente avec la
-valeur ‘ADM’ si les 2 UEs ont une note supérieure ou égale à 8 et la
-moyenne est supérieure ou égale à 10</p></li>
-<li><p>Compter le nombre d’étudiants qui ont validé le
-semestre.</p></li>
-</ul>
-<p>Résultat :</p>
-<pre><code>+---------------------------------+
-| nombre_admis_hors_decision_jury |
-+---------------------------------+
-|                              21 |
-+---------------------------------+</code></pre>
-<p><br><br><br></p>
 <div class="important">
 <p>Pour les personnes ayant déjà pratiqué ou se sentant à l’aise avec le
 SQL :</p>

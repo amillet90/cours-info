@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BDD1</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="markdown-pandoc-amV4.css" />
+  <link rel="icon" href="favicon.ico" >
+
+</head>
+<body>
+<p>Voici le tableau comparatif complet intégrant <strong>MySQL</strong>,
+<strong>PostgreSQL</strong> et <strong>SQLite3</strong> :</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>MySQL (<code>mysql</code>)</th>
+<th>PostgreSQL (<code>psql</code>)</th>
+<th>SQLite3 (<code>sqlite3</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Se connecter</strong></td>
+<td><code>mysql --user=login --password=secret --host=serveurmysql --database=BDD_login</code></td>
+<td><code>PGPASSWORD="secret" psql --host=serveur --username=login --dbname=BDD_login</code></td>
+<td><code>sqlite3 ma_base.db</code> <em>(fichier local)</em></td>
+</tr>
+<tr class="even">
+<td><strong>Lister les bases</strong></td>
+<td><code>SHOW DATABASES;</code></td>
+<td><code>\l</code></td>
+<td><code>.databases</code> <em>(fichiers attachés)</em></td>
+</tr>
+<tr class="odd">
+<td><strong>Changer de base</strong></td>
+<td><code>USE BDD_login;</code></td>
+<td><code>\c BDD_login</code></td>
+<td><code>.open ma_base.db</code></td>
+</tr>
+<tr class="even">
+<td><strong>Lister les tables</strong></td>
+<td><code>SHOW TABLES;</code></td>
+<td><code>\dt</code></td>
+<td><code>.tables</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Voir la structure</strong></td>
+<td><code>DESCRIBE table;</code></td>
+<td><code>\d table</code></td>
+<td><code>.schema table</code> ou
+<code>PRAGMA table_info(table);</code></td>
+</tr>
+<tr class="even">
+<td><strong>Structure détaillée</strong></td>
+<td><code>SHOW CREATE TABLE table;</code></td>
+<td><code>\d+ table</code></td>
+<td><code>.schema table</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Lister les utilisateurs</strong></td>
+<td><code>SELECT User FROM mysql.user;</code></td>
+<td><code>\du</code></td>
+<td><em>N/A (pas de gestion d’utilisateurs)</em></td>
+</tr>
+<tr class="even">
+<td><strong>Exécuter un script</strong></td>
+<td><code>source fichier.sql;</code></td>
+<td><code>\i fichier.sql</code></td>
+<td><code>.read fichier.sql</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Quitter le terminal</strong></td>
+<td><code>exit;</code></td>
+<td><code>\q</code></td>
+<td><code>.exit</code> ou <code>.quit</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="à-noter-pour-sqlite">À noter pour SQLite</h3>
+<ul>
+<li><strong>Méta-commandes :</strong> Tout comme dans PostgreSQL, les
+commandes propres au CLI SQLite commencent par un point
+(<code>.tables</code>, <code>.schema</code>, <code>.read</code>) et
+n’ont <strong>pas besoin de point-virgule</strong> à la fin.</li>
+<li><strong>Fichier local :</strong> SQLite n’est pas un serveur
+client-serveur. Il n’y a donc pas de notion d’hôte
+(<code>--host</code>), d’utilisateur (<code>--user</code>) ni de mot de
+passe à fournir lors de la connexion.</li>
+</ul>
+<p>PGPASSWORD=“secret” psql –host=localhost –username=amillet
+–dbname=amillet</p>
+<h1 id="mettre-à-jour-les-paquets">1. Mettre à jour les paquets</h1>
+<p>sudo apt update</p>
+<h1 id="installer-postgresql-et-ses-outils">2. Installer PostgreSQL et
+ses outils</h1>
+<p>sudo apt install postgresql postgresql-contrib</p>
+<h1 id="vérifier-que-le-service-tourne-bien">3. Vérifier que le service
+tourne bien</h1>
+<p>sudo systemctl status postgresql</p>
+<p>Bash ￼ ￼ sudo -i -u postgres createuser –superuser –pwprompt amillet
+createdb amillet -O amillet</p>
+<p>Bash psql -U amillet -d amillet -h localhost -W</p>
+<p>Bash psql -U postgres -W sudo -u postgres psql – 1. Création des
+utilisateurs avec mot de passe CREATE USER login1 WITH PASSWORD
+‘secret’; CREATE USER login2 WITH PASSWORD ‘secret’;</p>
+<p>– 2. Création des bases pour login1 (login1 est propriétaire) CREATE
+DATABASE “BDD_login1_1” OWNER login1; CREATE DATABASE “BDD_login1_2”
+OWNER login1;</p>
+<p>– 3. Création des bases pour login2 (login2 est propriétaire) CREATE
+DATABASE “BDD_login2_1” OWNER login2; CREATE DATABASE “BDD_login2_2”
+OWNER login2;</p>
+<p>– Révoquer l’accès public par défaut REVOKE CONNECT ON DATABASE
+“BDD_login1_1” FROM PUBLIC; REVOKE CONNECT ON DATABASE “BDD_login1_2”
+FROM PUBLIC; REVOKE CONNECT ON DATABASE “BDD_login2_1” FROM PUBLIC;
+REVOKE CONNECT ON DATABASE “BDD_login2_2” FROM PUBLIC;</p>
+<p>– Autoriser uniquement le propriétaire respectif GRANT CONNECT ON
+DATABASE “BDD_login1_1” TO login1; GRANT CONNECT ON DATABASE
+“BDD_login1_2” TO login1; GRANT CONNECT ON DATABASE “BDD_login2_1” TO
+login2; GRANT CONNECT ON DATABASE “BDD_login2_2” TO login2;</p>
+</body>
+</html>
