@@ -198,14 +198,19 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#c
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> type_article.libelle, type_article.<span class="kw">id</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> type_article.libelle;</span></code></pre></div>
 <h1 id="ce-qui-ne-change-pas">ce qui NE change PAS</h1>
-<p>Pour rassurer les étudiants : une grande partie du code reste
-identique entre pymysql et sqlite3 : - les tuples de paramètres passés à
-<code>.execute(sql, tuple_valeurs)</code> - <code>.fetchall()</code> /
-<code>.fetchone()</code> / <code>.commit()</code> - l’accès
-<code>row['colonne']</code> dans le code Python et les templates Jinja2
-— grâce à <code>db.row_factory = sqlite3.Row</code>, chaque ligne se
-comporte comme un dictionnaire (accès par nom de colonne), exactement
-comme le faisait <code>pymysql.cursors.DictCursor</code>. Seul le
-mécanisme de connexion change, pas la façon de lire les résultats.</p>
+<p>Une grande partie du code reste identique entre pymysql et sqlite3
+:</p>
+<ul>
+<li>les tuples de paramètres passés à
+<code>.execute(sql, tuple_valeurs)</code></li>
+<li><code>.fetchall()</code> / <code>.fetchone()</code> /
+<code>.commit()</code></li>
+<li>l’accès <code>row['colonne']</code> dans le code Python et les
+templates Jinja2 — grâce à <code>db.row_factory = sqlite3.Row</code>,
+chaque ligne se comporte comme un dictionnaire (accès par nom de
+colonne), exactement comme le faisait
+<code>pymysql.cursors.DictCursor</code>. Seul le mécanisme de connexion
+change, pas la façon de lire les résultats.</li>
+</ul>
 </body>
 </html>
