@@ -524,16 +524,18 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;A1&#39;</span>),</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;A2&#39;</span>),</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;B1&#39;</span>),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;B2&#39;</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>;</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant_id)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="dv">1</span>),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="dv">1</span>),</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="dv">2</span>),</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="dv">2</span>),</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;mehdi&#39;</span>,<span class="dv">3</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;B2&#39;</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;C1&#39;</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;C2&#39;</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> etudiant (id_etudiant, nom_etudiant, groupe_etudiant_id)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;tom&#39;</span>,<span class="dv">1</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;enzo&#39;</span>,<span class="dv">1</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;laurence&#39;</span>,<span class="dv">2</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;theo&#39;</span>,<span class="dv">2</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>(<span class="kw">NULL</span>, <span class="st">&#39;mehdi&#39;</span>,<span class="dv">3</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
 <p>Sans trop de problème, votre code SQL serait :</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -721,6 +723,17 @@ minimale pour afficher/ajouter/modifier/supprimer des enregistrements
 dans la table “etudiant”.</p>
 </div>
 <p><br><br></p>
+<details>
+<summary>
+🤖 Editer
+</summary>
+<p>
+<p><img src="img_flask/flask_sql_tp1_edit.png"
+alt="CRUD edit étudiant" /> <img
+src="img_flask/flask_sql_tp1_valide_edit.png"
+alt="CRUD valide edit étudiant" /></p>
+</p>
+</details>
 <div class="code">
 <p><a href="https://github.com/amillet-iut90/flask_pymysql_demo1.git"
 target="_blank">code branche finale du TP1 en BDD avec Flask et
